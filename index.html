@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora UCI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>ΔPv–aCO₂</h2>
+
+<input id="paCO2" type="number" placeholder="PaCO₂ (mmHg)">
+<input id="pvCO2" type="number" placeholder="PvCO₂ (mmHg)">
+
+<button onclick="calcular()">Calcular</button>
+
+<div id="resultado"></div>
+
+<script src="app.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+</script>
+
+</body>
+</html>
