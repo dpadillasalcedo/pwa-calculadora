@@ -2,28 +2,130 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora UCI</title>
-  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h2>ΔPv–aCO₂</h2>
+<h2>Calculadora Hemodinámica – Metabolismo</h2>
 
-<input id="paCO2" type="number" placeholder="PaCO₂ (mmHg)">
-<input id="pvCO2" type="number" placeholder="PvCO₂ (mmHg)">
+<!-- ========================= -->
+<!-- BLOQUE GASTO CARDÍACO -->
+<!-- ========================= -->
 
-<button onclick="calcular()">Calcular</button>
+<h3>Gasto Cardíaco</h3>
 
-<div id="resultado"></div>
+<label>
+  <input type="radio" name="modoGC" value="manual" checked>
+  GC Manual (monitor)
+</label>
+<label>
+  <input type="radio" name="modoGC" value="eco">
+  GC Ecocardiográfico
+</label>
+
+<div class="grupo">
+  <label>GC manual (L/min)
+    <input type="number" id="gc_manual" step="0.1">
+  </label>
+</div>
+
+<div class="grupo">
+  <label>Diámetro LVOT (cm)
+    <input type="number" id="d_lvot" step="0.1">
+  </label>
+
+  <label>VTI (cm)
+    <input type="number" id="vti" step="0.1">
+  </label>
+
+  <label>Frecuencia cardíaca (lpm)
+    <input type="number" id="fc">
+  </label>
+</div>
+
+<hr>
+
+<!-- ========================= -->
+<!-- BLOQUE OXIGENACIÓN -->
+<!-- ========================= -->
+
+<h3>Oxigenación</h3>
+
+<div class="grupo">
+  <label>Hemoglobina (g/dL)
+    <input type="number" id="hb" step="0.1">
+  </label>
+</div>
+
+<div class="grupo">
+  <label>SaO₂ (%)
+    <input type="number" id="saO2">
+  </label>
+
+  <label>SvO₂ (%)
+    <input type="number" id="svO2">
+  </label>
+</div>
+
+<div class="grupo">
+  <label>PaO₂ (mmHg)
+    <input type="number" id="paO2">
+  </label>
+
+  <label>PvO₂ (mmHg)
+    <input type="number" id="pvO2">
+  </label>
+</div>
+
+<hr>
+
+<!-- ========================= -->
+<!-- BLOQUE CO2 -->
+<!-- ========================= -->
+
+<h3>CO₂</h3>
+
+<div class="grupo">
+  <label>PaCO₂ (mmHg)
+    <input type="number" id="paCO2">
+  </label>
+
+  <label>PvCO₂ (mmHg)
+    <input type="number" id="pvCO2">
+  </label>
+</div>
+
+<div class="grupo">
+  <label>HCO₃⁻ arterial (mEq/L)
+    <input type="number" id="hco3a">
+  </label>
+
+  <label>HCO₃⁻ venoso (mEq/L)
+    <input type="number" id="hco3v">
+  </label>
+</div>
+
+<hr>
+
+<!-- ========================= -->
+<!-- BOTÓN -->
+<!-- ========================= -->
+
+<button onclick="calcularTodo()">Calcular</button>
+
+<hr>
+
+<!-- ========================= -->
+<!-- RESULTADOS -->
+<!-- ========================= -->
+
+<div id="resultado" class="resultado"></div>
 
 <script src="app.js"></script>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
-</script>
-
 </body>
 </html>
+
