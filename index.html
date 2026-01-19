@@ -1,56 +1,73 @@
-<h1>
-  MONITOREO HEMODINÁMICO – RESPIRATORIO – METABÓLICO
-</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora UCI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-<h2>VENTILACIÓN MECÁNICA</h2>
+<body>
 
-<h3>PESO IDEAL</h3>
+  <h1>
+    MONITOREO HEMODINÁMICO – RESPIRATORIO – METABÓLICO
+  </h1>
 
-<label>Talla (cm)</label>
-<input type="number" id="talla">
+  <h2>VENTILACIÓN MECÁNICA</h2>
 
-<label>Sexo</label>
-<select id="sexo">
-  <option value="hombre">Hombre</option>
-  <option value="mujer">Mujer</option>
-</select>
+  <h3>PESO IDEAL</h3>
 
-<br><br>
-<button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
+  <label>Talla (cm)</label>
+  <input type="number" id="talla">
 
-<div id="resultadoPeso"></div>
+  <label>Sexo</label>
+  <select id="sexo">
+    <option value="">Seleccione</option>
+    <option value="hombre">Hombre</option>
+    <option value="mujer">Mujer</option>
+  </select>
 
-<hr>
+  <br><br>
+  <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
 
-<h3>AJUSTE DE PCO₂ DESEADA</h3>
+  <div id="resultadoPeso"></div>
 
-<label>PCO₂ actual</label>
-<input type="number" id="pco2Act">
+  <hr>
 
-<label>PCO₂ deseada</label>
-<input type="number" id="pco2Des">
+  <h3>AJUSTE DE PCO₂ DESEADA</h3>
 
-<br><br>
+  <label>PCO₂ actual</label>
+  <input type="number" id="pco2Act">
 
-<label>FR</label>
-<input type="number" id="fr">
+  <label>PCO₂ deseada</label>
+  <input type="number" id="pco2Des">
 
-<label>VT (mL)</label>
-<input type="number" id="vt">
+  <br><br>
 
-<label>VMIN (L/min)</label>
-<input type="number" id="vmin">
+  <label>FR</label>
+  <input type="number" id="fr">
 
-<br><br>
+  <label>VT (mL)</label>
+  <input type="number" id="vt">
 
-<input type="radio" name="ajuste" value="fr" checked> Ajustar FR
-<input type="radio" name="ajuste" value="vt"> Ajustar VT
-<input type="radio" name="ajuste" value="vmin"> Ajustar VMIN
+  <label>VMIN (L/min)</label>
+  <input type="number" id="vmin">
 
-<br><br>
-<button onclick="ajustarPCO2()">Calcular ajuste</button>
+  <br><br>
 
-<div id="resultadoPCO2"></div>
+  <input type="radio" name="ajuste" value="fr" checked> Ajustar FR
+  <input type="radio" name="ajuste" value="vt"> Ajustar VT
+  <input type="radio" name="ajuste" value="vmin"> Ajustar VMIN
+
+  <br><br>
+  <button onclick="ajustarPCO2()">Calcular ajuste</button>
+
+  <div id="resultadoPCO2"></div>
+
+  <!-- MUY IMPORTANTE: cargar el JS -->
+  <script src="app.js"></script>
+
+</body>
+</html>
 
 
 
