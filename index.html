@@ -2,20 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calculadora UCI</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#0b5fff">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <h1>Calculadora UCI</h1>
+        <p class="subtitle">Monitoreo hemodinámico · respiratorio · metabólico</p>
+      </div>
+      <div class="pill">Uso clínico educativo</div>
+    </header>
 
-  <h1>
-    MONITOREO HEMODINÁMICO – RESPIRATORIO – METABÓLICO
-  </h1>
+    <section class="panel">
+      <h2>Ventilación mecánica</h2>
 
-  <h2>VENTILACIÓN MECÁNICA</h2>
-
-  <h3>PESO IDEAL</h3>
+      <h3>Peso ideal</h3>
 
   <label>Talla (cm)</label>
   <input type="number" id="talla">
@@ -64,15 +71,12 @@
 
   <div id="resultadoPCO2"></div>
 
+    </section>
 
-<hr>
+    <section class="panel">
+      <h2>Ecocardiografía · gasto cardíaco</h2>
 
-<h2>ECOCARDIOGRAFÍA – GASTO CARDÍACO</h2>
-
-
-<hr>
-
-<h3>GASTO CARDÍACO POR ECOCARDIOGRAFÍA</h3>
+      <h3>Gasto cardíaco por ecocardiografía</h3>
 
 <label>Diámetro TSVI (cm)</label>
 <input type="number" id="dtsvi" step="0.1">
@@ -88,9 +92,10 @@
 
 <div id="resultadoGCEco"></div>
 
-<hr>
+    </section>
 
-<h2>OXIGENACIÓN · CO₂ · PERFUSIÓN</h2>
+    <section class="panel">
+      <h2>Oxigenación · CO₂ · perfusión</h2>
 
 <h3>GASTO CARDÍACO (MANUAL)</h3>
 
@@ -153,8 +158,20 @@
 
 <div id="resultadoPerfusion"></div>
 
+    </section>
 
-<script src="app.js"></script>
+    <footer class="app-footer">
+      <span>Hecho para uso educativo · Verifique siempre con guías y contexto clínico.</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Registro de Service Worker (PWA). Seguro de dejar si no lo usás.
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </body>
 </html>
 

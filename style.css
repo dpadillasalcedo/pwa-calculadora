@@ -1,45 +1,210 @@
+:root{
+  --bg: #0b1220;
+  --surface: rgba(255,255,255,.08);
+  --surface-2: rgba(255,255,255,.12);
+  --card: rgba(255,255,255,.10);
+  --card-solid: #0f1b33;
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --muted-2: rgba(255,255,255,.55);
+  --border: rgba(255,255,255,.14);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --primary: #0b5fff;
+  --primary-2: #5ad1ff;
+  --ok: #2bd27f;
+  --warn: #ffb020;
+  --danger: #ff4d6d;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --gap: 14px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 12% 8%, rgba(11,95,255,.35), transparent 60%),
+    radial-gradient(900px 600px at 85% 18%, rgba(90,209,255,.22), transparent 55%),
+    radial-gradient(1000px 700px at 50% 110%, rgba(43,210,127,.12), transparent 60%),
+    linear-gradient(180deg, #070b14, #0b1220 30%, #070b14 100%);
+}
+
+a{color:inherit}
+
+/* Layout */
+.app{max-width:980px;margin:0 auto;padding:24px 18px 40px}
+
+.app-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 18px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:linear-gradient(135deg, rgba(11,95,255,.18), rgba(255,255,255,.06));
+  box-shadow:var(--shadow);
+}
+.app-header h1{margin:0;font-size:22px;letter-spacing:.2px}
+.subtitle{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+.pill{
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.panel{
+  margin-top:18px;
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,.06);
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
+}
+
+.panel h2{
+  margin:0 0 12px 0;
+  font-size:16px;
+  letter-spacing:.3px;
+  text-transform:none;
+}
+.panel h3{
+  margin:18px 0 8px 0;
+  font-size:13px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+hr{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  margin:16px 0;
+}
+
+/* Form controls */
+label{
+  display:block;
+  margin:10px 0 6px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+input[type="number"], select{
+  width:100%;
+  padding:11px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(15,27,51,.55);
+  color:var(--text);
+  outline:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+input[type="number"]::placeholder{color:rgba(255,255,255,.35)}
+input[type="number"]:focus, select:focus{
+  border-color:rgba(90,209,255,.55);
+  box-shadow:0 0 0 4px rgba(11,95,255,.18);
+}
+
+/* Radios */
+input[type="radio"]{accent-color:var(--primary)}
+
+/* Buttons */
+button{
+  margin-top:12px;
+  padding:11px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(180deg, rgba(11,95,255,.95), rgba(11,95,255,.72));
+  color:white;
+  font-weight:700;
+  letter-spacing:.2px;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(11,95,255,.18);
+}
+button:hover{filter:brightness(1.05)}
+button:active{transform:translateY(1px)}
+
+/* Result blocks */
+#resultadoPeso,
+#resultadoPCO2,
+#resultadoGCEco,
+#resultadoPerfusion,
+#resultadoGCManual{
+  margin-top:12px;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+/* Grid/cards for perfusion output */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:12px
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:12px;
 }
 .card{
-  border:1px solid rgba(0,0,0,.12);
-  border-radius:12px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;
   padding:12px;
-  background:#fff
+  background:rgba(15,27,51,.55);
 }
 .card__title{
-  font-weight:700;
-  margin-bottom:8px
+  font-weight:800;
+  margin-bottom:10px;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 .row{
   display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:8px;
+  grid-template-columns:1.35fr .9fr;
+  gap:10px;
   align-items:center;
-  padding:6px 0;
-  border-bottom:1px dashed rgba(0,0,0,.08)
+  padding:8px 0;
+  border-bottom:1px dashed rgba(255,255,255,.12);
 }
-.row:last-child{
-  border-bottom:none
-}
-.row__label{font-size:14px}
+.row:last-child{border-bottom:none}
+.row__label{font-size:13px}
 .row__value{text-align:right}
-.row__hint{
-  grid-column:1 / -1;
-  font-size:12px;
-  opacity:.7;
-  margin-top:-4px
-}
+.row__hint{grid-column:1 / -1;font-size:12px;color:var(--muted-2);margin-top:-4px}
+
 .badge{
   display:inline-block;
-  padding:4px 8px;
+  padding:5px 9px;
   border-radius:999px;
-  font-weight:700;
+  font-weight:800;
   font-size:12px;
-  border:1px solid rgba(0,0,0,.12)
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
 }
-.badge--ok{background:rgba(0,128,0,.08)}
-.badge--warn{background:rgba(255,165,0,.12)}
-.badge--neutral{background:rgba(0,0,0,.04)}
+.badge--ok{border-color:rgba(43,210,127,.5);background:rgba(43,210,127,.12)}
+.badge--warn{border-color:rgba(255,176,32,.55);background:rgba(255,176,32,.14)}
+.badge--danger{border-color:rgba(255,77,109,.55);background:rgba(255,77,109,.12)}
+.badge--neutral{opacity:.95}
+
+.app-footer{
+  margin-top:18px;
+  color:var(--muted-2);
+  font-size:12px;
+  text-align:center;
+}
+
+@media (min-width: 720px){
+  /* make form feel less “one long column” on desktop */
+  .panel{padding:20px}
+  .panel label{margin-top:12px}
+}

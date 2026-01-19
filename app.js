@@ -85,6 +85,21 @@ function ajustarPCO2() {
   resultado.innerText = texto;
 }
 
+/* =========================
+   GASTO CARDÍACO MANUAL
+========================= */
+function mostrarGCManual() {
+  const gc = parseFloat(document.getElementById("gcManual").value);
+  const resultado = document.getElementById("resultadoGCManual");
+
+  if (isNaN(gc) || gc <= 0) {
+    resultado.innerText = "Ingrese un GC válido";
+    return;
+  }
+
+  resultado.innerText =
+    "Gasto cardíaco registrado: " + gc.toFixed(2) + " L/min";
+}
 
 /* =========================
    GASTO CARDÍACO POR ECO
@@ -119,6 +134,42 @@ function calcularGCEco() {
     "Área TSVI: " + csa.toFixed(2) + " cm²<br>" +
     "Volumen sistólico: " + vs.toFixed(1) + " mL<br>" +
     "<b>Gasto cardíaco: " + gc.toFixed(2) + " L/min</b>";
+}
+
+/* =========================
+   UI helpers (result cards)
+========================= */
+function badge(value, opts = {}) {
+  const { min = null, max = null, unit = "", digits = 2, danger = false } = opts;
+  const n = Number(value);
+  const txt = Number.isFinite(n) ? n.toFixed(digits) : "—";
+
+  let cls = "badge badge--neutral";
+  if (Number.isFinite(n) && (min !== null || max !== null)) {
+    const okMin = min === null || n >= min;
+    const okMax = max === null || n <= max;
+    cls = okMin && okMax ? "badge badge--ok" : (danger ? "badge badge--danger" : "badge badge--warn");
+  }
+  return `<span class="${cls}">${txt}${unit}</span>`;
+}
+
+function row(label, valueHtml, hint = "") {
+  return `
+    <div class="row">
+      <div class="row__label">${label}</div>
+      <div class="row__value">${valueHtml}</div>
+      ${hint ? `<div class="row__hint">${hint}</div>` : ""}
+    </div>
+  `;
+}
+
+function section(title, bodyHtml) {
+  return `
+    <div class="card">
+      <div class="card__title">${title}</div>
+      <div class="card__body">${bodyHtml}</div>
+    </div>
+  `;
 }
 
 function calcularBloquePerfusion() {
@@ -170,25 +221,35 @@ function calcularBloquePerfusion() {
   const PPR = tam - pia;
   const PPC = tam - pic;
 
-  resultado.innerHTML =
-  "<b>OXIGENACIÓN</b><br>" +
-  "CaO₂: " + CaO2.toFixed(2) + " mL/dL (VN 16–22)<br>" +
-  "CvO₂: " + CvO2.toFixed(2) + " mL/dL (VN 12–16)<br>" +
-  "ΔO₂: " + deltaO2.toFixed(2) + " mL/dL (VN 4–6)<br><br>" +
+  // Evitar Infinity/NaN por divisiones
+  const REO2pct = (Number.isFinite(REO2) && DO2 !== 0) ? (REO2 * 100) : NaN;
+  const CRsafe = (Number.isFinite(CR) && deltaO2 !== 0) ? CR : NaN;
 
-  "<b>CO₂</b><br>" +
-  "ΔCO₂: " + deltaCO2.toFixed(2) + " (VN 2–6)<br>" +
-  "Cociente respiratorio (CR): " + CR.toFixed(2) +
-  " (VN <1; 1–1.4 sospecha; >1.4 anaerobiosis)<br><br>" +
+  resultado.innerHTML = `
+    <div class="grid">
+      ${section("Oxigenación", [
+        row("CaO₂", badge(CaO2, { min: 16, max: 22, unit: " mL/dL", digits: 2 }), "VN 16–22"),
+        row("CvO₂", badge(CvO2, { min: 12, max: 16, unit: " mL/dL", digits: 2 }), "VN 12–16"),
+        row("ΔO₂", badge(deltaO2, { min: 4, max: 6, unit: " mL/dL", digits: 2 }), "VN 4–6"),
+      ].join(""))}
 
-  "<b>TRANSPORTE</b><br>" +
-  "DO₂: " + DO2.toFixed(0) + " mL/min (VN 900–1100)<br>" +
-  "VO₂: " + VO2.toFixed(0) + " mL/min (VN 200–250)<br>" +
-  "REO₂: " + (REO2 * 100).toFixed(1) + " % (VN 20–30)<br><br>" +
+      ${section("CO₂", [
+        row("ΔCO₂ (PCO₂v − PCO₂a)", badge(deltaCO2, { min: 2, max: 6, unit: " mmHg", digits: 2 }), "VN 2–6 mmHg"),
+        row("Cociente (ΔCO₂/ΔO₂)", badge(CRsafe, { min: null, max: 1.0, digits: 2, danger: true }), "VN <1; 1–1.4 sospecha; >1.4 anaerobiosis"),
+      ].join(""))}
 
-  "<b>PERFUSIÓN</b><br>" +
-  "RVS: " + RVS.toFixed(0) + " dyn·s·cm⁻⁵ (VN 800–1200)<br>" +
-  "PPR: " + PPR.toFixed(0) + " mmHg (VN >60)<br>" +
-  "PPC: " + PPC.toFixed(0) + " mmHg (VN 60–70)";
+      ${section("Transporte", [
+        row("DO₂", badge(DO2, { min: 900, max: 1100, unit: " mL/min", digits: 0 }), "VN 900–1100"),
+        row("VO₂", badge(VO2, { min: 200, max: 250, unit: " mL/min", digits: 0 }), "VN 200–250"),
+        row("REO₂", badge(REO2pct, { min: 20, max: 30, unit: " %", digits: 1 }), "VN 20–30 %"),
+      ].join(""))}
+
+      ${section("Perfusión", [
+        row("RVS", badge(RVS, { min: 800, max: 1200, unit: " dyn·s·cm⁻⁵", digits: 0 }), "VN 800–1200"),
+        row("PPR (TAM − PIA)", badge(PPR, { min: 60, max: null, unit: " mmHg", digits: 0 }), "VN >60"),
+        row("PPC (TAM − PIC)", badge(PPC, { min: 60, max: 70, unit: " mmHg", digits: 0 }), "VN 60–70"),
+      ].join(""))}
+    </div>
+  `;
 }
 
