@@ -188,23 +188,24 @@ function calcularBloquePerfusion() {
   const PPC = tam - pic;
 
   resultado.innerHTML =
-    "<b>OXIGENACIÓN</b><br>" +
-    "CaO₂: " + CaO2.toFixed(2) + " mL/dL<br>" +
-    "CvO₂: " + CvO2.toFixed(2) + " mL/dL<br>" +
-    "ΔO₂: " + deltaO2.toFixed(2) + " mL/dL<br><br>" +
+  "<b>OXIGENACIÓN</b><br>" +
+  "CaO₂: " + CaO2.toFixed(2) + " mL/dL (VN 16–22)<br>" +
+  "CvO₂: " + CvO2.toFixed(2) + " mL/dL (VN 12–16)<br>" +
+  "ΔO₂: " + deltaO2.toFixed(2) + " mL/dL (VN 4–6)<br><br>" +
 
-    "<b>CO₂</b><br>" +
-    "ΔCO₂: " + deltaCO2.toFixed(2) + "<br>" +
-    "Cociente respiratorio: " + CR.toFixed(2) + "<br><br>" +
+  "<b>CO₂</b><br>" +
+  "ΔCO₂: " + deltaCO2.toFixed(2) + " (VN 2–6)<br>" +
+  "Cociente respiratorio (CR): " + CR.toFixed(2) +
+  " (VN <1; 1–1.4 sospecha; >1.4 anaerobiosis)<br><br>" +
 
-    "<b>TRANSPORTE</b><br>" +
-    "DO₂: " + DO2.toFixed(0) + " mL/min<br>" +
-    "VO₂: " + VO2.toFixed(0) + " mL/min<br>" +
-    "REO₂: " + (REO2 * 100).toFixed(1) + " %<br><br>" +
+  "<b>TRANSPORTE</b><br>" +
+  "DO₂: " + DO2.toFixed(0) + " mL/min (VN 900–1100)<br>" +
+  "VO₂: " + VO2.toFixed(0) + " mL/min (VN 200–250)<br>" +
+  "REO₂: " + (REO2 * 100).toFixed(1) + " % (VN 20–30)<br><br>" +
 
-    "<b>PERFUSIÓN</b><br>" +
-    "RVS: " + RVS.toFixed(0) + " dyn·s·cm⁻⁵<br>" +
-    "PPR: " + PPR.toFixed(0) + " mmHg<br>" +
-    "PPC: " + PPC.toFixed(0) + " mmHg";
+  "<b>PERFUSIÓN</b><br>" +
+  "RVS: " + RVS.toFixed(0) + " dyn·s·cm⁻⁵ (VN 800–1200)<br>" +
+  "PPR: " + PPR.toFixed(0) + " mmHg (VN >60)<br>" +
+  "PPC: " + PPC.toFixed(0) + " mmHg (VN 60–70)";
 }
 
