@@ -84,3 +84,55 @@ function ajustarPCO2() {
 
   resultado.innerText = texto;
 }
+
+/* =========================
+   GASTO CARDÍACO MANUAL
+========================= */
+function mostrarGCManual() {
+  const gc = parseFloat(document.getElementById("gcManual").value);
+  const resultado = document.getElementById("resultadoGCManual");
+
+  if (isNaN(gc) || gc <= 0) {
+    resultado.innerText = "Ingrese un GC válido";
+    return;
+  }
+
+  resultado.innerText =
+    "Gasto cardíaco registrado: " + gc.toFixed(2) + " L/min";
+}
+
+/* =========================
+   GASTO CARDÍACO POR ECO
+========================= */
+function calcularGCEco() {
+  const dtsvi = parseFloat(document.getElementById("dtsvi").value);
+  const vti = parseFloat(document.getElementById("vti").value);
+  const fc = parseFloat(document.getElementById("fc").value);
+  const resultado = document.getElementById("resultadoGCEco");
+
+  if (isNaN(dtsvi) || isNaN(vti) || isNaN(fc)) {
+    resultado.innerText = "Complete todos los campos";
+    return;
+  }
+
+  if (dtsvi <= 0 || vti <= 0 || fc <= 0) {
+    resultado.innerText = "Valores inválidos";
+    return;
+  }
+
+  // Área TSVI (cm²)
+  const csa = Math.PI * Math.pow(dtsvi / 2, 2);
+
+  // Volumen sistólico (mL)
+  const vs = csa * vti;
+
+  // Gasto cardíaco (L/min)
+  const gc = (vs * fc) / 1000;
+
+  resultado.innerHTML =
+    "<b>Resultados ecocardiográficos:</b><br>" +
+    "Área TSVI: " + csa.toFixed(2) + " cm²<br>" +
+    "Volumen sistólico: " + vs.toFixed(1) + " mL<br>" +
+    "<b>Gasto cardíaco: " + gc.toFixed(2) + " L/min</b>";
+}
+

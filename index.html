@@ -66,6 +66,40 @@
   <!-- MUY IMPORTANTE: cargar el JS -->
   <script src="app.js"></script>
 
+<hr>
+
+<h2>ECOCARDIOGRAFÍA – GASTO CARDÍACO</h2>
+
+<h3>GASTO CARDÍACO MANUAL</h3>
+
+<label>Gasto cardíaco (L/min)</label>
+<input type="number" id="gcManual" step="0.1">
+
+<br><br>
+<button onclick="mostrarGCManual()">Registrar GC manual</button>
+
+
+<div id="resultadoGCManual"></div>
+
+<hr>
+
+<h3>GASTO CARDÍACO POR ECOCARDIOGRAFÍA</h3>
+
+<label>Diámetro TSVI (cm)</label>
+<input type="number" id="dtsvi" step="0.1">
+
+<label>VTI TSVI (cm)</label>
+<input type="number" id="vti" step="0.1">
+
+<label>Frecuencia cardíaca (lpm)</label>
+<input type="number" id="fc" step="1">
+
+<br><br>
+<button onclick="calcularGCEco()">Calcular GC por eco</button>
+
+<div id="resultadoGCEco"></div>
+
+
 </body>
 </html>
 
