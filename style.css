@@ -1,119 +1,45 @@
-/* =========================
-   CONFIGURACIÓN GENERAL
-========================= */
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f8;
-  margin: 0;
-  padding: 15px;
-  color: #222;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:12px
 }
-
-h2 {
-  text-align: center;
-  color: #003366;
-  margin-bottom: 10px;
+.card{
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:12px;
+  background:#fff
 }
-
-h3 {
-  color: #004b8d;
-  margin-top: 20px;
-  margin-bottom: 10px;
+.card__title{
+  font-weight:700;
+  margin-bottom:8px
 }
-
-/* =========================
-   BLOQUES DE INPUTS
-========================= */
-
-.grupo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 10px;
+.row{
+  display:grid;
+  grid-template-columns:1.3fr .9fr;
+  gap:8px;
+  align-items:center;
+  padding:6px 0;
+  border-bottom:1px dashed rgba(0,0,0,.08)
 }
-
-label {
-  flex: 1;
-  min-width: 150px;
-  font-size: 14px;
+.row:last-child{
+  border-bottom:none
 }
-
-input[type="number"] {
-  width: 100%;
-  padding: 6px;
-  margin-top: 3px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #bbb;
+.row__label{font-size:14px}
+.row__value{text-align:right}
+.row__hint{
+  grid-column:1 / -1;
+  font-size:12px;
+  opacity:.7;
+  margin-top:-4px
 }
-
-/* =========================
-   RADIO BUTTONS
-========================= */
-
-input[type="radio"] {
-  margin-right: 5px;
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+  border:1px solid rgba(0,0,0,.12)
 }
-
-/* =========================
-   BOTÓN
-========================= */
-
-button {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #005fa3;
-}
-
-/* =========================
-   RESULTADOS
-========================= */
-
-.resultado {
-  background-color: #ffffff;
-  border-left: 5px solid #0077cc;
-  padding: 15px;
-  font-size: 15px;
-  line-height: 1.5;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-/* =========================
-   ESTADOS CLÍNICOS
-========================= */
-
-.normal {
-  color: #1a7f37;
-  font-weight: bold;
-}
-
-.alerta {
-  color: #b45309;
-  font-weight: bold;
-}
-
-.critico {
-  color: #b91c1c;
-  font-weight: bold;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 600px) {
-  .grupo {
-    flex-direction: column;
-  }
-}
+.badge--ok{background:rgba(0,128,0,.08)}
+.badge--warn{background:rgba(255,165,0,.12)}
+.badge--neutral{background:rgba(0,0,0,.04)}
