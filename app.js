@@ -85,21 +85,6 @@ function ajustarPCO2() {
   resultado.innerText = texto;
 }
 
-/* =========================
-   GASTO CARDÍACO MANUAL
-========================= */
-function mostrarGCManual() {
-  const gc = parseFloat(document.getElementById("gcManual").value);
-  const resultado = document.getElementById("resultadoGCManual");
-
-  if (isNaN(gc) || gc <= 0) {
-    resultado.innerText = "Ingrese un GC válido";
-    return;
-  }
-
-  resultado.innerText =
-    "Gasto cardíaco registrado: " + gc.toFixed(2) + " L/min";
-}
 
 /* =========================
    GASTO CARDÍACO POR ECO
