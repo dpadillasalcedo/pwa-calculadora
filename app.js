@@ -169,10 +169,8 @@ function calcularBloquePerfusion() {
   const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
   const deltaO2 = CaO2 - CvO2;
 
-  /* CONTENIDO DE CO2 (simplificado) */
-  const CaCO2 = (0.03 * paco2) + hco3a;
-  const CvCO2 = (0.03 * pvco2) + hco3v;
-  const deltaCO2 = CvCO2 - CaCO2;
+  /* BRECHA DE CO2 (VN 2–6 mmHg) */
+  const deltaCO2 = pvco2 - paco2; // DCO2 = PCO2v - PCO2a
 
   /* TRANSPORTE Y CONSUMO */
   const DO2 = gc * CaO2 * 10;
