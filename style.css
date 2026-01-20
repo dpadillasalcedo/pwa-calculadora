@@ -1,6 +1,6 @@
 /* =========================
    Calculadora UCI
-   Tema Azul Claro (anti-cache)
+   Tema Azul Claro · UI Clínica Fina
 ========================= */
 
 :root{
@@ -13,7 +13,7 @@
   --muted: rgba(255,255,255,.68);
   --muted-2: rgba(255,255,255,.52);
 
-  /* 🔵 AZUL CLARO FORZADO */
+  /* 🔵 Azul claro definitivo */
   --brand: #7dd3fc;
   --brand-2: #bae6fd;
 
@@ -21,7 +21,7 @@
   --warn: #ff9f0a;
   --ok: #34c759;
 
-  --radius: 18px;
+  --radius: 16px;
   --shadow: 0 18px 50px rgba(0,0,0,.45);
 }
 
@@ -35,9 +35,9 @@ body{
   color: var(--text);
 
   background:
-    radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.35), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.30), transparent 62%),
-    radial-gradient(900px 700px at 50% 120%, rgba(52,199,89,.08), transparent 55%),
+    radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.28), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.22), transparent 62%),
+    radial-gradient(900px 700px at 50% 120%, rgba(52,199,89,.07), transparent 55%),
     var(--bg);
 }
 
@@ -71,7 +71,7 @@ body{
 }
 
 .pill{
-  padding: 8px 12px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.18);
   background: rgba(255,255,255,.06);
@@ -94,7 +94,55 @@ body{
 
 .panel h2{
   margin: 0 0 12px;
-  font-size: 18px;
+  font-size: 17px;
+}
+
+.panel h3{
+  margin: 14px 0 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,.86);
+}
+
+/* =========================
+   Labels
+========================= */
+
+label{
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* =========================
+   Inputs FINOS
+========================= */
+
+input,
+select{
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.18);
+
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+
+  font-size: 13px;
+  outline: none;
+
+  transition: border .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+input::placeholder{
+  color: rgba(255,255,255,.45);
+}
+
+input:focus,
+select:focus{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(125,211,252,.65);
+  box-shadow: 0 0 0 2px rgba(125,211,252,.25);
 }
 
 /* =========================
@@ -104,33 +152,86 @@ body{
 button{
   width: 100%;
   margin-top: 12px;
-  padding: 12px 14px;
+  padding: 10px 14px;
 
-  border-radius: 14px;
-  border: 1px solid rgba(125,211,252,.65);
+  border-radius: 12px;
+  border: 1px solid rgba(125,211,252,.55);
 
   background: linear-gradient(
     180deg,
-    var(--brand),
-    rgba(125,211,252,.75)
+    rgba(125,211,252,.95),
+    rgba(125,211,252,.70)
   );
 
   color: #00324d;
   font-weight: 700;
+  font-size: 13px;
   cursor: pointer;
+
+  box-shadow: 0 8px 22px rgba(125,211,252,.25);
 }
 
 button:hover{
-  filter: brightness(1.05);
+  filter: brightness(1.06);
 }
 
 .btn-secondary{
-  border: 1px solid rgba(186,230,253,.7);
+  border: 1px solid rgba(186,230,253,.6);
   background: linear-gradient(
     180deg,
-    var(--brand-2),
-    rgba(186,230,253,.6)
+    rgba(186,230,253,.85),
+    rgba(186,230,253,.60)
   );
+  color: #00324d;
+}
+
+/* =========================
+   Grids
+========================= */
+
+.inline{
+  display: flex;
+  gap: 10px 14px;
+  flex-wrap: wrap;
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.grid-3{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 720px){
+  .grid-2{ grid-template-columns: 1fr 1fr; }
+  .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* =========================
+   Cards / notes
+========================= */
+
+.card{
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255,255,255,.06);
+}
+
+.card__title{
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.note{
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 /* =========================
@@ -138,13 +239,9 @@ button:hover{
 ========================= */
 
 .app-footer{
-  margin-top: 20px;
+  margin-top: 18px;
   text-align: center;
   font-size: 12px;
   color: var(--muted-2);
 }
 
-.note{
-  font-size: 12px;
-  color: var(--muted);
-}

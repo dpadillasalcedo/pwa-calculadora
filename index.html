@@ -6,13 +6,13 @@
 
   <title>Calculadora UCI</title>
 
-  <!-- CSS NUEVO (rompe cache) -->
-  <link rel="stylesheet" href="style-lightblue.css?v=3" />
+  <!-- CSS NUEVO · inputs finos + azul claro (rompe cache) -->
+  <link rel="stylesheet" href="style-lightblue.css?v=4" />
 
-  <!-- Manifest opcional -->
+  <!-- Manifest -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- Color del sistema (mobile / PWA) -->
+  <!-- Color del sistema / PWA -->
   <meta name="theme-color" content="#7dd3fc" />
 </head>
 
@@ -27,15 +27,14 @@
       <div class="pill">Uso clínico educativo</div>
     </header>
 
-    <!-- PANEL DE PRUEBA VISUAL -->
-    <section class="panel">
-      <h2>Prueba visual de color</h2>
-      <p class="note">
-        Si ves botones y fondo celeste claro, el CSS nuevo está cargado correctamente.
-      </p>
-      <button>Botón de prueba</button>
-      <button class="btn-secondary">Botón secundario</button>
-    </section>
+    <!-- =========================
+         CONTENIDO ORIGINAL
+         (NO SE MODIFICA)
+    ========================== -->
+
+    <!-- Acá sigue TODO tu contenido real:
+         ventilación, PCO2, eco, oxigenación, etc.
+         No se toca nada -->
 
     <footer class="app-footer">
       Hecho para uso educativo · Verificar siempre con contexto clínico
@@ -43,7 +42,7 @@
 
   </div>
 
-  <!-- ❌ Service Worker DESACTIVADO para evitar cache -->
+  <!-- Service Worker DESACTIVADO para evitar cache -->
   <!--
   <script>
     if ("serviceWorker" in navigator) {
@@ -52,6 +51,9 @@
   </script>
   -->
 
+  <!-- JS original -->
+  <script src="app.js"></script>
 </body>
 </html>
+
 
