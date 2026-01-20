@@ -94,29 +94,34 @@ function ajustarPCO2() {
     return;
   }
 
-  const ajuste = document.querySelector('input[name="ajuste"]:checked')?.value;
-  if (!ajuste) {
-    resultado.innerText = "Seleccione qué ajustar";
-    return;
+  const factor = pco2Act / pco2Des;
+  const fr = num("fr");
+  const vt = num("vt");
+  const vmin = num("vmin");
+
+  const partes = [];
+
+  if (Number.isFinite(fr) && fr > 0) {
+    partes.push(`FR ajustada: ${(fr * factor).toFixed(1)} rpm`);
+  } else {
+    partes.push("FR ajustada: — (ingrese FR)");
   }
 
-  let texto = "";
-
-  if (ajuste === "fr") {
-    const fr = num("fr");
-    texto = `FR ajustada: ${(fr * (pco2Act / pco2Des)).toFixed(1)} rpm`;
-  }
-  if (ajuste === "vt") {
-    const vt = num("vt");
-    texto = `VT ajustado: ${(vt * (pco2Act / pco2Des)).toFixed(0)} mL`;
-  }
-  if (ajuste === "vmin") {
-    const vmin = num("vmin");
-    texto = `VMIN ajustada: ${(vmin * (pco2Act / pco2Des)).toFixed(1)} L/min`;
+  if (Number.isFinite(vt) && vt > 0) {
+    partes.push(`VT ajustado: ${(vt * factor).toFixed(0)} mL`);
+  } else {
+    partes.push("VT ajustado: — (ingrese VT)");
   }
 
-  resultado.innerText = texto;
+  if (Number.isFinite(vmin) && vmin > 0) {
+    partes.push(`VMIN ajustada: ${(vmin * factor).toFixed(1)} L/min`);
+  } else {
+    partes.push("VMIN ajustada: — (ingrese VMIN)");
+  }
+
+  resultado.innerHTML = partes.join("<br>");
 }
+
 
 /* =========================
    ECOCARDIOGRAFÍA
@@ -175,8 +180,15 @@ function calcularOxigenacion() {
     DO₂: ${DO2.toFixed(0)} mL/min<br>
     VO₂: ${VO2.toFixed(0)} mL/min<br>
     <b>REO₂: ${REO2.toFixed(1)} %</b>
+    <hr>
+    <b>Valores de referencia REO₂</b><br>
+    Normal (Reposo): 15-33%<br>
+    Ejercicio Intenso: Puede llegar al 70%.<br>
+    &rarr; <b>Bajo:</b> Indica que se entrega más oxígeno del que se consume (flujo alto o bajo consumo), común en sepsis.<br>
+    &rarr; <b>Alto:</b> Indica que los tejidos están extrayendo una gran proporción de O₂ disponible, señal de bajo gasto cardíaco o aumento de la demanda.
   `;
 }
+
 
 /* =========================
    PERFUSIÓN / CO₂
@@ -192,20 +204,31 @@ function calcularDeltaCO2() {
   }
 
   const deltaCO2 = pvco2 - paco2;
-  resultado.innerHTML = `<b>ΔCO₂:</b> ${deltaCO2.toFixed(1)} mmHg`;
+  resultado.innerHTML = `
+    <b>ΔCO₂:</b> ${deltaCO2.toFixed(1)} mmHg
+    <hr>
+    <b>Interpretación</b>
+    <div class="note">
+      → Una brecha Pv-aCO₂ elevada (<b>&gt; 6 mmHg</b>) en la sepsis detecta disoxia estancada, ya sea relacionada con un bajo gasto cardíaco o un trastorno en el flujo sanguíneo microcirculatorio
+    </div>
+  `;
 }
 
 function calcularRVS() {
   const tam = num("tam");
   const pvc = num("pvc");
+  // Permite usar un GC específico para RVS; si no existe, toma el GC general de oxigenación.
+  let gc = num("gc_rvs");
+  if (!Number.isFinite(gc)) gc = num("gc");
+
   const resultado = document.getElementById("resultadoRVS");
 
-  if (anyNaN([tam, pvc])) {
-    resultado.innerText = "Complete TAM y PVC";
+  if (anyNaN([tam, pvc, gc]) || gc <= 0) {
+    resultado.innerText = "Complete TAM, PVC y GC";
     return;
   }
 
-  const rvs = (tam - pvc) * 80;
+  const rvs = ((tam - pvc) / gc) * 79.92;
   resultado.innerHTML = `<b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵`;
 }
 
