@@ -145,8 +145,16 @@ function calcularGCEco() {
     Área TSVI: ${csa.toFixed(2)} cm²<br>
     Volumen sistólico: ${vs.toFixed(1)} mL<br>
     <b>Gasto cardíaco: ${gc.toFixed(2)} L/min</b>
+    <hr>
+    <b>Valores de referencia</b><br>
+    Normal: 18-22 cm<br>
+    Bajo: &lt; 15 cm<br>
+    <br>
+    <b>Respuesta a fluidos</b><br>
+    Positiva si hay un cambio &gt; 12%
   `;
 }
+
 
 /* =========================
    OXIGENACIÓN
@@ -229,7 +237,10 @@ function calcularRVS() {
   }
 
   const rvs = ((tam - pvc) / gc) * 79.92;
-  resultado.innerHTML = `<b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵`;
+  resultado.innerHTML = `
+    <b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵<br>
+    <small>Fórmula: ((TAM − PVC) / GC) × 79.92</small>
+  `;
 }
 
 function calcularPPR() {
@@ -243,7 +254,10 @@ function calcularPPR() {
   }
 
   const ppr = tam - pia;
-  resultado.innerHTML = `<b>PPR:</b> ${ppr.toFixed(0)} mmHg`;
+  resultado.innerHTML = `
+    <b>PPR:</b> ${ppr.toFixed(0)} mmHg<br>
+    <small>Fórmula: TAM − PIA</small>
+  `;
 }
 
 function calcularPPC() {
@@ -257,7 +271,10 @@ function calcularPPC() {
   }
 
   const ppc = tam - pic;
-  resultado.innerHTML = `<b>PPC:</b> ${ppc.toFixed(0)} mmHg`;
+  resultado.innerHTML = `
+    <b>PPC:</b> ${ppc.toFixed(0)} mmHg<br>
+    <small>Fórmula: TAM − PIC</small>
+  `;
 }
 
 // Mantengo la función anterior para compatibilidad (si algún botón viejo quedara en caché)
@@ -320,5 +337,81 @@ function calcularDeltaGap() {
       <li><b>> −6:</b> Existe otra acidosis metabólica</li>
     </ul>
     <small>Fórmula: (AGAPp − AGAPn) − (BICAn − BICAp)</small>
+  `;
+}
+
+/* =========================
+   SODIO Y CALCIO CORREGIDO
+========================= */
+function calcularSodioCorregido() {
+  const nas = num("nas");
+  const glucs = num("glucs");
+  const resultado = document.getElementById("resultadoNaCorregido");
+
+  if (anyNaN([nas, glucs])) {
+    resultado.innerText = "Complete Sodio medido (NAs) y Glucosa sérica (GLUCs)";
+    return;
+  }
+
+  const nac = nas + (1.6 * ((glucs - 100) / 100));
+  resultado.innerHTML = `
+    <b>Na corregido (NAc):</b> ${nac.toFixed(1)} mEq/L<br>
+    <small>Fórmula: NAc = NAs + (1.6 × ((GLUCs − 100) / 100))</small>
+  `;
+}
+
+function calcularCalcioCorregido() {
+  const cas = num("cas");
+  const albs = num("albs");
+  const resultado = document.getElementById("resultadoCaCorregido");
+
+  if (anyNaN([cas, albs])) {
+    resultado.innerText = "Complete Calcio sérico (CAs) y Albúmina sérica (ALBs)";
+    return;
+  }
+
+  const cac = cas - (0.8 * (4 - albs));
+  resultado.innerHTML = `
+    <b>Ca corregido (CAc):</b> ${cac.toFixed(2)}<br>
+    <small>Fórmula: CAc = CAs − (0.8 × (4 − ALBs))</small>
+  `;
+}
+
+/* =========================
+   SOFA-2
+========================= */
+function calcularSOFA2() {
+  const campos = [
+    { id: "sofa_neuro", label: "Sistema nervioso (GCS)" },
+    { id: "sofa_resp", label: "Respiratorio (PaO₂/FiO₂)" },
+    { id: "sofa_cv", label: "Cardiovascular" },
+    { id: "sofa_higado", label: "Hígado (Bilirrubina)" },
+    { id: "sofa_rinon", label: "Riñón" },
+    { id: "sofa_coag", label: "Hemostasia (Plaquetas)" },
+  ];
+
+  const valores = {};
+  for (const c of campos) {
+    const el = document.getElementById(c.id);
+    if (!el) continue;
+    const v = parseInt(el.value, 10);
+    if (!Number.isFinite(v)) {
+      document.getElementById("resultadoSOFA2").innerText = "Seleccione todas las variables para calcular SOFA-2";
+      return;
+    }
+    valores[c.label] = v;
+  }
+
+  const total = Object.values(valores).reduce((a, b) => a + b, 0);
+
+  const detalle = Object.entries(valores)
+    .map(([k, v]) => `<li>${k}: <b>${v}</b></li>`)
+    .join("");
+
+  document.getElementById("resultadoSOFA2").innerHTML = `
+    <b>SOFA-2 total:</b> ${total} / 24
+    <hr>
+    <b>Detalle por sistema</b>
+    <ul>${detalle}</ul>
   `;
 }
