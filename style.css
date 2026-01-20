@@ -1,6 +1,7 @@
 /* =========================
    Calculadora UCI
    Refinamiento visual · Azul claro
+   (USAR ESTE ARCHIVO COMO style.css)
    SOLO ESTILO – no afecta cálculos
 ========================= */
 
@@ -9,10 +10,10 @@
 
   --panel:rgba(255,255,255,.06);
   --panel-strong:rgba(255,255,255,.09);
-  --border:rgba(255,255,255,.14);
+  --border:rgba(255,255,255,.18);
 
   --text:rgba(255,255,255,.94);
-  --muted:rgba(255,255,255,.68);
+  --muted:rgba(255,255,255,.70);
   --muted-2:rgba(255,255,255,.52);
 
   /* Azul claro médico */
@@ -101,7 +102,7 @@ body{
 }
 
 /* =========================
-   Labels & inputs
+   Labels & inputs (FINOS)
 ========================= */
 
 label{
