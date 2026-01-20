@@ -171,6 +171,9 @@
         </div>
       </div>
 
+      <button onclick="calcularDeltaCO2()">Calcular ΔCO₂</button>
+      <div id="resultadoCO2"></div>
+
       <hr />
 
       <h3>Presiones</h3>
@@ -196,8 +199,15 @@
         </div>
       </div>
 
-      <button onclick="calcularPerfusion()">Calcular CO₂ y perfusión</button>
-      <div id="resultadoPerfusion"></div>
+      <div class="inline" style="gap:10px; flex-wrap:wrap">
+        <button type="button" onclick="calcularRVS()">Calcular RVS</button>
+        <button type="button" onclick="calcularPPR()">Calcular PPR</button>
+        <button type="button" onclick="calcularPPC()">Calcular PPC</button>
+      </div>
+
+      <div id="resultadoRVS"></div>
+      <div id="resultadoPPR"></div>
+      <div id="resultadoPPC"></div>
     </section>
 
     <!-- =========================

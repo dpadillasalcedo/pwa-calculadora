@@ -181,32 +181,68 @@ function calcularOxigenacion() {
 /* =========================
    PERFUSIÓN / CO₂
 ========================= */
-function calcularPerfusion() {
+function calcularDeltaCO2() {
   const paco2 = num("paco2");
   const pvco2 = num("pvco2");
-  const tam = num("tam");
-  const pvc = num("pvc");
-  const pia = num("pia");
-  const pic = num("pic");
+  const resultado = document.getElementById("resultadoCO2");
 
-  const resultado = document.getElementById("resultadoPerfusion");
-
-  if (anyNaN([paco2, pvco2, tam, pvc, pia, pic])) {
-    resultado.innerText = "Complete todos los campos";
+  if (anyNaN([paco2, pvco2])) {
+    resultado.innerText = "Complete PaCO₂ y PvCO₂";
     return;
   }
 
   const deltaCO2 = pvco2 - paco2;
-  const RVS = ((tam - pvc) * 80).toFixed(0);
-  const PPR = tam - pia;
-  const PPC = tam - pic;
+  resultado.innerHTML = `<b>ΔCO₂:</b> ${deltaCO2.toFixed(1)} mmHg`;
+}
 
-  resultado.innerHTML = `
-    ΔCO₂: ${deltaCO2.toFixed(1)} mmHg<br>
-    RVS: ${RVS} dyn·s·cm⁻⁵<br>
-    PPR: ${PPR} mmHg<br>
-    PPC: ${PPC} mmHg
-  `;
+function calcularRVS() {
+  const tam = num("tam");
+  const pvc = num("pvc");
+  const resultado = document.getElementById("resultadoRVS");
+
+  if (anyNaN([tam, pvc])) {
+    resultado.innerText = "Complete TAM y PVC";
+    return;
+  }
+
+  const rvs = (tam - pvc) * 80;
+  resultado.innerHTML = `<b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵`;
+}
+
+function calcularPPR() {
+  const tam = num("tam");
+  const pia = num("pia");
+  const resultado = document.getElementById("resultadoPPR");
+
+  if (anyNaN([tam, pia])) {
+    resultado.innerText = "Complete TAM y PIA";
+    return;
+  }
+
+  const ppr = tam - pia;
+  resultado.innerHTML = `<b>PPR:</b> ${ppr.toFixed(0)} mmHg`;
+}
+
+function calcularPPC() {
+  const tam = num("tam");
+  const pic = num("pic");
+  const resultado = document.getElementById("resultadoPPC");
+
+  if (anyNaN([tam, pic])) {
+    resultado.innerText = "Complete TAM y PIC";
+    return;
+  }
+
+  const ppc = tam - pic;
+  resultado.innerHTML = `<b>PPC:</b> ${ppc.toFixed(0)} mmHg`;
+}
+
+// Mantengo la función anterior para compatibilidad (si algún botón viejo quedara en caché)
+function calcularPerfusion() {
+  calcularDeltaCO2();
+  calcularRVS();
+  calcularPPR();
+  calcularPPC();
 }
 
 /* =========================
