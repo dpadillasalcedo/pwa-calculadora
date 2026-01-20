@@ -66,9 +66,10 @@ function section(title, bodyHtml) {
 function calcularPesoIdeal() {
   const talla = num("talla");
   const sexo = document.getElementById("sexo")?.value;
+  const resultado = document.getElementById("resultadoPeso");
 
   if (!Number.isFinite(talla) || talla <= 0) {
-    document.getElementById("resultadoPeso").innerText = "Ingrese una talla válida";
+    resultado.innerText = "Ingrese una talla válida";
     return;
   }
 
@@ -76,13 +77,25 @@ function calcularPesoIdeal() {
   if (sexo === "hombre") pesoIdeal = 50 + 0.91 * (talla - 152.4);
   else if (sexo === "mujer") pesoIdeal = 45 + 0.91 * (talla - 152.4);
   else {
-    document.getElementById("resultadoPeso").innerText = "Seleccione el sexo";
+    resultado.innerText = "Seleccione el sexo";
     return;
   }
 
-  document.getElementById("resultadoPeso").innerText =
-    `Peso ideal: ${pesoIdeal.toFixed(1)} kg`;
+  // Volúmenes corrientes protectores
+  const vt6 = pesoIdeal * 6;
+  const vt7 = pesoIdeal * 7;
+  const vt8 = pesoIdeal * 8;
+
+  resultado.innerHTML = `
+    <b>Peso ideal:</b> ${pesoIdeal.toFixed(1)} kg
+    <hr>
+    <b>Volumen corriente sugerido</b><br>
+    • 6 ml/kg: <b>${vt6.toFixed(0)} mL</b><br>
+    • 7 ml/kg: <b>${vt7.toFixed(0)} mL</b><br>
+    • 8 ml/kg: <b>${vt8.toFixed(0)} mL</b>
+  `;
 }
+
 
 function ajustarPCO2() {
   const pco2Act = num("pco2Act");
