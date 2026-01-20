@@ -1,143 +1,29 @@
 /* =========================
-   PESO IDEAL
+   Helpers
 ========================= */
-function calcularPesoIdeal() {
-  const tallaInput = document.getElementById("talla");
-  const sexoInput = document.getElementById("sexo");
-  const resultado = document.getElementById("resultadoPeso");
+function num(id) {
+  const el = document.getElementById(id);
+  if (!el) return NaN;
+  const v = parseFloat(el.value);
+  return Number.isFinite(v) ? v : NaN;
+}
 
-  if (!tallaInput || !sexoInput || !resultado) {
-    alert("Error interno: campos no encontrados");
-    return;
-  }
+function anyNaN(arr) {
+  return arr.some(v => !Number.isFinite(v));
+}
 
-  const talla = parseFloat(tallaInput.value);
-  const sexo = sexoInput.value;
+function safeDiv(n, d) {
+  if (!Number.isFinite(n) || !Number.isFinite(d) || d === 0) return NaN;
+  return n / d;
+}
 
-  if (isNaN(talla) || talla <= 0) {
-    resultado.innerText = "Ingrese una talla válida en cm";
-    return;
-  }
-
-  let pesoIdeal;
-
-  if (sexo === "hombre") {
-    pesoIdeal = 50 + 0.91 * (talla - 152.4);
-  } else if (sexo === "mujer") {
-    pesoIdeal = 45 + 0.91 * (talla - 152.4);
-  } else {
-    resultado.innerText = "Seleccione el sexo";
-    return;
-  }
-
-  resultado.innerText =
-    "Peso ideal: " + pesoIdeal.toFixed(1) + " kg";
+function clampPercent(p) {
+  if (!Number.isFinite(p)) return NaN;
+  return Math.max(0, Math.min(100, p));
 }
 
 /* =========================
-   AJUSTE DE PCO₂
-========================= */
-function ajustarPCO2() {
-  const pco2Act = parseFloat(document.getElementById("pco2Act").value);
-  const pco2Des = parseFloat(document.getElementById("pco2Des").value);
-  const resultado = document.getElementById("resultadoPCO2");
-
-  if (isNaN(pco2Act) || isNaN(pco2Des)) {
-    resultado.innerText =
-      "Ingrese PCO₂ actual y PCO₂ deseada";
-    return;
-  }
-
-  const ajuste = document.querySelector(
-    'input[name="ajuste"]:checked'
-  ).value;
-
-  let texto = "";
-
-  if (ajuste === "fr") {
-    const fr = parseFloat(document.getElementById("fr").value);
-    if (isNaN(fr)) {
-      resultado.innerText = "Ingrese FR actual";
-      return;
-    }
-    texto = "FR ajustada: " + (fr * (pco2Act / pco2Des)).toFixed(1) + " rpm";
-  }
-
-  if (ajuste === "vt") {
-    const vt = parseFloat(document.getElementById("vt").value);
-    if (isNaN(vt)) {
-      resultado.innerText = "Ingrese VT actual";
-      return;
-    }
-    texto = "VT ajustado: " + (vt * (pco2Act / pco2Des)).toFixed(0) + " mL";
-  }
-
-  if (ajuste === "vmin") {
-    const vmin = parseFloat(document.getElementById("vmin").value);
-    if (isNaN(vmin)) {
-      resultado.innerText = "Ingrese VMIN actual";
-      return;
-    }
-    texto =
-      "VMIN ajustada: " + (vmin * (pco2Act / pco2Des)).toFixed(1) + " L/min";
-  }
-
-  resultado.innerText = texto;
-}
-
-/* =========================
-   GASTO CARDÍACO MANUAL
-========================= */
-function mostrarGCManual() {
-  const gc = parseFloat(document.getElementById("gcManual").value);
-  const resultado = document.getElementById("resultadoGCManual");
-
-  if (isNaN(gc) || gc <= 0) {
-    resultado.innerText = "Ingrese un GC válido";
-    return;
-  }
-
-  resultado.innerText =
-    "Gasto cardíaco registrado: " + gc.toFixed(2) + " L/min";
-}
-
-/* =========================
-   GASTO CARDÍACO POR ECO
-========================= */
-function calcularGCEco() {
-  const dtsvi = parseFloat(document.getElementById("dtsvi").value);
-  const vti = parseFloat(document.getElementById("vti").value);
-  const fc = parseFloat(document.getElementById("fc").value);
-  const resultado = document.getElementById("resultadoGCEco");
-
-  if (isNaN(dtsvi) || isNaN(vti) || isNaN(fc)) {
-    resultado.innerText = "Complete todos los campos";
-    return;
-  }
-
-  if (dtsvi <= 0 || vti <= 0 || fc <= 0) {
-    resultado.innerText = "Valores inválidos";
-    return;
-  }
-
-  // Área TSVI (cm²)
-  const csa = Math.PI * Math.pow(dtsvi / 2, 2);
-
-  // Volumen sistólico (mL)
-  const vs = csa * vti;
-
-  // Gasto cardíaco (L/min)
-  const gc = (vs * fc) / 1000;
-
-  resultado.innerHTML =
-    "<b>Resultados ecocardiográficos:</b><br>" +
-    "Área TSVI: " + csa.toFixed(2) + " cm²<br>" +
-    "Volumen sistólico: " + vs.toFixed(1) + " mL<br>" +
-    "<b>Gasto cardíaco: " + gc.toFixed(2) + " L/min</b>";
-}
-
-/* =========================
-   UI helpers (result cards)
+   UI helpers (cards/badges)
 ========================= */
 function badge(value, opts = {}) {
   const { min = null, max = null, unit = "", digits = 2, danger = false } = opts;
@@ -148,7 +34,9 @@ function badge(value, opts = {}) {
   if (Number.isFinite(n) && (min !== null || max !== null)) {
     const okMin = min === null || n >= min;
     const okMax = max === null || n <= max;
-    cls = okMin && okMax ? "badge badge--ok" : (danger ? "badge badge--danger" : "badge badge--warn");
+    cls = okMin && okMax
+      ? "badge badge--ok"
+      : (danger ? "badge badge--danger" : "badge badge--warn");
   }
   return `<span class="${cls}">${txt}${unit}</span>`;
 }
@@ -172,70 +60,211 @@ function section(title, bodyHtml) {
   `;
 }
 
-function calcularBloquePerfusion() {
-  const gc = parseFloat(document.getElementById("gc").value);
-  const hb = parseFloat(document.getElementById("hb").value);
-  const sao2 = parseFloat(document.getElementById("sao2").value);
-  const svo2 = parseFloat(document.getElementById("svo2").value);
-  const pao2 = parseFloat(document.getElementById("pao2").value);
-  const pvo2 = parseFloat(document.getElementById("pvo2").value);
+/* =========================
+   VENTILACION MECANICA
+========================= */
+function calcularPesoIdeal() {
+  const talla = num("talla");
+  const sexoEl = document.getElementById("sexo");
+  if (!sexoEl) return;
+  const sexo = sexoEl.value;
 
-  const paco2 = parseFloat(document.getElementById("paco2").value);
-  const pvco2 = parseFloat(document.getElementById("pvco2").value);
-  const hco3a = parseFloat(document.getElementById("hco3a").value);
-  const hco3v = parseFloat(document.getElementById("hco3v").value);
+  if (!Number.isFinite(talla) || talla <= 0) {
+    document.getElementById("resultadoPeso").innerText = "Ingrese una talla válida en cm";
+    return;
+  }
 
-  const tam = parseFloat(document.getElementById("tam").value);
-  const pvc = parseFloat(document.getElementById("pvc").value);
-  const pia = parseFloat(document.getElementById("pia").value);
-  const pic = parseFloat(document.getElementById("pic").value);
+  let pesoIdeal;
+  if (sexo === "hombre") {
+    pesoIdeal = 50 + 0.91 * (talla - 152.4);
+  } else if (sexo === "mujer") {
+    pesoIdeal = 45 + 0.91 * (talla - 152.4);
+  } else {
+    document.getElementById("resultadoPeso").innerText = "Seleccione el sexo";
+    return;
+  }
 
-  const resultado = document.getElementById("resultadoPerfusion");
+  document.getElementById("resultadoPeso").innerText = `Peso ideal: ${pesoIdeal.toFixed(1)} kg`;
+}
 
-  if (
-    [gc, hb, sao2, svo2, pao2, pvo2, paco2, pvco2,
-     hco3a, hco3v, tam, pvc, pia, pic].some(isNaN)
-  ) {
+function ajustarPCO2() {
+  const pco2Act = num("pco2Act");
+  const pco2Des = num("pco2Des");
+  const resultado = document.getElementById("resultadoPCO2");
+  if (!resultado) return;
+
+  if (!Number.isFinite(pco2Act) || !Number.isFinite(pco2Des) || pco2Act <= 0 || pco2Des <= 0) {
+    resultado.innerText = "Ingrese PCO₂ actual y PCO₂ deseada (valores > 0)";
+    return;
+  }
+
+  const selected = document.querySelector('input[name="ajuste"]:checked');
+  if (!selected) {
+    resultado.innerText = "Seleccione el parámetro a ajustar";
+    return;
+  }
+
+  const ajuste = selected.value;
+  let texto = "";
+
+  if (ajuste === "fr") {
+    const fr = num("fr");
+    if (!Number.isFinite(fr) || fr <= 0) {
+      resultado.innerText = "Ingrese FR actual (valor > 0)";
+      return;
+    }
+    texto = `FR ajustada: ${(fr * (pco2Act / pco2Des)).toFixed(1)} rpm`;
+  }
+
+  if (ajuste === "vt") {
+    const vt = num("vt");
+    if (!Number.isFinite(vt) || vt <= 0) {
+      resultado.innerText = "Ingrese VT actual (valor > 0)";
+      return;
+    }
+    texto = `VT ajustado: ${(vt * (pco2Act / pco2Des)).toFixed(0)} mL`;
+  }
+
+  if (ajuste === "vmin") {
+    const vmin = num("vmin");
+    if (!Number.isFinite(vmin) || vmin <= 0) {
+      resultado.innerText = "Ingrese VMIN actual (valor > 0)";
+      return;
+    }
+    texto = `VMIN ajustada: ${(vmin * (pco2Act / pco2Des)).toFixed(1)} L/min`;
+  }
+
+  resultado.innerText = texto;
+}
+
+/* =========================
+   ECOCARDIOGRAFIA
+========================= */
+function calcularGCEco() {
+  const dtsvi = num("dtsvi");
+  const vti = num("vti");
+  const fc = num("fc");
+  const resultado = document.getElementById("resultadoGCEco");
+  if (!resultado) return;
+
+  if (anyNaN([dtsvi, vti, fc])) {
     resultado.innerText = "Complete todos los campos";
     return;
   }
 
-  /* CONTENIDO DE O2 (mL/dL) */
+  if (dtsvi <= 0 || vti <= 0 || fc <= 0) {
+    resultado.innerText = "Valores inválidos (deben ser > 0)";
+    return;
+  }
+
+  const csa = Math.PI * Math.pow(dtsvi / 2, 2);
+  const vs = csa * vti;
+  const gc = (vs * fc) / 1000;
+
+  resultado.innerHTML =
+    "<b>Resultados ecocardiográficos:</b><br>" +
+    `Área TSVI: ${csa.toFixed(2)} cm²<br>` +
+    `Volumen sistólico: ${vs.toFixed(1)} mL<br>` +
+    `<b>Gasto cardíaco: ${gc.toFixed(2)} L/min</b>`;
+}
+
+/* =========================
+   OXIGENACION (INDEPENDIENTE)
+========================= */
+function calcularOxigenacion() {
+  const hb = num("hb");
+  const sao2 = num("sao2");
+  const svo2 = num("svo2");
+  const pao2 = num("pao2");
+  const pvo2 = num("pvo2");
+  const resultado = document.getElementById("resultadoOxigenacion");
+  if (!resultado) return;
+
+  if (anyNaN([hb, sao2, svo2, pao2, pvo2])) {
+    resultado.innerText = "Complete Hb, SaO₂, SvO₂, PaO₂ y PvO₂";
+    return;
+  }
+  if (hb <= 0) {
+    resultado.innerText = "Hb debe ser > 0";
+    return;
+  }
+
   const CaO2 = (1.34 * hb * (sao2 / 100)) + (0.003 * pao2);
   const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
   const deltaO2 = CaO2 - CvO2;
 
-  /* BRECHA DE CO2 (VN 2–6 mmHg) */
-  const deltaCO2 = pvco2 - paco2; // DCO2 = PCO2v - PCO2a
-
-  /* TRANSPORTE Y CONSUMO */
-  const DO2 = gc * CaO2 * 10;
-  const VO2 = gc * deltaO2 * 10;
-  const REO2 = VO2 / DO2;
-
-  /* COCIENTE RESPIRATORIO */
-  const CR = deltaCO2 / deltaO2;
-
-  /* PERFUSIÓN */
-  const RVS = ((tam - pvc) / gc) * 80;
-  const PPR = tam - pia;
-  const PPC = tam - pic;
-
-  // Evitar Infinity/NaN por divisiones
-  const REO2pct = (Number.isFinite(REO2) && DO2 !== 0) ? (REO2 * 100) : NaN;
-  const CRsafe = (Number.isFinite(CR) && deltaO2 !== 0) ? CR : NaN;
-
   resultado.innerHTML = `
     <div class="grid">
-      ${section("Oxigenación", [
+      ${section("Oxigenación · Contenido de O₂", [
         row("CaO₂", badge(CaO2, { min: 16, max: 22, unit: " mL/dL", digits: 2 }), "VN 16–22"),
         row("CvO₂", badge(CvO2, { min: 12, max: 16, unit: " mL/dL", digits: 2 }), "VN 12–16"),
         row("ΔO₂", badge(deltaO2, { min: 4, max: 6, unit: " mL/dL", digits: 2 }), "VN 4–6"),
       ].join(""))}
+    </div>
+  `;
+}
 
+/* =========================
+   CO2 + TRANSPORTE + PERFUSION (INDEPENDIENTE)
+   - Calcula CO2 gap, DO2/VO2/REO2 y presiones/perfusion
+   - Recalcula CaO2/CvO2 internamente para DO2/VO2 (no depende del boton de oxigenacion)
+========================= */
+function calcularPerfusion() {
+  const gc = num("gc");
+  const hb = num("hb");
+  const sao2 = num("sao2");
+  const svo2 = num("svo2");
+  const pao2 = num("pao2");
+  const pvo2 = num("pvo2");
+
+  const paco2 = num("paco2");
+  const pvco2 = num("pvco2");
+
+  const tam = num("tam");
+  const pvc = num("pvc");
+  const pia = num("pia");
+  const pic = num("pic");
+
+  const resultado = document.getElementById("resultadoPerfusion");
+  if (!resultado) return;
+
+  if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2, paco2, pvco2, tam, pvc, pia, pic])) {
+    resultado.innerText = "Complete todos los campos requeridos";
+    return;
+  }
+  if (gc <= 0 || hb <= 0) {
+    resultado.innerText = "GC y Hb deben ser > 0";
+    return;
+  }
+
+  // O2 (para DO2 / VO2)
+  const CaO2 = (1.34 * hb * (sao2 / 100)) + (0.003 * pao2);
+  const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
+  const deltaO2 = CaO2 - CvO2;
+
+  // Brecha de CO2 (mmHg)
+  const deltaCO2 = pvco2 - paco2; // VN 2–6 mmHg
+
+  // Transporte
+  const DO2 = gc * CaO2 * 10;
+  const VO2 = gc * deltaO2 * 10;
+  const REO2 = safeDiv(VO2, DO2);
+  const REO2pct = clampPercent(REO2 * 100);
+
+  // Indicador (nota: mezcla unidades si se usa deltaCO2 mmHg con deltaO2 mL/dL)
+  const CR = safeDiv(deltaCO2, deltaO2);
+
+  // Perfusión
+  const RVS = safeDiv((tam - pvc), gc);
+  const RVS80 = Number.isFinite(RVS) ? (RVS * 80) : NaN;
+  const PPR = tam - pia;
+  const PPC = tam - pic;
+
+  resultado.innerHTML = `
+    <div class="grid">
       ${section("CO₂", [
         row("ΔCO₂ (PCO₂v − PCO₂a)", badge(deltaCO2, { min: 2, max: 6, unit: " mmHg", digits: 2 }), "VN 2–6 mmHg"),
-        row("Cociente (ΔCO₂/ΔO₂)", badge(CRsafe, { min: null, max: 1.0, digits: 2, danger: true }), "VN <1; 1–1.4 sospecha; >1.4 anaerobiosis"),
+        row("Cociente (ΔCO₂/ΔO₂)", badge(CR, { min: null, max: 1.0, digits: 2, danger: true }), "VN <1; 1–1.4 sospecha; >1.4 anaerobiosis"),
       ].join(""))}
 
       ${section("Transporte", [
@@ -245,7 +274,7 @@ function calcularBloquePerfusion() {
       ].join(""))}
 
       ${section("Perfusión", [
-        row("RVS", badge(RVS, { min: 800, max: 1200, unit: " dyn·s·cm⁻⁵", digits: 0 }), "VN 800–1200"),
+        row("RVS", badge(RVS80, { min: 800, max: 1200, unit: " dyn·s·cm⁻⁵", digits: 0 }), "VN 800–1200"),
         row("PPR (TAM − PIA)", badge(PPR, { min: 60, max: null, unit: " mmHg", digits: 0 }), "VN >60"),
         row("PPC (TAM − PIC)", badge(PPC, { min: 60, max: 70, unit: " mmHg", digits: 0 }), "VN 60–70"),
       ].join(""))}
@@ -253,162 +282,136 @@ function calcularBloquePerfusion() {
   `;
 }
 
-
 /* =========================
-   ESTADO ÁCIDO - BASE
-   - Usa PaCO2 (id: paco2) y HCO3 arterial (id: hco3a) ya ingresados
-   - Agrega cálculos de AG corregido por albúmina y Delta ratio
+   ESTADO ACIDO - BASE (INDEPENDIENTE)
 ========================= */
-function calcularAcidoBase() {
-  const resultado = document.getElementById("resultadoAcidoBase");
+function calcularCompensacion() {
+  const hco3a = num("hco3a");
+  const paco2 = num("paco2");
+  const resultado = document.getElementById("resultadoCompensacion");
   if (!resultado) return;
 
-  // Inputs reutilizados
-  const hco3a = parseFloat(document.getElementById("hco3a")?.value);
-  const paco2 = parseFloat(document.getElementById("paco2")?.value);
-
-  // Inputs nuevos
-  const na = parseFloat(document.getElementById("na")?.value);
-  const k = parseFloat(document.getElementById("k")?.value);
-  const cl = parseFloat(document.getElementById("cl")?.value);
-  const alb = parseFloat(document.getElementById("alb")?.value);
-
-  const bican = parseFloat(document.getElementById("bican")?.value);
-  const bicap = parseFloat(document.getElementById("bicap")?.value);
-  const agapn = parseFloat(document.getElementById("agapn")?.value);
-  const agapp = parseFloat(document.getElementById("agapp")?.value);
-
-  // Helpers locales
-  const isNum = (v) => Number.isFinite(v);
-
-  // --- 1) COMPENSACIÓN METABÓLICA (Winter y alcalosis metabólica) ---
-  let pco2ExpAcMet = NaN;
-  let pco2ExpAcMetLo = NaN;
-  let pco2ExpAcMetHi = NaN;
-
-  let pco2ExpAlkMet = NaN;
-  let pco2ExpAlkMetLo = NaN;
-  let pco2ExpAlkMetHi = NaN;
-
-  if (isNum(hco3a)) {
-    pco2ExpAcMet = (1.5 * hco3a) + 8;
-    pco2ExpAcMetLo = pco2ExpAcMet - 2;
-    pco2ExpAcMetHi = pco2ExpAcMet + 2;
-
-    pco2ExpAlkMet = (0.7 * hco3a) + 21;
-    pco2ExpAlkMetLo = pco2ExpAlkMet - 2;
-    pco2ExpAlkMetHi = pco2ExpAlkMet + 2;
+  if (!Number.isFinite(hco3a)) {
+    resultado.innerText = "Ingrese HCO₃⁻ arterial";
+    return;
   }
 
-  // --- 2) ACIDOSIS RESPIRATORIA CRÓNICA ---
-  // El usuario pidió: HCO3 esperado = (PaCO2 - 40) * 0.4
-  // Además mostramos (opcional) HCO3 total esperado asumiendo basal 24.
-  let hco3EspRespCronDelta = NaN;
-  let hco3EspRespCronTotal = NaN;
-  if (isNum(paco2)) {
-    hco3EspRespCronDelta = (paco2 - 40) * 0.4;
-    hco3EspRespCronTotal = 24 + hco3EspRespCronDelta;
+  // PCO2 esperada en acidosis metabolica (Winter)
+  const pco2AcMet = (1.5 * hco3a) + 8;
+  const pco2AcMetMin = pco2AcMet - 2;
+  const pco2AcMetMax = pco2AcMet + 2;
+
+  // PCO2 esperada en alcalosis metabolica
+  const pco2AlMet = (0.7 * hco3a) + 21;
+  const pco2AlMetMin = pco2AlMet - 2;
+  const pco2AlMetMax = pco2AlMet + 2;
+
+  // Acidosis respiratoria cronica (delta HCO3 esperado)
+  if (!Number.isFinite(paco2)) {
+    // Puede que no esté ingresada PaCO2: mostramos igual las dos primeras
+    resultado.innerHTML = `
+      <div class="grid">
+        ${section("PCO₂ esperada", [
+          row("Acidosis metabólica", `<span class="mono">${pco2AcMet.toFixed(1)} (±2)</span>`, `${pco2AcMetMin.toFixed(1)}–${pco2AcMetMax.toFixed(1)} mmHg`),
+          row("Alcalosis metabólica", `<span class="mono">${pco2AlMet.toFixed(1)} (±2)</span>`, `${pco2AlMetMin.toFixed(1)}–${pco2AlMetMax.toFixed(1)} mmHg`),
+        ].join(""))}
+      </div>
+      <p class="note">Nota: para acidosis respiratoria crónica, ingrese PaCO₂.</p>
+    `;
+    return;
   }
 
-  // --- 3) ANION GAP con K corregido por albúmina ---
-  let agap = NaN;
-  let agapCorr = NaN;
-  let agapCorrAdj = NaN;
+  const deltaHco3RespCron = (paco2 - 40) * 0.4;
+  const hco3RespCronBase24 = 24 + deltaHco3RespCron;
 
-  if (isNum(na) && isNum(k) && isNum(cl) && isNum(hco3a)) {
-    agap = (na + k) - (cl + hco3a);
-    if (isNum(alb)) {
-      agapCorrAdj = 0.25 * (4.4 - alb);
-      agapCorr = agap + agapCorrAdj;
-    }
-  }
-
-  // --- 4) DELTA GAP / DELTA BICA ---
-  let deltaRatio = NaN;
-  let deltaInterpretacion = "—";
-
-  if (isNum(agapp) && isNum(agapn) && isNum(bican) && isNum(bicap)) {
-    const denom = (bican - bicap);
-    deltaRatio = denom !== 0 ? ((agapp - agapn) / denom) : NaN;
-
-    if (Number.isFinite(deltaRatio)) {
-      if (deltaRatio < 0.4) {
-        deltaInterpretacion = "<0.4: Acidosis metabólica hiperclorémica";
-      } else if (deltaRatio >= 0.4 && deltaRatio < 0.8) {
-        deltaInterpretacion = "0.4–0.8: AG elevado + AG normal (mixta / IR aislada)";
-      } else if (deltaRatio >= 1 && deltaRatio <= 2) {
-        deltaInterpretacion = "1–2: Acidosis metabólica con anion gap aumentado";
-      } else if (deltaRatio > 2) {
-        deltaInterpretacion = ">2: HCO₃ elevado preexistente (alcalosis metabólica o acidosis resp. crónica)";
-      } else {
-        // Cubre 0.8–1.0
-        deltaInterpretacion = "0.8–1: Zona intermedia (interpretar con clínica y gases)";
-      }
-    }
-  }
-
-  // Render (usamos los mismos componentes visuales que perfusión)
   resultado.innerHTML = `
     <div class="grid">
-      ${section("Compensación metabólica", [
-        row(
-          "PCO₂ esperada en acidosis metabólica",
-          isNum(pco2ExpAcMet)
-            ? `<div>${badge(pco2ExpAcMet, { unit: " mmHg", digits: 1 })} <span class="muted">(rango ${pco2ExpAcMetLo.toFixed(1)}–${pco2ExpAcMetHi.toFixed(1)})</span></div>`
-            : badge(NaN),
-          "Fórmula: (1.5 × HCO₃) + 8 (±2)"
-        ),
-        row(
-          "PCO₂ esperada en alcalosis metabólica",
-          isNum(pco2ExpAlkMet)
-            ? `<div>${badge(pco2ExpAlkMet, { unit: " mmHg", digits: 1 })} <span class="muted">(rango ${pco2ExpAlkMetLo.toFixed(1)}–${pco2ExpAlkMetHi.toFixed(1)})</span></div>`
-            : badge(NaN),
-          "Fórmula: (0.7 × HCO₃) + 21 (±2)"
-        ),
+      ${section("PCO₂ esperada", [
+        row("Acidosis metabólica", `<span class="mono">${pco2AcMet.toFixed(1)} (±2)</span>`, `${pco2AcMetMin.toFixed(1)}–${pco2AcMetMax.toFixed(1)} mmHg`),
+        row("Alcalosis metabólica", `<span class="mono">${pco2AlMet.toFixed(1)} (±2)</span>`, `${pco2AlMetMin.toFixed(1)}–${pco2AlMetMax.toFixed(1)} mmHg`),
       ].join(""))}
 
       ${section("Acidosis respiratoria crónica", [
-        row(
-          "Bicarbonato esperado (ΔHCO₃)",
-          badge(hco3EspRespCronDelta, { unit: " mmol/L", digits: 1 }),
-          "Fórmula: (PaCO₂ − 40) × 0.4"
-        ),
-        row(
-          "HCO₃ total esperado (si basal 24)",
-          badge(hco3EspRespCronTotal, { unit: " mmol/L", digits: 1 }),
-          "Referencia útil (24 + ΔHCO₃)."
-        )
-      ].join(""))}
-
-      ${section("Anion gap (con K) corregido por albúmina", [
-        row(
-          "AG = (Na + K) − (Cl + HCO₃)",
-          badge(agap, { unit: " mEq/L", digits: 1 }),
-          "AG normal: <12 mEq/L"
-        ),
-        row(
-          "Corrección por albúmina",
-          badge(agapCorrAdj, { unit: "", digits: 2 }),
-          "0.25 × (4.4 − ALB)"
-        ),
-        row(
-          "AG corregido",
-          badge(agapCorr, { min: null, max: 12, unit: " mEq/L", digits: 1, danger: true }),
-          "AG corregido normal: <12"
-        )
-      ].join(""))}
-
-      ${section("Delta gap / Delta bica", [
-        row(
-          "DGAP/ΔBICA",
-          badge(deltaRatio, { digits: 2 }),
-          "(AGAPp − AGAPn) / (BICAn − BICAp)"
-        ),
-        row(
-          "Interpretación",
-          `<span class="badge badge--neutral">${deltaInterpretacion}</span>`
-        )
+        row("ΔHCO₃⁻ esperado", `<span class="mono">${deltaHco3RespCron.toFixed(1)}</span>`, "(PaCO₂ − 40) × 0.4"),
+        row("HCO₃⁻ esperado", `<span class="mono">${hco3RespCronBase24.toFixed(1)}</span>`, "Si HCO₃⁻ basal ≈ 24"),
       ].join(""))}
     </div>
   `;
 }
+
+/* =========================
+   ANION GAP CORREGIDO (INDEPENDIENTE)
+   - Muestra SOLO "Anion gap corregido" como pediste
+========================= */
+function calcularAnionGapCorregido() {
+  const na = num("na");
+  const k = num("k");
+  const cl = num("cl");
+  const alb = num("alb");
+  const hco3a = num("hco3a"); // se toma del bloque de gases
+
+  const resultado = document.getElementById("resultadoAnionGap");
+  if (!resultado) return;
+
+  if (anyNaN([na, k, cl, alb, hco3a])) {
+    resultado.innerText = "Complete Na, K, Cl, Albúmina y HCO₃⁻ arterial";
+    return;
+  }
+
+  const ag = (na + k) - (cl + hco3a);
+  const correccionAlb = 0.25 * (4.4 - alb);
+  const agCorregido = ag + correccionAlb;
+
+  resultado.innerHTML = `
+    <div class="grid">
+      ${section("Anion gap corregido", [
+        row("AG corregido", badge(agCorregido, { min: null, max: 12, unit: " mEq/L", digits: 1, danger: true }), "VN < 12 mEq/L"),
+      ].join(""))}
+    </div>
+    <p class="note">Se calcula: (Na+K) − (Cl+HCO₃) + 0.25 × (4.4 − ALB)</p>
+  `;
+}
+
+/* =========================
+   DELTA GAP / DELTA BICA (INDEPENDIENTE)
+========================= */
+function interpretarDeltaRatio(r) {
+  if (!Number.isFinite(r)) return "No calculable";
+  if (r < 0.4) return "<0.4: acidosis metabólica hiperclorémica";
+  if (r >= 0.4 && r <= 0.8) return "0.4–0.8: AG elevado + AG normal (ej. IR aislada)";
+  if (r >= 1 && r <= 2) return "1–2: acidosis metabólica con anion gap aumentado";
+  if (r > 2) return ">2: bicarbonato elevado preexistente (alcalosis metabólica o acidosis resp. crónica)";
+  return "0.8–1: zona intermedia (interpretar con contexto)";
+}
+
+function calcularDeltaGap() {
+  const bican = num("bican");
+  const bicap = num("bicap");
+  const agapn = num("agapn");
+  const agapp = num("agapp");
+  const resultado = document.getElementById("resultadoDeltaGap");
+  if (!resultado) return;
+
+  if (anyNaN([bican, bicap, agapn, agapp])) {
+    resultado.innerText = "Complete BICAn, BICAp, AGAPn y AGAPp";
+    return;
+  }
+
+  const denom = (bican - bicap);
+  const ratio = safeDiv((agapp - agapn), denom);
+  const interpretacion = interpretarDeltaRatio(ratio);
+
+  resultado.innerHTML = `
+    <div class="grid">
+      ${section("Delta gap / Delta bica", [
+        row("DGAP/ΔBICA", badge(ratio, { digits: 2 }), interpretacion),
+      ].join(""))}
+    </div>
+    <p class="note">Fórmula: (AGAPp − AGAPn) / (BICAn − BICAp)</p>
+  `;
+}
+
+// Compatibilidad con el HTML
+function calcularAcidoBase() { calcularCompensacion(); }
+
+function calcularCompensacionMetabolica(){ calcularCompensacion(); }
