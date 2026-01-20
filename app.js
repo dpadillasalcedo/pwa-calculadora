@@ -372,7 +372,7 @@ function calcularCalcioCorregido() {
   const cac = cas - (0.8 * (4 - albs));
   resultado.innerHTML = `
     <b>Ca corregido (CAc):</b> ${cac.toFixed(2)}<br>
-    <small>Fórmula: CAc = CAs − (0.8 × (4 − ALBs))</small>
+    <small>Fórmula: CAc = CAs + (0.8 × (4 − ALBs))</small>
   `;
 }
 
