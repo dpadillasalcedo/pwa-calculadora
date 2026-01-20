@@ -1,150 +1,190 @@
 /* =========================
-   Calculadora UCI
-   Estilo Azul Claro DEFINITIVO
+   RESET BÁSICO
 ========================= */
-
-:root{
-  --bg:#0b1020;
-
-  --panel:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.18);
-
-  --text:rgba(255,255,255,.94);
-  --muted:rgba(255,255,255,.70);
-  --muted-2:rgba(255,255,255,.52);
-
-  /* AZUL CLARO */
-  --brand:#7dd3fc;
-  --brand-soft:#bae6fd;
-
-  --ok:#34c759;
-  --warn:#ff9f0a;
-  --danger:#ff3b30;
-
-  --radius:14px;
-  --shadow:0 14px 40px rgba(0,0,0,.45);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--text);
-  background:
-    radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.25), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.20), transparent 62%),
-    var(--bg);
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --bg-input: #1e293b;
+  --bg-option: #1e293b;
+  --color-text: #e5e7eb;
+  --color-muted: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #2563eb;
+  --color-primary-soft: rgba(37, 99, 235, 0.3);
+  --color-success: #22c55e;
 }
 
-/* ===== Layout ===== */
-
-.app{
-  max-width:1040px;
-  margin:0 auto;
-  padding:22px 14px 40px;
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  line-height: 1.5;
+  padding: 20px;
 }
 
-.app-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:14px;
-  padding:18px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
-  box-shadow:var(--shadow);
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+.container {
+  max-width: 900px;
+  margin: auto;
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.subtitle{
-  font-size:13px;
-  color:var(--muted);
+/* =========================
+   TÍTULOS
+========================= */
+h1, h2, h3 {
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
-.pill{
-  padding:6px 12px;
-  border-radius:999px;
-  border:1px solid rgba(125,211,252,.45);
-  background:rgba(125,211,252,.15);
-  font-size:12px;
-  color:#e6f6ff;
+h1 {
+  font-size: 1.6rem;
+  text-align: center;
 }
 
-/* ===== Panels ===== */
-
-.panel{
-  margin-top:16px;
-  padding:16px;
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.05);
-  box-shadow:0 8px 26px rgba(0,0,0,.30);
+h2 {
+  font-size: 1.3rem;
+  margin-top: 24px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
 }
 
-.panel h2{
-  margin:0 0 12px;
-  font-size:17px;
+/* =========================
+   FORMULARIOS
+========================= */
+form {
+  margin-top: 16px;
 }
 
-.panel h3{
-  margin:14px 0 8px;
-  font-size:13px;
-  color:#e6f4ff;
+.form-group {
+  margin-bottom: 14px;
 }
 
-/* ===== Labels & Inputs ===== */
-
-label{
-  display:block;
-  margin:8px 0 4px;
-  font-size:11px;
-  color:var(--muted);
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
 }
 
-input, select{
-  width:100%;
-  padding:7px 9px;
-  border-radius:9px;
-  border:1px solid rgba(125,211,252,.30);
-  background:rgba(255,255,255,.08);
-  color:var(--text);
-  font-size:13px;
-  outline:none;
+/* =========================
+   INPUTS
+========================= */
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--bg-input);
+  color: var(--color-text);
+  font-size: 0.95rem;
 }
 
-input:focus, select:focus{
-  border-color:var(--brand);
-  box-shadow:0 0 0 2px rgba(125,211,252,.30);
+/* =========================
+   SELECT (CORREGIDO)
+========================= */
+select {
+  appearance: none;
+  cursor: pointer;
 }
 
-/* ===== Buttons ===== */
-
-button{
-  width:100%;
-  margin-top:12px;
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid rgba(125,211,252,.55);
-  background:linear-gradient(180deg, var(--brand), rgba(125,211,252,.7));
-  color:#00324d;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 8px 22px rgba(125,211,252,.28);
+/* Opciones visibles */
+select option {
+  background-color: var(--bg-option);
+  color: var(--color-text);
 }
 
-button:hover{filter:brightness(1.06)}
-
-.btn-secondary{
-  background:linear-gradient(180deg, var(--brand-soft), rgba(186,230,253,.65));
-  border:1px solid rgba(186,230,253,.55);
+/* Opción seleccionada */
+select option:checked {
+  background-color: var(--color-primary);
+  color: #ffffff;
 }
 
-/* ===== Footer ===== */
+/* =========================
+   FOCUS / HOVER
+========================= */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-soft);
+}
 
-.app-footer{
-  margin-top:20px;
-  text-align:center;
-  font-size:12px;
-  color:var(--muted-2);
+/* =========================
+   BOTONES
+========================= */
+button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.result {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: #020617;
+  border-left: 4px solid var(--color-success);
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* =========================
+   SEPARADORES
+========================= */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 24px 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
 }
