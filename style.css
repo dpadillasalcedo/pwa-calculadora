@@ -1,22 +1,19 @@
 /* =========================
    Calculadora UCI
-   Refinamiento visual · Azul claro
-   (USAR ESTE ARCHIVO COMO style.css)
-   SOLO ESTILO – no afecta cálculos
+   Estilo Azul Claro DEFINITIVO
 ========================= */
 
 :root{
   --bg:#0b1020;
 
   --panel:rgba(255,255,255,.06);
-  --panel-strong:rgba(255,255,255,.09);
   --border:rgba(255,255,255,.18);
 
   --text:rgba(255,255,255,.94);
   --muted:rgba(255,255,255,.70);
   --muted-2:rgba(255,255,255,.52);
 
-  /* Azul claro médico */
+  /* AZUL CLARO */
   --brand:#7dd3fc;
   --brand-soft:#bae6fd;
 
@@ -35,14 +32,12 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
   color:var(--text);
   background:
-    radial-gradient(1200px 700px at 15% -10%, rgba(125,211,252,.22), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.18), transparent 62%),
+    radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.25), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.20), transparent 62%),
     var(--bg);
 }
 
-/* =========================
-   Layout
-========================= */
+/* ===== Layout ===== */
 
 .app{
   max-width:1040px;
@@ -63,7 +58,6 @@ body{
 }
 
 .subtitle{
-  margin-top:6px;
   font-size:13px;
   color:var(--muted);
 }
@@ -74,12 +68,10 @@ body{
   border:1px solid rgba(125,211,252,.45);
   background:rgba(125,211,252,.15);
   font-size:12px;
-  color:#dff3ff;
+  color:#e6f6ff;
 }
 
-/* =========================
-   Panels
-========================= */
+/* ===== Panels ===== */
 
 .panel{
   margin-top:16px;
@@ -101,9 +93,7 @@ body{
   color:#e6f4ff;
 }
 
-/* =========================
-   Labels & inputs (FINOS)
-========================= */
+/* ===== Labels & Inputs ===== */
 
 label{
   display:block;
@@ -112,31 +102,23 @@ label{
   color:var(--muted);
 }
 
-input,select{
+input, select{
   width:100%;
   padding:7px 9px;
   border-radius:9px;
-  border:1px solid rgba(125,211,252,.25);
+  border:1px solid rgba(125,211,252,.30);
   background:rgba(255,255,255,.08);
   color:var(--text);
   font-size:13px;
   outline:none;
-  transition:all .2s ease;
 }
 
-input::placeholder{
-  color:rgba(255,255,255,.45);
-}
-
-input:focus,select:focus{
-  background:rgba(255,255,255,.12);
+input:focus, select:focus{
   border-color:var(--brand);
-  box-shadow:0 0 0 2px rgba(125,211,252,.28);
+  box-shadow:0 0 0 2px rgba(125,211,252,.30);
 }
 
-/* =========================
-   Buttons
-========================= */
+/* ===== Buttons ===== */
 
 button{
   width:100%;
@@ -147,56 +129,18 @@ button{
   background:linear-gradient(180deg, var(--brand), rgba(125,211,252,.7));
   color:#00324d;
   font-weight:700;
-  font-size:13px;
   cursor:pointer;
   box-shadow:0 8px 22px rgba(125,211,252,.28);
 }
 
 button:hover{filter:brightness(1.06)}
-button:active{transform:translateY(1px)}
 
 .btn-secondary{
-  border:1px solid rgba(186,230,253,.55);
   background:linear-gradient(180deg, var(--brand-soft), rgba(186,230,253,.65));
-  color:#00324d;
+  border:1px solid rgba(186,230,253,.55);
 }
 
-/* =========================
-   Grids
-========================= */
-
-.inline{
-  display:flex;
-  gap:10px 14px;
-  flex-wrap:wrap;
-}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-
-.grid-3{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-
-@media (min-width:720px){
-  .grid-2{grid-template-columns:1fr 1fr}
-  .grid-3{grid-template-columns:1fr 1fr 1fr}
-}
-
-/* =========================
-   Notes & footer
-========================= */
-
-.note{
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.45;
-}
+/* ===== Footer ===== */
 
 .app-footer{
   margin-top:20px;
