@@ -1,49 +1,48 @@
 /* =========================
-   Calculadora UCI - UI profesional
-   Tema oscuro clínico con azul claro
+   Calculadora UCI
+   Tema Azul Claro (anti-cache)
 ========================= */
 
 :root{
   --bg: #0b1020;
 
   --panel: rgba(255,255,255,.06);
-  --panel-2: rgba(255,255,255,.08);
   --border: rgba(255,255,255,.14);
 
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.68);
   --muted-2: rgba(255,255,255,.52);
 
-  /* 🔵 Azules más claros y profesionales */
-  --brand: #3b82f6;      /* Azul principal */
-  --brand-2: #60a5fa;    /* Azul secundario */
+  /* 🔵 AZUL CLARO FORZADO */
+  --brand: #7dd3fc;
+  --brand-2: #bae6fd;
 
   --danger: #ff3b30;
   --warn: #ff9f0a;
   --ok: #34c759;
 
-  --shadow: 0 18px 50px rgba(0,0,0,.45);
   --radius: 18px;
+  --shadow: 0 18px 50px rgba(0,0,0,.45);
 }
 
-*{ box-sizing: border-box }
-
-html,body{ height:100% }
+*{
+  box-sizing: border-box;
+}
 
 body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color: var(--text);
 
   background:
-    radial-gradient(1200px 700px at 20% -10%, rgba(96,165,250,.20), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, rgba(59,130,246,.18), transparent 62%),
+    radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.35), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.30), transparent 62%),
     radial-gradient(900px 700px at 50% 120%, rgba(52,199,89,.08), transparent 55%),
     var(--bg);
 }
 
 /* =========================
-   App layout
+   Layout
 ========================= */
 
 .app{
@@ -53,27 +52,21 @@ body{
 }
 
 .app-header{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 14px;
+
   padding: 18px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-}
-
-.app-header h1{
-  margin:0;
-  font-size: 28px;
-  letter-spacing: .2px;
 }
 
 .subtitle{
-  margin-top:6px;
-  font-size:13px;
+  margin-top: 6px;
+  font-size: 13px;
   color: var(--muted);
 }
 
@@ -84,7 +77,6 @@ body{
   background: rgba(255,255,255,.06);
   font-size: 12px;
   color: var(--muted);
-  white-space: nowrap;
 }
 
 /* =========================
@@ -105,139 +97,54 @@ body{
   font-size: 18px;
 }
 
-.panel h3{
-  margin: 16px 0 8px;
-  font-size: 14px;
-  color: rgba(255,255,255,.86);
-}
-
-/* =========================
-   Forms
-========================= */
-
-label{
-  display:block;
-  margin: 10px 0 6px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-input, select{
-  width:100%;
-  padding: 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.22);
-  color: var(--text);
-  outline:none;
-}
-
-input::placeholder{
-  color: rgba(255,255,255,.35);
-}
-
-input:focus, select:focus{
-  border-color: rgba(96,165,250,.55);
-  box-shadow: 0 0 0 4px rgba(96,165,250,.15);
-}
-
 /* =========================
    Buttons
 ========================= */
 
 button{
+  width: 100%;
   margin-top: 12px;
-  width:100%;
   padding: 12px 14px;
+
   border-radius: 14px;
-  border: 1px solid rgba(59,130,246,.55);
-  background: linear-gradient(180deg, rgba(59,130,246,.92), rgba(59,130,246,.70));
-  color: #fff;
+  border: 1px solid rgba(125,211,252,.65);
+
+  background: linear-gradient(
+    180deg,
+    var(--brand),
+    rgba(125,211,252,.75)
+  );
+
+  color: #00324d;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(59,130,246,.25);
 }
 
-button:hover{ filter: brightness(1.06) }
-button:active{ transform: translateY(1px) }
+button:hover{
+  filter: brightness(1.05);
+}
 
 .btn-secondary{
-  border: 1px solid rgba(96,165,250,.45);
-  background: linear-gradient(180deg, rgba(96,165,250,.32), rgba(96,165,250,.18));
-  box-shadow: 0 10px 30px rgba(96,165,250,.14);
+  border: 1px solid rgba(186,230,253,.7);
+  background: linear-gradient(
+    180deg,
+    var(--brand-2),
+    rgba(186,230,253,.6)
+  );
 }
-
-/* =========================
-   Layout helpers
-========================= */
-
-.inline{
-  display:flex;
-  gap:10px 14px;
-  flex-wrap:wrap;
-}
-
-.grid-2{ display:grid; grid-template-columns:1fr; gap:12px }
-.grid-3{ display:grid; grid-template-columns:1fr; gap:12px }
-
-@media (min-width:720px){
-  .grid-2{ grid-template-columns:1fr 1fr }
-  .grid-3{ grid-template-columns:1fr 1fr 1fr }
-}
-
-/* =========================
-   Cards & results
-========================= */
-
-.card{
-  border:1px solid rgba(255,255,255,.14);
-  border-radius: 16px;
-  padding: 12px;
-  background: rgba(255,255,255,.06);
-}
-
-.card__title{
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.note{
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-hr{
-  border:none;
-  border-top:1px solid rgba(255,255,255,.10);
-  margin: 16px 0;
-}
-
-/* =========================
-   Badges
-========================= */
-
-.badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:800;
-  border:1px solid rgba(255,255,255,.14);
-}
-
-.badge--ok{ background: rgba(52,199,89,.18) }
-.badge--warn{ background: rgba(255,159,10,.18) }
-.badge--danger{ background: rgba(255,59,48,.20) }
-.badge--neutral{ background: rgba(255,255,255,.10) }
 
 /* =========================
    Footer
 ========================= */
 
 .app-footer{
-  margin-top: 16px;
+  margin-top: 20px;
   text-align: center;
   font-size: 12px;
   color: var(--muted-2);
+}
+
+.note{
+  font-size: 12px;
+  color: var(--muted);
 }
