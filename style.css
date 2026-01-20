@@ -1,247 +1,114 @@
 /* =========================
    Calculadora UCI
-   Tema Azul Claro · UI Clínica Fina
+   Tema Azul Claro · Inputs Finos
 ========================= */
 
 :root{
-  --bg: #0b1020;
+  --bg:#0b1020;
+  --panel:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.14);
 
-  --panel: rgba(255,255,255,.06);
-  --border: rgba(255,255,255,.14);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --muted-2:rgba(255,255,255,.52);
 
-  --text: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.68);
-  --muted-2: rgba(255,255,255,.52);
+  --brand:#7dd3fc;
+  --brand-2:#bae6fd;
 
-  /* 🔵 Azul claro definitivo */
-  --brand: #7dd3fc;
-  --brand-2: #bae6fd;
-
-  --danger: #ff3b30;
-  --warn: #ff9f0a;
-  --ok: #34c759;
-
-  --radius: 16px;
-  --shadow: 0 18px 50px rgba(0,0,0,.45);
+  --radius:14px;
+  --shadow:0 18px 50px rgba(0,0,0,.45);
 }
 
-*{
-  box-sizing: border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  color: var(--text);
-
+  margin:0;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
   background:
     radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.28), transparent 60%),
     radial-gradient(900px 600px at 90% 0%, rgba(186,230,253,.22), transparent 62%),
-    radial-gradient(900px 700px at 50% 120%, rgba(52,199,89,.07), transparent 55%),
     var(--bg);
 }
 
-/* =========================
-   Layout
-========================= */
-
 .app{
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 22px 14px 40px;
+  max-width:1040px;
+  margin:0 auto;
+  padding:22px 14px 40px;
 }
 
 .app-header{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 14px;
-
-  padding: 18px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-  box-shadow: var(--shadow);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+  padding:18px;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
 }
 
-.subtitle{
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--muted);
-}
+.subtitle{font-size:13px;color:var(--muted)}
 
 .pill{
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.06);
-  font-size: 12px;
-  color: var(--muted);
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  font-size:12px;
+  color:var(--muted);
 }
-
-/* =========================
-   Panels
-========================= */
 
 .panel{
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.05);
-  box-shadow: 0 8px 28px rgba(0,0,0,.28);
+  margin-top:16px;
+  padding:16px;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
 }
-
-.panel h2{
-  margin: 0 0 12px;
-  font-size: 17px;
-}
-
-.panel h3{
-  margin: 14px 0 8px;
-  font-size: 13px;
-  color: rgba(255,255,255,.86);
-}
-
-/* =========================
-   Labels
-========================= */
 
 label{
-  display: block;
-  margin: 8px 0 4px;
-  font-size: 11px;
-  color: var(--muted);
+  display:block;
+  margin:8px 0 4px;
+  font-size:11px;
+  color:var(--muted);
 }
 
-/* =========================
-   Inputs FINOS
-========================= */
-
-input,
-select{
-  width: 100%;
-  padding: 7px 9px;
-  border-radius: 9px;
-  border: 1px solid rgba(255,255,255,.18);
-
-  background: rgba(255,255,255,.08);
-  color: var(--text);
-
-  font-size: 13px;
-  outline: none;
-
-  transition: border .2s ease, box-shadow .2s ease, background .2s ease;
+input,select{
+  width:100%;
+  padding:7px 9px;
+  border-radius:9px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+  font-size:13px;
+  outline:none;
 }
 
-input::placeholder{
-  color: rgba(255,255,255,.45);
+input:focus,select:focus{
+  border-color:rgba(125,211,252,.7);
+  box-shadow:0 0 0 2px rgba(125,211,252,.3);
 }
-
-input:focus,
-select:focus{
-  background: rgba(255,255,255,.12);
-  border-color: rgba(125,211,252,.65);
-  box-shadow: 0 0 0 2px rgba(125,211,252,.25);
-}
-
-/* =========================
-   Buttons
-========================= */
 
 button{
-  width: 100%;
-  margin-top: 12px;
-  padding: 10px 14px;
-
-  border-radius: 12px;
-  border: 1px solid rgba(125,211,252,.55);
-
-  background: linear-gradient(
-    180deg,
-    rgba(125,211,252,.95),
-    rgba(125,211,252,.70)
-  );
-
-  color: #00324d;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-
-  box-shadow: 0 8px 22px rgba(125,211,252,.25);
-}
-
-button:hover{
-  filter: brightness(1.06);
+  width:100%;
+  margin-top:12px;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(125,211,252,.6);
+  background:linear-gradient(180deg, var(--brand), rgba(125,211,252,.7));
+  color:#00324d;
+  font-weight:700;
 }
 
 .btn-secondary{
-  border: 1px solid rgba(186,230,253,.6);
-  background: linear-gradient(
-    180deg,
-    rgba(186,230,253,.85),
-    rgba(186,230,253,.60)
-  );
-  color: #00324d;
+  background:linear-gradient(180deg, var(--brand-2), rgba(186,230,253,.6));
 }
-
-/* =========================
-   Grids
-========================= */
-
-.inline{
-  display: flex;
-  gap: 10px 14px;
-  flex-wrap: wrap;
-}
-
-.grid-2{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.grid-3{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-@media (min-width: 720px){
-  .grid-2{ grid-template-columns: 1fr 1fr; }
-  .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
-}
-
-/* =========================
-   Cards / notes
-========================= */
-
-.card{
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 14px;
-  padding: 12px;
-  background: rgba(255,255,255,.06);
-}
-
-.card__title{
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.note{
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-/* =========================
-   Footer
-========================= */
 
 .app-footer{
-  margin-top: 18px;
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted-2);
+  margin-top:20px;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted-2);
 }
-

@@ -6,13 +6,13 @@
 
   <title>Calculadora UCI</title>
 
-  <!-- CSS NUEVO · inputs finos + azul claro (rompe cache) -->
-  <link rel="stylesheet" href="style-lightblue.css?v=4" />
+  <!-- CSS CLARO NUEVO (rompe cache) -->
+  <link rel="stylesheet" href="style-lightblue.css?v=10" />
 
   <!-- Manifest -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- Color del sistema / PWA -->
+  <!-- Color barra sistema -->
   <meta name="theme-color" content="#7dd3fc" />
 </head>
 
@@ -27,14 +27,8 @@
       <div class="pill">Uso clínico educativo</div>
     </header>
 
-    <!-- =========================
-         CONTENIDO ORIGINAL
-         (NO SE MODIFICA)
-    ========================== -->
-
-    <!-- Acá sigue TODO tu contenido real:
-         ventilación, PCO2, eco, oxigenación, etc.
-         No se toca nada -->
+    <!-- TODO TU CONTENIDO ORIGINAL SIGUE IGUAL -->
+    <!-- (ventilación, eco, oxigenación, etc.) -->
 
     <footer class="app-footer">
       Hecho para uso educativo · Verificar siempre con contexto clínico
@@ -42,7 +36,10 @@
 
   </div>
 
-  <!-- Service Worker DESACTIVADO para evitar cache -->
+  <!-- JS -->
+  <script src="app.js"></script>
+
+  <!-- Service Worker DESACTIVADO -->
   <!--
   <script>
     if ("serviceWorker" in navigator) {
@@ -50,10 +47,5 @@
     }
   </script>
   -->
-
-  <!-- JS original -->
-  <script src="app.js"></script>
 </body>
 </html>
-
-
