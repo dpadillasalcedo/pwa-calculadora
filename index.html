@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Calculadora UCI</title>
+
+  <meta name="description" content="Clinical critical care calculator for ICU professionals. Includes mechanical ventilation, hemodynamics, oxygen transport, acid–base analysis and SOFA score, based on international guidelines." />
+
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0b5fff" />
   <link rel="manifest" href="manifest.json" />
 </head>
+
 
 <body>
   <div class="app">
@@ -404,9 +409,98 @@
       <div id="resultadoSOFA2"></div>
     </section>
 
-<footer class="app-footer">
-      <span>Hecho para uso educativo · Verifique siempre con guías y contexto clínico.</span>
-    </footer>
+<!-- =========================
+     References & Methodology
+========================== -->
+<section class="panel panel--references">
+  <h2>References & Methodology</h2>
+
+  <details>
+    <summary>Mechanical Ventilation & Ideal Body Weight</summary>
+    <ol>
+      <li>
+        The Acute Respiratory Distress Syndrome Network.
+        <em>Ventilation with Lower Tidal Volumes as Compared with Traditional Tidal Volumes
+        for Acute Lung Injury and the Acute Respiratory Distress Syndrome.</em>
+        N Engl J Med. 2000;342:1301–1308.
+      </li>
+      <li>
+        Devine BJ.
+        <em>Gentamicin therapy.</em>
+        Drug Intelligence & Clinical Pharmacy. 1974;8:650–655.
+      </li>
+      <li>
+        Fan E, et al.
+        <em>Ventilatory management of acute respiratory distress syndrome.</em>
+        Am J Respir Crit Care Med. 2017.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Gas Exchange, Oxygen Transport & Perfusion</summary>
+    <ol>
+      <li>
+        West JB.
+        <em>Respiratory Physiology: The Essentials.</em>
+        10th ed. Lippincott Williams & Wilkins.
+      </li>
+      <li>
+        Marino PL.
+        <em>The ICU Book.</em>
+        4th ed. Wolters Kluwer.
+      </li>
+      <li>
+        Vallet B, et al.
+        <em>Central venous-to-arterial carbon dioxide difference.</em>
+        Intensive Care Med. 2000.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Acid–Base Disorders & Electrolytes</summary>
+    <ol>
+      <li>
+        Kraut JA, Madias NE.
+        <em>Serum anion gap: its uses and limitations.</em>
+        Clin J Am Soc Nephrol. 2007.
+      </li>
+      <li>
+        Adrogué HJ, Madias NE.
+        <em>Secondary responses to altered acid-base status.</em>
+        N Engl J Med. 1998.
+      </li>
+      <li>
+        Katz MA.
+        <em>Hyperglycemia-induced hyponatremia.</em>
+        Am J Med. 1973.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>SOFA Score</summary>
+    <ol>
+      <li>
+        Vincent JL, et al.
+        <em>The SOFA (Sepsis-related Organ Failure Assessment) score.</em>
+        Intensive Care Med. 1996.
+      </li>
+      <li>
+        Singer M, et al.
+        <em>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em>
+        JAMA. 2016.
+      </li>
+    </ol>
+  </details>
+
+  <p class="disclaimer">
+    This calculator is intended for educational and clinical support purposes only.
+    It does not replace clinical judgment, institutional protocols, or specialist consultation.
+  </p>
+</section>
+
   </div>
 
   <script src="app.js"></script>
