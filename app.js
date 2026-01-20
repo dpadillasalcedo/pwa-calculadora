@@ -258,7 +258,7 @@ function calcularDeltaGap() {
     <ul>
       <li><b>0 a 6:</b> Acidosis metabólica con anion gap aumentado pura</li>
       <li><b>> 6:</b> Existe una alcalosis metabólica</li>
-      <li><b>< −6:</b> Existe otra acidosis metabólica</li>
+      <li><b>> −6:</b> Existe otra acidosis metabólica</li>
     </ul>
     <small>Fórmula: (AGAPp − AGAPn) − (BICAn − BICAp)</small>
   `;
