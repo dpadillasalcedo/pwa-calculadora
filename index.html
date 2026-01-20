@@ -208,9 +208,22 @@
       <p class="note">Usa <b>PaCO₂</b> y <b>HCO₃⁻ arterial</b> ingresados arriba (sección “CO₂ · presiones · perfusión”), o completalos allí si están vacíos.</p>
 
       <h3>Compensación metabólica</h3>
-      <p class="note">Margen de referencia ±2 mmHg.</p>
-      <button class="btn-secondary" onclick="calcularCompensacionMetabolica()">Calcular compensación</button>
-      <div id="resultadoCompensacion"></div>
+      <p class="note">Se dejan las <b>fórmulas de referencia</b> visibles (sin ejecución). Margen de referencia: ±2 mmHg.</p>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">PCO₂ esperada en acidosis metabólica</div>
+        <div class="note">PCO₂ esperada = (1.5 × HCO₃a) + 8 (± 2)</div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">PCO₂ esperada en alcalosis metabólica</div>
+        <div class="note">PCO₂ esperada = (0.7 × HCO₃a) + 21 (± 2)</div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">Acidosis respiratoria crónica</div>
+        <div class="note">BICA esperado = (PCO₂a − 40) × 0.4</div>
+      </div>
 
       <hr />
 
