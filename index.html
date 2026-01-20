@@ -3,22 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Calculadora UCI</title>
-
-  <!-- CSS NUEVO (solo cambio visual, no rompe cálculos) -->
   <link rel="stylesheet" href="style-fixed.css?v=1" />
-
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Color del sistema / PWA -->
   <meta name="theme-color" content="#7dd3fc" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 
 <body>
   <div class="app">
-
     <header class="app-header">
       <div>
         <h1>Calculadora UCI</h1>
@@ -28,23 +20,397 @@
     </header>
 
     <!-- =========================
-         CONTENIDO ORIGINAL
-         (NO MODIFICADO)
+         Ventilación mecánica
     ========================== -->
+    <section class="panel">
+      <h2>Ventilación mecánica</h2>
 
-    <!-- 🔽 TODO TU HTML DE CÁLCULOS VA AQUÍ 🔽 -->
-    <!-- ventilación, PCO2, eco, oxigenación, presiones, etc. -->
+      <h3>Peso ideal</h3>
+      <label>Talla (cm)</label>
+      <input type="number" id="talla" />
+
+      <label>Sexo</label>
+      <select id="sexo">
+        <option value="">Seleccione</option>
+        <option value="hombre">Hombre</option>
+        <option value="mujer">Mujer</option>
+      </select>
+
+      <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
+      <div id="resultadoPeso"></div>
+
+      <hr />
+
+      <h3>Ajuste de PCO₂ deseada</h3>
+      <label>PCO₂ actual</label>
+      <input type="number" id="pco2Act" />
+
+      <label>PCO₂ deseada</label>
+      <input type="number" id="pco2Des" />
+
+      <div class="grid-2">
+        <div>
+          <label>FRactual</label>
+          <input type="number" id="fr" />
+        </div>
+        <div>
+          <label>VTactual (mL)</label>
+          <input type="number" id="vt" />
+        </div>
+      </div>
+
+      <label>VMINactual (L/min)</label>
+      <input type="number" id="vmin" />
+
+      <button onclick="ajustarPCO2()">Calcular ajuste</button>
+      <div id="resultadoPCO2"></div>
+    </section>
+
+    <!-- =========================
+         Ecocardiografía
+    ========================== -->
+    <section class="panel">
+      <h2>Ecocardiografía · gasto cardíaco</h2>
+
+      <h3>Gasto cardíaco por ecocardiografía</h3>
+
+      <div class="grid-3">
+        <div>
+          <label>Diámetro TSVI (cm)</label>
+          <input type="number" id="dtsvi" step="0.1" />
+        </div>
+        <div>
+          <label>VTI TSVI (cm)</label>
+          <input type="number" id="vti" step="0.1" />
+        </div>
+        <div>
+          <label>Frecuencia cardíaca (lpm)</label>
+          <input type="number" id="fc" step="1" />
+        </div>
+      </div>
+
+      <button onclick="calcularGCEco()">Calcular GC por eco</button>
+      <div id="resultadoGCEco"></div>
+    </section>
+
+    <!-- =========================
+         Oxigenación
+    ========================== -->
+    <section class="panel">
+      <h2>Oxigenación · contenido de O₂</h2>
+
+      <div class="grid-2">
+        <div>
+          <label>Gasto cardíaco (L/min)</label>
+          <input type="number" id="gc" step="0.1" />
+        </div>
+        <div>
+          <label>Hemoglobina (g/dL)</label>
+          <input type="number" id="hb" step="0.1" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>SaO₂ (%)</label>
+          <input type="number" id="sao2" />
+        </div>
+        <div>
+          <label>SvO₂ (%)</label>
+          <input type="number" id="svo2" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>PaO₂ (mmHg)</label>
+          <input type="number" id="pao2" />
+        </div>
+        <div>
+          <label>PvO₂ (mmHg)</label>
+          <input type="number" id="pvo2" />
+        </div>
+      </div>
+
+      <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
+      <div id="resultadoOxigenacion"></div>
+    </section>
+
+    <!-- =========================
+         CO₂ · perfusión
+    ========================== -->
+    <section class="panel">
+      <h2>CO₂ · presiones · perfusión</h2>
+
+      <h3>CO₂</h3>
+      <div class="grid-2">
+        <div>
+          <label>PaCO₂ (mmHg)</label>
+          <input type="number" id="paco2" />
+        </div>
+        <div>
+          <label>PvCO₂ (mmHg)</label>
+          <input type="number" id="pvco2" />
+        </div>
+      </div>
+
+      <button type="button" onclick="calcularDeltaCO2()">Calcular ΔCO₂</button>
+      <div id="resultadoCO2"></div>
+
+      <hr />
+
+      <h3>Presiones</h3>
+      <div class="grid-2">
+        <div>
+          <label>TAM (mmHg)</label>
+          <input type="number" id="tam" />
+        </div>
+        <div>
+          <label>PVC (mmHg)</label>
+          <input type="number" id="pvc" />
+        </div>
+      </div>
+
+      <label>GC (L/min)</label>
+      <input type="number" id="gc_rvs" step="0.1" />
+
+      <div class="grid-2">
+        <div>
+          <label>PIA (mmHg)</label>
+          <input type="number" id="pia" />
+        </div>
+        <div>
+          <label>PIC (mmHg)</label>
+          <input type="number" id="pic" />
+        </div>
+      </div>
+
+      <div class="inline" style="gap:10px; flex-wrap:wrap">
+        <button type="button" onclick="calcularRVS()">Calcular RVS</button>
+        <button type="button" onclick="calcularPPR()">Calcular PPR</button>
+        <button type="button" onclick="calcularPPC()">Calcular PPC</button>
+      </div>
+
+      <div id="resultadoRVS"></div>
+      <div id="resultadoPPR"></div>
+      <div id="resultadoPPC"></div>
+    </section>
+
+    <!-- =========================
+         Estado ácido-base
+    ========================== -->
+    <section class="panel">
+      <h2>Estado ácido - base</h2>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">PCO₂ esperada en acidosis metabólica</div>
+        <div class="note">PCO₂ esperada = (1.5 × HCO₃a) + 8 (± 2)</div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">PCO₂ esperada en alcalosis metabólica</div>
+        <div class="note">PCO₂ esperada = (0.7 × HCO₃a) + 21 (± 2)</div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card__title">Acidosis respiratoria crónica</div>
+        <div class="note">BICA esperado = (PCO₂a − 40) × 0.4</div>
+      </div>
+
+      <hr />
+
+      <h3>Anion gap corregido por albúmina</h3>
+      <div class="grid-2">
+        <div>
+          <label>Sodio Na (mEq/L)</label>
+          <input type="number" id="na" step="0.1" />
+        </div>
+        <div>
+          <label>Potasio K (mEq/L)</label>
+          <input type="number" id="k" step="0.1" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Cloro Cl (mEq/L)</label>
+          <input type="number" id="cl" step="0.1" />
+        </div>
+        <div>
+          <label>Bicarbonato HCO₃ (mEq/L)</label>
+          <input type="number" id="hco3_ag" step="0.1" />
+        </div>
+      </div>
+
+      <label>Albúmina sérica ALB (g/dL)</label>
+      <input type="number" id="alb" step="0.1" />
+
+      <button class="btn-secondary" onclick="calcularAnionGapCorregido()">Calcular anion gap corregido</button>
+      <div id="resultadoAnionGap"></div>
+
+      <hr />
+
+      <h3>Delta gap / Delta bica</h3>
+      <div class="grid-2">
+        <div>
+          <label>Bicarbonato normal (BICAn)</label>
+          <input type="number" id="bican" value="24" step="0.1" />
+        </div>
+        <div>
+          <label>Bicarbonato paciente (BICAp)</label>
+          <input type="number" id="bicap" placeholder="Ej: 18" step="0.1" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Anion gap normal (AGAPn)</label>
+          <input type="number" id="agapn" value="14" step="0.1" />
+        </div>
+        <div>
+          <label>Anion gap paciente (AGAPp)</label>
+          <input type="number" id="agapp" placeholder="Ej: 20" step="0.1" />
+        </div>
+      </div>
+
+      <button class="btn-secondary" onclick="calcularDeltaGap()">Calcular delta gap / delta bica</button>
+      <div id="resultadoDeltaGap"></div>
+    </section>
+
+    
+    <!-- =========================
+         Sodio y calcio corregido
+    ========================== -->
+    <section class="panel">
+      <h2>Sodio y calcio corregido</h2>
+
+      <h3>Sodio corregido</h3>
+      <div class="grid-2">
+        <div>
+          <label>Sodio medido (NAs)</label>
+          <input type="number" id="nas" step="0.1" />
+        </div>
+        <div>
+          <label>Glucosa sérica (GLUCs)</label>
+          <input type="number" id="glucs" step="0.1" />
+        </div>
+      </div>
+
+      <button class="btn-secondary" type="button" onclick="calcularSodioCorregido()">Calcular Na corregido</button>
+      <div id="resultadoNaCorregido"></div>
+
+      <hr />
+
+      <h3>Calcio corregido</h3>
+      <div class="grid-2">
+        <div>
+          <label>Calcio sérico (CAs)</label>
+          <input type="number" id="cas" step="0.1" />
+        </div>
+        <div>
+          <label>Albúmina sérica (ALBs)</label>
+          <input type="number" id="albs" step="0.1" />
+        </div>
+      </div>
+
+      <button class="btn-secondary" type="button" onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
+      <div id="resultadoCaCorregido"></div>
+    </section>
+
+    <!-- =========================
+         SOFA-2
+    ========================== -->
+    <section class="panel">
+      <h2>SOFA-2 · puntuación</h2>
+
+      <div class="note" style="margin-bottom:10px">
+        Seleccione el criterio que corresponda en cada sistema y luego calcule el total.
+      </div>
+
+      <h3>Sistema nervioso (GCS)</h3>
+      <select id="sofa_neuro">
+        <option value="">Seleccione</option>
+        <option value="0">0 · GCS 15</option>
+        <option value="1">1 · GCS 13-14 / localiza dolor / requiere fármacos por delirium</option>
+        <option value="2">2 · GCS 9-12 / retira al dolor</option>
+        <option value="3">3 · GCS 6-8 / flexión al dolor</option>
+        <option value="4">4 · GCS 3-5 / extensión o no respuesta / mioclonías generalizadas</option>
+      </select>
+
+      <hr />
+
+      <h3>Respiratorio (PaO₂/FiO₂)</h3>
+      <select id="sofa_resp">
+        <option value="">Seleccione</option>
+        <option value="0">0 · PaO₂/FiO₂ &gt; 300</option>
+        <option value="1">1 · PaO₂/FiO₂ ≤ 300</option>
+        <option value="2">2 · PaO₂/FiO₂ ≤ 225</option>
+        <option value="3">3 · PaO₂/FiO₂ ≤ 150 + soporte ventilatorio avanzado</option>
+        <option value="4">4 · PaO₂/FiO₂ ≤ 75 + soporte ventilatorio avanzado o ECMO</option>
+      </select>
+
+      <hr />
+
+      <h3>Cardiovascular</h3>
+      <select id="sofa_cv">
+        <option value="">Seleccione</option>
+        <option value="0">0 · MAP ≥ 70, sin vasopresor/inotrópico</option>
+        <option value="1">1 · MAP &lt; 70, sin vasopresor/inotrópico</option>
+        <option value="2">2 · Vasopresor dosis baja (NE+EPI ≤ 0.2 μg/kg/min) o cualquier dosis de otro vasopresor/inotrópico</option>
+        <option value="3">3 · Vasopresor dosis media (NE+EPI &gt;0.2 a ≤0.4 μg/kg/min) o (NE+EPI ≤0.2) + otro vasopresor/inotrópico</option>
+        <option value="4">4 · Vasopresor dosis alta (NE+EPI &gt;0.4 μg/kg/min) o (NE+EPI &gt;0.2 a ≤0.4) + otro vasopresor/inotrópico o soporte mecánico</option>
+      </select>
+
+      <hr />
+
+      <h3>Hígado (bilirrubina total)</h3>
+      <select id="sofa_higado">
+        <option value="">Seleccione</option>
+        <option value="0">0 · ≤ 1.2 mg/dL</option>
+        <option value="1">1 · ≤ 3.0 mg/dL</option>
+        <option value="2">2 · ≤ 6.0 mg/dL</option>
+        <option value="3">3 · ≤ 12.0 mg/dL</option>
+        <option value="4">4 · &gt; 12.0 mg/dL</option>
+      </select>
+
+      <hr />
+
+      <h3>Riñón</h3>
+      <select id="sofa_rinon">
+        <option value="">Seleccione</option>
+        <option value="0">0 · Creatinina ≤ 1.2 mg/dL</option>
+        <option value="1">1 · Creatinina ≤ 2.0 mg/dL o diuresis &lt;0.5 mL/kg/h por 6-12 h</option>
+        <option value="2">2 · Creatinina ≤ 3.5 mg/dL o diuresis &lt;0.5 mL/kg/h por ≥12 h</option>
+        <option value="3">3 · Creatinina &gt; 3.5 mg/dL o diuresis &lt;0.3 mL/kg/h por ≥24 h o anuria ≥12 h</option>
+        <option value="4">4 · Recibiendo / cumple criterios de TRR (incluye uso crónico)</option>
+      </select>
+
+      <hr />
+
+      <h3>Hemostasia (plaquetas)</h3>
+      <select id="sofa_coag">
+        <option value="">Seleccione</option>
+        <option value="0">0 · &gt; 150 × 10³/μL</option>
+        <option value="1">1 · ≤ 150 × 10³/μL</option>
+        <option value="2">2 · ≤ 100 × 10³/μL</option>
+        <option value="3">3 · ≤ 80 × 10³/μL</option>
+        <option value="4">4 · ≤ 50 × 10³/μL</option>
+      </select>
+
+      <div class="inline" style="gap:10px; flex-wrap:wrap; margin-top:12px">
+        <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
+      </div>
+
+      <div id="resultadoSOFA2"></div>
+    </section>
 
     <footer class="app-footer">
-      Hecho para uso educativo · Verificar siempre con contexto clínico
+      <span>Hecho para uso educativo · Verifique siempre con guías y contexto clínico.</span>
     </footer>
-
   </div>
 
-  <!-- JS ORIGINAL -->
   <script src="app.js"></script>
 
-  <!-- Service Worker (opcional, mantener como estaba) -->
   <!--
   <script>
     if ("serviceWorker" in navigator) {

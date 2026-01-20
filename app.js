@@ -147,11 +147,8 @@ function calcularGCEco() {
     <b>Gasto cardíaco: ${gc.toFixed(2)} L/min</b>
     <hr>
     <b>Valores de referencia</b><br>
-    Normal: 18-22 cm<br>
-    Bajo: &lt; 15 cm<br>
-    <br>
-    <b>Respuesta a fluidos</b><br>
-    Positiva si hay un cambio &gt; 12%
+    Normal: 18-22 cm, Bajo &lt; 15 cm<br>
+    <b>Respuesta a fluidos positiva</b> si hay un cambio &gt; 12%
   `;
 }
 
@@ -236,10 +233,7 @@ function calcularRVS() {
   }
 
   const rvs = ((tam - pvc) / gc) * 79.92;
-  resultado.innerHTML = `
-    <b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵<br>
-    <small>Fórmula: ((TAM − PVC) / GC) × 79.92</small>
-  `;
+  resultado.innerHTML = `<b>RVS:</b> ${rvs.toFixed(0)} dyn·s·cm⁻⁵<br><small>Fórmula: ((TAM − PVC) / GC) × 79.92</small>`;
 }
 
 function calcularPPR() {
@@ -253,10 +247,7 @@ function calcularPPR() {
   }
 
   const ppr = tam - pia;
-  resultado.innerHTML = `
-    <b>PPR:</b> ${ppr.toFixed(0)} mmHg<br>
-    <small>Fórmula: TAM − PIA</small>
-  `;
+  resultado.innerHTML = `<b>PPR:</b> ${ppr.toFixed(0)} mmHg<br><small>Fórmula: TAM − PIA</small>`;
 }
 
 function calcularPPC() {
@@ -270,10 +261,7 @@ function calcularPPC() {
   }
 
   const ppc = tam - pic;
-  resultado.innerHTML = `
-    <b>PPC:</b> ${ppc.toFixed(0)} mmHg<br>
-    <small>Fórmula: TAM − PIC</small>
-  `;
+  resultado.innerHTML = `<b>PPC:</b> ${ppc.toFixed(0)} mmHg<br><small>Fórmula: TAM − PIC</small>`;
 }
 
 // Mantengo la función anterior para compatibilidad (si algún botón viejo quedara en caché)
@@ -339,6 +327,7 @@ function calcularDeltaGap() {
   `;
 }
 
+
 /* =========================
    SODIO Y CALCIO CORREGIDO
 ========================= */
@@ -347,12 +336,14 @@ function calcularSodioCorregido() {
   const glucs = num("glucs");
   const resultado = document.getElementById("resultadoNaCorregido");
 
-  if (anyNaN([nas, glucs])) {
+  if (!Number.isFinite(nas) || !Number.isFinite(glucs)) {
     resultado.innerText = "Complete Sodio medido (NAs) y Glucosa sérica (GLUCs)";
     return;
   }
 
+  // NAc = NAs + (1.6 × ((GLUCs − 100) / 100))
   const nac = nas + (1.6 * ((glucs - 100) / 100));
+
   resultado.innerHTML = `
     <b>Na corregido (NAc):</b> ${nac.toFixed(1)} mEq/L<br>
     <small>Fórmula: NAc = NAs + (1.6 × ((GLUCs − 100) / 100))</small>
@@ -360,8 +351,8 @@ function calcularSodioCorregido() {
 }
 
 function calcularCalcioCorregido() {
-  const cas = num("cas");     // Calcio sérico
-  const albs = num("albs");   // Albúmina sérica
+  const cas = num("cas");
+  const albs = num("albs");
   const resultado = document.getElementById("resultadoCaCorregido");
 
   if (!Number.isFinite(cas) || !Number.isFinite(albs)) {
@@ -377,7 +368,6 @@ function calcularCalcioCorregido() {
     <small>Fórmula: CAc = CAs + (0.8 × (4 − ALBs))</small>
   `;
 }
-
 
 /* =========================
    SOFA-2
@@ -398,14 +388,14 @@ function calcularSOFA2() {
     if (!el) continue;
     const v = parseInt(el.value, 10);
     if (!Number.isFinite(v)) {
-      document.getElementById("resultadoSOFA2").innerText = "Seleccione todas las variables para calcular SOFA-2";
+      document.getElementById("resultadoSOFA2").innerText =
+        "Seleccione todas las variables para calcular SOFA-2";
       return;
     }
     valores[c.label] = v;
   }
 
   const total = Object.values(valores).reduce((a, b) => a + b, 0);
-
   const detalle = Object.entries(valores)
     .map(([k, v]) => `<li>${k}: <b>${v}</b></li>`)
     .join("");
