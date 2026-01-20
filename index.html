@@ -278,11 +278,19 @@
   </div>
 
   <script src="app.js"></script>
+  <!--
+    PWA (opcional): si activás Service Worker, el navegador puede cachear archivos.
+    Si estás iterando cambios y ves estilos “en blanco y negro” o funciones viejas,
+    desactivá esto o recargá con hard refresh / borra el sitio de caché.
+
+    Para activarlo, descomentá el bloque de abajo.
+  -->
+  <!--
   <script>
-    // Registro de Service Worker (PWA). Seguro de dejar si no lo usás.
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("service-worker.js");
     }
   </script>
+  -->
 </body>
 </html>

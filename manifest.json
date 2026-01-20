@@ -3,6 +3,6 @@
   "short_name": "UCI Calc",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0d6efd"
+  "background_color": "#0b1020",
+  "theme_color": "#0b5fff"
 }

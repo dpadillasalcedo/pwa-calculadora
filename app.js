@@ -172,6 +172,7 @@ function calcularGCEco() {
    OXIGENACION (INDEPENDIENTE)
 ========================= */
 function calcularOxigenacion() {
+  const gc = num("gc");
   const hb = num("hb");
   const sao2 = num("sao2");
   const svo2 = num("svo2");
@@ -180,12 +181,12 @@ function calcularOxigenacion() {
   const resultado = document.getElementById("resultadoOxigenacion");
   if (!resultado) return;
 
-  if (anyNaN([hb, sao2, svo2, pao2, pvo2])) {
-    resultado.innerText = "Complete Hb, SaO₂, SvO₂, PaO₂ y PvO₂";
+  if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2])) {
+    resultado.innerText = "Complete GC, Hb, SaO₂, SvO₂, PaO₂ y PvO₂";
     return;
   }
-  if (hb <= 0) {
-    resultado.innerText = "Hb debe ser > 0";
+  if (gc <= 0 || hb <= 0) {
+    resultado.innerText = "GC y Hb deben ser > 0";
     return;
   }
 
@@ -193,12 +194,24 @@ function calcularOxigenacion() {
   const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
   const deltaO2 = CaO2 - CvO2;
 
+  // Transporte (independiente del bloque de perfusión)
+  const DO2 = gc * CaO2 * 10;
+  const VO2 = gc * deltaO2 * 10;
+  const REO2 = safeDiv(VO2, DO2);
+  const REO2pct = clampPercent(REO2 * 100);
+
   resultado.innerHTML = `
     <div class="grid">
       ${section("Oxigenación · Contenido de O₂", [
         row("CaO₂", badge(CaO2, { min: 16, max: 22, unit: " mL/dL", digits: 2 }), "VN 16–22"),
         row("CvO₂", badge(CvO2, { min: 12, max: 16, unit: " mL/dL", digits: 2 }), "VN 12–16"),
         row("ΔO₂", badge(deltaO2, { min: 4, max: 6, unit: " mL/dL", digits: 2 }), "VN 4–6"),
+      ].join(""))}
+
+      ${section("Transporte de O₂", [
+        row("DO₂", badge(DO2, { min: 900, max: 1100, unit: " mL/min", digits: 0 }), "VN 900–1100"),
+        row("VO₂", badge(VO2, { min: 200, max: 250, unit: " mL/min", digits: 0 }), "VN 200–250"),
+        row("REO₂", badge(REO2pct, { min: 20, max: 30, unit: " %", digits: 1 }), "VN 20–30 %"),
       ].join(""))}
     </div>
   `;
@@ -348,17 +361,18 @@ function calcularAnionGapCorregido() {
   const k = num("k");
   const cl = num("cl");
   const alb = num("alb");
-  const hco3a = num("hco3a"); // se toma del bloque de gases
+  // Usa el input propio del bloque (independiente)
+  const hco3 = num("hco3_ag");
 
   const resultado = document.getElementById("resultadoAnionGap");
   if (!resultado) return;
 
-  if (anyNaN([na, k, cl, alb, hco3a])) {
-    resultado.innerText = "Complete Na, K, Cl, Albúmina y HCO₃⁻ arterial";
+  if (anyNaN([na, k, cl, alb, hco3])) {
+    resultado.innerText = "Complete Na, K, Cl, HCO₃ y Albúmina";
     return;
   }
 
-  const ag = (na + k) - (cl + hco3a);
+  const ag = (na + k) - (cl + hco3);
   const correccionAlb = 0.25 * (4.4 - alb);
   const agCorregido = ag + correccionAlb;
 
