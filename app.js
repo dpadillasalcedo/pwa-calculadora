@@ -360,21 +360,24 @@ function calcularSodioCorregido() {
 }
 
 function calcularCalcioCorregido() {
-  const cas = num("cas");
-  const albs = num("albs");
+  const cas = num("cas");     // Calcio sérico
+  const albs = num("albs");   // Albúmina sérica
   const resultado = document.getElementById("resultadoCaCorregido");
 
-  if (anyNaN([cas, albs])) {
+  if (!Number.isFinite(cas) || !Number.isFinite(albs)) {
     resultado.innerText = "Complete Calcio sérico (CAs) y Albúmina sérica (ALBs)";
     return;
   }
 
-  const cac = cas - (0.8 * (4 - albs));
+  // CAc = CAs + (0.8 × (4 − ALBs))
+  const cac = cas + (0.8 * (4 - albs));
+
   resultado.innerHTML = `
     <b>Ca corregido (CAc):</b> ${cac.toFixed(2)}<br>
     <small>Fórmula: CAc = CAs + (0.8 × (4 − ALBs))</small>
   `;
 }
+
 
 /* =========================
    SOFA-2
