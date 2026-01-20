@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Calculadora UCI</title>
 
-  <!-- ✅ CSS CORRECTO -->
-  <link rel="stylesheet" href="style.css?v=2">
+  <!-- CSS (cache forzado) -->
+  <link rel="stylesheet" href="style.css?v=2026-01-20" />
 
+  <!-- Color del sistema acorde al diseño -->
   <meta name="theme-color" content="#7dd3fc" />
+
   <link rel="manifest" href="manifest.json" />
 </head>
 
@@ -23,9 +24,59 @@
       <div class="pill">Uso clínico educativo</div>
     </header>
 
-    <!-- ⬇️ TODO TU CONTENIDO DE CALCULADORAS QUEDA IGUAL ⬇️ -->
+    <!-- =========================
+         Ventilación mecánica
+    ========================== -->
+    <section class="panel">
+      <h2>Ventilación mecánica</h2>
 
-    <!-- (no se toca nada del cuerpo, inputs ni botones) -->
+      <h3>Peso ideal</h3>
+      <label>Talla (cm)</label>
+      <input type="number" id="talla" />
+
+      <label>Sexo</label>
+      <select id="sexo">
+        <option value="">Seleccione</option>
+        <option value="hombre">Hombre</option>
+        <option value="mujer">Mujer</option>
+      </select>
+
+      <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
+      <div id="resultadoPeso"></div>
+
+      <hr />
+
+      <h3>Ajuste de PCO₂ deseada</h3>
+      <label>PCO₂ actual</label>
+      <input type="number" id="pco2Act" />
+
+      <label>PCO₂ deseada</label>
+      <input type="number" id="pco2Des" />
+
+      <div class="grid-2">
+        <div>
+          <label>FRactual</label>
+          <input type="number" id="fr" />
+        </div>
+        <div>
+          <label>VTactual (mL)</label>
+          <input type="number" id="vt" />
+        </div>
+      </div>
+
+      <label>VMINactual (L/min)</label>
+      <input type="number" id="vmin" />
+
+      <button onclick="ajustarPCO2()">Calcular ajuste</button>
+      <div id="resultadoPCO2"></div>
+    </section>
+
+    <!-- ⚠️ TODO EL RESTO DEL CONTENIDO
+         (eco, oxigenación, ácido-base,
+          sodio/calcio, SOFA-2)
+         SE MANTIENE EXACTAMENTE IGUAL
+         AL QUE YA PEGASTE
+    -->
 
     <footer class="app-footer">
       <span>Hecho para uso educativo · Verifique siempre con guías y contexto clínico.</span>
@@ -34,7 +85,7 @@
 
   <script src="app.js"></script>
 
-  <!-- Service worker desactivado (correcto) -->
+  <!-- Service worker desactivado a propósito -->
 </body>
 </html>
 
