@@ -253,3 +253,162 @@ function calcularBloquePerfusion() {
   `;
 }
 
+
+/* =========================
+   ESTADO ÁCIDO - BASE
+   - Usa PaCO2 (id: paco2) y HCO3 arterial (id: hco3a) ya ingresados
+   - Agrega cálculos de AG corregido por albúmina y Delta ratio
+========================= */
+function calcularAcidoBase() {
+  const resultado = document.getElementById("resultadoAcidoBase");
+  if (!resultado) return;
+
+  // Inputs reutilizados
+  const hco3a = parseFloat(document.getElementById("hco3a")?.value);
+  const paco2 = parseFloat(document.getElementById("paco2")?.value);
+
+  // Inputs nuevos
+  const na = parseFloat(document.getElementById("na")?.value);
+  const k = parseFloat(document.getElementById("k")?.value);
+  const cl = parseFloat(document.getElementById("cl")?.value);
+  const alb = parseFloat(document.getElementById("alb")?.value);
+
+  const bican = parseFloat(document.getElementById("bican")?.value);
+  const bicap = parseFloat(document.getElementById("bicap")?.value);
+  const agapn = parseFloat(document.getElementById("agapn")?.value);
+  const agapp = parseFloat(document.getElementById("agapp")?.value);
+
+  // Helpers locales
+  const isNum = (v) => Number.isFinite(v);
+
+  // --- 1) COMPENSACIÓN METABÓLICA (Winter y alcalosis metabólica) ---
+  let pco2ExpAcMet = NaN;
+  let pco2ExpAcMetLo = NaN;
+  let pco2ExpAcMetHi = NaN;
+
+  let pco2ExpAlkMet = NaN;
+  let pco2ExpAlkMetLo = NaN;
+  let pco2ExpAlkMetHi = NaN;
+
+  if (isNum(hco3a)) {
+    pco2ExpAcMet = (1.5 * hco3a) + 8;
+    pco2ExpAcMetLo = pco2ExpAcMet - 2;
+    pco2ExpAcMetHi = pco2ExpAcMet + 2;
+
+    pco2ExpAlkMet = (0.7 * hco3a) + 21;
+    pco2ExpAlkMetLo = pco2ExpAlkMet - 2;
+    pco2ExpAlkMetHi = pco2ExpAlkMet + 2;
+  }
+
+  // --- 2) ACIDOSIS RESPIRATORIA CRÓNICA ---
+  // El usuario pidió: HCO3 esperado = (PaCO2 - 40) * 0.4
+  // Además mostramos (opcional) HCO3 total esperado asumiendo basal 24.
+  let hco3EspRespCronDelta = NaN;
+  let hco3EspRespCronTotal = NaN;
+  if (isNum(paco2)) {
+    hco3EspRespCronDelta = (paco2 - 40) * 0.4;
+    hco3EspRespCronTotal = 24 + hco3EspRespCronDelta;
+  }
+
+  // --- 3) ANION GAP con K corregido por albúmina ---
+  let agap = NaN;
+  let agapCorr = NaN;
+  let agapCorrAdj = NaN;
+
+  if (isNum(na) && isNum(k) && isNum(cl) && isNum(hco3a)) {
+    agap = (na + k) - (cl + hco3a);
+    if (isNum(alb)) {
+      agapCorrAdj = 0.25 * (4.4 - alb);
+      agapCorr = agap + agapCorrAdj;
+    }
+  }
+
+  // --- 4) DELTA GAP / DELTA BICA ---
+  let deltaRatio = NaN;
+  let deltaInterpretacion = "—";
+
+  if (isNum(agapp) && isNum(agapn) && isNum(bican) && isNum(bicap)) {
+    const denom = (bican - bicap);
+    deltaRatio = denom !== 0 ? ((agapp - agapn) / denom) : NaN;
+
+    if (Number.isFinite(deltaRatio)) {
+      if (deltaRatio < 0.4) {
+        deltaInterpretacion = "<0.4: Acidosis metabólica hiperclorémica";
+      } else if (deltaRatio >= 0.4 && deltaRatio < 0.8) {
+        deltaInterpretacion = "0.4–0.8: AG elevado + AG normal (mixta / IR aislada)";
+      } else if (deltaRatio >= 1 && deltaRatio <= 2) {
+        deltaInterpretacion = "1–2: Acidosis metabólica con anion gap aumentado";
+      } else if (deltaRatio > 2) {
+        deltaInterpretacion = ">2: HCO₃ elevado preexistente (alcalosis metabólica o acidosis resp. crónica)";
+      } else {
+        // Cubre 0.8–1.0
+        deltaInterpretacion = "0.8–1: Zona intermedia (interpretar con clínica y gases)";
+      }
+    }
+  }
+
+  // Render (usamos los mismos componentes visuales que perfusión)
+  resultado.innerHTML = `
+    <div class="grid">
+      ${section("Compensación metabólica", [
+        row(
+          "PCO₂ esperada en acidosis metabólica",
+          isNum(pco2ExpAcMet)
+            ? `<div>${badge(pco2ExpAcMet, { unit: " mmHg", digits: 1 })} <span class="muted">(rango ${pco2ExpAcMetLo.toFixed(1)}–${pco2ExpAcMetHi.toFixed(1)})</span></div>`
+            : badge(NaN),
+          "Fórmula: (1.5 × HCO₃) + 8 (±2)"
+        ),
+        row(
+          "PCO₂ esperada en alcalosis metabólica",
+          isNum(pco2ExpAlkMet)
+            ? `<div>${badge(pco2ExpAlkMet, { unit: " mmHg", digits: 1 })} <span class="muted">(rango ${pco2ExpAlkMetLo.toFixed(1)}–${pco2ExpAlkMetHi.toFixed(1)})</span></div>`
+            : badge(NaN),
+          "Fórmula: (0.7 × HCO₃) + 21 (±2)"
+        ),
+      ].join(""))}
+
+      ${section("Acidosis respiratoria crónica", [
+        row(
+          "Bicarbonato esperado (ΔHCO₃)",
+          badge(hco3EspRespCronDelta, { unit: " mmol/L", digits: 1 }),
+          "Fórmula: (PaCO₂ − 40) × 0.4"
+        ),
+        row(
+          "HCO₃ total esperado (si basal 24)",
+          badge(hco3EspRespCronTotal, { unit: " mmol/L", digits: 1 }),
+          "Referencia útil (24 + ΔHCO₃)."
+        )
+      ].join(""))}
+
+      ${section("Anion gap (con K) corregido por albúmina", [
+        row(
+          "AG = (Na + K) − (Cl + HCO₃)",
+          badge(agap, { unit: " mEq/L", digits: 1 }),
+          "AG normal: <12 mEq/L"
+        ),
+        row(
+          "Corrección por albúmina",
+          badge(agapCorrAdj, { unit: "", digits: 2 }),
+          "0.25 × (4.4 − ALB)"
+        ),
+        row(
+          "AG corregido",
+          badge(agapCorr, { min: null, max: 12, unit: " mEq/L", digits: 1, danger: true }),
+          "AG corregido normal: <12"
+        )
+      ].join(""))}
+
+      ${section("Delta gap / Delta bica", [
+        row(
+          "DGAP/ΔBICA",
+          badge(deltaRatio, { digits: 2 }),
+          "(AGAPp − AGAPn) / (BICAn − BICAp)"
+        ),
+        row(
+          "Interpretación",
+          `<span class="badge badge--neutral">${deltaInterpretacion}</span>`
+        )
+      ].join(""))}
+    </div>
+  `;
+}

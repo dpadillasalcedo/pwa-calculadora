@@ -24,52 +24,62 @@
 
       <h3>Peso ideal</h3>
 
-  <label>Talla (cm)</label>
-  <input type="number" id="talla">
+      <label>Talla (cm)</label>
+      <input type="number" id="talla">
 
-  <label>Sexo</label>
-  <select id="sexo">
-    <option value="">Seleccione</option>
-    <option value="hombre">Hombre</option>
-    <option value="mujer">Mujer</option>
-  </select>
+      <label>Sexo</label>
+      <select id="sexo">
+        <option value="">Seleccione</option>
+        <option value="hombre">Hombre</option>
+        <option value="mujer">Mujer</option>
+      </select>
 
-  <br><br>
-  <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
+      <br><br>
+      <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
 
-  <div id="resultadoPeso"></div>
+      <div id="resultadoPeso"></div>
 
-  <hr>
+      <hr>
 
-  <h3>AJUSTE DE PCO₂ DESEADA</h3>
+      <h3>AJUSTE DE PCO₂ DESEADA</h3>
 
-  <label>PCO₂ actual</label>
-  <input type="number" id="pco2Act">
+      <label>PCO₂ actual</label>
+      <input type="number" id="pco2Act">
 
-  <label>PCO₂ deseada</label>
-  <input type="number" id="pco2Des">
+      <label>PCO₂ deseada</label>
+      <input type="number" id="pco2Des">
 
-  <br><br>
+      <br><br>
 
-  <label>FR</label>
-  <input type="number" id="fr">
+      <label>FR</label>
+      <input type="number" id="fr">
 
-  <label>VT (mL)</label>
-  <input type="number" id="vt">
+      <label>VT (mL)</label>
+      <input type="number" id="vt">
 
-  <label>VMIN (L/min)</label>
-  <input type="number" id="vmin">
+      <label>VMIN (L/min)</label>
+      <input type="number" id="vmin">
 
-  <br><br>
+      <br><br>
 
-  <input type="radio" name="ajuste" value="fr" checked> Ajustar FR
-  <input type="radio" name="ajuste" value="vt"> Ajustar VT
-  <input type="radio" name="ajuste" value="vmin"> Ajustar VMIN
+      <div class="inline">
+        <label class="radio">
+          <input type="radio" name="ajuste" value="fr" checked>
+          Ajustar FR
+        </label>
+        <label class="radio">
+          <input type="radio" name="ajuste" value="vt">
+          Ajustar VT
+        </label>
+        <label class="radio">
+          <input type="radio" name="ajuste" value="vmin">
+          Ajustar VMIN
+        </label>
+      </div>
 
-  <br><br>
-  <button onclick="ajustarPCO2()">Calcular ajuste</button>
+      <button onclick="ajustarPCO2()">Calcular ajuste</button>
 
-  <div id="resultadoPCO2"></div>
+      <div id="resultadoPCO2"></div>
 
     </section>
 
@@ -78,85 +88,131 @@
 
       <h3>Gasto cardíaco por ecocardiografía</h3>
 
-<label>Diámetro TSVI (cm)</label>
-<input type="number" id="dtsvi" step="0.1">
+      <label>Diámetro TSVI (cm)</label>
+      <input type="number" id="dtsvi" step="0.1">
 
-<label>VTI TSVI (cm)</label>
-<input type="number" id="vti" step="0.1">
+      <label>VTI TSVI (cm)</label>
+      <input type="number" id="vti" step="0.1">
 
-<label>Frecuencia cardíaca (lpm)</label>
-<input type="number" id="fc" step="1">
+      <label>Frecuencia cardíaca (lpm)</label>
+      <input type="number" id="fc" step="1">
 
-<br><br>
-<button onclick="calcularGCEco()">Calcular GC por eco</button>
+      <button onclick="calcularGCEco()">Calcular GC por eco</button>
 
-<div id="resultadoGCEco"></div>
+      <div id="resultadoGCEco"></div>
 
     </section>
 
     <section class="panel">
       <h2>Oxigenación · CO₂ · perfusión</h2>
 
-<h3>GASTO CARDÍACO (MANUAL)</h3>
+      <h3>GASTO CARDÍACO (MANUAL)</h3>
 
-<label>Gasto cardíaco (L/min)</label>
-<input type="number" id="gc" step="0.1">
+      <label>Gasto cardíaco (L/min)</label>
+      <input type="number" id="gc" step="0.1">
 
-<hr>
+      <hr>
 
-<h3>OXIGENACIÓN – CONTENIDO DE O₂</h3>
+      <h3>OXIGENACIÓN – CONTENIDO DE O₂</h3>
 
-<label>Hemoglobina (g/dL)</label>
-<input type="number" id="hb" step="0.1">
+      <label>Hemoglobina (g/dL)</label>
+      <input type="number" id="hb" step="0.1">
 
-<label>SaO₂ (%)</label>
-<input type="number" id="sao2">
+      <label>SaO₂ (%)</label>
+      <input type="number" id="sao2">
 
-<label>SvO₂ (%)</label>
-<input type="number" id="svo2">
+      <label>SvO₂ (%)</label>
+      <input type="number" id="svo2">
 
-<label>PaO₂ (mmHg)</label>
-<input type="number" id="pao2">
+      <label>PaO₂ (mmHg)</label>
+      <input type="number" id="pao2">
 
-<label>PvO₂ (mmHg)</label>
-<input type="number" id="pvo2">
+      <label>PvO₂ (mmHg)</label>
+      <input type="number" id="pvo2">
 
-<hr>
+      <hr>
 
-<h3>CO₂</h3>
+      <h3>CO₂</h3>
 
-<label>PaCO₂ (mmHg)</label>
-<input type="number" id="paco2">
+      <label>PaCO₂ (mmHg)</label>
+      <input type="number" id="paco2">
 
-<label>PvCO₂ (mmHg)</label>
-<input type="number" id="pvco2">
+      <label>PvCO₂ (mmHg)</label>
+      <input type="number" id="pvco2">
 
-<label>HCO₃⁻ arterial (mmol/L)</label>
-<input type="number" id="hco3a">
+      <label>HCO₃⁻ arterial (mmol/L)</label>
+      <input type="number" id="hco3a">
 
-<label>HCO₃⁻ venoso (mmol/L)</label>
-<input type="number" id="hco3v">
+      <label>HCO₃⁻ venoso (mmol/L)</label>
+      <input type="number" id="hco3v">
 
-<hr>
+      <hr>
 
-<h3>PRESIONES Y PERFUSIÓN</h3>
+      <h3>PRESIONES Y PERFUSIÓN</h3>
 
-<label>TAM (mmHg)</label>
-<input type="number" id="tam">
+      <label>TAM (mmHg)</label>
+      <input type="number" id="tam">
 
-<label>PVC (mmHg)</label>
-<input type="number" id="pvc">
+      <label>PVC (mmHg)</label>
+      <input type="number" id="pvc">
 
-<label>PIA (mmHg)</label>
-<input type="number" id="pia">
+      <label>PIA (mmHg)</label>
+      <input type="number" id="pia">
 
-<label>PIC (mmHg)</label>
-<input type="number" id="pic">
+      <label>PIC (mmHg)</label>
+      <input type="number" id="pic">
 
-<br><br>
-<button onclick="calcularBloquePerfusion()">Calcular parámetros</button>
+      <button onclick="calcularBloquePerfusion()">Calcular parámetros</button>
 
-<div id="resultadoPerfusion"></div>
+      <div id="resultadoPerfusion"></div>
+
+    </section>
+
+    <section class="panel">
+      <h2>Estado ácido - base</h2>
+
+      <p class="note">Para estos cálculos se usan los valores ya ingresados de <b>PaCO₂</b> y <b>HCO₃⁻ arterial</b> (sección “Oxigenación · CO₂ · perfusión”).</p>
+
+      <h3>Compensación metabólica</h3>
+      <p class="note">Fórmulas con margen ±2 mmHg.</p>
+
+      <button onclick="calcularAcidoBase()">Calcular estado ácido-base</button>
+
+      <hr>
+
+      <h3>Anion gap y delta ratio</h3>
+
+      <label>Sodio Na (mEq/L)</label>
+      <input type="number" id="na" step="0.1">
+
+      <label>Potasio K (mEq/L)</label>
+      <input type="number" id="k" step="0.1">
+
+      <label>Cloro Cl (mEq/L)</label>
+      <input type="number" id="cl" step="0.1">
+
+      <label>Albúmina sérica (g/dL)</label>
+      <input type="number" id="alb" step="0.1">
+
+      <hr>
+
+      <h3>Delta gap / Delta bica</h3>
+
+      <label>HCO₃ normal (BICAn) (mmol/L)</label>
+      <input type="number" id="bican" step="0.1" value="24">
+
+      <label>HCO₃ del paciente (BICAp) (mmol/L)</label>
+      <input type="number" id="bicap" step="0.1">
+
+      <label>Anion gap normal (AGAPn) (mEq/L)</label>
+      <input type="number" id="agapn" step="0.1" value="12">
+
+      <label>Anion gap del paciente (AGAPp) (mEq/L)</label>
+      <input type="number" id="agapp" step="0.1">
+
+      <button onclick="calcularAcidoBase()">Calcular estado ácido-base</button>
+
+      <div id="resultadoAcidoBase"></div>
 
     </section>
 
@@ -174,7 +230,3 @@
   </script>
 </body>
 </html>
-
-
-
-
