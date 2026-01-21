@@ -75,19 +75,20 @@
       <div class="grid-2">
         <div>
           <label>FR</label>
-          <input type="number" id="fr actual" />
+          <input type="number" id="fr_actual" />
         </div>
         <div>
           <label>VT (mL)</label>
-          <input type="number" id="vt actual" />
+          <input type="number" id="vt_actual" />
         </div>
       </div>
 
       <label>VMIN (L/min)</label>
-      <input type="number" id="vmin actual" />
+      <input type="number" id="vmin_actual" />
 
       <button onclick="ajustarPCO2()">Calcular ajuste</button>
       <div id="resultadoPCO2"></div>
+      <div id="resultadoPCO2Detalle" class="note" style="margin-top:6px"></div>
     </section>
 
     <!-- =========================
@@ -115,6 +116,7 @@
 
       <button onclick="calcularGCEco()">Calcular GC por eco</button>
       <div id="resultadoGCEco"></div>
+      <div id="interpretacionGCEco" class="note" style="margin-top:6px"></div>
     </section>
 
 
@@ -159,6 +161,7 @@
 
       <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
       <div id="resultadoOxigenacion"></div>
+      <div id="resultadoOxigenacionDetalle" class="note" style="margin-top:6px"></div>
     </section>
 
 
@@ -309,7 +312,10 @@
 
 
 
-    <!-- =========================
+    
+    </section>
+
+<!-- =========================
          Sodio y calcio corregido
     ========================== -->
     <section class="panel">

@@ -91,21 +91,92 @@ function calcularPesoIdeal() {
 function ajustarPCO2() {
   const pco2Act = num("pco2Act");
   const pco2Des = num("pco2Des");
+
+  const frAct = num("fr_actual");
+  const vtAct = num("vt_actual");          // mL
+  const vminActInput = num("vmin_actual"); // L/min
+
   const resultado = document.getElementById("resultadoPCO2");
+  const detalle = document.getElementById("resultadoPCO2Detalle");
 
   if (!resultado) return;
 
+  // Validación básica de PCO2
   if (!Number.isFinite(pco2Act) || !Number.isFinite(pco2Des) || pco2Des === 0) {
     resultado.innerText = "Ingrese PCO₂ válida";
+    if (detalle) detalle.innerText = "";
     return;
   }
 
+  // Relación: PaCO2 ~ 1 / Ventilación alveolar (aprox.)
+  // VMIN objetivo = VMIN actual * (PaCO2 actual / PaCO2 deseada)
   const factor = pco2Act / pco2Des;
+
+  // Elegir VMIN actual: si el usuario lo cargó, usarlo; si no, derivarlo de FR*VT
+  let vminAct = vminActInput;
+  const vminCalc = (Number.isFinite(frAct) && Number.isFinite(vtAct))
+    ? (frAct * vtAct) / 1000
+    : NaN;
+
+  if (!Number.isFinite(vminAct) || vminAct <= 0) {
+    vminAct = vminCalc;
+  }
+
+  if (!Number.isFinite(vminAct) || vminAct <= 0) {
+    resultado.innerText = "Complete FR y VT, o ingrese VMIN";
+    if (detalle) detalle.innerText = "";
+    return;
+  }
+
+  const vminObj = vminAct * factor;
+
+  // Sugerencias para ajustar manteniendo constantes:
+  // 1) Ajustar FR manteniendo VT
+  const frObj = (Number.isFinite(frAct) && frAct > 0)
+    ? frAct * factor
+    : NaN;
+
+  // 2) Ajustar VT manteniendo FR
+  const vtObj = (Number.isFinite(vtAct) && vtAct > 0)
+    ? vtAct * factor
+    : NaN;
+
   resultado.innerHTML = `Factor de ajuste: <b>${factor.toFixed(2)}</b>`;
+
+  if (detalle) {
+    const parts = [];
+
+    parts.push(`<b>VMIN actual:</b> ${vminAct.toFixed(2)} L/min`);
+    if (Number.isFinite(vminCalc) && vminCalc > 0) {
+      parts.push(`<span style="opacity:.85">(VMIN por FR×VT: ${vminCalc.toFixed(2)} L/min)</span>`);
+    }
+    parts.push(`<b>VMIN objetivo:</b> ${vminObj.toFixed(2)} L/min`);
+
+    if (Number.isFinite(frObj)) {
+      parts.push(`<b>FR objetivo (manteniendo VT):</b> ${frObj.toFixed(0)} rpm`);
+    } else {
+      parts.push(`<b>FR objetivo (manteniendo VT):</b> Ingrese FR actual`);
+    }
+
+    if (Number.isFinite(vtObj)) {
+      parts.push(`<b>VT objetivo (manteniendo FR):</b> ${vtObj.toFixed(0)} mL`);
+    } else {
+      parts.push(`<b>VT objetivo (manteniendo FR):</b> Ingrese VT actual`);
+    }
+
+    detalle.innerHTML = parts.join("<br>");
+  }
 
   trackEvent("calculate_pco2_adjustment", {
     pco2_actual: pco2Act,
     pco2_target: pco2Des,
+    factor: factor,
+    vmin_actual: vminAct,
+    vmin_target: vminObj,
+    fr_actual: frAct,
+    fr_target: frObj,
+    vt_actual_ml: vtAct,
+    vt_target_ml: vtObj,
   });
 }
 
@@ -116,24 +187,42 @@ function calcularGCEco() {
   const dtsvi = num("dtsvi");
   const vti = num("vti");
   const fc = num("fc");
+
   const resultado = document.getElementById("resultadoGCEco");
+  const interp = document.getElementById("interpretacionGCEco");
 
   if (!resultado) return;
 
   if (anyNaN([dtsvi, vti, fc]) || dtsvi <= 0 || vti <= 0 || fc <= 0) {
     resultado.innerText = "Complete todos los campos";
+    if (interp) interp.innerText = "";
     return;
   }
 
   // dtsvi en cm, VTI en cm
   const csa = Math.PI * Math.pow(dtsvi / 2, 2); // cm^2
-  const vs = csa * vti; // cm^3 (mL)
-  const gc = (vs * fc) / 1000; // L/min
+  const vs = csa * vti;                         // cm^3 (mL)
+  const gc = (vs * fc) / 1000;                  // L/min
 
   resultado.innerHTML = `<b>Gasto cardíaco:</b> ${gc.toFixed(2)} L/min`;
 
+  if (interp) {
+    let estadoVTI = "";
+    if (vti >= 18 && vti <= 22) estadoVTI = "VTI 18–22 cm: <b>normal</b>.";
+    else if (vti < 15) estadoVTI = "VTI < 15 cm: <b>alerta</b> (hipoperfusión / bajo gasto).";
+    else estadoVTI = "Interpretar VTI en contexto clínico.";
+
+    interp.innerHTML = `
+      ${estadoVTI}<br>
+      <b>Respuesta a fluidos:</b> se sugiere si el <b>cambio</b> del VTI en una reevaluación es <b>&gt; 15%</b>.
+    `;
+  }
+
   trackEvent("calculate_cardiac_output_echo", {
     cardiac_output: gc,
+    dtsvi_cm: dtsvi,
+    vti_cm: vti,
+    hr: fc,
   });
 }
 
@@ -147,30 +236,56 @@ function calcularOxigenacion() {
   const svo2 = num("svo2");
   const pao2 = num("pao2");
   const pvo2 = num("pvo2");
+
   const resultado = document.getElementById("resultadoOxigenacion");
+  const detalle = document.getElementById("resultadoOxigenacionDetalle");
 
   if (!resultado) return;
 
   if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2]) || gc <= 0 || hb <= 0) {
     resultado.innerText = "Complete todos los campos";
+    if (detalle) detalle.innerText = "";
     return;
   }
 
   // Contenido arterial y venoso (mL O2/dL)
-  const CaO2 = (1.34 * hb * sao2 / 100) + (0.003 * pao2);
-  const CvO2 = (1.34 * hb * svo2 / 100) + (0.003 * pvo2);
+  const CaO2 = (1.34 * hb * (sao2 / 100)) + (0.003 * pao2);
+  const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
 
-  const deltaO2 = CaO2 - CvO2;
-  const DO2 = gc * CaO2 * 10;   // mL O2/min
-  const VO2 = gc * deltaO2 * 10; // mL O2/min
+  const deltaO2 = CaO2 - CvO2;     // mL O2/dL
+  const DO2 = gc * CaO2 * 10;      // mL O2/min
+  const VO2 = gc * deltaO2 * 10;   // mL O2/min
   const REO2 = clampPercent((VO2 / DO2) * 100);
 
   resultado.innerHTML = `<b>REO₂:</b> ${REO2.toFixed(1)} %`;
 
+  if (detalle) {
+    let interpretacion = "";
+    if (REO2 >= 15 && REO2 <= 33) {
+      interpretacion = "<b>Normal:</b> 15–33% en reposo.";
+    } else if (REO2 > 33) {
+      interpretacion = "Valores <b>altos</b>: los tejidos están extrayendo más O₂ por <b>bajo suministro</b> (p. ej., gasto cardíaco bajo) o <b>alta demanda</b>.";
+    } else if (REO2 < 15) {
+      interpretacion = "Valores <b>bajos</b>: extracción reducida; puede ser demanda baja, baja tasa metabólica, problema de utilización tisular o entrega insuficiente que impide una extracción normal.";
+    } else {
+      interpretacion = "Interpretar en contexto clínico.";
+    }
+
+    detalle.innerHTML = `
+      <b>CaO₂ (arterial):</b> ${CaO2.toFixed(2)} mL O₂/dL<br>
+      <b>CvO₂ (venoso):</b> ${CvO2.toFixed(2)} mL O₂/dL<br>
+      <b>DO₂ (entrega):</b> ${DO2.toFixed(0)} mL O₂/min<br>
+      <b>VO₂ (consumo):</b> ${VO2.toFixed(0)} mL O₂/min<br>
+      ${interpretacion}
+    `;
+  }
+
   trackEvent("calculate_oxygen_delivery", {
-    reo2: REO2,
+    cao2: CaO2,
+    cvo2: CvO2,
     do2: DO2,
     vo2: VO2,
+    reo2: REO2,
   });
 }
 
@@ -431,7 +546,32 @@ function calcularSOFA2() {
     total += v;
   }
 
-  setHTML("resultadoSOFA2", `<b>SOFA-2 total:</b> ${total} / 24`);
+  // Buscar la mortalidad según el rango del listado (si existe)
+  let mortalidadTxt = "";
+  const list = document.getElementById("sofaMortalityList");
+  if (list) {
+    const items = Array.from(list.querySelectorAll("li"));
+    const match = items.find(li => {
+      const min = Number(li.dataset.min);
+      const max = Number(li.dataset.max);
+      return Number.isFinite(min) && Number.isFinite(max) && total >= min && total <= max;
+    });
+
+    if (match) {
+      // Ej: "SOFA-2 4–7: Mortalidad leve–moderada (≈ 5–15%)"
+      const full = match.textContent.trim();
+      const idx = full.indexOf(":");
+      mortalidadTxt = idx !== -1 ? full.slice(idx + 1).trim() : full;
+    }
+  }
+
+  const interpretacion = mortalidadTxt
+    ? `<br><b>Mortalidad estimada:</b> ${mortalidadTxt}`
+    : "";
+
+  setHTML("resultadoSOFA2", `<b>SOFA-2 total:</b> ${total} / 24${interpretacion}`);
+
+  // Resaltar rango de mortalidad
   resaltarRangoSOFA(total);
 
   trackEvent("calculate_sofa_score", { sofa_score: total });
