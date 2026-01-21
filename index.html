@@ -28,10 +28,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
-    });
+    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
   </script>
 </head>
 
@@ -50,7 +47,10 @@
          Ventilación mecánica
     ========================== -->
     <section class="panel">
-      <h2>Ventilación mecánica</h2>
+      <h2>
+        <span class="icon icon-lung"></span>
+        Ventilación mecánica
+      </h2>
 
       <h3>Peso ideal</h3>
       <label>Talla (cm)</label>
@@ -124,7 +124,10 @@
          Oxigenación
     ========================== -->
     <section class="panel">
-      <h2>Oxigenación · contenido de O₂</h2>
+      <h2>
+        <span class="icon icon-blood"></span>
+        Oxigenación · contenido de O₂
+      </h2>
 
       <div class="grid-2">
         <div>
@@ -347,7 +350,10 @@
          SOFA-2
     ========================== -->
     <section class="panel">
-      <h2>SOFA-2 · puntuación</h2>
+      <h2>
+        <span class="icon icon-stetho"></span>
+        SOFA-2 · puntuación
+      </h2>
 
       <div class="note" style="margin-bottom:10px">
         Seleccione el criterio que corresponda en cada sistema y luego calcule el total.
@@ -521,15 +527,5 @@
   </div>
 
   <script src="app.js"></script>
-
-  <!-- Service worker opcional -->
-  <!--
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-  </script>
-  -->
-
 </body>
 </html>
