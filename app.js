@@ -631,3 +631,69 @@ function calcularSOFA2() {
 
   trackEvent("calculate_sofa_score", { sofa_score: total });
 }
+
+
+/* =========================
+   DELTA / DELTA (ANION GAP / BICARBONATO)
+========================= */
+function calcularDeltaGap() {
+  const agPaciente = num("agapp");
+  const hco3Paciente = num("bicap");
+
+  const AG_NORMAL = 12;
+  const HCO3_NORMAL = 24;
+
+  const resultado = document.getElementById("resultadoDeltaGap");
+  const interpretacion = document.getElementById("interpretacionDeltaGap");
+
+  if (!resultado) return;
+
+  if (!Number.isFinite(agPaciente) || !Number.isFinite(hco3Paciente)) {
+    resultado.innerHTML = "<b>Δ/Δ:</b> —";
+    if (interpretacion) {
+      interpretacion.innerHTML =
+        "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente.";
+    }
+    return;
+  }
+
+  const deltaBicarb = HCO3_NORMAL - hco3Paciente;
+
+  if (deltaBicarb <= 0) {
+    resultado.innerHTML = "<b>Δ/Δ:</b> No interpretable";
+    if (interpretacion) {
+      interpretacion.innerHTML =
+        "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
+        "El cálculo de <b>Δ/Δ no es válido</b> en este contexto.";
+    }
+    return;
+  }
+
+  const deltaDelta = (agPaciente - AG_NORMAL) / deltaBicarb;
+
+  resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
+
+  let texto = "";
+  if (deltaDelta < 1) {
+    texto =
+      "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
+      "<b>acidosis metabólica hiperclorémica asociada</b> o " +
+      "<b>alcalosis respiratoria crónica asociada</b>.";
+  } else if (deltaDelta <= 2) {
+    texto = "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
+  } else {
+    texto =
+      "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
+      "<b>alcalosis metabólica asociada</b> o " +
+      "<b>acidosis respiratoria crónica asociada</b>.";
+  }
+
+  if (interpretacion) interpretacion.innerHTML = texto;
+
+  trackEvent("calculate_delta_delta", {
+    delta_delta: deltaDelta,
+    ag_paciente: agPaciente,
+    hco3_paciente: hco3Paciente,
+  });
+}
+
