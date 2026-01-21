@@ -276,32 +276,38 @@
 
       <hr />
 
-      <h3>Delta gap / Delta bica</h3>
-      <div class="grid-2">
-        <div>
-          <label>Bicarbonato normal (BICAn)</label>
-          <input type="number" id="bican" value="24" step="0.1" />
-        </div>
-        <div>
-          <label>Bicarbonato paciente (BICAp)</label>
-          <input type="number" id="bicap" placeholder="Ej: 18" step="0.1" />
-        </div>
-      </div>
+<h3>Delta gap / Delta bica</h3>
 
-      <div class="grid-2">
-        <div>
-          <label>Anion gap normal (AGAPn)</label>
-          <input type="number" id="agapn" value="14" step="0.1" />
-        </div>
-        <div>
-          <label>Anion gap paciente (AGAPp)</label>
-          <input type="number" id="agapp" placeholder="Ej: 20" step="0.1" />
-        </div>
-      </div>
+<div class="grid-2">
+  <div>
+    <label>Bicarbonato normal (BICAn)</label>
+    <input type="number" id="bican" value="24" step="0.1" />
+  </div>
+  <div>
+    <label>Bicarbonato paciente (BICAp)</label>
+    <input type="number" id="bicap" placeholder="Ej: 18" step="0.1" />
+  </div>
+</div>
 
-      <button class="btn-secondary" onclick="calcularDeltaGap()">Calcular delta gap / delta bica</button>
-      <div id="resultadoDeltaGap"></div>
-    </section>
+<div class="grid-2">
+  <div>
+    <label>Anion gap normal (AGAPn)</label>
+    <input type="number" id="agapn" value="14" step="0.1" />
+  </div>
+  <div>
+    <label>Anion gap paciente (AGAPp)</label>
+    <input type="number" id="agapp" placeholder="Ej: 20" step="0.1" />
+  </div>
+</div>
+
+<button class="btn-secondary" onclick="calcularDeltaGap()">
+  Calcular delta gap / delta bica
+</button>
+
+<div id="resultadoDeltaGap"></div>
+<div id="interpretacionDeltaGap" class="note" style="margin-top:6px"></div>
+
+
 
     <!-- =========================
          Sodio y calcio corregido
