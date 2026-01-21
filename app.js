@@ -424,36 +424,33 @@ function calcularAnionGapCorregido() {
    DELTA GAP / DELTA BICARBONATO
 ========================= */
 function calcularDeltaGap() {
-  const bican = num("bican");   // HCO3 normal
-  const bicap = num("bicap");   // HCO3 paciente
-  const agapn = num("agapn");   // AG normal
-  const agapp = num("agapp");   // AG paciente
+  const agPaciente = num("agapp");   // AG paciente
+  const hco3Paciente = num("bicap"); // HCO3 paciente
+
+  const AG_NORMAL = 14;
+  const HCO3_NORMAL = 24;
 
   const resultado = document.getElementById("resultadoDeltaGap");
   const interpretacion = document.getElementById("interpretacionDeltaGap");
 
   if (!resultado) return;
 
-  if (anyNaN([bican, bicap, agapn, agapp])) {
+  if (anyNaN([agPaciente, hco3Paciente])) {
     resultado.innerText = "Complete todos los campos";
     if (interpretacion) interpretacion.innerText = "";
     return;
   }
 
-  // ΔGap / ΔBica = (AG paciente − AG normal) − (HCO3 normal − HCO3 paciente)
-  // Puede ser positivo o negativo.
-  const deltaGap = (agapp - agapn) - (bican - bicap);
+  // ΔGap − ΔBica = (AG paciente − 14) − (24 − HCO3 paciente)
+  const deltaGapDeltaBica =
+    (agPaciente - AG_NORMAL) - (HCO3_NORMAL - hco3Paciente);
 
-  resultado.innerHTML = `<b>ΔGap / ΔBica:</b> ${deltaGap.toFixed(1)}`;
+  resultado.innerHTML = `<b>ΔGap − ΔBica:</b> ${deltaGapDeltaBica.toFixed(1)}`;
 
-  // Interpretación (3 categorías, siempre muestra texto):
-  // > +6  : AG aumentado + alcalosis metabólica asociada
-  // -6 a +6: AG aumentado puro
-  // < -6 : AG aumentado + otra acidosis metabólica asociada
   let texto = "";
-  if (deltaGap > 6) {
+  if (deltaGapDeltaBica > 6) {
     texto = "Acidosis metabólica con AG aumentado + <b>alcalosis metabólica asociada</b>";
-  } else if (deltaGap < -6) {
+  } else if (deltaGapDeltaBica < -6) {
     texto = "Acidosis metabólica con AG aumentado + <b>otra acidosis metabólica asociada</b>";
   } else {
     texto = "Acidosis metabólica con AG aumentado <b>PURA</b>";
@@ -461,12 +458,10 @@ function calcularDeltaGap() {
 
   if (interpretacion) interpretacion.innerHTML = texto;
 
-  trackEvent("calculate_delta_gap", {
-    delta_gap: deltaGap,
-    ag_normal: agapn,
-    ag_patient: agapp,
-    hco3_normal: bican,
-    hco3_patient: bicap,
+  trackEvent("calculate_delta_gap_delta_bica", {
+    delta_gap_delta_bica: deltaGapDeltaBica,
+    ag_paciente: agPaciente,
+    hco3_paciente: hco3Paciente,
   });
 }
 
