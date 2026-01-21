@@ -141,16 +141,11 @@ function ajustarPCO2() {
     ? vtAct * factor
     : NaN;
 
-  resultado.innerHTML = `Factor de ajuste: <b>${factor.toFixed(2)}</b>`;
+  // Mostrar solo las 3 modificaciones posibles (sin mostrar el factor)
+  resultado.innerHTML = `<b>Ajustes sugeridos</b>`;
 
   if (detalle) {
     const parts = [];
-
-    parts.push(`<b>VMIN actual:</b> ${vminAct.toFixed(2)} L/min`);
-    if (Number.isFinite(vminCalc) && vminCalc > 0) {
-      parts.push(`<span style="opacity:.85">(VMIN por FR×VT: ${vminCalc.toFixed(2)} L/min)</span>`);
-    }
-    parts.push(`<b>VMIN objetivo:</b> ${vminObj.toFixed(2)} L/min`);
 
     if (Number.isFinite(frObj)) {
       parts.push(`<b>FR objetivo (manteniendo VT):</b> ${frObj.toFixed(0)} rpm`);
@@ -163,6 +158,8 @@ function ajustarPCO2() {
     } else {
       parts.push(`<b>VT objetivo (manteniendo FR):</b> Ingrese VT actual`);
     }
+
+    parts.push(`<b>VMIN objetivo:</b> ${vminObj.toFixed(2)} L/min`);
 
     detalle.innerHTML = parts.join("<br>");
   }
