@@ -440,23 +440,34 @@ function calcularDeltaGap() {
     return;
   }
 
-  // ΔGap = (AG paciente − AG normal) − (HCO3 normal − HCO3 paciente)
+  // ΔGap / ΔBica = (AG paciente − AG normal) − (HCO3 normal − HCO3 paciente)
+  // Puede ser positivo o negativo.
   const deltaGap = (agapp - agapn) - (bican - bicap);
 
   resultado.innerHTML = `<b>ΔGap / ΔBica:</b> ${deltaGap.toFixed(1)}`;
 
+  // Interpretación (3 categorías, siempre muestra texto):
+  // > +6  : AG aumentado + alcalosis metabólica asociada
+  // -6 a +6: AG aumentado puro
+  // < -6 : AG aumentado + otra acidosis metabólica asociada
   let texto = "";
   if (deltaGap > 6) {
     texto = "Acidosis metabólica con AG aumentado + <b>alcalosis metabólica asociada</b>";
-  } else if (deltaGap >= 0 && deltaGap <= 6) {
-    texto = "Acidosis metabólica con AG aumentado <b>PURA</b>";
   } else if (deltaGap < -6) {
     texto = "Acidosis metabólica con AG aumentado + <b>otra acidosis metabólica asociada</b>";
+  } else {
+    texto = "Acidosis metabólica con AG aumentado <b>PURA</b>";
   }
 
   if (interpretacion) interpretacion.innerHTML = texto;
 
-  trackEvent("calculate_delta_gap", { delta_gap: deltaGap });
+  trackEvent("calculate_delta_gap", {
+    delta_gap: deltaGap,
+    ag_normal: agapn,
+    ag_patient: agapp,
+    hco3_normal: bican,
+    hco3_patient: bicap,
+  });
 }
 
 /* =========================
