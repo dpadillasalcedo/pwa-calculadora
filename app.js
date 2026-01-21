@@ -571,5 +571,9 @@ function calcularSOFA2() {
   // Resaltar rango de mortalidad
   resaltarRangoSOFA(total);
 
+  // Mostrar bloque de mortalidad solo luego del cálculo
+  const report = document.getElementById("sofaMortalityReport");
+  if (report) report.style.display = "block";
+
   trackEvent("calculate_sofa_score", { sofa_score: total });
 }
