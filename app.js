@@ -447,36 +447,50 @@ function calcularDeltaGap() {
     return;
   }
 
-  // DELTA/DELTA = (AG paciente − 12) / (24 − HCO3 paciente)
-  const deltaDelta =
-    (agPaciente - AG_NORMAL) / (HCO3_NORMAL - hco3Paciente);
+// DELTA/DELTA = (AG paciente − 12) / (24 − HCO3 paciente)
+const deltaBicarb = HCO3_NORMAL - hco3Paciente;
 
-  resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
-
-  let texto = "";
-  if (deltaDelta < 1) {
-    texto =
-      "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
-      "<b>acidosis metabólica hiperclorémica asociada</b> o " +
-      "<b>alcalosis respiratoria crónica asociada</b>.";
-  } else if (deltaDelta >= 1 && deltaDelta <= 2) {
-    texto =
-      "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
-  } else if (deltaDelta > 2) {
-    texto =
-      "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
-      "<b>alcalosis metabólica asociada</b> o " +
-      "<b>acidosis respiratoria crónica asociada</b>.";
+// Validaciones clínicas
+if (deltaBicarb <= 0) {
+  resultado.innerHTML =
+    "<b>Δ/Δ:</b> No interpretable";
+  if (interpretacion) {
+    interpretacion.innerHTML =
+      "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
+      "El cálculo de <b>Δ/Δ no es válido</b> en este contexto.";
   }
-
-  if (interpretacion) interpretacion.innerHTML = texto;
-
-  trackEvent("calculate_delta_delta", {
-    delta_delta: deltaDelta,
-    ag_paciente: agPaciente,
-    hco3_paciente: hco3Paciente,
-  });
+  return;
 }
+
+const deltaDelta =
+  (agPaciente - AG_NORMAL) / deltaBicarb;
+
+resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
+
+let texto = "";
+if (deltaDelta < 1) {
+  texto =
+    "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
+    "<b>acidosis metabólica hiperclorémica asociada</b> o " +
+    "<b>alcalosis respiratoria crónica asociada</b>.";
+} else if (deltaDelta >= 1 && deltaDelta <= 2) {
+  texto =
+    "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
+} else if (deltaDelta > 2) {
+  texto =
+    "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
+    "<b>alcalosis metabólica asociada</b> o " +
+    "<b>acidosis respiratoria crónica asociada</b>.";
+}
+
+if (interpretacion) interpretacion.innerHTML = texto;
+
+trackEvent("calculate_delta_delta", {
+  delta_delta: deltaDelta,
+  ag_paciente: agPaciente,
+  hco3_paciente: hco3Paciente,
+});
+
 
 /* =========================
    ELECTROLITOS
