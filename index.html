@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,9 +14,19 @@
     async>
   </script>
 
-  <title>Calculadora UCI</title>
+  <title>Calculadora UCI Adultos | Ventilación, SOFA, Hemodinamia y Oxigenación</title>
 
-  <meta name="description" content="Clinical critical care calculator for ICU professionals. Includes mechanical ventilation, hemodynamics, oxygen transport, acid–base analysis and SOFA score, based on international guidelines." />
+  <meta name="description" content="Calculadora clínica para UCI adultos. Incluye ventilación mecánica, score SOFA-2, oxigenación, hemodinamia y análisis ácido-base. Uso educativo para profesionales de cuidados críticos." />
+
+
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://dpadillasalcedo.github.io/pwa-calculadora/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calculadora UCI Adultos" />
+  <meta property="og:description" content="Herramienta clínica para cuidados críticos: ventilación, SOFA-2, hemodinamia, oxigenación y ácido-base." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dpadillasalcedo.github.io/pwa-calculadora/" />
 
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0b5fff" />
@@ -33,6 +43,23 @@
 </head>
 
 <body>
+
+  <!-- =========================
+       Navegación interna (SEO)
+       Permite que Google entienda y descubra secciones específicas.
+  ========================== -->
+  <nav aria-label="Secciones de la calculadora UCI" style="display:none">
+    <ul>
+      <li><a href="#ventilacion">Ventilación mecánica</a></li>
+      <li><a href="#ecocardiografia">Ecocardiografía</a></li>
+      <li><a href="#oxigenacion">Oxigenación</a></li>
+      <li><a href="#perfusion">CO₂, presiones y perfusión</a></li>
+      <li><a href="#acidobase">Estado ácido-base</a></li>
+      <li><a href="#electrolitos">Electrolitos</a></li>
+      <li><a href="#sofa">SOFA-2</a></li>
+      <li><a href="#referencias">Referencias</a></li>
+    </ul>
+  </nav>
   <div class="app">
 
     <header class="app-header">
@@ -46,8 +73,10 @@
     <!-- =========================
          Ventilación mecánica
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-lung"></span> Ventilación mecánica</h2>
+    <section id="ventilacion" class="panel" aria-labelledby="ventilacion-title">
+      <h2 id="ventilacion-title"><span class="icon icon-lung"></span> Ventilación mecánica</h2>
+
+      <p class="note">Cálculos orientativos para ventilación mecánica en pacientes críticos adultos. No reemplaza protocolos institucionales ni juicio clínico.</p>
 
       <h3>Peso ideal</h3>
       <label>Talla (cm)</label>
@@ -94,8 +123,10 @@
     <!-- =========================
          Ecocardiografía
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-stetho"></span> Ecocardiografía · gasto cardíaco</h2>
+    <section id="ecocardiografia" class="panel" aria-labelledby="ecocardiografia-title">
+      <h2 id="ecocardiografia-title"><span class="icon icon-stetho"></span> Ecocardiografía · gasto cardíaco</h2>
+
+      <p class="note">Estimación de gasto cardíaco por ecocardiografía usando TSVI y VTI. Interpretar en contexto hemodinámico.</p>
 
       <h3>Gasto cardíaco por ecocardiografía</h3>
 
@@ -123,8 +154,10 @@
     <!-- =========================
          Oxigenación
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-blood"></span> Oxigenación · contenido de O₂</h2>
+    <section id="oxigenacion" class="panel" aria-labelledby="oxigenacion-title">
+      <h2 id="oxigenacion-title"><span class="icon icon-blood"></span> Oxigenación · contenido de O₂</h2>
+
+      <p class="note">Cálculos de contenido arterial/venoso, entrega (DO₂), consumo (VO₂) y extracción (REO₂) de oxígeno.</p>
 
       <div class="grid-2">
         <div>
@@ -168,8 +201,10 @@
     <!-- =========================
          CO₂ · perfusión
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-stetho"></span> CO₂ · presiones · perfusión</h2>
+    <section id="perfusion" class="panel" aria-labelledby="perfusion-title">
+      <h2 id="perfusion-title"><span class="icon icon-stetho"></span> CO₂ · presiones · perfusión</h2>
+
+      <p class="note">Gradiente veno-arterial de CO₂ (ΔCO₂) y presiones de perfusión (APP/PPC) como apoyo a la evaluación de perfusión.</p>
 
       <h3>CO₂</h3>
       <div class="grid-2">
@@ -228,8 +263,10 @@
     <!-- =========================
          Estado ácido-base
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-blood"></span> Estado ácido - base</h2>
+    <section id="acidobase" class="panel" aria-labelledby="acidobase-title">
+      <h2 id="acidobase-title"><span class="icon icon-blood"></span> Estado ácido - base</h2>
+
+      <p class="note">Cálculos y recordatorios para evaluación ácido-base, anion gap y compensaciones. Interpretar con laboratorio y clínica.</p>
 
       <div class="card" style="margin-top:10px">
         <div class="card__title">PCO₂ esperada en acidosis metabólica</div>
@@ -318,8 +355,10 @@
 <!-- =========================
          Sodio y calcio corregido
     ========================== -->
-    <section class="panel">
-      <h2><span class="icon icon-blood"></span> Sodio y calcio corregido</h2>
+    <section id="electrolitos" class="panel" aria-labelledby="electrolitos-title">
+      <h2 id="electrolitos-title"><span class="icon icon-blood"></span> Sodio y calcio corregido</h2>
+
+      <p class="note">Correcciones de sodio por hiperglucemia y calcio por albúmina. Verificar unidades y rango de referencia local.</p>
 
       <h3>Sodio corregido</h3>
       <div class="grid-2">
@@ -357,8 +396,10 @@
 <!-- =========================
      SOFA-2
 ========================== -->
-<section class="panel">
-  <h2><span class="icon icon-stetho"></span> SOFA-2 · puntuación</h2>
+<section id="sofa" class="panel" aria-labelledby="sofa-title">
+  <h2 id="sofa-title"><span class="icon icon-stetho"></span> SOFA-2 · puntuación</h2>
+
+  <p class="note">Score SOFA-2 para disfunción orgánica en UCI adultos. La mortalidad estimada es orientativa y depende del contexto clínico.</p>
 
   <div class="note" style="margin-bottom:10px">
     Seleccione el criterio que corresponda en cada sistema y luego calcule el total.
@@ -463,8 +504,10 @@
     <!-- =========================
          References & Methodology
     ========================== -->
-    <section class="panel panel--references">
-      <h2>References & Methodology</h2>
+    <section id="referencias" class="panel panel--references">
+      <h2>Referencias y metodología</h2>
+
+      <p class="note">Fuentes bibliográficas orientativas. Esta herramienta es de apoyo educativo y no reemplaza guías locales ni juicio clínico.</p>
 
       <details>
         <summary>Mechanical Ventilation & Ideal Body Weight</summary>
