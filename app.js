@@ -239,20 +239,26 @@ function calcularOxigenacion() {
 
   if (!resultado) return;
 
-  if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2]) || gc <= 0 || hb <= 0) {
+  if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2]) || gc <= 0 || hb <= 0 || sao2 <= 0) {
     resultado.innerText = "Complete todos los campos";
     if (detalle) detalle.innerText = "";
     return;
   }
 
   // Contenido arterial y venoso (mL O2/dL)
-  const CaO2 = (1.34 * hb * (sao2 / 100)) + (0.003 * pao2);
-  const CvO2 = (1.34 * hb * (svo2 / 100)) + (0.003 * pvo2);
+  const CaO2_dL = (hb * (sao2 / 100) * 1.34) + (pao2 * 0.003);
+  const CvO2_dL = (hb * (svo2 / 100) * 1.34) + (pvo2 * 0.003);
 
-  const deltaO2 = CaO2 - CvO2;     // mL O2/dL
-  const DO2 = gc * CaO2 * 10;      // mL O2/min
-  const VO2 = gc * deltaO2 * 10;   // mL O2/min
-  const REO2 = clampPercent((VO2 / DO2) * 100);
+  // Para DO2/VO2, convertir a mL O2/L (×10)
+  const CaO2 = CaO2_dL * 10;
+  const CvO2 = CvO2_dL * 10;
+
+  // DO2 = GC * CaO2 (mL O2/min) | VO2 = GC * (CaO2 - CvO2) (mL O2/min)
+  const DO2 = gc * CaO2;
+  const VO2 = gc * (CaO2 - CvO2);
+
+  // REO2 = (SaO2 - SvO2) / SaO2
+  const REO2 = clampPercent(((sao2 - svo2) / sao2) * 100);
 
   resultado.innerHTML = `<b>REO₂:</b> ${REO2.toFixed(1)} %`;
 
@@ -269,8 +275,8 @@ function calcularOxigenacion() {
     }
 
     detalle.innerHTML = `
-      <b>CaO₂ (arterial):</b> ${CaO2.toFixed(2)} mL O₂/dL<br>
-      <b>CvO₂ (venoso):</b> ${CvO2.toFixed(2)} mL O₂/dL<br>
+      <b>CaO₂ (arterial):</b> ${CaO2_dL.toFixed(2)} mL O₂/dL<br>
+      <b>CvO₂ (venoso):</b> ${CvO2_dL.toFixed(2)} mL O₂/dL<br>
       <b>DO₂ (entrega):</b> ${DO2.toFixed(0)} mL O₂/min<br>
       <b>VO₂ (consumo):</b> ${VO2.toFixed(0)} mL O₂/min<br>
       ${interpretacion}
@@ -278,8 +284,8 @@ function calcularOxigenacion() {
   }
 
   trackEvent("calculate_oxygen_delivery", {
-    cao2: CaO2,
-    cvo2: CvO2,
+    cao2: CaO2_dL,
+    cvo2: CvO2_dL,
     do2: DO2,
     vo2: VO2,
     reo2: REO2,
