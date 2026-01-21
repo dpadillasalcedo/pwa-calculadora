@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Home -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/</loc>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Ventilación mecánica -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#ventilacion</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ecocardiografía -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#ecocardiografia</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Oxigenación -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#oxigenacion</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Perfusión / CO2 -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#perfusion</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ácido–base -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#acidobase</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Electrolitos -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#electrolitos</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SOFA -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/#sofa</loc>
+    <priority>0.9</priority>
   </url>
 
 </urlset>
