@@ -499,13 +499,13 @@ function calcularAnionGapCorregido() {
 }
 
 /* =========================
-   DELTA GAP / DELTA BICARBONATO
+   DELTA / DELTA (ANION GAP / BICARBONATO)
 ========================= */
 function calcularDeltaGap() {
-  const agPaciente = num("agapp");   // AG paciente
-  const hco3Paciente = num("bicap"); // HCO3 paciente
+  const agPaciente = num("agapp");   // Anion gap del paciente
+  const hco3Paciente = num("bicap"); // Bicarbonato del paciente
 
-  const AG_NORMAL = 14;
+  const AG_NORMAL = 12;
   const HCO3_NORMAL = 24;
 
   const resultado = document.getElementById("resultadoDeltaGap");
@@ -519,25 +519,32 @@ function calcularDeltaGap() {
     return;
   }
 
-  // ΔGap − ΔBica = (AG paciente − 14) − (24 − HCO3 paciente)
-  const deltaGapDeltaBica =
-    (agPaciente - AG_NORMAL) - (HCO3_NORMAL - hco3Paciente);
+  // DELTA/DELTA = (AG paciente − 12) / (24 − HCO3 paciente)
+  const deltaDelta =
+    (agPaciente - AG_NORMAL) / (HCO3_NORMAL - hco3Paciente);
 
-  resultado.innerHTML = `<b>ΔGap − ΔBica:</b> ${deltaGapDeltaBica.toFixed(1)}`;
+  resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
 
   let texto = "";
-  if (deltaGapDeltaBica > 6) {
-    texto = "Acidosis metabólica con AG aumentado + <b>alcalosis metabólica asociada</b>";
-  } else if (deltaGapDeltaBica < -6) {
-    texto = "Acidosis metabólica con AG aumentado + <b>otra acidosis metabólica asociada</b>";
-  } else {
-    texto = "Acidosis metabólica con AG aumentado <b>PURA</b>";
+  if (deltaDelta < 1) {
+    texto =
+      "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
+      "<b>acidosis metabólica hiperclorémica asociada</b> o " +
+      "<b>alcalosis respiratoria crónica asociada</b>.";
+  } else if (deltaDelta >= 1 && deltaDelta <= 2) {
+    texto =
+      "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
+  } else if (deltaDelta > 2) {
+    texto =
+      "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
+      "<b>alcalosis metabólica asociada</b> o " +
+      "<b>acidosis respiratoria crónica asociada</b>.";
   }
 
   if (interpretacion) interpretacion.innerHTML = texto;
 
-  trackEvent("calculate_delta_gap_delta_bica", {
-    delta_gap_delta_bica: deltaGapDeltaBica,
+  trackEvent("calculate_delta_delta", {
+    delta_delta: deltaDelta,
     ag_paciente: agPaciente,
     hco3_paciente: hco3Paciente,
   });
