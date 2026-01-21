@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a" type="text/javascript" async></script>
 
-  <title>Calculadora UCI</title>
+  <!-- Cookiebot CMP -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript"
+    async>
+  </script>
+
+  <title>Critical Care Calculator</title>
 
   <meta name="description" content="Clinical critical care calculator for ICU professionals. Includes mechanical ventilation, hemodynamics, oxygen transport, acid–base analysis and SOFA score, based on international guidelines." />
 
@@ -14,7 +23,7 @@
   <link rel="manifest" href="manifest.json" />
 
   <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -28,201 +37,85 @@
 
 <body>
   <div class="app">
+
     <header class="app-header">
       <div>
-        <h1>Calculadora UCI</h1>
-        <p class="subtitle">Monitoreo hemodinámico · respiratorio · metabólico</p>
+        <h1>Critical Care Calculator</h1>
+        <p class="subtitle">Hemodynamic · Respiratory · Metabolic monitoring</p>
       </div>
-      <div class="pill">Uso clínico educativo</div>
+      <div class="pill">Educational clinical use</div>
     </header>
 
-    <!-- =========================
-         Ventilación mecánica
-    ========================== -->
+    <!-- Ventilación mecánica -->
     <section class="panel">
-      <h2>Ventilación mecánica</h2>
-
-      <h3>Peso ideal</h3>
-      <label>Talla (cm)</label>
-      <input type="number" id="talla" />
-
-      <label>Sexo</label>
-      <select id="sexo">
-        <option value="">Seleccione</option>
-        <option value="hombre">Hombre</option>
-        <option value="mujer">Mujer</option>
-      </select>
-
-      <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
+      <h2>Mechanical Ventilation</h2>
+      <button onclick="calcularPesoIdeal()">Calculate ideal body weight</button>
       <div id="resultadoPeso"></div>
-
-      <hr />
-
-      <h3>Ajuste de PCO₂ deseada</h3>
-      <label>PCO₂ actual</label>
-      <input type="number" id="pco2Act" />
-
-      <label>PCO₂ deseada</label>
-      <input type="number" id="pco2Des" />
-
-      <div class="grid-2">
-        <div>
-          <label>FR</label>
-          <input type="number" id="fr" />
-        </div>
-        <div>
-          <label>VT (mL)</label>
-          <input type="number" id="vt" />
-        </div>
-      </div>
-
-      <label>VMIN (L/min)</label>
-      <input type="number" id="vmin" />
-
-      <button onclick="ajustarPCO2()">Calcular ajuste</button>
-      <div id="resultadoPCO2"></div>
     </section>
 
-    <!-- =========================
-         Ecocardiografía
-    ========================== -->
+    <!-- Ecocardiografía -->
     <section class="panel">
-      <h2>Ecocardiografía · gasto cardíaco</h2>
-
-      <h3>Gasto cardíaco por ecocardiografía</h3>
-
-      <div class="grid-3">
-        <div>
-          <label>Diámetro TSVI (cm)</label>
-          <input type="number" id="dtsvi" step="0.1" />
-        </div>
-        <div>
-          <label>VTI TSVI (cm)</label>
-          <input type="number" id="vti" step="0.1" />
-        </div>
-        <div>
-          <label>Frecuencia cardíaca (lpm)</label>
-          <input type="number" id="fc" step="1" />
-        </div>
-      </div>
-
-      <button onclick="calcularGCEco()">Calcular GC por eco</button>
+      <h2>Echocardiography · Cardiac Output</h2>
+      <button onclick="calcularGCEco()">Calculate cardiac output</button>
       <div id="resultadoGCEco"></div>
     </section>
 
-    <!-- =========================
-         Oxigenación
-    ========================== -->
+    <!-- Oxigenación -->
     <section class="panel">
-      <h2>Oxigenación · contenido de O₂</h2>
-
-      <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
+      <h2>Oxygen Transport</h2>
+      <button onclick="calcularOxigenacion()">Calculate oxygenation</button>
       <div id="resultadoOxigenacion"></div>
     </section>
 
-    <!-- =========================
-         SOFA
-    ========================== -->
+    <!-- SOFA -->
     <section class="panel">
-      <h2>SOFA-2 · puntuación</h2>
-      <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
+      <h2>SOFA Score</h2>
+      <button onclick="calcularSOFA2()">Calculate SOFA</button>
       <div id="resultadoSOFA2"></div>
     </section>
 
-    <!-- =========================
-     References & Methodology
-========================== -->
-<section class="panel panel--references">
-  <h2>References & Methodology</h2>
+    <!-- References -->
+    <section class="panel panel--references">
+      <h2>References & Methodology</h2>
 
-  <details>
-    <summary>Mechanical Ventilation & Ideal Body Weight</summary>
-    <ol>
-      <li>
-        The Acute Respiratory Distress Syndrome Network.
-        <em>Ventilation with Lower Tidal Volumes as Compared with Traditional Tidal Volumes
-        for Acute Lung Injury and the Acute Respiratory Distress Syndrome.</em>
-        N Engl J Med. 2000;342:1301–1308.
-        DOI:10.1056/NEJM200005043421801.
-      </li>
-      <li>
-        Devine BJ.
-        <em>Gentamicin therapy.</em>
-        Drug Intelligence & Clinical Pharmacy. 1974;8:650–655.
-      </li>
-      <li>
-        Fan E, et al.
-        <em>Ventilatory management of acute respiratory distress syndrome.</em>
-        Am J Respir Crit Care Med. 2017;195(9):1253–1263.
-      </li>
-    </ol>
-  </details>
+      <details>
+        <summary>Mechanical Ventilation</summary>
+        <ol>
+          <li>ARDS Network. <em>N Engl J Med</em>. 2000.</li>
+          <li>Devine BJ. <em>Drug Intell Clin Pharm</em>. 1974.</li>
+        </ol>
+      </details>
 
-  <details>
-    <summary>Gas Exchange, Oxygen Transport & Hemodynamics</summary>
-    <ol>
-      <li>
-        West JB.
-        <em>Respiratory Physiology: The Essentials.</em>
-        10th ed. Philadelphia: Lippincott Williams & Wilkins; 2016.
-      </li>
-      <li>
-        Marino PL.
-        <em>The ICU Book.</em>
-        4th ed. Wolters Kluwer; 2014.
-      </li>
-      <li>
-        Vallet B, et al.
-        <em>Central venous-to-arterial carbon dioxide difference.</em>
-        Intensive Care Med. 2000;26:1178–1185.
-      </li>
-    </ol>
-  </details>
+      <details>
+        <summary>Gas Exchange & Hemodynamics</summary>
+        <ol>
+          <li>West JB. <em>Respiratory Physiology</em>.</li>
+          <li>Marino PL. <em>The ICU Book</em>.</li>
+        </ol>
+      </details>
 
-  <details>
-    <summary>Acid–Base Disorders & Electrolytes</summary>
-    <ol>
-      <li>
-        Adrogué HJ, Madias NE.
-        <em>Secondary responses to altered acid–base status.</em>
-        N Engl J Med. 1998;338:26–34.
-        DOI:10.1056/NEJM199801013380106.
-      </li>
-      <li>
-        Kraut JA, Madias NE.
-        <em>Serum anion gap: its uses and limitations.</em>
-        Clin J Am Soc Nephrol. 2007;2:162–174.
-      </li>
-      <li>
-        Katz MA.
-        <em>Hyperglycemia-induced hyponatremia.</em>
-        Am J Med. 1973;54:52–55.
-      </li>
-    </ol>
-  </details>
+      <details>
+        <summary>SOFA Score</summary>
+        <ol>
+          <li>
+            Seymour CW, et al.
+            <em>Assessment of Clinical Criteria for Sepsis and Septic Shock.</em>
+            JAMA. 2025.
+            DOI:10.1001/jama.2025.20516.
+          </li>
+        </ol>
+      </details>
 
-  <details>
-    <summary>SOFA Score</summary>
-    <ol>
-      <li>
-        Seymour CW, et al.
-        <em>Assessment of Clinical Criteria for Sepsis and Septic Shock.</em>
-        JAMA. 2025.
-        DOI:10.1001/jama.2025.20516.
-      </li>
-    </ol>
-  </details>
-
-  <p class="disclaimer">
-    This calculator is intended for educational and clinical support purposes only.
-    It does not replace clinical judgment, institutional protocols, or specialist consultation.
-  </p>
-</section>
-
+      <p class="disclaimer">
+        This calculator is intended for educational and clinical support purposes only.
+        It does not replace clinical judgment or institutional protocols.
+      </p>
+    </section>
 
   </div>
 
   <script src="app.js"></script>
 </body>
 </html>
+
 
