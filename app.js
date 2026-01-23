@@ -701,47 +701,80 @@ function calcularDeltaGap() {
    CAM-ICU · Delirium
 ========================= */
 function calcularCAMICU() {
-  const c1 = document.getElementById("camicu_c1")?.value;
-  const c2 = document.getElementById("camicu_c2")?.value;
-  const c3 = document.getElementById("camicu_c3")?.value;
-  const c4 = document.getElementById("camicu_c4")?.value;
+  const c1El = document.getElementById("camicu_c1");
+  const c2El = document.getElementById("camicu_c2");
+  const c3El = document.getElementById("camicu_c3");
+  const c4El = document.getElementById("camicu_c4");
 
   const resultado = document.getElementById("resultadoCAMICU");
   const interpretacion = document.getElementById("interpretacionCAMICU");
 
-  if (!resultado) return;
+  if (!resultado || !interpretacion) return;
 
-  if ([c1, c2, c3, c4].some(v => v === "")) {
-    resultado.innerHTML = "<b>CAM-ICU:</b> —";
-    interpretacion.innerText = "Complete todos los criterios.";
+  // Reset visual
+  resultado.style.color = "";
+
+  // Validación DOM
+  if (!c1El || !c2El || !c3El || !c4El) {
+    resultado.innerHTML = "<b>CAM-ICU:</b> Error de formulario";
+    interpretacion.innerText =
+      "No se encontraron todos los campos requeridos.";
     return;
   }
 
+  const c1 = c1El.value;
+  const c2 = c2El.value;
+  const c3 = c3El.value;
+  const c4 = c4El.value;
+
+  // Validación selección
+  if ([c1, c2, c3, c4].some(v => v === "")) {
+    resultado.innerHTML = "<b>CAM-ICU:</b> —";
+    interpretacion.innerText =
+      "Complete todos los criterios antes de calcular.";
+    return;
+  }
+
+  // Conversión explícita
+  const criterio1 = Number(c1);
+  const criterio2 = Number(c2);
+  const criterio3 = Number(c3);
+  const criterio4 = Number(c4);
+
+  // Regla diagnóstica CAM-ICU
   const positivo =
-    c1 === "1" &&
-    c2 === "1" &&
-    (c3 === "1" || c4 === "1");
+    criterio1 === 1 &&
+    criterio2 === 1 &&
+    (criterio3 === 1 || criterio4 === 1);
 
   if (positivo) {
     resultado.innerHTML =
       "<b>CAM-ICU POSITIVO</b> · Delirium presente";
     resultado.style.color = "#b91c1c";
     interpretacion.innerHTML =
-      "Cumple criterios diagnósticos de <b>delirium</b>. Reevaluar causas reversibles y monitorizar evolución.";
+      "Se cumplen los criterios diagnósticos: <br>" +
+      "<b>Inicio agudo/fluctuante</b> + <b>inatención</b> + " +
+      "(<b>pensamiento desorganizado</b> o <b>alteración del nivel de conciencia</b>).<br>" +
+      "Reevaluar causas reversibles y monitorizar evolución clínica.";
   } else {
     resultado.innerHTML =
       "<b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
     resultado.style.color = "#166534";
     interpretacion.innerText =
-      "No cumple criterios de delirium al momento de la evaluación.";
+      "No se cumplen los criterios diagnósticos de delirium al momento de la evaluación.";
   }
 
+  // Analytics (si existe)
   if (typeof trackEvent === "function") {
     trackEvent("calculate_cam_icu", {
-      c1, c2, c3, c4,
-      result: positivo ? "positive" : "negative"
+      criterio1,
+      criterio2,
+      criterio3,
+      criterio4,
+      resultado: positivo ? "positivo" : "negativo"
     });
   }
 }
+
 
 
