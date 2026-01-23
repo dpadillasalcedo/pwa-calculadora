@@ -522,88 +522,138 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   </div>
 </section>
 
-<!-- =========================
-     CAM-ICU · Delirium
-========================= -->
 <section id="camicu" class="panel" aria-labelledby="camicu-title">
   <h2 id="camicu-title">
     <span class="icon icon-brain"></span> CAM-ICU · Delirium
   </h2>
 
   <p class="note">
-    Herramienta validada para detección de <strong>delirium en UCI</strong>,
-    aplicable en pacientes <strong>no verbales o intubados</strong>.
+    Algoritmo secuencial validado para detección de <strong>delirium en UCI</strong>.
   </p>
 
-  <!-- Criterio 1 -->
+  <!-- CRITERIO 1 -->
   <h3>1️⃣ Inicio agudo o curso fluctuante</h3>
   <p class="note">
-    ¿Hubo un <b>cambio agudo</b> del estado mental respecto al basal
-    o los síntomas <b>fluctuaron</b> en las últimas 24 h?
+    ¿Hubo un cambio agudo del estado mental o fluctuación en las últimas 24 h?
   </p>
-  <select id="camicu_c1">
+  <select id="camicu_c1" onchange="camicuPaso1()">
     <option value="">Seleccione</option>
     <option value="1">Sí</option>
     <option value="0">No</option>
   </select>
 
-  <hr />
+  <!-- CRITERIO 2 -->
+  <div id="camicu_paso2" style="display:none">
+    <hr />
+    <h3>2️⃣ Inatención</h3>
+    <p class="note">
+      Fallo en mantener la atención (ej. test de la letra “A”).
+    </p>
+    <select id="camicu_c2" onchange="camicuPaso2()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí (inatención)</option>
+      <option value="0">No</option>
+    </select>
+  </div>
 
-  <!-- Criterio 2 -->
-  <h3>2️⃣ Inatención</h3>
-  <p class="note">
-    Indique si el paciente <b>no logra mantener la atención</b>.<br>
-    Ejemplo: no responde correctamente al test de letras
-    (<b>apriete la mano al escuchar la letra “A”</b>).
-  </p>
-  <select id="camicu_c2">
-    <option value="">Seleccione</option>
-    <option value="1">Sí (inatención presente)</option>
-    <option value="0">No (atención conservada)</option>
-  </select>
+  <!-- CRITERIO 3 -->
+  <div id="camicu_paso3" style="display:none">
+    <hr />
+    <h3>3️⃣ Pensamiento desorganizado</h3>
+    <p class="note">
+      Respuestas incoherentes o errores en preguntas simples.
+    </p>
+    <select id="camicu_c3" onchange="camicuPaso3()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </div>
 
-  <hr />
+  <!-- CRITERIO 4 -->
+  <div id="camicu_paso4" style="display:none">
+    <hr />
+    <h3>4️⃣ Nivel de conciencia alterado</h3>
+    <p class="note">
+      Cualquier nivel distinto de alerta normal (RASS ≠ 0).
+    </p>
+    <select id="camicu_c4" onchange="camicuPaso4()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </div>
 
-  <!-- Criterio 3 -->
-  <h3>3️⃣ Pensamiento desorganizado</h3>
-  <p class="note">
-    ¿Presenta pensamiento incoherente o responde incorrectamente
-    a preguntas simples?<br>
-    Ejemplos:
-    <ul>
-      <li>¿Un kilo pesa más que dos kilos?</li>
-      <li>¿El mar es verde?</li>
-      <li>Orden: “Levante dos dedos”</li>
-    </ul>
-  </p>
-  <select id="camicu_c3">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
-
-  <hr />
-
-  <!-- Criterio 4 -->
-  <h3>4️⃣ Nivel de conciencia alterado</h3>
-  <p class="note">
-    Cualquier nivel <b>distinto de alerta normal</b>
-    (letárgico, agitado, estupor, coma).
-    Se recomienda correlacionar con <b>RASS</b>.
-  </p>
-  <select id="camicu_c4">
-    <option value="">Seleccione</option>
-    <option value="1">Sí (no alerta)</option>
-    <option value="0">No (alerta)</option>
-  </select>
-
-  <button type="button" onclick="calcularCAMICU()">
-    Calcular CAM-ICU
-  </button>
-
-  <div id="resultadoCAMICU" style="margin-top:10px;font-weight:600"></div>
-  <div id="interpretacionCAMICU" class="note" style="margin-top:6px"></div>
+  <div id="resultadoCAMICU" style="margin-top:12px;font-weight:700"></div>
+  <div id="interpretacionCAMICU" class="note"></div>
 </section>
+
+<section id="camicu" class="panel" aria-labelledby="camicu-title">
+  <h2 id="camicu-title">
+    <span class="icon icon-brain"></span> CAM-ICU · Delirium
+  </h2>
+
+  <p class="note">
+    Algoritmo secuencial validado para detección de <strong>delirium en UCI</strong>.
+  </p>
+
+  <!-- CRITERIO 1 -->
+  <h3>1️⃣ Inicio agudo o curso fluctuante</h3>
+  <p class="note">
+    ¿Hubo un cambio agudo del estado mental o fluctuación en las últimas 24 h?
+  </p>
+  <select id="camicu_c1" onchange="camicuPaso1()">
+    <option value="">Seleccione</option>
+    <option value="1">Sí</option>
+    <option value="0">No</option>
+  </select>
+
+  <!-- CRITERIO 2 -->
+  <div id="camicu_paso2" style="display:none">
+    <hr />
+    <h3>2️⃣ Inatención</h3>
+    <p class="note">
+      Fallo en mantener la atención (ej. test de la letra “A”).
+    </p>
+    <select id="camicu_c2" onchange="camicuPaso2()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí (inatención)</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <!-- CRITERIO 3 -->
+  <div id="camicu_paso3" style="display:none">
+    <hr />
+    <h3>3️⃣ Pensamiento desorganizado</h3>
+    <p class="note">
+      Respuestas incoherentes o errores en preguntas simples.
+    </p>
+    <select id="camicu_c3" onchange="camicuPaso3()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <!-- CRITERIO 4 -->
+  <div id="camicu_paso4" style="display:none">
+    <hr />
+    <h3>4️⃣ Nivel de conciencia alterado</h3>
+    <p class="note">
+      Cualquier nivel distinto de alerta normal (RASS ≠ 0).
+    </p>
+    <select id="camicu_c4" onchange="camicuPaso4()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+
+  <div id="resultadoCAMICU" style="margin-top:12px;font-weight:700"></div>
+  <div id="interpretacionCAMICU" class="note"></div>
+</section>
+
 
     <!-- =========================
          References & Methodology

@@ -698,83 +698,71 @@ function calcularDeltaGap() {
 }
 
 /* =========================
-   CAM-ICU · Delirium
+   CAM-ICU · Algoritmo secuencial
 ========================= */
-function calcularCAMICU() {
-  const c1El = document.getElementById("camicu_c1");
-  const c2El = document.getElementById("camicu_c2");
-  const c3El = document.getElementById("camicu_c3");
-  const c4El = document.getElementById("camicu_c4");
 
-  const resultado = document.getElementById("resultadoCAMICU");
-  const interpretacion = document.getElementById("interpretacionCAMICU");
+function resetCAMICU() {
+  document.getElementById("camicu_paso2").style.display = "none";
+  document.getElementById("camicu_paso3").style.display = "none";
+  document.getElementById("camicu_paso4").style.display = "none";
+  setText("resultadoCAMICU", "");
+  setText("interpretacionCAMICU", "");
+}
 
-  if (!resultado || !interpretacion) return;
-
-  // Reset visual
-  resultado.style.color = "";
-
-  // Validación DOM
-  if (!c1El || !c2El || !c3El || !c4El) {
-    resultado.innerHTML = "<b>CAM-ICU:</b> Error de formulario";
-    interpretacion.innerText =
-      "No se encontraron todos los campos requeridos.";
-    return;
-  }
-
-  const c1 = c1El.value;
-  const c2 = c2El.value;
-  const c3 = c3El.value;
-  const c4 = c4El.value;
-
-  // Validación selección
-  if ([c1, c2, c3, c4].some(v => v === "")) {
-    resultado.innerHTML = "<b>CAM-ICU:</b> —";
-    interpretacion.innerText =
-      "Complete todos los criterios antes de calcular.";
-    return;
-  }
-
-  // Conversión explícita
-  const criterio1 = Number(c1);
-  const criterio2 = Number(c2);
-  const criterio3 = Number(c3);
-  const criterio4 = Number(c4);
-
-  // Regla diagnóstica CAM-ICU
-  const positivo =
-    criterio1 === 1 &&
-    criterio2 === 1 &&
-    (criterio3 === 1 || criterio4 === 1);
+function camicuResultado(positivo) {
+  const res = document.getElementById("resultadoCAMICU");
+  const intp = document.getElementById("interpretacionCAMICU");
 
   if (positivo) {
-    resultado.innerHTML =
-      "<b>CAM-ICU POSITIVO</b> · Delirium presente";
-    resultado.style.color = "#b91c1c";
-    interpretacion.innerHTML =
-      "Se cumplen los criterios diagnósticos: <br>" +
-      "<b>Inicio agudo/fluctuante</b> + <b>inatención</b> + " +
-      "(<b>pensamiento desorganizado</b> o <b>alteración del nivel de conciencia</b>).<br>" +
-      "Reevaluar causas reversibles y monitorizar evolución clínica.";
+    res.innerHTML = "✅ CAM-ICU POSITIVO · Delirium presente";
+    res.style.color = "#b91c1c";
+    intp.innerHTML =
+      "Cumple criterios diagnósticos: inicio agudo + inatención + " +
+      "(pensamiento desorganizado o conciencia alterada).";
   } else {
-    resultado.innerHTML =
-      "<b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
-    resultado.style.color = "#166534";
-    interpretacion.innerText =
-      "No se cumplen los criterios diagnósticos de delirium al momento de la evaluación.";
+    res.innerHTML = "❌ CAM-ICU NEGATIVO · Delirium no detectado";
+    res.style.color = "#166534";
+    intp.innerHTML =
+      "No se cumplen los criterios diagnósticos de delirium.";
   }
 
-  // Analytics (si existe)
   if (typeof trackEvent === "function") {
-    trackEvent("calculate_cam_icu", {
-      criterio1,
-      criterio2,
-      criterio3,
-      criterio4,
-      resultado: positivo ? "positivo" : "negativo"
-    });
+    trackEvent("camicu_result", { delirium: positivo });
   }
 }
 
+function camicuPaso1() {
+  resetCAMICU();
+  const v = document.getElementById("camicu_c1").value;
+  if (v === "1") {
+    document.getElementById("camicu_paso2").style.display = "block";
+  } else if (v === "0") {
+    camicuResultado(false);
+  }
+}
 
+function camicuPaso2() {
+  setText("resultadoCAMICU", "");
+  const v = document.getElementById("camicu_c2").value;
+  if (v === "1") {
+    document.getElementById("camicu_paso3").style.display = "block";
+  } else if (v === "0") {
+    camicuResultado(false);
+  }
+}
+
+function camicuPaso3() {
+  setText("resultadoCAMICU", "");
+  const v = document.getElementById("camicu_c3").value;
+  if (v === "1") {
+    camicuResultado(true);
+  } else if (v === "0") {
+    document.getElementById("camicu_paso4").style.display = "block";
+  }
+}
+
+function camicuPaso4() {
+  const v = document.getElementById("camicu_c4").value;
+  camicuResultado(v === "1");
+}
 
