@@ -430,27 +430,6 @@ function calcularAnionGapCorregido() {
    DELTA / DELTA (ANION GAP / BICARBONATO)
 ========================= */
 function calcularDeltaGap() {
-  const agPaciente = num("agapp");   // Anion gap del paciente
-  const hco3Paciente = num("bicap"); // Bicarbonato del paciente
-
-  const AG_NORMAL = 12;
-  const HCO3_NORMAL = 24;
-
-  const resultado = document.getElementById("resultadoDeltaGap");
-  const interpretacion = document.getElementById("interpretacionDeltaGap");
-
-  if (!resultado) return;
-
-  if (anyNaN([agPaciente, hco3Paciente])) {
-    resultado.innerText = "Complete todos los campos";
-    if (interpretacion) interpretacion.innerText = "";
-    return;
-  }
-
-/* =========================
-   DELTA / DELTA (ANION GAP / BICARBONATO)
-========================= */
-function calcularDeltaGap() {
   const agPaciente = num("agapp");
   const hco3Paciente = num("bicap");
 
@@ -466,7 +445,8 @@ function calcularDeltaGap() {
   if (!Number.isFinite(agPaciente) || !Number.isFinite(hco3Paciente)) {
     resultado.innerHTML = "<b>Δ/Δ:</b> —";
     if (interpretacion) {
-      interpretacion.innerHTML = "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente.";
+      interpretacion.innerHTML =
+        "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente.";
     }
     return;
   }
@@ -479,7 +459,7 @@ function calcularDeltaGap() {
     if (interpretacion) {
       interpretacion.innerHTML =
         "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
-        "El cálculo de <b>Δ/Δ no es válido</b> en este contexto.";
+        "El cálculo de <b>Δ/Δ</b> no es válido en este contexto.";
     }
     return;
   }
@@ -491,17 +471,14 @@ function calcularDeltaGap() {
   let texto = "";
   if (deltaDelta < 1) {
     texto =
-      "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
-      "<b>acidosis metabólica hiperclorémica asociada</b> o " +
-      "<b>alcalosis respiratoria crónica asociada</b>.";
+      "Sugiere <b>disminución previa del bicarbonato</b>: posible " +
+      "<b>acidosis metabólica hiperclorémica</b> o <b>alcalosis respiratoria crónica</b> asociada.";
   } else if (deltaDelta <= 2) {
-    texto =
-      "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
+    texto = "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
   } else {
     texto =
-      "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
-      "<b>alcalosis metabólica asociada</b> o " +
-      "<b>acidosis respiratoria crónica asociada</b>.";
+      "Sugiere <b>aumento previo del bicarbonato</b>: posible " +
+      "<b>alcalosis metabólica</b> o <b>acidosis respiratoria crónica</b> asociada.";
   }
 
   if (interpretacion) interpretacion.innerHTML = texto;
@@ -698,7 +675,7 @@ function calcularDeltaGap() {
 }
 
 /* =========================
-   CAM-ICU · Algoritmo secuencial (AUTO INIT)
+   CAM-ICU · Algoritmo secuencial  
 ========================= */
 (function () {
   function $(id) { return document.getElementById(id); }
