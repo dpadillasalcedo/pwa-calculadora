@@ -701,17 +701,17 @@ function calcularDeltaGap() {
    CAM-ICU · Algoritmo secuencial  
 ========================= */
 
-function camicuHide(id) {
+window.camicuHide = function (id) {
   const el = document.getElementById(id);
   if (el) el.style.display = "none";
-}
+};
 
-function camicuShow(id) {
+window.camicuShow = function (id) {
   const el = document.getElementById(id);
   if (el) el.style.display = "block";
-}
+};
 
-function camicuClearResult() {
+window.camicuClearResult = function () {
   const res = document.getElementById("resultadoCAMICU");
   const intp = document.getElementById("interpretacionCAMICU");
   if (res) {
@@ -719,74 +719,57 @@ function camicuClearResult() {
     res.style.color = "";
   }
   if (intp) intp.innerHTML = "";
-}
+};
 
-function camicuResultado(positivo) {
+window.camicuResultado = function (positivo) {
   const res = document.getElementById("resultadoCAMICU");
   const intp = document.getElementById("interpretacionCAMICU");
-
   if (!res || !intp) return;
 
   if (positivo) {
     res.innerHTML = "✅ <b>CAM-ICU POSITIVO</b> · Delirium presente";
     res.style.color = "#b91c1c";
     intp.innerHTML =
-      "Criterios cumplidos: <b>inicio agudo/fluctuante</b> + <b>inatención</b> + " +
-      "(<b>pensamiento desorganizado</b> o <b>alteración del nivel de conciencia</b>).";
+      "Criterios cumplidos: inicio agudo/fluctuante + inatención + (pensamiento desorganizado o alteración del nivel de conciencia).";
   } else {
     res.innerHTML = "❌ <b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
     res.style.color = "#166534";
-    intp.innerHTML =
-      "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
+    intp.innerHTML = "No se cumplen los criterios diagnósticos de delirium.";
   }
+};
 
-  if (typeof trackEvent === "function") {
-    trackEvent("camicu_result", { delirium: positivo });
-  }
-}
-
-function camicuPaso1() {
+window.camicuPaso1 = function () {
   camicuHide("camicu_paso2");
   camicuHide("camicu_paso3");
   camicuHide("camicu_paso4");
   camicuClearResult();
 
   const v = document.getElementById("camicu_c1")?.value;
-  if (v === "1") {
-    camicuShow("camicu_paso2");
-  } else if (v === "0") {
-    camicuResultado(false);
-  }
-}
+  if (v === "1") camicuShow("camicu_paso2");
+  if (v === "0") camicuResultado(false);
+};
 
-function camicuPaso2() {
+window.camicuPaso2 = function () {
   camicuHide("camicu_paso3");
   camicuHide("camicu_paso4");
   camicuClearResult();
 
   const v = document.getElementById("camicu_c2")?.value;
-  if (v === "1") {
-    camicuShow("camicu_paso3");
-  } else if (v === "0") {
-    camicuResultado(false);
-  }
-}
+  if (v === "1") camicuShow("camicu_paso3");
+  if (v === "0") camicuResultado(false);
+};
 
-function camicuPaso3() {
+window.camicuPaso3 = function () {
   camicuHide("camicu_paso4");
   camicuClearResult();
 
   const v = document.getElementById("camicu_c3")?.value;
-  if (v === "1") {
-    camicuResultado(true);
-  } else if (v === "0") {
-    camicuShow("camicu_paso4");
-  }
-}
+  if (v === "1") camicuResultado(true);
+  if (v === "0") camicuShow("camicu_paso4");
+};
 
-function camicuPaso4() {
+window.camicuPaso4 = function () {
   const v = document.getElementById("camicu_c4")?.value;
   camicuResultado(v === "1");
-}
-
+};
 

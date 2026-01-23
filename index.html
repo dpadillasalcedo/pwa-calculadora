@@ -534,7 +534,6 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
     Algoritmo secuencial validado para detección de <strong>delirium en UCI</strong>.
   </p>
 
-  <!-- CRITERIO 1 -->
   <h3>1️⃣ Inicio agudo o curso fluctuante</h3>
   <p class="note">
     ¿Hubo un cambio agudo del estado mental o fluctuación en las últimas 24 h?
@@ -545,13 +544,9 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
     <option value="0">No</option>
   </select>
 
-  <!-- CRITERIO 2 -->
   <div id="camicu_paso2" style="display:none">
     <hr />
     <h3>2️⃣ Inatención</h3>
-    <p class="note">
-      Fallo en mantener la atención (ej. test de la letra “A”).
-    </p>
     <select id="camicu_c2" onchange="camicuPaso2()">
       <option value="">Seleccione</option>
       <option value="1">Sí (inatención)</option>
@@ -559,13 +554,9 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
     </select>
   </div>
 
-  <!-- CRITERIO 3 -->
   <div id="camicu_paso3" style="display:none">
     <hr />
     <h3>3️⃣ Pensamiento desorganizado</h3>
-    <p class="note">
-      Respuestas incoherentes o errores en preguntas simples.
-    </p>
     <select id="camicu_c3" onchange="camicuPaso3()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
@@ -573,13 +564,9 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
     </select>
   </div>
 
-  <!-- CRITERIO 4 -->
   <div id="camicu_paso4" style="display:none">
     <hr />
     <h3>4️⃣ Nivel de conciencia alterado</h3>
-    <p class="note">
-      Cualquier nivel distinto de alerta normal (RASS ≠ 0).
-    </p>
     <select id="camicu_c4" onchange="camicuPaso4()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
