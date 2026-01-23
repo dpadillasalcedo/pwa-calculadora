@@ -697,3 +697,51 @@ function calcularDeltaGap() {
   });
 }
 
+/* =========================
+   CAM-ICU · Delirium
+========================= */
+function calcularCAMICU() {
+  const c1 = document.getElementById("camicu_c1")?.value;
+  const c2 = document.getElementById("camicu_c2")?.value;
+  const c3 = document.getElementById("camicu_c3")?.value;
+  const c4 = document.getElementById("camicu_c4")?.value;
+
+  const resultado = document.getElementById("resultadoCAMICU");
+  const interpretacion = document.getElementById("interpretacionCAMICU");
+
+  if (!resultado) return;
+
+  if ([c1, c2, c3, c4].some(v => v === "")) {
+    resultado.innerHTML = "<b>CAM-ICU:</b> —";
+    interpretacion.innerText = "Complete todos los criterios.";
+    return;
+  }
+
+  const positivo =
+    c1 === "1" &&
+    c2 === "1" &&
+    (c3 === "1" || c4 === "1");
+
+  if (positivo) {
+    resultado.innerHTML =
+      "<b>CAM-ICU POSITIVO</b> · Delirium presente";
+    resultado.style.color = "#b91c1c";
+    interpretacion.innerHTML =
+      "Cumple criterios diagnósticos de <b>delirium</b>. Reevaluar causas reversibles y monitorizar evolución.";
+  } else {
+    resultado.innerHTML =
+      "<b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
+    resultado.style.color = "#166534";
+    interpretacion.innerText =
+      "No cumple criterios de delirium al momento de la evaluación.";
+  }
+
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_cam_icu", {
+      c1, c2, c3, c4,
+      result: positivo ? "positive" : "negative"
+    });
+  }
+}
+
+
