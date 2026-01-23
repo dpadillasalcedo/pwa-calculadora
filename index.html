@@ -538,7 +538,7 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   <p class="note">
     ¿Hubo un cambio agudo del estado mental o fluctuación en las últimas 24 h?
   </p>
-  <select id="camicu_c1" onchange="camicuPaso1()">
+  <select id="camicu_c1">
     <option value="">Seleccione</option>
     <option value="1">Sí</option>
     <option value="0">No</option>
@@ -547,7 +547,7 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   <div id="camicu_paso2" style="display:none">
     <hr />
     <h3>2️⃣ Inatención</h3>
-    <select id="camicu_c2" onchange="camicuPaso2()">
+    <select id="camicu_c2">
       <option value="">Seleccione</option>
       <option value="1">Sí (inatención)</option>
       <option value="0">No</option>
@@ -557,7 +557,7 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   <div id="camicu_paso3" style="display:none">
     <hr />
     <h3>3️⃣ Pensamiento desorganizado</h3>
-    <select id="camicu_c3" onchange="camicuPaso3()">
+    <select id="camicu_c3">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -567,7 +567,7 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   <div id="camicu_paso4" style="display:none">
     <hr />
     <h3>4️⃣ Nivel de conciencia alterado</h3>
-    <select id="camicu_c4" onchange="camicuPaso4()">
+    <select id="camicu_c4">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -577,6 +577,7 @@ No reemplaza el juicio médico ni la evaluación integral del paciente.
   <div id="resultadoCAMICU" style="margin-top:12px;font-weight:700"></div>
   <div id="interpretacionCAMICU" class="note"></div>
 </section>
+
 
 
     <!-- =========================

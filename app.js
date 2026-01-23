@@ -698,78 +698,115 @@ function calcularDeltaGap() {
 }
 
 /* =========================
-   CAM-ICU · Algoritmo secuencial  
+   CAM-ICU · Algoritmo secuencial (AUTO INIT)
 ========================= */
+(function () {
+  function $(id) { return document.getElementById(id); }
 
-window.camicuHide = function (id) {
-  const el = document.getElementById(id);
-  if (el) el.style.display = "none";
-};
+  function hide(id) { const el = $(id); if (el) el.style.display = "none"; }
+  function show(id) { const el = $(id); if (el) el.style.display = "block"; }
 
-window.camicuShow = function (id) {
-  const el = document.getElementById(id);
-  if (el) el.style.display = "block";
-};
-
-window.camicuClearResult = function () {
-  const res = document.getElementById("resultadoCAMICU");
-  const intp = document.getElementById("interpretacionCAMICU");
-  if (res) {
-    res.innerHTML = "";
-    res.style.color = "";
+  function clearResult() {
+    const res = $("resultadoCAMICU");
+    const intp = $("interpretacionCAMICU");
+    if (res) { res.innerHTML = ""; res.style.color = ""; }
+    if (intp) intp.innerHTML = "";
   }
-  if (intp) intp.innerHTML = "";
-};
 
-window.camicuResultado = function (positivo) {
-  const res = document.getElementById("resultadoCAMICU");
-  const intp = document.getElementById("interpretacionCAMICU");
-  if (!res || !intp) return;
+  function setResult(positivo) {
+    const res = $("resultadoCAMICU");
+    const intp = $("interpretacionCAMICU");
+    if (!res || !intp) return;
 
-  if (positivo) {
-    res.innerHTML = "✅ <b>CAM-ICU POSITIVO</b> · Delirium presente";
-    res.style.color = "#b91c1c";
-    intp.innerHTML =
-      "Criterios cumplidos: inicio agudo/fluctuante + inatención + (pensamiento desorganizado o alteración del nivel de conciencia).";
+    if (positivo) {
+      res.innerHTML = "✅ <b>CAM-ICU POSITIVO</b> · Delirium presente";
+      res.style.color = "#b91c1c";
+      intp.innerHTML =
+        "Criterios cumplidos: <b>inicio agudo/fluctuante</b> + <b>inatención</b> + " +
+        "(<b>pensamiento desorganizado</b> o <b>alteración del nivel de conciencia</b>).";
+    } else {
+      res.innerHTML = "❌ <b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
+      res.style.color = "#166534";
+      intp.innerHTML = "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
+    }
+
+    if (typeof trackEvent === "function") {
+      try { trackEvent("camicu_result", { delirium: !!positivo }); } catch (_) {}
+    }
+  }
+
+  function resetFromPaso(n) {
+    // Oculta pasos posteriores y limpia resultado
+    if (n <= 2) hide("camicu_paso2");
+    if (n <= 3) hide("camicu_paso3");
+    if (n <= 4) hide("camicu_paso4");
+    clearResult();
+
+    // Limpia selects posteriores para evitar estados inconsistentes
+    if (n <= 2 && $("camicu_c2")) $("camicu_c2").value = "";
+    if (n <= 3 && $("camicu_c3")) $("camicu_c3").value = "";
+    if (n <= 4 && $("camicu_c4")) $("camicu_c4").value = "";
+  }
+
+  function paso1() {
+    resetFromPaso(2);
+    const v = $("camicu_c1")?.value;
+    if (v === "1") {
+      show("camicu_paso2");
+    } else if (v === "0") {
+      setResult(false);
+    }
+  }
+
+  function paso2() {
+    resetFromPaso(3);
+    const v = $("camicu_c2")?.value;
+    if (v === "1") {
+      show("camicu_paso3");
+    } else if (v === "0") {
+      setResult(false);
+    }
+  }
+
+  function paso3() {
+    resetFromPaso(4);
+    const v = $("camicu_c3")?.value;
+    if (v === "1") {
+      setResult(true);
+    } else if (v === "0") {
+      show("camicu_paso4");
+    }
+  }
+
+  function paso4() {
+    // No resetea nada acá: es el último paso
+    clearResult();
+    const v = $("camicu_c4")?.value;
+    if (v === "1") setResult(true);
+    else if (v === "0") setResult(false);
+  }
+
+  function initCAMICU() {
+    // Si el bloque CAM-ICU no existe en la página, no hace nada
+    if (!$("camicu") || !$("camicu_c1")) return;
+
+    // Estado inicial limpio
+    hide("camicu_paso2");
+    hide("camicu_paso3");
+    hide("camicu_paso4");
+    clearResult();
+
+    // Listeners (esto es lo que hace que funcione siempre)
+    $("camicu_c1").addEventListener("change", paso1);
+    $("camicu_c2").addEventListener("change", paso2);
+    $("camicu_c3").addEventListener("change", paso3);
+    $("camicu_c4").addEventListener("change", paso4);
+  }
+
+  // Inicializa cuando el DOM está listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCAMICU);
   } else {
-    res.innerHTML = "❌ <b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
-    res.style.color = "#166534";
-    intp.innerHTML = "No se cumplen los criterios diagnósticos de delirium.";
+    initCAMICU();
   }
-};
-
-window.camicuPaso1 = function () {
-  camicuHide("camicu_paso2");
-  camicuHide("camicu_paso3");
-  camicuHide("camicu_paso4");
-  camicuClearResult();
-
-  const v = document.getElementById("camicu_c1")?.value;
-  if (v === "1") camicuShow("camicu_paso2");
-  if (v === "0") camicuResultado(false);
-};
-
-window.camicuPaso2 = function () {
-  camicuHide("camicu_paso3");
-  camicuHide("camicu_paso4");
-  camicuClearResult();
-
-  const v = document.getElementById("camicu_c2")?.value;
-  if (v === "1") camicuShow("camicu_paso3");
-  if (v === "0") camicuResultado(false);
-};
-
-window.camicuPaso3 = function () {
-  camicuHide("camicu_paso4");
-  camicuClearResult();
-
-  const v = document.getElementById("camicu_c3")?.value;
-  if (v === "1") camicuResultado(true);
-  if (v === "0") camicuShow("camicu_paso4");
-};
-
-window.camicuPaso4 = function () {
-  const v = document.getElementById("camicu_c4")?.value;
-  camicuResultado(v === "1");
-};
-
+})();
