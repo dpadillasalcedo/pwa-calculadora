@@ -698,32 +698,46 @@ function calcularDeltaGap() {
 }
 
 /* =========================
-   CAM-ICU · Algoritmo secuencial
+   CAM-ICU · Algoritmo secuencial  
 ========================= */
 
-function resetCAMICU() {
-  document.getElementById("camicu_paso2").style.display = "none";
-  document.getElementById("camicu_paso3").style.display = "none";
-  document.getElementById("camicu_paso4").style.display = "none";
-  setText("resultadoCAMICU", "");
-  setText("interpretacionCAMICU", "");
+function camicuHide(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = "none";
+}
+
+function camicuShow(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = "block";
+}
+
+function camicuClearResult() {
+  const res = document.getElementById("resultadoCAMICU");
+  const intp = document.getElementById("interpretacionCAMICU");
+  if (res) {
+    res.innerHTML = "";
+    res.style.color = "";
+  }
+  if (intp) intp.innerHTML = "";
 }
 
 function camicuResultado(positivo) {
   const res = document.getElementById("resultadoCAMICU");
   const intp = document.getElementById("interpretacionCAMICU");
 
+  if (!res || !intp) return;
+
   if (positivo) {
-    res.innerHTML = "✅ CAM-ICU POSITIVO · Delirium presente";
+    res.innerHTML = "✅ <b>CAM-ICU POSITIVO</b> · Delirium presente";
     res.style.color = "#b91c1c";
     intp.innerHTML =
-      "Cumple criterios diagnósticos: inicio agudo + inatención + " +
-      "(pensamiento desorganizado o conciencia alterada).";
+      "Criterios cumplidos: <b>inicio agudo/fluctuante</b> + <b>inatención</b> + " +
+      "(<b>pensamiento desorganizado</b> o <b>alteración del nivel de conciencia</b>).";
   } else {
-    res.innerHTML = "❌ CAM-ICU NEGATIVO · Delirium no detectado";
+    res.innerHTML = "❌ <b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
     res.style.color = "#166534";
     intp.innerHTML =
-      "No se cumplen los criterios diagnósticos de delirium.";
+      "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
   }
 
   if (typeof trackEvent === "function") {
@@ -732,37 +746,47 @@ function camicuResultado(positivo) {
 }
 
 function camicuPaso1() {
-  resetCAMICU();
-  const v = document.getElementById("camicu_c1").value;
+  camicuHide("camicu_paso2");
+  camicuHide("camicu_paso3");
+  camicuHide("camicu_paso4");
+  camicuClearResult();
+
+  const v = document.getElementById("camicu_c1")?.value;
   if (v === "1") {
-    document.getElementById("camicu_paso2").style.display = "block";
+    camicuShow("camicu_paso2");
   } else if (v === "0") {
     camicuResultado(false);
   }
 }
 
 function camicuPaso2() {
-  setText("resultadoCAMICU", "");
-  const v = document.getElementById("camicu_c2").value;
+  camicuHide("camicu_paso3");
+  camicuHide("camicu_paso4");
+  camicuClearResult();
+
+  const v = document.getElementById("camicu_c2")?.value;
   if (v === "1") {
-    document.getElementById("camicu_paso3").style.display = "block";
+    camicuShow("camicu_paso3");
   } else if (v === "0") {
     camicuResultado(false);
   }
 }
 
 function camicuPaso3() {
-  setText("resultadoCAMICU", "");
-  const v = document.getElementById("camicu_c3").value;
+  camicuHide("camicu_paso4");
+  camicuClearResult();
+
+  const v = document.getElementById("camicu_c3")?.value;
   if (v === "1") {
     camicuResultado(true);
   } else if (v === "0") {
-    document.getElementById("camicu_paso4").style.display = "block";
+    camicuShow("camicu_paso4");
   }
 }
 
 function camicuPaso4() {
-  const v = document.getElementById("camicu_c4").value;
+  const v = document.getElementById("camicu_c4")?.value;
   camicuResultado(v === "1");
 }
+
 
