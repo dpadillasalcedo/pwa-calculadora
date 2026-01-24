@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>CAM-ICU | Detección de delirium en UCI | Calculadora UCI</title>
+
+  <meta
+    name="description"
+    content="Calculadora CAM-ICU online para detección de delirium en pacientes críticos, incluidos pacientes ventilados. Herramienta clínica validada para UCI."
+  />
+
+  <link
+    rel="canonical"
+    href="https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu/"
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CAM-ICU · Delirium en UCI" />
+  <meta
+    property="og:description"
+    content="Evaluación clínica CAM-ICU para detección de delirium en pacientes críticos."
+  />
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:url"
+    content="https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu/"
+  />
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="app-header">
+  <div>
+    <h1>CAM-ICU</h1>
+    <p class="subtitle">
+      Detección de delirium en pacientes críticos
+    </p>
+  </div>
+  <div class="pill">Uso clínico educativo</div>
+</header>
+
+<!-- =========================
+     CONTEXTO CLÍNICO
+========================= -->
+<section class="panel">
+
+  <h2>¿Qué es CAM-ICU?</h2>
+
+  <p class="note">
+    La <strong>Confusion Assessment Method for the ICU (CAM-ICU)</strong> es una
+    herramienta clínica validada para la <strong>detección de delirium</strong>
+    en pacientes críticos, incluidos aquellos bajo <strong>ventilación mecánica</strong>.
+  </p>
+
+  <p class="note">
+    Permite una evaluación rápida, estructurada y reproducible,
+    incluso en pacientes no verbales.
+  </p>
+
+</section>
+
+<!-- =========================
+     ALGORITMO CAM-ICU
+========================= -->
+<section
+  id="camicu"
+  class="panel"
+  data-module="camicu"
+  aria-labelledby="camicu-title">
+
+  <h2 id="camicu-title">Evaluación CAM-ICU</h2>
+
+  <p class="note">
+    El diagnóstico de delirium requiere:
+    <strong>Criterio 1 + Criterio 2</strong> y
+    <strong>(Criterio 3 o Criterio 4)</strong>.
+  </p>
+
+  <!-- Criterio 1 -->
+  <fieldset>
+    <legend><h3>Criterio 1 · Inicio agudo o curso fluctuante</h3></legend>
+
+    <label for="camicu_c1">
+      Cambio agudo del estado mental o fluctuación en las últimas 24 horas
+    </label>
+
+    <select id="camicu_c1">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+
+    <small class="note">
+      Comparar con el estado neurológico basal del paciente.
+    </small>
+  </fieldset>
+
+  <!-- Paso 2 -->
+  <fieldset id="camicu_paso2">
+    <legend><h3>Criterio 2 · Inatención</h3></legend>
+
+    <label for="camicu_c2">
+      Dificultad para mantener o dirigir la atención
+    </label>
+
+    <select id="camicu_c2">
+      <option value="">Seleccione</option>
+      <option value="1">Presente</option>
+      <option value="0">Ausente</option>
+    </select>
+  </fieldset>
+
+  <!-- Paso 3 -->
+  <fieldset id="camicu_paso3">
+    <legend><h3>Criterio 3 · Pensamiento desorganizado</h3></legend>
+
+    <label for="camicu_c3">
+      Pensamiento incoherente, ilógico o respuestas inapropiadas
+    </label>
+
+    <select id="camicu_c3">
+      <option value="">Seleccione</option>
+      <option value="1">Presente</option>
+      <option value="0">Ausente</option>
+    </select>
+  </fieldset>
+
+  <!-- Paso 4 -->
+  <fieldset id="camicu_paso4">
+    <legend><h3>Criterio 4 · Alteración del nivel de conciencia</h3></legend>
+
+    <label for="camicu_c4">
+      Nivel de conciencia distinto de alerta
+    </label>
+
+    <select id="camicu_c4">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
+
+  <!-- RESULTADO -->
+  <div
+    id="resultadoCAMICU"
+    role="status"
+    aria-live="polite"
+    style="margin-top:14px;font-weight:600">
+  </div>
+
+  <div
+    id="interpretacionCAMICU"
+    class="note"
+    style="margin-top:6px">
+  </div>
+
+  <div class="ad-slot ad-result"></div>
+
+</section>
+
+<!-- =========================
+     INTERPRETACIÓN
+========================= -->
+<section class="panel">
+
+  <h2>Interpretación clínica</h2>
+
+  <ul class="note">
+    <li><strong>CAM-ICU positivo:</strong> delirium presente</li>
+    <li><strong>CAM-ICU negativo:</strong> delirium no detectado</li>
+  </ul>
+
+  <p class="note">
+    El delirium se asocia a mayor mortalidad, mayor estancia en UCI
+    y deterioro cognitivo a largo plazo.
+  </p>
+
+</section>
+
+</main>
+
+<script src="../app.js"></script>
+
+</body>
+</html>

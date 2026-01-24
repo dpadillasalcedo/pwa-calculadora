@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>NIHSS Score | Escala NIH para ACV | Calculadora UCI</title>
+
+  <meta
+    name="description"
+    content="Calculadora NIH Stroke Scale (NIHSS) online para evaluar la severidad del accidente cerebrovascular agudo. Herramienta clínica para urgencias y UCI."
+  />
+
+  <link
+    rel="canonical"
+    href="https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score/"
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NIHSS Score · Escala NIH Stroke Scale" />
+  <meta
+    property="og:description"
+    content="Calculadora clínica NIHSS para cuantificar la severidad del ACV isquémico y hemorrágico."
+  />
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:url"
+    content="https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score/"
+  />
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="app-header">
+  <div>
+    <h1>NIH Stroke Scale (NIHSS)</h1>
+    <p class="subtitle">
+      Evaluación de severidad del accidente cerebrovascular
+    </p>
+  </div>
+  <div class="pill">Uso clínico educativo</div>
+</header>
+
+<section class="panel">
+
+  <h2>¿Qué es la escala NIHSS?</h2>
+
+  <p class="note">
+    La <strong>NIH Stroke Scale (NIHSS)</strong> es una escala clínica estandarizada
+    utilizada para cuantificar la <strong>severidad del déficit neurológico</strong>
+    en pacientes con <strong>accidente cerebrovascular agudo</strong>.
+  </p>
+
+  <p class="note">
+    Evalúa el nivel de conciencia, lenguaje, función motora, sensibilidad,
+    campos visuales y atención. Es ampliamente utilizada en urgencias,
+    neurología y cuidados intensivos.
+  </p>
+
+</section>
+
+<section class="panel">
+
+  <h2>Calculadora NIHSS</h2>
+
+  <!-- 1 -->
+  <fieldset>
+    <legend><h3>1. Nivel de conciencia</h3></legend>
+
+    <label for="nihss_1a">1a. Estado de alerta</label>
+    <select id="nihss_1a">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Alerta</option>
+      <option value="1">1 · Somnoliento</option>
+      <option value="2">2 · Estuporoso</option>
+      <option value="3">3 · Coma</option>
+    </select>
+
+    <label for="nihss_1b">1b. Preguntas (edad y mes)</label>
+    <select id="nihss_1b">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ambas correctas</option>
+      <option value="1">1 · Una correcta</option>
+      <option value="2">2 · Ninguna correcta</option>
+    </select>
+
+    <label for="nihss_1c">1c. Órdenes simples</label>
+    <select id="nihss_1c">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ambas correctas</option>
+      <option value="1">1 · Una correcta</option>
+      <option value="2">2 · Ninguna correcta</option>
+    </select>
+  </fieldset>
+
+  <!-- 2–4 -->
+  <fieldset>
+    <legend><h3>2–4. Función visual y facial</h3></legend>
+
+    <label for="nihss_2">2. Mirada</label>
+    <select id="nihss_2">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Paresia parcial</option>
+      <option value="2">2 · Desviación forzada</option>
+    </select>
+
+    <label for="nihss_3">3. Campos visuales</label>
+    <select id="nihss_3">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Hemianopsia parcial</option>
+      <option value="2">2 · Hemianopsia completa</option>
+      <option value="3">3 · Ceguera bilateral</option>
+    </select>
+
+    <label for="nihss_4">4. Parálisis facial</label>
+    <select id="nihss_4">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Paresia leve</option>
+      <option value="2">2 · Paresia parcial</option>
+      <option value="3">3 · Parálisis completa</option>
+    </select>
+  </fieldset>
+
+  <!-- 5–11 -->
+  <fieldset>
+    <legend><h3>5–11. Función motora, lenguaje y atención</h3></legend>
+
+    <label for="nihss_motor">Fuerza motora (peor lado)</label>
+    <select id="nihss_motor">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Caída leve</option>
+      <option value="2">2 · No mantiene posición</option>
+      <option value="3">3 · Movimiento mínimo</option>
+      <option value="4">4 · Sin movimiento</option>
+    </select>
+
+    <label for="nihss_ataxia">Ataxia</label>
+    <select id="nihss_ataxia">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ausente</option>
+      <option value="1">1 · Un miembro</option>
+      <option value="2">2 · Dos miembros</option>
+    </select>
+
+    <label for="nihss_sens">Sensibilidad</label>
+    <select id="nihss_sens">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Hipoestesia</option>
+      <option value="2">2 · Anestesia</option>
+    </select>
+
+    <label for="nihss_lang">Lenguaje</label>
+    <select id="nihss_lang">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Afasia leve</option>
+      <option value="2">2 · Afasia severa</option>
+      <option value="3">3 · Afasia global</option>
+    </select>
+
+    <label for="nihss_dys">Disartria</label>
+    <select id="nihss_dys">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Leve–moderada</option>
+      <option value="2">2 · Severa</option>
+    </select>
+
+    <label for="nihss_neglect">Negligencia</label>
+    <select id="nihss_neglect">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ausente</option>
+      <option value="1">1 · Parcial</option>
+      <option value="2">2 · Severa</option>
+    </select>
+  </fieldset>
+
+  <button type="button" data-action="calcular-nihss">
+    Calcular NIHSS
+  </button>
+
+  <div
+    id="resultadoNIHSS"
+    role="status"
+    aria-live="polite"
+    style="margin-top:12px;font-weight:600">
+  </div>
+
+  <div
+    id="interpretacionNIHSS"
+    class="note"
+    style="margin-top:6px">
+  </div>
+
+  <div class="ad-slot ad-result"></div>
+
+</section>
+
+<section class="panel">
+
+  <h2>Interpretación clínica</h2>
+
+  <ul class="note">
+    <li><strong>0:</strong> Sin déficit neurológico</li>
+    <li><strong>1–4:</strong> ACV leve</li>
+    <li><strong>5–15:</strong> ACV moderado</li>
+    <li><strong>16–20:</strong> ACV moderado–severo</li>
+    <li><strong>&gt;20:</strong> ACV severo</li>
+  </ul>
+
+</section>
+
+</main>
+
+<script src="../app.js"></script>
+
+</body>
+</html>

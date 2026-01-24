@@ -9,26 +9,27 @@
 
   <!-- SOFA-2 Score -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/sofa-2-score/</loc>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/sofa-2-score.html</loc>
     <priority>0.9</priority>
   </url>
 
   <!-- NIHSS Score -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score/</loc>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score.html</loc>
     <priority>0.9</priority>
   </url>
 
   <!-- CAM-ICU -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu/</loc>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu.html</loc>
     <priority>0.9</priority>
   </url>
 
   <!-- Ecocardiografía -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gc/</loc>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gasto-cardiaco.html</loc>
     <priority>0.9</priority>
   </url>
 
 </urlset>
+
