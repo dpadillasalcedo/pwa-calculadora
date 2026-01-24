@@ -99,7 +99,6 @@ function clear(id) {
   el.textContent = "";
 }
 
-
 /* =========================
    VENTILACIÓN MECÁNICA
 ========================= */
@@ -247,6 +246,7 @@ function ajustarPCO2() {
   });
 }
 
+	
 /* =========================
    ECOCARDIOGRAFÍA
 ========================= */
@@ -299,6 +299,11 @@ function calcularGCEco() {
     hr: fc,
   });
 }
+
+/* =========================
+   EXPONER FUNCIÓN PARA ONCLICK
+========================= */
+window.calcularGCEco = calcularGCEco;
 
 /* =========================
    OXIGENACIÓN
@@ -365,6 +370,11 @@ function calcularOxigenacion() {
   });
 }
 
+/* =========================
+   EXPONER FUNCIÓN PARA ONCLICK
+========================= */
+window.calcularOxigenacion = calcularOxigenacion;
+
 
 
 /* =========================
@@ -377,7 +387,6 @@ function calcularDeltaCO2() {
 
   if (!resultado) return;
 
-  // Validación básica
   if (
     anyNaN([paco2, pvco2]) ||
     paco2 <= 0 ||
@@ -408,9 +417,6 @@ function calcularDeltaCO2() {
 ========================= */
 /*
   RVS (SVR) ≈ ((TAM - PVC) / GC) × 80
-  - TAM y PVC en mmHg
-  - GC en L/min
-  - Resultado en dyn·s·cm⁻⁵
 */
 function calcularRVS() {
   const tam = num("tam");       // mmHg
@@ -418,7 +424,6 @@ function calcularRVS() {
   const gc = num("gc_rvs");     // L/min
   const outId = "resultadoRVS";
 
-  // Validaciones básicas
   if (
     anyNaN([tam, pvc, gc]) ||
     gc <= 0
@@ -440,63 +445,7 @@ function calcularRVS() {
     map_mmhg: tam,
     cvp_mmhg: pvc,
     cardiac_output_l_min: gc,
-    svr_dyn_s_cm5: Number(rvs.toFixed(0)),
-  });
-}
-
-/*
-  PPR (Presión de perfusión abdominal) = TAM - PIA
-*/
-function calcularPPR() {
-  const tam = num("tam"); // mmHg
-  const pia = num("pia"); // mmHg
-  const outId = "resultadoPPR";
-
-  if (anyNaN([tam, pia])) {
-    setText(outId, "Complete TAM y PIA con valores válidos");
-    return;
-  }
-
-  const ppr = tam - pia;
-
-  if (!Number.isFinite(ppr)) {
-    setText(outId, "No se pudo calcular la PPR");
-    return;
-  }
-
-  setHTML(outId, `<strong>PPR:</strong> ${ppr.toFixed(0)} mmHg`);
-
-  trackEvent("calculate_app", {
-    map_mmhg: tam,
-    iap_mmhg: pia,
-    app_mmhg: Number(ppr.toFixed(0)),
-  });
-}
-
-/*
-  PPC (Presión de perfusión cerebral) = TAM - PIC
-*/
-function calcularPPC() {
-  const tam = num("tam"); // mmHg
-  const pic = num("pic"); // mmHg
-  const outId = "resultadoPPC";
-
-  if (anyNaN([tam, pic])) {
-    setText(outId, "Complete TAM y PIC con valores válidos");
-    return;
-  }
-
-  const ppc = tam - pic;
-
-  if (!Number.isFinite(ppc)) {
-    setText(outId, "No se pudo calcular la PPC");
-    return;
-  }
-
-  setHTML(outId, `<strong>PPC:</strong> ${ppc.toFixed(0)} mmHg`);
-
-  trackEvent("calculate_cpp", {
-    map_mmhg: tam,
+    svr_dyn_
 
 /* =========================
    ESTADO ÁCIDO-BASE
@@ -645,6 +594,11 @@ function calcularDeltaGap() {
   });
 }
 
+/* =========================
+   EXPONER FUNCIÓN PARA ONCLICK
+========================= */
+window.calcularDeltaGap = calcularDeltaGap;
+
 
 /* =========================
    ELECTROLITOS
@@ -723,6 +677,12 @@ function calcularCalcioCorregido() {
 }
 
 /* =========================
+   EXPONER FUNCIONES PARA ONCLICK
+========================= */
+window.calcularSodioCorregido = calcularSodioCorregido;
+window.calcularCalcioCorregido = calcularCalcioCorregido;
+
+/* =========================
    SOFA-2
 ========================= */
 
@@ -773,7 +733,6 @@ function calcularSOFA2() {
   for (const id of ids) {
     const el = document.getElementById(id);
 
-    // Elemento inexistente
     if (!el) {
       setHTML(
         "resultadoSOFA2",
@@ -785,7 +744,6 @@ function calcularSOFA2() {
 
     const value = Number(el.value);
 
-    // Valor no seleccionado o fuera de rango SOFA (0–4)
     if (!Number.isFinite(value) || value < 0 || value > 4) {
       setHTML(
         "resultadoSOFA2",
@@ -844,121 +802,128 @@ function calcularSOFA2() {
   });
 }
 
+/* =========================
+   EXPONER FUNCIONES PARA ONCLICK
+========================= */
+window.calcularSOFA2 = calcularSOFA2;
+window.resaltarRangoSOFA = resaltarRangoSOFA;
+window.limpiarRangoSOFA = limpiarRangoSOFA;
+
 
 /* =========================
    CAM-ICU · Algoritmo secuencial
 ========================= */
-(function () {
-  function $(id) {
-    return document.getElementById(id);
+
+function camicu$(id) {
+  return document.getElementById(id);
+}
+
+function camicuHide(id) {
+  const el = camicu$(id);
+  if (el) el.style.display = "none";
+}
+
+function camicuShow(id) {
+  const el = camicu$(id);
+  if (el) el.style.display = "block";
+}
+
+function camicuClearResult() {
+  const res = camicu$("resultadoCAMICU");
+  const intp = camicu$("interpretacionCAMICU");
+  if (res) {
+    res.innerHTML = "";
+    res.style.color = "";
   }
+  if (intp) intp.innerHTML = "";
+}
 
-  function hide(id) {
-    const el = $(id);
-    if (el) el.style.display = "none";
-  }
+function camicuSetResult(positivo) {
+  const res = camicu$("resultadoCAMICU");
+  const intp = camicu$("interpretacionCAMICU");
+  if (!res || !intp) return;
 
-  function show(id) {
-    const el = $(id);
-    if (el) el.style.display = "block";
-  }
-
-  function clearResult() {
-    const res = $("resultadoCAMICU");
-    const intp = $("interpretacionCAMICU");
-    if (res) {
-      res.innerHTML = "";
-      res.style.color = "";
-    }
-    if (intp) intp.innerHTML = "";
-  }
-
-  function setResult(positivo) {
-    const res = $("resultadoCAMICU");
-    const intp = $("interpretacionCAMICU");
-    if (!res || !intp) return;
-
-    if (positivo) {
-      res.innerHTML = "✅ <strong>CAM-ICU POSITIVO</strong> · Delirium presente";
-      res.style.color = "#b91c1c";
-      intp.innerHTML =
-        "Criterios cumplidos: <strong>inicio agudo/fluctuante</strong> + <strong>inatención</strong> + " +
-        "(<strong>pensamiento desorganizado</strong> o <strong>alteración del nivel de conciencia</strong>).";
-    } else {
-      res.innerHTML = "❌ <strong>CAM-ICU NEGATIVO</strong> · Delirium no detectado";
-      res.style.color = "#166534";
-      intp.innerHTML =
-        "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
-    }
-
-    if (typeof trackEvent === "function") {
-      try {
-        trackEvent("camicu_result", { delirium: !!positivo });
-      } catch (_) {}
-    }
-  }
-
-  function resetFromPaso(n) {
-    if (n <= 2) hide("camicu_paso2");
-    if (n <= 3) hide("camicu_paso3");
-    if (n <= 4) hide("camicu_paso4");
-    clearResult();
-
-    if (n <= 2 && $("camicu_c2")) $("camicu_c2").value = "";
-    if (n <= 3 && $("camicu_c3")) $("camicu_c3").value = "";
-    if (n <= 4 && $("camicu_c4")) $("camicu_c4").value = "";
-  }
-
-  function paso1() {
-    resetFromPaso(2);
-    const v = $("camicu_c1")?.value;
-    if (v === "1") show("camicu_paso2");
-    else if (v === "0") setResult(false);
-  }
-
-  function paso2() {
-    resetFromPaso(3);
-    const v = $("camicu_c2")?.value;
-    if (v === "1") show("camicu_paso3");
-    else if (v === "0") setResult(false);
-  }
-
-  function paso3() {
-    resetFromPaso(4);
-    const v = $("camicu_c3")?.value;
-    if (v === "1") setResult(true);
-    else if (v === "0") show("camicu_paso4");
-  }
-
-  function paso4() {
-    clearResult();
-    const v = $("camicu_c4")?.value;
-    if (v === "1") setResult(true);
-    else if (v === "0") setResult(false);
-  }
-
-  function initCAMICU() {
-    // Si el bloque CAM-ICU no existe, salir
-    if (!$("camicu") || !$("camicu_c1")) return;
-
-    hide("camicu_paso2");
-    hide("camicu_paso3");
-    hide("camicu_paso4");
-    clearResult();
-
-    $("camicu_c1")?.addEventListener("change", paso1);
-    $("camicu_c2")?.addEventListener("change", paso2);
-    $("camicu_c3")?.addEventListener("change", paso3);
-    $("camicu_c4")?.addEventListener("change", paso4);
-  }
-
-  // 🔥 CLAVE: inicializar cuando el DOM esté listo
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initCAMICU);
+  if (positivo) {
+    res.innerHTML = "✅ <strong>CAM-ICU POSITIVO</strong> · Delirium presente";
+    res.style.color = "#b91c1c";
+    intp.innerHTML =
+      "Criterios cumplidos: <strong>inicio agudo/fluctuante</strong> + <strong>inatención</strong> + " +
+      "(<strong>pensamiento desorganizado</strong> o <strong>alteración del nivel de conciencia</strong>).";
   } else {
-    initCAMICU();
+    res.innerHTML = "❌ <strong>CAM-ICU NEGATIVO</strong> · Delirium no detectado";
+    res.style.color = "#166534";
+    intp.innerHTML =
+      "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
   }
-})();
+
+  if (typeof trackEvent === "function") {
+    trackEvent("camicu_result", { delirium: !!positivo });
+  }
+}
+
+function camicuResetFromPaso(n) {
+  if (n <= 2) camicuHide("camicu_paso2");
+  if (n <= 3) camicuHide("camicu_paso3");
+  if (n <= 4) camicuHide("camicu_paso4");
+  camicuClearResult();
+
+  if (n <= 2 && camicu$("camicu_c2")) camicu$("camicu_c2").value = "";
+  if (n <= 3 && camicu$("camicu_c3")) camicu$("camicu_c3").value = "";
+  if (n <= 4 && camicu$("camicu_c4")) camicu$("camicu_c4").value = "";
+}
+
+/* =========================
+   PASOS CAM-ICU (ONCLICK)
+========================= */
+
+function camicuPaso1() {
+  camicuResetFromPaso(2);
+  const v = camicu$("camicu_c1")?.value;
+  if (v === "1") camicuShow("camicu_paso2");
+  else if (v === "0") camicuSetResult(false);
+}
+
+function camicuPaso2() {
+  camicuResetFromPaso(3);
+  const v = camicu$("camicu_c2")?.value;
+  if (v === "1") camicuShow("camicu_paso3");
+  else if (v === "0") camicuSetResult(false);
+}
+
+function camicuPaso3() {
+  camicuResetFromPaso(4);
+  const v = camicu$("camicu_c3")?.value;
+  if (v === "1") camicuSetResult(true);
+  else if (v === "0") camicuShow("camicu_paso4");
+}
+
+function camicuPaso4() {
+  camicuClearResult();
+  const v = camicu$("camicu_c4")?.value;
+  if (v === "1") camicuSetResult(true);
+  else if (v === "0") camicuSetResult(false);
+}
+
+/* =========================
+   INICIALIZACIÓN MANUAL
+========================= */
+function initCAMICU() {
+  if (!camicu$("camicu")) return;
+
+  camicuHide("camicu_paso2");
+  camicuHide("camicu_paso3");
+  camicuHide("camicu_paso4");
+  camicuClearResult();
+}
+
+/* =========================
+   EXPONER PARA ONCLICK
+========================= */
+window.initCAMICU = initCAMICU;
+window.camicuPaso1 = camicuPaso1;
+window.camicuPaso2 = camicuPaso2;
+window.camicuPaso3 = camicuPaso3;
+window.camicuPaso4 = camicuPaso4;
 
 
 /* =========================
@@ -1032,78 +997,14 @@ function calcularNIHSS() {
 }
 
 /* =========================
-   EVENT BINDING CENTRAL (FINAL FIX)
+   EXPONER FUNCIÓN PARA ONCLICK
 ========================= */
-(function initEventBinding() {
-  const actionMap = {
-    // Ventilación
-    "calcular-peso-ideal": calcularPesoIdeal,
-    "ajustar-pco2": ajustarPCO2,
-
-    // Ecocardiografía
-    "calcular-gc-eco": calcularGCEco,
-
-    // Oxigenación
-    "calcular-oxigenacion": calcularOxigenacion,
-    "calcular-delta-co2": calcularDeltaCO2,
-
-    // Presiones / Perfusión
-    "calcular-rvs": calcularRVS,
-    "calcular-ppr": calcularPPR,
-    "calcular-ppc": calcularPPC,
-
-    // Ácido–base
-    "calcular-anion-gap": calcularAnionGapCorregido,
-    "calcular-delta-gap": calcularDeltaGap,
-
-    // Electrolitos
-    "calcular-na-corregido": calcularSodioCorregido,
-    "calcular-ca-corregido": calcularCalcioCorregido,
-
-    // Scores
-    "calcular-sofa": calcularSOFA2,
-    "calcular-nihss": calcularNIHSS,
-  };
-
-  function handleClick(event) {
-    const btn = event.target.closest("[data-action]");
-    if (!btn) return;
-
-    // 🔥 CLAVE: evita submit/reload si está dentro de un <form>
-    event.preventDefault();
-
-    // Si el botón está deshabilitado, no ejecutar
-    if (btn.disabled) return;
-
-    const action = btn.dataset.action;
-    const fn = actionMap[action];
-
-    if (typeof fn === "function") {
-      try {
-        fn();
-      } catch (err) {
-        console.error(`Error ejecutando acción: ${action}`, err);
-      }
-    } else {
-      console.warn(`Acción no registrada: ${action}`);
-    }
-  }
-
-  // Asegura binding incluso si el script carga en <head>
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      document.addEventListener("click", handleClick);
-    });
-  } else {
-    document.addEventListener("click", handleClick);
-  }
-})();
+window.calcularNIHSS = calcularNIHSS;
 
 /* =========================
    ROUTING SIMPLE POR URL
 ========================= */
 
-// Helpers primero (evita problemas de orden)
 function showSection(module) {
   const sec = document.querySelector(`section[data-module="${module}"]`);
   if (sec) sec.style.display = "block";
@@ -1115,12 +1016,7 @@ function showAllSections() {
   });
 }
 
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta && description) meta.setAttribute("content", description);
-}
-
 function getRoute() {
-  // Normaliza path sin trailing slash y sin subdirectorios
   const path = location.pathname.replace(/\/$/, "");
   const parts = path.split("/");
   return parts.length > 1 ? `/${parts.pop()}` : "/";
@@ -1137,33 +1033,27 @@ function initRoute() {
   switch (route) {
     case "/sofa-2-score":
       showSection("sofa");
-      });
       break;
 
     case "/nihss-score":
       showSection("nihss");
-      });
       break;
 
     case "/cam-icu":
       showSection("camicu");
-      });
       break;
 
     case "/ecocardiografia-gc":
       showSection("eco");
-      });
       break;
 
     default:
-      // Home / Hub o ruta desconocida
       showAllSections();
-      });
       break;
   }
 }
 
-// Inicializar routing cuando el DOM esté listo
+// Inicializar routing
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initRoute);
 } else {
@@ -1176,4 +1066,3 @@ if (window.matchMedia("(display-mode: standalone)").matches) {
     el.style.display = "none";
   });
 }
-
