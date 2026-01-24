@@ -357,30 +357,48 @@ function calcularOxigenacion() {
   const hb = num("hb");     // g/dL
   const sao2 = num("sao2"); // %
   const svo2 = num("svo2"); // %
-  const pao2 = num("pao2"); // mmHg
-  const pvo2 = num("pvo2"); // mmHg
+  const pao2 = num("pao2"); // mmHg (OBLIGATORIO)
+  const pvo2 = num("pvo2"); // mmHg (OBLIGATORIO)
 
   const resultado = document.getElementById("resultadoOxigenacion");
   const detalle = document.getElementById("resultadoOxigenacionDetalle");
 
   if (!resultado) return;
 
-  // Validaciones completas
+  /* =========================
+     VALIDACIONES COMPLETAS
+  ========================= */
+
+  // Campos obligatorios
   if (
-    anyNaN([gc, hb, sao2, svo2, pao2, pvo2]) ||
-    gc <= 0 ||
-    hb <= 0 ||
-    sao2 <= 0 || sao2 > 100 ||
-    svo2 < 0  || svo2 > 100 ||
-    pao2 < 0 ||
-    pvo2 < 0
+    anyNaN([gc, hb, sao2, svo2, pao2, pvo2])
   ) {
-    resultado.textContent = "Complete todos los campos con valores válidos";
+    resultado.textContent =
+      "Complete GC, Hb, SaO₂, SvO₂, PaO₂ y PvO₂";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  // Contenido arterial y venoso (mL O₂ / dL)
+  // Rangos fisiológicos básicos
+  if (
+    gc <= 0 ||
+    hb <= 0 ||
+    sao2 <= 0 || sao2 > 100 ||
+    svo2 < 0  || svo2 > 100 ||
+    pao2 <= 0 ||
+    pvo2 <= 0
+  ) {
+    resultado.textContent =
+      "Ingrese valores fisiológicamente válidos";
+    if (detalle) detalle.textContent = "";
+    return;
+  }
+
+  /* =========================
+     CONTENIDOS DE OXÍGENO
+  ========================= */
+
+  // mL O₂ / dL
   const CaO2_dL = (hb * (sao2 / 100) * 1.34) + (pao2 * 0.003);
   const CvO2_dL = (hb * (svo2 / 100) * 1.34) + (pvo2 * 0.003);
 
@@ -389,49 +407,72 @@ function calcularOxigenacion() {
     !Number.isFinite(CvO2_dL) || CvO2_dL < 0 ||
     CvO2_dL > CaO2_dL
   ) {
-    resultado.textContent = "No se pudo calcular el contenido de O₂";
+    resultado.textContent =
+      "No se pudo calcular el contenido de O₂";
     if (detalle) detalle.textContent = "";
     return;
   }
+
+  /* =========================
+     DO₂ y VO₂
+  ========================= */
 
   // Convertir a mL O₂ / L
   const CaO2 = CaO2_dL * 10;
   const CvO2 = CvO2_dL * 10;
 
-  // DO₂ y VO₂ (mL O₂ / min)
+  // mL O₂ / min
   const DO2 = gc * CaO2;
   const VO2 = gc * (CaO2 - CvO2);
 
-  if (!Number.isFinite(DO2) || !Number.isFinite(VO2) || DO2 <= 0 || VO2 < 0) {
-    resultado.textContent = "No se pudo calcular DO₂ / VO₂";
+  if (
+    !Number.isFinite(DO2) || DO2 <= 0 ||
+    !Number.isFinite(VO2) || VO2 < 0
+  ) {
+    resultado.textContent =
+      "No se pudo calcular DO₂ / VO₂";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  // ✅ REO₂ fisiológicamente correcta (por contenidos)
-  const REO2 = clampPercent(((CaO2_dL - CvO2_dL) / CaO2_dL) * 100);
+  /* =========================
+     EXTRACCIÓN DE O₂ (REO₂)
+  ========================= */
+
+  // ✅ Fórmula fisiológica correcta
+  const REO2 = clampPercent(
+    ((CaO2_dL - CvO2_dL) / CaO2_dL) * 100
+  );
 
   if (!Number.isFinite(REO2)) {
-    resultado.textContent = "No se pudo calcular la extracción de O₂";
+    resultado.textContent =
+      "No se pudo calcular la extracción de O₂";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  resultado.innerHTML = `<strong>REO₂:</strong> ${REO2.toFixed(1)} %`;
+  /* =========================
+     RESULTADOS
+  ========================= */
+
+  resultado.innerHTML =
+    `<strong>REO₂:</strong> ${REO2.toFixed(1)} %`;
 
   if (detalle) {
     let interpretacion;
 
     if (REO2 >= 15 && REO2 <= 33) {
-      interpretacion = "<strong>Normal:</strong> 15–33% en reposo.";
+      interpretacion =
+        "<strong>Normal:</strong> 15–33% en reposo.";
     } else if (REO2 > 33) {
       interpretacion =
-        "Valores <strong>altos</strong>: aumento de la extracción por <strong>bajo aporte de O₂</strong> (GC bajo, anemia, hipoxemia) o <strong>alta demanda</strong>.";
-    } else if (REO2 < 15) {
-      interpretacion =
-        "Valores <strong>bajos</strong>: extracción reducida (disfunción mitocondrial, shunt, sepsis, hipermetabolismo no efectivo).";
+        "Valores <strong>altos</strong>: aumento de la extracción por " +
+        "<strong>bajo aporte de O₂</strong> (GC bajo, anemia, hipoxemia) " +
+        "o <strong>alta demanda</strong>.";
     } else {
-      interpretacion = "Interpretar en contexto clínico.";
+      interpretacion =
+        "Valores <strong>bajos</strong>: extracción reducida " +
+        "(disfunción mitocondrial, shunt, sepsis).";
     }
 
     detalle.innerHTML = `
