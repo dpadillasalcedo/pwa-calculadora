@@ -987,14 +987,15 @@
     SOFA-2 · puntuación
   </h2>
 
-<p class="note">
-  Evaluación de <strong>disfunción orgánica</strong> mediante el
-  <strong>Sequential Organ Failure Assessment (SOFA-2)</strong>.
-  Se utiliza para estimar <strong>gravedad clínica</strong> y
-  <strong>riesgo de mortalidad</strong> en pacientes críticos,
-  especialmente en contextos de <strong>sepsis</strong> y falla orgánica.
-</p>
+  <p class="note">
+    Evaluación de <strong>disfunción orgánica</strong> mediante el
+    <strong>Sequential Organ Failure Assessment (SOFA-2)</strong>.
+    Se utiliza para estimar <strong>gravedad clínica</strong> y
+    <strong>riesgo de mortalidad</strong> en pacientes críticos,
+    especialmente en contextos de <strong>sepsis</strong> y falla orgánica.
+  </p>
 
+  <!-- SNC -->
   <fieldset>
     <legend><h3>Sistema nervioso central</h3></legend>
 
@@ -1002,9 +1003,7 @@
       Componente neurológico (Glasgow Coma Scale)
     </label>
 
-    <select
-      id="sofa_neuro"
-      aria-describedby="sofa-neuro-help">
+    <select id="sofa_neuro">
       <option value="">Seleccione</option>
       <option value="0">0 · GCS 15</option>
       <option value="1">1 · GCS 13–14</option>
@@ -1013,26 +1012,157 @@
       <option value="4">4 · GCS ≤5</option>
     </select>
 
-    <small id="sofa-neuro-help" class="note">
-      Utilizar el mejor puntaje de Glasgow disponible.
-      En pacientes sedados, interpretar con precaución.
+    <small class="note">
+      Utilizar el mejor puntaje disponible. En pacientes sedados,
+      interpretar con precaución.
     </small>
+  </fieldset>
 
-    <button
-      type="button"
-      data-action="calcular-sofa">
-      Calcular SOFA
-    </button>
+  <!-- Respiratorio -->
+  <fieldset>
+    <legend><h3>Sistema respiratorio</h3></legend>
 
+    <label for="sofa_resp">
+      Oxigenación (PaO₂/FiO₂ o SpO₂/FiO₂)
+    </label>
+
+    <select id="sofa_resp">
+      <option value="">Seleccione</option>
+      <option value="0">0 · ≥400</option>
+      <option value="1">1 · &lt;400</option>
+      <option value="2">2 · &lt;300</option>
+      <option value="3">3 · &lt;200 con VM</option>
+      <option value="4">4 · &lt;100 con VM</option>
+    </select>
+  </fieldset>
+
+  <!-- Cardiovascular -->
+  <fieldset>
+    <legend><h3>Sistema cardiovascular</h3></legend>
+
+    <label for="sofa_cv">
+      Presión arterial / vasopresores
+    </label>
+
+    <select id="sofa_cv">
+      <option value="">Seleccione</option>
+      <option value="0">0 · PAM ≥70 mmHg</option>
+      <option value="1">1 · PAM &lt;70 mmHg</option>
+      <option value="2">2 · Dopamina ≤5 o Dobutamina</option>
+      <option value="3">3 · Dopamina 5–15 o Nor/Epi ≤0.1</option>
+      <option value="4">4 · Dopamina &gt;15 o Nor/Epi &gt;0.1</option>
+    </select>
+  </fieldset>
+
+  <!-- Hepático -->
+  <fieldset>
+    <legend><h3>Sistema hepático</h3></legend>
+
+    <label for="sofa_hep">
+      Bilirrubina total (mg/dL)
+    </label>
+
+    <select id="sofa_hep">
+      <option value="">Seleccione</option>
+      <option value="0">0 · &lt;1.2</option>
+      <option value="1">1 · 1.2–1.9</option>
+      <option value="2">2 · 2.0–5.9</option>
+      <option value="3">3 · 6.0–11.9</option>
+      <option value="4">4 · ≥12.0</option>
+    </select>
+  </fieldset>
+
+  <!-- Coagulación -->
+  <fieldset>
+    <legend><h3>Coagulación</h3></legend>
+
+    <label for="sofa_coag">
+      Recuento plaquetario (×10³/µL)
+    </label>
+
+    <select id="sofa_coag">
+      <option value="">Seleccione</option>
+      <option value="0">0 · ≥150</option>
+      <option value="1">1 · &lt;150</option>
+      <option value="2">2 · &lt;100</option>
+      <option value="3">3 · &lt;50</option>
+      <option value="4">4 · &lt;20</option>
+    </select>
+  </fieldset>
+
+  <!-- Renal -->
+  <fieldset>
+    <legend><h3>Sistema renal</h3></legend>
+
+    <label for="sofa_renal">
+      Creatinina sérica / diuresis
+    </label>
+
+    <select id="sofa_renal">
+      <option value="">Seleccione</option>
+      <option value="0">0 · &lt;1.2</option>
+      <option value="1">1 · 1.2–1.9</option>
+      <option value="2">2 · 2.0–3.4</option>
+      <option value="3">3 · 3.5–4.9 o &lt;500 ml/día</option>
+      <option value="4">4 · ≥5.0 o &lt;200 ml/día</option>
+    </select>
+  </fieldset>
+
+  <!-- Acción -->
+  <button
+    type="button"
+    data-action="calcular-sofa">
+    Calcular SOFA
+  </button>
+
+  <!-- Resultado -->
+  <div
+    id="resultadoSOFA2"
+    role="status"
+    aria-live="polite"
+    style="margin-top:10px">
+  </div>
+
+  <!-- Anuncio post-resultado -->
+  <div class="ad-slot ad-result"></div>
+
+<!-- Mortalidad -->
 <div
-  id="resultadoSOFA2"
-  role="status"
-  aria-live="polite"
-  style="margin-top:10px">
+  class="sofa-mortality-report"
+  id="sofaMortalityReport"
+  style="margin-top:14px; display:none;"
+  aria-live="polite">
+
+  <h3>Interpretación · Probabilidad de mortalidad estimada</h3>
+
+  <ul id="sofaMortalityList">
+    <li data-min="0" data-max="3">
+      <strong>0–3:</strong> Mortalidad baja (≈ 0–5%)
+    </li>
+    <li data-min="4" data-max="7">
+      <strong>4–7:</strong> Mortalidad leve–moderada (≈ 5–15%)
+    </li>
+    <li data-min="8" data-max="11">
+      <strong>8–11:</strong> Mortalidad moderada (≈ 15–30%)
+    </li>
+    <li data-min="12" data-max="15">
+      <strong>12–15:</strong> Mortalidad alta (≈ 30–50%)
+    </li>
+    <li data-min="16" data-max="19">
+      <strong>16–19:</strong> Mortalidad muy alta (≈ 50–75%)
+    </li>
+    <li data-min="20" data-max="99">
+      <strong>≥20:</strong> Mortalidad extrema (≈ 75–100%)
+    </li>
+  </ul>
+
+  <p style="font-size:0.9em; opacity:0.85; margin-top:6px">
+    Valores orientativos basados en estudios poblacionales del
+    <strong>SOFA score</strong>. La mortalidad real depende del
+    contexto clínico, la causa de ingreso y las intervenciones terapéuticas.
+  </p>
 </div>
 
-<!-- Anuncio post-resultado -->
-<div class="ad-slot ad-result"></div>
 
 </section>
 
