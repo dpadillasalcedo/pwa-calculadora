@@ -973,13 +973,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 /* =========================
    EVENT BINDING CENTRAL (FIX)
 ========================= */
-
-document.addEventListener("click", function (e) {
-  const btn = e.target.closest("[data-action]");
-  if (!btn) return;
-
-  const action = btn.getAttribute("data-action");
-
+(function initEventBinding() {
   const actionMap = {
     // Ventilación
     "calcular-peso-ideal": calcularPesoIdeal,
@@ -992,7 +986,7 @@ document.addEventListener("click", function (e) {
     "calcular-oxigenacion": calcularOxigenacion,
     "calcular-delta-co2": calcularDeltaCO2,
 
-    // Presiones / perfusión
+    // Presiones / Perfusión
     "calcular-rvs": calcularRVS,
     "calcular-ppr": calcularPPR,
     "calcular-ppc": calcularPPC,
@@ -1010,10 +1004,111 @@ document.addEventListener("click", function (e) {
     "calcular-nihss": calcularNIHSS,
   };
 
-  const fn = actionMap[action];
-  if (typeof fn === "function") {
-    fn();
-  } else {
-    console.warn("Acción no reconocida:", action);
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest("[data-action]");
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const fn = actionMap[action];
+
+    if (typeof fn === "function") {
+      try {
+        fn();
+      } catch (err) {
+        console.error(`Error ejecutando acción: ${action}`, err);
+      }
+    } else {
+      console.warn(`Acción no registrada: ${action}`);
+    }
+  });
+})();
+
+/* =========================
+   ROUTING SIMPLE POR URL (FIX)
+========================= */
+function getRoute() {
+  return location.pathname.replace(/\/$/, "");
+}
+
+function initRoute() {
+  const route = getRoute();
+
+  // Ocultar todas las secciones
+  document.querySelectorAll("section[data-module]").forEach((sec) => {
+    sec.style.display = "none";
+  });
+
+  switch (route) {
+    case "/sofa-2-score":
+      showSection("sofa");
+      setMeta({
+        title: "SOFA-2 Score – Evaluación de disfunción orgánica en UCI",
+        description:
+          "Calculadora SOFA-2 para estimar disfunción orgánica y mortalidad en pacientes críticos.",
+      });
+      break;
+
+    case "/nihss-score":
+      showSection("nihss");
+      setMeta({
+        title: "NIHSS Score – Escala de severidad del ACV",
+        description:
+          "Calculadora NIHSS para cuantificar el déficit neurológico en el accidente cerebrovascular.",
+      });
+      break;
+
+    case "/cam-icu":
+      showSection("camicu");
+      setMeta({
+        title: "CAM-ICU – Detección de delirium en UCI",
+        description:
+          "Evaluación CAM-ICU paso a paso para detección de delirium en pacientes críticos.",
+      });
+      break;
+
+    case "/ecocardiografia-gc":
+      showSection("eco");
+      setMeta({
+        title: "Gasto cardíaco por ecocardiografía (VTI)",
+        description:
+          "Cálculo del gasto cardíaco por ecocardiografía utilizando DTSVI y VTI.",
+      });
+      break;
+
+    default:
+      // Home / Hub
+      showAllSections();
+      setMeta({
+        title: "Calculadora UCI – Herramientas clínicas para terapia intensiva",
+        description:
+          "Calculadoras clínicas para UCI: scores, hemodinamia, ecocardiografía y ventilación.",
+      });
   }
-});
+}
+
+document.addEventListener("DOMContentLoaded", initRoute);
+
+function showSection(module) {
+  const sec = document.querySelector(`section[data-module="${module}"]`);
+  if (sec) sec.style.display = "block";
+}
+
+function showAllSections() {
+  document.querySelectorAll("section[data-module]").forEach((sec) => {
+    sec.style.display = "block";
+  });
+}
+
+function setMeta({ title, description }) {
+  if (title) document.title = title;
+
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta && description) meta.setAttribute("content", description);
+}
+
+// Ocultar ads en modo PWA
+if (window.matchMedia("(display-mode: standalone)").matches) {
+  document.querySelectorAll(".ad-slot").forEach((el) => {
+    el.style.display = "none";
+  });
+}
