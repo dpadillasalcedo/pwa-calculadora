@@ -432,77 +432,66 @@
 
   <h2 id="oxigenacion-title">
     <span class="icon icon-blood"></span>
-    Oxigenación · contenido de O₂
+    Oxigenación · transporte de O₂
   </h2>
 
   <p class="note">
     Cálculo de variables de <strong>transporte de oxígeno</strong>:
-    contenido arterial y venoso, entrega (DO₂), consumo (VO₂) y
-    fracción de extracción (REO₂). Interpretar en contexto hemodinámico
-    y perfusional del paciente crítico.
+    CaO₂, DO₂, VO₂, REO₂ y cociente respiratorio (CR).
   </p>
 
   <fieldset>
-    <legend><h3>Variables de oxigenación</h3></legend>
+    <legend><h3>Hemodinámica</h3></legend>
 
-    <div class="grid-2">
-      <div>
-        <label for="gc">Gasto cardíaco (L/min)</label>
-        <input
-          type="number"
-          id="gc"
-          step="0.1"
-          min="0"
-          inputmode="decimal" />
-      </div>
+    <label for="gc">Gasto cardíaco (L/min)</label>
+    <input type="number" id="gc" step="0.1" min="0">
 
-      <div>
-        <label for="hb">Hemoglobina (g/dL)</label>
-        <input
-          type="number"
-          id="hb"
-          step="0.1"
-          min="0"
-          inputmode="decimal" />
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div>
-        <label for="sao2">SaO₂ (%)</label>
-        <input
-          type="number"
-          id="sao2"
-          step="1"
-          min="0"
-          max="100"
-          inputmode="numeric" />
-      </div>
-
-      <div>
-        <label for="svo2">SvO₂ (%)</label>
-        <input
-          type="number"
-          id="svo2"
-          step="1"
-          min="0"
-          max="100"
-          inputmode="numeric" />
-      </div>
-    </div>
-
-    <button type="button" onclick="calcularOxigenacion()">
-      Calcular oxigenación
-    </button>
-
-    <div id="resultadoOxigenacion" role="status" aria-live="polite"></div>
-    <div id="resultadoOxigenacionDetalle" class="note"></div>
-
-    <!-- Anuncio post-resultado -->
-    <div class="ad-slot ad-result"></div>
+    <label for="hb">Hemoglobina (g/dL)</label>
+    <input type="number" id="hb" step="0.1" min="0">
   </fieldset>
 
+  <fieldset>
+    <legend><h3>Gasometría arterial</h3></legend>
+
+    <label for="sao2">SaO₂ (%)</label>
+    <input type="number" id="sao2" min="0" max="100">
+
+    <label for="pao2">PaO₂ (mmHg)</label>
+    <input type="number" id="pao2" min="0">
+
+    <label for="paco2">PaCO₂ (mmHg)</label>
+    <input type="number" id="paco2" min="0">
+
+    <label for="hco3a">HCO₃⁻ arterial (mEq/L)</label>
+    <input type="number" id="hco3a" min="0">
+  </fieldset>
+
+  <fieldset>
+    <legend><h3>Gasometría venosa</h3></legend>
+
+    <label for="svo2">SvO₂ (%)</label>
+    <input type="number" id="svo2" min="0" max="100">
+
+    <label for="pvo2">PvO₂ (mmHg)</label>
+    <input type="number" id="pvo2" min="0">
+
+    <label for="pvco2">PvCO₂ (mmHg)</label>
+    <input type="number" id="pvco2" min="0">
+
+    <label for="hco3v">HCO₃⁻ venoso (mEq/L)</label>
+    <input type="number" id="hco3v" min="0">
+  </fieldset>
+
+  <button type="button" onclick="calcularOxigenacion()">
+    Calcular oxigenación
+  </button>
+
+  <div id="resultadoOxigenacion" role="status" aria-live="polite"></div>
+  <div id="resultadoOxigenacionDetalle" class="note"></div>
+
+  <div class="ad-slot ad-result"></div>
 </section>
+
 
 <!-- =========================
      CO₂ · presiones · perfusión

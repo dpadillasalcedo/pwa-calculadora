@@ -246,81 +246,121 @@ function calcularGCEco() {
 }
 
 /* =========================
-   OXIGENACIÓN
+   OXIGENACIÓN · DO2 · VO2 · REO2 · CR
 ========================= */
+
 function calcularOxigenacion() {
-  const gc = num("gc");
-  const hb = num("hb");
-  const sao2 = num("sao2");
-  const svo2 = num("svo2");
-  const pao2 = num("pao2");
-  const pvo2 = num("pvo2");
+  const gc     = getNum("gc");
+  const hb     = getNum("hb");
 
-  const resultado = document.getElementById("resultadoOxigenacion");
-  const detalle = document.getElementById("resultadoOxigenacionDetalle");
-  if (!resultado) return;
+  const sao2   = getNum("sao2");
+  const pao2   = getNum("pao2");
+  const paco2  = getNum("paco2");
+  const hco3a  = getNum("hco3a");
 
-  if (
-    anyNaN([gc, hb, sao2, svo2, pao2, pvo2]) ||
-    gc <= 0 || hb <= 0 ||
-    sao2 <= 0 || sao2 > 100 ||
-    svo2 < 0 || svo2 > 100
-  ) {
-    resultado.textContent = "Complete todos los campos con valores válidos";
-    if (detalle) detalle.textContent = "";
+  const svo2   = getNum("svo2");
+  const pvo2   = getNum("pvo2");
+  const pvco2  = getNum("pvco2");
+  const hco3v  = getNum("hco3v");
+
+  // Validación
+  if ([gc,hb,sao2,pao2,paco2,hco3a,svo2,pvo2,pvco2,hco3v].some(v => v === null)) {
+    setHTML("resultadoOxigenacion", "Complete todos los campos para calcular.");
+    setHTML("resultadoOxigenacionDetalle", "");
     return;
   }
 
-  const CaO2_dL = (hb * (sao2 / 100) * 1.34) + (pao2 * 0.003);
-  const CvO2_dL = (hb * (svo2 / 100) * 1.34) + (pvo2 * 0.003);
-  if (!Number.isFinite(CaO2_dL) || !Number.isFinite(CvO2_dL)) {
-    resultado.textContent = "No se pudo calcular el contenido de O₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
+  /* =========================
+     CÁLCULOS
+  ========================= */
 
-  const DO2 = gc * (CaO2_dL * 10);
-  const VO2 = gc * ((CaO2_dL - CvO2_dL) * 10);
-  if (!Number.isFinite(DO2) || !Number.isFinite(VO2)) {
-    resultado.textContent = "No se pudo calcular DO₂ / VO₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
+  // Contenidos de O2
+  const CvO2 = ((hb * (svo2 / 100) * 1.34) + (pvo2 * 0.003)) * 10;
+  const CaO2 = ((hb * (sao2 / 100) * 1.34) + (pao2 * 0.003)) * 10;
 
-  const REO2 = clampPercent(((sao2 - svo2) / sao2) * 100);
-  if (!Number.isFinite(REO2)) {
-    resultado.textContent = "No se pudo calcular la extracción de O₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
+  // Contenidos de CO2
+  const CvCO2 = hco3v + (0.03 * pvco2);
+  const CaCO2 = hco3a + (0.03 * paco2);
 
-  resultado.innerHTML = `<strong>REO₂:</strong> ${REO2.toFixed(1)} %`;
+  const avO2 = CaO2 - CvO2;
 
-  if (detalle) {
-    const interpretacion =
-      REO2 >= 15 && REO2 <= 33
-        ? "<strong>Normal:</strong> 15–33% en reposo."
-        : REO2 > 33
-          ? "Valores <strong>altos</strong>: mayor extracción por <strong>bajo suministro</strong> o <strong>alta demanda</strong>."
-          : "Valores <strong>bajos</strong>: extracción reducida; posible baja demanda o alteración tisular.";
+  // Cociente respiratorio
+  const CR = avO2 !== 0 ? (CvCO2 - CaCO2) / avO2 : null;
 
-    detalle.innerHTML = `
-      <strong>CaO₂ (arterial):</strong> ${CaO2_dL.toFixed(2)} mL O₂/dL<br>
-      <strong>CvO₂ (venoso):</strong> ${CvO2_dL.toFixed(2)} mL O₂/dL<br>
-      <strong>DO₂ (entrega):</strong> ${DO2.toFixed(0)} mL O₂/min<br>
-      <strong>VO₂ (consumo):</strong> ${VO2.toFixed(0)} mL O₂/min<br>
-      ${interpretacion}
-    `;
-  }
+  // Transporte de O2
+  const DO2 = gc * (CaO2 * 10);
+  const VO2 = gc * (avO2 * 10);
 
-  trackEvent("calculate_oxygen_delivery", {
-    cao2_dl: Number(CaO2_dL.toFixed(2)),
-    cvo2_dl: Number(CvO2_dL.toFixed(2)),
-    do2_ml_min: Number(DO2.toFixed(0)),
-    vo2_ml_min: Number(VO2.toFixed(0)),
-    reo2_pct: Number(REO2.toFixed(1)),
-  });
+  // Extracción de O2
+  const REO2 = sao2 !== 0 ? ((sao2 - svo2) / sao2) * 100 : null;
+
+  /* =========================
+     RESULTADOS
+  ========================= */
+
+  setHTML(
+    "resultadoOxigenacion",
+    "<strong>Resultados de oxigenación</strong>"
+  );
+
+  setHTML(
+    "resultadoOxigenacionDetalle",
+    `
+    <ul>
+      <li>
+        <strong>Contenido arterial de O₂ (CaO₂):</strong>
+        ${fmt(CaO2,2)} mL/dL
+        <span class="note">(VN ≈ 15–20)</span>
+      </li>
+
+      <li>
+        <strong>Disponibilidad de O₂ (DO₂):</strong>
+        ${fmt(DO2,0)} mL/min
+        <span class="note">(VN ≈ 900–1100)</span>
+      </li>
+
+      <li>
+        <strong>Consumo de O₂ (VO₂):</strong>
+        ${fmt(VO2,0)} mL/min
+        <span class="note">(VN ≈ 200–300)</span>
+      </li>
+
+      <li>
+        <strong>Rata de extracción de O₂ (REO₂):</strong>
+        ${fmt(REO2,1)} %
+        <span class="note">(VN ≈ 20–30)</span>
+      </li>
+
+      <li>
+        <strong>Cociente respiratorio (CR):</strong>
+        ${CR === null ? "—" : fmt(CR,2)}
+        <span class="note">(VN ≈ 0.7–1.0 · &gt;1.7 sugiere metabolismo anaerobio)</span>
+      </li>
+    </ul>
+    `
+  );
 }
+
+/* =========================
+   HELPERS
+========================= */
+
+function getNum(id) {
+  const el = document.getElementById(id);
+  if (!el) return null;
+  const v = Number(el.value);
+  return Number.isFinite(v) ? v : null;
+}
+
+function fmt(n, d = 2) {
+  return Number.isFinite(n) ? n.toFixed(d) : "—";
+}
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
 
 /* =========================
    CO₂
@@ -690,16 +730,15 @@ function camicuPaso1() {
    PASO 2
 ========================= */
 function camicuPaso2() {
-  const v1 = getVal("camicu_c1");
   const v2 = getVal("camicu_c2");
 
   ocultarDesdePaso(3);
   limpiarResultadoCAMICU();
 
-  if (v1 === 1 && v2 === 1) {
+  if (v2 === 1) {
     mostrarPaso(3);
   } else if (v2 === 0) {
-    // 1 + 2 no se cumplen → negativo definitivo
+    // 1 + 2 no se cumplen
     mostrarResultadoCAMICU(false);
   }
 }
@@ -716,14 +755,15 @@ function camicuPaso3() {
   if (v3 === null) return;
 
   if (v3 === 1) {
-    // 3 positivo → ya cumple (3 o 4)
+    // Criterio 3 positivo → delirium confirmado
     mostrarResultadoCAMICU(true);
   } else {
-    // 3 negativo → recién ahora se evalúa el 4
+    // Criterio 3 negativo → recién ahora evaluar criterio 4
     mostrarPaso(4);
-
-    // Mostrar NO EVALUABLE hasta que se responda el 4
-    setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
+    setHTML(
+      "resultadoCAMICU",
+      "CAM-ICU <strong>NO EVALUABLE</strong>"
+    );
     setHTML(
       "interpretacionCAMICU",
       "El criterio 3 es negativo. Complete el criterio 4 para concluir la evaluación."
@@ -736,7 +776,6 @@ function camicuPaso3() {
 ========================= */
 function camicuPaso4() {
   const v4 = getVal("camicu_c4");
-
   if (v4 === null) return;
 
   mostrarResultadoCAMICU(v4 === 1);
@@ -776,39 +815,26 @@ function limpiarResultadoCAMICU() {
 
 function mostrarResultadoCAMICU(positivo) {
   if (positivo) {
-    setHTML(
-      "resultadoCAMICU",
-      "CAM-ICU <strong>POSITIVO</strong>"
-    );
+    setHTML("resultadoCAMICU", "CAM-ICU <strong>POSITIVO</strong>");
     setHTML(
       "interpretacionCAMICU",
       "Cumple criterios diagnósticos de <strong>delirium</strong>."
     );
   } else {
-    setHTML(
-      "resultadoCAMICU",
-      "CAM-ICU <strong>NEGATIVO</strong>"
-    );
+    setHTML("resultadoCAMICU", "CAM-ICU <strong>NEGATIVO</strong>");
     setHTML(
       "interpretacionCAMICU",
       "No cumple criterios diagnósticos de delirium."
     );
   }
-
-  if (typeof trackEvent === "function") {
-    trackEvent("calculate_cam_icu", {
-      result: positivo ? "positive" : "negative"
-    });
-  }
 }
 
-/* =========================
-   FALLBACK
-========================= */
+/* Fallback seguro */
 function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
+
 
 
 
