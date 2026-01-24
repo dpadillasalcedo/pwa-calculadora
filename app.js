@@ -110,13 +110,11 @@ function calcularPesoIdeal() {
 
   if (!resultado) return;
 
-  // Validación talla
   if (!Number.isFinite(talla) || talla <= 0) {
     resultado.textContent = "Ingrese una talla válida";
     return;
   }
 
-  // Validación sexo
   if (!sexoEl || !sexoEl.value) {
     resultado.textContent = "Seleccione el sexo";
     return;
@@ -125,7 +123,6 @@ function calcularPesoIdeal() {
   const sexo = sexoEl.value;
   let pesoIdeal;
 
-  // Fórmula Devine
   if (sexo === "hombre") {
     pesoIdeal = 50 + 0.91 * (talla - 152.4);
   } else if (sexo === "mujer") {
@@ -135,7 +132,6 @@ function calcularPesoIdeal() {
     return;
   }
 
-  // Seguridad numérica
   if (!Number.isFinite(pesoIdeal)) {
     resultado.textContent = "No se pudo calcular el peso ideal";
     return;
@@ -164,25 +160,24 @@ function ajustarPCO2() {
   const pco2Act = num("pco2Act");
   const pco2Des = num("pco2Des");
 
-  const frAct = num("fr_actual");      // rpm
-  const vtAct = num("vt_actual");      // mL
-  const vminAct = num("vmin_actual");  // L/min
+  const frAct = num("fr_actual");
+  const vtAct = num("vt_actual");
+  const vminAct = num("vmin_actual");
 
   const resultado = document.getElementById("resultadoPCO2");
   const detalle = document.getElementById("resultadoPCO2Detalle");
 
   if (!resultado) return;
 
-  // Validación PCO2
   if (!Number.isFinite(pco2Act) || !Number.isFinite(pco2Des) || pco2Des <= 0) {
     resultado.textContent = "Ingrese PCO₂ válida";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  // Validación ventilación actual (al menos una opción válida)
-  const tieneFRyVT = Number.isFinite(frAct) && frAct > 0 &&
-                     Number.isFinite(vtAct) && vtAct > 0;
+  const tieneFRyVT =
+    Number.isFinite(frAct) && frAct > 0 &&
+    Number.isFinite(vtAct) && vtAct > 0;
 
   const tieneVMin = Number.isFinite(vminAct) && vminAct > 0;
 
@@ -193,10 +188,9 @@ function ajustarPCO2() {
     return;
   }
 
-  // Cálculo del volumen minuto actual si no fue ingresado
   const vminActual = tieneVMin
     ? vminAct
-    : (frAct * vtAct) / 1000; // mL → L/min
+    : (frAct * vtAct) / 1000;
 
   if (!Number.isFinite(vminActual) || vminActual <= 0) {
     resultado.textContent = "No se pudo calcular el volumen minuto actual";
@@ -204,9 +198,6 @@ function ajustarPCO2() {
     return;
   }
 
-
-  // Relación: PaCO2 ~ 1 / Ventilación alveolar (aprox.)
-  // VMIN objetivo = VMIN actual * (PaCO2 actual / PaCO2 deseada)
   const factor = pco2Act / pco2Des;
 
   if (!Number.isFinite(factor) || factor <= 0) {
@@ -214,9 +205,6 @@ function ajustarPCO2() {
     if (detalle) detalle.textContent = "";
     return;
   }
-
-  // Volumen minuto actual (ya validado antes, pero reforzamos seguridad)
-  const vminActual = vminActual; // viene del bloque previo
 
   const vminObj = vminActual * factor;
 
@@ -226,48 +214,24 @@ function ajustarPCO2() {
     return;
   }
 
-  // Sugerencias de ajuste
-  // 1) Ajustar FR manteniendo VT
   const frObj =
-    Number.isFinite(frAct) && frAct > 0
-      ? frAct * factor
-      : NaN;
+    Number.isFinite(frAct) && frAct > 0 ? frAct * factor : NaN;
 
-  // 2) Ajustar VT manteniendo FR
   const vtObj =
-    Number.isFinite(vtAct) && vtAct > 0
-      ? vtAct * factor
-      : NaN;
+    Number.isFinite(vtAct) && vtAct > 0 ? vtAct * factor : NaN;
 
-  // Mostrar resultados
   resultado.innerHTML = `<strong>Ajustes sugeridos</strong>`;
 
   if (detalle) {
-    const parts = [];
-
-    parts.push(`<strong>VMIN objetivo:</strong> ${vminObj.toFixed(2)} L/min`);
-
-    if (Number.isFinite(frObj)) {
-      parts.push(
-        `<strong>FR objetivo (manteniendo VT):</strong> ${frObj.toFixed(0)} rpm`
-      );
-    } else {
-      parts.push(
-        `<strong>FR objetivo (manteniendo VT):</strong> Ingrese FR actual`
-      );
-    }
-
-    if (Number.isFinite(vtObj)) {
-      parts.push(
-        `<strong>VT objetivo (manteniendo FR):</strong> ${vtObj.toFixed(0)} mL`
-      );
-    } else {
-      parts.push(
-        `<strong>VT objetivo (manteniendo FR):</strong> Ingrese VT actual`
-      );
-    }
-
-    detalle.innerHTML = parts.join("<br>");
+    detalle.innerHTML = [
+      `<strong>VMIN objetivo:</strong> ${vminObj.toFixed(2)} L/min`,
+      Number.isFinite(frObj)
+        ? `<strong>FR objetivo (manteniendo VT):</strong> ${frObj.toFixed(0)} rpm`
+        : `<strong>FR objetivo (manteniendo VT):</strong> Ingrese FR actual`,
+      Number.isFinite(vtObj)
+        ? `<strong>VT objetivo (manteniendo FR):</strong> ${vtObj.toFixed(0)} mL`
+        : `<strong>VT objetivo (manteniendo FR):</strong> Ingrese VT actual`,
+    ].join("<br>");
   }
 
   trackEvent("calculate_pco2_adjustment", {
@@ -287,31 +251,24 @@ function ajustarPCO2() {
    ECOCARDIOGRAFÍA
 ========================= */
 function calcularGCEco() {
-  const dtsvi = num("dtsvi"); // cm
-  const vti = num("vti");     // cm
-  const fc = num("fc");       // lpm
+  const dtsvi = num("dtsvi");
+  const vti = num("vti");
+  const fc = num("fc");
 
   const resultado = document.getElementById("resultadoGCEco");
   const interp = document.getElementById("interpretacionGCEco");
 
   if (!resultado) return;
 
-  // Validación básica
-  if (
-    anyNaN([dtsvi, vti, fc]) ||
-    dtsvi <= 0 ||
-    vti <= 0 ||
-    fc <= 0
-  ) {
+  if (anyNaN([dtsvi, vti, fc]) || dtsvi <= 0 || vti <= 0 || fc <= 0) {
     resultado.textContent = "Complete todos los campos con valores válidos";
     if (interp) interp.textContent = "";
     return;
   }
 
-  // dtsvi y VTI en cm
-  const csa = Math.PI * Math.pow(dtsvi / 2, 2); // cm²
-  const vs = csa * vti;                         // cm³ = mL
-  const gc = (vs * fc) / 1000;                  // L/min
+  const csa = Math.PI * Math.pow(dtsvi / 2, 2);
+  const vs = csa * vti;
+  const gc = (vs * fc) / 1000;
 
   if (!Number.isFinite(gc) || gc <= 0) {
     resultado.textContent = "No se pudo calcular el gasto cardíaco";
@@ -322,22 +279,16 @@ function calcularGCEco() {
   resultado.innerHTML = `<strong>Gasto cardíaco:</strong> ${gc.toFixed(2)} L/min`;
 
   if (interp) {
-    let estadoVTI;
-
-    if (vti >= 18 && vti <= 22) {
-      estadoVTI = "VTI 18–22 cm: <strong>normal</strong>.";
-    } else if (vti < 15) {
-      estadoVTI =
-        "VTI < 15 cm: <strong>alerta</strong> (hipoperfusión / bajo gasto).";
-    } else {
-      estadoVTI = "VTI intermedio: interpretar en contexto clínico.";
-    }
-
     interp.innerHTML = `
-      ${estadoVTI}<br>
-      <strong>Respuesta a fluidos:</strong>
-      sugerida si el <strong>cambio del VTI</strong> en reevaluación es
-      <strong>&gt; 15%</strong>.
+      ${
+        vti >= 18 && vti <= 22
+          ? "VTI 18–22 cm: <strong>normal</strong>."
+          : vti < 15
+          ? "VTI < 15 cm: <strong>alerta</strong> (bajo gasto)."
+          : "VTI intermedio: interpretar en contexto clínico."
+      }
+      <br>
+      <strong>Respuesta a fluidos:</strong> cambio de VTI &gt; 15%.
     `;
   }
 
@@ -353,145 +304,67 @@ function calcularGCEco() {
    OXIGENACIÓN
 ========================= */
 function calcularOxigenacion() {
-  const gc = num("gc");     // L/min
-  const hb = num("hb");     // g/dL
-  const sao2 = num("sao2"); // %
-  const svo2 = num("svo2"); // %
-  const pao2 = num("pao2"); // mmHg (OBLIGATORIO)
-  const pvo2 = num("pvo2"); // mmHg (OBLIGATORIO)
+  const gc = num("gc");
+  const hb = num("hb");
+  const sao2 = num("sao2");
+  const svo2 = num("svo2");
+  const pao2 = num("pao2");
+  const pvo2 = num("pvo2");
 
   const resultado = document.getElementById("resultadoOxigenacion");
   const detalle = document.getElementById("resultadoOxigenacionDetalle");
 
   if (!resultado) return;
 
-  /* =========================
-     VALIDACIONES COMPLETAS
-  ========================= */
-
-  // Campos obligatorios
-  if (
-    anyNaN([gc, hb, sao2, svo2, pao2, pvo2])
-  ) {
+  if (anyNaN([gc, hb, sao2, svo2, pao2, pvo2])) {
     resultado.textContent =
       "Complete GC, Hb, SaO₂, SvO₂, PaO₂ y PvO₂";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  // Rangos fisiológicos básicos
   if (
     gc <= 0 ||
     hb <= 0 ||
     sao2 <= 0 || sao2 > 100 ||
-    svo2 < 0  || svo2 > 100 ||
+    svo2 < 0 || svo2 > 100 ||
     pao2 <= 0 ||
     pvo2 <= 0
   ) {
-    resultado.textContent =
-      "Ingrese valores fisiológicamente válidos";
+    resultado.textContent = "Ingrese valores fisiológicamente válidos";
     if (detalle) detalle.textContent = "";
     return;
   }
 
-  /* =========================
-     CONTENIDOS DE OXÍGENO
-  ========================= */
-
-  // mL O₂ / dL
   const CaO2_dL = (hb * (sao2 / 100) * 1.34) + (pao2 * 0.003);
   const CvO2_dL = (hb * (svo2 / 100) * 1.34) + (pvo2 * 0.003);
 
-  if (
-    !Number.isFinite(CaO2_dL) || CaO2_dL <= 0 ||
-    !Number.isFinite(CvO2_dL) || CvO2_dL < 0 ||
-    CvO2_dL > CaO2_dL
-  ) {
-    resultado.textContent =
-      "No se pudo calcular el contenido de O₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
-
-  /* =========================
-     DO₂ y VO₂
-  ========================= */
-
-  // Convertir a mL O₂ / L
   const CaO2 = CaO2_dL * 10;
   const CvO2 = CvO2_dL * 10;
 
-  // mL O₂ / min
   const DO2 = gc * CaO2;
   const VO2 = gc * (CaO2 - CvO2);
 
-  if (
-    !Number.isFinite(DO2) || DO2 <= 0 ||
-    !Number.isFinite(VO2) || VO2 < 0
-  ) {
-    resultado.textContent =
-      "No se pudo calcular DO₂ / VO₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
-
-  /* =========================
-     EXTRACCIÓN DE O₂ (REO₂)
-  ========================= */
-
-  // ✅ Fórmula fisiológica correcta
   const REO2 = clampPercent(
     ((CaO2_dL - CvO2_dL) / CaO2_dL) * 100
   );
 
-  if (!Number.isFinite(REO2)) {
-    resultado.textContent =
-      "No se pudo calcular la extracción de O₂";
-    if (detalle) detalle.textContent = "";
-    return;
-  }
-
-  /* =========================
-     RESULTADOS
-  ========================= */
-
-  resultado.innerHTML =
-    `<strong>REO₂:</strong> ${REO2.toFixed(1)} %`;
+  resultado.innerHTML = `<strong>REO₂:</strong> ${REO2.toFixed(1)} %`;
 
   if (detalle) {
-    let interpretacion;
-
-    if (REO2 >= 15 && REO2 <= 33) {
-      interpretacion =
-        "<strong>Normal:</strong> 15–33% en reposo.";
-    } else if (REO2 > 33) {
-      interpretacion =
-        "Valores <strong>altos</strong>: aumento de la extracción por " +
-        "<strong>bajo aporte de O₂</strong> (GC bajo, anemia, hipoxemia) " +
-        "o <strong>alta demanda</strong>.";
-    } else {
-      interpretacion =
-        "Valores <strong>bajos</strong>: extracción reducida " +
-        "(disfunción mitocondrial, shunt, sepsis).";
-    }
-
     detalle.innerHTML = `
-      <strong>CaO₂ (arterial):</strong> ${CaO2_dL.toFixed(2)} mL O₂/dL<br>
-      <strong>CvO₂ (venoso):</strong> ${CvO2_dL.toFixed(2)} mL O₂/dL<br>
-      <strong>DO₂ (entrega):</strong> ${DO2.toFixed(0)} mL O₂/min<br>
-      <strong>VO₂ (consumo):</strong> ${VO2.toFixed(0)} mL O₂/min<br>
-      ${interpretacion}
+      <strong>CaO₂:</strong> ${CaO2_dL.toFixed(2)} mL/dL<br>
+      <strong>CvO₂:</strong> ${CvO2_dL.toFixed(2)} mL/dL<br>
+      <strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min<br>
+      <strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min
     `;
   }
 
   trackEvent("calculate_oxygen_delivery", {
-    cao2_dl: Number(CaO2_dL.toFixed(2)),
-    cvo2_dl: Number(CvO2_dL.toFixed(2)),
-    do2_ml_min: Number(DO2.toFixed(0)),
-    vo2_ml_min: Number(VO2.toFixed(0)),
     reo2_pct: Number(REO2.toFixed(1)),
   });
 }
+
 
 
 /* =========================
