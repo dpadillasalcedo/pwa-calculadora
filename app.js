@@ -587,14 +587,14 @@ function resaltarRangoSOFA(score) {
 }
 
 function calcularSOFA2() {
-  const ids = [
-    "sofa_neuro",
-    "sofa_resp",
-    "sofa_cv",
-    "sofa_higado",
-    "sofa_rinon",
-    "sofa_coag",
-  ];
+const ids = [
+  "sofa_neuro",
+  "sofa_resp",
+  "sofa_cv",
+  "sofa_hep",    // ✔ coincide con HTML
+  "sofa_renal", // ✔ coincide con HTML
+  "sofa_coag",
+];
 
   let total = 0;
 
@@ -971,77 +971,49 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 }
 
 /* =========================
-   EVENT BINDING CENTRAL
+   EVENT BINDING CENTRAL (FIX)
 ========================= */
-document.addEventListener("click", (e) => {
+
+document.addEventListener("click", function (e) {
   const btn = e.target.closest("[data-action]");
   if (!btn) return;
 
-  const action = btn.dataset.action;
+  const action = btn.getAttribute("data-action");
 
-  switch (action) {
-    case "calcular-peso-ideal":
-      calcularPesoIdeal();
-      break;
+  const actionMap = {
+    // Ventilación
+    "calcular-peso-ideal": calcularPesoIdeal,
+    "ajustar-pco2": ajustarPCO2,
 
-    case "ajustar-pco2":
-      ajustarPCO2();
-      break;
+    // Ecocardiografía
+    "calcular-gc-eco": calcularGCEco,
 
-    case "calcular-gc-eco":
-      calcularGCEco();
-      break;
+    // Oxigenación
+    "calcular-oxigenacion": calcularOxigenacion,
+    "calcular-delta-co2": calcularDeltaCO2,
 
-    case "calcular-oxigenacion":
-      calcularOxigenacion();
-      break;
+    // Presiones / perfusión
+    "calcular-rvs": calcularRVS,
+    "calcular-ppr": calcularPPR,
+    "calcular-ppc": calcularPPC,
 
-    case "calcular-delta-co2":
-      calcularDeltaCO2();
-      break;
+    // Ácido–base
+    "calcular-anion-gap": calcularAnionGapCorregido,
+    "calcular-delta-gap": calcularDeltaGap,
 
-    case "calcular-rvs":
-      calcularRVS();
-      break;
+    // Electrolitos
+    "calcular-na-corregido": calcularSodioCorregido,
+    "calcular-ca-corregido": calcularCalcioCorregido,
 
-    case "calcular-ppr":
-      calcularPPR();
-      break;
+    // Scores
+    "calcular-sofa": calcularSOFA2,
+    "calcular-nihss": calcularNIHSS,
+  };
 
-    case "calcular-ppc":
-      calcularPPC();
-      break;
-
-    case "calcular-anion-gap":
-      calcularAnionGapCorregido();
-      break;
-
-    case "calcular-delta-gap":
-      calcularDeltaGap();
-      break;
-
-    case "calcular-na-corregido":
-      calcularSodioCorregido();
-      break;
-
-    case "calcular-ca-corregido":
-      calcularCalcioCorregido();
-      break;
-
-    case "calcular-sofa":
-      calcularSOFA2();
-      break;
-
-    case "calcular-nihss":
-      calcularNIHSS();
-      break;
-
-    default:
-      console.warn("Acción no reconocida:", action);
+  const fn = actionMap[action];
+  if (typeof fn === "function") {
+    fn();
+  } else {
+    console.warn("Acción no reconocida:", action);
   }
 });
-
-
-  });
-})();
-
