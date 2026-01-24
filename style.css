@@ -227,3 +227,43 @@ hr {
 <path d='M12 2s-6 6.5-6 11a6 6 0 0 0 12 0c0-4.5-6-11-6-11z'/>\
 </svg>");
 }
+
+/* =========================
+   ÍNDICE / MENÚ PRINCIPAL
+========================= */
+
+.indice {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.indice a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.indice a:hover {
+  background-color: #1e293b;
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* Texto secundario opcional */
+.indice small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
