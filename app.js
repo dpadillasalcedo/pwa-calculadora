@@ -1198,9 +1198,6 @@ function showAllSections() {
   });
 }
 
-function setMeta({ title, description }) {
-  if (title) document.title = title;
-
   const meta = document.querySelector('meta[name="description"]');
   if (meta && description) meta.setAttribute("content", description);
 }
@@ -1223,47 +1220,27 @@ function initRoute() {
   switch (route) {
     case "/sofa-2-score":
       showSection("sofa");
-      setMeta({
-        title: "SOFA-2 Score – Evaluación de disfunción orgánica en UCI",
-        description:
-          "Calculadora SOFA-2 para estimar disfunción orgánica y mortalidad en pacientes críticos."
       });
       break;
 
     case "/nihss-score":
       showSection("nihss");
-      setMeta({
-        title: "NIHSS Score – Escala de severidad del ACV",
-        description:
-          "Calculadora NIHSS para cuantificar el déficit neurológico en el accidente cerebrovascular."
       });
       break;
 
     case "/cam-icu":
       showSection("camicu");
-      setMeta({
-        title: "CAM-ICU – Detección de delirium en UCI",
-        description:
-          "Evaluación CAM-ICU paso a paso para detección de delirium en pacientes críticos."
       });
       break;
 
     case "/ecocardiografia-gc":
       showSection("eco");
-      setMeta({
-        title: "Gasto cardíaco por ecocardiografía (VTI)",
-        description:
-          "Cálculo del gasto cardíaco por ecocardiografía utilizando DTSVI y VTI."
       });
       break;
 
     default:
       // Home / Hub o ruta desconocida
       showAllSections();
-      setMeta({
-        title: "Calculadora UCI – Herramientas clínicas para terapia intensiva",
-        description:
-          "Calculadoras clínicas para UCI: scores, hemodinamia, ecocardiografía y ventilación."
       });
       break;
   }
