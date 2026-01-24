@@ -664,6 +664,123 @@ function calcularNIHSS() {
 }
 
 /* =========================
+   CAM-ICU · DELIRIUM
+========================= */
+
+function initCAMICU() {
+  ocultarDesdePaso(2);
+  limpiarResultadoCAMICU();
+}
+
+function camicuPaso1() {
+  const v1 = getVal("camicu_c1");
+  ocultarDesdePaso(2);
+  limpiarResultadoCAMICU();
+
+  if (v1 === 1) {
+    mostrarPaso(2);
+  } else if (v1 === 0) {
+    mostrarResultadoCAMICU(false);
+  }
+}
+
+function camicuPaso2() {
+  const v1 = getVal("camicu_c1");
+  const v2 = getVal("camicu_c2");
+  ocultarDesdePaso(3);
+  limpiarResultadoCAMICU();
+
+  if (v1 === 1 && v2 === 1) {
+    mostrarPaso(3);
+    mostrarPaso(4);
+  } else if (v2 === 0) {
+    mostrarResultadoCAMICU(false);
+  }
+}
+
+function camicuPaso3() {
+  evaluarResultadoFinal();
+}
+
+function camicuPaso4() {
+  evaluarResultadoFinal();
+}
+
+/* =========================
+   LÓGICA FINAL
+========================= */
+
+function evaluarResultadoFinal() {
+  const v1 = getVal("camicu_c1");
+  const v2 = getVal("camicu_c2");
+  const v3 = getVal("camicu_c3");
+  const v4 = getVal("camicu_c4");
+
+  if (v1 !== 1 || v2 !== 1) return;
+
+  if (v3 === 1 || v4 === 1) {
+    mostrarResultadoCAMICU(true);
+  } else if (v3 === 0 && v4 === 0) {
+    mostrarResultadoCAMICU(false);
+  }
+}
+
+/* =========================
+   HELPERS
+========================= */
+
+function getVal(id) {
+  const el = document.getElementById(id);
+  const v = Number(el?.value);
+  return Number.isFinite(v) ? v : null;
+}
+
+function mostrarPaso(n) {
+  const paso = document.getElementById(`camicu_paso${n}`);
+  if (paso) paso.style.display = "block";
+}
+
+function ocultarDesdePaso(n) {
+  for (let i = n; i <= 4; i++) {
+    const paso = document.getElementById(`camicu_paso${i}`);
+    if (paso) {
+      paso.style.display = "none";
+      const sel = paso.querySelector("select");
+      if (sel) sel.value = "";
+    }
+  }
+}
+
+function limpiarResultadoCAMICU() {
+  setHTML("resultadoCAMICU", "");
+  setHTML("interpretacionCAMICU", "");
+}
+
+function mostrarResultadoCAMICU(positivo) {
+  if (positivo) {
+    setHTML(
+      "resultadoCAMICU",
+      "CAM-ICU <strong>POSITIVO</strong>"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Compatible con <strong>delirium</strong>."
+    );
+  } else {
+    setHTML(
+      "resultadoCAMICU",
+      "CAM-ICU <strong>NEGATIVO</strong>"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "No cumple criterios de delirium."
+    );
+  }
+
+  trackEvent("calculate_cam_icu", { result: positivo ? "positive" : "negative" });
+}
+
+/* =========================
    EVENT BINDING CENTRAL
 ========================= */
 (function initEventBinding() {
