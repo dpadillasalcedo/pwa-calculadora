@@ -970,6 +970,78 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
   });
 }
 
+/* =========================
+   EVENT BINDING CENTRAL
+========================= */
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-action]");
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+
+  switch (action) {
+    case "calcular-peso-ideal":
+      calcularPesoIdeal();
+      break;
+
+    case "ajustar-pco2":
+      ajustarPCO2();
+      break;
+
+    case "calcular-gc-eco":
+      calcularGCEco();
+      break;
+
+    case "calcular-oxigenacion":
+      calcularOxigenacion();
+      break;
+
+    case "calcular-delta-co2":
+      calcularDeltaCO2();
+      break;
+
+    case "calcular-rvs":
+      calcularRVS();
+      break;
+
+    case "calcular-ppr":
+      calcularPPR();
+      break;
+
+    case "calcular-ppc":
+      calcularPPC();
+      break;
+
+    case "calcular-anion-gap":
+      calcularAnionGapCorregido();
+      break;
+
+    case "calcular-delta-gap":
+      calcularDeltaGap();
+      break;
+
+    case "calcular-na-corregido":
+      calcularSodioCorregido();
+      break;
+
+    case "calcular-ca-corregido":
+      calcularCalcioCorregido();
+      break;
+
+    case "calcular-sofa":
+      calcularSOFA2();
+      break;
+
+    case "calcular-nihss":
+      calcularNIHSS();
+      break;
+
+    default:
+      console.warn("Acción no reconocida:", action);
+  }
+});
+
+
   });
 })();
 
