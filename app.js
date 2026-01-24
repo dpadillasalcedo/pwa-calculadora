@@ -653,7 +653,7 @@ function calcularNIHSS() {
 
   const interpretacion =
     total === 0 ? "Sin déficit neurológico."
-    : total <= 4 ? "ACV leve."
+    : total <= 4 ? "ACV Minor"
     : total <= 15 ? "ACV moderado."
     : total <= 20 ? "ACV moderado–severo."
     : "ACV severo.";
@@ -684,7 +684,7 @@ function camicuPaso1() {
   if (v1 === 1) {
     mostrarPaso(2);
   }
-  // Si es NO, no se muestra resultado todavía
+  // Si es NO, no se continúa evaluación
 }
 
 /* =========================
@@ -701,18 +701,21 @@ function camicuPaso2() {
     mostrarPaso(3);
     mostrarPaso(4);
   } else if (v2 === 0) {
-    // 1 + 2 no se cumple → CAM-ICU negativo definitivo
+    // 1 + 2 no se cumplen → negativo definitivo
     mostrarResultadoCAMICU(false);
   }
 }
 
 /* =========================
-   PASO 3 y 4
+   PASO 3
 ========================= */
 function camicuPaso3() {
   evaluarResultadoFinal();
 }
 
+/* =========================
+   PASO 4
+========================= */
 function camicuPaso4() {
   evaluarResultadoFinal();
 }
@@ -726,17 +729,21 @@ function evaluarResultadoFinal() {
   const v3 = getVal("camicu_c3");
   const v4 = getVal("camicu_c4");
 
-  // Solo evaluar si 1 y 2 son positivos
+  // Si 1 + 2 no se cumplen, no hay delirium
   if (v1 !== 1 || v2 !== 1) return;
 
-  // Esperar a que ambos estén respondidos
-  if (v3 === null || v4 === null) return;
-
-  if (v3 === 1 || v4 === 1) {
-    mostrarResultadoCAMICU(true);
-  } else {
-    mostrarResultadoCAMICU(false);
+  // Si 3 y 4 aún no fueron evaluados → NO EVALUABLE
+  if (v3 === null && v4 === null) {
+    setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
+    setHTML(
+      "interpretacionCAMICU",
+      "Complete al menos uno de los criterios 3 o 4 para concluir la evaluación."
+    );
+    return;
   }
+
+  // Resultado final
+  mostrarResultadoCAMICU(v3 === 1 || v4 === 1);
 }
 
 /* =========================
@@ -792,9 +799,11 @@ function mostrarResultadoCAMICU(positivo) {
     );
   }
 
-  trackEvent("calculate_cam_icu", {
-    result: positivo ? "positive" : "negative"
-  });
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_cam_icu", {
+      result: positivo ? "positive" : "negative"
+    });
+  }
 }
 
 

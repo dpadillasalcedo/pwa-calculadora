@@ -1170,11 +1170,7 @@
 <!-- =========================
      CAM-ICU · Delirium
 ========================= -->
-<section
-  id="camicu"
-  class="panel"
-  aria-labelledby="camicu-title"
-  data-module="camicu">
+<section id="camicu" class="panel" aria-labelledby="camicu-title" data-module="camicu">
 
   <h2 id="camicu-title">
     <span class="icon icon-brain"></span>
@@ -1183,19 +1179,27 @@
 
   <p class="note">
     Diagnóstico positivo si se cumple:
-    <strong>Criterio 1 + Criterio 2</strong> y <strong>(Criterio 3 o 4)</strong>.
+    <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
   </p>
 
   <!-- PASO 1 -->
   <fieldset>
     <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
 
-    <p class="note">
-      ¿Existe evidencia de un <strong>cambio agudo</strong> en el estado mental
-      respecto al basal, o un <strong>curso fluctuante</strong> en las últimas 24 horas?
-    </p>
+    <div class="note">
+      <strong>Evaluación:</strong>
+      <ul>
+        <li>Cambio agudo del estado mental respecto al basal <strong>o</strong></li>
+        <li>Curso fluctuante en las últimas <strong>24 h</strong></li>
+      </ul>
 
-    <label for="camicu_c1">Respuesta</label>
+      <strong>👉 Marcar “Sí” si:</strong>
+      <ul>
+        <li>Se cumple <strong>al menos uno</strong> de los criterios.</li>
+      </ul>
+    </div>
+
+    <label>¿Cumple el criterio?</label>
     <select id="camicu_c1" onchange="camicuPaso1()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
@@ -1207,16 +1211,29 @@
   <fieldset id="camicu_paso2" style="display:none">
     <legend><h3>Paso 2 · Inatención</h3></legend>
 
-    <p class="note">
-      ¿El paciente presenta <strong>dificultad para mantener o dirigir la atención</strong>?
-      <br>
-      (Ej.: no puede seguir órdenes simples, se distrae fácilmente)
-    </p>
+    <div class="note">
+      <strong>Prueba:</strong>
+      <ul>
+        <li>Leer la palabra <strong>CASABLANCA</strong> (10 letras).</li>
+        <li>Pedir que apriete la mano <strong>solo</strong> al escuchar la letra <strong>“A”</strong>.</li>
+      </ul>
 
-    <label for="camicu_c2">Respuesta</label>
+      <strong>Errores:</strong>
+      <ul>
+        <li>No responder ante una letra “A”.</li>
+        <li>Responder cuando la letra no es “A”.</li>
+      </ul>
+
+      <strong>👉 Marcar “Sí” si:</strong>
+      <ul>
+        <li>Hay <strong>2 o más errores</strong>.</li>
+      </ul>
+    </div>
+
+    <label>¿Presenta inatención?</label>
     <select id="camicu_c2" onchange="camicuPaso2()">
       <option value="">Seleccione</option>
-      <option value="1">Sí</option>
+      <option value="1">Sí (≥ 2 errores)</option>
       <option value="0">No</option>
     </select>
   </fieldset>
@@ -1225,16 +1242,28 @@
   <fieldset id="camicu_paso3" style="display:none">
     <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
 
-    <p class="note">
-      ¿Presenta <strong>pensamiento incoherente o ilógico</strong>?
-      <br>
-      (Respuestas irrelevantes, cambios impredecibles de tema, ideas inconexas)
-    </p>
+    <div class="note">
+      <strong>Prueba:</strong>
+      <ul>
+        <li>Realizar preguntas simples de <strong>Sí / No</strong>.</li>
+      </ul>
 
-    <label for="camicu_c3">Respuesta</label>
+      <strong>Ejemplos:</strong>
+      <ul>
+        <li>¿Una piedra flota en el agua?</li>
+        <li>¿Los peces viven en el mar?</li>
+      </ul>
+
+      <strong>👉 Marcar “Sí” si:</strong>
+      <ul>
+        <li>Hay <strong>al menos una respuesta incorrecta o incoherente</strong>.</li>
+      </ul>
+    </div>
+
+    <label>¿Pensamiento desorganizado?</label>
     <select id="camicu_c3" onchange="camicuPaso3()">
       <option value="">Seleccione</option>
-      <option value="1">Sí</option>
+      <option value="1">Sí (≥ 1 error)</option>
       <option value="0">No</option>
     </select>
   </fieldset>
@@ -1243,41 +1272,31 @@
   <fieldset id="camicu_paso4" style="display:none">
     <legend><h3>Paso 4 · Nivel de conciencia alterado</h3></legend>
 
-    <p class="note">
-      ¿El nivel de conciencia es <strong>diferente de alerta</strong>?
-      <br>
-      (Ej.: vigil, letárgico, estuporoso o comatoso)
-    </p>
+    <div class="note">
+      <strong>Evaluación:</strong>
+      <ul>
+        <li>Observar el nivel de conciencia.</li>
+      </ul>
 
-    <label for="camicu_c4">Respuesta</label>
+      <strong>👉 Marcar “Sí” si:</strong>
+      <ul>
+        <li>El paciente <strong>NO</strong> está alerta (somnoliento, agitado, estuporoso, etc.).</li>
+      </ul>
+    </div>
+
+    <label>¿Nivel de conciencia alterado?</label>
     <select id="camicu_c4" onchange="camicuPaso4()">
       <option value="">Seleccione</option>
-      <option value="1">Sí</option>
+      <option value="1">Sí (≠ alerta)</option>
       <option value="0">No</option>
     </select>
   </fieldset>
 
   <!-- RESULTADO -->
-  <div
-    id="resultadoCAMICU"
-    role="status"
-    aria-live="polite"
-    style="margin-top:14px;font-weight:700">
-  </div>
+  <div id="resultadoCAMICU" role="status" aria-live="polite" style="margin-top:14px;font-weight:700"></div>
+  <div id="interpretacionCAMICU" class="note" style="margin-top:6px"></div>
 
-  <div
-    id="interpretacionCAMICU"
-    class="note"
-    style="margin-top:6px">
-  </div>
-
-  <div class="ad-slot ad-result"></div>
 </section>
-
-<script>
-  initCAMICU();
-</script>
-
 
 
 <!-- =========================
