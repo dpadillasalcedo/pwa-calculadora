@@ -11,8 +11,8 @@
    VARIABLES
 ========================= */
 :root {
-  --bg-main: #0f172a;
-  --bg-card: #111827;
+  --bg-main: #1e293b;
+  --bg-card: #0f172a;
   --bg-input: #1e293b;
   --bg-option: #1e293b;
   --color-text: #e5e7eb;
@@ -269,8 +269,8 @@ hr {
 
 .eco-explanation {
   display: flex;
-  justify-content: flex-end;   /* bloque a la derecha */
-  align-items: center;         /* imágenes centradas entre sí */
+  justify-content: center;   /* 👈 CENTRA HORIZONTALMENTE */
+  align-items: center;       /* centra verticalmente */
   gap: 16px;
   margin: 16px 0;
   flex-wrap: wrap;
@@ -307,3 +307,4 @@ hr {
     transform: scale(1.2);
   }
 }
+
