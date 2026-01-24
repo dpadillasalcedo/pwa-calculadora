@@ -107,13 +107,11 @@ select {
   cursor: pointer;
 }
 
-/* Opciones visibles */
 select option {
   background-color: var(--bg-option);
   color: var(--color-text);
 }
 
-/* Opción seleccionada */
 select option:checked {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -204,7 +202,7 @@ hr {
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
 }
 
-/* 🫁 Pulmón – ventilación */
+/* 🫁 Pulmón */
 .icon-lung {
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'>\
@@ -212,7 +210,7 @@ hr {
 </svg>");
 }
 
-/* 🩺 Estetoscopio – hemodinamia / SOFA */
+/* 🩺 Estetoscopio */
 .icon-stetho {
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'>\
@@ -220,7 +218,7 @@ hr {
 </svg>");
 }
 
-/* 🩸 Gota de sangre – oxigenación / ácido-base */
+/* 🩸 Gota de sangre */
 .icon-blood {
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'>\
@@ -229,9 +227,8 @@ hr {
 }
 
 /* =========================
-   ÍNDICE / MENÚ PRINCIPAL
+   ÍNDICE / MENÚ
 ========================= */
-
 .indice {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -260,10 +257,53 @@ hr {
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-/* Texto secundario opcional */
 .indice small {
   display: block;
   font-size: 0.8rem;
   color: var(--color-muted);
 }
 
+/* =========================================================
+   ECOCARDIOGRAFÍA · IMÁGENES (AGREGADO)
+   → alineadas a la derecha + zoom
+========================================================= */
+
+.eco-explanation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+.eco-figure {
+  max-width: 200px;
+  cursor: zoom-in;
+  text-align: center;
+}
+
+.eco-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.eco-figure:hover img {
+  transform: scale(1.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.eco-figure figcaption {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+
+@media (max-width: 600px) {
+  .eco-figure:hover img {
+    transform: scale(1.2);
+  }
+}
