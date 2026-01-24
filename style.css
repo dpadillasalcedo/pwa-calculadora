@@ -270,12 +270,12 @@ hr {
 
 .eco-explanation {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end;   /* siguen a la derecha */
+  align-items: center;         /* 👈 ESTO las centra */
   gap: 16px;
   margin: 16px 0;
   flex-wrap: wrap;
   overflow: visible;
-}
 
 .eco-figure {
   max-width: 200px;
