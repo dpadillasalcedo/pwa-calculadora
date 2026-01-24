@@ -1,39 +1,77 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Cookiebot CMP -->
+  <title>
+    Calculadora UCI Adultos | Ventilación mecánica, SOFA-2, parámetros hemodinámicos y microcirculatorios
+  </title>
+
+  <meta
+    name="description"
+    content="Calculadora clínica para cuidados críticos: ventilación mecánica, SOFA-2, oxigenación, hemodinamia, análisis ácido-base, CAM-ICU delirium y NIHSS. Uso educativo para profesionales de terapia intensiva."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dpadillasalcedo.github.io/pwa-calculadora/" />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
+  <meta property="og:title" content="Calculadora UCI Adultos" />
+  <meta
+    property="og:description"
+    content="Herramienta clínica para cuidados críticos: ventilación, SOFA-2, oxigenación, hemodinamia y neurología."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dpadillasalcedo.github.io/pwa-calculadora/" />
+  <meta property="og:site_name" content="Calculadora UCI" />
+
+  <!-- =========================
+       Twitter Card
+  ========================== -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Calculadora UCI Adultos" />
+  <meta
+    name="twitter:description"
+    content="Calculadora clínica para terapia intensiva: ventilación, SOFA-2, CAM-ICU y NIHSS."
+  />
+
+  <!-- =========================
+       Performance
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin />
+
+  <!-- =========================
+       Estilos
+  ========================== -->
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b5fff" />
+
+  <!-- =========================
+       Cookiebot CMP
+  ========================== -->
   <script
     id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
     data-blockingmode="auto"
-    type="text/javascript"
     async>
   </script>
 
-  <title>Calculadora UCI Adultos | Ventilación, SOFA, Hemodinamia y Oxigenación</title>
-
-  <meta name="description" content="Calculadora clínica para UCI adultos. Incluye ventilación mecánica, score SOFA-2, oxigenación, hemodinamia y análisis ácido-base. Uso educativo para profesionales de cuidados críticos." />
-
-
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://dpadillasalcedo.github.io/pwa-calculadora/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Calculadora UCI Adultos" />
-  <meta property="og:description" content="Herramienta clínica para cuidados críticos: ventilación, SOFA-2, hemodinamia, oxigenación y ácido-base." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dpadillasalcedo.github.io/pwa-calculadora/" />
-
-  <link rel="stylesheet" href="style.css" />
-  <meta name="theme-color" content="#0b5fff" />
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Google Analytics GA4 -->
+  <!-- =========================
+       Google Analytics (GA4)
+  ========================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,9 +85,9 @@
 
   <!-- =========================
        Navegación interna (SEO)
-       Permite que Google entienda y descubra secciones específicas.
+       Permite que Google entienda y descubra secciones específicas
   ========================== -->
-  <nav aria-label="Secciones de la calculadora UCI" style="display:none">
+  <nav aria-label="Secciones de la calculadora UCI" class="visually-hidden">
     <ul>
       <li><a href="#ventilacion">Ventilación mecánica</a></li>
       <li><a href="#ecocardiografia">Ecocardiografía</a></li>
@@ -58,659 +96,1291 @@
       <li><a href="#acidobase">Estado ácido-base</a></li>
       <li><a href="#electrolitos">Electrolitos</a></li>
       <li><a href="#sofa">SOFA-2</a></li>
+      <li><a href="#camicu">CAM-ICU</a></li>
+      <li><a href="#nihss">NIHSS</a></li>
       <li><a href="#referencias">Referencias</a></li>
     </ul>
   </nav>
-  <div class="app">
 
+  <!-- =========================
+       Contenido principal
+  ========================== -->
+  <main class="app" id="main-content">
+
+    <!-- =========================
+         Header principal
+    ========================== -->
     <header class="app-header">
       <div>
         <h1>Calculadora UCI</h1>
-        <p class="subtitle">Monitoreo hemodinámico · respiratorio · metabólico</p>
+        <p class="subtitle">
+          Monitoreo hemodinámico · respiratorio · metabólico
+        </p>
       </div>
       <div class="pill">Uso clínico educativo</div>
     </header>
 
-    <!-- =========================
-         Ventilación mecánica
-    ========================== -->
-    <section id="ventilacion" class="panel" aria-labelledby="ventilacion-title">
-      <h2 id="ventilacion-title"><span class="icon icon-lung"></span> Ventilación mecánica</h2>
-
-<p class="note">
-Herramientas de apoyo para <strong>ventilación mecánica invasiva</strong> en pacientes adultos.
-Incluye cálculo de <strong>peso ideal</strong>, <strong>volumen corriente protector</strong>
-y ajuste de ventilación minuto según objetivos de PaCO₂.
-</p>
-
-<p class="note">
-Los valores sugeridos se basan en estrategias de ventilación protectora
-y deben interpretarse en el contexto clínico individual.
-</p>
-
-      <p class="note">Cálculos orientativos para ventilación mecánica en pacientes críticos adultos. No reemplaza protocolos institucionales ni juicio clínico.</p>
-
-      <h3>Peso ideal</h3>
-      <label>Talla (cm)</label>
-      <input type="number" id="talla" />
-
-      <label>Sexo</label>
-      <select id="sexo">
-        <option value="">Seleccione</option>
-        <option value="hombre">Hombre</option>
-        <option value="mujer">Mujer</option>
-      </select>
-
-      <button onclick="calcularPesoIdeal()">Calcular peso ideal</button>
-      <div id="resultadoPeso"></div>
-
-      <hr />
-
-      <h3>Ajuste de PCO₂ deseada</h3>
-      <label>PCO₂ actual</label>
-      <input type="number" id="pco2Act" />
-
-      <label>PCO₂ deseada</label>
-      <input type="number" id="pco2Des" />
-
-      <div class="grid-2">
-        <div>
-          <label>FR</label>
-          <input type="number" id="fr_actual" />
-        </div>
-        <div>
-          <label>VT (mL)</label>
-          <input type="number" id="vt_actual" />
-        </div>
-      </div>
-
-      <label>VMIN (L/min)</label>
-      <input type="number" id="vmin_actual" />
-
-      <button onclick="ajustarPCO2()">Calcular ajuste</button>
-      <div id="resultadoPCO2"></div>
-      <div id="resultadoPCO2Detalle" class="note" style="margin-top:6px"></div>
-    </section>
-
-    <!-- =========================
-         Ecocardiografía
-    ========================== -->
-    <section id="ecocardiografia" class="panel" aria-labelledby="ecocardiografia-title">
-      <h2 id="ecocardiografia-title"><span class="icon icon-stetho"></span> Ecocardiografía · gasto cardíaco</h2>
-
-      <p class="note">Estimación de gasto cardíaco por ecocardiografía usando TSVI y VTI. Interpretar en contexto hemodinámico.</p>
-
-      <h3>Gasto cardíaco por ecocardiografía</h3>
-
-      <div class="grid-3">
-        <div>
-          <label>Diámetro TSVI (cm)</label>
-          <input type="number" id="dtsvi" step="0.1" />
-        </div>
-        <div>
-          <label>VTI TSVI (cm)</label>
-          <input type="number" id="vti" step="0.1" />
-        </div>
-        <div>
-          <label>Frecuencia cardíaca (lpm)</label>
-          <input type="number" id="fc" step="1" />
-        </div>
-      </div>
-
-      <button onclick="calcularGCEco()">Calcular GC por eco</button>
-      <div id="resultadoGCEco"></div>
-      <div id="interpretacionGCEco" class="note" style="margin-top:6px"></div>
-    </section>
-
-
-    <!-- =========================
-         Oxigenación
-    ========================== -->
-    <section id="oxigenacion" class="panel" aria-labelledby="oxigenacion-title">
-      <h2 id="oxigenacion-title"><span class="icon icon-blood"></span> Oxigenación · contenido de O₂</h2>
-
-      <p class="note">Cálculos de contenido arterial/venoso, entrega (DO₂), consumo (VO₂) y extracción (REO₂) de oxígeno.</p>
-
-      <div class="grid-2">
-        <div>
-          <label>Gasto cardíaco (L/min)</label>
-          <input type="number" id="gc" step="0.1" />
-        </div>
-        <div>
-          <label>Hemoglobina (g/dL)</label>
-          <input type="number" id="hb" step="0.1" />
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div>
-          <label>SaO₂ (%)</label>
-          <input type="number" id="sao2" />
-        </div>
-        <div>
-          <label>SvO₂ (%)</label>
-          <input type="number" id="svo2" />
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div>
-          <label>PaO₂ (mmHg)</label>
-          <input type="number" id="pao2" />
-        </div>
-        <div>
-          <label>PvO₂ (mmHg)</label>
-          <input type="number" id="pvo2" />
-        </div>
-      </div>
-
-      <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
-      <div id="resultadoOxigenacion"></div>
-      <div id="resultadoOxigenacionDetalle" class="note" style="margin-top:6px"></div>
-    </section>
-
-
-    <!-- =========================
-         CO₂ · perfusión
-    ========================== -->
-    <section id="perfusion" class="panel" aria-labelledby="perfusion-title">
-      <h2 id="perfusion-title"><span class="icon icon-stetho"></span> CO₂ · presiones · perfusión</h2>
-
-      <p class="note">Gradiente veno-arterial de CO₂ (ΔCO₂) y presiones de perfusión (APP/PPC) como apoyo a la evaluación de perfusión.</p>
-
-      <h3>CO₂</h3>
-      <div class="grid-2">
-        <div>
-          <label>PaCO₂ (mmHg)</label>
-          <input type="number" id="paco2" />
-        </div>
-        <div>
-          <label>PvCO₂ (mmHg)</label>
-          <input type="number" id="pvco2" />
-        </div>
-      </div>
-
-      <button type="button" onclick="calcularDeltaCO2()">Calcular ΔCO₂</button>
-      <div id="resultadoCO2"></div>
-
-      <hr />
-
-      <h3>Presiones</h3>
-      <div class="grid-2">
-       <div>
-          <label>TAM (mmHg)</label>
-          <input type="number" id="tam" />
-        </div>
-        <div>
-          <label>PVC (mmHg)</label>
-          <input type="number" id="pvc" />
-        </div>
-      </div>
-
-      <label>GC (L/min)</label>
-      <input type="number" id="gc_rvs" step="0.1" />
-
-      <div class="grid-2">
-        <div>
-          <label>PIA (mmHg)</label>
-          <input type="number" id="pia" />
-        </div>
-        <div>
-          <label>PIC (mmHg)</label>
-          <input type="number" id="pic" />
-        </div>
-      </div>
-
-      <div class="inline" style="gap:10px; flex-wrap:wrap">
-        <button type="button" onclick="calcularRVS()">Calcular RVS</button>
-        <button type="button" onclick="calcularPPR()">Calcular PPR</button>
-        <button type="button" onclick="calcularPPC()">Calcular PPC</button>
-      </div>
-
-      <div id="resultadoRVS"></div>
-      <div id="resultadoPPR"></div>
-      <div id="resultadoPPC"></div>
-    </section>
-
-    <!-- =========================
-         Estado ácido-base
-    ========================== -->
-    <section id="acidobase" class="panel" aria-labelledby="acidobase-title">
-      <h2 id="acidobase-title"><span class="icon icon-blood"></span> Estado ácido - base</h2>
-
-      <p class="note">Cálculos y recordatorios para evaluación ácido-base, anion gap y compensaciones. Interpretar con laboratorio y clínica.</p>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card__title">PCO₂ esperada en acidosis metabólica</div>
-        <div class="note">PCO₂ esperada = (1.5 × HCO₃a) + 8 (± 2)</div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card__title">PCO₂ esperada en alcalosis metabólica</div>
-        <div class="note">PCO₂ esperada = (0.7 × HCO₃a) + 21 (± 2)</div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card__title">Acidosis respiratoria crónica</div>
-        <div class="note">BICA esperado = (PCO₂a − 40) × 0.4</div>
-      </div>
-
-      <hr />
-
-     <h3>Anion gap corregido por albúmina</h3>
-      <div class="grid-2">
-        <div>
-          <label>Sodio Na (mEq/L)</label>
-          <input type="number" id="na" step="0.1" />
-        </div>
-        <div>
-          <label>Potasio K (mEq/L)</label>
-          <input type="number" id="k" step="0.1" />
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div>
-          <label>Cloro Cl (mEq/L)</label>
-          <input type="number" id="cl" step="0.1" />
-        </div>
-        <div>
-          <label>Bicarbonato HCO₃ (mEq/L)</label>
-          <input type="number" id="hco3_ag" step="0.1" />
-        </div>
-      </div>
-
-      <label>Albúmina sérica ALB (g/dL)</label>
-      <input type="number" id="alb" step="0.1" />
-
-      <button class="btn-secondary" onclick="calcularAnionGapCorregido()">Calcular anion gap corregido</button>
-      <div id="resultadoAnionGap"></div>
-
-      <hr />
-
-<h3>Delta / Delta (Anion Gap / Bicarbonato)</h3>
-
-<div class="grid-2">
-  <div>
-    <label>Bicarbonato normal (BICAn)</label>
-    <input type="number" id="bican" value="24" step="0.1" />
-  </div>
-  <div>
-    <label>Bicarbonato paciente (BICAp)</label>
-    <input type="number" id="bicap" placeholder="Ej: 18" step="0.1" />
-  </div>
-</div>
-
-<div class="grid-2">
-  <div>
-    <label>Anion gap normal (AGAPn)</label>
-    <input type="number" id="agapn" value="14" step="0.1" />
-  </div>
-  <div>
-    <label>Anion gap paciente (AGAPp)</label>
-    <input type="number" id="agapp" placeholder="Ej: 20" step="0.1" />
-  </div>
-</div>
-
-<button class="btn-secondary" onclick="calcularDeltaGap()">
-  Calcular Δ/Δ
-</button>
-
-<div id="resultadoDeltaGap"></div>
-<div id="interpretacionDeltaGap" class="note" style="margin-top:6px"></div>
-
-
-
-    
-    </section>
 
 <!-- =========================
-         Sodio y calcio corregido
-    ========================== -->
-    <section id="electrolitos" class="panel" aria-labelledby="electrolitos-title">
-      <h2 id="electrolitos-title"><span class="icon icon-blood"></span> Sodio y calcio corregido</h2>
+     Ventilación mecánica
+========================== -->
+<section
+  id="ventilacion"
+  class="panel"
+  aria-labelledby="ventilacion-title"
+  data-module="ventilacion">
 
-      <p class="note">Correcciones de sodio por hiperglucemia y calcio por albúmina. Verificar unidades y rango de referencia local.</p>
+  <h2 id="ventilacion-title">
+    <span class="icon icon-lung"></span>
+    Ventilación mecánica
+  </h2>
 
-      <h3>Sodio corregido</h3>
-      <div class="grid-2">
-        <div>
-          <label>Sodio medido (NAs)</label>
-          <input type="number" id="nas" step="0.1" />
-        </div>
-        <div>
-          <label>Glucosa sérica (GLUCs)</label>
-          <input type="number" id="glucs" step="0.1" />
-        </div>
+  <p class="note">
+    Herramientas de apoyo para <strong>ventilación mecánica invasiva</strong> en pacientes adultos.
+    Los cálculos son orientativos y deben interpretarse en contexto clínico.
+  </p>
+
+  <!-- =========================
+       Peso ideal
+  ========================== -->
+  <fieldset>
+    <legend><h3>Peso ideal</h3></legend>
+
+    <label for="talla">Talla (cm)</label>
+    <input
+      type="number"
+      id="talla"
+      min="0"
+      step="1"
+      inputmode="numeric"
+      aria-describedby="talla-help" />
+
+    <small id="talla-help" class="note">
+      Ingrese la talla del paciente en centímetros.
+    </small>
+
+    <label for="sexo">Sexo</label>
+    <select id="sexo" aria-describedby="sexo-help">
+      <option value="">Seleccione</option>
+      <option value="hombre">Hombre</option>
+      <option value="mujer">Mujer</option>
+    </select>
+
+    <small id="sexo-help" class="note">
+      Utilizado para el cálculo de peso ideal según fórmula estándar.
+    </small>
+
+    <button
+      type="button"
+      data-action="calcular-peso-ideal">
+      Calcular peso ideal
+    </button>
+
+   <div
+  id="resultadoPeso"
+  role="status"
+  aria-live="polite">
+</div>
+
+<!-- Anuncio post-resultado -->
+<div class="ad-slot ad-result"></div>
+
+<hr />
+
+
+  <!-- =========================
+       Ajuste de PCO₂
+  ========================== -->
+  <fieldset>
+    <legend><h3>Ajuste de PCO₂ deseada</h3></legend>
+
+    <label for="pco2Act">PCO₂ actual (mmHg)</label>
+    <input
+      type="number"
+      id="pco2Act"
+      min="0"
+      step="0.1"
+      inputmode="decimal" />
+
+    <label for="pco2Des">PCO₂ deseada (mmHg)</label>
+    <input
+      type="number"
+      id="pco2Des"
+      min="0"
+      step="0.1"
+      inputmode="decimal" />
+
+    <div class="grid-2">
+      <div>
+        <label for="fr_actual">Frecuencia respiratoria (rpm)</label>
+        <input
+          type="number"
+          id="fr_actual"
+          min="0"
+          step="1"
+          inputmode="numeric" />
+      </div>
+      <div>
+        <label for="vt_actual">Volumen corriente VT (mL)</label>
+        <input
+          type="number"
+          id="vt_actual"
+          min="0"
+          step="10"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+ <label for="vmin_actual">Ventilación minuto (L/min)</label>
+<input
+  type="number"
+  id="vmin_actual"
+  min="0"
+  step="0.1"
+  inputmode="decimal" />
+
+<button
+  type="button"
+  data-action="ajustar-pco2">
+  Calcular ajuste
+</button>
+
+<div
+  id="resultadoPCO2"
+  role="status"
+  aria-live="polite">
+</div>
+
+<div
+  id="resultadoPCO2Detalle"
+  class="note"
+  aria-live="polite">
+</div>
+
+<!-- Anuncio post-resultado -->
+<div class="ad-slot ad-result"></div>
+
+</fieldset>
+
+
+</section>
+
+
+<!-- =========================
+     Ecocardiografía
+========================== -->
+<section
+  id="ecocardiografia"
+  class="panel"
+  aria-labelledby="ecocardiografia-title"
+  data-module="ecocardiografia">
+
+  <h2 id="ecocardiografia-title">
+    <span class="icon icon-stetho"></span>
+    Ecocardiografía · gasto cardíaco
+  </h2>
+
+  <p class="note">
+    La estimación del <strong>gasto cardíaco</strong> mediante ecocardiografía transtorácica
+    se realiza a partir del <strong>diámetro del tracto de salida del ventrículo izquierdo (TSVI)</strong>
+    y la <strong>integral velocidad-tiempo (VTI)</strong>, medidos con Doppler pulsado.
+    Interpretar siempre en el contexto hemodinámico del paciente.
+  </p>
+
+  <!-- Bloque ilustrativo ecocardiográfico -->
+  <div class="eco-explanation">
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco1.png"
+        alt="Medición del diámetro del tracto de salida del ventrículo izquierdo (TSVI) en eje largo paraesternal"
+        loading="lazy"
+        width="600"
+        height="400" />
+      <figcaption class="note">
+        Medición del <strong>TSVI</strong> en vista paraesternal eje largo.
+      </figcaption>
+    </figure>
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco2.png"
+        alt="Obtención del VTI del TSVI mediante Doppler pulsado en vista apical"
+        loading="lazy"
+        width="600"
+        height="400" />
+      <figcaption class="note">
+        Medición del <strong>VTI</strong> del TSVI mediante Doppler pulsado.
+      </figcaption>
+    </figure>
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco3.png"
+        alt="Relación entre área del TSVI, VTI y cálculo del gasto cardíaco por ecocardiografía"
+        loading="lazy"
+        width="600"
+        height="400" />
+      <figcaption class="note">
+        Integración de <strong>área del TSVI</strong> y <strong>VTI</strong> para el cálculo del
+        <strong>gasto cardíaco</strong>.
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <!-- Calculadora -->
+  <fieldset>
+    <legend><h3>Gasto cardíaco por ecocardiografía</h3></legend>
+
+    <div class="grid-3">
+      <div>
+        <label for="dtsvi">Diámetro TSVI (cm)</label>
+        <input
+          type="number"
+          id="dtsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
 
-      <button class="btn-secondary" type="button" onclick="calcularSodioCorregido()">Calcular Na corregido</button>
-      <div id="resultadoNaCorregido"></div>
-
-      <hr />
-
-      <h3>Calcio corregido</h3>
-      <div class="grid-2">
-        <div>
-          <label>Calcio sérico (CAs)</label>
-          <input type="number" id="cas" step="0.1" />
-        </div>
-        <div>
-          <label>Albúmina sérica (ALBs)</label>
-          <input type="number" id="albs" step="0.1" />
-        </div>
+      <div>
+        <label for="vti">VTI TSVI (cm)</label>
+        <input
+          type="number"
+          id="vti"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
 
-      <button class="btn-secondary" type="button" onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
-      <div id="resultadoCaCorregido"></div>
-    </section>
+      <div>
+        <label for="fc">Frecuencia cardíaca (lpm)</label>
+        <input
+          type="number"
+          id="fc"
+          step="1"
+          min="0"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <button type="button" data-action="calcular-gc-eco">
+      Calcular GC por ecocardiografía
+    </button>
+
+    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
+    <div id="interpretacionGCEco" class="note"></div>
+
+    <!-- Anuncio post-resultado -->
+    <div class="ad-slot ad-result"></div>
+  </fieldset>
+
+</section>
+
+
+<!-- =========================
+     Oxigenación
+========================== -->
+<section
+  id="oxigenacion"
+  class="panel"
+  aria-labelledby="oxigenacion-title"
+  data-module="oxigenacion">
+
+  <h2 id="oxigenacion-title">
+    <span class="icon icon-blood"></span>
+    Oxigenación · contenido de O₂
+  </h2>
+
+  <p class="note">
+    Cálculo de variables de <strong>transporte de oxígeno</strong>:
+    contenido arterial y venoso, entrega (DO₂), consumo (VO₂) y
+    fracción de extracción (REO₂). Interpretar en contexto hemodinámico
+    y perfusional del paciente crítico.
+  </p>
+
+  <fieldset>
+    <legend><h3>Variables de oxigenación</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="gc">Gasto cardíaco (L/min)</label>
+        <input
+          type="number"
+          id="gc"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="hb">Hemoglobina (g/dL)</label>
+        <input
+          type="number"
+          id="hb"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label for="sao2">SaO₂ (%)</label>
+        <input
+          type="number"
+          id="sao2"
+          step="1"
+          min="0"
+          max="100"
+          inputmode="numeric" />
+      </div>
+
+      <div>
+        <label for="svo2">SvO₂ (%)</label>
+        <input
+          type="number"
+          id="svo2"
+          step="1"
+          min="0"
+          max="100"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <button type="button" data-action="calcular-oxigenacion">
+      Calcular oxigenación
+    </button>
+
+    <div id="resultadoOxigenacion" role="status" aria-live="polite"></div>
+    <div id="resultadoOxigenacionDetalle" class="note"></div>
+
+    <!-- Anuncio post-resultado -->
+    <div class="ad-slot ad-result"></div>
+  </fieldset>
+
+</section>
+
+<!-- =========================
+     CO₂ · presiones · perfusión
+========================== -->
+<section
+  id="perfusion"
+  class="panel"
+  aria-labelledby="perfusion-title"
+  data-module="perfusion">
+
+  <h2 id="perfusion-title">
+    <span class="icon icon-stetho"></span>
+    CO₂ · presiones · perfusión
+  </h2>
+
+  <p class="note">
+    Evaluación de perfusión tisular mediante el <strong>gradiente veno-arterial de CO₂ (ΔCO₂)</strong>
+    y presiones de perfusión sistémica y cerebral. Interpretar en conjunto con el contexto clínico.
+  </p>
+
+  <!-- =========================
+       Gradiente de CO₂
+  ========================== -->
+  <fieldset>
+    <legend><h3>Gradiente veno-arterial de CO₂</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="paco2">PaCO₂ (mmHg)</label>
+        <input
+          type="number"
+          id="paco2"
+          min="0"
+          step="0.1"
+          inputmode="decimal"
+          aria-describedby="paco2-help" />
+        <small id="paco2-help" class="note">
+          Presión arterial de CO₂.
+        </small>
+      </div>
+
+      <div>
+        <label for="pvco2">PvCO₂ (mmHg)</label>
+        <input
+          type="number"
+          id="pvco2"
+          min="0"
+          step="0.1"
+          inputmode="decimal"
+          aria-describedby="pvco2-help" />
+        <small id="pvco2-help" class="note">
+          Presión venosa central o mixta de CO₂.
+        </small>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      data-action="calcular-delta-co2">
+      Calcular ΔCO₂
+    </button>
+
+    <div
+      id="resultadoCO2"
+      role="status"
+      aria-live="polite"
+      style="margin-top:10px">
+    </div>
+  </fieldset>
+
+  <hr />
+
+  <!-- =========================
+       Presiones y perfusión
+  ========================== -->
+  <fieldset>
+    <legend><h3>Presiones y perfusión</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="tam">TAM · Presión arterial media (mmHg)</label>
+        <input
+          type="number"
+          id="tam"
+          min="0"
+          step="1"
+          inputmode="numeric" />
+      </div>
+
+      <div>
+        <label for="pvc">PVC · Presión venosa central (mmHg)</label>
+        <input
+          type="number"
+          id="pvc"
+          min="0"
+          step="1"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <label for="gc_rvs">Gasto cardíaco (L/min)</label>
+    <input
+      type="number"
+      id="gc_rvs"
+      min="0"
+      step="0.1"
+      inputmode="decimal" />
+
+    <div class="grid-2">
+      <div>
+        <label for="pia">PIA · Presión intraabdominal (mmHg)</label>
+        <input
+          type="number"
+          id="pia"
+          min="0"
+          step="1"
+          inputmode="numeric" />
+      </div>
+
+      <div>
+        <label for="pic">PIC · Presión intracraneana (mmHg)</label>
+        <input
+          type="number"
+          id="pic"
+          min="0"
+          step="1"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="inline" style="gap:10px; flex-wrap:wrap">
+      <button type="button" data-action="calcular-rvs">
+        Calcular RVS
+      </button>
+      <button type="button" data-action="calcular-ppr">
+        Calcular PPR
+      </button>
+      <button type="button" data-action="calcular-ppc">
+        Calcular PPC
+      </button>
+    </div>
+
+    <div
+      id="resultadoRVS"
+      role="status"
+      aria-live="polite">
+    </div>
+
+    <div
+      id="resultadoPPR"
+      role="status"
+      aria-live="polite">
+    </div>
+
+    <div
+      id="resultadoPPC"
+      role="status"
+      aria-live="polite">
+    </div>
+  </fieldset>
+
+</section>
+
+<!-- =========================
+     Estado ácido–base
+========================== -->
+<section
+  id="acidobase"
+  class="panel"
+  aria-labelledby="acidobase-title"
+  data-module="acidobase">
+
+  <h2 id="acidobase-title">
+    <span class="icon icon-blood"></span>
+    Estado ácido–base
+  </h2>
+
+  <p class="note">
+    Herramientas de apoyo para la evaluación de <strong>trastornos ácido–base</strong>,
+    anion gap y compensaciones esperadas. Interpretar siempre con laboratorio y contexto clínico.
+  </p>
+
+  <!-- =========================
+       Recordatorios fisiológicos
+  ========================== -->
+  <fieldset>
+    <legend><h3>Compensaciones esperadas</h3></legend>
+
+    <div class="card" style="margin-top:10px">
+      <div class="card__title">Acidosis metabólica</div>
+      <div class="note">
+        PCO₂ esperada = (1.5 × HCO₃⁻) + 8 (± 2)
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:10px">
+      <div class="card__title">Alcalosis metabólica</div>
+      <div class="note">
+        PCO₂ esperada = (0.7 × HCO₃⁻) + 21 (± 2)
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:10px">
+      <div class="card__title">Acidosis respiratoria crónica</div>
+      <div class="note">
+        HCO₃⁻ esperado = (PCO₂ − 40) × 0.4
+      </div>
+    </div>
+  </fieldset>
+
+  <hr />
+
+  <!-- =========================
+       Anion gap corregido
+  ========================== -->
+  <fieldset>
+    <legend><h3>Anion gap corregido por albúmina</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="na">Sodio (Na⁺) mEq/L</label>
+        <input
+          type="number"
+          id="na"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="k">Potasio (K⁺) mEq/L</label>
+        <input
+          type="number"
+          id="k"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label for="cl">Cloro (Cl⁻) mEq/L</label>
+        <input
+          type="number"
+          id="cl"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="hco3_ag">Bicarbonato (HCO₃⁻) mEq/L</label>
+        <input
+          type="number"
+          id="hco3_ag"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <label for="alb">Albúmina sérica (g/dL)</label>
+    <input
+      type="number"
+      id="alb"
+      step="0.1"
+      min="0"
+      inputmode="decimal" />
+
+    <button
+      type="button"
+      class="btn-secondary"
+      data-action="calcular-anion-gap">
+      Calcular anion gap corregido
+    </button>
+
+    <div
+      id="resultadoAnionGap"
+      role="status"
+      aria-live="polite"
+      style="margin-top:10px">
+    </div>
+  </fieldset>
+
+  <hr />
+
+  <!-- =========================
+       Delta / Delta
+  ========================== -->
+  <fieldset>
+    <legend><h3>Delta / Delta (Anion gap / Bicarbonato)</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="bican">Bicarbonato normal (mEq/L)</label>
+        <input
+          type="number"
+          id="bican"
+          value="24"
+          step="0.1"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="bicap">Bicarbonato del paciente (mEq/L)</label>
+        <input
+          type="number"
+          id="bicap"
+          placeholder="Ej: 18"
+          step="0.1"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label for="agapn">Anion gap normal</label>
+        <input
+          type="number"
+          id="agapn"
+          value="14"
+          step="0.1"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="agapp">Anion gap del paciente</label>
+        <input
+          type="number"
+          id="agapp"
+          placeholder="Ej: 20"
+          step="0.1"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-secondary"
+      data-action="calcular-delta-gap">
+      Calcular Δ/Δ
+    </button>
+
+    <div
+      id="resultadoDeltaGap"
+      role="status"
+      aria-live="polite">
+    </div>
+
+    <div
+      id="interpretacionDeltaGap"
+      class="note"
+      aria-live="polite"
+      style="margin-top:6px">
+    </div>
+  </fieldset>
+
+</section>
+
+
+<!-- =========================
+     Sodio y calcio corregido
+========================== -->
+<section
+  id="electrolitos"
+  class="panel"
+  aria-labelledby="electrolitos-title"
+  data-module="electrolitos">
+
+  <h2 id="electrolitos-title">
+    <span class="icon icon-blood"></span>
+    Sodio y calcio corregido
+  </h2>
+
+  <p class="note">
+    Correcciones de <strong>sodio por hiperglucemia</strong> y
+    <strong>calcio por albúmina</strong>. Verificar siempre unidades y
+    rangos de referencia del laboratorio local.
+  </p>
+
+  <!-- =========================
+       Sodio corregido
+  ========================== -->
+  <fieldset>
+    <legend><h3>Sodio corregido por glucosa</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="nas">Sodio medido (mEq/L)</label>
+        <input
+          type="number"
+          id="nas"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="glucs">Glucosa sérica (mg/dL)</label>
+        <input
+          type="number"
+          id="glucs"
+          step="1"
+          min="0"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-secondary"
+      data-action="calcular-na-corregido">
+      Calcular sodio corregido
+    </button>
+
+    <div
+      id="resultadoNaCorregido"
+      role="status"
+      aria-live="polite"
+      style="margin-top:10px">
+    </div>
+  </fieldset>
+
+  <hr />
+
+  <!-- =========================
+       Calcio corregido
+  ========================== -->
+  <fieldset>
+    <legend><h3>Calcio corregido por albúmina</h3></legend>
+
+    <div class="grid-2">
+      <div>
+        <label for="cas">Calcio sérico total (mg/dL)</label>
+        <input
+          type="number"
+          id="cas"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="albs">Albúmina sérica (g/dL)</label>
+        <input
+          type="number"
+          id="albs"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-secondary"
+      data-action="calcular-ca-corregido">
+      Calcular calcio corregido
+    </button>
+
+    <div
+      id="resultadoCaCorregido"
+      role="status"
+      aria-live="polite"
+      style="margin-top:10px">
+    </div>
+  </fieldset>
+
+</section>
 
 <!-- =========================
      SOFA-2
 ========================== -->
-<section id="sofa" class="panel" aria-labelledby="sofa-title">
-  <h2 id="sofa-title"><span class="icon icon-stetho"></span> SOFA-2 · puntuación</h2>
+<section
+  id="sofa"
+  class="panel"
+  aria-labelledby="sofa-title"
+  data-module="sofa">
 
-  <p class="note">
-El score <strong>SOFA (Sequential Organ Failure Assessment)</strong> evalúa la disfunción
-de seis sistemas orgánicos (respiratorio, cardiovascular, neurológico, renal,
-hepático y coagulación) en pacientes críticos adultos.
-Un aumento del SOFA se asocia a mayor mortalidad hospitalaria.
-</p>
+  <h2 id="sofa-title">
+    <span class="icon icon-stetho"></span>
+    SOFA-2 · puntuación
+  </h2>
 
 <p class="note">
-Esta calculadora utiliza los criterios del <em>SOFA-2</em> para apoyo clínico.
-No reemplaza el juicio médico ni la evaluación integral del paciente.
+  Evaluación de <strong>disfunción orgánica</strong> mediante el
+  <strong>Sequential Organ Failure Assessment (SOFA-2)</strong>.
+  Se utiliza para estimar <strong>gravedad clínica</strong> y
+  <strong>riesgo de mortalidad</strong> en pacientes críticos,
+  especialmente en contextos de <strong>sepsis</strong> y falla orgánica.
 </p>
 
-  <div class="note" style="margin-bottom:10px">
-    Seleccione el criterio que corresponda en cada sistema y luego calcule el total.
-  </div>
+  <fieldset>
+    <legend><h3>Sistema nervioso central</h3></legend>
 
-  <h3>Sistema nervioso (GCS)</h3>
-  <select id="sofa_neuro">
-    <option value="">Seleccione</option>
-    <option value="0">0 · GCS 15</option>
-    <option value="1">1 · GCS 13-14 / localiza dolor / requiere fármacos por delirium</option>
-    <option value="2">2 · GCS 9-12 / retira al dolor</option>
-    <option value="3">3 · GCS 6-8 / flexión al dolor</option>
-    <option value="4">4 · GCS 3-5 / extensión o no respuesta / mioclonías generalizadas</option>
-  </select>
+    <label for="sofa_neuro">
+      Componente neurológico (Glasgow Coma Scale)
+    </label>
 
-  <hr />
+    <select
+      id="sofa_neuro"
+      aria-describedby="sofa-neuro-help">
+      <option value="">Seleccione</option>
+      <option value="0">0 · GCS 15</option>
+      <option value="1">1 · GCS 13–14</option>
+      <option value="2">2 · GCS 9–12</option>
+      <option value="3">3 · GCS 6–8</option>
+      <option value="4">4 · GCS ≤5</option>
+    </select>
 
-  <h3>Respiratorio (PaO₂/FiO₂)</h3>
-  <select id="sofa_resp">
-    <option value="">Seleccione</option>
-    <option value="0">0 · PaO₂/FiO₂ &gt; 300</option>
-    <option value="1">1 · PaO₂/FiO₂ ≤ 300</option>
-    <option value="2">2 · PaO₂/FiO₂ ≤ 225</option>
-    <option value="3">3 · PaO₂/FiO₂ ≤ 150 + soporte ventilatorio avanzado</option>
-    <option value="4">4 · PaO₂/FiO₂ ≤ 75 + soporte ventilatorio avanzado o ECMO</option>
-  </select>
+    <small id="sofa-neuro-help" class="note">
+      Utilizar el mejor puntaje de Glasgow disponible.
+      En pacientes sedados, interpretar con precaución.
+    </small>
 
-  <hr />
+    <button
+      type="button"
+      data-action="calcular-sofa">
+      Calcular SOFA
+    </button>
 
-  <h3>Cardiovascular</h3>
-  <select id="sofa_cv">
-    <option value="">Seleccione</option>
-    <option value="0">0 · MAP ≥ 70, sin vasopresor/inotrópico</option>
-    <option value="1">1 · MAP &lt; 70, sin vasopresor/inotrópico</option>
-    <option value="2">2 · Vasopresor dosis baja (NE+EPI ≤ 0.2 μg/kg/min) o cualquier dosis de otro vasopresor/inotrópico</option>
-    <option value="3">3 · Vasopresor dosis media (NE+EPI &gt;0.2 a ≤0.4 μg/kg/min) o (NE+EPI ≤0.2) + otro vasopresor/inotrópico</option>
-    <option value="4">4 · Vasopresor dosis alta (NE+EPI &gt;0.4 μg/kg/min) o (NE+EPI &gt;0.2 a ≤0.4) + otro vasopresor/inotrópico o soporte mecánico</option>
-  </select>
+<div
+  id="resultadoSOFA2"
+  role="status"
+  aria-live="polite"
+  style="margin-top:10px">
+</div>
 
-  <hr />
+<!-- Anuncio post-resultado -->
+<div class="ad-slot ad-result"></div>
 
-  <h3>Hígado (bilirrubina total)</h3>
-  <select id="sofa_higado">
-    <option value="">Seleccione</option>
-    <option value="0">0 · ≤ 1.2 mg/dL</option>
-    <option value="1">1 · ≤ 3.0 mg/dL</option>
-    <option value="2">2 · ≤ 6.0 mg/dL</option>
-    <option value="3">3 · ≤ 12.0 mg/dL</option>
-    <option value="4">4 · &gt; 12.0 mg/dL</option>
-  </select>
-
-  <hr />
-
-  <h3>Riñón</h3>
-  <select id="sofa_rinon">
-    <option value="">Seleccione</option>
-    <option value="0">0 · Creatinina ≤ 1.2 mg/dL</option>
-    <option value="1">1 · Creatinina ≤ 2.0 mg/dL o diuresis &lt;0.5 mL/kg/h por 6-12 h</option>
-    <option value="2">2 · Creatinina ≤ 3.5 mg/dL o diuresis &lt;0.5 mL/kg/h por ≥12 h</option>
-    <option value="3">3 · Creatinina &gt; 3.5 mg/dL o diuresis &lt;0.3 mL/kg/h por ≥24 h o anuria ≥12 h</option>
-    <option value="4">4 · Recibiendo / cumple criterios de TRR (incluye uso crónico)</option>
-  </select>
-
-  <hr />
-
-  <h3>Hemostasia (plaquetas)</h3>
-  <select id="sofa_coag">
-    <option value="">Seleccione</option>
-    <option value="0">0 · &gt; 150 × 10³/μL</option>
-    <option value="1">1 · ≤ 150 × 10³/μL</option>
-    <option value="2">2 · ≤ 100 × 10³/μL</option>
-    <option value="3">3 · ≤ 80 × 10³/μL</option>
-    <option value="4">4 · ≤ 50 × 10³/μL</option>
-  </select>
-
-  <div class="inline" style="gap:10px; flex-wrap:wrap; margin-top:12px">
-    <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
-  </div>
-
-  <!-- Resultado -->
-  <div id="resultadoSOFA2" style="margin-top:10px; font-weight:600"></div>
-
-  <!-- Mortalidad -->
-  <div class="sofa-mortality-report" id="sofaMortalityReport" style="margin-top:14px; display:none;">
-    <h3>Interpretación · Probabilidad de mortalidad estimada</h3>
-
-    <ul id="sofaMortalityList">
-      <li data-min="0" data-max="3"><strong>0–3:</strong> Mortalidad baja (≈ 0–5%)</li>
-      <li data-min="4" data-max="7"><strong>4–7:</strong> Mortalidad leve–moderada (≈ 5–15%)</li>
-      <li data-min="8" data-max="11"><strong>8–11:</strong> Mortalidad moderada (≈ 15–30%)</li>
-      <li data-min="12" data-max="15"><strong>12–15:</strong> Mortalidad alta (≈ 30–50%)</li>
-      <li data-min="16" data-max="19"><strong>16–19:</strong> Mortalidad muy alta (≈ 50–75%)</li>
-      <li data-min="20" data-max="99"><strong>≥20:</strong> Mortalidad extrema (≈ 75–100%)</li>
-    </ul>
-
-    <p style="font-size:0.9em; opacity:0.85; margin-top:6px">
-      Valores orientativos basados en validaciones poblacionales. La mortalidad real depende del contexto clínico.
-    </p>
-  </div>
 </section>
 
 <!-- =========================
      CAM-ICU · Delirium
 ========================= -->
-<section id="camicu" class="panel" aria-labelledby="camicu-title">
+<section
+  id="camicu"
+  class="panel"
+  aria-labelledby="camicu-title"
+  data-module="camicu">
+
   <h2 id="camicu-title">
-    <span class="icon icon-brain"></span> CAM-ICU · Delirium
+    <span class="icon icon-brain"></span>
+    CAM-ICU · Delirium
   </h2>
 
   <p class="note">
-    Algoritmo secuencial validado para detección de <strong>delirium en UCI</strong>.
+    La <strong>Confusion Assessment Method for the ICU (CAM-ICU)</strong> es una
+    herramienta validada para la detección de <strong>delirium en pacientes críticos</strong>,
+    incluidos aquellos bajo ventilación mecánica.
   </p>
 
-  <!-- CRITERIO 1 -->
-  <h3>1️⃣ Inicio agudo o curso fluctuante</h3>
   <p class="note">
-    ¿Existe un <b>cambio agudo</b> en el estado mental respecto al basal
-    <b>o fluctuaciones</b> en las últimas 24 horas?
+    El diagnóstico de delirium requiere:
+    <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
   </p>
-  <ul class="note">
-    <li>¿El paciente estaba lúcido previamente y ahora no?</li>
-    <li>¿El estado mental varía a lo largo del día?</li>
-    <li>¿El equipo o la familia notaron un cambio reciente?</li>
-  </ul>
-  <select id="camicu_c1">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
 
-  <!-- CRITERIO 2 -->
-  <div id="camicu_paso2" style="display:none">
-    <hr />
-    <h3>2️⃣ Inatención</h3>
-    <p class="note">
-      Evalúa si el paciente <b>no logra mantener la atención</b>.
-    </p>
-    <ul class="note">
-      <li>Indicar que responda al escuchar la letra <b>“A”</b>.</li>
-      <li>Secuencia sugerida: <b>C A S A B L A N C A</b>.</li>
-      <li>≥ 2 errores = <b>inatención</b>.</li>
-    </ul>
-    <select id="camicu_c2">
-      <option value="">Seleccione</option>
-      <option value="1">Sí (inatención presente)</option>
-      <option value="0">No (atención conservada)</option>
-    </select>
-  </div>
+  <fieldset>
+    <legend><h3>Criterio 1 · Inicio agudo o curso fluctuante</h3></legend>
 
-  <!-- CRITERIO 3 -->
-  <div id="camicu_paso3" style="display:none">
-    <hr />
-    <h3>3️⃣ Pensamiento desorganizado</h3>
-    <p class="note">
-      Respuestas incoherentes o errores en preguntas simples.
-    </p>
-    <ul class="note">
-      <li>¿Un kilo pesa más que dos kilos?</li>
-      <li>¿El mar es verde?</li>
-      <li>Orden: <b>“Levante dos dedos”</b></li>
-    </ul>
-    <select id="camicu_c3">
+    <label for="camicu_c1">
+      Cambio agudo del estado mental o fluctuación en las últimas 24 horas
+    </label>
+
+    <select
+      id="camicu_c1"
+      aria-describedby="camicu-c1-help">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
     </select>
-  </div>
 
-  <!-- CRITERIO 4 -->
-  <div id="camicu_paso4" style="display:none">
-    <hr />
-    <h3>4️⃣ Nivel de conciencia alterado</h3>
-    <p class="note">
-      Cualquier nivel <b>distinto de alerta normal</b>.
-    </p>
-    <ul class="note">
-      <li>Letárgico</li>
-      <li>Agitado</li>
-      <li>Estuporoso</li>
-      <li>Comatoso</li>
-    </ul>
-    <p class="note">
-      Correlacionar con <b>RASS</b> (≠ 0).
-    </p>
-    <select id="camicu_c4">
-      <option value="">Seleccione</option>
-      <option value="1">Sí (no alerta)</option>
-      <option value="0">No (alerta)</option>
-    </select>
-  </div>
+    <small id="camicu-c1-help" class="note">
+      Comparar con el estado neurológico basal del paciente.
+    </small>
+  </fieldset>
 
-  <div id="resultadoCAMICU" style="margin-top:12px;font-weight:700"></div>
-  <div id="interpretacionCAMICU" class="note"></div>
+<!-- Resultado -->
+<div
+  id="resultadoCAMICU"
+  role="status"
+  aria-live="polite"
+  style="margin-top:12px;font-weight:600">
+</div>
+
+<div
+  id="interpretacionCAMICU"
+  class="note"
+  style="margin-top:6px">
+</div>
+
+<!-- Anuncio post-resultado -->
+<div class="ad-slot ad-result"></div>
+
+
 </section>
 
 
-    <!-- =========================
-         References & Methodology
-    ========================== -->
-    <section id="referencias" class="panel panel--references">
-      <h2>Referencias y metodología</h2>
+<!-- =========================
+     NIHSS · Stroke severity
+========================= -->
+<section
+  id="nihss"
+  class="panel"
+  aria-labelledby="nihss-title"
+  data-module="nihss">
 
-      <p class="note">Fuentes bibliográficas orientativas. Esta herramienta es de apoyo educativo y no reemplaza guías locales ni juicio clínico.</p>
+  <h2 id="nihss-title">
+    <span class="icon icon-brain"></span>
+    NIHSS · Stroke Scale
+  </h2>
 
-      <details>
-        <summary>Mechanical Ventilation & Ideal Body Weight</summary>
-        <ol>
-          <li>
-            The Acute Respiratory Distress Syndrome Network.
-            <em>Ventilation with Lower Tidal Volumes as Compared with Traditional Tidal Volumes
-            for Acute Lung Injury and the Acute Respiratory Distress Syndrome.</em>
-            N Engl J Med. 2000;342:1301–1308.
-          </li>
-          <li>
-            Devine BJ.
-            <em>Gentamicin therapy.</em>
-            Drug Intelligence & Clinical Pharmacy. 1974;8:650–655.
-          </li>
-          <li>
-            Fan E, et al.
-            <em>Ventilatory management of acute respiratory distress syndrome.</em>
-            Am J Respir Crit Care Med. 2017.
-          </li>
-        </ol>
-      </details>
+  <p class="note">
+    La <strong>NIH Stroke Scale (NIHSS)</strong> es una escala clínica validada para
+    cuantificar la <strong>severidad del déficit neurológico</strong> en pacientes con
+    <strong>accidente cerebrovascular agudo</strong>.
+  </p>
 
-      <details>
-        <summary>Gas Exchange, Oxygen Transport & Perfusion</summary>
-        <ol>
-          <li>
-            West JB.
-            <em>Respiratory Physiology: The Essentials.</em>
-            10th ed. Lippincott Williams & Wilkins.
-          </li>
-          <li>
-            Marino PL.
-            <em>The ICU Book.</em>
-            4th ed. Wolters Kluwer.
-          </li>
-          <li>
-            Vallet B, et al.
-            <em>Central venous-to-arterial carbon dioxide difference.</em>
-            Intensive Care Med. 2000.
-          </li>
-        </ol>
-      </details>
+  <p class="note">
+    Se utiliza para evaluación inicial, seguimiento evolutivo y apoyo en la toma de
+    decisiones terapéuticas. No reemplaza la evaluación neurológica completa.
+  </p>
 
-      <details>
-        <summary>Acid–Base Disorders & Electrolytes</summary>
-        <ol>
-          <li>
-            Kraut JA, Madias NE.
-            <em>Serum anion gap: its uses and limitations.</em>
-            Clin J Am Soc Nephrol. 2007.
-          </li>
-          <li>
-            Adrogué HJ, Madias NE.
-            <em>Secondary responses to altered acid-base status.</em>
-            N Engl J Med. 1998.
-          </li>
-          <li>
-            Katz MA.
-            <em>Hyperglycemia-induced hyponatremia.</em>
-            Am J Med. 1973.
-          </li>
-        </ol>
-      </details>
+  <fieldset>
+    <legend><h3>1. Nivel de conciencia</h3></legend>
 
-      <details>
-        <summary>SOFA Score</summary>
-        <ol>
-          <li>
-            Seymour CW, et al.
-            <em>Assessment of Clinical Criteria for Sepsis and Septic Shock.</em>
-            JAMA. 2025.
-            DOI:10.1001/jama.2025.20516.
-          </li>
-        </ol>
-      </details>
+    <!-- 1a -->
+    <label for="nihss_1a">1a. Estado de alerta</label>
+    <select id="nihss_1a">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Alerta</option>
+      <option value="1">1 · Somnoliento</option>
+      <option value="2">2 · Estuporoso</option>
+      <option value="3">3 · Coma / no responde</option>
+    </select>
 
-      <p class="disclaimer">
-        This calculator is intended for educational and clinical support purposes only.
-        It does not replace clinical judgment, institutional protocols, or specialist consultation.
-      </p>
-    </section>
+    <!-- 1b -->
+    <label for="nihss_1b">1b. Preguntas (edad y mes)</label>
+    <select id="nihss_1b">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ambas correctas</option>
+      <option value="1">1 · Una correcta</option>
+      <option value="2">2 · Ninguna correcta</option>
+    </select>
 
-  </div>
+    <!-- 1c -->
+    <label for="nihss_1c">1c. Órdenes simples</label>
+    <select id="nihss_1c">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ambas correctas</option>
+      <option value="1">1 · Una correcta</option>
+      <option value="2">2 · Ninguna correcta</option>
+    </select>
+  </fieldset>
 
-<script src="app.js"></script>
-<script src="app.seo.js"></script>
-</body>
-</html>
+  <fieldset>
+    <legend><h3>2–4. Función visual y facial</h3></legend>
+
+    <label for="nihss_2">2. Mirada</label>
+    <select id="nihss_2">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Paresia parcial</option>
+      <option value="2">2 · Desviación forzada</option>
+    </select>
+
+    <label for="nihss_3">3. Campos visuales</label>
+    <select id="nihss_3">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Hemianopsia parcial</option>
+      <option value="2">2 · Hemianopsia completa</option>
+      <option value="3">3 · Ceguera bilateral</option>
+    </select>
+
+    <label for="nihss_4">4. Parálisis facial</label>
+    <select id="nihss_4">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Paresia leve</option>
+      <option value="2">2 · Paresia parcial</option>
+      <option value="3">3 · Parálisis completa</option>
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <legend><h3>5–7. Función motora y coordinación</h3></legend>
+
+    <p class="note">Evaluar siempre el <strong>peor lado</strong>.</p>
+
+    <label for="nihss_motor">5–6. Fuerza motora (brazo y pierna)</label>
+    <select id="nihss_motor">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Sin déficit</option>
+      <option value="1">1 · Caída leve</option>
+      <option value="2">2 · No mantiene posición</option>
+      <option value="3">3 · Movimiento mínimo</option>
+      <option value="4">4 · Sin movimiento</option>
+    </select>
+
+    <label for="nihss_ataxia">7. Ataxia</label>
+    <select id="nihss_ataxia">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ausente</option>
+      <option value="1">1 · Un miembro</option>
+      <option value="2">2 · Dos miembros</option>
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <legend><h3>8–11. Sensibilidad, lenguaje y atención</h3></legend>
+
+    <label for="nihss_sens">8. Sensibilidad</label>
+    <select id="nihss_sens">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Hipoestesia leve</option>
+      <option value="2">2 · Anestesia</option>
+    </select>
+
+    <label for="nihss_lang">9. Lenguaje</label>
+    <select id="nihss_lang">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Afasia leve</option>
+      <option value="2">2 · Afasia severa</option>
+      <option value="3">3 · Afasia global / mudo</option>
+    </select>
+
+    <label for="nihss_dys">10. Disartria</label>
+    <select id="nihss_dys">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Normal</option>
+      <option value="1">1 · Leve–moderada</option>
+      <option value="2">2 · Severa</option>
+    </select>
+
+    <label for="nihss_neglect">11. Negligencia</label>
+    <select id="nihss_neglect">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Ausente</option>
+      <option value="1">1 · Parcial</option>
+      <option value="2">2 · Severa</option>
+    </select>
+  </fieldset>
+
+  <button
+    type="button"
+    data-action="calcular-nihss">
+    Calcular NIHSS
+  </button>
+
+<div
+  id="resultadoNIHSS"
+  role="status"
+  aria-live="polite"
+  style="margin-top:10px;font-weight:600">
+</div>
+
+<div
+  id="interpretacionNIHSS"
+  class="note"
+  style="margin-top:6px">
+</div>
+
+<!-- Anuncio post-resultado -->
+<div class="ad-slot ad-result"></div>
+
+</section>
+
+
+<!-- =========================
+     References & Methodology
+========================== -->
+<section
+  id="referencias"
+  class="panel panel--references"
+  aria-labelledby="referencias-title"
+  data-module="referencias">
+
+  <h2 id="referencias-title">Referencias y metodología</h2>
+
+  <p class="note">
+    Las siguientes referencias bibliográficas respaldan los cálculos y escalas
+    clínicas utilizados en esta herramienta. Su uso es exclusivamente
+    <strong>educativo y de apoyo clínico</strong>, y no reemplaza guías locales
+    ni el juicio médico profesional.
+  </p>
+
+  <details>
+    <summary>Mechanical Ventilation &amp; Ideal Body Weight</summary>
+    <ol>
+      <li>
+        The Acute Respiratory Distress Syndrome Network.
+        <em>
+          Ventilation with Lower Tidal Volumes as Compared with Traditional Tidal Volumes
+          for Acute Lung Injury and the Acute Respiratory Distress Syndrome.
+        </em>
+        <span>N Engl J Med.</span> 2000;342:1301–1308.
+      </li>
+      <li>
+        Devine BJ.
+        <em>Gentamicin therapy.</em>
+        <span>Drug Intelligence &amp; Clinical Pharmacy.</span> 1974;8:650–655.
+      </li>
+      <li>
+        Fan E, et al.
+        <em>Ventilatory management of acute respiratory distress syndrome.</em>
+        <span>Am J Respir Crit Care Med.</span> 2017.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Gas Exchange, Oxygen Transport &amp; Perfusion</summary>
+    <ol>
+      <li>
+        West JB.
+        <em>Respiratory Physiology: The Essentials.</em>
+        10th ed. Lippincott Williams &amp; Wilkins.
+      </li>
+      <li>
+        Marino PL.
+        <em>The ICU Book.</em>
+        4th ed. Wolters Kluwer.
+      </li>
+      <li>
+        Vallet B, et al.
+        <em>Central venous-to-arterial carbon dioxide difference.</em>
+        <span>Intensive Care Med.</span> 2000.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>Acid–Base Disorders &amp; Electrolytes</summary>
+    <ol>
+      <li>
+        Kraut JA, Madias NE.
+        <em>Serum anion gap: its uses and limitations.</em>
+        <span>Clin J Am Soc Nephrol.</span> 2007.
+      </li>
+      <li>
+        Adrogué HJ, Madias NE.
+        <em>Secondary responses to altered acid-base status.</em>
+        <span>N Engl J Med.</span> 1998.
+      </li>
+      <li>
+        Katz MA.
+        <em>Hyperglycemia-induced hyponatremia.</em>
+        <span>Am J Med.</span> 1973.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>SOFA Score</summary>
+    <ol>
+      <li>
+        Seymour CW, et al.
+        <em>Assessment of Clinical Criteria for Sepsis and Septic Shock.</em>
+        <span>JAMA.</span> 2025.
+        <br />
+        <span class="note">DOI:10.1001/jama.2025.20516</span>
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>CAM-ICU · Delirium</summary>
+    <ol>
+      <li>
+        Ely EW, et al.
+        <em>
+          Delirium in mechanically ventilated patients: validity and reliability of the
+          Confusion Assessment Method for the Intensive Care Unit (CAM-ICU).
+        </em>
+        <span>JAMA.</span> 2001;286(21):2703–2710.
+        <br />
+        <span class="note">DOI:10.1001/jama.286.21.2703</span>
+      </li>
+      <li>
+        Ely EW, et al.
+        <em>
+          The Confusion Assessment Method for the ICU (CAM-ICU): a new method for the detection
+          of delirium in critically ill patients.
+        </em>
+        <span>Intensive Care Med.</span> 2004.
+      </li>
+    </ol>
+  </details>
+
+  <details>
+    <summary>NIHSS · Stroke Scale</summary>
+    <ol>
+      <li>
+        Brott T, et al.
+        <em>Measurements of acute cerebral infarction: a clinical examination scale.</em>
+        <span>Stroke.</span> 1989;20(7):864–870.
+        <br />
+        <span class="note">DOI:10.1161/01.STR.20.7.864</span>
+      </li>
+      <li>
+        Goldstein LB, Samsa GP.
+        <em>Reliability of the National Institutes of Health Stroke Scale.</em>
+        <span>Stroke.</span> 1997;28:307–310.
+      </li>
+      <li>
+        Lyden P, et al.
+        <em>Improved reliability of the NIH Stroke Scale using video training.</em>
+        <span>Stroke.</span> 1994.
+      </li>
+    </ol>
+  </details>
+
+  <p class="disclaimer">
+    This calculator is intended for educational and clinical support purposes only.
+    It does not replace clinical judgment, institutional protocols, or specialist consultation.
+  </p>
+
+</section>

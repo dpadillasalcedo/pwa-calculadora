@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Home / Hub -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/</loc>
-    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- SOFA-2 Score -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/index.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/sofa-2-score/</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- NIHSS Score -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score/</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- CAM-ICU -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu/</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ecocardiografía -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gc/</loc>
     <priority>0.9</priority>
   </url>
 

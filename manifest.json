@@ -2,6 +2,7 @@
   "name": "Calculadora UCI",
   "short_name": "UCI",
   "start_url": "/pwa-calculadora/",
+  "scope": "/pwa-calculadora/",
   "display": "standalone",
   "background_color": "#0b5fff",
   "theme_color": "#0b5fff",
@@ -18,4 +19,5 @@
     }
   ]
 }
+
 

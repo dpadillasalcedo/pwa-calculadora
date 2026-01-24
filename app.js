@@ -1,50 +1,75 @@
 /* =========================
    ANALYTICS HELPER (GA4)
 ========================= */
+const ANALYTICS_CATEGORY = "clinical_calculator";
+
 function trackEvent(name, params = {}) {
-  if (typeof gtag !== "function") return;
+  if (typeof gtag !== "function" || !name) return;
+
   try {
     gtag("event", name, {
-      event_category: "clinical_calculator",
+      event_category: ANALYTICS_CATEGORY,
       ...params,
     });
-  } catch (e) {
-    // Silencioso: nunca rompe la app clínica
+  } catch (_) {
+    // Nunca interrumpir la app clínica
   }
 }
 
 /* =========================
-   Helpers
+   INPUT HELPERS
 ========================= */
-function num(id) {
-  const el = document.getElementById(id);
-  if (!el) return NaN;
 
-  // Permite coma decimal (ej: "3,5")
-  const raw = String(el.value ?? "").trim().replace(",", ".");
-  const v = parseFloat(raw);
+/**
+ * Lee un input por id o elemento y devuelve Number o NaN
+ */
+function num(target) {
+  const el =
+    typeof target === "string"
+      ? document.getElementById(target)
+      : target;
 
-  return Number.isFinite(v) ? v : NaN;
+  if (!el || el.value == null) return NaN;
+
+  const raw = String(el.value).trim().replace(",", ".");
+  const value = parseFloat(raw);
+
+  return Number.isFinite(value) ? value : NaN;
 }
 
-function anyNaN(arr) {
-  return arr.some(v => !Number.isFinite(v));
+/**
+ * Devuelve true si algún valor no es numérico válido
+ */
+function anyNaN(values = []) {
+  return values.some(v => !Number.isFinite(v));
 }
 
-function clampPercent(p) {
-  if (!Number.isFinite(p)) return NaN;
-  return Math.max(0, Math.min(100, p));
+/**
+ * Limita un porcentaje entre 0 y 100
+ */
+function clampPercent(value) {
+  if (!Number.isFinite(value)) return NaN;
+  return Math.min(100, Math.max(0, value));
 }
 
-/* Helpers de escritura segura */
-function setHTML(id, html) {
+/* =========================
+   DOM HELPERS (seguros)
+========================= */
+function setHTML(id, html = "") {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
-function setText(id, text) {
+
+function setText(id, text = "") {
   const el = document.getElementById(id);
   if (el) el.innerText = text;
 }
+
+function clear(id) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = "";
+}
+
 
 /* =========================
    VENTILACIÓN MECÁNICA
@@ -436,18 +461,16 @@ function calcularDeltaGap() {
   const AG_NORMAL = 12;
   const HCO3_NORMAL = 24;
 
-  const resultado = document.getElementById("resultadoDeltaGap");
-  const interpretacion = document.getElementById("interpretacionDeltaGap");
-
-  if (!resultado) return;
+  const outId = "resultadoDeltaGap";
+  const interpId = "interpretacionDeltaGap";
 
   // Validación básica
   if (!Number.isFinite(agPaciente) || !Number.isFinite(hco3Paciente)) {
-    resultado.innerHTML = "<b>Δ/Δ:</b> —";
-    if (interpretacion) {
-      interpretacion.innerHTML =
-        "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente.";
-    }
+    setHTML(outId, "<b>Δ/Δ:</b> —");
+    setHTML(
+      interpId,
+      "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente."
+    );
     return;
   }
 
@@ -455,33 +478,35 @@ function calcularDeltaGap() {
 
   // Validación clínica
   if (deltaBicarb <= 0) {
-    resultado.innerHTML = "<b>Δ/Δ:</b> No interpretable";
-    if (interpretacion) {
-      interpretacion.innerHTML =
-        "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
-        "El cálculo de <b>Δ/Δ</b> no es válido en este contexto.";
-    }
+    setHTML(outId, "<b>Δ/Δ:</b> No interpretable");
+    setHTML(
+      interpId,
+      "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
+      "El cálculo de <b>Δ/Δ</b> no es válido en este contexto."
+    );
     return;
   }
 
   const deltaDelta = (agPaciente - AG_NORMAL) / deltaBicarb;
 
-  resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
+  setHTML(outId, `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`);
 
   let texto = "";
   if (deltaDelta < 1) {
     texto =
       "Sugiere <b>disminución previa del bicarbonato</b>: posible " +
-      "<b>acidosis metabólica hiperclorémica</b> o <b>alcalosis respiratoria crónica</b> asociada.";
+      "<b>acidosis metabólica hiperclorémica</b> o " +
+      "<b>alcalosis respiratoria crónica</b> asociada.";
   } else if (deltaDelta <= 2) {
     texto = "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
   } else {
     texto =
       "Sugiere <b>aumento previo del bicarbonato</b>: posible " +
-      "<b>alcalosis metabólica</b> o <b>acidosis respiratoria crónica</b> asociada.";
+      "<b>alcalosis metabólica</b> o " +
+      "<b>acidosis respiratoria crónica</b> asociada.";
   }
 
-  if (interpretacion) interpretacion.innerHTML = texto;
+  setHTML(interpId, texto);
 
   trackEvent("calculate_delta_delta", {
     delta_delta: deltaDelta,
@@ -497,17 +522,19 @@ function calcularDeltaGap() {
 function calcularSodioCorregido() {
   const nas = num("nas");
   const glucs = num("glucs");
-  const resultado = document.getElementById("resultadoNaCorregido");
-
-  if (!resultado) return;
+  const outId = "resultadoNaCorregido";
 
   if (anyNaN([nas, glucs])) {
-    resultado.innerText = "Complete los campos";
+    setText(outId, "Complete los campos");
     return;
   }
 
   const nac = nas + (1.6 * ((glucs - 100) / 100));
-  resultado.innerHTML = `<b>Na corregido:</b> ${nac.toFixed(1)} mEq/L`;
+
+  setHTML(
+    outId,
+    `<b>Na corregido:</b> ${nac.toFixed(1)} mEq/L`
+  );
 
   trackEvent("calculate_corrected_sodium", {
     sodium_corrected: nac,
@@ -517,17 +544,19 @@ function calcularSodioCorregido() {
 function calcularCalcioCorregido() {
   const cas = num("cas");
   const albs = num("albs");
-  const resultado = document.getElementById("resultadoCaCorregido");
-
-  if (!resultado) return;
+  const outId = "resultadoCaCorregido";
 
   if (anyNaN([cas, albs])) {
-    resultado.innerText = "Complete los campos";
+    setText(outId, "Complete los campos");
     return;
   }
 
   const cac = cas + (0.8 * (4 - albs));
-  resultado.innerHTML = `<b>Ca corregido:</b> ${cac.toFixed(2)}`;
+
+  setHTML(
+    outId,
+    `<b>Ca corregido:</b> ${cac.toFixed(2)}`
+  );
 
   trackEvent("calculate_corrected_calcium", {
     calcium_corrected: cac,
@@ -537,15 +566,21 @@ function calcularCalcioCorregido() {
 /* =========================
    SOFA-2
 ========================= */
+
+/**
+ * Resalta el rango de mortalidad correspondiente al score SOFA
+ */
 function resaltarRangoSOFA(score) {
   const list = document.getElementById("sofaMortalityList");
   if (!list || !Number.isFinite(score)) return;
 
   list.querySelectorAll("li").forEach(li => {
     li.classList.remove("active-range");
+
     const min = Number(li.dataset.min);
     const max = Number(li.dataset.max);
-    if (score >= min && score <= max) {
+
+    if (Number.isFinite(min) && Number.isFinite(max) && score >= min && score <= max) {
       li.classList.add("active-range");
     }
   });
@@ -565,21 +600,25 @@ function calcularSOFA2() {
 
   for (const id of ids) {
     const el = document.getElementById(id);
-    const v = parseInt(el?.value, 10);
+    const value = parseInt(el?.value, 10);
 
-    if (!Number.isFinite(v)) {
-      setHTML("resultadoSOFA2", "<b>SOFA-2:</b> Seleccione todas las variables");
+    if (!Number.isFinite(value)) {
+      setHTML(
+        "resultadoSOFA2",
+        "<b>SOFA-2:</b> Seleccione todas las variables"
+      );
       return;
     }
-    total += v;
+
+    total += value;
   }
 
-  // Buscar la mortalidad según el rango del listado (si existe)
+  // Obtener texto de mortalidad según el rango (si existe)
   let mortalidadTxt = "";
   const list = document.getElementById("sofaMortalityList");
+
   if (list) {
-    const items = Array.from(list.querySelectorAll("li"));
-    const match = items.find(li => {
+    const match = Array.from(list.querySelectorAll("li")).find(li => {
       const min = Number(li.dataset.min);
       const max = Number(li.dataset.max);
       return Number.isFinite(min) && Number.isFinite(max) && total >= min && total <= max;
@@ -587,9 +626,9 @@ function calcularSOFA2() {
 
     if (match) {
       // Ej: "SOFA-2 4–7: Mortalidad leve–moderada (≈ 5–15%)"
-      const full = match.textContent.trim();
-      const idx = full.indexOf(":");
-      mortalidadTxt = idx !== -1 ? full.slice(idx + 1).trim() : full;
+      const text = match.textContent.trim();
+      const idx = text.indexOf(":");
+      mortalidadTxt = idx !== -1 ? text.slice(idx + 1).trim() : text;
     }
   }
 
@@ -597,96 +636,49 @@ function calcularSOFA2() {
     ? `<br><b>Mortalidad estimada:</b> ${mortalidadTxt}`
     : "";
 
-  setHTML("resultadoSOFA2", `<b>SOFA-2 total:</b> ${total} / 24${interpretacion}`);
+  setHTML(
+    "resultadoSOFA2",
+    `<b>SOFA-2 total:</b> ${total} / 24${interpretacion}`
+  );
 
-  // Resaltar rango de mortalidad
+  // Resaltar rango correspondiente
   resaltarRangoSOFA(total);
 
-  // Mostrar bloque de mortalidad solo luego del cálculo
+  // Mostrar reporte de mortalidad solo después del cálculo
   const report = document.getElementById("sofaMortalityReport");
   if (report) report.style.display = "block";
 
-  trackEvent("calculate_sofa_score", { sofa_score: total });
-}
-
-
-/* =========================
-   DELTA / DELTA (ANION GAP / BICARBONATO)
-========================= */
-function calcularDeltaGap() {
-  const agPaciente = num("agapp");
-  const hco3Paciente = num("bicap");
-
-  const AG_NORMAL = 12;
-  const HCO3_NORMAL = 24;
-
-  const resultado = document.getElementById("resultadoDeltaGap");
-  const interpretacion = document.getElementById("interpretacionDeltaGap");
-
-  if (!resultado) return;
-
-  if (!Number.isFinite(agPaciente) || !Number.isFinite(hco3Paciente)) {
-    resultado.innerHTML = "<b>Δ/Δ:</b> —";
-    if (interpretacion) {
-      interpretacion.innerHTML =
-        "Complete <b>Anion Gap</b> y <b>Bicarbonato</b> del paciente.";
-    }
-    return;
-  }
-
-  const deltaBicarb = HCO3_NORMAL - hco3Paciente;
-
-  if (deltaBicarb <= 0) {
-    resultado.innerHTML = "<b>Δ/Δ:</b> No interpretable";
-    if (interpretacion) {
-      interpretacion.innerHTML =
-        "El <b>bicarbonato no está disminuido</b> (HCO₃ ≥ 24). " +
-        "El cálculo de <b>Δ/Δ no es válido</b> en este contexto.";
-    }
-    return;
-  }
-
-  const deltaDelta = (agPaciente - AG_NORMAL) / deltaBicarb;
-
-  resultado.innerHTML = `<b>Δ/Δ:</b> ${deltaDelta.toFixed(2)}`;
-
-  let texto = "";
-  if (deltaDelta < 1) {
-    texto =
-      "Sugiere <b>disminución previa del bicarbonato</b>, puede ser por " +
-      "<b>acidosis metabólica hiperclorémica asociada</b> o " +
-      "<b>alcalosis respiratoria crónica asociada</b>.";
-  } else if (deltaDelta <= 2) {
-    texto = "<b>Acidosis metabólica con anion gap aumentado PURA</b>.";
-  } else {
-    texto =
-      "Sugiere <b>aumento previo del bicarbonato</b>, puede ser por " +
-      "<b>alcalosis metabólica asociada</b> o " +
-      "<b>acidosis respiratoria crónica asociada</b>.";
-  }
-
-  if (interpretacion) interpretacion.innerHTML = texto;
-
-  trackEvent("calculate_delta_delta", {
-    delta_delta: deltaDelta,
-    ag_paciente: agPaciente,
-    hco3_paciente: hco3Paciente,
+  trackEvent("calculate_sofa_score", {
+    sofa_score: total,
   });
 }
 
+
 /* =========================
-   CAM-ICU · Algoritmo secuencial  
+   CAM-ICU · Algoritmo secuencial
 ========================= */
 (function () {
-  function $(id) { return document.getElementById(id); }
+  function $(id) {
+    return document.getElementById(id);
+  }
 
-  function hide(id) { const el = $(id); if (el) el.style.display = "none"; }
-  function show(id) { const el = $(id); if (el) el.style.display = "block"; }
+  function hide(id) {
+    const el = $(id);
+    if (el) el.style.display = "none";
+  }
+
+  function show(id) {
+    const el = $(id);
+    if (el) el.style.display = "block";
+  }
 
   function clearResult() {
     const res = $("resultadoCAMICU");
     const intp = $("interpretacionCAMICU");
-    if (res) { res.innerHTML = ""; res.style.color = ""; }
+    if (res) {
+      res.innerHTML = "";
+      res.style.color = "";
+    }
     if (intp) intp.innerHTML = "";
   }
 
@@ -704,11 +696,14 @@ function calcularDeltaGap() {
     } else {
       res.innerHTML = "❌ <b>CAM-ICU NEGATIVO</b> · Delirium no detectado";
       res.style.color = "#166534";
-      intp.innerHTML = "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
+      intp.innerHTML =
+        "No se cumplen los criterios diagnósticos de delirium en esta evaluación.";
     }
 
     if (typeof trackEvent === "function") {
-      try { trackEvent("camicu_result", { delirium: !!positivo }); } catch (_) {}
+      try {
+        trackEvent("camicu_result", { delirium: !!positivo });
+      } catch (_) {}
     }
   }
 
@@ -756,7 +751,6 @@ function calcularDeltaGap() {
   }
 
   function paso4() {
-    // No resetea nada acá: es el último paso
     clearResult();
     const v = $("camicu_c4")?.value;
     if (v === "1") setResult(true);
@@ -773,17 +767,209 @@ function calcularDeltaGap() {
     hide("camicu_paso4");
     clearResult();
 
-    // Listeners (esto es lo que hace que funcione siempre)
+    // Listeners
     $("camicu_c1").addEventListener("change", paso1);
     $("camicu_c2").addEventListener("change", paso2);
     $("camicu_c3").addEventListener("change", paso3);
     $("camicu_c4").addEventListener("change", paso4);
   }
 
-  // Inicializa cuando el DOM está listo
+
+/* =========================
+   NIHSS
+========================= */
+function calcularNIHSS() {
+  const ids = [
+    "nihss_1a",
+    "nihss_1b",
+    "nihss_1c",
+    "nihss_2",
+    "nihss_3",
+    "nihss_4",
+    "nihss_motor",   // brazo y pierna (peor lado)
+    "nihss_ataxia",
+    "nihss_sens",
+    "nihss_lang",
+    "nihss_dys",
+    "nihss_neglect"
+  ];
+
+  let total = 0;
+
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    const v = parseInt(el?.value, 10);
+
+    if (!Number.isFinite(v)) {
+      setHTML("resultadoNIHSS", "<b>NIHSS:</b> Complete todos los ítems");
+      setHTML("interpretacionNIHSS", "");
+      return;
+    }
+    total += v;
+  }
+
+  let interpretacion = "";
+  if (total === 0) interpretacion = "Sin déficit neurológico.";
+  else if (total <= 4) interpretacion = "ACV leve.";
+  else if (total <= 15) interpretacion = "ACV moderado.";
+  else if (total <= 20) interpretacion = "ACV moderado–severo.";
+  else interpretacion = "ACV severo.";
+
+  setHTML(
+    "resultadoNIHSS",
+    `<b>NIHSS total:</b> ${total}`
+  );
+  setHTML(
+    "interpretacionNIHSS",
+    `<b>Interpretación:</b> ${interpretacion}`
+  );
+
+  trackEvent("calculate_nihss_score", { nihss_score: total });
+}
+
+
+    // Inicializar cuando el DOM esté listo
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initCAMICU);
   } else {
     initCAMICU();
   }
+
+/* =========================
+   EVENT BINDING CENTRAL
+========================= */
+(function initEventBinding() {
+  const actionMap = {
+    // Ventilación
+    "calcular-peso-ideal": calcularPesoIdeal,
+    "ajustar-pco2": ajustarPCO2,
+
+    // Ecocardiografía
+    "calcular-gc-eco": calcularGCEco,
+
+    // Oxigenación
+    "calcular-oxigenacion": calcularOxigenacion,
+    "calcular-delta-co2": calcularDeltaCO2,
+
+    // Presiones / Perfusión
+    "calcular-rvs": calcularRVS,
+    "calcular-ppr": calcularPPR,
+    "calcular-ppc": calcularPPC,
+
+    // Ácido–base
+    "calcular-anion-gap": calcularAnionGapCorregido,
+    "calcular-delta-gap": calcularDeltaGap,
+
+    // Electrolitos
+    "calcular-na-corregido": calcularSodioCorregido,
+    "calcular-ca-corregido": calcularCalcioCorregido,
+
+    // Scores
+    "calcular-sofa": calcularSOFA2,
+    "calcular-nihss": calcularNIHSS,
+  };
+
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest("[data-action]");
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const fn = actionMap[action];
+
+    if (typeof fn === "function") {
+      try {
+        fn();
+      } catch (err) {
+        console.error(`Error ejecutando acción: ${action}`, err);
+      }
+    } else {
+      console.warn(`Acción no registrada: ${action}`);
+    }
+
+/* =========================
+   ROUTING SIMPLE POR URL
+========================= */
+function getRoute() {
+  return location.pathname.replace(/\/$/, "");
+}
+
+function initRoute() {
+  const route = getRoute();
+
+  // Ocultar todas las secciones
+  document.querySelectorAll("section[data-module]").forEach(sec => {
+    sec.style.display = "none";
+  });
+
+  switch (route) {
+    case "/sofa-2-score":
+      showSection("sofa");
+      setMeta({
+        title: "SOFA-2 Score – Evaluación de disfunción orgánica en UCI",
+        description: "Calculadora SOFA-2 para estimar disfunción orgánica y mortalidad en pacientes críticos."
+      });
+      break;
+
+    case "/nihss-score":
+      showSection("nihss");
+      setMeta({
+        title: "NIHSS Score – Escala de severidad del ACV",
+        description: "Calculadora NIHSS para cuantificar el déficit neurológico en el accidente cerebrovascular."
+      });
+      break;
+
+    case "/cam-icu":
+      showSection("camicu");
+      setMeta({
+        title: "CAM-ICU – Detección de delirium en UCI",
+        description: "Evaluación CAM-ICU paso a paso para detección de delirium en pacientes críticos."
+      });
+      break;
+
+    case "/ecocardiografia-gc":
+      showSection("eco");
+      setMeta({
+        title: "Gasto cardíaco por ecocardiografía (VTI)",
+        description: "Cálculo del gasto cardíaco por ecocardiografía utilizando DTSVI y VTI."
+      });
+      break;
+
+    default:
+      // Home / Hub
+      showAllSections();
+      setMeta({
+        title: "Calculadora UCI – Herramientas clínicas para terapia intensiva",
+        description: "Calculadoras clínicas para UCI: scores, hemodinamia, ecocardiografía y ventilación."
+      });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", initRoute);
+
+function showSection(module) {
+  const sec = document.querySelector(`section[data-module="${module}"]`);
+  if (sec) sec.style.display = "block";
+}
+
+function showAllSections() {
+  document.querySelectorAll("section[data-module]").forEach(sec => {
+    sec.style.display = "block";
+  });
+}
+
+function setMeta({ title, description }) {
+  if (title) document.title = title;
+
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta && description) meta.setAttribute("content", description);
+}
+
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  document.querySelectorAll('.ad-slot').forEach(el => {
+    el.style.display = 'none';
+  });
+}
+
+  });
 })();
+
