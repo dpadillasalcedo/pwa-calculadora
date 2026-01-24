@@ -4,32 +4,43 @@
   <!-- Home / Hub -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- CAM-ICU -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- SOFA-2 Score -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/sofa-2-score.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- NIHSS Score -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score.html</loc>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- CAM-ICU -->
-  <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Ecocardiografía -->
   <url>
     <loc>https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gasto-cardiaco.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
 </urlset>
+
 
