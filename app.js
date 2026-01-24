@@ -1115,7 +1115,7 @@ function calcularNIHSS() {
 }
 
 /* =========================
-   EVENT BINDING CENTRAL
+   EVENT BINDING CENTRAL (FINAL FIX)
 ========================= */
 (function initEventBinding() {
   const actionMap = {
@@ -1152,10 +1152,10 @@ function calcularNIHSS() {
     const btn = event.target.closest("[data-action]");
     if (!btn) return;
 
-    // Evitar submit de formularios
+    // 🔥 CLAVE: evita submit/reload si está dentro de un <form>
     event.preventDefault();
 
-    // Botón deshabilitado → no hacer nada
+    // Si el botón está deshabilitado, no ejecutar
     if (btn.disabled) return;
 
     const action = btn.dataset.action;
@@ -1172,7 +1172,7 @@ function calcularNIHSS() {
     }
   }
 
-  // Esperar DOM listo
+  // Asegura binding incluso si el script carga en <head>
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       document.addEventListener("click", handleClick);
