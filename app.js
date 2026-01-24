@@ -672,21 +672,28 @@ function initCAMICU() {
   limpiarResultadoCAMICU();
 }
 
+/* =========================
+   PASO 1
+========================= */
 function camicuPaso1() {
   const v1 = getVal("camicu_c1");
+
   ocultarDesdePaso(2);
   limpiarResultadoCAMICU();
 
   if (v1 === 1) {
     mostrarPaso(2);
-  } else if (v1 === 0) {
-    mostrarResultadoCAMICU(false);
   }
+  // Si es NO, no se muestra resultado todavía
 }
 
+/* =========================
+   PASO 2
+========================= */
 function camicuPaso2() {
   const v1 = getVal("camicu_c1");
   const v2 = getVal("camicu_c2");
+
   ocultarDesdePaso(3);
   limpiarResultadoCAMICU();
 
@@ -694,10 +701,14 @@ function camicuPaso2() {
     mostrarPaso(3);
     mostrarPaso(4);
   } else if (v2 === 0) {
+    // 1 + 2 no se cumple → CAM-ICU negativo definitivo
     mostrarResultadoCAMICU(false);
   }
 }
 
+/* =========================
+   PASO 3 y 4
+========================= */
 function camicuPaso3() {
   evaluarResultadoFinal();
 }
@@ -707,20 +718,23 @@ function camicuPaso4() {
 }
 
 /* =========================
-   LÓGICA FINAL
+   EVALUACIÓN FINAL
 ========================= */
-
 function evaluarResultadoFinal() {
   const v1 = getVal("camicu_c1");
   const v2 = getVal("camicu_c2");
   const v3 = getVal("camicu_c3");
   const v4 = getVal("camicu_c4");
 
+  // Solo evaluar si 1 y 2 son positivos
   if (v1 !== 1 || v2 !== 1) return;
+
+  // Esperar a que ambos estén respondidos
+  if (v3 === null || v4 === null) return;
 
   if (v3 === 1 || v4 === 1) {
     mostrarResultadoCAMICU(true);
-  } else if (v3 === 0 && v4 === 0) {
+  } else {
     mostrarResultadoCAMICU(false);
   }
 }
@@ -731,7 +745,8 @@ function evaluarResultadoFinal() {
 
 function getVal(id) {
   const el = document.getElementById(id);
-  const v = Number(el?.value);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
   return Number.isFinite(v) ? v : null;
 }
 
@@ -764,7 +779,7 @@ function mostrarResultadoCAMICU(positivo) {
     );
     setHTML(
       "interpretacionCAMICU",
-      "Compatible con <strong>delirium</strong>."
+      "Cumple criterios diagnósticos de <strong>delirium</strong>."
     );
   } else {
     setHTML(
@@ -773,12 +788,15 @@ function mostrarResultadoCAMICU(positivo) {
     );
     setHTML(
       "interpretacionCAMICU",
-      "No cumple criterios de delirium."
+      "No cumple criterios diagnósticos de delirium."
     );
   }
 
-  trackEvent("calculate_cam_icu", { result: positivo ? "positive" : "negative" });
+  trackEvent("calculate_cam_icu", {
+    result: positivo ? "positive" : "negative"
+  });
 }
+
 
 /* =========================
    EVENT BINDING CENTRAL

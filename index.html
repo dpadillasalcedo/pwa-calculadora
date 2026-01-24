@@ -1182,21 +1182,21 @@
   </h2>
 
   <p class="note">
-    El diagnóstico de delirium requiere:
-    <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
+    Diagnóstico positivo si se cumple:
+    <strong>Criterio 1 + Criterio 2</strong> y <strong>(Criterio 3 o 4)</strong>.
   </p>
 
   <!-- PASO 1 -->
   <fieldset>
-    <legend><h3>Criterio 1 · Inicio agudo / curso fluctuante</h3></legend>
+    <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
 
-    <label for="camicu_c1">
-      Cambio agudo del estado mental o fluctuación en 24 h
-    </label>
+    <p class="note">
+      ¿Existe evidencia de un <strong>cambio agudo</strong> en el estado mental
+      respecto al basal, o un <strong>curso fluctuante</strong> en las últimas 24 horas?
+    </p>
 
-    <select
-      id="camicu_c1"
-      onchange="camicuPaso1()">
+    <label for="camicu_c1">Respuesta</label>
+    <select id="camicu_c1" onchange="camicuPaso1()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -1204,14 +1204,17 @@
   </fieldset>
 
   <!-- PASO 2 -->
-  <fieldset id="camicu_paso2">
-    <legend><h3>Criterio 2 · Inatención</h3></legend>
+  <fieldset id="camicu_paso2" style="display:none">
+    <legend><h3>Paso 2 · Inatención</h3></legend>
 
-    <label for="camicu_c2">Incapacidad para mantener la atención</label>
+    <p class="note">
+      ¿El paciente presenta <strong>dificultad para mantener o dirigir la atención</strong>?
+      <br>
+      (Ej.: no puede seguir órdenes simples, se distrae fácilmente)
+    </p>
 
-    <select
-      id="camicu_c2"
-      onchange="camicuPaso2()">
+    <label for="camicu_c2">Respuesta</label>
+    <select id="camicu_c2" onchange="camicuPaso2()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -1219,14 +1222,17 @@
   </fieldset>
 
   <!-- PASO 3 -->
-  <fieldset id="camicu_paso3">
-    <legend><h3>Criterio 3 · Pensamiento desorganizado</h3></legend>
+  <fieldset id="camicu_paso3" style="display:none">
+    <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
 
-    <label for="camicu_c3">Pensamiento incoherente o ilógico</label>
+    <p class="note">
+      ¿Presenta <strong>pensamiento incoherente o ilógico</strong>?
+      <br>
+      (Respuestas irrelevantes, cambios impredecibles de tema, ideas inconexas)
+    </p>
 
-    <select
-      id="camicu_c3"
-      onchange="camicuPaso3()">
+    <label for="camicu_c3">Respuesta</label>
+    <select id="camicu_c3" onchange="camicuPaso3()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -1234,16 +1240,17 @@
   </fieldset>
 
   <!-- PASO 4 -->
-  <fieldset id="camicu_paso4">
-    <legend><h3>Criterio 4 · Nivel de conciencia alterado</h3></legend>
+  <fieldset id="camicu_paso4" style="display:none">
+    <legend><h3>Paso 4 · Nivel de conciencia alterado</h3></legend>
 
-    <label for="camicu_c4">
-      Nivel de conciencia distinto de alerta
-    </label>
+    <p class="note">
+      ¿El nivel de conciencia es <strong>diferente de alerta</strong>?
+      <br>
+      (Ej.: vigil, letárgico, estuporoso o comatoso)
+    </p>
 
-    <select
-      id="camicu_c4"
-      onchange="camicuPaso4()">
+    <label for="camicu_c4">Respuesta</label>
+    <select id="camicu_c4" onchange="camicuPaso4()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -1255,7 +1262,7 @@
     id="resultadoCAMICU"
     role="status"
     aria-live="polite"
-    style="margin-top:12px;font-weight:600">
+    style="margin-top:14px;font-weight:700">
   </div>
 
   <div
@@ -1268,9 +1275,9 @@
 </section>
 
 <script>
-  // Inicializar estado al cargar
   initCAMICU();
 </script>
+
 
 
 <!-- =========================
