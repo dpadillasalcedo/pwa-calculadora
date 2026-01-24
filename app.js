@@ -684,7 +684,6 @@ function camicuPaso1() {
   if (v1 === 1) {
     mostrarPaso(2);
   }
-  // Si es NO, no se continúa evaluación
 }
 
 /* =========================
@@ -699,7 +698,6 @@ function camicuPaso2() {
 
   if (v1 === 1 && v2 === 1) {
     mostrarPaso(3);
-    mostrarPaso(4);
   } else if (v2 === 0) {
     // 1 + 2 no se cumplen → negativo definitivo
     mostrarResultadoCAMICU(false);
@@ -710,40 +708,38 @@ function camicuPaso2() {
    PASO 3
 ========================= */
 function camicuPaso3() {
-  evaluarResultadoFinal();
+  const v3 = getVal("camicu_c3");
+
+  ocultarDesdePaso(4);
+  limpiarResultadoCAMICU();
+
+  if (v3 === null) return;
+
+  if (v3 === 1) {
+    // 3 positivo → ya cumple (3 o 4)
+    mostrarResultadoCAMICU(true);
+  } else {
+    // 3 negativo → recién ahora se evalúa el 4
+    mostrarPaso(4);
+
+    // Mostrar NO EVALUABLE hasta que se responda el 4
+    setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
+    setHTML(
+      "interpretacionCAMICU",
+      "El criterio 3 es negativo. Complete el criterio 4 para concluir la evaluación."
+    );
+  }
 }
 
 /* =========================
    PASO 4
 ========================= */
 function camicuPaso4() {
-  evaluarResultadoFinal();
-}
-
-/* =========================
-   EVALUACIÓN FINAL
-========================= */
-function evaluarResultadoFinal() {
-  const v1 = getVal("camicu_c1");
-  const v2 = getVal("camicu_c2");
-  const v3 = getVal("camicu_c3");
   const v4 = getVal("camicu_c4");
 
-  // Si 1 + 2 no se cumplen, no hay delirium
-  if (v1 !== 1 || v2 !== 1) return;
+  if (v4 === null) return;
 
-  // Si 3 y 4 aún no fueron evaluados → NO EVALUABLE
-  if (v3 === null && v4 === null) {
-    setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
-    setHTML(
-      "interpretacionCAMICU",
-      "Complete al menos uno de los criterios 3 o 4 para concluir la evaluación."
-    );
-    return;
-  }
-
-  // Resultado final
-  mostrarResultadoCAMICU(v3 === 1 || v4 === 1);
+  mostrarResultadoCAMICU(v4 === 1);
 }
 
 /* =========================
@@ -805,6 +801,15 @@ function mostrarResultadoCAMICU(positivo) {
     });
   }
 }
+
+/* =========================
+   FALLBACK
+========================= */
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
 
 
 /* =========================
