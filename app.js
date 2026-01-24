@@ -1024,7 +1024,7 @@ if (window.matchMedia('(display-mode: standalone)').matches) {
 })();
 
 /* =========================
-   ROUTING SIMPLE POR URL (FIX)
+   ROUTING SIMPLE POR URL
 ========================= */
 function getRoute() {
   return location.pathname.replace(/\/$/, "");
@@ -1112,7 +1112,3 @@ if (window.matchMedia("(display-mode: standalone)").matches) {
     el.style.display = "none";
   });
 }
-
-}); // cierre defensivo de addEventListener o bloque abierto
-})(); // cierre defensivo de IIFE si quedó abierta
-
