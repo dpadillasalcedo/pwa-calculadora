@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    Gasto Cardíaco por Ecocardiografía | TSVI y VTI · Calculadora UCI
+  </title>
+
+  <meta
+    name="description"
+    content="Calculadora de gasto cardíaco por ecocardiografía transtorácica. Aprende cómo medir el TSVI y el VTI con Doppler pulsado y calcula el gasto cardíaco paso a paso."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <link
+    rel="canonical"
+    href="https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gasto-cardiaco.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gasto Cardíaco por Ecocardiografía" />
+  <meta
+    property="og:description"
+    content="Cálculo del gasto cardíaco mediante ecocardiografía transtorácica utilizando TSVI y VTI." />
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:url"
+    content="https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gasto-cardiaco.html" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="app-header">
+  <div>
+    <h1>Gasto Cardíaco por Ecocardiografía</h1>
+    <p class="subtitle">
+      TSVI · VTI · Doppler pulsado
+    </p>
+  </div>
+  <div class="pill">Uso educativo</div>
+</header>
+
+<!-- =========================
+     INTRODUCCIÓN SEO
+========================== -->
+<section class="panel">
+
+  <p class="note">
+    El <strong>gasto cardíaco (GC)</strong> puede estimarse de forma no invasiva mediante
+    <strong>ecocardiografía transtorácica</strong>, utilizando el
+    <strong>diámetro del tracto de salida del ventrículo izquierdo (TSVI)</strong>
+    y la <strong>integral velocidad-tiempo (VTI)</strong> obtenida con Doppler pulsado.
+  </p>
+
+  <p class="note">
+    Esta técnica es ampliamente utilizada en cuidados críticos, anestesia y cardiología
+    para evaluar el estado hemodinámico del paciente y guiar decisiones terapéuticas.
+  </p>
+
+</section>
+
+<!-- =========================
+     ILUSTRACIONES ECO
+========================== -->
+<section class="panel">
+
+  <h2>¿Dónde se realizan las mediciones?</h2>
+
+  <div class="eco-explanation">
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco1.png"
+        alt="Medición del diámetro del TSVI en eje largo paraesternal"
+        loading="lazy" />
+      <figcaption class="note">
+        Medición del <strong>diámetro del TSVI</strong> en vista paraesternal eje largo.
+      </figcaption>
+    </figure>
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco2.png"
+        alt="Obtención del VTI del TSVI con Doppler pulsado"
+        loading="lazy" />
+      <figcaption class="note">
+        Obtención del <strong>VTI</strong> del TSVI mediante Doppler pulsado en vista apical.
+      </figcaption>
+    </figure>
+
+    <figure class="eco-figure">
+      <img
+        src="/pwa-calculadora/images/eco3.png"
+        alt="Cálculo del gasto cardíaco a partir del TSVI y el VTI"
+        loading="lazy" />
+      <figcaption class="note">
+        Integración del <strong>área del TSVI</strong> y el <strong>VTI</strong> para el
+        cálculo del <strong>gasto cardíaco</strong>.
+      </figcaption>
+    </figure>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FÓRMULA
+========================== -->
+<section class="panel">
+
+  <h2>Fórmula del gasto cardíaco</h2>
+
+  <div class="card">
+    <div class="card__title">Fórmula</div>
+    <p class="note">
+      <strong>GC = Área TSVI × VTI × Frecuencia cardíaca</strong>
+    </p>
+    <p class="note">
+      Donde:<br />
+      Área TSVI = π × (DTSVI / 2)²
+    </p>
+  </div>
+
+</section>
+
+<!-- =========================
+     CALCULADORA
+========================== -->
+<section class="panel">
+
+  <h2>Calculadora de gasto cardíaco</h2>
+
+  <fieldset>
+
+    <div class="grid-3">
+      <div>
+        <label for="dtsvi">Diámetro TSVI (cm)</label>
+        <input type="number" id="dtsvi" step="0.1" min="0" />
+      </div>
+
+      <div>
+        <label for="vti">VTI TSVI (cm)</label>
+        <input type="number" id="vti" step="0.1" min="0" />
+      </div>
+
+      <div>
+        <label for="fc">Frecuencia cardíaca (lpm)</label>
+        <input type="number" id="fc" step="1" min="0" />
+      </div>
+    </div>
+
+    <button type="button" data-action="calcular-gc-eco">
+      Calcular gasto cardíaco
+    </button>
+
+    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
+    <div id="interpretacionGCEco" class="note"></div>
+
+    <div class="ad-slot ad-result"></div>
+
+  </fieldset>
+
+</section>
+
+<!-- =========================
+     LINK DE RETORNO
+========================== -->
+<section class="panel">
+
+  <p class="note">
+    🔙 Volver a la
+    <a href="/pwa-calculadora/">Calculadora UCI principal</a>
+  </p>
+
+</section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
