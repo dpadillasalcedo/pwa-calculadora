@@ -1182,55 +1182,95 @@
   </h2>
 
   <p class="note">
-    La <strong>Confusion Assessment Method for the ICU (CAM-ICU)</strong> es una
-    herramienta validada para la detección de <strong>delirium en pacientes críticos</strong>,
-    incluidos aquellos bajo ventilación mecánica.
-  </p>
-
-  <p class="note">
     El diagnóstico de delirium requiere:
     <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
   </p>
 
+  <!-- PASO 1 -->
   <fieldset>
-    <legend><h3>Criterio 1 · Inicio agudo o curso fluctuante</h3></legend>
+    <legend><h3>Criterio 1 · Inicio agudo / curso fluctuante</h3></legend>
 
     <label for="camicu_c1">
-      Cambio agudo del estado mental o fluctuación en las últimas 24 horas
+      Cambio agudo del estado mental o fluctuación en 24 h
     </label>
 
     <select
       id="camicu_c1"
-      aria-describedby="camicu-c1-help">
+      onchange="camicuPaso1()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
     </select>
-
-    <small id="camicu-c1-help" class="note">
-      Comparar con el estado neurológico basal del paciente.
-    </small>
   </fieldset>
 
-<!-- Resultado -->
-<div
-  id="resultadoCAMICU"
-  role="status"
-  aria-live="polite"
-  style="margin-top:12px;font-weight:600">
-</div>
+  <!-- PASO 2 -->
+  <fieldset id="camicu_paso2">
+    <legend><h3>Criterio 2 · Inatención</h3></legend>
 
-<div
-  id="interpretacionCAMICU"
-  class="note"
-  style="margin-top:6px">
-</div>
+    <label for="camicu_c2">Incapacidad para mantener la atención</label>
 
-<!-- Anuncio post-resultado -->
-<div class="ad-slot ad-result"></div>
+    <select
+      id="camicu_c2"
+      onchange="camicuPaso2()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
+  <!-- PASO 3 -->
+  <fieldset id="camicu_paso3">
+    <legend><h3>Criterio 3 · Pensamiento desorganizado</h3></legend>
 
+    <label for="camicu_c3">Pensamiento incoherente o ilógico</label>
+
+    <select
+      id="camicu_c3"
+      onchange="camicuPaso3()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
+
+  <!-- PASO 4 -->
+  <fieldset id="camicu_paso4">
+    <legend><h3>Criterio 4 · Nivel de conciencia alterado</h3></legend>
+
+    <label for="camicu_c4">
+      Nivel de conciencia distinto de alerta
+    </label>
+
+    <select
+      id="camicu_c4"
+      onchange="camicuPaso4()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
+
+  <!-- RESULTADO -->
+  <div
+    id="resultadoCAMICU"
+    role="status"
+    aria-live="polite"
+    style="margin-top:12px;font-weight:600">
+  </div>
+
+  <div
+    id="interpretacionCAMICU"
+    class="note"
+    style="margin-top:6px">
+  </div>
+
+  <div class="ad-slot ad-result"></div>
 </section>
+
+<script>
+  // Inicializar estado al cargar
+  initCAMICU();
+</script>
 
 
 <!-- =========================
