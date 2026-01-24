@@ -1112,3 +1112,7 @@ if (window.matchMedia("(display-mode: standalone)").matches) {
     el.style.display = "none";
   });
 }
+
+}); // cierre defensivo de addEventListener o bloque abierto
+})(); // cierre defensivo de IIFE si quedó abierta
+
