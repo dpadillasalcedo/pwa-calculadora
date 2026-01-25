@@ -392,7 +392,7 @@ function calcularDeltaCO2() {
 	
 
 /* =========================
-   COMPENSACIÓN RENAL · Na/K
+   COMPENSACIÓN RENAL · JS
 ========================= */
 
 function initRenal() {
@@ -400,110 +400,72 @@ function initRenal() {
   limpiarResultadoRenal();
 }
 
-/* =========================
-   PASO 1 · Estímulo
-========================= */
+/* PASO 1 */
 function renalPaso1() {
-  const v1 = getValRenal("renal_estimulo");
-
+  const v1 = getValRenal("renal_hemo");
   ocultarDesdePasoRenal(2);
   limpiarResultadoRenal();
 
-  if (v1 === 1) {
-    mostrarPasoRenal(2);
-  } else if (v1 === 0) {
+  if (v1 === 1) mostrarPasoRenal(2);
+  else if (v1 === 0) {
     mostrarResultadoRenal(
-      "ℹ Sin estímulo de compensación",
-      "No hay indicios clínicos de reducción del volumen circulante efectivo."
+      "ℹ Sin descompensación hemodinámica",
+      "No hay indicios clínicos de activación de mecanismos de compensación."
     );
   }
 }
 
-/* =========================
-   PASO 2 · Sodio urinario
-========================= */
+/* PASO 2 */
 function renalPaso2() {
-  const na = getStrRenal("renal_na");
-
-  ocultarDesdePasoRenal(3);
-  limpiarResultadoRenal();
-
-  if (!na) return;
-
-  mostrarPasoRenal(3);
+  if (getStrRenal("renal_na")) mostrarPasoRenal(3);
 }
 
-/* =========================
-   PASO 3 · Potasio urinario
-========================= */
+/* PASO 3 */
 function renalPaso3() {
-  const k = getStrRenal("renal_k");
-
-  ocultarDesdePasoRenal(4);
-  limpiarResultadoRenal();
-
-  if (!k) return;
-
-  mostrarPasoRenal(4);
+  if (getValRenal("renal_erc") !== null) mostrarPasoRenal(4);
 }
 
-/* =========================
-   PASO 4 · ERC
-========================= */
+/* PASO 4 · RESULTADO FINAL */
 function renalPaso4() {
-  const estimulo = getValRenal("renal_estimulo");
   const na = getStrRenal("renal_na");
   const k = getStrRenal("renal_k");
-  const erc = getValRenal("renal_erc");
 
-  if (estimulo === null || !na || !k || erc === null) return;
+  if (!na || !k) return;
 
-  /* Lógica clínica */
-  if (estimulo === 1 && na === "bajo" && k === "alto") {
+  if (na === "bajo" && k === "alto") {
     mostrarResultadoRenal(
-      "✔ Compensación cardiovascular activa",
-      "Respuesta renal coherente con activación del SRAA y capacidad tubular preservada."
+      "✅ Compensación cardiovascular activa",
+      "Mecanismos hemodinámicos activos con función tubular preservada."
     );
   }
-
-  else if (estimulo === 1 && na === "bajo" && k === "bajo") {
-    let texto =
-      "Existe estímulo de retención, pero la respuesta tubular es parcial.";
-    if (erc === 1) {
-      texto +=
-        " En el contexto de ERC, este patrón es compatible con compensación incompleta o mixta.";
-    }
-
+  else if (na === "bajo" && k === "bajo") {
     mostrarResultadoRenal(
-      "⚠ Compensación incompleta o mixta",
-      texto
+      "⚠️ Compensación incompleta o mixta",
+      "Existe estímulo de compensación, pero la respuesta tubular es parcial."
     );
   }
-
-  else if (na === "alto") {
+  else if (na === "alto" && k === "alto") {
     mostrarResultadoRenal(
-      "❌ Falla de compensación renal",
-      "Incapacidad tubular para retener sodio pese a estímulo hemodinámico. Sugiere daño renal intrínseco."
+      "❌ Daño tubular o uso de diuréticos",
+      "Excreción inapropiada de sodio con secreción de potasio conservada."
     );
   }
-
-  else {
+  else if (na === "alto" && k === "bajo") {
     mostrarResultadoRenal(
-      "ℹ Patrón no concluyente",
-      "Los valores urinarios no permiten una interpretación única. Correlacionar con clínica, creatinina y uso de diuréticos."
+      "❌ Falla tubular avanzada",
+      "Compromiso severo de la función tubular renal."
     );
   }
 }
 
 /* =========================
-   HELPERS · RENAL
+   HELPERS
 ========================= */
 
 function getValRenal(id) {
   const el = document.getElementById(id);
   if (!el || el.value === "") return null;
-  const v = Number(el.value);
-  return Number.isFinite(v) ? v : null;
+  return Number(el.value);
 }
 
 function getStrRenal(id) {
@@ -533,16 +495,16 @@ function limpiarResultadoRenal() {
   setHTML("interpretacionRenal", "");
 }
 
-function mostrarResultadoRenal(resultado, interpretacion) {
-  setHTML("resultadoRenal", resultado);
-  setHTML("interpretacionRenal", interpretacion);
+function mostrarResultadoRenal(res, interp) {
+  setHTML("resultadoRenal", res);
+  setHTML("interpretacionRenal", interp);
 }
 
-/* Fallback seguro */
 function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
+
 
 
 /* =========================
