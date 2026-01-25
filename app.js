@@ -389,6 +389,161 @@ function calcularDeltaCO2() {
     pvco2_mmhg: pvco2,
   });
 }
+	
+
+/* =========================
+   COMPENSACIÓN RENAL · Na/K
+========================= */
+
+function initRenal() {
+  ocultarDesdePasoRenal(2);
+  limpiarResultadoRenal();
+}
+
+/* =========================
+   PASO 1 · Estímulo
+========================= */
+function renalPaso1() {
+  const v1 = getValRenal("renal_estimulo");
+
+  ocultarDesdePasoRenal(2);
+  limpiarResultadoRenal();
+
+  if (v1 === 1) {
+    mostrarPasoRenal(2);
+  } else if (v1 === 0) {
+    mostrarResultadoRenal(
+      "ℹ Sin estímulo de compensación",
+      "No hay indicios clínicos de reducción del volumen circulante efectivo."
+    );
+  }
+}
+
+/* =========================
+   PASO 2 · Sodio urinario
+========================= */
+function renalPaso2() {
+  const na = getStrRenal("renal_na");
+
+  ocultarDesdePasoRenal(3);
+  limpiarResultadoRenal();
+
+  if (!na) return;
+
+  mostrarPasoRenal(3);
+}
+
+/* =========================
+   PASO 3 · Potasio urinario
+========================= */
+function renalPaso3() {
+  const k = getStrRenal("renal_k");
+
+  ocultarDesdePasoRenal(4);
+  limpiarResultadoRenal();
+
+  if (!k) return;
+
+  mostrarPasoRenal(4);
+}
+
+/* =========================
+   PASO 4 · ERC
+========================= */
+function renalPaso4() {
+  const estimulo = getValRenal("renal_estimulo");
+  const na = getStrRenal("renal_na");
+  const k = getStrRenal("renal_k");
+  const erc = getValRenal("renal_erc");
+
+  if (estimulo === null || !na || !k || erc === null) return;
+
+  /* Lógica clínica */
+  if (estimulo === 1 && na === "bajo" && k === "alto") {
+    mostrarResultadoRenal(
+      "✔ Compensación cardiovascular activa",
+      "Respuesta renal coherente con activación del SRAA y capacidad tubular preservada."
+    );
+  }
+
+  else if (estimulo === 1 && na === "bajo" && k === "bajo") {
+    let texto =
+      "Existe estímulo de retención, pero la respuesta tubular es parcial.";
+    if (erc === 1) {
+      texto +=
+        " En el contexto de ERC, este patrón es compatible con compensación incompleta o mixta.";
+    }
+
+    mostrarResultadoRenal(
+      "⚠ Compensación incompleta o mixta",
+      texto
+    );
+  }
+
+  else if (na === "alto") {
+    mostrarResultadoRenal(
+      "❌ Falla de compensación renal",
+      "Incapacidad tubular para retener sodio pese a estímulo hemodinámico. Sugiere daño renal intrínseco."
+    );
+  }
+
+  else {
+    mostrarResultadoRenal(
+      "ℹ Patrón no concluyente",
+      "Los valores urinarios no permiten una interpretación única. Correlacionar con clínica, creatinina y uso de diuréticos."
+    );
+  }
+}
+
+/* =========================
+   HELPERS · RENAL
+========================= */
+
+function getValRenal(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
+  return Number.isFinite(v) ? v : null;
+}
+
+function getStrRenal(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  return el.value;
+}
+
+function mostrarPasoRenal(n) {
+  const paso = document.getElementById(`renal_paso${n}`);
+  if (paso) paso.style.display = "block";
+}
+
+function ocultarDesdePasoRenal(n) {
+  for (let i = n; i <= 4; i++) {
+    const paso = document.getElementById(`renal_paso${i}`);
+    if (paso) {
+      paso.style.display = "none";
+      const sel = paso.querySelector("select");
+      if (sel) sel.value = "";
+    }
+  }
+}
+
+function limpiarResultadoRenal() {
+  setHTML("resultadoRenal", "");
+  setHTML("interpretacionRenal", "");
+}
+
+function mostrarResultadoRenal(resultado, interpretacion) {
+  setHTML("resultadoRenal", resultado);
+  setHTML("interpretacionRenal", interpretacion);
+}
+
+/* Fallback seguro */
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
 
 /* =========================
    PRESIONES / PERFUSIÓN
