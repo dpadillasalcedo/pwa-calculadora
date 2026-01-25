@@ -402,46 +402,50 @@ function initRenal() {
 
 /* PASO 1 */
 function renalPaso1() {
-  const v1 = getValRenal("renal_hemo");
+  const v = document.getElementById("renal_hemo").value;
+
   ocultarDesdePasoRenal(2);
   limpiarResultadoRenal();
 
-  if (v1 === 1) mostrarPasoRenal(2);
-  else if (v1 === 0) {
+  if (v === "1") {
+    mostrarPasoRenal(2);
+  } else if (v === "0") {
     mostrarResultadoRenal(
       "ℹ Sin descompensación hemodinámica",
-      "No hay indicios clínicos de activación de mecanismos de compensación."
+      "No hay sospecha clínica de activación de mecanismos de compensación."
     );
   }
 }
 
 /* PASO 2 */
 function renalPaso2() {
-  if (getStrRenal("renal_na")) mostrarPasoRenal(3);
+  const v = document.getElementById("renal_na").value;
+  if (v !== "") mostrarPasoRenal(3);
 }
 
 /* PASO 3 */
 function renalPaso3() {
-  if (getValRenal("renal_erc") !== null) mostrarPasoRenal(4);
+  const v = document.getElementById("renal_erc").value;
+  if (v !== "") mostrarPasoRenal(4);
 }
 
-/* PASO 4 · RESULTADO FINAL */
+/* PASO 4 */
 function renalPaso4() {
-  const na = getStrRenal("renal_na");
-  const k = getStrRenal("renal_k");
+  const na = document.getElementById("renal_na").value;
+  const k = document.getElementById("renal_k").value;
 
   if (!na || !k) return;
 
   if (na === "bajo" && k === "alto") {
     mostrarResultadoRenal(
       "✅ Compensación cardiovascular activa",
-      "Mecanismos hemodinámicos activos con función tubular preservada."
+      "Mecanismos hemodinámicos activos con túbulos renales preservados."
     );
   }
   else if (na === "bajo" && k === "bajo") {
     mostrarResultadoRenal(
       "⚠️ Compensación incompleta o mixta",
-      "Existe estímulo de compensación, pero la respuesta tubular es parcial."
+      "Existe estímulo compensatorio, pero la respuesta tubular es parcial."
     );
   }
   else if (na === "alto" && k === "alto") {
@@ -462,18 +466,6 @@ function renalPaso4() {
    HELPERS
 ========================= */
 
-function getValRenal(id) {
-  const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  return Number(el.value);
-}
-
-function getStrRenal(id) {
-  const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  return el.value;
-}
-
 function mostrarPasoRenal(n) {
   const paso = document.getElementById(`renal_paso${n}`);
   if (paso) paso.style.display = "block";
@@ -491,18 +483,13 @@ function ocultarDesdePasoRenal(n) {
 }
 
 function limpiarResultadoRenal() {
-  setHTML("resultadoRenal", "");
-  setHTML("interpretacionRenal", "");
+  document.getElementById("resultadoRenal").innerHTML = "";
+  document.getElementById("interpretacionRenal").innerHTML = "";
 }
 
 function mostrarResultadoRenal(res, interp) {
-  setHTML("resultadoRenal", res);
-  setHTML("interpretacionRenal", interp);
-}
-
-function setHTML(id, html) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = html;
+  document.getElementById("resultadoRenal").innerHTML = res;
+  document.getElementById("interpretacionRenal").innerHTML = interp;
 }
 
 

@@ -574,42 +574,19 @@
 <!-- =========================
      COMPENSACIÓN RENAL · Na/K URINARIO
 ========================= -->
-<section id="compensacion_renal"
-         class="panel"
-         aria-labelledby="compensacion-title"
-         data-module="renal">
+<section id="compensacion_renal" class="panel" data-module="renal">
 
-  <h2 id="compensacion-title">
+  <h2>
     <span class="icon icon-rinon" aria-hidden="true"></span>
     Compensación renal · Na/K urinario
   </h2>
 
-  <p class="note">
-    Evaluación integrada de <strong>mecanismos de compensación cardiovascular</strong> y
-    <strong>capacidad tubular renal</strong>.
-  </p>
-
   <!-- PASO 1 -->
   <fieldset>
-    <legend><h3>Paso 1 · Contexto clínico</h3></legend>
+    <legend><h3>Paso 1 · Sospecha clínica</h3></legend>
 
-    <div class="note">
-      <strong>Evaluar si existe estímulo de retención:</strong>
-      <ul>
-        <li>Hipovolemia</li>
-        <li>Insuficiencia cardíaca</li>
-        <li>Cirrosis</li>
-        <li>ERC conocida</li>
-      </ul>
-
-      <strong>👉 Marcar “Sí” si:</strong>
-      <ul>
-        <li>Existe al menos <strong>una condición</strong> que reduzca el volumen circulante efectivo.</li>
-      </ul>
-    </div>
-
-    <label for="renal_estimulo">¿Hay estímulo de retención?</label>
-    <select id="renal_estimulo" onchange="renalPaso1()">
+    <label>¿Hay sospecha de descompensación hemodinámica?</label>
+    <select id="renal_hemo" onchange="renalPaso1()">
       <option value="">Seleccione</option>
       <option value="1">Sí</option>
       <option value="0">No</option>
@@ -620,27 +597,44 @@
   <fieldset id="renal_paso2" style="display:none">
     <legend><h3>Paso 2 · Sodio urinario</h3></legend>
 
-    <div class="note">
-      <strong>Interpretación:</strong>
-      <ul>
-        <li><strong>&lt; 20 mEq/L:</strong> retención activa de sodio</li>
-        <li><strong>20–40 mEq/L:</strong> respuesta intermedia</li>
-        <li><strong>&gt; 40 mEq/L:</strong> falla de retención</li>
-      </ul>
-    </div>
-
-    <label for="renal_na">Sodio urinario</label>
+    <label>Na urinario</label>
     <select id="renal_na" onchange="renalPaso2()">
       <option value="">Seleccione</option>
       <option value="bajo">&lt; 20 mEq/L</option>
-      <option value="intermedio">20–40 mEq/L</option>
       <option value="alto">&gt; 40 mEq/L</option>
     </select>
   </fieldset>
 
   <!-- PASO 3 -->
   <fieldset id="renal_paso3" style="display:none">
-    <legen
+    <legend><h3>Paso 3 · Enfermedad renal crónica</h3></legend>
+
+    <label>¿Tiene ERC conocida?</label>
+    <select id="renal_erc" onchange="renalPaso3()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
+
+  <!-- PASO 4 -->
+  <fieldset id="renal_paso4" style="display:none">
+    <legend><h3>Paso 4 · Potasio urinario</h3></legend>
+
+    <label>K urinario</label>
+    <select id="renal_k" onchange="renalPaso4()">
+      <option value="">Seleccione</option>
+      <option value="bajo">&lt; 15 mEq/L</option>
+      <option value="alto">15–40 mEq/L</option>
+      <option value="alto">&gt; 40 mEq/L</option>
+    </select>
+  </fieldset>
+
+  <!-- RESULTADO -->
+  <div id="resultadoRenal" style="margin-top:14px;font-weight:700"></div>
+  <div id="interpretacionRenal" class="note"></div>
+
+</section>
 
   <!-- =========================
        Presiones y perfusión
