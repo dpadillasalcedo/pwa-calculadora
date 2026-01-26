@@ -260,3 +260,44 @@ hr {
   }
 }
 
+
+/* Layout SEO con espacio para anuncios */
+.seo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+/* Contenido principal */
+.seo-content {
+  text-align: left;
+  max-width: 720px;
+}
+
+/* Columna de anuncios */
+.seo-ads {
+  min-height: 300px;
+  position: relative;
+}
+
+/* Opcional: anuncio sticky */
+@media (min-width: 1024px) {
+  .seo-ads {
+    position: sticky;
+    top: 2rem;
+  }
+}
+
+/* Responsive: mobile una sola columna */
+@media (max-width: 768px) {
+  .seo-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-ads {
+    display: none;
+  }
+}
+
