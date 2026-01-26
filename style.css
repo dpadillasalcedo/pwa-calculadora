@@ -47,6 +47,22 @@ body {
 }
 
 /* =========================
+   HEADER + ADS
+========================= */
+.app-header {
+  margin-bottom: 16px;
+}
+
+.top-ad-slot {
+  min-height: 60px;
+  margin-bottom: 12px;
+}
+
+.header-content {
+  text-align: center;
+}
+
+/* =========================
    TÍTULOS
 ========================= */
 h1, h2, h3 {
@@ -71,8 +87,9 @@ h2 {
 ========================= */
 .subtitle {
   text-align: center;
-  margin: 0 auto 12px auto;
-  max-width: 100%;
+  margin: 4px auto 8px auto;
+  font-size: 0.9rem;
+  color: var(--color-muted);
 }
 
 /* =========================
@@ -109,7 +126,7 @@ select {
 }
 
 /* =========================
-   SELECT (CORREGIDO)
+   SELECT
 ========================= */
 select {
   appearance: none;
@@ -180,173 +197,66 @@ hr {
 }
 
 /* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 600px) {
-  body {
-    padding: 12px;
-  }
-
-  .container {
-    padding: 16px;
-  }
-
-  h1 {
-    font-size: 1.4rem;
-  }
-}
-
-/* =========================
    ICONOS CLÍNICOS
 ========================= */
 .icon {
   display: inline-block;
-  width: 1.2em;
-  height: 1.2em;
-  margin-right: 8px;
-  vertical-align: -0.2em;
+  width: 0.9em;
+  height: 0.9em;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+  vertical-align: -0.15em;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.4));
 }
 
 /* 🫁 Pulmón */
-.icon-lung {
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'>\
-<path d='M12 2c-.6 0-1 .4-1 1v8.1c-.6-.3-1.3-.5-2-.5-2.8 0-5 2.2-5 5v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-1.1.9-2 2-2v6c0 .6.4 1 1 1s1-.4 1-1v-6c1.1 0 2 .9 2 2v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-2.8-2.2-5-5-5-.7 0-1.4.2-2 .5V3c0-.6-.4-1-1-1z'/>\
-</svg>");
-}
+.icon-lung { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'><path d='M12 2c-.6 0-1 .4-1 1v8.1c-.6-.3-1.3-.5-2-.5-2.8 0-5 2.2-5 5v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-1.1.9-2 2-2v6c0 .6.4 1 1 1s1-.4 1-1v-6c1.1 0 2 .9 2 2v4c0 .6.4 1 1 1h4c.6 0 1-.4 1-1v-4c0-2.8-2.2-5-5-5-.7 0-1.4.2-2 .5V3c0-.6-.4-1-1-1z'/></svg>"); }
 
 /* 🩺 Estetoscopio */
-.icon-stetho {
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'>\
-<path d='M6 3v5a6 6 0 0 0 12 0V3h-2v5a4 4 0 0 1-8 0V3H6zm6 15a3 3 0 0 0 6 0v-2h-2v2a1 1 0 1 1-2 0v-4h-2v4z'/>\
-</svg>");
-}
+.icon-stetho { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'><path d='M6 3v5a6 6 0 0 0 12 0V3h-2v5a4 4 0 0 1-8 0V3H6zm6 15a3 3 0 0 0 6 0v-2h-2v2a1 1 0 1 1-2 0v-4h-2v4z'/></svg>"); }
 
-/* 🩸 Gota de sangre */
-.icon-blood {
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'>\
-<path d='M12 2s-6 6.5-6 11a6 6 0 0 0 12 0c0-4.5-6-11-6-11z'/>\
-</svg>");
-}
+/* 🩸 Sangre */
+.icon-blood { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'><path d='M12 2s-6 6.5-6 11a6 6 0 0 0 12 0c0-4.5-6-11-6-11z'/></svg>"); }
 
 /* 🧠 Cerebro */
-.icon-brain {
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'>\
-<path d='M9.5 2C7.57 2 6 3.57 6 5.5c0 .54.12 1.05.33 1.51C4.98 7.36 4 8.78 4 10.5c0 1.46.7 2.75 1.78 3.58C5.28 14.6 5 15.28 5 16c0 1.66 1.34 3 3 3 .35 0 .69-.06 1-.18V6.5c0-.28.22-.5.5-.5s.5.22.5.5V21c0 .55.45 1 1 1s1-.45 1-1V6.5c0-.28.22-.5.5-.5s.5.22.5.5v12.32c.31.12.65.18 1 .18 1.66 0 3-1.34 3-3 0-.72-.28-1.4-.78-1.92C19.3 13.25 20 11.96 20 10.5c0-1.72-.98-3.14-2.33-3.49.21-.46.33-.97.33-1.51C18 3.57 16.43 2 14.5 2c-.94 0-1.79.38-2.41 1.01C11.29 2.38 10.44 2 9.5 2z'/>\
-</svg>");
-}
-
-/* 🩺 Riñón (Kidney) */
-.icon-rinon {
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'>\
-<path d='M7.5 2.5C4.5 3.8 3 6.6 3 10.2c0 5.1 3.1 9.3 7.1 10.6 2.2.7 4.4-.3 5.4-2.2.5-1 .6-2.1.3-3.2-.3-1.2-1-2.2-1.7-3.2-.7-1-1.4-2-1.7-3.1-.3-1.1-.2-2.3.3-3.3.5-1.1 1.3-1.9 2.2-2.5-1.1-.9-2.7-1.2-4.2-.6-.9.4-1.7 1-2.3 1.8-.6-.9-1.4-1.5-2.3-1.5z'/>\
-<path d='M16.5 2.5c3 1.3 4.5 4.1 4.5 7.7 0 5.1-3.1 9.3-7.1 10.6-2.2.7-4.4-.3-5.4-2.2-.5-1-.6-2.1-.3-3.2.3-1.2 1-2.2 1.7-3.2.7-1 1.4-2 1.7-3.1.3-1.1.2-2.3-.3-3.3-.5-1.1-1.3-1.9-2.2-2.5 1.1-.9 2.7-1.2 4.2-.6.9.4 1.7 1 2.3 1.8.6-.9 1.4-1.5 2.3-1.5z'/>\
-</svg>");
-}
-
-
+.icon-brain { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5e7eb'><path d='M9.5 2C7.57 2 6 3.57 6 5.5c0 .54.12 1.05.33 1.51C4.98 7.36 4 8.78 4 10.5c0 1.46.7 2.75 1.78 3.58C5.28 14.6 5 15.28 5 16c0 1.66 1.34 3 3 3 .35 0 .69-.06 1-.18V6.5c0-.28.22-.5.5-.5s.5.22.5.5V21c0 .55.45 1 1 1s1-.45 1-1V6.5c0-.28.22-.5.5-.5s.5.22.5.5v12.32c.31.12.65.18 1 .18 1.66 0 3-1.34 3-3 0-.72-.28-1.4-.78-1.92C19.3 13.25 20 11.96 20 10.5c0-1.72-.98-3.14-2.33-3.49.21-.46.33-.97.33-1.51C18 3.57 16.43 2 14.5 2c-.94 0-1.79.38-2.41 1.01C11.29 2.38 10.44 2 9.5 2z'/></svg>"); }
 
 /* =========================
-   ÍNDICE / MENÚ
+   ÍNDICE COMPACTO (HEADER)
 ========================= */
-.indice {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin: 24px 0;
+.indice-compacta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.indice a {
-  display: flex;
+.indice-compacta a {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
   background-color: var(--bg-input);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 16px;
   color: var(--color-text);
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.indice a:hover {
-  background-color: #1e293b;
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
-
-.indice small {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--color-muted);
-}
-
-/* =========================================================
-   ECOCARDIOGRAFÍA · IMÁGENES
-========================================================= */
-
-.eco-explanation {
-  display: flex;
-  justify-content: center;   /* 👈 CENTRA HORIZONTALMENTE */
-  align-items: center;       /* centra verticalmente */
-  gap: 16px;
-  margin: 16px 0;
-  flex-wrap: wrap;
-  overflow: visible;
-}
-
-.eco-figure {
-  max-width: 200px;
-  cursor: zoom-in;
-  text-align: center;
-}
-
-.eco-figure img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.eco-figure:hover img {
-  transform: scale(1.8);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  z-index: 10;
-}
-
-.eco-figure figcaption {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  margin-top: 6px;
-}
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 600px) {
-  .eco-figure:hover img {
-    transform: scale(1.2);
+  body { padding: 12px; }
+  .container { padding: 16px; }
+  h1 { font-size: 1.4rem; }
+  .indice-compacta a {
+    font-size: 0.7rem;
+    padding: 5px 8px;
   }
 }
 
-/* =========================
-   CONTENIDO SEO
-========================= */
-.seo-content {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--color-border);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.seo-content h2 {
-  margin-top: 24px;
-}
