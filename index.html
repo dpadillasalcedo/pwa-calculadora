@@ -336,47 +336,97 @@
     Esta herramienta automatiza el cálculo y reduce errores manuales.
   </p>
 
-  <!-- Bloque ilustrativo ecocardiográfico -->
-  <div class="eco-explanation">
+  <!-- Calculadora -->
+  <fieldset>
+    <legend><h3>Gasto cardíaco por ecocardiografía</h3></legend>
 
-    <figure class="eco-figure">
-      <img
-        src="eco1.png"
-        alt="Medición del diámetro del tracto de salida del ventrículo izquierdo (TSVI) en eje largo paraesternal"
-        loading="lazy"
-        width="600"
-        height="400" />
-      <figcaption class="note">
-        Medición del <strong>TSVI</strong> en vista paraesternal eje largo.
-      </figcaption>
-    </figure>
+    <div class="grid-3">
+      <div>
+        <label for="dtsvi">Diámetro TSVI (cm)</label>
+        <input
+          type="number"
+          id="dtsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
 
-    <figure class="eco-figure">
-      <img
-        src="eco2.png"
-        alt="Obtención del VTI del TSVI mediante Doppler pulsado en vista apical"
-        loading="lazy"
-        width="600"
-        height="400" />
-      <figcaption class="note">
-        Medición del <strong>VTI</strong> del TSVI mediante Doppler pulsado.
-      </figcaption>
-    </figure>
+      <div>
+        <label for="vti">VTI TSVI (cm)</label>
+        <input
+          type="number"
+          id="vti"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
 
-    <figure class="eco-figure">
-      <img
-        src="eco3.png"
-        alt="Relación entre área del TSVI, VTI y cálculo del gasto cardíaco por ecocardiografía"
-        loading="lazy"
-        width="600"
-        height="400" />
-      <figcaption class="note">
-        Integración de <strong>área del TSVI</strong> y <strong>VTI</strong> para el cálculo del
-        <strong>gasto cardíaco</strong>.
-      </figcaption>
-    </figure>
+      <div>
+        <label for="fc">Frecuencia cardíaca (lpm)</label>
+        <input
+          type="number"
+          id="fc"
+          step="1"
+          min="0"
+          inputmode="numeric" />
+      </div>
+    </div>
 
+    <button type="button" onclick="calcularGCEco()">
+      Calcular GC por ecocardiografía
+    </button>
+
+    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
+    <div id="interpretacionGCEco" class="note"></div>
+
+    <!-- Anuncio post-resultado -->
+    <div class="ad-slot ad-result"></div>
+  </fieldset>
+
+<!-- Subtítulo: Fracción de Acortamiento -->
+  <h3>Fracción de acortamiento del ventrículo izquierdo</h3>
+
+  <p class="note">
+    La <strong>fracción de acortamiento (FA)</strong> es un parámetro ecocardiográfico
+    que evalúa la <strong>función sistólica del ventrículo izquierdo</strong>.
+    Se obtiene a partir de las mediciones del diámetro del ventrículo izquierdo
+    en diástole y en sístole, generalmente en modo M.
+  </p>
+
+  <!-- Fórmula -->
+  <div class="formula-box">
+    <p>
+      <strong>Fórmula:</strong>
+    </p>
+    <p class="formula">
+      FA (%) = <strong>(DDVI − DSVI) / DDVI × 100</strong>
+    </p>
   </div>
+
+  <!-- Desarrollo -->
+  <p class="note">
+    Donde:
+  </p>
+  <ul class="note">
+    <li><strong>DDVI</strong>: Diámetro diastólico del ventrículo izquierdo (cm).</li>
+    <li><strong>DSVI</strong>: Diámetro sistólico del ventrículo izquierdo (cm).</li>
+  </ul>
+
+  <p class="note">
+    El cálculo representa el <strong>porcentaje de reducción del diámetro ventricular</strong>
+    durante la sístole respecto a su tamaño en diástole, reflejando la capacidad contráctil
+    del ventrículo izquierdo.
+  </p>
+
+  <!-- Interpretación clínica -->
+  <p class="note">
+    <strong>Interpretación orientativa:</strong>
+  </p>
+  <ul class="note">
+    <li><strong>Normal:</strong> 25–45 %</li>
+    <li><strong>Disminuida:</strong> &lt; 25 % (sugiere disfunción sistólica)</li>
+    <li><strong>Aumentada:</strong> &gt; 45 % (puede observarse en estados hiperdinámicos)</li>
+  </ul>
 
   <!-- Calculadora -->
   <fieldset>
@@ -424,6 +474,169 @@
     <!-- Anuncio post-resultado -->
     <div class="ad-slot ad-result"></div>
   </fieldset>
+
+<!-- =========================
+     Ecocardiografía
+========================== -->
+<section
+  id="ecocardiografia"
+  class="panel"
+  aria-labelledby="ecocardiografia-title"
+  data-module="ecocardiografia">
+
+  <h2 id="ecocardiografia-title">
+    <span class="icon icon-stetho"></span>
+    Ecocardiografía · gasto cardíaco
+  </h2>
+
+  <p class="note">
+    La estimación del <strong>gasto cardíaco</strong> mediante ecocardiografía transtorácica
+    se realiza a partir del diámetro del tracto de salida del ventrículo izquierdo (TSVI)
+    y la integral velocidad-tiempo (VTI), medidos con Doppler pulsado.
+    Interpretar siempre en el contexto hemodinámico del paciente.
+    Esta herramienta automatiza el cálculo y reduce errores manuales.
+  </p>
+
+  <!-- Calculadora -->
+  <fieldset>
+    <legend><h3>Gasto cardíaco por ecocardiografía</h3></legend>
+
+    <div class="grid-3">
+      <div>
+        <label for="dtsvi">Diámetro TSVI (cm)</label>
+        <input
+          type="number"
+          id="dtsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="vti">VTI TSVI (cm)</label>
+        <input
+          type="number"
+          id="vti"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="fc">Frecuencia cardíaca (lpm)</label>
+        <input
+          type="number"
+          id="fc"
+          step="1"
+          min="0"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <button type="button" onclick="calcularGCEco()">
+      Calcular GC por ecocardiografía
+    </button>
+
+    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
+    <div id="interpretacionGCEco" class="note"></div>
+
+    <!-- Anuncio post-resultado -->
+    <div class="ad-slot ad-result"></div>
+  </fieldset>
+
+<!-- Subtítulo: Fracción de Acortamiento -->
+  <h3>Fracción de acortamiento del ventrículo izquierdo</h3>
+
+  <p class="note">
+    La <strong>fracción de acortamiento (FA)</strong> es un parámetro ecocardiográfico
+    que evalúa la <strong>función sistólica del ventrículo izquierdo</strong>.
+    Se obtiene a partir de las mediciones del diámetro del ventrículo izquierdo
+    en diástole y en sístole, generalmente en modo M.
+  </p>
+
+  <!-- Fórmula -->
+  <div class="formula-box">
+    <p>
+      <strong>Fórmula:</strong>
+    </p>
+    <p class="formula">
+      FA (%) = <strong>(DDVI − DSVI) / DDVI × 100</strong>
+    </p>
+  </div>
+
+  <!-- Desarrollo -->
+  <p class="note">
+    Donde:
+  </p>
+  <ul class="note">
+    <li><strong>DDVI</strong>: Diámetro diastólico del ventrículo izquierdo (cm).</li>
+    <li><strong>DSVI</strong>: Diámetro sistólico del ventrículo izquierdo (cm).</li>
+  </ul>
+
+  <p class="note">
+    El cálculo representa el <strong>porcentaje de reducción del diámetro ventricular</strong>
+    durante la sístole respecto a su tamaño en diástole, reflejando la capacidad contráctil
+    del ventrículo izquierdo.
+  </p>
+
+  <!-- Interpretación clínica -->
+  <p class="note">
+    <strong>Interpretación orientativa:</strong>
+  </p>
+  <ul class="note">
+    <li><strong>Normal:</strong> 25–45 %</li>
+    <li><strong>Disminuida:</strong> &lt; 25 % (sugiere disfunción sistólica)</li>
+    <li><strong>Aumentada:</strong> &gt; 45 % (puede observarse en estados hiperdinámicos)</li>
+  </ul>
+
+  <!-- Calculadora -->
+  <fieldset>
+    <legend><h3>Gasto cardíaco por ecocardiografía</h3></legend>
+
+    <div class="grid-3">
+      <div>
+        <label for="dtsvi">Diámetro TSVI (cm)</label>
+        <input
+          type="number"
+          id="dtsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="vti">VTI TSVI (cm)</label>
+        <input
+          type="number"
+          id="vti"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
+      </div>
+
+      <div>
+        <label for="fc">Frecuencia cardíaca (lpm)</label>
+        <input
+          type="number"
+          id="fc"
+          step="1"
+          min="0"
+          inputmode="numeric" />
+      </div>
+    </div>
+
+    <button type="button" onclick="calcularGCEco()">
+      Calcular GC por ecocardiografía
+    </button>
+
+    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
+    <div id="interpretacionGCEco" class="note"></div>
+
+    <!-- Anuncio post-resultado -->
+    <div class="ad-slot ad-result"></div>
+  </fieldset>
+
+</section>
 
 </section>
 

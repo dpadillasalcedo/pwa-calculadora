@@ -245,6 +245,36 @@ function calcularGCEco() {
   });
 }
 
+function calcularFA() {
+  const ddvi = parseFloat(document.getElementById("ddvi").value);
+  const dsvi = parseFloat(document.getElementById("dsvi").value);
+
+  if (isNaN(ddvi) || isNaN(dsvi) || ddvi <= 0 || dsvi < 0 || dsvi >= ddvi) {
+    document.getElementById("resultadoFA").innerHTML =
+      "<strong>Datos inválidos.</strong> Verificá DDVI y DSVI.";
+    document.getElementById("interpretacionFA").innerHTML = "";
+    return;
+  }
+
+  const fa = ((ddvi - dsvi) / ddvi) * 100;
+
+  document.getElementById("resultadoFA").innerHTML =
+    `<strong>Fracción de acortamiento:</strong> ${fa.toFixed(1)} %`;
+
+  let interpretacion = "";
+
+  if (fa < 25) {
+    interpretacion = "FA disminuida: sugiere <strong>disfunción sistólica del ventrículo izquierdo</strong>.";
+  } else if (fa <= 45) {
+    interpretacion = "FA dentro de <strong>rangos normales</strong>.";
+  } else {
+    interpretacion = "FA aumentada: compatible con <strong>estado hiperdinámico</strong>.";
+  }
+
+  document.getElementById("interpretacionFA").innerHTML = interpretacion;
+}
+
+
 /* =========================
    OXIGENACIÓN · DO2 · VO2 · REO2 · CR
 ========================= */
