@@ -1,6 +1,9 @@
 /* =========================
    SEO + ANALYTICS (URL-based)
+   Domain: https://criticalcaretools.com
 ========================= */
+
+const SITE_URL = "https://criticalcaretools.com";
 
 const SEO_ROUTE_MAP = {
   "/": {
@@ -38,21 +41,59 @@ function normalizePath(path) {
   return path.replace(/\/$/, "") || "/";
 }
 
+function setMetaTag(selector, attr, value) {
+  let el = document.querySelector(selector);
+  if (!el) {
+    el = document.createElement("meta");
+    if (selector.includes("property")) {
+      el.setAttribute("property", attr);
+    } else {
+      el.setAttribute("name", attr);
+    }
+    document.head.appendChild(el);
+  }
+  el.setAttribute("content", value);
+}
+
 function applySEO() {
   const path = normalizePath(location.pathname);
   const cfg = SEO_ROUTE_MAP[path];
   if (!cfg) return;
 
+  const canonicalUrl = `${SITE_URL}${path}`;
+
+  // Title
   document.title = cfg.title;
 
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute("content", cfg.description);
+  // Meta description
+  setMetaTag('meta[name="description"]', "description", cfg.description);
 
-  // Pageview real (una vez por URL)
+  // Canonical
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute("href", canonicalUrl);
+
+  // Open Graph
+  setMetaTag('meta[property="og:title"]', "og:title", cfg.title);
+  setMetaTag(
+    'meta[property="og:description"]',
+    "og:description",
+    cfg.description
+  );
+  setMetaTag('meta[property="og:url"]', "og:url", canonicalUrl);
+  setMetaTag('meta[property="og:type"]', "og:type", "website");
+
+  // Pageview (una vez por URL)
   if (typeof trackEvent === "function") {
-    trackEvent("page_view", { page_path: path });
+    trackEvent("page_view", {
+      page_path: path,
+      page_location: canonicalUrl
+    });
   }
 }
 
 document.addEventListener("DOMContentLoaded", applySEO);
-
