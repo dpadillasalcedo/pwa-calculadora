@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dpadillasalcedo.github.io/pwa-calculadora/sitemap.xml
+Sitemap: https://criticalcaretools.com/sitemap.xml
