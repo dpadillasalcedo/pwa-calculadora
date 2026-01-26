@@ -915,8 +915,16 @@ function camicuPaso1() {
   ocultarDesdePaso(2);
   limpiarResultadoCAMICU();
 
+  if (v1 === null) return;
+
   if (v1 === 1) {
+    // Paso 1 positivo → continuar evaluación
     mostrarPaso(2);
+  }
+
+  if (v1 === 0) {
+    // ✅ Paso 1 negativo → resultado inmediato
+    mostrarResultadoCAMICU(false);
   }
 }
 
@@ -929,9 +937,12 @@ function camicuPaso2() {
   ocultarDesdePaso(3);
   limpiarResultadoCAMICU();
 
+  if (v2 === null) return;
+
   if (v2 === 1) {
+    // Paso 2 positivo → continuar
     mostrarPaso(3);
-  } else if (v2 === 0) {
+  } else {
     // 1 + 2 no se cumplen
     mostrarResultadoCAMICU(false);
   }
@@ -952,7 +963,7 @@ function camicuPaso3() {
     // Criterio 3 positivo → delirium confirmado
     mostrarResultadoCAMICU(true);
   } else {
-    // Criterio 3 negativo → recién ahora evaluar criterio 4
+    // Criterio 3 negativo → evaluar criterio 4
     mostrarPaso(4);
     setHTML(
       "resultadoCAMICU",
@@ -1028,7 +1039,6 @@ function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
-
 
 
 
