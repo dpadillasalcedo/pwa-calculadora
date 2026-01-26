@@ -450,34 +450,6 @@ function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
-
-
-/* =========================
-   ΔCO₂
-========================= */
-function calcularDeltaCO2() {
-  const paCO2 = num("paco2");
-  const pvCO2 = num("pvco2");
-  const resultado = document.getElementById("resultadoCO2");
-  if (!resultado) return;
-
-  if (!Number.isFinite(paCO2) || !Number.isFinite(pvCO2)) {
-    resultado.textContent = "Complete PaCO₂ y PvCO₂ con valores válidos";
-    return;
-  }
-
-  const deltaCO2 = pvCO2 - paCO2;
-
-  resultado.innerHTML = `<strong>ΔCO₂:</strong> ${deltaCO2.toFixed(1)} mmHg`;
-}
-
-if (typeof trackEvent === "function") {
-  trackEvent("calculate_delta_co2", {
-    delta_co2_mmhg: Number(deltaCO2.toFixed(1)),
-    paco2_mmhg: paCO2,
-    pvco2_mmhg: pvCO2,
-  });
-}
 	
 
 /* =========================
