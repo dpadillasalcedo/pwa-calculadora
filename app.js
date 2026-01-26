@@ -209,23 +209,32 @@ function anyNaN(arr) {
    ECOCARDIOGRAFÍA
 ========================= */
 function calcularGCEco() {
-  const dtsvi = num("dtsvi");
-  const vti = num("vti");
-  const fc = num("fc");
+  const dtsvi = Number(num("dtsvi"));
+  const vti   = Number(num("vti"));
+  const fc    = Number(num("fc"));
 
   const resultado = document.getElementById("resultadoGCEco");
   const interp = document.getElementById("interpretacionGCEco");
   if (!resultado) return;
 
-  if (anyNaN([dtsvi, vti, fc]) || dtsvi <= 0 || vti <= 0 || fc <= 0) {
+  // Validación sólida
+  if (
+    !Number.isFinite(dtsvi) ||
+    !Number.isFinite(vti) ||
+    !Number.isFinite(fc) ||
+    dtsvi <= 0 ||
+    vti <= 0 ||
+    fc <= 0
+  ) {
     resultado.textContent = "Complete todos los campos con valores válidos";
     if (interp) interp.textContent = "";
     return;
   }
 
+  // Cálculos
   const csa = Math.PI * Math.pow(dtsvi / 2, 2);
-  const vs = csa * vti;
-  const gc = (vs * fc) / 1000;
+  const vs = csa * vti;          // mL
+  const gc = (vs * fc) / 1000;   // L/min
 
   if (!Number.isFinite(gc) || gc <= 0) {
     resultado.textContent = "No se pudo calcular el gasto cardíaco";
@@ -233,16 +242,18 @@ function calcularGCEco() {
     return;
   }
 
+  // Resultado
   resultado.innerHTML =
     `<strong>Gasto cardíaco:</strong> ${gc.toFixed(2)} L/min`;
 
+  // Interpretación
   if (interp) {
-    let estadoVTI =
-      vti >= 18 && vti <= 22
+    const estadoVTI =
+      vti < 15
+        ? "VTI < 15 cm: <strong>alerta</strong> (bajo gasto / hipoperfusión)."
+        : vti <= 22
         ? "VTI 18–22 cm: <strong>normal</strong>."
-        : vti < 15
-        ? "VTI &lt; 15 cm: <strong>alerta</strong> (bajo gasto / hipoperfusión)."
-        : "VTI intermedio: interpretar en contexto clínico.";
+        : "VTI elevado: posible <strong>estado hiperdinámico</strong>.";
 
     interp.innerHTML = `
       ${estadoVTI}<br>
@@ -252,6 +263,7 @@ function calcularGCEco() {
     `;
   }
 
+  // Analytics
   if (typeof trackEvent === "function") {
     trackEvent("calculate_cardiac_output_echo", {
       cardiac_output_l_min: Number(gc.toFixed(2)),
@@ -263,37 +275,59 @@ function calcularGCEco() {
 }
 
 function calcularFA() {
-  const ddvi = num("ddvi");
-  const dsvi = num("dsvi");
+  const ddvi = Number(num("ddvi"));
+  const dsvi = Number(num("dsvi"));
 
   const resultado = document.getElementById("resultadoFA");
   const detalle = document.getElementById("detalleFA");
   if (!resultado || !detalle) return;
 
-  if (anyNaN([ddvi, dsvi]) || ddvi <= 0 || dsvi < 0 || dsvi >= ddvi) {
+  // Validación sólida
+  if (
+    !Number.isFinite(ddvi) ||
+    !Number.isFinite(dsvi) ||
+    ddvi <= 0 ||
+    dsvi < 0 ||
+    dsvi >= ddvi
+  ) {
     resultado.innerHTML =
       "<strong>Datos inválidos.</strong> Verificá DDVI y DSVI.";
     detalle.hidden = true;
     return;
   }
 
+  // Cálculo
   const fa = ((ddvi - dsvi) / ddvi) * 100;
 
-  resultado.innerHTML =
-    `<strong>Fracción de acortamiento:</strong> ${fa.toFixed(1)} %`;
+  // Resultado principal
+  resultado.innerHTML = `
+    <strong>Fracción de acortamiento (FA):</strong> ${fa.toFixed(1)} %
+  `;
 
+  // Interpretación
   let interpretacion = "";
   if (fa < 25) {
-    interpretacion = "FA disminuida: sugiere <strong>disfunción sistólica</strong>.";
+    interpretacion =
+      "FA disminuida: sugiere <strong>disfunción sistólica</strong>.";
   } else if (fa <= 45) {
-    interpretacion = "FA dentro de <strong>rangos normales</strong>.";
+    interpretacion =
+      "FA dentro de <strong>rangos normales</strong>.";
   } else {
-    interpretacion = "FA aumentada: compatible con <strong>estado hiperdinámico</strong>.";
+    interpretacion =
+      "FA aumentada: compatible con <strong>estado hiperdinámico</strong>.";
   }
 
+  // Subtítulo + fórmula + interpretación
   detalle.innerHTML = `
-    <p><strong>Fórmula utilizada:</strong></p>
-    <p>FA (%) = (DDVI − DSVI) / DDVI × 100</p>
+    <h4 style="margin-top:8px">
+      Ecocardiografía · Fracción de acortamiento del VI
+    </h4>
+
+    <p><strong>Fórmula:</strong></p>
+    <p>
+      FA (%) = (DDVI − DSVI) / DDVI × 100
+    </p>
+
     <p>${interpretacion}</p>
   `;
 

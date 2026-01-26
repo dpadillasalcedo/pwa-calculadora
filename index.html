@@ -325,14 +325,14 @@
 
   <h2 id="ecocardiografia-title">
     <span class="icon icon-stetho"></span>
-    Ecocardiografía · gasto cardíaco
+    Ecocardiografía
   </h2>
 
   <p class="note">
-    La estimación del <strong>gasto cardíaco</strong> mediante ecocardiografía transtorácica
-    se realiza a partir del diámetro del tracto de salida del ventrículo izquierdo (TSVI)
-    y la integral velocidad-tiempo (<strong>VTI</strong>), medidos con Doppler pulsado.
-    Interpretar siempre en el contexto hemodinámico del paciente.
+    La ecocardiografía transtorácica permite estimar el
+    <strong>gasto cardíaco</strong> y evaluar la
+    <strong>función sistólica</strong> del ventrículo izquierdo.
+    Interpretar siempre en el contexto clínico y hemodinámico del paciente.
   </p>
 
   <!-- =========================
@@ -341,20 +341,40 @@
   <fieldset>
     <legend><h3>Gasto cardíaco por ecocardiografía</h3></legend>
 
+    <p class="note">
+      Cálculo basado en el diámetro del tracto de salida del ventrículo izquierdo (TSVI)
+      y la integral velocidad-tiempo (<strong>VTI</strong>) medida por Doppler pulsado.
+    </p>
+
     <div class="grid-3">
       <div>
         <label for="dtsvi">Diámetro TSVI (cm)</label>
-        <input type="number" id="dtsvi" step="0.1" min="0" />
+        <input
+          type="number"
+          id="dtsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
 
       <div>
         <label for="vti">VTI TSVI (cm)</label>
-        <input type="number" id="vti" step="0.1" min="0" />
+        <input
+          type="number"
+          id="vti"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
 
       <div>
         <label for="fc">Frecuencia cardíaca (lpm)</label>
-        <input type="number" id="fc" step="1" min="0" />
+        <input
+          type="number"
+          id="fc"
+          step="1"
+          min="0"
+          inputmode="numeric" />
       </div>
     </div>
 
@@ -362,27 +382,49 @@
       Calcular gasto cardíaco
     </button>
 
-    <div id="resultadoGCEco" role="status" aria-live="polite"></div>
-    <div id="interpretacionGCEco" class="note"></div>
+    <div
+      id="resultadoGCEco"
+      role="status"
+      aria-live="polite">
+    </div>
+
+    <div
+      id="interpretacionGCEco"
+      class="note"
+      aria-live="polite">
+    </div>
   </fieldset>
 
   <!-- =========================
-       Fracción de Acortamiento
+       Fracción de acortamiento
   ========================== -->
-  <h3>Fracción de acortamiento del ventrículo izquierdo</h3>
-
   <fieldset>
-    <legend><h4>Calculadora de fracción de acortamiento (FA)</h4></legend>
+    <legend><h3>Función sistólica · Fracción de acortamiento</h3></legend>
+
+    <p class="note">
+      La <strong>fracción de acortamiento (FA)</strong> evalúa la función sistólica
+      del ventrículo izquierdo a partir de sus diámetros diastólico y sistólico.
+    </p>
 
     <div class="grid-2">
       <div>
-        <label for="ddvi">DDVI – Diámetro diastólico VI (cm)</label>
-        <input type="number" id="ddvi" step="0.1" min="0" />
+        <label for="ddvi">DDVI – Diámetro diastólico del VI (cm)</label>
+        <input
+          type="number"
+          id="ddvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
 
       <div>
-        <label for="dsvi">DSVI – Diámetro sistólico VI (cm)</label>
-        <input type="number" id="dsvi" step="0.1" min="0" />
+        <label for="dsvi">DSVI – Diámetro sistólico del VI (cm)</label>
+        <input
+          type="number"
+          id="dsvi"
+          step="0.1"
+          min="0"
+          inputmode="decimal" />
       </div>
     </div>
 
@@ -390,12 +432,20 @@
       Calcular fracción de acortamiento
     </button>
 
-    <div id="resultadoFA" role="status" aria-live="polite"></div>
-    <div id="detalleFA" class="note" hidden></div>
+    <div
+      id="resultadoFA"
+      role="status"
+      aria-live="polite">
+    </div>
+
+    <div
+      id="detalleFA"
+      class="note"
+      hidden>
+    </div>
   </fieldset>
 
 </section>
-
 
 <!-- =========================
      Oxigenación
