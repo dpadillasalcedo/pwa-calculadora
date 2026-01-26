@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Home / Hub -->
+  <!-- HOME -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/</loc>
+    <loc>https://criticalcaretools.com/</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,36 +11,42 @@
 
   <!-- CAM-ICU -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/cam-icu.html</loc>
+    <loc>https://criticalcaretools.com/cam-icu.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- SOFA-2 Score -->
+  <!-- SOFA-2 -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/sofa-2-score.html</loc>
+    <loc>https://criticalcaretools.com/sofa-2-score.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- NIHSS Score -->
+  <!-- NIHSS -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/nihss-score.html</loc>
+    <loc>https://criticalcaretools.com/nihss-score.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Ecocardiografía -->
+  <!-- ECOCARDIOGRAFÍA -->
   <url>
-    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/ecocardiografia-gasto-cardiaco.html</loc>
+    <loc>https://criticalcaretools.com/ecocardiografia-gasto-cardiaco.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- DOMINIO SECUNDARIO (GitHub Pages) -->
+  <url>
+    <loc>https://dpadillasalcedo.github.io/pwa-calculadora/</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>
-
-
