@@ -194,6 +194,18 @@ function ajustarPCO2() {
 }
 
 /* =========================
+   Helpers
+========================= */
+function num(id) {
+  const el = document.getElementById(id);
+  return el ? parseFloat(el.value) : NaN;
+}
+
+function anyNaN(arr) {
+  return arr.some(v => Number.isNaN(v));
+}
+
+/* =========================
    ECOCARDIOGRAFÍA
 ========================= */
 function calcularGCEco() {
@@ -221,13 +233,16 @@ function calcularGCEco() {
     return;
   }
 
-  resultado.innerHTML = `<strong>Gasto cardíaco:</strong> ${gc.toFixed(2)} L/min`;
+  resultado.innerHTML =
+    `<strong>Gasto cardíaco:</strong> ${gc.toFixed(2)} L/min`;
 
   if (interp) {
     let estadoVTI =
-      vti >= 18 && vti <= 22 ? "VTI 18–22 cm: <strong>normal</strong>."
-      : vti < 15 ? "VTI < 15 cm: <strong>alerta</strong> (hipoperfusión / bajo gasto)."
-      : "VTI intermedio: interpretar en contexto clínico.";
+      vti >= 18 && vti <= 22
+        ? "VTI 18–22 cm: <strong>normal</strong>."
+        : vti < 15
+        ? "VTI &lt; 15 cm: <strong>alerta</strong> (bajo gasto / hipoperfusión)."
+        : "VTI intermedio: interpretar en contexto clínico.";
 
     interp.innerHTML = `
       ${estadoVTI}<br>
@@ -237,41 +252,52 @@ function calcularGCEco() {
     `;
   }
 
-  trackEvent("calculate_cardiac_output_echo", {
-    cardiac_output_l_min: Number(gc.toFixed(2)),
-    dtsvi_cm: dtsvi,
-    vti_cm: vti,
-    hr: fc,
-  });
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_cardiac_output_echo", {
+      cardiac_output_l_min: Number(gc.toFixed(2)),
+      dtsvi_cm: dtsvi,
+      vti_cm: vti,
+      hr: fc,
+    });
+  }
 }
 
 function calcularFA() {
-  const ddvi = parseFloat(document.getElementById("ddvi").value);
-  const dsvi = parseFloat(document.getElementById("dsvi").value);
+  const ddvi = num("ddvi");
+  const dsvi = num("dsvi");
 
-  if (isNaN(ddvi) || isNaN(dsvi) || ddvi <= 0 || dsvi < 0 || dsvi >= ddvi) {
-    document.getElementById("resultadoFA").innerHTML =
+  const resultado = document.getElementById("resultadoFA");
+  const detalle = document.getElementById("detalleFA");
+  if (!resultado || !detalle) return;
+
+  if (anyNaN([ddvi, dsvi]) || ddvi <= 0 || dsvi < 0 || dsvi >= ddvi) {
+    resultado.innerHTML =
       "<strong>Datos inválidos.</strong> Verificá DDVI y DSVI.";
-    document.getElementById("interpretacionFA").innerHTML = "";
+    detalle.hidden = true;
     return;
   }
 
   const fa = ((ddvi - dsvi) / ddvi) * 100;
 
-  document.getElementById("resultadoFA").innerHTML =
+  resultado.innerHTML =
     `<strong>Fracción de acortamiento:</strong> ${fa.toFixed(1)} %`;
 
   let interpretacion = "";
-
   if (fa < 25) {
-    interpretacion = "FA disminuida: sugiere <strong>disfunción sistólica del ventrículo izquierdo</strong>.";
+    interpretacion = "FA disminuida: sugiere <strong>disfunción sistólica</strong>.";
   } else if (fa <= 45) {
     interpretacion = "FA dentro de <strong>rangos normales</strong>.";
   } else {
     interpretacion = "FA aumentada: compatible con <strong>estado hiperdinámico</strong>.";
   }
 
-  document.getElementById("interpretacionFA").innerHTML = interpretacion;
+  detalle.innerHTML = `
+    <p><strong>Fórmula utilizada:</strong></p>
+    <p>FA (%) = (DDVI − DSVI) / DDVI × 100</p>
+    <p>${interpretacion}</p>
+  `;
+
+  detalle.hidden = false;
 }
 
 
