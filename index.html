@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
   <!-- =========================
        Meta básicos
@@ -5,9 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>
-    Calculadora UCI Adultos | Evaluación en Cuidados Intensivos
-  </title>
+  <title>Calculadora UCI Adultos | Evaluación en Cuidados Intensivos</title>
 
   <meta
     name="description"
@@ -49,7 +50,6 @@
   <!-- =========================
        Estilos
   ========================== -->
-  <link rel="preload" href="style.css" as="style" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- =========================
@@ -88,135 +88,93 @@
     gtag('js', new Date());
     gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
   </script>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Calculadora UCI Adultos | Evaluación en Cuidados Intensivos</title>
-
-  <meta
-    name="description"
-    content="Calculadora UCI para adultos en cuidados intensivos. Herramienta de apoyo clínico para evaluación y toma de decisiones médicas. Uso educativo para profesionales de terapia intensiva."
-  />
-
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Calculadora UCI Adultos | Evaluación en Cuidados Intensivos" />
-  <meta property="og:description" content="Herramienta clínica para cuidados intensivos." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/" />
-
-  <!-- Performance -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-  <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- PWA -->
-  <link rel="icon" href="./favicon.ico" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0b5fff" />
-
-  <!-- Cookiebot -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    async>
-  </script>
-
-  <!-- Google AdSense -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-    crossorigin="anonymous">
-  </script>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
-  </script>
 </head>
 
-</body>
-<!-- =========================
-     Ventilación mecánica
-========================== -->
-<section
-  id="pesoteorico"
-  class="panel"
-  aria-labelledby="ventilacion-title"
-  data-module="ventilacionmecanica">
-
-  <h2 id="ventilacion-title">
-    <span class="icon icon-lung"></span>
-    Ventilación mecánica
-  </h2>
-
-  <p class="note">
-    Herramientas de apoyo para ventilación mecánica invasiva en pacientes adultos.
-    Los cálculos son orientativos y deben interpretarse en contexto clínico.
-    Uno de los determinantes de presión parcial de CO₂ (PCO₂) es el volumen minuto.
-    Esta calculadora permite estimar los ajustes necesarios para alcanzar una PCO₂ objetivo, 
-    modificando la frecuencia respiratoria, el volumen corriente y a su vez el volumen minuto
-  </p>
+<body>
 
   <!-- =========================
-       Peso ideal
+       Contenido principal
   ========================== -->
-  <fieldset>
-    <legend><h3>Peso ideal</h3></legend>
+  <main class="app" id="main-content">
 
-    <label for="talla">Talla (cm)</label>
-    <input
-      type="number"
-      id="talla"
-      min="0"
-      step="1"
-      inputmode="numeric"
-      aria-describedby="talla-help" />
+    <!-- =========================
+         Header principal
+    ========================== -->
+    <header class="app-header">
 
-    <small id="talla-help" class="note">
-      Ingrese la talla del paciente en centímetros.
-    </small>
+      <!-- Espacio superior para anuncios -->
+      <div class="top-ad-slot" aria-hidden="true"></div>
 
-    <label for="sexo">Sexo</label>
-    <select id="sexo" aria-describedby="sexo-help">
-      <option value="">Seleccione</option>
-      <option value="hombre">Hombre</option>
-      <option value="mujer">Mujer</option>
-    </select>
+      <div class="header-content">
+        <h1>Calculadora UCI Adultos | Evaluación en Cuidados Intensivos</h1>
+        <p class="subtitle">
+          Monitoreo hemodinámico · Respiratorio · Metabólico · Neurológico
+        </p>
+      </div>
 
-    <small id="sexo-help" class="note">
-      Utilizado para el cálculo de peso ideal según fórmula estándar.
-    </small>
+      <!-- Navegación interna -->
+      <nav class="indice indice-compacta" aria-label="Secciones clínicas">
+        <a href="#ventilacion-mecanica"><span class="icon icon-lung"></span><span>Ventilación</span></a>
+        <a href="#ecocardiografia"><span class="icon icon-stetho"></span><span>Eco</span></a>
+        <a href="#oxigenaciontisular"><span class="icon icon-blood"></span><span>Oxigenación</span></a>
+        <a href="#perfusiontisular"><span class="icon icon-blood"></span><span>Perfusión</span></a>
+        <a href="#estado-acido-base"><span class="icon icon-blood"></span><span>Ácido-base</span></a>
+        <a href="#electrolitos"><span class="icon icon-blood"></span><span>Electrolitos</span></a>
+        <a href="#sofa2score"><span class="icon icon-stetho"></span><span>SOFA-2</span></a>
+        <a href="#camicu"><span class="icon icon-brain"></span><span>CAM-ICU</span></a>
+        <a href="#nihssscore"><span class="icon icon-brain"></span><span>NIHSS</span></a>
+        <a href="#referencias"><span class="icon icon-stetho"></span><span>Refs</span></a>
+      </nav>
 
-<button
-  type="button"
-  onclick="calcularPesoIdeal()">
-  Calcular peso ideal
-</button>
+    </header>
 
+    <!-- =========================
+         Ventilación mecánica
+    ========================== -->
+    <section
+      id="pesoteorico"
+      class="panel"
+      aria-labelledby="ventilacion-title"
+      data-module="ventilacionmecanica">
 
-   <div
-  id="resultadoPeso"
-  role="status"
-  aria-live="polite">
-</div>
+      <h2 id="ventilacion-title">
+        <span class="icon icon-lung"></span>
+        Ventilación mecánica
+      </h2>
 
-<!-- Anuncio post-resultado -->
-<div class="ad-slot ad-result"></div>
+      <p class="note">
+        Herramientas de apoyo para ventilación mecánica invasiva en pacientes adultos.
+        Los cálculos son orientativos y deben interpretarse en contexto clínico.
+      </p>
 
-<hr />
+      <fieldset>
+        <legend><h3>Peso ideal</h3></legend>
+
+        <label for="talla">Talla (cm)</label>
+        <input type="number" id="talla" min="0" step="1" inputmode="numeric" />
+
+        <label for="sexo">Sexo</label>
+        <select id="sexo">
+          <option value="">Seleccione</option>
+          <option value="hombre">Hombre</option>
+          <option value="mujer">Mujer</option>
+        </select>
+
+        <button type="button" onclick="calcularPesoIdeal()">
+          Calcular peso ideal
+        </button>
+
+        <div id="resultadoPeso" role="status" aria-live="polite"></div>
+
+        <!-- Anuncio post-resultado -->
+        <div class="ad-slot ad-result"></div>
+
+      </fieldset>
+
+      <hr />
+    </section>
+
+  </main>
 
 
   <!-- =========================
