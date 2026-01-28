@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Bloqueo de archivos técnicos (opcional pero recomendado)
+Disallow: /js/
+Disallow: /css/
+Disallow: /assets/
+Disallow: /vendor/
+
+# Sitemap principal (multi-idioma)
 Sitemap: https://criticalcaretools.com/sitemap.xml
