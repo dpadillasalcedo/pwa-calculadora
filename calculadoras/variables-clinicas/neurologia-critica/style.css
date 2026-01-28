@@ -1,0 +1,132 @@
+/* =========================================================
+   NEUROLOGÍA CRÍTICA
+   Scope: calculadoras/variables-clinicas/neurologia-critica
+========================================================= */
+
+/* Panel general */
+.panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+/* Títulos de sección */
+.panel > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  border: none;
+}
+
+/* Subtítulos internos */
+.panel h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Texto explicativo */
+.note {
+  margin: 10px 0 14px 0;
+  padding: 10px 12px;
+  background-color: rgba(2, 6, 23, 0.6);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Fieldsets */
+fieldset {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background-color: rgba(15, 23, 42, 0.6);
+}
+
+/* Legend */
+legend {
+  padding: 0 6px;
+}
+
+/* Labels */
+fieldset label {
+  margin-top: 10px;
+  display: block;
+  font-size: 0.85rem;
+}
+
+/* Selects */
+fieldset select {
+  margin-top: 6px;
+}
+
+/* Botones */
+.panel button {
+  margin-top: 14px;
+  width: 100%;
+}
+
+/* Resultados principales */
+#resultadoCAMICU,
+#resultadoNIHSS,
+#resultadoHuntHess,
+#resultadoMarshall {
+  margin-top: 14px;
+  padding: 12px;
+  background-color: #020617;
+  border-left: 4px solid var(--color-success);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Interpretaciones */
+#interpretacionCAMICU,
+#interpretacionNIHSS,
+#interpretacionHuntHess,
+#interpretacionMarshall {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Separadores */
+.panel hr {
+  margin: 2rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Íconos clínicos */
+.panel .icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* Espacios de anuncios */
+.ad-result {
+  margin-top: 16px;
+  min-height: 90px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  .panel {
+    padding: 1rem;
+  }
+
+  .panel > h2 {
+    font-size: 1.05rem;
+  }
+
+  fieldset {
+    padding: 0.85rem;
+  }
+}
