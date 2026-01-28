@@ -228,6 +228,71 @@ function calcularNIHSS() {
   setHTML("interpretacionNIHSS", `<strong>Interpretación:</strong> ${interpretacion}`);
 }
 
+
+console.log("fisher.js cargado correctamente");
+
+/* =========================================================
+   FISHER · HEMORRAGIA SUBARACNOIDEA
+========================================================= */
+
+function calcularFisher() {
+  const sel = document.getElementById("fisher_score");
+  const v = sel ? Number(sel.value) : null;
+
+  if (!v) {
+    setHTML("resultadoFisher", "Seleccione un grado de la escala de Fisher.");
+    setHTML("interpretacionFisher", "");
+    return;
+  }
+
+  const info = {
+    1: {
+      titulo: "Grado I",
+      desc: "No se observa sangre subaracnoidea en la TAC.",
+      riesgo: "Riesgo bajo de vasoespasmo."
+    },
+    2: {
+      titulo: "Grado II",
+      desc: "Sangre subaracnoidea difusa en capas delgadas (< 1 mm).",
+      riesgo: "Riesgo bajo–moderado de vasoespasmo."
+    },
+    3: {
+      titulo: "Grado III",
+      desc: "Coágulos localizados o capa de sangre ≥ 1 mm.",
+      riesgo: "Alto riesgo de vasoespasmo."
+    },
+    4: {
+      titulo: "Grado IV",
+      desc: "Hemorragia intraventricular o intraparenquimatosa asociada.",
+      riesgo: "Riesgo elevado de vasoespasmo y peor pronóstico."
+    }
+  };
+
+  const d = info[v];
+
+  setHTML(
+    "resultadoFisher",
+    `Fisher: <strong>${d.titulo}</strong>`
+  );
+
+  setHTML(
+    "interpretacionFisher",
+    `<strong>Hallazgo en TAC:</strong> ${d.desc}<br>
+     <strong>Orientación clínica:</strong> ${d.riesgo}`
+  );
+}
+
+/* =========================================================
+   HELPER LOCAL
+   (usa el mismo patrón que neuro.js)
+========================================================= */
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+         
 /* =========================================================
    HUNT & HESS · HSA (con info útil)
 ========================================================= */
