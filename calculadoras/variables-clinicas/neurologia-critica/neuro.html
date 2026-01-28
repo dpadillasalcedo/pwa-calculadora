@@ -14,7 +14,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/" />
 
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="neuro.css" />
   <meta name="theme-color" content="#0b5fff" />
 </head>
 
@@ -29,181 +29,314 @@
     </p>
   </header>
 
-  <!-- =========================================================
-       CAM-ICU · Delirium
-  ========================================================= -->
-  <section id="camicu" class="panel" aria-labelledby="camicu-title">
+ <!-- =========================================================
+     CAM-ICU · Delirium
+========================================================= -->
+<section id="camicu" class="panel" aria-labelledby="camicu-title">
 
-    <h2 id="camicu-title">
-      <span class="icon icon-brain"></span>
-      CAM-ICU · Delirium
-    </h2>
+  <h2 id="camicu-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    CAM-ICU · Delirium
+  </h2>
 
-    <p class="note">
-      Diagnóstico positivo si se cumple:
-      <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
-    </p>
+  <p class="note">
+    Diagnóstico positivo si se cumple:
+    <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
+  </p>
 
-    <!-- PASO 1 -->
-    <fieldset>
-      <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
+  <!-- PASO 1 -->
+  <fieldset>
+    <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
 
-      <div class="note">
-        <ul>
-          <li>Cambio agudo del estado mental respecto al basal <strong>o</strong></li>
-          <li>Curso fluctuante en las últimas <strong>24 h</strong></li>
-        </ul>
-      </div>
-
-      <label>¿Cumple el criterio?</label>
-      <select id="camicu_c1" onchange="camicuPaso1()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <!-- PASO 2 -->
-    <fieldset id="camicu_paso2" style="display:none">
-      <legend><h3>Paso 2 · Inatención</h3></legend>
-
-      <div class="note">
-        Palabra: <strong>CASABLANCA</strong> · responder solo a la letra <strong>A</strong>
-      </div>
-
-      <label>¿Presenta inatención?</label>
-      <select id="camicu_c2" onchange="camicuPaso2()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí (≥ 2 errores)</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <!-- PASO 3 -->
-    <fieldset id="camicu_paso3" style="display:none">
-      <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
-
-      <label>¿Pensamiento desorganizado?</label>
-      <select id="camicu_c3" onchange="camicuPaso3()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <!-- PASO 4 -->
-    <fieldset id="camicu_paso4" style="display:none">
-      <legend><h3>Paso 4 · Nivel de conciencia</h3></legend>
-
-      <label>¿Nivel de conciencia alterado?</label>
-      <select id="camicu_c4" onchange="camicuPaso4()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <div id="resultadoCAMICU" role="status" style="margin-top:14px;font-weight:700"></div>
-    <div id="interpretacionCAMICU" class="note"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       NIHSS · Stroke severity
-  ========================================================= -->
-  <section id="nihss" class="panel">
-
-    <h2>
-      <span class="icon icon-brain"></span>
-      NIHSS · Stroke Scale
-    </h2>
-
-    <!-- (NIHSS completo tal como lo enviaste) -->
-
-    <!-- 🔴 PEGADO SIN CAMBIOS -->
-    <!-- Botón y resultados -->
-    <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
-    <div id="resultadoNIHSS" style="margin-top:10px;font-weight:600"></div>
-    <div id="interpretacionNIHSS" class="note"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       Hunt and Hess · Hemorragia subaracnoidea
-  ========================================================= -->
-  <section id="hunt-hess" class="panel">
-
-    <h2>
-      <span class="icon icon-brain"></span>
-      Hunt and Hess · HSA
-    </h2>
-
-    <p class="note">
-      Clasificación clínica de la gravedad en pacientes con
-      <strong>hemorragia subaracnoidea</strong>.
-    </p>
-
-    <label>Seleccione el grado clínico</label>
-    <select id="hunt_hess">
-      <option value="">Seleccione</option>
-      <option value="1">Grado I · Asintomático o cefalea leve</option>
-      <option value="2">Grado II · Cefalea moderada, rigidez nucal</option>
-      <option value="3">Grado III · Somnolencia, confusión</option>
-      <option value="4">Grado IV · Estupor, déficit neurológico</option>
-      <option value="5">Grado V · Coma profundo</option>
-    </select>
-
-    <div class="result" style="margin-top:12px">
-      El grado seleccionado orienta pronóstico y conducta terapéutica.
+    <div class="note">
+      <ul>
+        <li>Cambio agudo del estado mental respecto al basal <strong>o</strong></li>
+        <li>Curso fluctuante en las últimas <strong>24 h</strong></li>
+      </ul>
     </div>
 
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       Marshall score · TCE
-  ========================================================= -->
-  <section id="marshall" class="panel">
-
-    <h2>
-      <span class="icon icon-brain"></span>
-      Marshall score · Traumatismo craneoencefálico
-    </h2>
-
-    <p class="note">
-      Clasificación tomográfica del <strong>TCE</strong> según hallazgos en TAC.
-    </p>
-
-    <label>Seleccione la categoría</label>
-    <select id="marshall_score">
+    <label for="camicu_c1">¿Cumple el criterio?</label>
+    <select id="camicu_c1" name="camicu_c1" onchange="camicuPaso1()">
       <option value="">Seleccione</option>
-      <option value="1">I · TAC normal</option>
-      <option value="2">II · Lesiones difusas &lt; 25 ml</option>
-      <option value="3">III · Edema con cisternas comprimidas</option>
-      <option value="4">IV · Desviación línea media &gt; 5 mm</option>
-      <option value="5">V · Lesión evacuada</option>
-      <option value="6">VI · Lesión no evacuada &gt; 25 ml</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
     </select>
+  </fieldset>
 
-    <div class="result" style="margin-top:12px">
-      El score se utiliza para estratificación de riesgo y pronóstico.
+  <!-- PASO 2 -->
+  <fieldset id="camicu_paso2" hidden>
+    <legend><h3>Paso 2 · Inatención</h3></legend>
+
+    <div class="note">
+      Palabra: <strong>CASABLANCA</strong> · responder solo a la letra <strong>A</strong>
     </div>
 
-  </section>
+    <label for="camicu_c2">¿Presenta inatención?</label>
+    <select id="camicu_c2" name="camicu_c2" onchange="camicuPaso2()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí (≥ 2 errores)</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
-  <section class="bottom-ad-section">
-    <div class="bottom-ad-slot"></div>
-  </section>
+  <!-- PASO 3 -->
+  <fieldset id="camicu_paso3" hidden>
+    <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
 
-</main>
+    <label for="camicu_c3">¿Pensamiento desorganizado?</label>
+    <select id="camicu_c3" name="camicu_c3" onchange="camicuPaso3()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
-<!-- JS global del proyecto -->
-<script src="/app.js"></script>
+  <!-- PASO 4 -->
+  <fieldset id="camicu_paso4" hidden>
+    <legend><h3>Paso 4 · Nivel de conciencia</h3></legend>
 
-</body>
-</html>
+    <label for="camicu_c4">¿Nivel de conciencia alterado?</label>
+    <select id="camicu_c4" name="camicu_c4" onchange="camicuPaso4()">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
+
+  <!-- RESULTADOS -->
+  <div
+    id="resultadoCAMICU"
+    role="status"
+    aria-live="polite"
+    style="margin-top:14px;font-weight:700"
+  ></div>
+
+  <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
+
+  <noscript class="note">
+    Para utilizar esta calculadora es necesario habilitar JavaScript.
+  </noscript>
+
+</section>
+
+<hr />
+
+<!-- =========================================================
+     NIHSS · Stroke severity
+========================================================= -->
+<section id="nihss" class="panel" aria-labelledby="nihss-title">
+
+  <h2 id="nihss-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    NIHSS · Stroke Scale
+  </h2>
+
+  <!-- 1a -->
+  <label for="nihss_1a">1a. Nivel de conciencia</label>
+  <select id="nihss_1a">
+    <option value="">Seleccione</option>
+    <option value="0">Alerta</option>
+    <option value="1">Somnoliento</option>
+    <option value="2">Estupor</option>
+    <option value="3">Coma</option>
+  </select>
+
+  <!-- 1b -->
+  <label for="nihss_1b">1b. Preguntas LOC</label>
+  <select id="nihss_1b">
+    <option value="">Seleccione</option>
+    <option value="0">Ambas correctas</option>
+    <option value="1">Una correcta</option>
+    <option value="2">Ninguna correcta</option>
+  </select>
+
+  <!-- 1c -->
+  <label for="nihss_1c">1c. Órdenes LOC</label>
+  <select id="nihss_1c">
+    <option value="">Seleccione</option>
+    <option value="0">Ambas correctas</option>
+    <option value="1">Una correcta</option>
+    <option value="2">Ninguna correcta</option>
+  </select>
+
+  <!-- 2 -->
+  <label for="nihss_2">2. Mirada</label>
+  <select id="nihss_2">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Parcial</option>
+    <option value="2">Desviación forzada</option>
+  </select>
+
+  <!-- 3 -->
+  <label for="nihss_3">3. Campos visuales</label>
+  <select id="nihss_3">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Hemianopsia parcial</option>
+    <option value="2">Hemianopsia completa</option>
+    <option value="3">Ceguera bilateral</option>
+  </select>
+
+  <!-- 4 -->
+  <label for="nihss_4">4. Parálisis facial</label>
+  <select id="nihss_4">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Leve</option>
+    <option value="2">Parcial</option>
+    <option value="3">Completa</option>
+  </select>
+
+  <!-- Motor -->
+  <label for="nihss_motor">5–6. Motor (peor lado)</label>
+  <select id="nihss_motor">
+    <option value="">Seleccione</option>
+    <option value="0">Sin déficit</option>
+    <option value="1">Caída tardía</option>
+    <option value="2">No vence gravedad</option>
+    <option value="3">Sin esfuerzo contra gravedad</option>
+    <option value="4">Sin movimiento</option>
+  </select>
+
+  <!-- Ataxia -->
+  <label for="nihss_ataxia">7. Ataxia</label>
+  <select id="nihss_ataxia">
+    <option value="">Seleccione</option>
+    <option value="0">Ausente</option>
+    <option value="1">Un miembro</option>
+    <option value="2">Dos miembros</option>
+  </select>
+
+  <!-- Sensibilidad -->
+  <label for="nihss_sens">8. Sensibilidad</label>
+  <select id="nihss_sens">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Hipoestesia</option>
+    <option value="2">Anestesia</option>
+  </select>
+
+  <!-- Lenguaje -->
+  <label for="nihss_lang">9. Lenguaje</label>
+  <select id="nihss_lang">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Afasia leve</option>
+    <option value="2">Afasia severa</option>
+    <option value="3">Mutismo</option>
+  </select>
+
+  <!-- Disartria -->
+  <label for="nihss_dys">10. Disartria</label>
+  <select id="nihss_dys">
+    <option value="">Seleccione</option>
+    <option value="0">Normal</option>
+    <option value="1">Leve</option>
+    <option value="2">Severa</option>
+  </select>
+
+  <!-- Neglect -->
+  <label for="nihss_neglect">11. Negligencia</label>
+  <select id="nihss_neglect">
+    <option value="">Seleccione</option>
+    <option value="0">Ausente</option>
+    <option value="1">Leve</option>
+    <option value="2">Severa</option>
+  </select>
+
+  <!-- BOTÓN -->
+  <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
+
+  <!-- RESULTADOS -->
+  <div id="resultadoNIHSS" style="margin-top:10px;font-weight:600" aria-live="polite"></div>
+  <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
+
+</section>
+
+<hr />
+
+<!-- =========================================================
+     Hunt and Hess · Hemorragia subaracnoidea
+========================================================= -->
+<section id="hunt-hess" class="panel" aria-labelledby="hunt-hess-title">
+
+  <h2 id="hunt-hess-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    Hunt and Hess · HSA
+  </h2>
+
+  <p class="note">
+    Clasificación clínica de la gravedad en pacientes con
+    <strong>hemorragia subaracnoidea</strong>.
+  </p>
+
+  <label for="hunt_hess">Seleccione el grado clínico</label>
+  <select id="hunt_hess" name="hunt_hess" onchange="calcularHuntHess()">
+    <option value="">Seleccione</option>
+    <option value="1">Grado I · Asintomático o cefalea leve</option>
+    <option value="2">Grado II · Cefalea moderada, rigidez nucal</option>
+    <option value="3">Grado III · Somnolencia, confusión</option>
+    <option value="4">Grado IV · Estupor, déficit neurológico</option>
+    <option value="5">Grado V · Coma profundo</option>
+  </select>
+
+  <!-- RESULTADO -->
+  <div
+    id="resultadoHuntHess"
+    style="margin-top:12px;font-weight:700"
+    aria-live="polite"
+  ></div>
+
+  <!-- INTERPRETACIÓN -->
+  <div id="interpretacionHuntHess" class="note" aria-live="polite"></div>
+
+</section>
+
+<hr />
+
+
+<!-- =========================================================
+     Marshall score · Traumatismo craneoencefálico
+========================================================= -->
+<section id="marshall" class="panel" aria-labelledby="marshall-title">
+
+  <h2 id="marshall-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    Marshall score · Traumatismo craneoencefálico
+  </h2>
+
+  <p class="note">
+    Clasificación tomográfica del <strong>TCE</strong> según hallazgos en TAC.
+  </p>
+
+  <label for="marshall_score">Seleccione la categoría</label>
+  <select
+    id="marshall_score"
+    name="marshall_score"
+    onchange="calcularMarshall()"
+  >
+    <option value="">Seleccione</option>
+    <option value="1">I · TAC normal</option>
+    <option value="2">II · Lesiones difusas &lt; 25 ml</option>
+    <option value="3">III · Edema con cisternas comprimidas</option>
+    <option value="4">IV · Desviación línea media &gt; 5 mm</option>
+    <option value="5">V · Lesión evacuada</option>
+    <option value="6">VI · Lesión no evacuada &gt; 25 ml</option>
+  </select>
+
+  <!-- RESULTADO -->
+  <div
+    id="resultadoMarshall"
+    style="margin-top:12px;font-weight:700"
+    aria-live="polite"
+  ></div>
+
+  <!-- INTERPRETACIÓN -->
+  <div id="interpretacionMarshall" class="note" aria-live="polite"></div>
+
+</section>
+
+<section class="bottom-ad-section">
+  <div class="bottom-ad-slot"></div>
+</section>
