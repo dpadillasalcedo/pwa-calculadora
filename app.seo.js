@@ -1,74 +1,106 @@
 /* =========================
    SEO + ANALYTICS (URL-based)
    Domain: https://criticalcaretools.com
+   Uso: SPA ligera / páginas estáticas
 ========================= */
 
 const SITE_URL = "https://criticalcaretools.com";
 
+/* =========================
+   MAPA SEO POR RUTA REAL
+========================= */
 const SEO_ROUTE_MAP = {
   "/": {
-    title: "Calculadora UCI – Herramientas clínicas para terapia intensiva",
+    title: "Calculadora UCI Adultos | Herramientas clínicas para terapia intensiva",
     description:
-      "Calculadoras clínicas para UCI: SOFA-2, NIHSS, CAM-ICU, ecocardiografía y hemodinamia."
+      "Calculadoras clínicas para UCI: ventilación mecánica, SOFA-2, NIHSS, CAM-ICU, ecocardiografía, hemodinamia y estado ácido–base."
   },
 
-  "/sofa-2-score": {
-    title: "SOFA-2 Score – Evaluación de disfunción orgánica en UCI",
+  "/calculadoras/variables-clinicas": {
+    title: "Variables clínicas en UCI | Scores y fórmulas críticas",
     description:
-      "Calculadora SOFA-2 online para estimar disfunción orgánica y mortalidad en pacientes críticos."
+      "Evaluación clínica en terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, oxigenación y scores pronósticos."
   },
 
-  "/nihss-score": {
-    title: "NIHSS Score – Escala de severidad del ACV",
+  "/calculadoras/variables-clinicas/neurologia-critica": {
+    title: "Neurología crítica en UCI | CAM-ICU, NIHSS, Hunt & Hess, Marshall",
     description:
-      "Calculadora NIHSS para cuantificar el déficit neurológico en pacientes con accidente cerebrovascular."
+      "Calculadoras de neurología crítica: CAM-ICU para delirium, NIHSS, Hunt & Hess y Marshall score en pacientes críticos."
   },
 
-  "/cam-icu": {
-    title: "CAM-ICU – Detección de delirium en UCI",
+  "/calculadoras/variables-clinicas/ventilacion-mecanica": {
+    title: "Ventilación mecánica en UCI | Peso ideal y ajuste de PCO₂",
     description:
-      "Evaluación CAM-ICU paso a paso para detección de delirium en pacientes críticos."
+      "Cálculos clínicos para ventilación mecánica invasiva: peso ideal, ajuste de ventilación minuto y PCO₂ deseada."
   },
 
-  "/ecocardiografia-gc": {
-    title: "Gasto cardíaco por ecocardiografía (VTI)",
+  "/calculadoras/variables-clinicas/sistemas-puntuacion": {
+    title: "Scores pronósticos en UCI | SOFA-2, APACHE II, SAPS II",
     description:
-      "Cálculo del gasto cardíaco por ecocardiografía utilizando TSVI y VTI medidos con Doppler pulsado."
+      "Scores pronósticos para pacientes críticos: SOFA-2, APACHE II y SAPS II con interpretación clínica."
+  },
+
+  "/calculadoras/variables-clinicas/monitoreo-hemodinamico": {
+    title: "Monitoreo hemodinámico en UCI | GC, oxigenación y perfusión",
+    description:
+      "Evaluación hemodinámica avanzada: gasto cardíaco por ecocardiografía, oxigenación, RVS, PPC y perfusión tisular."
+  },
+
+  "/calculadoras/variables-clinicas/estado-acido-base": {
+    title: "Estado ácido–base en UCI | Anion gap y compensaciones",
+    description:
+      "Evaluación de trastornos ácido–base: anion gap corregido, delta–delta, sodio y calcio corregido."
   }
 };
 
+/* =========================
+   HELPERS
+========================= */
 function normalizePath(path) {
-  return path.replace(/\/$/, "") || "/";
+  if (!path) return "/";
+  return path.endsWith("/") && path.length > 1
+    ? path.slice(0, -1)
+    : path;
 }
 
-function setMetaTag(selector, attr, value) {
+function setMeta(nameOrProperty, value, isProperty = false) {
+  const selector = isProperty
+    ? `meta[property="${nameOrProperty}"]`
+    : `meta[name="${nameOrProperty}"]`;
+
   let el = document.querySelector(selector);
+
   if (!el) {
     el = document.createElement("meta");
-    if (selector.includes("property")) {
-      el.setAttribute("property", attr);
+    if (isProperty) {
+      el.setAttribute("property", nameOrProperty);
     } else {
-      el.setAttribute("name", attr);
+      el.setAttribute("name", nameOrProperty);
     }
     document.head.appendChild(el);
   }
+
   el.setAttribute("content", value);
 }
 
+/* =========================
+   APPLY SEO
+========================= */
 function applySEO() {
-  const path = normalizePath(location.pathname);
+  const path = normalizePath(window.location.pathname);
   const cfg = SEO_ROUTE_MAP[path];
+
   if (!cfg) return;
 
-  const canonicalUrl = `${SITE_URL}${path}`;
+  const canonicalUrl = `${SITE_URL}${path === "/" ? "" : path}`;
 
-  // Title
+  /* ---------- Title ---------- */
   document.title = cfg.title;
 
-  // Meta description
-  setMetaTag('meta[name="description"]', "description", cfg.description);
+  /* ---------- Meta description ---------- */
+  setMeta("description", cfg.description);
 
-  // Canonical
+  /* ---------- Canonical ---------- */
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement("link");
@@ -77,23 +109,23 @@ function applySEO() {
   }
   canonical.setAttribute("href", canonicalUrl);
 
-  // Open Graph
-  setMetaTag('meta[property="og:title"]', "og:title", cfg.title);
-  setMetaTag(
-    'meta[property="og:description"]',
-    "og:description",
-    cfg.description
-  );
-  setMetaTag('meta[property="og:url"]', "og:url", canonicalUrl);
-  setMetaTag('meta[property="og:type"]', "og:type", "website");
+  /* ---------- Open Graph ---------- */
+  setMeta("og:title", cfg.title, true);
+  setMeta("og:description", cfg.description, true);
+  setMeta("og:url", canonicalUrl, true);
+  setMeta("og:type", "website", true);
 
-  // Pageview (una vez por URL)
-  if (typeof trackEvent === "function") {
-    trackEvent("page_view", {
+  /* ---------- Analytics (solo si existe gtag) ---------- */
+  if (typeof gtag === "function") {
+    gtag("event", "page_view", {
       page_path: path,
-      page_location: canonicalUrl
+      page_location: canonicalUrl,
+      page_title: cfg.title
     });
   }
 }
 
+/* =========================
+   INIT
+========================= */
 document.addEventListener("DOMContentLoaded", applySEO);
