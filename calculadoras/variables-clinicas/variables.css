@@ -10,53 +10,49 @@
 }
 
 /* ======================================================
-   VARIABLES GLOBALES (BLINDADAS)
+   VARIABLES – LIGHT CLINICAL
 ====================================================== */
 :root {
-  --bg-main: #020617;
-  --bg-surface: #020617;
-  --bg-card: #0f172a;
-  --bg-card-hover: #020617;
+  /* Fondos */
+  --bg-main: #f1f5f9;        /* gris claro */
+  --bg-surface: #f8fafc;     /* fondo cards */
+  --bg-card: #ffffff;
 
-  --color-text: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-border: #1e293b;
+  /* Texto */
+  --color-text: #0f172a;
+  --color-muted: #475569;
 
+  /* Bordes */
+  --color-border: #e2e8f0;
+
+  /* Azul médico */
   --color-primary: #2563eb;
-  --color-primary-soft: rgba(37, 99, 235, 0.35);
+  --color-primary-soft: rgba(37, 99, 235, 0.15);
 
-  --shadow-card:
-    0 12px 28px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-
+  /* Sombras */
+  --shadow-card: 
+    0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-card-hover:
-    0 28px 60px rgba(0, 0, 0, 0.8),
-    0 0 0 3px var(--color-primary-soft);
+    0 16px 40px rgba(15, 23, 42, 0.12);
 }
 
 /* ======================================================
    BODY / BASE
 ====================================================== */
 html, body {
-  background: radial-gradient(
-    1200px 600px at top center,
-    #0b1228,
-    #020617
-  );
+  background-color: var(--bg-main);
   color: var(--color-text);
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* ======================================================
-   CONTENEDOR APP
+   CONTENEDOR
 ====================================================== */
 .app.container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1.5rem 4rem;
-  background: transparent;
-  box-shadow: none;
 }
 
 /* ======================================================
@@ -71,15 +67,13 @@ html, body {
 .app-header h1 {
   font-size: 2rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
   margin-bottom: 0.75rem;
-  color: #ffffff;
 }
 
 .subtitle {
   font-size: 0.95rem;
   color: var(--color-muted);
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -89,40 +83,35 @@ html, body {
 .clinical-menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.25rem;
+  gap: 2rem;
   margin-top: 3.5rem;
 }
 
 /* ======================================================
-   CARD DE NAVEGACIÓN
+   CARD NAVEGACIÓN
 ====================================================== */
 .menu-card {
   position: relative;
-  padding: 2.2rem 2.2rem 2.8rem;
-  border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    #0f172a,
-    #020617
-  );
+  background-color: var(--bg-card);
+  padding: 2rem 2rem 2.6rem;
+  border-radius: 16px;
   border: 1px solid var(--color-border);
-  color: var(--color-text);
+  color: inherit;
   text-decoration: none;
   cursor: pointer;
 
   box-shadow: var(--shadow-card);
-
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .menu-card:hover,
 .menu-card:focus-visible {
-  transform: translateY(-6px) scale(1.015);
-  border-color: var(--color-primary);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-primary);
   outline: none;
 }
 
@@ -130,14 +119,14 @@ html, body {
    TÍTULO CARD
 ====================================================== */
 .menu-card h2 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  color: #f9fafb;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
 }
 
 /* ======================================================
-   LISTA INTERNA
+   LISTA
 ====================================================== */
 .menu-card ul {
   list-style: none;
@@ -145,36 +134,34 @@ html, body {
 
 .menu-card li {
   position: relative;
-  padding-left: 18px;
+  padding-left: 16px;
   margin-bottom: 8px;
   font-size: 0.9rem;
   color: var(--color-muted);
-  line-height: 1.45;
 }
 
 .menu-card li::before {
-  content: "▸";
+  content: "•";
   position: absolute;
   left: 0;
-  top: 0;
   color: var(--color-primary);
-  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 /* ======================================================
-   CTA IMPLÍCITO
+   CTA
 ====================================================== */
 .menu-card::after {
-  content: "Ingresar →";
+  content: "Ver herramientas →";
   position: absolute;
-  right: 1.75rem;
-  bottom: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.2rem;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-primary);
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .menu-card:hover::after {
@@ -183,15 +170,7 @@ html, body {
 }
 
 /* ======================================================
-   ACCESIBILIDAD
-====================================================== */
-.menu-card:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-}
-
-/* ======================================================
-   SECCIÓN PUBLICIDAD (PLACEHOLDER)
+   PUBLICIDAD
 ====================================================== */
 .bottom-ad-section {
   margin-top: 4rem;
@@ -201,7 +180,7 @@ html, body {
 
 .bottom-ad-slot {
   min-height: 90px;
-  background-color: rgba(255,255,255,0.03);
+  background-color: var(--bg-surface);
   border-radius: 12px;
 }
 
@@ -215,11 +194,10 @@ html, body {
 
   .clinical-menu {
     gap: 1.5rem;
-    margin-top: 2.5rem;
   }
 
   .menu-card {
-    padding: 1.8rem 1.8rem 2.4rem;
+    padding: 1.6rem 1.6rem 2.2rem;
   }
 
   .menu-card h2 {
@@ -227,6 +205,4 @@ html, body {
   }
 
   .menu-card li {
-    font-size: 0.85rem;
-  }
-}
+    font-
