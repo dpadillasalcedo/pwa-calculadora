@@ -1,44 +1,125 @@
 /* =========================
    MENÚ VARIABLES CLÍNICAS
 ========================= */
+
 .clinical-menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 1.75rem;
+  margin-top: 2.5rem;
 }
 
+/* Card base */
 .menu-card {
-  display: block;
-  padding: 1.5rem;
-  border-radius: 14px;
-  background-color: var(--bg-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.75rem 1.75rem 1.6rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(2, 6, 23, 0.95)
+  );
   border: 1px solid var(--color-border);
   text-decoration: none;
   color: var(--color-text);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.menu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.4);
+/* Hover / focus */
+.menu-card:hover,
+.menu-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  outline: none;
 }
 
+/* Título */
 .menu-card h2 {
   font-size: 1.05rem;
-  margin-bottom: 0.75rem;
-  border: none;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-bottom: 0.25rem;
+  color: #f1f5f9;
 }
 
+/* Lista */
 .menu-card ul {
   list-style: none;
   padding-left: 0;
+  margin-top: 0.25rem;
 }
 
+/* Ítems */
 .menu-card li {
+  position: relative;
+  padding-left: 14px;
   font-size: 0.85rem;
+  line-height: 1.4;
   color: var(--color-muted);
   margin-bottom: 6px;
 }
+
+/* Bullet clínico sutil */
+.menu-card li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Mejora percepción de clic */
+.menu-card::after {
+  content: "→";
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  font-size: 1rem;
+  color: var(--color-muted);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-card:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================
+   RESPONSIVE FINO
+========================= */
+@media (max-width: 600px) {
+  .clinical-menu {
+    gap: 1.25rem;
+  }
+
+  .menu-card {
+    padding: 1.5rem;
+  }
+
+  .menu-card h2 {
+    font-size: 1rem;
+  }
+
+  .menu-card li {
+    font-size: 0.82rem;
+  }
+}
+
 
 
