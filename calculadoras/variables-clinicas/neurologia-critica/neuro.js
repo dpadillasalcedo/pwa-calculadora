@@ -143,11 +143,17 @@ function calcularNIHSS() {
     }
 
     const v = Number(el.value);
-    if (!Number.isFinite(v)) {
-      setHTML("resultadoNIHSS", "<strong>NIHSS:</strong> Complete todos los ítems");
-      setHTML("interpretacionNIHSS", "");
-      return;
-    }
+if (!Number.isFinite(v)) {
+  setHTML(
+    "resultadoNIHSS",
+    "<strong>NIHSS:</strong> evaluación incompleta"
+  );
+  setHTML(
+    "interpretacionNIHSS",
+    "Debe completar todos los ítems para obtener el puntaje total."
+  );
+  return;
+}
 
     total += v;
   }
