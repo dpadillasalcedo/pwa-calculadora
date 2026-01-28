@@ -1,5 +1,35 @@
 /* ======================================================
-   VARIABLES BASE (LIGHT – VARIABLES)
+   RESET TOTAL (ANTI ESTILOS POR DEFECTO)
+====================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: #f1f5f9 !important; /* gris claro */
+  color: #0f172a !important;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.55;
+}
+
+/* Neutraliza estilos HTML por defecto */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ======================================================
+   VARIABLES DE DISEÑO (LIGHT CLÍNICO)
 ====================================================== */
 :root {
   --bg-main: #f1f5f9;
@@ -11,15 +41,7 @@
   --color-border: #e2e8f0;
 
   --color-primary: #2563eb;
-}
-
-/* ======================================================
-   BASE VISUAL (LIGHT – VARIABLES)
-====================================================== */
-
-body {
-  background-color: var(--bg-main);
-  color: var(--color-text);
+  --color-primary-soft: rgba(37, 99, 235, 0.12);
 }
 
 /* ======================================================
@@ -28,7 +50,7 @@ body {
 .app.container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
+  padding: 3.5rem 1.5rem 4rem;
 }
 
 /* ======================================================
@@ -37,11 +59,12 @@ body {
 .app-header {
   text-align: center;
   padding-bottom: 2.5rem;
+  margin-bottom: 3rem;
   border-bottom: 1px solid var(--color-border);
 }
 
 .app-header h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--color-text);
@@ -55,79 +78,79 @@ body {
 }
 
 /* ======================================================
-   MENÚ VARIABLES CLÍNICAS
+   GRID DE NAVEGACIÓN
 ====================================================== */
 .clinical-menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3.5rem;
+  gap: 2.25rem;
 }
 
 /* ======================================================
-   TARJETA DE NAVEGACIÓN
+   CARD / BOTÓN DE NAVEGACIÓN
 ====================================================== */
 .menu-card {
   position: relative;
+  display: block;
   background-color: var(--bg-card);
-  padding: 2.2rem 2.2rem 2.8rem;
-  border-radius: 16px;
+  padding: 2.2rem 2.2rem 2.9rem;
+  border-radius: 18px;
   border: 1px solid var(--color-border);
   color: var(--color-text);
   cursor: pointer;
 
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 
-/* Hover / focus */
+/* Hover / foco = botón */
 .menu-card:hover,
 .menu-card:focus-visible {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--color-primary);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 18px 44px rgba(15, 23, 42, 0.18),
+    0 0 0 3px var(--color-primary-soft);
   outline: none;
 }
 
 /* ======================================================
-   TÍTULO CARD
+   TÍTULO DE CARD
 ====================================================== */
 .menu-card h2 {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
   color: var(--color-primary);
 }
 
 /* ======================================================
-   LISTA INTERNA
+   LISTA DE HERRAMIENTAS
 ====================================================== */
-.menu-card ul {
-  margin-top: 0.25rem;
-}
-
 .menu-card li {
   position: relative;
-  padding-left: 16px;
+  padding-left: 18px;
   margin-bottom: 8px;
   font-size: 0.9rem;
   line-height: 1.45;
   color: var(--color-muted);
 }
 
+/* Bullet clínico */
 .menu-card li::before {
-  content: "•";
+  content: "▸";
   position: absolute;
   left: 0;
   color: var(--color-primary);
-  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 /* ======================================================
-   INDICADOR DE ACCIÓN
+   CTA VISUAL
 ====================================================== */
 .menu-card::after {
   content: "Entrar →";
@@ -138,8 +161,8 @@ body {
   font-weight: 500;
   color: var(--color-primary);
   opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
 .menu-card:hover::after {
@@ -148,10 +171,10 @@ body {
 }
 
 /* ======================================================
-   PUBLICIDAD
+   SECCIÓN PUBLICIDAD (PLACEHOLDER)
 ====================================================== */
 .bottom-ad-section {
-  margin-top: 4rem;
+  margin-top: 4.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--color-border);
 }
@@ -172,7 +195,6 @@ body {
 
   .clinical-menu {
     gap: 1.5rem;
-    margin-top: 2.5rem;
   }
 
   .menu-card {
@@ -187,26 +209,3 @@ body {
     font-size: 0.85rem;
   }
 }
-
-/* ======================================================
-   RESET ESPECÍFICO PARA VARIABLES
-====================================================== */
-
-/* Quita estilos por defecto de links */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Quita bullets y sangría por defecto */
-ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-/* Asegura que toda la card se vea como botón */
-.menu-card {
-  display: block;
-}
-
