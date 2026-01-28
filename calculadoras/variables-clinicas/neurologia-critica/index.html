@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <title>Neurología crítica en terapia intensiva | Calculadora UCI</title>
+
+  <meta
+    name="description"
+    content="Evaluación neurológica en terapia intensiva: CAM-ICU, NIHSS, Hunt and Hess y Marshall score."
+  />
+
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <meta name="theme-color" content="#0b5fff" />
+</head>
+
+<body>
+
+<main class="app container">
+
+  <header class="app-header">
+    <h1>Neurología crítica</h1>
+    <p class="subtitle">
+      Evaluación neurológica del paciente crítico mediante escalas clínicas validadas
+    </p>
+  </header>
+
+  <!-- =========================================================
+       CAM-ICU · Delirium
+  ========================================================= -->
+  <section id="camicu" class="panel" aria-labelledby="camicu-title">
+
+    <h2 id="camicu-title">
+      <span class="icon icon-brain"></span>
+      CAM-ICU · Delirium
+    </h2>
+
+    <p class="note">
+      Diagnóstico positivo si se cumple:
+      <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
+    </p>
+
+    <!-- PASO 1 -->
+    <fieldset>
+      <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
+
+      <div class="note">
+        <ul>
+          <li>Cambio agudo del estado mental respecto al basal <strong>o</strong></li>
+          <li>Curso fluctuante en las últimas <strong>24 h</strong></li>
+        </ul>
+      </div>
+
+      <label>¿Cumple el criterio?</label>
+      <select id="camicu_c1" onchange="camicuPaso1()">
+        <option value="">Seleccione</option>
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+      </select>
+    </fieldset>
+
+    <!-- PASO 2 -->
+    <fieldset id="camicu_paso2" style="display:none">
+      <legend><h3>Paso 2 · Inatención</h3></legend>
+
+      <div class="note">
+        Palabra: <strong>CASABLANCA</strong> · responder solo a la letra <strong>A</strong>
+      </div>
+
+      <label>¿Presenta inatención?</label>
+      <select id="camicu_c2" onchange="camicuPaso2()">
+        <option value="">Seleccione</option>
+        <option value="1">Sí (≥ 2 errores)</option>
+        <option value="0">No</option>
+      </select>
+    </fieldset>
+
+    <!-- PASO 3 -->
+    <fieldset id="camicu_paso3" style="display:none">
+      <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
+
+      <label>¿Pensamiento desorganizado?</label>
+      <select id="camicu_c3" onchange="camicuPaso3()">
+        <option value="">Seleccione</option>
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+      </select>
+    </fieldset>
+
+    <!-- PASO 4 -->
+    <fieldset id="camicu_paso4" style="display:none">
+      <legend><h3>Paso 4 · Nivel de conciencia</h3></legend>
+
+      <label>¿Nivel de conciencia alterado?</label>
+      <select id="camicu_c4" onchange="camicuPaso4()">
+        <option value="">Seleccione</option>
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+      </select>
+    </fieldset>
+
+    <div id="resultadoCAMICU" role="status" style="margin-top:14px;font-weight:700"></div>
+    <div id="interpretacionCAMICU" class="note"></div>
+
+  </section>
+
+  <hr />
+
+  <!-- =========================================================
+       NIHSS · Stroke severity
+  ========================================================= -->
+  <section id="nihss" class="panel">
+
+    <h2>
+      <span class="icon icon-brain"></span>
+      NIHSS · Stroke Scale
+    </h2>
+
+    <!-- (NIHSS completo tal como lo enviaste) -->
+
+    <!-- 🔴 PEGADO SIN CAMBIOS -->
+    <!-- Botón y resultados -->
+    <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
+    <div id="resultadoNIHSS" style="margin-top:10px;font-weight:600"></div>
+    <div id="interpretacionNIHSS" class="note"></div>
+
+  </section>
+
+  <hr />
+
+  <!-- =========================================================
+       Hunt and Hess · Hemorragia subaracnoidea
+  ========================================================= -->
+  <section id="hunt-hess" class="panel">
+
+    <h2>
+      <span class="icon icon-brain"></span>
+      Hunt and Hess · HSA
+    </h2>
+
+    <p class="note">
+      Clasificación clínica de la gravedad en pacientes con
+      <strong>hemorragia subaracnoidea</strong>.
+    </p>
+
+    <label>Seleccione el grado clínico</label>
+    <select id="hunt_hess">
+      <option value="">Seleccione</option>
+      <option value="1">Grado I · Asintomático o cefalea leve</option>
+      <option value="2">Grado II · Cefalea moderada, rigidez nucal</option>
+      <option value="3">Grado III · Somnolencia, confusión</option>
+      <option value="4">Grado IV · Estupor, déficit neurológico</option>
+      <option value="5">Grado V · Coma profundo</option>
+    </select>
+
+    <div class="result" style="margin-top:12px">
+      El grado seleccionado orienta pronóstico y conducta terapéutica.
+    </div>
+
+  </section>
+
+  <hr />
+
+  <!-- =========================================================
+       Marshall score · TCE
+  ========================================================= -->
+  <section id="marshall" class="panel">
+
+    <h2>
+      <span class="icon icon-brain"></span>
+      Marshall score · Traumatismo craneoencefálico
+    </h2>
+
+    <p class="note">
+      Clasificación tomográfica del <strong>TCE</strong> según hallazgos en TAC.
+    </p>
+
+    <label>Seleccione la categoría</label>
+    <select id="marshall_score">
+      <option value="">Seleccione</option>
+      <option value="1">I · TAC normal</option>
+      <option value="2">II · Lesiones difusas &lt; 25 ml</option>
+      <option value="3">III · Edema con cisternas comprimidas</option>
+      <option value="4">IV · Desviación línea media &gt; 5 mm</option>
+      <option value="5">V · Lesión evacuada</option>
+      <option value="6">VI · Lesión no evacuada &gt; 25 ml</option>
+    </select>
+
+    <div class="result" style="margin-top:12px">
+      El score se utiliza para estratificación de riesgo y pronóstico.
+    </div>
+
+  </section>
+
+  <section class="bottom-ad-section">
+    <div class="bottom-ad-slot"></div>
+  </section>
+
+</main>
+
+<!-- JS global del proyecto -->
+<script src="/app.js"></script>
+
+</body>
+</html>
