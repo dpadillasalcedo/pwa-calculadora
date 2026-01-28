@@ -1,125 +1,113 @@
 /* =========================
-   MENÚ VARIABLES CLÍNICAS
+   MENÚ VARIABLES CLÍNICAS – VISUAL PRO
 ========================= */
 
 .clinical-menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.75rem;
-  margin-top: 2.5rem;
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-/* Card base */
+/* Card */
 .menu-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.75rem 1.75rem 1.6rem;
-  border-radius: 16px;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.95),
-    rgba(2, 6, 23, 0.95)
-  );
+  padding: 2rem 2rem 2.5rem;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, #111827, #020617);
   border: 1px solid var(--color-border);
-  text-decoration: none;
   color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 12px 28px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
-/* Hover / focus */
+/* Hover = botón */
 .menu-card:hover,
 .menu-card:focus-visible {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.015);
   border-color: var(--color-primary);
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 28px 60px rgba(0, 0, 0, 0.75),
+    0 0 0 3px var(--color-primary-soft);
   outline: none;
 }
 
 /* Título */
 .menu-card h2 {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
-  margin-bottom: 0.25rem;
-  color: #f1f5f9;
+  margin-bottom: 0.75rem;
+  color: #f9fafb;
 }
 
 /* Lista */
 .menu-card ul {
   list-style: none;
-  padding-left: 0;
-  margin-top: 0.25rem;
+  padding: 0;
+  margin: 0;
 }
 
 /* Ítems */
 .menu-card li {
   position: relative;
-  padding-left: 14px;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  padding-left: 16px;
+  font-size: 0.9rem;
+  line-height: 1.45;
   color: var(--color-muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-/* Bullet clínico sutil */
+/* Bullet tipo check clínico */
 .menu-card li::before {
-  content: "•";
+  content: "▸";
   position: absolute;
   left: 0;
-  top: 0;
   color: var(--color-primary);
   font-size: 0.9rem;
-  line-height: 1.4;
 }
 
-/* Mejora percepción de clic */
+/* CTA implícito */
 .menu-card::after {
-  content: "→";
+  content: "Entrar →";
   position: absolute;
-  right: 1.25rem;
+  right: 1.5rem;
   bottom: 1.25rem;
-  font-size: 1rem;
-  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
   opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .menu-card:hover::after {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 /* =========================
-   RESPONSIVE FINO
+   RESPONSIVE
 ========================= */
 @media (max-width: 600px) {
-  .clinical-menu {
-    gap: 1.25rem;
-  }
-
   .menu-card {
-    padding: 1.5rem;
+    padding: 1.6rem 1.6rem 2.2rem;
   }
 
   .menu-card h2 {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .menu-card li {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 }
-
-
-
