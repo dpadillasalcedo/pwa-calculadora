@@ -1,3 +1,21 @@
+:root {
+  --bg-page: #020617;
+  --bg-card: #020617;
+  --color-border: #1e293b;
+  --color-primary: #38bdf8;
+  --color-success: #22c55e;
+  --color-muted: #cbd5f5;
+  --color-text: #e5e7eb;
+}
+
+/* Fondo general */
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #020617 0%, #020617 100%);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 /* =========================================================
    NEUROLOGÍA CRÍTICA
    Scope: calculadoras/variables-clinicas/neurologia-critica
