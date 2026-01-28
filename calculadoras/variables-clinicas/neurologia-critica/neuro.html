@@ -330,109 +330,171 @@
     </p>
   </header>
 
-  <!-- =========================================================
-       FISHER · HEMORRAGIA SUBARACNOIDEA
-  ========================================================= -->
-  <section id="fisher" class="panel" aria-labelledby="fisher-title">
+<!-- =========================================================
+     FISHER · HEMORRAGIA SUBARACNOIDEA (TABLA)
+========================================================= -->
+<section id="fisher" class="panel" aria-labelledby="fisher-title">
 
-    <h2 id="fisher-title">
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      Fisher · Hemorragia subaracnoidea
-    </h2>
+  <h2 id="fisher-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    Escala de Fisher · HSA
+  </h2>
 
-    <p class="note">
-      La escala de Fisher clasifica la cantidad y distribución de sangre en la TAC
-      y se asocia al <strong>riesgo de vasoespasmo</strong>.
-    </p>
+  <p class="note">
+    Clasificación tomográfica basada en la cantidad y distribución de sangre en la TAC.
+    Se correlaciona con el <strong>riesgo de vasoespasmo</strong>.
+  </p>
 
-    <label for="fisher_score">Seleccione el patrón tomográfico</label>
-    <select id="fisher_score" onchange="calcularFisher()">
-      <option value="">Seleccione</option>
-      <option value="1">Grado I · Sin sangre visible</option>
-      <option value="2">Grado II · Sangre difusa &lt; 1 mm</option>
-      <option value="3">Grado III · Coágulos localizados o capa ≥ 1 mm</option>
-      <option value="4">Grado IV · Hemorragia intraventricular o parenquimatosa</option>
-    </select>
+  <table class="clinical-table">
+    <thead>
+      <tr>
+        <th>Grado</th>
+        <th>Hallazgos en TAC</th>
+        <th>Riesgo de vasoespasmo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>I</strong></td>
+        <td>Sin sangre subaracnoidea visible</td>
+        <td>Bajo</td>
+      </tr>
+      <tr>
+        <td><strong>II</strong></td>
+        <td>Sangre difusa en capa delgada (&lt; 1 mm)</td>
+        <td>Bajo – moderado</td>
+      </tr>
+      <tr>
+        <td><strong>III</strong></td>
+        <td>Coágulos localizados o capa ≥ 1 mm</td>
+        <td><strong>Alto</strong></td>
+      </tr>
+      <tr>
+        <td><strong>IV</strong></td>
+        <td>Hemorragia intraventricular o intraparenquimatosa</td>
+        <td><strong>Muy alto</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-    <div id="resultadoFisher" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionFisher" class="note" aria-live="polite"></div>
+</section>
 
-  </section>
+  
+<!-- =========================================================
+     HUNT & HESS · HSA (TABLA)
+========================================================= -->
+<section id="hunt-hess" class="panel" aria-labelledby="hunt-hess-title">
 
+  <h2 id="hunt-hess-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    Hunt & Hess · Hemorragia subaracnoidea
+  </h2>
+
+  <p class="note">
+    Clasificación clínica de la severidad neurológica en HSA.
+    Útil para estimar pronóstico y urgencia terapéutica.
+  </p>
+
+  <table class="clinical-table">
+    <thead>
+      <tr>
+        <th>Grado</th>
+        <th>Clínica</th>
+        <th>Estado neurológico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>I</strong></td>
+        <td>Asintomático o cefalea leve</td>
+        <td>Neurológicamente intacto</td>
+      </tr>
+      <tr>
+        <td><strong>II</strong></td>
+        <td>Cefalea moderada a severa, rigidez nucal</td>
+        <td>Sin déficit focal</td>
+      </tr>
+      <tr>
+        <td><strong>III</strong></td>
+        <td>Somnolencia, confusión leve</td>
+        <td>Déficit neurológico leve</td>
+      </tr>
+      <tr>
+        <td><strong>IV</strong></td>
+        <td>Estupor, hemiparesia</td>
+        <td>Déficit neurológico severo</td>
+      </tr>
+      <tr>
+        <td><strong>V</strong></td>
+        <td>Coma profundo, rigidez de descerebración</td>
+        <td>Pronóstico muy desfavorable</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+
+
+<!-- =========================================================
+     MARSHALL SCORE · TCE (TABLA)
+========================================================= -->
+<section id="marshall" class="panel" aria-labelledby="marshall-title">
+
+  <h2 id="marshall-title">
+    <span class="icon icon-brain" aria-hidden="true"></span>
+    Marshall Score · Traumatismo craneoencefálico
+  </h2>
+
+  <p class="note">
+    Clasificación tomográfica del TCE basada en la TAC inicial.
+    Permite estratificar gravedad y riesgo de hipertensión intracraneana.
+  </p>
+
+  <table class="clinical-table">
+    <thead>
+      <tr>
+        <th>Categoría</th>
+        <th>Hallazgos en TAC</th>
+        <th>Interpretación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>I</strong></td>
+        <td>TAC normal</td>
+        <td>Bajo riesgo</td>
+      </tr>
+      <tr>
+        <td><strong>II</strong></td>
+        <td>Lesiones difusas &lt; 25 ml, cisternas visibles</td>
+        <td>Riesgo bajo–moderado</td>
+      </tr>
+      <tr>
+        <td><strong>III</strong></td>
+        <td>Cisternas comprimidas o ausentes</td>
+        <td>Riesgo elevado de HIC</td>
+      </tr>
+      <tr>
+        <td><strong>IV</strong></td>
+        <td>Desviación de línea media &gt; 5 mm</td>
+        <td>Alto riesgo</td>
+      </tr>
+      <tr>
+        <td><strong>V</strong></td>
+        <td>Lesión evacuada quirúrgicamente</td>
+        <td>TCE grave intervenido</td>
+      </tr>
+      <tr>
+        <td><strong>VI</strong></td>
+        <td>Lesión no evacuada &gt; 25 ml</td>
+        <td>Pronóstico desfavorable</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
 </main>
-
-<!-- JS del módulo -->
-<script src="fisher.js?v=1" defer></script>
 
 </body>
 </html>
-  
-  
-  <!-- =========================================================
-       Hunt & Hess · HSA
-  ========================================================= -->
-  <section id="hunt-hess" class="panel" aria-labelledby="hunt-hess-title">
 
-    <h2 id="hunt-hess-title">
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      Hunt & Hess · Hemorragia subaracnoidea
-    </h2>
-
-    <p class="note">
-      Clasificación clínica de severidad en HSA. Útil para pronóstico y urgencia terapéutica.
-    </p>
-
-    <label for="hunt_hess">Seleccione el grado clínico</label>
-    <select id="hunt_hess" onchange="calcularHuntHess()">
-      <option value="">Seleccione</option>
-      <option value="1">Grado I</option>
-      <option value="2">Grado II</option>
-      <option value="3">Grado III</option>
-      <option value="4">Grado IV</option>
-      <option value="5">Grado V</option>
-    </select>
-
-    <div id="resultadoHuntHess" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionHuntHess" class="note" aria-live="polite"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       Marshall score · TCE
-  ========================================================= -->
-  <section id="marshall" class="panel" aria-labelledby="marshall-title">
-
-    <h2 id="marshall-title">
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      Marshall score · Traumatismo craneoencefálico
-    </h2>
-
-    <p class="note">
-      Clasificación tomográfica del <strong>TCE</strong> según hallazgos en TAC.
-    </p>
-
-    <label for="marshall_score">Seleccione la categoría</label>
-    <select id="marshall_score" onchange="calcularMarshall()">
-      <option value="">Seleccione</option>
-      <option value="1">I · TAC normal</option>
-      <option value="2">II · Lesiones difusas &lt; 25 ml</option>
-      <option value="3">III · Edema con cisternas comprimidas</option>
-      <option value="4">IV · Desviación línea media &gt; 5 mm</option>
-      <option value="5">V · Lesión evacuada</option>
-      <option value="6">VI · Lesión no evacuada &gt; 25 ml</option>
-    </select>
-
-    <div id="resultadoMarshall" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionMarshall" class="note" aria-live="polite"></div>
-
-  </section>
-
-</main>
-
-<!-- JS en la misma carpeta -->
-<script src="neuro.js?v=3" defer></script>
-
-</body>
-</html>
