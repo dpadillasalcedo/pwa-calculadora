@@ -356,3 +356,78 @@
 
 </section>
 
+<!-- =========================
+     SAPS II
+========================== -->
+<section
+  id="saps2"
+  class="panel"
+  aria-labelledby="saps2-title"
+  data-module="saps2">
+
+  <h2 id="saps2-title">
+    <span class="icon icon-stetho"></span>
+    SAPS II · puntuación
+  </h2>
+
+  <p class="note">
+    El <strong>SAPS II</strong> estima la <strong>probabilidad de mortalidad hospitalaria</strong>
+    usando variables fisiológicas, edad y diagnóstico.
+  </p>
+
+  <fieldset>
+    <legend><h3>Variables principales</h3></legend>
+
+    <label for="saps_age">Edad</label>
+    <select id="saps_age">
+      <option value="">Seleccione</option>
+      <option value="0">&lt;40</option>
+      <option value="7">40–59</option>
+      <option value="12">60–69</option>
+      <option value="15">70–74</option>
+      <option value="16">75–79</option>
+      <option value="18">≥80</option>
+    </select>
+
+    <label for="saps_hr">Frecuencia cardíaca</label>
+    <select id="saps_hr">
+      <option value="">Seleccione</option>
+      <option value="0">70–119</option>
+      <option value="4">40–69 / 120–159</option>
+      <option value="7">&lt;40 o ≥160</option>
+    </select>
+
+    <label for="saps_map">PAM (mmHg)</label>
+    <select id="saps_map">
+      <option value="">Seleccione</option>
+      <option value="0">70–99</option>
+      <option value="5">&lt;70</option>
+      <option value="4">≥100</option>
+    </select>
+
+    <label for="saps_temp">Temperatura (°C)</label>
+    <select id="saps_temp">
+      <option value="">Seleccione</option>
+      <option value="0">≥39</option>
+      <option value="3">&lt;39</option>
+    </select>
+
+    <label for="saps_gcs">Glasgow</label>
+    <select id="saps_gcs">
+      <option value="">Seleccione</option>
+      <option value="0">15</option>
+      <option value="5">13–14</option>
+      <option value="10">10–12</option>
+      <option value="15">≤9</option>
+    </select>
+  </fieldset>
+
+  <button type="button" onclick="calcularSAPS2()">
+    Calcular SAPS II
+  </button>
+
+  <div id="resultadoSAPS2" role="status" aria-live="polite"></div>
+
+  <div class="ad-slot ad-result"></div>
+
+</section>
