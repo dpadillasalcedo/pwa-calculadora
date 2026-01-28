@@ -1,27 +1,10 @@
 /* ======================================================
-   OVERRIDE DE BASE (LIGHT MODE SOLO VARIABLES)
+   BASE VISUAL (LIGHT – VARIABLES)
 ====================================================== */
 
-/* Fondo general */
 body {
-  background-color: #f1f5f9 !important; /* gris claro */
-  color: #0f172a !important;
-}
-
-/* Links */
-a {
-  color: #2563eb;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Listas */
-ul {
-  list-style: none;
-  padding-left: 0;
+  background-color: var(--bg-main);
+  color: var(--color-text);
 }
 
 /* ======================================================
@@ -39,19 +22,19 @@ ul {
 .app-header {
   text-align: center;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .app-header h1 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
 .subtitle {
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--color-muted);
   max-width: 720px;
   margin: 0 auto;
 }
@@ -67,30 +50,30 @@ ul {
 }
 
 /* ======================================================
-   CARD DE NAVEGACIÓN
+   TARJETA DE NAVEGACIÓN
 ====================================================== */
 .menu-card {
   position: relative;
-  background-color: #ffffff;
-  padding: 2rem 2rem 2.6rem;
+  background-color: var(--bg-card);
+  padding: 2.2rem 2.2rem 2.8rem;
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   cursor: pointer;
 
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 }
 
+/* Hover / focus */
 .menu-card:hover,
 .menu-card:focus-visible {
   transform: translateY(-4px);
+  border-color: var(--color-primary);
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
-  border-color: #2563eb;
   outline: none;
 }
 
@@ -98,42 +81,47 @@ ul {
    TÍTULO CARD
 ====================================================== */
 .menu-card h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #2563eb;
+  color: var(--color-primary);
 }
 
 /* ======================================================
-   LISTA
+   LISTA INTERNA
 ====================================================== */
+.menu-card ul {
+  margin-top: 0.25rem;
+}
+
 .menu-card li {
   position: relative;
   padding-left: 16px;
   margin-bottom: 8px;
   font-size: 0.9rem;
-  color: #475569;
+  line-height: 1.45;
+  color: var(--color-muted);
 }
 
 .menu-card li::before {
   content: "•";
   position: absolute;
   left: 0;
-  color: #2563eb;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
 /* ======================================================
-   CTA
+   INDICADOR DE ACCIÓN
 ====================================================== */
 .menu-card::after {
-  content: "Ver herramientas →";
+  content: "Entrar →";
   position: absolute;
-  right: 1.5rem;
-  bottom: 1.2rem;
+  right: 1.75rem;
+  bottom: 1.4rem;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #2563eb;
+  color: var(--color-primary);
   opacity: 0;
   transform: translateY(4px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -150,12 +138,12 @@ ul {
 .bottom-ad-section {
   margin-top: 4rem;
   padding-top: 2.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--color-border);
 }
 
 .bottom-ad-slot {
   min-height: 90px;
-  background-color: #f8fafc;
+  background-color: var(--bg-surface);
   border-radius: 12px;
 }
 
@@ -169,14 +157,15 @@ ul {
 
   .clinical-menu {
     gap: 1.5rem;
+    margin-top: 2.5rem;
   }
 
   .menu-card {
-    padding: 1.6rem 1.6rem 2.2rem;
+    padding: 1.8rem 1.8rem 2.4rem;
   }
 
   .menu-card h2 {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 
   .menu-card li {
