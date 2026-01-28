@@ -98,3 +98,261 @@
 
 </section>
 
+<!-- =========================
+     APACHE II
+========================== -->
+<section
+  id="apache2"
+  class="panel"
+  aria-labelledby="apache2-title"
+  data-module="apache2">
+
+  <h2 id="apache2-title">
+    <span class="icon icon-stetho"></span>
+    APACHE II · puntuación
+  </h2>
+
+  <p class="note">
+    El <strong>APACHE II</strong> estima la <strong>gravedad de enfermedad</strong>
+    y el <strong>riesgo de mortalidad hospitalaria</strong> en pacientes críticos.
+    Se calcula durante las primeras <strong>24 horas</strong> de ingreso a UCI.
+  </p>
+
+  <!-- Variables fisiológicas -->
+  <fieldset>
+    <legend><h3>Variables fisiológicas (0–4 puntos)</h3></legend>
+
+    <label for="ap_temp">Temperatura (°C)</label>
+    <select id="ap_temp">
+      <option value="">Seleccione</option>
+      <option value="0">36–38.4</option>
+      <option value="1">34–35.9 / 38.5–38.9</option>
+      <option value="2">32–33.9 / 39–40.9</option>
+      <option value="3">30–31.9</option>
+      <option value="4">&lt;29.9 o ≥41</option>
+    </select>
+
+    <label for="ap_map">Presión arterial media (mmHg)</label>
+    <select id="ap_map">
+      <option value="">Seleccione</option>
+      <option value="0">70–109</option>
+      <option value="2">50–69</option>
+      <option value="4">&lt;49 o ≥160</option>
+    </select>
+
+    <label for="ap_hr">Frecuencia cardíaca</label>
+    <select id="ap_hr">
+      <option value="">Seleccione</option>
+      <option value="0">70–109</option>
+      <option value="2">55–69 / 110–139</option>
+      <option value="3">40–54 / 140–179</option>
+      <option value="4">&lt;39 o ≥180</option>
+    </select>
+
+    <label for="ap_ph">pH arterial</label>
+    <select id="ap_ph">
+      <option value="">Seleccione</option>
+      <option value="0">7.33–7.49</option>
+      <option value="2">7.25–7.32 / 7.50–7.59</option>
+      <option value="3">7.15–7.24</option>
+      <option value="4">&lt;7.15 o ≥7.60</option>
+    </select>
+
+    <label for="ap_na">Sodio sérico (mEq/L)</label>
+    <select id="ap_na">
+      <option value="">Seleccione</option>
+      <option value="0">130–149</option>
+      <option value="2">120–129 / 150–159</option>
+      <option value="3">111–119</option>
+      <option value="4">&lt;110 o ≥160</option>
+    </select>
+
+    <label for="ap_k">Potasio sérico (mEq/L)</label>
+    <select id="ap_k">
+      <option value="">Seleccione</option>
+      <option value="0">3.5–5.4</option>
+      <option value="2">3.0–3.4 / 5.5–5.9</option>
+      <option value="3">2.5–2.9</option>
+      <option value="4">&lt;2.5 o ≥6.0</option>
+    </select>
+
+    <label for="ap_cr">Creatinina (mg/dL)</label>
+    <select id="ap_cr">
+      <option value="">Seleccione</option>
+      <option value="0">&lt;1.5</option>
+      <option value="2">1.5–1.9</option>
+      <option value="3">2.0–3.4</option>
+      <option value="4">≥3.5</option>
+    </select>
+
+    <label for="ap_gcs">Glasgow Coma Scale</label>
+    <select id="ap_gcs">
+      <option value="">Seleccione</option>
+      <option value="0">15</option>
+      <option value="5">≤10</option>
+      <option value="10">≤5</option>
+    </select>
+  </fieldset>
+
+  <!-- Edad -->
+  <fieldset>
+    <legend><h3>Edad</h3></legend>
+    <select id="ap_age">
+      <option value="">Seleccione</option>
+      <option value="0">&lt;44</option>
+      <option value="2">45–54</option>
+      <option value="3">55–64</option>
+      <option value="5">65–74</option>
+      <option value="6">≥75</option>
+    </select>
+  </fieldset>
+
+  <!-- Enfermedad crónica -->
+  <fieldset>
+    <legend><h3>Enfermedad crónica severa</h3></legend>
+    <select id="ap_chronic">
+      <option value="">Seleccione</option>
+      <option value="0">No</option>
+      <option value="5">Sí</option>
+    </select>
+  </fieldset>
+
+  <button type="button" onclick="calcularAPACHE2()">
+    Calcular APACHE II
+  </button>
+
+  <div id="resultadoAPACHE2" role="status" aria-live="polite"></div>
+
+  <div class="ad-slot ad-result"></div>
+
+</section>
+
+<!-- =========================
+     APACHE II
+========================== -->
+<section
+  id="apache2"
+  class="panel"
+  aria-labelledby="apache2-title"
+  data-module="apache2">
+
+  <h2 id="apache2-title">
+    <span class="icon icon-stetho"></span>
+    APACHE II · puntuación
+  </h2>
+
+  <p class="note">
+    El <strong>APACHE II</strong> estima la <strong>gravedad de enfermedad</strong>
+    y el <strong>riesgo de mortalidad hospitalaria</strong> en pacientes críticos.
+    Se calcula durante las primeras <strong>24 horas</strong> de ingreso a UCI.
+  </p>
+
+  <!-- Variables fisiológicas -->
+  <fieldset>
+    <legend><h3>Variables fisiológicas (0–4 puntos)</h3></legend>
+
+    <label for="ap_temp">Temperatura (°C)</label>
+    <select id="ap_temp">
+      <option value="">Seleccione</option>
+      <option value="0">36–38.4</option>
+      <option value="1">34–35.9 / 38.5–38.9</option>
+      <option value="2">32–33.9 / 39–40.9</option>
+      <option value="3">30–31.9</option>
+      <option value="4">&lt;29.9 o ≥41</option>
+    </select>
+
+    <label for="ap_map">Presión arterial media (mmHg)</label>
+    <select id="ap_map">
+      <option value="">Seleccione</option>
+      <option value="0">70–109</option>
+      <option value="2">50–69</option>
+      <option value="4">&lt;49 o ≥160</option>
+    </select>
+
+    <label for="ap_hr">Frecuencia cardíaca</label>
+    <select id="ap_hr">
+      <option value="">Seleccione</option>
+      <option value="0">70–109</option>
+      <option value="2">55–69 / 110–139</option>
+      <option value="3">40–54 / 140–179</option>
+      <option value="4">&lt;39 o ≥180</option>
+    </select>
+
+    <label for="ap_ph">pH arterial</label>
+    <select id="ap_ph">
+      <option value="">Seleccione</option>
+      <option value="0">7.33–7.49</option>
+      <option value="2">7.25–7.32 / 7.50–7.59</option>
+      <option value="3">7.15–7.24</option>
+      <option value="4">&lt;7.15 o ≥7.60</option>
+    </select>
+
+    <label for="ap_na">Sodio sérico (mEq/L)</label>
+    <select id="ap_na">
+      <option value="">Seleccione</option>
+      <option value="0">130–149</option>
+      <option value="2">120–129 / 150–159</option>
+      <option value="3">111–119</option>
+      <option value="4">&lt;110 o ≥160</option>
+    </select>
+
+    <label for="ap_k">Potasio sérico (mEq/L)</label>
+    <select id="ap_k">
+      <option value="">Seleccione</option>
+      <option value="0">3.5–5.4</option>
+      <option value="2">3.0–3.4 / 5.5–5.9</option>
+      <option value="3">2.5–2.9</option>
+      <option value="4">&lt;2.5 o ≥6.0</option>
+    </select>
+
+    <label for="ap_cr">Creatinina (mg/dL)</label>
+    <select id="ap_cr">
+      <option value="">Seleccione</option>
+      <option value="0">&lt;1.5</option>
+      <option value="2">1.5–1.9</option>
+      <option value="3">2.0–3.4</option>
+      <option value="4">≥3.5</option>
+    </select>
+
+    <label for="ap_gcs">Glasgow Coma Scale</label>
+    <select id="ap_gcs">
+      <option value="">Seleccione</option>
+      <option value="0">15</option>
+      <option value="5">≤10</option>
+      <option value="10">≤5</option>
+    </select>
+  </fieldset>
+
+  <!-- Edad -->
+  <fieldset>
+    <legend><h3>Edad</h3></legend>
+    <select id="ap_age">
+      <option value="">Seleccione</option>
+      <option value="0">&lt;44</option>
+      <option value="2">45–54</option>
+      <option value="3">55–64</option>
+      <option value="5">65–74</option>
+      <option value="6">≥75</option>
+    </select>
+  </fieldset>
+
+  <!-- Enfermedad crónica -->
+  <fieldset>
+    <legend><h3>Enfermedad crónica severa</h3></legend>
+    <select id="ap_chronic">
+      <option value="">Seleccione</option>
+      <option value="0">No</option>
+      <option value="5">Sí</option>
+    </select>
+  </fieldset>
+
+  <button type="button" onclick="calcularAPACHE2()">
+    Calcular APACHE II
+  </button>
+
+  <div id="resultadoAPACHE2" role="status" aria-live="polite"></div>
+
+  <div class="ad-slot ad-result"></div>
+
+</section>
+
