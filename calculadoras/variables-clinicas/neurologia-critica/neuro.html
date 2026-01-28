@@ -137,18 +137,105 @@
 
 <!-- ================= NIHSS ================= -->
 <section class="panel">
-  <h2>NIHSS</h2>
+  <h2>NIHSS · Stroke Scale</h2>
 
-  <label>Nivel de conciencia</label>
-  <select id="nihss_1a">
-    <option value="">Seleccione</option>
-    <option value="0">Normal</option>
-    <option value="1">Alterado</option>
-  </select>
+  <div class="note">
+    Escala para cuantificar el déficit neurológico en el ACV.
+    El puntaje final se muestra al completar todos los ítems.
+  </div>
 
-  <button onclick="calcularNIHSS()">Calcular NIHSS</button>
+  <!-- 1a -->
+  <fieldset>
+    <legend><strong>1a. Nivel de conciencia</strong></legend>
+    <div class="note">
+      Ejemplo: ¿Está alerta y responde espontáneamente?
+    </div>
+    <select id="nihss_1a" onchange="nihssPaso(1)">
+      <option value="">Seleccione</option>
+      <option value="0">Alerta</option>
+      <option value="1">Somnoliento</option>
+      <option value="2">Estupor</option>
+      <option value="3">Coma</option>
+    </select>
+  </fieldset>
+
+  <!-- 1b -->
+  <fieldset id="nihss_paso2" hidden>
+    <legend><strong>1b. Preguntas</strong></legend>
+    <div class="note">
+      Ejemplo: preguntar edad y mes actual.
+    </div>
+    <select id="nihss_1b" onchange="nihssPaso(2)">
+      <option value="">Seleccione</option>
+      <option value="0">Ambas correctas</option>
+      <option value="1">Una correcta</option>
+      <option value="2">Ninguna correcta</option>
+    </select>
+  </fieldset>
+
+  <!-- 1c -->
+  <fieldset id="nihss_paso3" hidden>
+    <legend><strong>1c. Órdenes</strong></legend>
+    <div class="note">
+      Ejemplo: abrir y cerrar los ojos, apretar la mano.
+    </div>
+    <select id="nihss_1c" onchange="nihssPaso(3)">
+      <option value="">Seleccione</option>
+      <option value="0">Ambas correctas</option>
+      <option value="1">Una correcta</option>
+      <option value="2">Ninguna correcta</option>
+    </select>
+  </fieldset>
+
+  <!-- 2 -->
+  <fieldset id="nihss_paso4" hidden>
+    <legend><strong>2. Mirada</strong></legend>
+    <div class="note">
+      Ejemplo: seguimiento ocular horizontal.
+    </div>
+    <select id="nihss_2" onchange="nihssPaso(4)">
+      <option value="">Seleccione</option>
+      <option value="0">Normal</option>
+      <option value="1">Parcial</option>
+      <option value="2">Desviación forzada</option>
+    </select>
+  </fieldset>
+
+  <!-- 4 -->
+  <fieldset id="nihss_paso5" hidden>
+    <legend><strong>4. Parálisis facial</strong></legend>
+    <div class="note">
+      Ejemplo: mostrar dientes, elevar cejas.
+    </div>
+    <select id="nihss_4" onchange="nihssPaso(5)">
+      <option value="">Seleccione</option>
+      <option value="0">Normal</option>
+      <option value="1">Leve</option>
+      <option value="2">Parcial</option>
+      <option value="3">Completa</option>
+    </select>
+  </fieldset>
+
+  <!-- Motor -->
+  <fieldset id="nihss_paso6" hidden>
+    <legend><strong>5–6. Motor (peor lado)</strong></legend>
+    <div class="note">
+      Ejemplo: elevar brazo o pierna 10 segundos.
+    </div>
+    <select id="nihss_motor" onchange="calcularNIHSS()">
+      <option value="">Seleccione</option>
+      <option value="0">Sin déficit</option>
+      <option value="1">Caída tardía</option>
+      <option value="2">No vence gravedad</option>
+      <option value="3">Sin esfuerzo</option>
+      <option value="4">Sin movimiento</option>
+    </select>
+  </fieldset>
+
   <div id="resultadoNIHSS" class="resultado"></div>
+  <div id="interpretacionNIHSS" class="note"></div>
 </section>
+
 
 <!-- ================= HUNT & HESS ================= -->
 <section class="panel">
