@@ -125,44 +125,40 @@ function mostrarResultadoCAMICU(positivo) {
 }
 
 /* =========================================================
-   NIHSS · STROKE SCALE
+   NIHSS · STROKE SCALE (GUIADO)
 ========================================================= */
+
+function nihssPaso(n) {
+  const paso = document.getElementById(`nihss_paso${n + 1}`);
+  if (paso) paso.hidden = false;
+}
 
 function calcularNIHSS() {
   const ids = [
-    "nihss_1a","nihss_1b","nihss_1c",
-    "nihss_2","nihss_3","nihss_4",
-    "nihss_motor","nihss_ataxia",
-    "nihss_sens","nihss_lang",
-    "nihss_dys","nihss_neglect"
+    "nihss_1a",
+    "nihss_1b",
+    "nihss_1c",
+    "nihss_2",
+    "nihss_4",
+    "nihss_motor"
   ];
 
   let total = 0;
 
   for (const id of ids) {
     const el = document.getElementById(id);
-
-    if (!el) {
-      setHTML("resultadoNIHSS", "Error de configuración NIHSS.");
-      setHTML("interpretacionNIHSS", "");
-      return;
-    }
-
-    const v = Number(el.value);
-
-    if (!Number.isFinite(v)) {
+    if (!el || el.value === "") {
       setHTML(
         "resultadoNIHSS",
         "<strong>NIHSS:</strong> evaluación incompleta"
       );
       setHTML(
         "interpretacionNIHSS",
-        "Debe completar todos los ítems para obtener el puntaje."
+        "Complete todos los ítems para obtener el puntaje."
       );
       return;
     }
-
-    total += v;
+    total += Number(el.value);
   }
 
   let interpretacion = "";
