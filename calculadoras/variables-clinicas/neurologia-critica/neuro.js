@@ -8,6 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================================
+   HELPERS GLOBALES
+========================================================= */
+
+function getVal(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
+  return Number.isFinite(v) ? v : null;
+}
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+/* =========================================================
    CAM-ICU · DELIRIUM
 ========================================================= */
 
@@ -61,25 +77,18 @@ function camicuPaso4() {
   mostrarResultadoCAMICU(v4 === 1);
 }
 
-/* ---------- Helpers CAM-ICU ---------- */
-
-function getVal(id) {
-  const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  const v = Number(el.value);
-  return Number.isFinite(v) ? v : null;
-}
+/* ---------- helpers CAM-ICU ---------- */
 
 function mostrarPaso(n) {
   const paso = document.getElementById(`camicu_paso${n}`);
-  if (paso) paso.style.display = "block";
+  if (paso) paso.hidden = false;
 }
 
 function ocultarDesdePaso(n) {
   for (let i = n; i <= 4; i++) {
     const paso = document.getElementById(`camicu_paso${i}`);
     if (paso) {
-      paso.style.display = "none";
+      paso.hidden = true;
       const sel = paso.querySelector("select");
       if (sel) sel.value = "";
     }
@@ -108,7 +117,7 @@ function mostrarResultadoCAMICU(positivo) {
 }
 
 /* =========================================================
-   NIHSS
+   NIHSS · STROKE SCALE
 ========================================================= */
 
 function calcularNIHSS() {
@@ -131,7 +140,7 @@ function calcularNIHSS() {
     }
 
     const v = Number(el.value);
-    if (!Number.isFinite(v) || v < 0) {
+    if (!Number.isFinite(v)) {
       setHTML("resultadoNIHSS", "<strong>NIHSS:</strong> Complete todos los ítems");
       setHTML("interpretacionNIHSS", "");
       return;
@@ -140,26 +149,22 @@ function calcularNIHSS() {
     total += v;
   }
 
-  const interpretacion =
-    total === 0 ? "Sin déficit neurológico."
-    : total <= 4 ? "ACV minor."
-    : total <= 15 ? "ACV moderado."
-    : total <= 20 ? "ACV moderado–severo."
-    : "ACV severo.";
+  let interpretacion = "";
+  if (total === 0) interpretacion = "Sin déficit neurológico.";
+  else if (total <= 4) interpretacion = "ACV menor.";
+  else if (total <= 15) interpretacion = "ACV moderado.";
+  else if (total <= 20) interpretacion = "ACV moderado–severo.";
+  else interpretacion = "ACV severo.";
 
   setHTML("resultadoNIHSS", `<strong>NIHSS total:</strong> ${total}`);
   setHTML(
     "interpretacionNIHSS",
     `<strong>Interpretación:</strong> ${interpretacion}`
   );
-
-  if (typeof trackEvent === "function") {
-    trackEvent("calculate_nihss_score", { nihss_score: total });
-  }
 }
 
 /* =========================================================
-   HUNT & HESS · HSA
+   HUNT & HESS · HEMORRAGIA SUBARACNOIDEA
 ========================================================= */
 
 function calcularHuntHess() {
@@ -171,5 +176,29 @@ function calcularHuntHess() {
     return;
   }
 
-  con
+  setHTML("resultadoHuntHess", `Hunt & Hess: Grado ${v}`);
+  setHTML(
+    "interpretacionHuntHess",
+    "Clasificación clínica utilizada para estimar gravedad y pronóstico en hemorragia subaracnoidea."
+  );
+}
 
+/* =========================================================
+   MARSHALL SCORE · TCE
+========================================================= */
+
+function calcularMarshall() {
+  const v = getVal("marshall_score");
+
+  if (v === null) {
+    setHTML("resultadoMarshall", "Seleccione una categoría.");
+    setHTML("interpretacionMarshall", "");
+    return;
+  }
+
+  setHTML("resultadoMarshall", `Marshall: Categoría ${v}`);
+  setHTML(
+    "interpretacionMarshall",
+    "Clasificación tomográfica utilizada para estratificar gravedad y pronóstico en traumatismo craneoencefálico."
+  );
+}
