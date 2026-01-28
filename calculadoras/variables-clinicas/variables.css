@@ -188,3 +188,25 @@ body {
   }
 }
 
+/* ======================================================
+   RESET ESPECÍFICO PARA VARIABLES
+====================================================== */
+
+/* Quita estilos por defecto de links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Quita bullets y sangría por defecto */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Asegura que toda la card se vea como botón */
+.menu-card {
+  display: block;
+}
+
