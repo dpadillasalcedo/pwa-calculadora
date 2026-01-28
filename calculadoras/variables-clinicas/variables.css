@@ -1,4 +1,19 @@
 /* ======================================================
+   VARIABLES BASE (LIGHT – VARIABLES)
+====================================================== */
+:root {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-surface: #f8fafc;
+
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: #e2e8f0;
+
+  --color-primary: #2563eb;
+}
+
+/* ======================================================
    BASE VISUAL (LIGHT – VARIABLES)
 ====================================================== */
 
@@ -172,3 +187,4 @@ body {
     font-size: 0.85rem;
   }
 }
+
