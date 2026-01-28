@@ -70,3 +70,68 @@ function calcularSOFA2() {
     trackEvent("calculate_sofa2_score", { sofa2_score: total });
   }
 }
+
+function calcularAPACHE2() {
+  const ids = [
+    "ap_temp","ap_map","ap_hr","ap_ph",
+    "ap_na","ap_k","ap_cr","ap_gcs",
+    "ap_age","ap_chronic"
+  ];
+
+  let total = 0;
+
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (!el || el.value === "") {
+      setHTML("resultadoAPACHE2", "<strong>APACHE II:</strong> Complete todas las variables");
+      return;
+    }
+    total += Number(el.value);
+  }
+
+  let riesgo =
+    total < 10 ? "Bajo"
+    : total < 20 ? "Moderado"
+    : total < 30 ? "Alto"
+    : "Muy alto";
+
+  setHTML(
+    "resultadoAPACHE2",
+    `<strong>APACHE II total:</strong> ${total}<br>
+     <strong>Riesgo estimado:</strong> ${riesgo}`
+  );
+
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_apache2_score", { apache2_score: total });
+  }
+}
+
+function calcularSAPS2() {
+  const ids = ["saps_age","saps_hr","saps_map","saps_temp","saps_gcs"];
+  let total = 0;
+
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (!el || el.value === "") {
+      setHTML("resultadoSAPS2","<strong>SAPS II:</strong> Complete todas las variables");
+      return;
+    }
+    total += Number(el.value);
+  }
+
+  let riesgo =
+    total < 30 ? "Bajo"
+    : total < 50 ? "Moderado"
+    : "Alto";
+
+  setHTML(
+    "resultadoSAPS2",
+    `<strong>SAPS II total:</strong> ${total}<br>
+     <strong>Riesgo estimado:</strong> ${riesgo}`
+  );
+
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_saps2_score", { saps2_score: total });
+  }
+}
+
