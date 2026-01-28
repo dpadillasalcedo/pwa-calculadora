@@ -28,68 +28,64 @@ function setHTML(id, html) {
 }
 
 /* =========================================================
-   CAM-ICU · DELIRIUM
+   CAM-ICU · DELIRIUM  
 ========================================================= */
+
+let camicu = {
+  p1: null,
+  p2: null,
+  p3: null,
+  p4: null
+};
 
 function initCAMICU() {
   ocultarDesdePaso(2);
   limpiarResultadoCAMICU();
 }
 
-function camicuPaso1() {
-  const v1 = getVal("camicu_c1");
+function camicuPaso1(v) {
+  camicu.p1 = Number(v);
   ocultarDesdePaso(2);
   limpiarResultadoCAMICU();
 
-  if (v1 === null) return;
-
-  if (v1 === 1) {
-    mostrarPaso(2);
-  } else {
-    mostrarResultadoCAMICU(false);
-  }
+  if (camicu.p1 === 1) mostrarPaso(2);
 }
 
-function camicuPaso2() {
-  const v2 = getVal("camicu_c2");
+function camicuPaso2(v) {
+  camicu.p2 = Number(v);
   ocultarDesdePaso(3);
   limpiarResultadoCAMICU();
 
-  if (v2 === null) return;
-
-  if (v2 === 1) {
-    mostrarPaso(3);
-  } else {
-    mostrarResultadoCAMICU(false);
-  }
+  if (camicu.p2 !== null) mostrarPaso(3);
 }
 
-function camicuPaso3() {
-  const v3 = getVal("camicu_c3");
+function camicuPaso3(v) {
+  camicu.p3 = Number(v);
   ocultarDesdePaso(4);
   limpiarResultadoCAMICU();
 
-  if (v3 === null) return;
-
-  if (v3 === 1) {
-    mostrarResultadoCAMICU(true);
-  } else {
-    mostrarPaso(4);
-    setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
-    setHTML(
-      "interpretacionCAMICU",
-      "Criterio 3 negativo. Evaluar criterio 4 para concluir."
-    );
-  }
+  if (camicu.p3 !== null) mostrarPaso(4);
 }
 
-function camicuPaso4() {
-  const v4 = getVal("camicu_c4");
-  if (v4 === null) return;
-  mostrarResultadoCAMICU(v4 === 1);
+function camicuPaso4(v) {
+  camicu.p4 = Number(v);
+
+  if (
+    camicu.p1 === null ||
+    camicu.p2 === null ||
+    camicu.p3 === null ||
+    camicu.p4 === null
+  ) return;
+
+  const positivo =
+    camicu.p1 === 1 &&
+    camicu.p2 === 1 &&
+    (camicu.p3 === 1 || camicu.p4 === 1);
+
+  mostrarResultadoCAMICU(positivo);
 }
 
-/* ---------- helpers CAM-ICU ---------- */
+/* ---------- helpers ---------- */
 
 function mostrarPaso(n) {
   const paso = document.getElementById(`camicu_paso${n}`);
@@ -117,13 +113,13 @@ function mostrarResultadoCAMICU(positivo) {
     setHTML("resultadoCAMICU", "CAM-ICU <strong>POSITIVO</strong>");
     setHTML(
       "interpretacionCAMICU",
-      "Cumple criterios diagnósticos de <strong>delirium</strong>."
+      "El paciente cumple criterios de <strong>delirium</strong> según CAM-ICU."
     );
   } else {
     setHTML("resultadoCAMICU", "CAM-ICU <strong>NEGATIVO</strong>");
     setHTML(
       "interpretacionCAMICU",
-      "No cumple criterios diagnósticos de delirium."
+      "No cumple criterios diagnósticos de delirium al momento de la evaluación."
     );
   }
 }
