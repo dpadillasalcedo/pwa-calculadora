@@ -10,29 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => {
     const link = card.getAttribute("href");
 
-    // Permite click en toda la card
-    card.addEventListener("click", () => {
-      window.location.href = link;
-    });
-
-    // Accesibilidad: navegación con teclado
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("role", "link");
-
+    // Accesibilidad: permitir activación con teclado (Enter / Space)
     card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
+      if (event.key === " " || event.key === "Enter") {
         event.preventDefault();
         window.location.href = link;
       }
     });
 
-    // Hook para analytics futuro (no rompe nada)
-    card.addEventListener("mouseenter", () => {
-      card.classList.add("hovered");
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.classList.remove("hovered");
+    // Hook limpio para analytics futuro
+    card.addEventListener("click", () => {
+      // Ejemplo futuro:
+      // analytics.track("menu_card_click", { destination: link });
     });
   });
 });
