@@ -4,293 +4,190 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Neurología crítica | Calculadoras UCI</title>
+  <title>Variables clínicas | Calculadoras UCI</title>
 
   <meta
     name="description"
-    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt and Hess y Marshall score."
+    content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación."
   />
 
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0b5fff" />
+  <meta name="theme-color" content="#020617" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="neuro.css" />
+  <style>
+    :root {
+      --bg-page: #020617;
+      --bg-card: #0b1220;
+      --bg-card-soft: #0f172a;
+      --border: #1e293b;
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --title: #f8fafc;
+      --accent: #38bdf8;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(900px 400px at 10% -10%, rgba(56,189,248,0.18), transparent 60%),
+        radial-gradient(700px 300px at 90% 10%, rgba(34,197,94,0.15), transparent 55%),
+        var(--bg-page);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    h1 {
+      color: var(--title);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 720px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.75rem;
+      margin-top: 3rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card {
+      height: 100%;
+      padding: 1.75rem 1.5rem;
+      background: linear-gradient(
+        180deg,
+        var(--bg-card) 0%,
+        var(--bg-card-soft) 100%
+      );
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.45);
+    }
+
+    .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card h3 {
+      margin: 0.25rem 0 0.5rem;
+      color: var(--title);
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      .menu {
+        gap: 1.25rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<main class="app container">
+<main>
 
-  <header class="app-header">
-    <h1>Neurología crítica</h1>
+  <header>
+    <h1>Variables clínicas</h1>
     <p class="subtitle">
-      Evaluación neurológica del paciente crítico mediante escalas clínicas validadas
+      Seleccione un módulo de evaluación clínica para el paciente crítico.
+      Cada sección contiene herramientas validadas para la toma de decisiones en terapia intensiva.
     </p>
   </header>
 
-  <!-- =========================================================
-       CAM-ICU · Delirium
-  ========================================================= -->
-  <section id="camicu" class="panel" aria-labelledby="camicu-title">
+  <section class="menu">
 
-    <h2 id="camicu-title">
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      CAM-ICU · Delirium
-    </h2>
-
-    <p class="note">
-      Diagnóstico positivo si se cumple:
-      <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
-    </p>
-
-    <!-- PASO 1 -->
-    <fieldset>
-      <legend><h3>Paso 1 · Inicio agudo o curso fluctuante</h3></legend>
-
-      <div class="note">
-        <ul>
-          <li>Cambio agudo del estado mental respecto al basal <strong>o</strong></li>
-          <li>Curso fluctuante en las últimas <strong>24 h</strong></li>
-        </ul>
+    <!-- Neurología crítica -->
+    <a href="neurologia-critica/neuro.html">
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Neurología crítica</h3>
+        <p>
+          CAM-ICU, NIHSS, Hunt &amp; Hess, Marshall score y evaluación neurológica del paciente crítico.
+        </p>
       </div>
+    </a>
 
-      <label for="camicu_c1">¿Cumple el criterio?</label>
-      <select id="camicu_c1" onchange="camicuPaso1()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <!-- PASO 2 -->
-    <fieldset id="camicu_paso2" hidden>
-      <legend><h3>Paso 2 · Inatención</h3></legend>
-
-      <div class="note">
-        Palabra: <strong>CASABLANCA</strong> · responder solo a la letra <strong>A</strong>
+    <!-- Ventilación mecánica -->
+    <a href="ventilacion-mecanica/ventilacion.html">
+      <div class="card">
+        <div class="icon">🫁</div>
+        <h3>Ventilación mecánica</h3>
+        <p>
+          Modos ventilatorios, driving pressure, compliance y estrategias de protección pulmonar.
+        </p>
       </div>
+    </a>
 
-      <label for="camicu_c2">¿Presenta inatención?</label>
-      <select id="camicu_c2" onchange="camicuPaso2()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí (≥ 2 errores)</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
+    <!-- Hemodinamia -->
+    <a href="hemodinamia/hemodinamia.html">
+      <div class="card">
+        <div class="icon">🩺</div>
+        <h3>Monitoreo hemodinámico</h3>
+        <p>
+          Gasto cardíaco, presión arterial media, perfusión tisular y microcirculación.
+        </p>
+      </div>
+    </a>
 
-    <!-- PASO 3 -->
-    <fieldset id="camicu_paso3" hidden>
-      <legend><h3>Paso 3 · Pensamiento desorganizado</h3></legend>
+    <!-- Ácido-base -->
+    <a href="acido-base/acido-base.html">
+      <div class="card">
+        <div class="icon">🩸</div>
+        <h3>Ácido–base y medio interno</h3>
+        <p>
+          Gases arteriales, anión gap, trastornos ácido–base y electrolitos.
+        </p>
+      </div>
+    </a>
 
-      <label for="camicu_c3">¿Pensamiento desorganizado?</label>
-      <select id="camicu_c3" onchange="camicuPaso3()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <!-- PASO 4 -->
-    <fieldset id="camicu_paso4" hidden>
-      <legend><h3>Paso 4 · Nivel de conciencia</h3></legend>
-
-      <label for="camicu_c4">¿Nivel de conciencia alterado?</label>
-      <select id="camicu_c4" onchange="camicuPaso4()">
-        <option value="">Seleccione</option>
-        <option value="1">Sí</option>
-        <option value="0">No</option>
-      </select>
-    </fieldset>
-
-    <div id="resultadoCAMICU" role="status" aria-live="polite" style="margin-top:14px;font-weight:700"></div>
-    <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       NIHSS · Stroke severity
-  ========================================================= -->
-  <section id="nihss" class="panel" aria-labelledby="nihss-title">
-
-    <h2 id="nihss-title">
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      NIHSS · Stroke Scale
-    </h2>
-
-    <!-- NIHSS INPUTS -->
-    <!-- (IDs alineados con neuro.js) -->
-
-    <label>1a. Nivel de conciencia</label>
-    <select id="nihss_1a">
-      <option value="">Seleccione</option>
-      <option value="0">Alerta</option>
-      <option value="1">Somnoliento</option>
-      <option value="2">Estupor</option>
-      <option value="3">Coma</option>
-    </select>
-
-    <label>1b. Preguntas LOC</label>
-    <select id="nihss_1b">
-      <option value="">Seleccione</option>
-      <option value="0">Ambas correctas</option>
-      <option value="1">Una correcta</option>
-      <option value="2">Ninguna correcta</option>
-    </select>
-
-    <label>1c. Órdenes LOC</label>
-    <select id="nihss_1c">
-      <option value="">Seleccione</option>
-      <option value="0">Ambas correctas</option>
-      <option value="1">Una correcta</option>
-      <option value="2">Ninguna correcta</option>
-    </select>
-
-    <label>2. Mirada</label>
-    <select id="nihss_2">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Parcial</option>
-      <option value="2">Desviación forzada</option>
-    </select>
-
-    <label>3. Campos visuales</label>
-    <select id="nihss_3">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Hemianopsia parcial</option>
-      <option value="2">Hemianopsia completa</option>
-      <option value="3">Ceguera bilateral</option>
-    </select>
-
-    <label>4. Parálisis facial</label>
-    <select id="nihss_4">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Leve</option>
-      <option value="2">Parcial</option>
-      <option value="3">Completa</option>
-    </select>
-
-    <label>5–6. Motor (peor lado)</label>
-    <select id="nihss_motor">
-      <option value="">Seleccione</option>
-      <option value="0">Sin déficit</option>
-      <option value="1">Caída tardía</option>
-      <option value="2">No vence gravedad</option>
-      <option value="3">Sin esfuerzo contra gravedad</option>
-      <option value="4">Sin movimiento</option>
-    </select>
-
-    <label>7. Ataxia</label>
-    <select id="nihss_ataxia">
-      <option value="">Seleccione</option>
-      <option value="0">Ausente</option>
-      <option value="1">Un miembro</option>
-      <option value="2">Dos miembros</option>
-    </select>
-
-    <label>8. Sensibilidad</label>
-    <select id="nihss_sens">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Hipoestesia</option>
-      <option value="2">Anestesia</option>
-    </select>
-
-    <label>9. Lenguaje</label>
-    <select id="nihss_lang">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Afasia leve</option>
-      <option value="2">Afasia severa</option>
-      <option value="3">Mutismo</option>
-    </select>
-
-    <label>10. Disartria</label>
-    <select id="nihss_dys">
-      <option value="">Seleccione</option>
-      <option value="0">Normal</option>
-      <option value="1">Leve</option>
-      <option value="2">Severa</option>
-    </select>
-
-    <label>11. Negligencia</label>
-    <select id="nihss_neglect">
-      <option value="">Seleccione</option>
-      <option value="0">Ausente</option>
-      <option value="1">Leve</option>
-      <option value="2">Severa</option>
-    </select>
-
-    <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
-
-    <div id="resultadoNIHSS" style="margin-top:10px;font-weight:600" aria-live="polite"></div>
-    <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       Hunt & Hess · HSA
-  ========================================================= -->
-  <section id="hunt-hess" class="panel">
-
-    <h2>
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      Hunt & Hess · HSA
-    </h2>
-
-    <label>Seleccione el grado clínico</label>
-    <select id="hunt_hess" onchange="calcularHuntHess()">
-      <option value="">Seleccione</option>
-      <option value="1">Grado I</option>
-      <option value="2">Grado II</option>
-      <option value="3">Grado III</option>
-      <option value="4">Grado IV</option>
-      <option value="5">Grado V</option>
-    </select>
-
-    <div id="resultadoHuntHess" style="margin-top:12px;font-weight:700"></div>
-    <div id="interpretacionHuntHess" class="note"></div>
-
-  </section>
-
-  <hr />
-
-  <!-- =========================================================
-       Marshall score · TCE
-  ========================================================= -->
-  <section id="marshall" class="panel">
-
-    <h2>
-      <span class="icon icon-brain" aria-hidden="true"></span>
-      Marshall score · TCE
-    </h2>
-
-    <label>Seleccione la categoría</label>
-    <select id="marshall_score" onchange="calcularMarshall()">
-      <option value="">Seleccione</option>
-      <option value="1">I · TAC normal</option>
-      <option value="2">II · Lesiones difusas &lt; 25 ml</option>
-      <option value="3">III · Edema con cisternas comprimidas</option>
-      <option value="4">IV · Desviación línea media &gt; 5 mm</option>
-      <option value="5">V · Lesión evacuada</option>
-      <option value="6">VI · Lesión no evacuada &gt; 25 ml</option>
-    </select>
-
-    <div id="resultadoMarshall" style="margin-top:12px;font-weight:700"></div>
-    <div id="interpretacionMarshall" class="note"></div>
+    <!-- Sistemas de puntuación -->
+    <a href="sistemas-puntuacion/puntuacion.html">
+      <div class="card">
+        <div class="icon">📈</div>
+        <h3>Sistemas de puntuación</h3>
+        <p>
+          APACHE, SOFA, SAPS, NEWS y scores pronósticos del paciente crítico.
+        </p>
+      </div>
+    </a>
 
   </section>
 
 </main>
-
-<!-- JS -->
-<script src="neuro.js"></script>
 
 </body>
 </html>
