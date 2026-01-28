@@ -1,0 +1,162 @@
+/* =========================
+   RESET
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: #e2e8f0;
+
+  --color-primary: #2563eb;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  text-align: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+}
+
+header h1 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+header p {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* =========================
+   MAIN
+========================= */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* =========================
+   MENÚ PRINCIPAL
+========================= */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* =========================
+   CARDS DE NAVEGACIÓN
+========================= */
+.menu a {
+  position: relative;
+  display: block;
+  background-color: var(--bg-card);
+  padding: 2.4rem 2.2rem 2.8rem;
+  border-radius: 18px;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-text);
+
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.menu a:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.18);
+}
+
+/* =========================
+   TÍTULO CARD
+========================= */
+.menu h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+}
+
+/* =========================
+   TEXTO CARD
+========================= */
+.menu p {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 420px;
+}
+
+/* =========================
+   CTA
+========================= */
+.menu a::after {
+  content: "Ingresar →";
+  position: absolute;
+  right: 1.8rem;
+  bottom: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.9rem;
+  }
+
+  .menu {
+    gap: 1.5rem;
+  }
+}
