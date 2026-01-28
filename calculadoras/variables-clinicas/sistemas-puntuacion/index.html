@@ -1,1 +1,100 @@
+<!-- =========================
+     SOFA-2 · JAMA 2025
+========================== -->
+<section id="sofa2" class="panel" data-module="sofa2">
+
+  <h2>
+    <span class="icon icon-stetho"></span>
+    SOFA-2 · Puntuación (JAMA 2025)
+  </h2>
+
+  <p class="note">
+    Evaluación de disfunción orgánica basada en la actualización
+    <strong>SOFA-2</strong> (JAMA, 2025).
+  </p>
+
+  <!-- Neurológico -->
+  <fieldset>
+    <legend><h3>Sistema nervioso central</h3></legend>
+    <select id="sofa2_neuro">
+      <option value="">Seleccione</option>
+      <option value="0">0 · GCS 15</option>
+      <option value="1">1 · GCS 13–14 o tratamiento de delirium</option>
+      <option value="2">2 · GCS 9–12</option>
+      <option value="3">3 · GCS 6–8</option>
+      <option value="4">4 · GCS 3–5</option>
+    </select>
+  </fieldset>
+
+  <!-- Respiratorio -->
+  <fieldset>
+    <legend><h3>Sistema respiratorio</h3></legend>
+    <select id="sofa2_resp">
+      <option value="">Seleccione</option>
+      <option value="0">0 · PaO₂/FiO₂ >300</option>
+      <option value="1">1 · ≤300</option>
+      <option value="2">2 · ≤225</option>
+      <option value="3">3 · ≤150 con soporte ventilatorio</option>
+      <option value="4">4 · ≤75 con VM o ECMO</option>
+    </select>
+  </fieldset>
+
+  <!-- Cardiovascular -->
+  <fieldset>
+    <legend><h3>Sistema cardiovascular</h3></legend>
+    <select id="sofa2_cv">
+      <option value="">Seleccione</option>
+      <option value="0">0 · PAM ≥70, sin vasopresores</option>
+      <option value="1">1 · PAM <70, sin vasopresores</option>
+      <option value="2">2 · ≤0.2 µg/kg/min (NE+Epi)</option>
+      <option value="3">3 · >0.2–0.4 µg/kg/min</option>
+      <option value="4">4 · >0.4 µg/kg/min o soporte mecánico</option>
+    </select>
+  </fieldset>
+
+  <!-- Hepático -->
+  <fieldset>
+    <legend><h3>Sistema hepático</h3></legend>
+    <select id="sofa2_liver">
+      <option value="">Seleccione</option>
+      <option value="0">0 · BT ≤1.2 mg/dL</option>
+      <option value="1">1 · ≤3.0</option>
+      <option value="2">2 · ≤6.0</option>
+      <option value="3">3 · ≤12.0</option>
+      <option value="4">4 · >12.0</option>
+    </select>
+  </fieldset>
+
+  <!-- Hemostasia -->
+  <fieldset>
+    <legend><h3>Hemostasia</h3></legend>
+    <select id="sofa2_platelets">
+      <option value="">Seleccione</option>
+      <option value="0">0 · >150 ×10³/µL</option>
+      <option value="1">1 · ≤150</option>
+      <option value="2">2 · ≤100</option>
+      <option value="3">3 · ≤80</option>
+      <option value="4">4 · ≤50</option>
+    </select>
+  </fieldset>
+
+  <!-- Renal -->
+  <fieldset>
+    <legend><h3>Sistema renal</h3></legend>
+    <select id="sofa2_renal">
+      <option value="">Seleccione</option>
+      <option value="0">0 · Creat ≤1.2 mg/dL</option>
+      <option value="1">1 · ≤2.0 o diuresis <0.5 mL/kg/h ×6–12h</option>
+      <option value="2">2 · ≤3.5</option>
+      <option value="3">3 · >3.5 o diuresis <0.3 ×24h</option>
+      <option value="4">4 · RRT o anuria</option>
+    </select>
+  </fieldset>
+
+  <button onclick="calcularSOFA2()">Calcular SOFA-2</button>
+
+  <div id="resultadoSOFA2" class="result"></div>
+  <div id="interpretacionSOFA2" class="note"></div>
+
+</section>
 
