@@ -299,6 +299,75 @@
 
   <hr />
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Escala de Fisher | Hemorragia subaracnoidea</title>
+
+  <meta
+    name="description"
+    content="Escala de Fisher para hemorragia subaracnoidea: evaluación tomográfica y riesgo de vasoespasmo."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- CSS del módulo -->
+  <link rel="stylesheet" href="neuro.css?v=3" />
+</head>
+
+<body>
+
+<main class="app container">
+
+  <header class="app-header">
+    <h1>Escala de Fisher</h1>
+    <p class="subtitle">
+      Clasificación tomográfica de la hemorragia subaracnoidea y estimación del riesgo de vasoespasmo.
+    </p>
+  </header>
+
+  <!-- =========================================================
+       FISHER · HEMORRAGIA SUBARACNOIDEA
+  ========================================================= -->
+  <section id="fisher" class="panel" aria-labelledby="fisher-title">
+
+    <h2 id="fisher-title">
+      <span class="icon icon-brain" aria-hidden="true"></span>
+      Fisher · Hemorragia subaracnoidea
+    </h2>
+
+    <p class="note">
+      La escala de Fisher clasifica la cantidad y distribución de sangre en la TAC
+      y se asocia al <strong>riesgo de vasoespasmo</strong>.
+    </p>
+
+    <label for="fisher_score">Seleccione el patrón tomográfico</label>
+    <select id="fisher_score" onchange="calcularFisher()">
+      <option value="">Seleccione</option>
+      <option value="1">Grado I · Sin sangre visible</option>
+      <option value="2">Grado II · Sangre difusa &lt; 1 mm</option>
+      <option value="3">Grado III · Coágulos localizados o capa ≥ 1 mm</option>
+      <option value="4">Grado IV · Hemorragia intraventricular o parenquimatosa</option>
+    </select>
+
+    <div id="resultadoFisher" class="resultado" aria-live="polite"></div>
+    <div id="interpretacionFisher" class="note" aria-live="polite"></div>
+
+  </section>
+
+</main>
+
+<!-- JS del módulo -->
+<script src="fisher.js?v=1" defer></script>
+
+</body>
+</html>
+  
+  
   <!-- =========================================================
        Hunt & Hess · HSA
   ========================================================= -->
