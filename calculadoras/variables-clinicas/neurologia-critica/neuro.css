@@ -121,6 +121,129 @@ label {
   color: var(--color-muted);
 }
 
+:root {
+  --bg-page: #020617;
+  --bg-card: #0b1220;
+  --bg-card-soft: #0f172a;
+
+  --color-border: #1e293b;
+  --color-primary: #38bdf8;
+  --color-success: #22c55e;
+  --color-warning: #facc15;
+  --color-danger: #ef4444;
+
+  --color-muted: #cbd5f5;
+  --color-text: #e5e7eb;
+  --color-title: #f8fafc;
+}
+
+/* =========================
+   BASE
+========================= */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 400px at 10% -10%, rgba(56,189,248,0.18), transparent 60%),
+    radial-gradient(700px 300px at 90% 10%, rgba(34,197,94,0.15), transparent 55%),
+    linear-gradient(180deg, #020617 0%, #020617 100%);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+main.container {
+  max-width: 980px;
+  margin: auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* =========================
+   PANEL
+========================= */
+.panel {
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(
+    180deg,
+    var(--bg-card) 0%,
+    var(--bg-card-soft) 100%
+  );
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* =========================
+   TITULOS
+========================= */
+.panel > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-title);
+}
+
+.panel > h2::before {
+  content: "";
+  width: 6px;
+  height: 22px;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary),
+    var(--color-success)
+  );
+  border-radius: 4px;
+}
+
+/* =========================
+   TEXTOS / NOTAS
+========================= */
+.note {
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  background: rgba(2, 6, 23, 0.75);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 10px;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* =========================
+   FIELDSETS
+========================= */
+fieldset {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.75);
+}
+
+legend h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* =========================
+   LABELS & SELECTS
+========================= */
+label {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
 select {
   width: 100%;
   margin-top: 6px;
@@ -130,4 +253,47 @@ select {
   border: 1px solid var(--color-border);
   border-radius: 10px;
   font-size: 0.9rem;
-  transition: border
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.25);
+}
+
+button {
+  margin-top: 18px;
+  padding: 12px 16px;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary),
+    #0ea5e9
+  );
+  color: #020617;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(56,189,248,0.35);
+}
+
+/* RESULTADOS */
+#resultadoCAMICU,
+#resultadoNIHSS,
+#resultadoHuntHess,
+#resultadoMarshall {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: #020617;
+  border-left: 5px solid var(--color-success);
+  border-radius: 12px;
+  font-weight: 700;
+  color: var(--color-title);
+}
