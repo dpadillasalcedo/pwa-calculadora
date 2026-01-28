@@ -1,0 +1,53 @@
+/* =========================
+   RESET
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   VARIABLES GLOBALES (LIGHT)
+========================= */
+:root {
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-surface: #f8fafc;
+
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: #e2e8f0;
+
+  --color-primary: #2563eb;
+  --color-primary-soft: rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+/* =========================
+   LINKS / LISTAS
+========================= */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
