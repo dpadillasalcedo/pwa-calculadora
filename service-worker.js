@@ -1,21 +1,37 @@
-// Service Worker minimalista – Dominio nuevo
-// Fuerza limpieza total de caches y control inmediato
+const CACHE_NAME = "criticalcaretools-v1";
+const ASSETS = [
+  "/",
+  "/index.html",
+];
 
-self.addEventListener("install", () => {
+self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
-      // Elimina cualquier cache residual
-      const cacheNames = await caches.keys();
+      const keys = await caches.keys();
       await Promise.all(
-        cacheNames.map((cache) => caches.delete(cache))
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
       );
-
-      // Toma control inmediato
       await self.clients.claim();
     })()
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, clone);
+        });
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
