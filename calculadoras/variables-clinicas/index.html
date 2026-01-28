@@ -1,155 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <!-- =========================
-       Meta básicos
-  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Calculadora UCI Adultos | Evaluación en Cuidados Intensivos</title>
+  <title>Variables clínicas en terapia intensiva | Calculadora UCI</title>
 
   <meta
     name="description"
-    content="Calculadora UCI para adultos en cuidados intensivos. Herramienta de apoyo clínico para evaluación y toma de decisiones médicas. Uso educativo para profesionales de terapia intensiva."
+    content="Evaluación clínica en terapia intensiva mediante scores y fórmulas hemodinámicas, respiratorias, metabólicas y neurológicas."
   />
 
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/" />
 
-  <!-- =========================
-       Open Graph
-  ========================== -->
-  <meta property="og:title" content="Calculadora UCI Adultos | Evaluación en Cuidados Intensivos" />
-  <meta
-    property="og:description"
-    content="Herramienta clínica para cuidados intensivos: ventilación mecánica, SOFA-2 Score, oxigenación y consumo de oxígeno, hemodinamia y neurología crítica."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/" />
-  <meta property="og:site_name" content="Calculadora UCI" />
-
-  <!-- =========================
-       Twitter Card
-  ========================== -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Calculadora UCI Adultos | Evaluación en Cuidados Intensivos" />
-  <meta
-    name="twitter:description"
-    content="Herramienta clínica para cuidados intensivos: ventilación mecánica, SOFA-2 Score, oxigenación y consumo de oxígeno, hemodinamia y neurología crítica."
-  />
-
-  <!-- =========================
-       Performance
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-  <link rel="preconnect" href="https://consent.cookiebot.com" crossorigin />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
-
-  <!-- =========================
-       Estilos
-  ========================== -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- (opcional) CSS específico de home -->
-  <!-- <link rel="stylesheet" href="css/home.css" /> -->
-
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="/style.css" />
   <meta name="theme-color" content="#0b5fff" />
-
-  <!-- =========================
-       Cookiebot CMP
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    async>
-  </script>
-
-  <!-- =========================
-       Google AdSense
-  ========================== -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-    crossorigin="anonymous">
-  </script>
-
-  <!-- =========================
-       Google Analytics (GA4)
-  ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
-  </script>
 </head>
 
 <body>
 
-  <!-- =========================
-       Contenido principal
-  ========================== -->
-  <main class="app" id="main-content">
+  <main class="app container">
 
-    <!-- =========================
-         Header principal
-    ========================== -->
     <header class="app-header">
-
-      <!-- Espacio superior para anuncios -->
-      <div class="top-ad-slot" aria-hidden="true"></div>
-
-      <div class="header-content">
-        <h1>Calculadora UCI Adultos | Evaluación en Cuidados Intensivos</h1>
-        <p class="subtitle">
-          Monitoreo hemodinámico · Respiratorio · Metabólico · Neurológico
-        </p>
-      </div>
-
-      <!-- Navegación principal -->
-      <nav class="nav-principal" aria-label="Navegación principal clínica">
-
-        <a href="/calculadoras/infusiones/" class="nav-card">
-          <span class="nav-title">Infusiones de fármacos</span>
-          <span class="nav-subtitle">Terapia intensiva</span>
-          <p class="nav-description">
-            Cálculo y ajuste de infusiones continuas, dosis por peso, concentración,
-            velocidad de administración y soporte farmacológico en UCI.
-          </p>
-        </a>
-
-        <a href="/calculadoras/variables-clinicas/" class="nav-card">
-          <span class="nav-title">Variables clínicas</span>
-          <span class="nav-subtitle">Terapia intensiva</span>
-          <p class="nav-description">
-            Evaluación hemodinámica, respiratoria, metabólica y neurológica mediante
-            scores y fórmulas clínicas utilizadas en cuidados intensivos.
-          </p>
-        </a>
-
-      </nav>
-
+      <h1>Variables clínicas en terapia intensiva</h1>
+      <p class="subtitle">
+        Evaluación integral del paciente crítico mediante fórmulas y sistemas de puntuación
+      </p>
     </header>
 
-    <!-- =========================
-         Espacio inferior para anuncios
-    ========================== -->
+    <!-- MENÚ PRINCIPAL -->
+    <section class="clinical-menu">
+
+      <a href="/calculadoras/variables-clinicas/neurologia-critica/" class="menu-card">
+        <h2>Neurología crítica</h2>
+        <ul>
+          <li>CAM-ICU (delirium)</li>
+          <li>NIHSS score</li>
+          <li>Hunt and Hess score</li>
+          <li>Marshall score</li>
+        </ul>
+      </a>
+
+      <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/" class="menu-card">
+        <h2>Ventilación mecánica</h2>
+        <ul>
+          <li>Peso teórico</li>
+          <li>Ajuste de PCO₂</li>
+        </ul>
+      </a>
+
+      <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/" class="menu-card">
+        <h2>Monitoreo hemodinámico y microcirculatorio</h2>
+        <ul>
+          <li>Gasto cardíaco por ecocardiografía</li>
+          <li>Fracción de acortamiento del VI</li>
+          <li>SRAA con Na⁺ y K⁺ urinario</li>
+          <li>Transporte y consumo de oxígeno</li>
+        </ul>
+      </a>
+
+      <a href="/calculadoras/variables-clinicas/estado-acido-base/" class="menu-card">
+        <h2>Estado ácido-base y medio interno</h2>
+        <ul>
+          <li>Trastorno ácido-base esperado</li>
+          <li>Anion gap corregido por albúmina</li>
+          <li>Delta-delta (AG / HCO₃⁻)</li>
+          <li>Sodio corregido</li>
+          <li>Calcio corregido</li>
+        </ul>
+      </a>
+
+      <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/" class="menu-card">
+        <h2>Sistemas de puntuación pronóstica</h2>
+        <ul>
+          <li>SOFA-2 score</li>
+          <li>APACHE II score</li>
+          <li>SAPS II score</li>
+        </ul>
+      </a>
+
+    </section>
+
     <section class="bottom-ad-section" aria-label="Publicidad">
       <div class="bottom-ad-slot"></div>
     </section>
 
   </main>
 
-  <!-- (opcional) JS específico de home -->
-  <!-- <script src="js/pages/home.js" defer></script> -->
-
 </body>
 </html>
+
+
