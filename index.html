@@ -6,35 +6,143 @@
 
   <title> Critical Care Tools | Evaluación en Cuidados Intensivos </title>
 
-  <meta name="description" content="Herramientas clínicas para cuidados intensivos: variables clínicas e infusión de fármacos." />
+<meta
+    name="description"
+    content="Critical Care Tools: calculadoras clínicas para cuidados intensivos. Variables clínicas e infusión de fármacos para apoyo en la toma de decisiones en UCI."
+  />
   <meta name="robots" content="index, follow" />
+  <meta name="author" content="Critical Care Tools" />
 
   <link rel="canonical" href="https://criticalcaretools.com/" />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
+  <meta property="og:title" content="Critical Care Tools | Calculadoras UCI" />
+  <meta
+    property="og:description"
+    content="Herramientas clínicas para cuidados intensivos: variables clínicas e infusión de fármacos."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://criticalcaretools.com/" />
+  <meta property="og:site_name" content="Critical Care Tools" />
+
+  <!-- =========================
+       Twitter Card
+  ========================== -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Critical Care Tools" />
+  <meta
+    name="twitter:description"
+    content="Calculadoras clínicas para terapia intensiva."
+  />
+
+  <!-- =========================
+       Estilos básicos
+  ========================== -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f7fa;
+      color: #1f2933;
+    }
+
+    header {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu a {
+      display: block;
+      background-color: #ffffff;
+      padding: 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .menu a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      color: #0f172a;
+    }
+
+    .menu p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+  </style>
 </head>
 
 <body>
   <header>
     <h1>Critical Care Tools</h1>
-    <p>Herramientas clínicas para cuidados intensivos</p>
+    <p>Calculadoras clínicas para cuidados intensivos</p>
   </header>
 
-  <nav>
-    <ul>
-      <li>
-        <a href="/variables-clinicas/">
-          🫀 Variables Clínicas
-        </a>
-      </li>
-      <li>
-        <a href="/infusion-farmacos/">
-          💉 Infusión de fármacos
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <main>
+    <section class="menu">
+      <a href="/variables-clinicas/">
+        <h2>🫀 Variables Clínicas</h2>
+        <p>
+          Herramientas para el cálculo y evaluación de parámetros clínicos
+          relevantes en pacientes críticos.
+        </p>
+      </a>
+
+      <a href="/infusion-farmacos/">
+        <h2>💉 Infusión de fármacos</h2>
+        <p>
+          Calculadoras para dosificación e infusión segura de fármacos en
+          cuidados intensivos.
+        </p>
+      </a>
+    </section>
+  </main>
 
   <footer>
-    <small>© 2026 Critical Care Tools</small>
+    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico
   </footer>
 </body>
 </html>
