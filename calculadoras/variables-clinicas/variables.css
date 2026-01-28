@@ -22,6 +22,47 @@ a {
   text-decoration: none;
 }
 
+/* ======================================================
+   ICONOS MÉDICOS POR SECCIÓN
+====================================================== */
+
+.menu-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* 🧠 Neurología crítica */
+.menu-card[href*="neurologia-critica"] h2::before {
+  content: "🧠";
+  font-size: 1.4rem;
+}
+
+/* 🫁 Ventilación mecánica */
+.menu-card[href*="ventilacion-mecanica"] h2::before {
+  content: "🫁";
+  font-size: 1.4rem;
+}
+
+/* 🩺 Monitoreo hemodinámico */
+.menu-card[href*="monitoreo-hemodinamico"] h2::before {
+  content: "🩺";
+  font-size: 1.4rem;
+}
+
+/* 🩸 Estado ácido-base */
+.menu-card[href*="estado-acido-base"] h2::before {
+  content: "🩸";
+  font-size: 1.4rem;
+}
+
+/* 📊 Sistemas de puntuación */
+.menu-card[href*="sistemas-puntuacion"] h2::before {
+  content: "📊";
+  font-size: 1.4rem;
+}
+
+
 ul {
   list-style: none;
   padding: 0;
@@ -209,3 +250,4 @@ ul {
     font-size: 0.85rem;
   }
 }
+
