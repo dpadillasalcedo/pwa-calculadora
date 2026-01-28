@@ -1,46 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home / Hub -->
+  <!-- =========================
+       HOME
+  ========================== -->
   <url>
     <loc>https://criticalcaretools.com/</loc>
-    <lastmod>2026-01-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+    <lastmod>2026-01-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- CAM-ICU -->
+  <!-- =========================
+       VARIABLES CLÍNICAS (HUB)
+  ========================== -->
   <url>
-    <loc>https://criticalcaretools.com/cam-icu</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/clinical-variables/" />
+    <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- SOFA-2 Score -->
+  <!-- =========================
+       NEUROLOGÍA CRÍTICA
+  ========================== -->
   <url>
-    <loc>https://criticalcaretools.com/sofa-2-score</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/neurologic-critical-care/" />
+    <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- NIHSS Score -->
+  <!-- =========================
+       VENTILACIÓN MECÁNICA
+  ========================== -->
   <url>
-    <loc>https://criticalcaretools.com/nihss-score</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/mechanical-ventilation/" />
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- =========================
+       SISTEMAS DE PUNTUACIÓN
+  ========================== -->
+  <url>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/prognostic-scores/" />
+    <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Ecocardiografía -->
+  <!-- =========================
+       MONITOREO HEMODINÁMICO
+  ========================== -->
   <url>
-    <loc>https://criticalcaretools.com/ecocardiografia-gc</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/hemodynamic-monitoring/" />
+    <lastmod>2026-01-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- =========================
+       ESTADO ÁCIDO–BASE
+  ========================== -->
+  <url>
+    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculators/acid-base-status/" />
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
 </urlset>
-
-
