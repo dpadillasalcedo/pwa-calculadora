@@ -71,38 +71,68 @@
   <h2>CAM-ICU · Delirium</h2>
 
   <div class="note">
-    Diagnóstico positivo si se cumple <strong>1 + 2</strong> y <strong>(3 o 4)</strong>
+    Diagnóstico positivo si se cumple <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
   </div>
 
-  <label>1. Inicio agudo o curso fluctuante</label>
-  <select onchange="camicuPaso1(this.value)">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
+  <!-- PASO 1 -->
+  <fieldset>
+    <legend><strong>Paso 1 · Inicio agudo o curso fluctuante</strong></legend>
+    <div class="note">
+      Ejemplo: ¿El estado mental cambió respecto al basal?  
+      ¿Ha fluctuado la atención o el nivel de conciencia en las últimas 24 h?
+    </div>
+    <select onchange="camicuPaso1(this.value)">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
-  <label>2. Inatención</label>
-  <select onchange="camicuPaso2(this.value)">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
+  <!-- PASO 2 -->
+  <fieldset id="camicu_paso2" hidden>
+    <legend><strong>Paso 2 · Inatención</strong></legend>
+    <div class="note">
+      Ejemplo: deletrear <strong>CASABLANCA</strong> y pedir que indique cada vez que escucha la letra <strong>A</strong>.
+      ≥ 2 errores = positivo.
+    </div>
+    <select onchange="camicuPaso2(this.value)">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
-  <label>3. Pensamiento desorganizado</label>
-  <select onchange="camicuPaso3(this.value)">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
+  <!-- PASO 3 -->
+  <fieldset id="camicu_paso3" hidden>
+    <legend><strong>Paso 3 · Pensamiento desorganizado</strong></legend>
+    <div class="note">
+      Ejemplo: ¿Puede responder preguntas simples con lógica?  
+      (“¿Flota una piedra en el agua?”, “¿Hay peces en el mar?”)
+    </div>
+    <select onchange="camicuPaso3(this.value)">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
-  <label>4. Nivel de conciencia alterado</label>
-  <select onchange="camicuPaso4(this.value)">
-    <option value="">Seleccione</option>
-    <option value="1">Sí</option>
-    <option value="0">No</option>
-  </select>
+  <!-- PASO 4 -->
+  <fieldset id="camicu_paso4" hidden>
+    <legend><strong>Paso 4 · Nivel de conciencia</strong></legend>
+    <div class="note">
+      Ejemplo: paciente hipervigilante, somnoliento, estuporoso o en coma
+      (RASS ≠ 0).
+    </div>
+    <select onchange="camicuPaso4(this.value)">
+      <option value="">Seleccione</option>
+      <option value="1">Sí</option>
+      <option value="0">No</option>
+    </select>
+  </fieldset>
 
+  <!-- RESULTADO FINAL -->
   <div id="resultadoCAMICU" class="resultado"></div>
+  <div id="interpretacionCAMICU" class="note"></div>
 </section>
 
 <!-- ================= NIHSS ================= -->
