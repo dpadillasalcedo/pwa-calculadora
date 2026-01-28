@@ -1,1 +1,143 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Ventilación mecánica | Peso ideal y ajuste de PCO₂ | Calculadora UCI</title>
+
+  <meta
+    name="description"
+    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos: peso corporal predicho (PBW) y ajuste de ventilación minuto para alcanzar PCO₂ deseada."
+  />
+
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <meta name="theme-color" content="#0b5fff" />
+</head>
+
+<body>
+
+  <main class="app container">
+
+    <header class="app-header">
+      <h1>Ventilación mecánica</h1>
+      <p class="subtitle">
+        Herramientas orientativas para pacientes adultos (interpretar siempre en contexto clínico)
+      </p>
+    </header>
+
+    <!-- =========================
+         Peso ideal / PBW
+    ========================== -->
+    <section
+      id="pesoteorico"
+      class="panel"
+      aria-labelledby="ventilacion-pbw-title"
+      data-module="ventilacionmecanica">
+
+      <h2 id="ventilacion-pbw-title">
+        <span class="icon icon-lung"></span>
+        Peso corporal predicho (PBW)
+      </h2>
+
+      <p class="note">
+        Cálculo basado en talla y sexo. Útil para referencia de ventilación protectora (por ejemplo VT mL/kg PBW).
+      </p>
+
+      <fieldset>
+        <legend><h3>Peso ideal</h3></legend>
+
+        <label for="talla">Talla (cm)</label>
+        <input type="number" id="talla" min="80" max="250" step="1" inputmode="numeric" />
+
+        <label for="sexo">Sexo</label>
+        <select id="sexo">
+          <option value="">Seleccione</option>
+          <option value="hombre">Hombre</option>
+          <option value="mujer">Mujer</option>
+        </select>
+
+        <button type="button" onclick="calcularPesoIdeal()">
+          Calcular peso ideal
+        </button>
+
+        <div id="resultadoPeso" class="result" role="status" aria-live="polite"></div>
+
+        <!-- Anuncio post-resultado -->
+        <div class="ad-slot ad-result" aria-hidden="true"></div>
+      </fieldset>
+
+      <hr />
+    </section>
+
+    <!-- =========================
+         Ajuste de PCO₂
+    ========================== -->
+    <section
+      id="ajuste-pco2"
+      class="panel"
+      aria-labelledby="ventilacion-pco2-title">
+
+      <h2 id="ventilacion-pco2-title">
+        <span class="icon icon-lung"></span>
+        Ajuste de PCO₂ deseada
+      </h2>
+
+      <p class="note">
+        Aproximación basada en la relación: <strong>PCO₂ ∝ 1 / ventilación minuto</strong>.
+        No reemplaza gasometría, ni evaluación de espacio muerto, esfuerzo ventilatorio o cambios metabólicos.
+      </p>
+
+      <fieldset>
+        <legend><h3>Ajuste de ventilación minuto</h3></legend>
+
+        <label for="pco2Act">PCO₂ actual (mmHg)</label>
+        <input type="number" id="pco2Act" min="5" step="0.1" inputmode="decimal" />
+
+        <label for="pco2Des">PCO₂ deseada (mmHg)</label>
+        <input type="number" id="pco2Des" min="5" step="0.1" inputmode="decimal" />
+
+        <div class="grid-2">
+          <div>
+            <label for="fr_actual">Frecuencia respiratoria (rpm)</label>
+            <input type="number" id="fr_actual" min="0" step="1" inputmode="numeric" />
+          </div>
+          <div>
+            <label for="vt_actual">Volumen corriente VT (mL)</label>
+            <input type="number" id="vt_actual" min="0" step="10" inputmode="numeric" />
+          </div>
+        </div>
+
+        <label for="vmin_actual">Ventilación minuto (L/min)</label>
+        <input type="number" id="vmin_actual" min="0" step="0.1" inputmode="decimal" />
+
+        <button type="button" onclick="ajustarPCO2()">
+          Calcular ajuste
+        </button>
+
+        <div id="resultadoPCO2" class="result" role="status" aria-live="polite"></div>
+        <div id="resultadoPCO2Detalle" class="note" aria-live="polite"></div>
+
+        <!-- Anuncio post-resultado -->
+        <div class="ad-slot ad-result" aria-hidden="true"></div>
+      </fieldset>
+
+    </section>
+
+    <!-- =========================
+         Espacio inferior para anuncios
+    ========================== -->
+    <section class="bottom-ad-section" aria-label="Publicidad">
+      <div class="bottom-ad-slot"></div>
+    </section>
+
+  </main>
+
+  <script src="/js/pages/ventilacion.js" defer></script>
+
+</body>
+</html>
