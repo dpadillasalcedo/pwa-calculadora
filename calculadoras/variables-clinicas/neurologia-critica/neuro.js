@@ -1,3 +1,6 @@
+console.log("neuro.js cargado correctamente");
+
+
 /* =========================================================
    NEUROLOGÍA CRÍTICA
    CAM-ICU · NIHSS · Hunt & Hess · Marshall
