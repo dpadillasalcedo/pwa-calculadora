@@ -1,13 +1,14 @@
 console.log("neuro.js cargado correctamente");
 
-
 /* =========================================================
    NEUROLOGÍA CRÍTICA
    CAM-ICU · NIHSS · Hunt & Hess · Marshall
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  initCAMICU();
+  if (document.getElementById("camicu")) {
+    initCAMICU();
+  }
 });
 
 /* =========================================================
@@ -41,8 +42,12 @@ function camicuPaso1() {
   limpiarResultadoCAMICU();
 
   if (v1 === null) return;
-  if (v1 === 1) mostrarPaso(2);
-  if (v1 === 0) mostrarResultadoCAMICU(false);
+
+  if (v1 === 1) {
+    mostrarPaso(2);
+  } else {
+    mostrarResultadoCAMICU(false);
+  }
 }
 
 function camicuPaso2() {
@@ -51,8 +56,12 @@ function camicuPaso2() {
   limpiarResultadoCAMICU();
 
   if (v2 === null) return;
-  if (v2 === 1) mostrarPaso(3);
-  else mostrarResultadoCAMICU(false);
+
+  if (v2 === 1) {
+    mostrarPaso(3);
+  } else {
+    mostrarResultadoCAMICU(false);
+  }
 }
 
 function camicuPaso3() {
@@ -69,7 +78,7 @@ function camicuPaso3() {
     setHTML("resultadoCAMICU", "CAM-ICU <strong>NO EVALUABLE</strong>");
     setHTML(
       "interpretacionCAMICU",
-      "El criterio 3 es negativo. Complete el criterio 4 para concluir la evaluación."
+      "Criterio 3 negativo. Evaluar criterio 4 para concluir."
     );
   }
 }
@@ -136,24 +145,26 @@ function calcularNIHSS() {
 
   for (const id of ids) {
     const el = document.getElementById(id);
+
     if (!el) {
-      setHTML("resultadoNIHSS", "<strong>NIHSS:</strong> Error de configuración");
+      setHTML("resultadoNIHSS", "Error de configuración NIHSS.");
       setHTML("interpretacionNIHSS", "");
       return;
     }
 
     const v = Number(el.value);
-if (!Number.isFinite(v)) {
-  setHTML(
-    "resultadoNIHSS",
-    "<strong>NIHSS:</strong> evaluación incompleta"
-  );
-  setHTML(
-    "interpretacionNIHSS",
-    "Debe completar todos los ítems para obtener el puntaje total."
-  );
-  return;
-}
+
+    if (!Number.isFinite(v)) {
+      setHTML(
+        "resultadoNIHSS",
+        "<strong>NIHSS:</strong> evaluación incompleta"
+      );
+      setHTML(
+        "interpretacionNIHSS",
+        "Debe completar todos los ítems para obtener el puntaje."
+      );
+      return;
+    }
 
     total += v;
   }
@@ -173,7 +184,7 @@ if (!Number.isFinite(v)) {
 }
 
 /* =========================================================
-   HUNT & HESS · HEMORRAGIA SUBARACNOIDEA
+   HUNT & HESS · HSA
 ========================================================= */
 
 function calcularHuntHess() {
@@ -188,7 +199,7 @@ function calcularHuntHess() {
   setHTML("resultadoHuntHess", `Hunt & Hess: Grado ${v}`);
   setHTML(
     "interpretacionHuntHess",
-    "Clasificación clínica utilizada para estimar gravedad y pronóstico en hemorragia subaracnoidea."
+    "Clasificación clínica para estimar gravedad y pronóstico."
   );
 }
 
@@ -208,6 +219,6 @@ function calcularMarshall() {
   setHTML("resultadoMarshall", `Marshall: Categoría ${v}`);
   setHTML(
     "interpretacionMarshall",
-    "Clasificación tomográfica utilizada para estratificar gravedad y pronóstico en traumatismo craneoencefálico."
+    "Clasificación tomográfica para estratificación de riesgo."
   );
 }
