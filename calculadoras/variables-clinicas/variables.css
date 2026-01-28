@@ -1,53 +1,31 @@
 /* ======================================================
-   RESET BÁSICO
+   OVERRIDE DE BASE (LIGHT MODE SOLO VARIABLES)
 ====================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+/* Fondo general */
+body {
+  background-color: #f1f5f9 !important; /* gris claro */
+  color: #0f172a !important;
+}
+
+/* Links */
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 /* ======================================================
-   VARIABLES – LIGHT CLINICAL
-====================================================== */
-:root {
-  /* Fondos */
-  --bg-main: #f1f5f9;        /* gris claro */
-  --bg-surface: #f8fafc;     /* fondo cards */
-  --bg-card: #ffffff;
-
-  /* Texto */
-  --color-text: #0f172a;
-  --color-muted: #475569;
-
-  /* Bordes */
-  --color-border: #e2e8f0;
-
-  /* Azul médico */
-  --color-primary: #2563eb;
-  --color-primary-soft: rgba(37, 99, 235, 0.15);
-
-  /* Sombras */
-  --shadow-card: 
-    0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-card-hover:
-    0 16px 40px rgba(15, 23, 42, 0.12);
-}
-
-/* ======================================================
-   BODY / BASE
-====================================================== */
-html, body {
-  background-color: var(--bg-main);
-  color: var(--color-text);
-  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.55;
-}
-
-/* ======================================================
-   CONTENEDOR
+   CONTENEDOR PRINCIPAL
 ====================================================== */
 .app.container {
   max-width: 1200px;
@@ -61,18 +39,19 @@ html, body {
 .app-header {
   text-align: center;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .app-header h1 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  color: #0f172a;
 }
 
 .subtitle {
   font-size: 0.95rem;
-  color: var(--color-muted);
+  color: #475569;
   max-width: 720px;
   margin: 0 auto;
 }
@@ -88,19 +67,19 @@ html, body {
 }
 
 /* ======================================================
-   CARD NAVEGACIÓN
+   CARD DE NAVEGACIÓN
 ====================================================== */
 .menu-card {
   position: relative;
-  background-color: var(--bg-card);
+  background-color: #ffffff;
   padding: 2rem 2rem 2.6rem;
   border-radius: 16px;
-  border: 1px solid var(--color-border);
-  color: inherit;
-  text-decoration: none;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
   cursor: pointer;
 
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -110,8 +89,8 @@ html, body {
 .menu-card:hover,
 .menu-card:focus-visible {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--color-primary);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  border-color: #2563eb;
   outline: none;
 }
 
@@ -122,29 +101,25 @@ html, body {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--color-primary);
+  color: #2563eb;
 }
 
 /* ======================================================
    LISTA
 ====================================================== */
-.menu-card ul {
-  list-style: none;
-}
-
 .menu-card li {
   position: relative;
   padding-left: 16px;
   margin-bottom: 8px;
   font-size: 0.9rem;
-  color: var(--color-muted);
+  color: #475569;
 }
 
 .menu-card li::before {
   content: "•";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  color: #2563eb;
   font-weight: bold;
 }
 
@@ -158,7 +133,7 @@ html, body {
   bottom: 1.2rem;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: #2563eb;
   opacity: 0;
   transform: translateY(4px);
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -175,12 +150,12 @@ html, body {
 .bottom-ad-section {
   margin-top: 4rem;
   padding-top: 2.5rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid #e2e8f0;
 }
 
 .bottom-ad-slot {
   min-height: 90px;
-  background-color: var(--bg-surface);
+  background-color: #f8fafc;
   border-radius: 12px;
 }
 
@@ -205,4 +180,6 @@ html, body {
   }
 
   .menu-card li {
-    font-
+    font-size: 0.85rem;
+  }
+}
