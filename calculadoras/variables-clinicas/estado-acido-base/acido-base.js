@@ -52,35 +52,52 @@ function calcularDeltaGap() {
   const ag = getNum("dd_ag");
   const hco3 = getNum("dd_hco3");
 
+  const AG_NORMAL = 12;
+  const HCO3_NORMAL = 24;
+
   if (ag === null || hco3 === null) {
     setText("resultadoDeltaGap", "—");
-    setText("interpretacionDeltaGap", "Complete AG y HCO₃.");
+    setText("interpretacionDeltaGap", "Complete Anion Gap y HCO₃.");
     return;
   }
 
-  const denom = 24 - hco3;
-  if (denom === 0) {
+  if (ag <= 0 || hco3 <= 0) {
+    setText("resultadoDeltaGap", "No interpretable");
+    setText("interpretacionDeltaGap", "Valores no fisiológicos.");
+    return;
+  }
+
+  const deltaAG = ag - AG_NORMAL;
+  const deltaHCO3 = HCO3_NORMAL - hco3;
+
+  if (deltaHCO3 <= 0) {
     setText("resultadoDeltaGap", "No interpretable");
     setText("interpretacionDeltaGap", "HCO₃ no disminuido.");
     return;
   }
 
-  const delta = (ag - 12) / denom;
-  if (!Number.isFinite(delta)) {
-    setText("resultadoDeltaGap", "No interpretable");
+  const deltaDelta = deltaAG / deltaHCO3;
+
+  if (!Number.isFinite(deltaDelta)) {
+    setText("resultadoDeltaGap", "—");
+    setText("interpretacionDeltaGap", "No se pudo calcular.");
     return;
   }
 
-  const interp =
-    delta < 1
-      ? "Acidosis metabólica hiperclorémica asociada."
-      : delta <= 2
+  let interp =
+    deltaDelta < 1
+      ? "Sugiere otra acidosis metabólica asociada. Evaluar hipercloremia u otras causas."
+      : deltaDelta <= 2
         ? "Acidosis metabólica con anion gap elevado pura."
-        : "Alcalosis metabólica asociada.";
+        : "Sugiere alcalosis metabólica asociada.";
 
-  setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${delta.toFixed(2)}`);
+  setHTML(
+    "resultadoDeltaGap",
+    `<strong>Δ/Δ:</strong> ${deltaDelta.toFixed(2)}`
+  );
   setText("interpretacionDeltaGap", interp);
 }
+
 
 /* =========================
    SODIO CORREGIDO
