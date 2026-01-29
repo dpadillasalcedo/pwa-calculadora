@@ -1,7 +1,7 @@
 console.log("ventilacion.js cargado correctamente");
 
 /* =========================================================
-   HELPERS (ÚNICOS)
+   HELPERS
 ========================================================= */
 function setHTML(id, html) {
   const el = document.getElementById(id);
@@ -16,13 +16,25 @@ function numVal(id) {
 }
 
 /* =========================================================
+   INIT
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  // Limpia resultados al cargar
+  setHTML("resultadoPeso", "");
+  setHTML("resultadoPCO2", "");
+  setHTML("resultadoPCO2Detalle", "");
+  setHTML("resultadoDeltaP", "");
+  setHTML("interpretacionDeltaP", "");
+});
+
+/* =========================================================
    PBW (ARDSnet)
 ========================================================= */
 function calcularPesoIdeal() {
   const talla = numVal("talla");
   const sexo = document.getElementById("sexo")?.value;
 
-  if (!talla || talla < 80 || talla > 250) {
+  if (talla === null || talla < 80 || talla > 250) {
     setHTML("resultadoPeso", "Ingrese una talla válida (80–250 cm).");
     return;
   }
@@ -56,46 +68,56 @@ function ajustarPCO2() {
   const pco2Act = numVal("pco2Act");
   const pco2Des = numVal("pco2Des");
 
-  if (!pco2Act || !pco2Des) {
-    setHTML("resultadoPCO2", "Ingrese PCO₂ actual y deseada.");
+  if (pco2Act === null || pco2Des === null || pco2Act <= 0 || pco2Des <= 0) {
+    setHTML("resultadoPCO2", "Ingrese PCO₂ actual y deseada (valores > 0).");
+    setHTML("resultadoPCO2Detalle", "");
     return;
   }
 
-  let vmin = numVal("vmin_actual");
-  const fr = numVal("fr_actual");
-  const vt = numVal("vt_actual");
+  let vminActual = numVal("vmin_actual"); // L/min
+  const fr = numVal("fr_actual");         // rpm
+  const vt = numVal("vt_actual");         // mL
 
-  if (!vmin && fr && vt) {
-    vmin = (fr * vt) / 1000;
+  // Si no ingresan Vmin, calcular con FR y VT
+  if ((vminActual === null || vminActual <= 0) && fr && vt) {
+    vminActual = (fr * vt) / 1000; // L/min
   }
 
-  if (!vmin) {
+  if (vminActual === null || vminActual <= 0) {
     setHTML("resultadoPCO2", "Ingrese ventilación minuto o FR + VT.");
+    setHTML("resultadoPCO2Detalle", "");
     return;
   }
 
-  const ratio = pco2Act / pco2Des;
-  const vminObjetivo = vmin * ratio;
-
-  const frObjetivo = fr ? fr * ratio : null;
-  const vtMax = vt ? vt * ratio : null;
+  const ratio = pco2Act / pco2Des;        // Vmin_obj / Vmin_act
+  const vminObjetivo = vminActual * ratio;
 
   setHTML(
     "resultadoPCO2",
     `<strong>Ventilación minuto objetivo:</strong> ${vminObjetivo.toFixed(2)} L/min`
   );
 
-  let detalle = `<strong>Relación aplicada:</strong> ${ratio.toFixed(2)}×<br>`;
+  // Reporte: FR posible, Vmin máx, VT máx (orientativo)
+  // Si el usuario dio FR y VT, proponemos:
+  // - Mantener VT y subir FR
+  // - Mantener FR y subir VT (como "VT máximo orientativo" según ratio)
+  let detalle = `<strong>Relación aplicada:</strong> ${ratio.toFixed(2)}×<br>
+                 <strong>Vmin actual:</strong> ${vminActual.toFixed(2)} L/min<br>
+                 <strong>Vmin objetivo:</strong> ${vminObjetivo.toFixed(2)} L/min<br>`;
 
-  if (frObjetivo) {
-    detalle += `• FR sugerida: <strong>${frObjetivo.toFixed(0)} rpm</strong><br>`;
+  if (fr !== null && fr > 0) {
+    const frObjetivo = fr * ratio;
+    detalle += `• <strong>FR sugerida</strong> (si mantienes VT): ${frObjetivo.toFixed(0)} rpm<br>`;
+    detalle += `• <strong>FR a aumentar</strong>: ${(frObjetivo - fr).toFixed(0)} rpm<br>`;
   }
 
-  if (vtMax) {
-    detalle += `• VT máximo orientativo: <strong>${vtMax.toFixed(0)} mL</strong><br>`;
+  if (vt !== null && vt > 0) {
+    const vtMax = vt * ratio;
+    detalle += `• <strong>VT máximo orientativo</strong> (si mantienes FR): ${vtMax.toFixed(0)} mL<br>`;
+    detalle += `• <strong>VT a aumentar</strong>: ${(vtMax - vt).toFixed(0)} mL<br>`;
   }
 
-  detalle += `<em>Ajustar priorizando seguridad pulmonar.</em>`;
+  detalle += `<em>Nota: ajustar priorizando seguridad pulmonar (VT protector, presión plateau, ΔP, etc.).</em>`;
 
   setHTML("resultadoPCO2Detalle", detalle);
 }
@@ -114,10 +136,7 @@ function calcularDeltaP() {
   }
 
   if (pplat <= peep) {
-    setHTML(
-      "resultadoDeltaP",
-      "Valores no válidos: Pplat debe ser mayor que PEEP."
-    );
+    setHTML("resultadoDeltaP", "Valores no válidos: Pplat debe ser mayor que PEEP.");
     setHTML("interpretacionDeltaP", "");
     return;
   }
@@ -125,20 +144,17 @@ function calcularDeltaP() {
   const deltaP = pplat - peep;
 
   let interpretacion = "";
-
   if (deltaP <= 12) {
-    interpretacion =
-      "ΔP baja. Estrategia ventilatoria protectora adecuada.";
+    interpretacion = "ΔP <strong>baja</strong>. Perfil ventilatorio más protector.";
   } else if (deltaP <= 15) {
-    interpretacion =
-      "ΔP aceptable, cercana al límite recomendado.";
+    interpretacion = "ΔP <strong>intermedia</strong>. Vigilar tendencia y mecánica pulmonar.";
   } else {
     interpretacion =
-      "<strong>ΔP elevada</strong>. Asociada a mayor riesgo de lesión pulmonar y mortalidad.<br><br>" +
+      "<strong>ΔP elevada</strong>. Se asocia a mayor riesgo de lesión pulmonar.<br><br>" +
       "<strong>Sugerencias:</strong><ul>" +
-      "<li>Reducir VT (idealmente 6 ml/kg PBW).</li>" +
-      "<li>Reevaluar PEEP y compliance pulmonar.</li>" +
-      "<li>Considerar pronación o estrategias de reclutamiento.</li>" +
+      "<li>Reducir VT (ideal 6 ml/kg PBW).</li>" +
+      "<li>Revisar compliance y estrategia de PEEP.</li>" +
+      "<li>Considerar pronación / reclutamiento según caso.</li>" +
       "</ul>";
   }
 
@@ -146,6 +162,12 @@ function calcularDeltaP() {
     "resultadoDeltaP",
     `<strong>Driving Pressure (ΔP):</strong> ${deltaP.toFixed(1)} cmH₂O`
   );
-
   setHTML("interpretacionDeltaP", interpretacion);
 }
+
+/* =========================================================
+   EXPOSE GLOBAL (por onclick inline)
+========================================================= */
+window.calcularPesoIdeal = calcularPesoIdeal;
+window.ajustarPCO2 = ajustarPCO2;
+window.calcularDeltaP = calcularDeltaP;
