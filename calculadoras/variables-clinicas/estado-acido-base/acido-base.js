@@ -3,14 +3,16 @@
 ========================= */
 function getNum(id) {
   const el = document.getElementById(id);
-  if (!el) return null;
+  if (!el || el.value === "") return null;
   const v = Number(el.value);
   return Number.isFinite(v) ? v : null;
 }
+
 function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
+
 function setText(id, txt) {
   const el = document.getElementById(id);
   if (el) el.textContent = txt;
@@ -26,10 +28,11 @@ function calcularAnionGapCorregido() {
   const hco3 = getNum("ab_hco3");
   let alb = getNum("ab_alb");
 
-  if ([na,k,cl,hco3].some(v => v === null)) {
-    setText("resultadoAnionGap","Complete todos los valores");
+  if ([na, k, cl, hco3].some(v => v === null)) {
+    setText("resultadoAnionGap", "Complete todos los valores");
     return;
   }
+
   if (!Number.isFinite(alb) || alb <= 0) alb = 4;
 
   const ag = (na + k) - (cl + hco3);
@@ -50,21 +53,23 @@ function calcularDeltaGap() {
   const hco3 = getNum("dd_hco3");
 
   if (ag === null || hco3 === null) {
-    setText("resultadoDeltaGap","—");
-    setText("interpretacionDeltaGap","Complete AG y HCO₃.");
+    setText("resultadoDeltaGap", "—");
+    setText("interpretacionDeltaGap", "Complete AG y HCO₃.");
     return;
   }
 
   const delta = (ag - 12) / (24 - hco3);
   if (!Number.isFinite(delta)) {
-    setText("resultadoDeltaGap","No interpretable");
+    setText("resultadoDeltaGap", "No interpretable");
     return;
   }
 
-  let interp =
-    delta < 1 ? "Acidosis metabólica hiperclorémica asociada."
-    : delta <= 2 ? "Acidosis metabólica con AG elevado pura."
-    : "Alcalosis metabólica asociada.";
+  const interp =
+    delta < 1
+      ? "Acidosis metabólica hiperclorémica asociada."
+      : delta <= 2
+        ? "Acidosis metabólica con anion gap elevado pura."
+        : "Alcalosis metabólica asociada.";
 
   setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${delta.toFixed(2)}`);
   setText("interpretacionDeltaGap", interp);
@@ -78,7 +83,7 @@ function calcularSodioCorregido() {
   const glu = getNum("glu");
 
   if (na === null || glu === null) {
-    setText("resultadoNaCorregido","Complete Na y glucosa");
+    setText("resultadoNaCorregido", "Complete Na y glucosa");
     return;
   }
 
@@ -92,21 +97,4 @@ function calcularSodioCorregido() {
 
 /* =========================
    CALCIO CORREGIDO
-========================= */
-function calcularCalcioCorregido() {
-  const ca = getNum("ca_meas");
-  let alb = getNum("alb_meas");
-
-  if (ca === null) {
-    setText("resultadoCaCorregido","Complete calcio");
-    return;
-  }
-  if (!Number.isFinite(alb) || alb <= 0) alb = 4;
-
-  const cac = ca + 0.8 * (4 - alb);
-
-  setHTML(
-    "resultadoCaCorregido",
-    `<strong>Ca corregido:</strong> ${cac.toFixed(2)} mg/dL`
-  );
-}
+====
