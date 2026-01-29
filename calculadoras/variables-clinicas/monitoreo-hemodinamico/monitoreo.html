@@ -1,171 +1,148 @@
-<!-- =====================================================
-     MONITOREO HEMODINÁMICO Y MICROCIRCULATORIO
-===================================================== -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- =========================
-     Ecocardiografía
-========================== -->
-<section class="panel" data-module="ecocardiografia">
+  <title>Monitoreo hemodinámico y microcirculatorio | Calculadora UCI</title>
 
-  <h2><span class="icon icon-stetho"></span> Ecocardiografía</h2>
+  <meta
+    name="description"
+    content="Herramientas de monitoreo hemodinámico, oxigenación, ecocardiografía y perfusión tisular."
+  />
 
-  <p class="note">
-    Evaluación hemodinámica mediante ecocardiografía transtorácica.
-  </p>
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
 
-  <!-- GC por VTI -->
-  <fieldset>
-    <legend><h3>Gasto cardíaco por VTI</h3></legend>
+  <!-- CSS DEL MÓDULO -->
+  <link rel="stylesheet"
+        href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=1" />
+</head>
 
-    <div class="grid-3">
-      <div>
-        <label>Diámetro TSVI (cm)</label>
-        <input type="number" id="eco_dtsvi" step="0.1" min="0">
+<body>
+
+<main class="app container">
+
+  <header class="app-header">
+    <h1>Monitoreo hemodinámico y microcirculatorio</h1>
+    <p class="subtitle">
+      Evaluación integrada de gasto cardíaco, oxigenación y perfusión
+    </p>
+  </header>
+
+  <!-- =========================
+       Ecocardiografía
+  ========================== -->
+  <section class="panel">
+
+    <h2>🫀 Ecocardiografía</h2>
+
+    <p class="note">
+      Estimación hemodinámica mediante ecocardiografía transtorácica.
+    </p>
+
+    <fieldset>
+      <legend><h3>Gasto cardíaco por VTI</h3></legend>
+
+      <div class="grid-3">
+        <div>
+          <label>Diámetro TSVI (cm)</label>
+          <input type="number" id="eco_dtsvi" step="0.1">
+        </div>
+        <div>
+          <label>VTI TSVI (cm)</label>
+          <input type="number" id="eco_vti" step="0.1">
+        </div>
+        <div>
+          <label>Frecuencia cardíaca (lpm)</label>
+          <input type="number" id="eco_fc">
+        </div>
       </div>
-      <div>
-        <label>VTI TSVI (cm)</label>
-        <input type="number" id="eco_vti" step="0.1" min="0">
+
+      <button onclick="calcularGCEco()">Calcular GC</button>
+
+      <div id="resultadoGCEco"></div>
+      <div id="interpretacionGCEco" class="note"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend><h3>Fracción de acortamiento</h3></legend>
+
+      <div class="grid-2">
+        <div>
+          <label>DDVI (cm)</label>
+          <input type="number" id="fa_ddvi" step="0.1">
+        </div>
+        <div>
+          <label>DSVI (cm)</label>
+          <input type="number" id="fa_dsvi" step="0.1">
+        </div>
       </div>
-      <div>
-        <label>Frecuencia cardíaca (lpm)</label>
-        <input type="number" id="eco_fc" step="1" min="0">
-      </div>
-    </div>
 
-    <button onclick="calcularGCEco()">Calcular GC</button>
+      <button onclick="calcularFA()">Calcular FA</button>
 
-    <div id="resultadoGCEco"></div>
-    <div id="interpretacionGCEco" class="note"></div>
-  </fieldset>
+      <div id="resultadoFA"></div>
+    </fieldset>
+  </section>
 
-  <!-- FA -->
-  <fieldset>
-    <legend><h3>Fracción de acortamiento</h3></legend>
+  <!-- =========================
+       Oxigenación
+  ========================== -->
+  <section class="panel">
 
-    <div class="grid-2">
-      <div>
-        <label>DDVI (cm)</label>
-        <input type="number" id="fa_ddvi" step="0.1" min="0">
-      </div>
-      <div>
-        <label>DSVI (cm)</label>
-        <input type="number" id="fa_dsvi" step="0.1" min="0">
-      </div>
-    </div>
+    <h2>🩸 Oxigenación · DO₂ / VO₂</h2>
 
-    <button onclick="calcularFA()">Calcular FA</button>
+    <fieldset>
+      <label>Gasto cardíaco (L/min)</label>
+      <input type="number" id="oxi_gc" step="0.1">
+      <label>Hemoglobina (g/dL)</label>
+      <input type="number" id="oxi_hb" step="0.1">
+    </fieldset>
 
-    <div id="resultadoFA"></div>
-    <div id="detalleFA" class="note"></div>
-  </fieldset>
-</section>
+    <fieldset>
+      <label>SaO₂ (%)</label>
+      <input type="number" id="oxi_sao2">
+      <label>PaO₂ (mmHg)</label>
+      <input type="number" id="oxi_pao2">
+    </fieldset>
 
-<!-- =========================
-     Oxigenación
-========================== -->
-<section class="panel" data-module="oxigenacion">
+    <fieldset>
+      <label>SvO₂ (%)</label>
+      <input type="number" id="oxi_svo2">
+      <label>PvO₂ (mmHg)</label>
+      <input type="number" id="oxi_pvo2">
+    </fieldset>
 
-  <h2><span class="icon icon-blood"></span> Oxigenación · DO₂ / VO₂</h2>
+    <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
 
-  <fieldset>
-    <legend><h3>Hemodinámica</h3></legend>
-    <label>Gasto cardíaco (L/min)</label>
-    <input type="number" id="oxi_gc" step="0.1">
-    <label>Hemoglobina (g/dL)</label>
-    <input type="number" id="oxi_hb" step="0.1">
-  </fieldset>
+    <div id="resultadoOxigenacionDetalle" class="note"></div>
+  </section>
 
-  <fieldset>
-    <legend><h3>Gasometría arterial</h3></legend>
-    <input type="number" id="oxi_sao2" placeholder="SaO₂ %">
-    <input type="number" id="oxi_pao2" placeholder="PaO₂">
-    <input type="number" id="oxi_paco2" placeholder="PaCO₂">
-    <input type="number" id="oxi_hco3a" placeholder="HCO₃⁻">
-  </fieldset>
+  <!-- =========================
+       Presiones y perfusión
+  ========================== -->
+  <section class="panel">
 
-  <fieldset>
-    <legend><h3>Gasometría venosa</h3></legend>
-    <input type="number" id="oxi_svo2" placeholder="SvO₂ %">
-    <input type="number" id="oxi_pvo2" placeholder="PvO₂">
-    <input type="number" id="oxi_pvco2" placeholder="PvCO₂">
-    <input type="number" id="oxi_hco3v" placeholder="HCO₃⁻">
-  </fieldset>
+    <h2>🧠 Presiones y perfusión</h2>
 
-  <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
+    <label>TAM (mmHg)</label>
+    <input type="number" id="rvs_tam">
 
-  <div id="resultadoOxigenacion"></div>
-  <div id="resultadoOxigenacionDetalle" class="note"></div>
-</section>
+    <label>PVC (mmHg)</label>
+    <input type="number" id="rvs_pvc">
 
-<!-- =========================
-     Compensación renal
-========================== -->
-<section class="panel" data-module="renal">
+    <label>GC (L/min)</label>
+    <input type="number" id="rvs_gc">
 
-  <h2><span class="icon icon-rinon"></span> Compensación renal</h2>
+    <button onclick="calcularRVS()">Calcular RVS</button>
+    <div id="resultadoRVS"></div>
 
-  <fieldset>
-    <label>¿Descompensación hemodinámica?</label>
-    <select id="renal_hemo" onchange="renalPaso1()">
-      <option value="">Seleccione</option>
-      <option value="1">Sí</option>
-      <option value="0">No</option>
-    </select>
-  </fieldset>
+  </section>
 
-  <fieldset id="renal_paso2" style="display:none">
-    <label>Na urinario</label>
-    <select id="renal_na" onchange="renalPaso2()">
-      <option value="">Seleccione</option>
-      <option value="bajo">&lt;20</option>
-      <option value="alto">&gt;40</option>
-    </select>
-  </fieldset>
+</main>
 
-  <fieldset id="renal_paso3" style="display:none">
-    <label>¿ERC conocida?</label>
-    <select id="renal_erc" onchange="renalPaso3()">
-      <option value="">Seleccione</option>
-      <option value="1">Sí</option>
-      <option value="0">No</option>
-    </select>
-  </fieldset>
+<!-- JS DEL MÓDULO -->
+<script src="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.js?v=1" defer></script>
 
-  <fieldset id="renal_paso4" style="display:none">
-    <label>K urinario</label>
-    <select id="renal_k" onchange="renalPaso4()">
-      <option value="">Seleccione</option>
-      <option value="bajo">&lt;15</option>
-      <option value="normal">15–40</option>
-      <option value="alto">&gt;40</option>
-    </select>
-  </fieldset>
-
-  <div id="resultadoRenal"></div>
-  <div id="interpretacionRenal" class="note"></div>
-</section>
-
-<!-- =========================
-     Presiones y perfusión
-========================== -->
-<section class="panel">
-
-  <h2><span class="icon icon-blood"></span> Presiones y perfusión</h2>
-
-  <input type="number" id="rvs_tam" placeholder="TAM mmHg">
-  <input type="number" id="rvs_pvc" placeholder="PVC mmHg">
-  <input type="number" id="rvs_gc" placeholder="GC L/min">
-
-  <button onclick="calcularRVS()">Calcular RVS</button>
-  <div id="resultadoRVS"></div>
-
-  <input type="number" id="ppr_tam" placeholder="TAM mmHg">
-  <input type="number" id="ppr_pia" placeholder="PIA mmHg">
-  <button onclick="calcularPPR()">Calcular PPR</button>
-  <div id="resultadoPPR"></div>
-
-  <input type="number" id="ppc_tam" placeholder="TAM mmHg">
-  <input type="number" id="ppc_pic" placeholder="PIC mmHg">
-  <button onclick="calcularPPC()">Calcular PPC</button>
-  <div id="resultadoPPC"></div>
-</section>
+</body>
+</html>
