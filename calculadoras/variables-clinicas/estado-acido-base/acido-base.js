@@ -58,7 +58,14 @@ function calcularDeltaGap() {
     return;
   }
 
-  const delta = (ag - 12) / (24 - hco3);
+  const denom = 24 - hco3;
+  if (denom === 0) {
+    setText("resultadoDeltaGap", "No interpretable");
+    setText("interpretacionDeltaGap", "HCO₃ no disminuido.");
+    return;
+  }
+
+  const delta = (ag - 12) / denom;
   if (!Number.isFinite(delta)) {
     setText("resultadoDeltaGap", "No interpretable");
     return;
@@ -116,3 +123,11 @@ function calcularCalcioCorregido() {
     `<strong>Ca corregido:</strong> ${cac.toFixed(2)} mg/dL`
   );
 }
+
+/* =========================
+   🔑 EXPONER FUNCIONES
+========================= */
+window.calcularAnionGapCorregido = calcularAnionGapCorregido;
+window.calcularDeltaGap = calcularDeltaGap;
+window.calcularSodioCorregido = calcularSodioCorregido;
+window.calcularCalcioCorregido = calcularCalcioCorregido;
