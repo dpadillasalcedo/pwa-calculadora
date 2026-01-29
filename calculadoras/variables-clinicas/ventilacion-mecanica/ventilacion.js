@@ -1,18 +1,9 @@
 console.log("ventilacion.js cargado correctamente");
 
 /* =========================================================
-   VENTILACIÓN MECÁNICA
-   - Peso corporal predicho (PBW)
-   - Ajuste de PCO2
+   HELPERS
 ========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-  safeSetHTML("resultadoPeso", "");
-  safeSetHTML("resultadoPCO2", "");
-  safeSetHTML("resultadoPCO2Detalle", "");
-});
-
-function safeSetHTML(id, html) {
+function setHTML(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
 }
@@ -24,42 +15,49 @@ function numVal(id) {
   return Number.isFinite(v) ? v : null;
 }
 
-/* =========================
+/* =========================================================
    PBW (ARDSnet)
-========================= */
+========================================================= */
 function calcularPesoIdeal() {
   const talla = numVal("talla");
-  const sexo = document.getElementById("sexo")?.value || "";
+  const sexo = document.getElementById("sexo")?.value;
 
   if (!talla || talla < 80 || talla > 250) {
-    safeSetHTML("resultadoPeso", "Ingrese una talla válida (80–250 cm).");
+    setHTML("resultadoPeso", "Ingrese una talla válida (80–250 cm).");
     return;
   }
 
-  if (!["hombre", "mujer"].includes(sexo)) {
-    safeSetHTML("resultadoPeso", "Seleccione el sexo.");
+  if (!sexo) {
+    setHTML("resultadoPeso", "Seleccione el sexo.");
     return;
   }
 
   const base = sexo === "hombre" ? 50 : 45.5;
   const pbw = base + 0.91 * (talla - 152.4);
 
-  safeSetHTML(
+  const vt6 = pbw * 6;
+  const vt7 = pbw * 7;
+  const vt8 = pbw * 8;
+
+  setHTML(
     "resultadoPeso",
     `<strong>PBW:</strong> ${pbw.toFixed(1)} kg<br>
-     <strong>VT recomendado:</strong> ${(pbw * 6).toFixed(0)}–${(pbw * 8).toFixed(0)} mL`
+     <strong>VT protector:</strong><br>
+     • 6 ml/kg → <strong>${vt6.toFixed(0)} mL</strong><br>
+     • 7 ml/kg → <strong>${vt7.toFixed(0)} mL</strong><br>
+     • 8 ml/kg → <strong>${vt8.toFixed(0)} mL</strong>`
   );
 }
 
-/* =========================
-   Ajuste PCO2
-========================= */
+/* =========================================================
+   AJUSTE DE PCO2
+========================================================= */
 function ajustarPCO2() {
   const pco2Act = numVal("pco2Act");
   const pco2Des = numVal("pco2Des");
 
   if (!pco2Act || !pco2Des) {
-    safeSetHTML("resultadoPCO2", "Ingrese PCO₂ actual y deseada.");
+    setHTML("resultadoPCO2", "Ingrese PCO₂ actual y deseada.");
     return;
   }
 
@@ -72,21 +70,33 @@ function ajustarPCO2() {
   }
 
   if (!vmin) {
-    safeSetHTML("resultadoPCO2", "Ingrese ventilación minuto o FR + VT.");
+    setHTML("resultadoPCO2", "Ingrese ventilación minuto o FR + VT.");
     return;
   }
 
   const ratio = pco2Act / pco2Des;
-  const nuevaVmin = vmin * ratio;
+  const vminObjetivo = vmin * ratio;
 
-  safeSetHTML(
+  // Propuestas orientativas
+  const frObjetivo = fr ? fr * ratio : null;
+  const vtMax = vt ? vt * ratio : null;
+
+  setHTML(
     "resultadoPCO2",
-    `Ajuste sugerido: <strong>${ratio.toFixed(2)}×</strong>`
+    `<strong>Ventilación minuto objetivo:</strong> ${vminObjetivo.toFixed(2)} L/min`
   );
 
-  safeSetHTML(
-    "resultadoPCO2Detalle",
-    `<strong>Vmin actual:</strong> ${vmin.toFixed(2)} L/min<br>
-     <strong>Vmin objetivo:</strong> ${nuevaVmin.toFixed(2)} L/min`
-  );
+  let detalle = `<strong>Relación aplicada:</strong> ${ratio.toFixed(2)}×<br>`;
+
+  if (frObjetivo) {
+    detalle += `• FR sugerida: <strong>${frObjetivo.toFixed(0)} rpm</strong><br>`;
+  }
+
+  if (vtMax) {
+    detalle += `• VT máximo orientativo: <strong>${vtMax.toFixed(0)} mL</strong><br>`;
+  }
+
+  detalle += `<em>Ajustar priorizando seguridad pulmonar.</em>`;
+
+  setHTML("resultadoPCO2Detalle", detalle);
 }
