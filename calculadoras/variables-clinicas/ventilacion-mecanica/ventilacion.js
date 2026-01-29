@@ -1,7 +1,7 @@
 console.log("ventilacion.js cargado correctamente");
 
 /* =========================================================
-   HELPERS
+   HELPERS (ÚNICOS)
 ========================================================= */
 function setHTML(id, html) {
   const el = document.getElementById(id);
@@ -77,7 +77,6 @@ function ajustarPCO2() {
   const ratio = pco2Act / pco2Des;
   const vminObjetivo = vmin * ratio;
 
-  // Propuestas orientativas
   const frObjetivo = fr ? fr * ratio : null;
   const vtMax = vt ? vt * ratio : null;
 
@@ -101,72 +100,52 @@ function ajustarPCO2() {
   setHTML("resultadoPCO2Detalle", detalle);
 }
 
-console.log("driving-pressure.js cargado correctamente");
-
 /* =========================================================
-   HELPERS
+   DRIVING PRESSURE (ΔP = Pplat − PEEP)
 ========================================================= */
-function setHTML(id, html) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = html;
-}
-
-function numVal(id) {
-  const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  const v = Number(el.value);
-  return Number.isFinite(v) ? v : null;
-}
-
-/* =========================================================
-   DRIVING PRESSURE
-========================================================= */
-function calcularDrivingPressure() {
+function calcularDeltaP() {
   const pplat = numVal("pplat");
   const peep = numVal("peep");
 
   if (pplat === null || peep === null) {
-    setHTML("resultadoDP", "Ingrese Pplat y PEEP.");
-    setHTML("interpretacionDP", "");
+    setHTML("resultadoDeltaP", "Ingrese Pplat y PEEP.");
+    setHTML("interpretacionDeltaP", "");
     return;
   }
 
   if (pplat <= peep) {
-    setHTML("resultadoDP", "Valores no válidos: Pplat debe ser mayor que PEEP.");
-    setHTML("interpretacionDP", "");
+    setHTML(
+      "resultadoDeltaP",
+      "Valores no válidos: Pplat debe ser mayor que PEEP."
+    );
+    setHTML("interpretacionDeltaP", "");
     return;
   }
 
-  const dp = pplat - peep;
+  const deltaP = pplat - peep;
 
   let interpretacion = "";
-  let alerta = "";
 
-  if (dp <= 12) {
+  if (deltaP <= 12) {
     interpretacion =
-      "Driving Pressure <strong>baja</strong>. Estrategia ventilatoria protectora adecuada.";
-  } else if (dp <= 15) {
+      "ΔP baja. Estrategia ventilatoria protectora adecuada.";
+  } else if (deltaP <= 15) {
     interpretacion =
-      "Driving Pressure <strong>aceptable</strong>, pero cercana al límite recomendado.";
+      "ΔP aceptable, cercana al límite recomendado.";
   } else {
     interpretacion =
-      "<strong>Driving Pressure elevada</strong>. Asociada a mayor riesgo de lesión pulmonar y mortalidad.";
-    alerta =
-      "<br><strong>Sugerencias clínicas:</strong><ul>" +
+      "<strong>ΔP elevada</strong>. Asociada a mayor riesgo de lesión pulmonar y mortalidad.<br><br>" +
+      "<strong>Sugerencias:</strong><ul>" +
       "<li>Reducir VT (idealmente 6 ml/kg PBW).</li>" +
-      "<li>Reevaluar PEEP y reclutamiento.</li>" +
-      "<li>Considerar baja compliance pulmonar.</li>" +
+      "<li>Reevaluar PEEP y compliance pulmonar.</li>" +
+      "<li>Considerar pronación o estrategias de reclutamiento.</li>" +
       "</ul>";
   }
 
   setHTML(
-    "resultadoDP",
-    `<strong>Driving Pressure (ΔP):</strong> ${dp.toFixed(1)} cmH₂O`
+    "resultadoDeltaP",
+    `<strong>Driving Pressure (ΔP):</strong> ${deltaP.toFixed(1)} cmH₂O`
   );
 
-  setHTML(
-    "interpretacionDP",
-    `${interpretacion}${alerta}`
-  );
+  setHTML("interpretacionDeltaP", interpretacion);
 }
-
