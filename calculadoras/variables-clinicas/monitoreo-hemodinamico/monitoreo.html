@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Monitoreo hemodinámico y microcirculatorio | Calculadora UCI</title>
-
+  <title>Monitoreo hemodinámico | Calculadora UCI</title>
   <meta
     name="description"
-    content="Herramientas de monitoreo hemodinámico, oxigenación, ecocardiografía y perfusión tisular."
+    content="Monitoreo hemodinámico y microcirculatorio: GC, oxigenación, RVS, ecocardiografía."
   />
-
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- CSS DEL MÓDULO -->
+  <!-- CSS EN LA MISMA CARPETA -->
   <link rel="stylesheet"
         href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=1" />
 </head>
@@ -24,7 +22,7 @@
 <main class="app container">
 
   <header class="app-header">
-    <h1>Monitoreo hemodinámico y microcirculatorio</h1>
+    <h1>Monitoreo hemodinámico</h1>
     <p class="subtitle">
       Evaluación integrada de gasto cardíaco, oxigenación y perfusión
     </p>
@@ -46,22 +44,22 @@
 
       <div class="grid-3">
         <div>
-          <label>Diámetro TSVI (cm)</label>
+          <label for="eco_dtsvi">Diámetro TSVI (cm)</label>
           <input type="number" id="eco_dtsvi" step="0.1">
         </div>
         <div>
-          <label>VTI TSVI (cm)</label>
+          <label for="eco_vti">VTI TSVI (cm)</label>
           <input type="number" id="eco_vti" step="0.1">
         </div>
         <div>
-          <label>Frecuencia cardíaca (lpm)</label>
+          <label for="eco_fc">Frecuencia cardíaca (lpm)</label>
           <input type="number" id="eco_fc">
         </div>
       </div>
 
-      <button onclick="calcularGCEco()">Calcular GC</button>
+      <button type="button" onclick="calcularGCEco()">Calcular GC</button>
 
-      <div id="resultadoGCEco"></div>
+      <div id="resultadoGCEco" class="result"></div>
       <div id="interpretacionGCEco" class="note"></div>
     </fieldset>
 
@@ -70,19 +68,20 @@
 
       <div class="grid-2">
         <div>
-          <label>DDVI (cm)</label>
+          <label for="fa_ddvi">DDVI (cm)</label>
           <input type="number" id="fa_ddvi" step="0.1">
         </div>
         <div>
-          <label>DSVI (cm)</label>
+          <label for="fa_dsvi">DSVI (cm)</label>
           <input type="number" id="fa_dsvi" step="0.1">
         </div>
       </div>
 
-      <button onclick="calcularFA()">Calcular FA</button>
+      <button type="button" onclick="calcularFA()">Calcular FA</button>
 
-      <div id="resultadoFA"></div>
+      <div id="resultadoFA" class="result"></div>
     </fieldset>
+
   </section>
 
   <!-- =========================
@@ -93,29 +92,30 @@
     <h2>🩸 Oxigenación · DO₂ / VO₂</h2>
 
     <fieldset>
-      <label>Gasto cardíaco (L/min)</label>
+      <label for="oxi_gc">Gasto cardíaco (L/min)</label>
       <input type="number" id="oxi_gc" step="0.1">
-      <label>Hemoglobina (g/dL)</label>
+      <label for="oxi_hb">Hemoglobina (g/dL)</label>
       <input type="number" id="oxi_hb" step="0.1">
     </fieldset>
 
     <fieldset>
-      <label>SaO₂ (%)</label>
+      <label for="oxi_sao2">SaO₂ (%)</label>
       <input type="number" id="oxi_sao2">
-      <label>PaO₂ (mmHg)</label>
+      <label for="oxi_pao2">PaO₂ (mmHg)</label>
       <input type="number" id="oxi_pao2">
     </fieldset>
 
     <fieldset>
-      <label>SvO₂ (%)</label>
+      <label for="oxi_svo2">SvO₂ (%)</label>
       <input type="number" id="oxi_svo2">
-      <label>PvO₂ (mmHg)</label>
+      <label for="oxi_pvo2">PvO₂ (mmHg)</label>
       <input type="number" id="oxi_pvo2">
     </fieldset>
 
-    <button onclick="calcularOxigenacion()">Calcular oxigenación</button>
+    <button type="button" onclick="calcularOxigenacion()">Calcular oxigenación</button>
 
     <div id="resultadoOxigenacionDetalle" class="note"></div>
+
   </section>
 
   <!-- =========================
@@ -123,25 +123,24 @@
   ========================== -->
   <section class="panel">
 
-    <h2>🧠 Presiones y perfusión</h2>
+    <h2>🧠 Presiones / Resistencia vascular</h2>
 
-    <label>TAM (mmHg)</label>
+    <label for="rvs_tam">TAM (mmHg)</label>
     <input type="number" id="rvs_tam">
 
-    <label>PVC (mmHg)</label>
+    <label for="rvs_pvc">PVC (mmHg)</label>
     <input type="number" id="rvs_pvc">
 
-    <label>GC (L/min)</label>
+    <label for="rvs_gc">GC (L/min)</label>
     <input type="number" id="rvs_gc">
 
-    <button onclick="calcularRVS()">Calcular RVS</button>
-    <div id="resultadoRVS"></div>
+    <button type="button" onclick="calcularRVS()">Calcular RVS</button>
+    <div id="resultadoRVS" class="result"></div>
 
   </section>
 
 </main>
 
-<!-- JS DEL MÓDULO -->
 <script src="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.js?v=1" defer></script>
 
 </body>
