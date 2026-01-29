@@ -14,7 +14,7 @@
 
 <body>
 
-<main class="app container">
+<main class="container">
 
   <header class="app-header">
     <h1>Monitoreo hemodinámico</h1>
@@ -28,7 +28,7 @@
     <h2>🫀 Ecocardiografía</h2>
 
     <fieldset>
-      <legend><h3>Gasto cardíaco por VTI</h3></legend>
+      <legend>Gasto cardíaco por VTI</legend>
 
       <div class="grid-3">
         <div>
@@ -51,7 +51,7 @@
     </fieldset>
 
     <fieldset>
-      <legend><h3>Fracción de acortamiento</h3></legend>
+      <legend>Fracción de acortamiento</legend>
 
       <div class="grid-2">
         <div>
@@ -66,6 +66,7 @@
 
       <button onclick="calcularFA()">Calcular FA</button>
       <div id="resultadoFA" class="result"></div>
+      <div id="interpretacionFA" class="note"></div>
     </fieldset>
   </section>
 
@@ -117,6 +118,7 @@
 
     <button onclick="calcularRVS()">Calcular RVS</button>
     <div id="resultadoRVS" class="result"></div>
+    <div id="interpretacionRVS" class="note"></div>
   </section>
 
 </main>
