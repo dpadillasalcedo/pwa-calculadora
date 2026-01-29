@@ -100,3 +100,73 @@ function ajustarPCO2() {
 
   setHTML("resultadoPCO2Detalle", detalle);
 }
+
+console.log("driving-pressure.js cargado correctamente");
+
+/* =========================================================
+   HELPERS
+========================================================= */
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+function numVal(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
+  return Number.isFinite(v) ? v : null;
+}
+
+/* =========================================================
+   DRIVING PRESSURE
+========================================================= */
+function calcularDrivingPressure() {
+  const pplat = numVal("pplat");
+  const peep = numVal("peep");
+
+  if (pplat === null || peep === null) {
+    setHTML("resultadoDP", "Ingrese Pplat y PEEP.");
+    setHTML("interpretacionDP", "");
+    return;
+  }
+
+  if (pplat <= peep) {
+    setHTML("resultadoDP", "Valores no válidos: Pplat debe ser mayor que PEEP.");
+    setHTML("interpretacionDP", "");
+    return;
+  }
+
+  const dp = pplat - peep;
+
+  let interpretacion = "";
+  let alerta = "";
+
+  if (dp <= 12) {
+    interpretacion =
+      "Driving Pressure <strong>baja</strong>. Estrategia ventilatoria protectora adecuada.";
+  } else if (dp <= 15) {
+    interpretacion =
+      "Driving Pressure <strong>aceptable</strong>, pero cercana al límite recomendado.";
+  } else {
+    interpretacion =
+      "<strong>Driving Pressure elevada</strong>. Asociada a mayor riesgo de lesión pulmonar y mortalidad.";
+    alerta =
+      "<br><strong>Sugerencias clínicas:</strong><ul>" +
+      "<li>Reducir VT (idealmente 6 ml/kg PBW).</li>" +
+      "<li>Reevaluar PEEP y reclutamiento.</li>" +
+      "<li>Considerar baja compliance pulmonar.</li>" +
+      "</ul>";
+  }
+
+  setHTML(
+    "resultadoDP",
+    `<strong>Driving Pressure (ΔP):</strong> ${dp.toFixed(1)} cmH₂O`
+  );
+
+  setHTML(
+    "interpretacionDP",
+    `${interpretacion}${alerta}`
+  );
+}
+
