@@ -30,6 +30,7 @@ function calcularGCEco() {
   }
 
   const gc = ((Math.PI * (d / 2) ** 2) * vti * fc) / 1000;
+
   setHTML("resultadoGCEco", `<strong>GC:</strong> ${gc.toFixed(2)} L/min`);
 
   let interp = "";
@@ -41,7 +42,7 @@ function calcularGCEco() {
 }
 
 /* =========================================================
-   FA
+   FRACCIÓN DE ACORTAMIENTO
 ========================================================= */
 function calcularFA() {
   const dd = getNum("fa_ddvi"),
@@ -72,7 +73,7 @@ function calcularOxigenacion() {
         svo2 = getNum("oxi_svo2"),
         pvo2 = getNum("oxi_pvo2");
 
-  if ([gc, hb, sao2, pao2, svo2, pvo2].some(x => x === null)) {
+  if ([gc, hb, sao2, pao2, svo2, pvo2].some(v => v === null)) {
     setHTML("resultadoOxigenacionDetalle", "Complete todos los parámetros.");
     return;
   }
@@ -86,11 +87,9 @@ function calcularOxigenacion() {
   setHTML(
     "resultadoOxigenacionDetalle",
     `<ul>
-       <li><strong>DO₂:</strong> ${DO2.toFixed(
-         0
-       )} mL/min</li>
-       <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min</li>
-     </ul>`
+      <li><strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min</li>
+      <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min</li>
+    </ul>`
   );
 }
 
@@ -110,3 +109,11 @@ function calcularRVS() {
   const rvs = ((tam - (pvc || 0)) / gc) * 80;
   setHTML("resultadoRVS", `<strong>RVS:</strong> ${rvs.toFixed(0)} dyn·s·cm⁻⁵`);
 }
+
+/* =========================================================
+   🔑 EXPONER FUNCIONES AL WINDOW
+========================================================= */
+window.calcularGCEco = calcularGCEco;
+window.calcularFA = calcularFA;
+window.calcularOxigenacion = calcularOxigenacion;
+window.calcularRVS = calcularRVS;
