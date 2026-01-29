@@ -1,6 +1,7 @@
 function getNum(id) {
-  const v = document.getElementById(id).value;
-  return v === "" ? null : Number(v);
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  return Number(el.value);
 }
 
 function setHTML(id, html) {
@@ -45,11 +46,8 @@ function calcularFA() {
     fa <= 45 ? "Función sistólica conservada" :
     "Estado hiperdinámico";
 
-  setHTML(
-    "resultadoFA",
-    `<strong>FA:</strong> ${fa.toFixed(1)} %<br>
-     <span class="note">${interp} (Normal: 28–45%)</span>`
-  );
+  setHTML("resultadoFA", `<strong>FA:</strong> ${fa.toFixed(1)} %`);
+  setHTML("interpretacionFA", `${interp} (Normal: 28–45%)`);
 }
 
 /* =========================
@@ -71,15 +69,22 @@ function calcularOxigenacion() {
   const DO2 = gc * CaO2 * 10;
   const VO2 = gc * (CaO2 - CvO2) * 10;
   const ERO2 = (VO2 / DO2) * 100;
-  const QR = VO2 / DO2;
+
+  let interpDO2 =
+    DO2 < 900 ? "Aporte de oxígeno insuficiente." :
+    "Aporte de oxígeno adecuado.";
+
+  let interpERO2 =
+    ERO2 < 25 ? "Extracción baja." :
+    ERO2 <= 30 ? "Extracción adecuada." :
+    "Extracción aumentada.";
 
   setHTML(
     "resultadoOxigenacionDetalle",
     `<ul>
-      <li><strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min (900–1100)</li>
+      <li><strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min (900–1100) → ${interpDO2}</li>
       <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min (200–250)</li>
-      <li><strong>ERO₂:</strong> ${ERO2.toFixed(1)} % (25–30)</li>
-      <li><strong>QR:</strong> ${QR.toFixed(2)} (0.7–0.9)</li>
+      <li><strong>ERO₂:</strong> ${ERO2.toFixed(1)} % (25–30) → ${interpERO2}</li>
     </ul>`
   );
 }
@@ -103,7 +108,7 @@ function calcularRVS() {
 
   setHTML(
     "resultadoRVS",
-    `<strong>RVS:</strong> ${rvs.toFixed(0)} dyn·s·cm⁻⁵ (800–1200)<br>
-     <span class="note">${interp}</span>`
+    `<strong>RVS:</strong> ${rvs.toFixed(0)} dyn·s·cm⁻⁵ (800–1200)`
   );
+  setHTML("interpretacionRVS", interp);
 }
