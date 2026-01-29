@@ -1,0 +1,182 @@
+/* ================================
+   RESET BÁSICO
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   ESTILOS GENERALES
+================================ */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f9fb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ================================
+   HEADER
+================================ */
+header {
+  background: #ffffff;
+  padding: 32px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e6e9ee;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ================================
+   SECCIÓN INTRO / HERO
+================================ */
+.intro {
+  margin-bottom: 48px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.intro p {
+  max-width: 850px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #444;
+}
+
+/* ================================
+   MENÚ PRINCIPAL (HUB)
+================================ */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Cada bloque */
+.menu article {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.menu a {
+  display: block;
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.menu p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ================================
+   PÁGINAS EN CONSTRUCCIÓN / CONTENEDOR CENTRAL
+================================ */
+.container {
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.container p {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.note {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* ================================
+   LINKS
+================================ */
+a {
+  color: #0066cc;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   FOOTER
+================================ */
+footer {
+  margin-top: 80px;
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #e6e9ee;
+  background: #ffffff;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .intro h2 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 24px 16px;
+  }
+}
+
