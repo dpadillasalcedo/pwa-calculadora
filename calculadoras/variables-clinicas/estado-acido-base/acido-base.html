@@ -1,140 +1,92 @@
-/* =========================
-   ÁCIDO–BASE
-========================= */
-function calcularAnionGapCorregido() {
-  const na = num("na");
-  const k = num("k");
-  const cl = num("cl");
-  const hco3 = num("hco3_ag");
-  let alb = num("alb");
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ácido–Base | Calculadora UCI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./acido-base.css">
+</head>
 
-  const outId = "resultadoAnionGap";
-  if (anyNaN([na, k, cl, hco3]) || na <= 0 || cl <= 0 || hco3 <= 0) {
-    setText(outId, "Complete Na, K, Cl y HCO₃ con valores válidos");
-    return;
-  }
+<body>
 
-  if (!Number.isFinite(alb) || alb <= 0) alb = 4;
+<main class="container">
 
-  const ag = (na + k) - (cl + hco3);
-  const agCorr = ag + 2.5 * (4 - alb);
+  <header class="app-header">
+    <h1>Ácido–Base y electrolitos</h1>
+    <p class="subtitle">Evaluación ácido–base y correcciones bioquímicas</p>
+  </header>
 
-  if (!Number.isFinite(ag) || !Number.isFinite(agCorr)) {
-    setText(outId, "No se pudo calcular el anion gap");
-    return;
-  }
+  <!-- =========================
+       ANION GAP
+  ========================== -->
+  <section class="panel">
+    <h2>🧪 Anion Gap corregido</h2>
 
-  setHTML(outId, `<strong>AG:</strong> ${ag.toFixed(1)} mEq/L<br>
-    <strong>AG corregido (ALB):</strong> ${agCorr.toFixed(1)} mEq/L`);
+    <label>Na⁺</label>
+    <input id="ab_na" type="number">
 
-  trackEvent("calculate_corrected_anion_gap", {
-    ag_meq_l: Number(ag.toFixed(1)),
-    ag_corrected_meq_l: Number(agCorr.toFixed(1)),
-    albumin_g_dl: alb,
-  });
-}
+    <label>K⁺</label>
+    <input id="ab_k" type="number">
 
-function calcularDeltaGap() {
-  const agPaciente = num("agapp");
-  const hco3Paciente = num("bicap");
-  const AG_NORMAL = 12;
-  const HCO3_NORMAL = 24;
+    <label>Cl⁻</label>
+    <input id="ab_cl" type="number">
 
-  const outId = "resultadoDeltaGap";
-  const interpId = "interpretacionDeltaGap";
+    <label>HCO₃⁻</label>
+    <input id="ab_hco3" type="number">
 
-  if (!Number.isFinite(agPaciente) || !Number.isFinite(hco3Paciente)) {
-    setHTML(outId, "<strong>Δ/Δ:</strong> —");
-    setHTML(interpId, "Complete <strong>Anion Gap</strong> y <strong>Bicarbonato</strong>.");
-    return;
-  }
+    <label>Albúmina (g/dL)</label>
+    <input id="ab_alb" type="number" step="0.1">
 
-  if (agPaciente <= 0 || hco3Paciente <= 0) {
-    setHTML(outId, "<strong>Δ/Δ:</strong> No interpretable");
-    setHTML(interpId, "Valores no fisiológicos.");
-    return;
-  }
+    <button onclick="calcularAnionGapCorregido()">Calcular AG</button>
+    <div id="resultadoAnionGap" class="result"></div>
+  </section>
 
-  const deltaBicarb = HCO3_NORMAL - hco3Paciente;
-  if (deltaBicarb <= 0) {
-    setHTML(outId, "<strong>Δ/Δ:</strong> No interpretable");
-    setHTML(interpId, "HCO₃ no disminuido.");
-    return;
-  }
+  <!-- =========================
+       DELTA / DELTA
+  ========================== -->
+  <section class="panel">
+    <h2>Δ/Δ (Delta–Delta)</h2>
 
-  const deltaDelta = (agPaciente - AG_NORMAL) / deltaBicarb;
-  if (!Number.isFinite(deltaDelta)) {
-    setHTML(outId, "<strong>Δ/Δ:</strong> —");
-    setHTML(interpId, "No se pudo calcular.");
-    return;
-  }
+    <label>Anion Gap</label>
+    <input id="dd_ag" type="number">
 
-  const texto =
-    deltaDelta < 1
-      ? "Sugiere <strong>acidosis metabólica hiperclorémica</strong> asociada."
-      : deltaDelta <= 2
-        ? "<strong>Acidosis metabólica con anion gap aumentado PURA</strong>."
-        : "Sugiere <strong>alcalosis metabólica</strong> asociada.";
+    <label>HCO₃⁻</label>
+    <input id="dd_hco3" type="number">
 
-  setHTML(outId, `<strong>Δ/Δ:</strong> ${deltaDelta.toFixed(2)}`);
-  setHTML(interpId, texto);
+    <button onclick="calcularDeltaGap()">Calcular Δ/Δ</button>
+    <div id="resultadoDeltaGap" class="result"></div>
+    <div id="interpretacionDeltaGap" class="note"></div>
+  </section>
 
-  trackEvent("calculate_delta_delta", {
-    delta_delta: Number(deltaDelta.toFixed(2)),
-    ag_paciente_meq_l: agPaciente,
-    hco3_paciente_meq_l: hco3Paciente,
-  });
-}
+  <!-- =========================
+       ELECTROLITOS
+  ========================== -->
+  <section class="panel">
+    <h2>🧂 Electrolitos corregidos</h2>
 
-/* =========================
-   ELECTROLITOS
-========================= */
-function calcularSodioCorregido() {
-  const nas = num("nas");
-  const glucs = num("glucs");
-  const outId = "resultadoNaCorregido";
+    <h3>Sodio corregido</h3>
+    <label>Na⁺ medido</label>
+    <input id="na_meas" type="number">
 
-  if (!Number.isFinite(nas) || nas <= 0 || !Number.isFinite(glucs)) {
-    setText(outId, "Complete sodio y glucosa con valores válidos");
-    return;
-  }
+    <label>Glucosa</label>
+    <input id="glu" type="number">
 
-  const nac = nas + (glucs > 100 ? (1.6 * ((glucs - 100) / 100)) : 0);
-  if (!Number.isFinite(nac)) {
-    setText(outId, "No se pudo calcular el sodio corregido");
-    return;
-  }
+    <button onclick="calcularSodioCorregido()">Calcular Na corregido</button>
+    <div id="resultadoNaCorregido" class="result"></div>
 
-  setHTML(outId, `<strong>Na corregido:</strong> ${nac.toFixed(1)} mEq/L`);
-  trackEvent("calculate_corrected_sodium", {
-    sodium_meq_l: nas,
-    glucose_mg_dl: glucs,
-    sodium_corrected_meq_l: Number(nac.toFixed(1)),
-  });
-}
+    <h3>Calcio corregido</h3>
+    <label>Calcio medido</label>
+    <input id="ca_meas" type="number" step="0.1">
 
-function calcularCalcioCorregido() {
-  const cas = num("cas");
-  let albs = num("albs");
-  const outId = "resultadoCaCorregido";
+    <label>Albúmina</label>
+    <input id="alb_meas" type="number" step="0.1">
 
-  if (!Number.isFinite(cas) || cas <= 0) {
-    setText(outId, "Complete calcio con un valor válido");
-    return;
-  }
-  if (!Number.isFinite(albs) || albs <= 0) albs = 4;
+    <button onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
+    <div id="resultadoCaCorregido" class="result"></div>
+  </section>
 
-  const cac = cas + (0.8 * (4 - albs));
-  if (!Number.isFinite(cac)) {
-    setText(outId, "No se pudo calcular el calcio corregido");
-    return;
-  }
+</main>
 
-  setHTML(outId, `<strong>Ca corregido:</strong> ${cac.toFixed(2)} mg/dL`);
-  trackEvent("calculate_corrected_calcium", {
-    calcium_mg_dl: cas,
-    albumin_g_dl: albs,
-    calcium_corrected_mg_dl: Number(cac.toFixed(2)),
-  });
-}
-
+<script src="./acido-base.js"></script>
+</body>
+</html>
