@@ -178,3 +178,7 @@ footer {
 .centered {
   text-align: center;
 }
+
+.intro {
+  margin-bottom: 3.5rem; /* 👈 aire visual claro */
+}
