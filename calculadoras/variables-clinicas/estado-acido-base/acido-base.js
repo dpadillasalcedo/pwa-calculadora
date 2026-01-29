@@ -97,4 +97,22 @@ function calcularSodioCorregido() {
 
 /* =========================
    CALCIO CORREGIDO
-====
+========================= */
+function calcularCalcioCorregido() {
+  const ca = getNum("ca_meas");
+  let alb = getNum("alb_meas");
+
+  if (ca === null) {
+    setText("resultadoCaCorregido", "Complete calcio");
+    return;
+  }
+
+  if (!Number.isFinite(alb) || alb <= 0) alb = 4;
+
+  const cac = ca + 0.8 * (4 - alb);
+
+  setHTML(
+    "resultadoCaCorregido",
+    `<strong>Ca corregido:</strong> ${cac.toFixed(2)} mg/dL`
+  );
+}
