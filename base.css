@@ -37,23 +37,26 @@ body {
 }
 
 /* =========================
-   HEADER
+   HEADER (bloque conceptual)
 ========================= */
 header {
   text-align: center;
   padding: 3.5rem 1.5rem 2.5rem;
+  margin-bottom: 3rem; /* 👈 AIRE VISUAL CLAVE */
 }
 
 header h1 {
   font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: #f8fafc;
 }
 
 header p {
   font-size: 1rem;
   color: var(--color-muted);
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 /* =========================
@@ -62,7 +65,7 @@ header p {
 main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 0 1.5rem 4rem;
 }
 
 /* =========================
@@ -141,10 +144,6 @@ main {
   transform: translateY(0);
 }
 
-.centered {
-  text-align: center;
-}
-
 /* =========================
    FOOTER
 ========================= */
@@ -164,8 +163,8 @@ footer {
     font-size: 1.8rem;
   }
 
-  main {
-    padding-top: 1.5rem;
+  header {
+    margin-bottom: 2rem; /* menos aire en mobile */
   }
 
   .menu {
@@ -173,4 +172,9 @@ footer {
   }
 }
 
-
+/* =========================
+   UTILIDADES
+========================= */
+.centered {
+  text-align: center;
+}
