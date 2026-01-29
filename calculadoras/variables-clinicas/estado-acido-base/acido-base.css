@@ -87,3 +87,140 @@ button {
   position:relative;
   z-index:1;
 }
+
+:root {
+  --bg:#020617;
+  --card:#0b1220;
+  --border:#1e293b;
+  --primary:#38bdf8;
+  --text:#e5e7eb;
+  --muted:#cbd5e1;
+  --warn:#fbbf24;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui, sans-serif;
+}
+
+.container {
+  max-width:980px;
+  margin:auto;
+  padding:1.5rem 1rem 3rem;
+}
+
+.app-header h1 { color:#f8fafc; margin:0; }
+.subtitle { color:var(--muted); margin-top:.4rem; }
+
+.panel {
+  background:linear-gradient(180deg,var(--card),#0f172a);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:1.75rem;
+  margin-top:2rem;
+}
+
+h2 { margin:0 0 1rem 0; color:#f8fafc; }
+h3 { margin:1.2rem 0 .4rem 0; color:#f8fafc; font-size:1rem; }
+
+label {
+  display:block;
+  margin-top:10px;
+  font-size:.85rem;
+}
+
+input, select {
+  width:100%;
+  margin-top:6px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+}
+
+button {
+  margin-top:14px;
+  width:100%;
+  background:linear-gradient(180deg,var(--primary),#0ea5e9);
+  border:none;
+  border-radius:10px;
+  padding:12px;
+  font-weight:700;
+  color:#020617;
+  cursor:pointer;
+}
+
+.grid-2 {
+  display:grid;
+  gap:14px;
+  grid-template-columns:repeat(2,1fr);
+}
+
+@media (max-width:768px) {
+  .grid-2 { grid-template-columns:1fr; }
+}
+
+.result {
+  margin-top:12px;
+  font-weight:700;
+  line-height:1.35;
+}
+
+.note {
+  margin-top:10px;
+  padding:12px;
+  background:rgba(2,6,23,0.85);
+  border-left:4px solid var(--primary);
+  border-radius:10px;
+  font-size:.88rem;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.alert {
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:rgba(251,191,36,0.12);
+  border:1px solid rgba(251,191,36,0.35);
+  color:#fde68a;
+  font-size:.9rem;
+}
+
+.steps {
+  margin-top:1rem;
+  display:grid;
+  gap:14px;
+}
+
+.step {
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  background:rgba(2,6,23,0.35);
+}
+
+.step-title {
+  font-weight:800;
+  color:#f8fafc;
+  margin-bottom:8px;
+}
+
+.muted { color:var(--muted); }
+.warn { color:var(--warn); font-weight:700; }
+
+.hint {
+  margin-top:8px;
+  font-size:.82rem;
+  color:var(--muted);
+}
+
+.footnote {
+  margin-top:18px;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
