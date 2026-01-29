@@ -74,18 +74,22 @@ button {
 }
 
 .result {
-  margin-top:12px;
-  font-weight:600;
+  margin-top: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: block;
 }
 
 .note {
-  margin-top:10px;
-  padding:12px;
-  background:#020617;
-  border-left:4px solid var(--primary);
-  border-radius:10px;
-  font-size:.85rem;
-  color:var(--muted);
+  margin-top: 6px;
+  margin-bottom: 20px; /* 🔑 CLAVE */
+  padding: 12px;
+  background: #020617;
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: block;
 }
 
 .grid-2, .grid-3 {
@@ -101,3 +105,13 @@ button {
     grid-template-columns:1fr;
   }
 }
+
+fieldset {
+  margin-bottom: 32px; /* 🔑 evita que el siguiente cálculo suba */
+}
+
+.panel > * {
+  position: relative;
+  z-index: 1;
+}
+
