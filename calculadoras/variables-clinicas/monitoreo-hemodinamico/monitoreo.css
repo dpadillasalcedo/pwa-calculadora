@@ -2,7 +2,6 @@
   --bg-page:#020617;
   --bg-card:#0b1220;
   --bg-card-soft:#0f172a;
-  --bg-input:#020617;
 
   --color-border:#1e293b;
   --color-primary:#38bdf8;
@@ -15,7 +14,7 @@
 body {
   margin:0;
   min-height:100vh;
-  background:linear-gradient(180deg,#020617,#020617);
+  background:linear-gradient(180deg, var(--bg-page), var(--bg-page));
   color:var(--color-text);
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
 }
@@ -30,41 +29,33 @@ main.container {
   color:var(--color-title);
 }
 
+.subtitle {
+  color:var(--color-muted);
+}
+
 .panel {
   margin-top:2.5rem;
-  padding:1.6rem;
+  padding:1.75rem;
   background:linear-gradient(180deg,var(--bg-card),var(--bg-card-soft));
   border:1px solid var(--color-border);
-  border-radius:16px;
+  border-radius:18px;
 }
 
 .panel h2 {
   font-size:1.2rem;
-  margin-bottom:0.8rem;
+  font-weight:600;
+  margin-bottom:1rem;
+  color:var(--color-title);
 }
 
 .note {
   margin:12px 0;
   padding:12px;
-  background:#020617;
+  background:rgba(2,6,23,0.8);
   border-left:4px solid var(--color-primary);
   border-radius:10px;
-  font-size:.85rem;
+  font-size:.88rem;
   color:var(--color-muted);
-}
-
-fieldset {
-  margin-top:1.2rem;
-  padding:1.2rem;
-  border-radius:14px;
-  border:1px solid var(--color-border);
-  background:rgba(15,23,42,.6);
-}
-
-label {
-  display:block;
-  margin-top:10px;
-  font-size:.82rem;
 }
 
 input {
@@ -72,34 +63,38 @@ input {
   margin-top:6px;
   padding:10px 12px;
   border-radius:10px;
-  background:var(--bg-input);
   border:1px solid var(--color-border);
+  background:var(--bg-page);
   color:var(--color-text);
+}
+
+label {
+  display:block;
+  margin-top:10px;
+  font-size:.85rem;
 }
 
 button {
   margin-top:14px;
   width:100%;
-  background:var(--color-primary);
+  background:linear-gradient(180deg,var(--color-primary),#0ea5e9);
   border:none;
   border-radius:10px;
-  padding:10px;
+  padding:12px;
   font-weight:600;
   color:#020617;
+  cursor:pointer;
 }
 
-.grid-2 {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
+.grid-2,
 .grid-3 {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:14px;
 }
 
-@media(max-width:768px){
-  .grid-2,.grid-3{grid-template-columns:1fr;}
+.grid-2 {grid-template-columns:repeat(2,1fr);}
+.grid-3 {grid-template-columns:repeat(3,1fr);}
+
+@media (max-width:768px) {
+  .grid-2, .grid-3 {grid-template-columns:1fr;}
 }
