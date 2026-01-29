@@ -12,11 +12,8 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- ✅ CSS EN LA MISMA CARPETA (RUTA RELATIVA) -->
- <link rel="stylesheet" href="./monitoreo.css?v=1">
-<script src="./monitoreo.js?v=1" defer></script>
-
-
+  <!-- ✅ CSS EN LA MISMA CARPETA -->
+  <link rel="stylesheet" href="./monitoreo.css?v=1">
 </head>
 
 <body>
@@ -34,7 +31,6 @@
        Ecocardiografía
   ========================== -->
   <section class="panel">
-
     <h2>🫀 Ecocardiografía</h2>
 
     <p class="note">
@@ -83,14 +79,12 @@
 
       <div id="resultadoFA" class="result"></div>
     </fieldset>
-
   </section>
 
   <!-- =========================
        Oxigenación
   ========================== -->
   <section class="panel">
-
     <h2>🩸 Oxigenación · DO₂ / VO₂</h2>
 
     <fieldset>
@@ -117,14 +111,12 @@
     <button type="button" onclick="calcularOxigenacion()">Calcular oxigenación</button>
 
     <div id="resultadoOxigenacionDetalle" class="note"></div>
-
   </section>
 
   <!-- =========================
-       Presiones y perfusión
+       RVS
   ========================== -->
   <section class="panel">
-
     <h2>🧠 Presiones / Resistencia vascular</h2>
 
     <label for="rvs_tam">TAM (mmHg)</label>
@@ -138,12 +130,11 @@
 
     <button type="button" onclick="calcularRVS()">Calcular RVS</button>
     <div id="resultadoRVS" class="result"></div>
-
   </section>
 
 </main>
 
-<!-- ✅ JS EN LA MISMA CARPETA (RUTA RELATIVA) -->
+<!-- ✅ JS SOLO UNA VEZ -->
 <script src="./monitoreo.js?v=1" defer></script>
 
 </body>
