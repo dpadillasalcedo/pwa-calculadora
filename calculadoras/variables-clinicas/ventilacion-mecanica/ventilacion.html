@@ -14,8 +14,8 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./ventilacion.css" />
+  <!-- ✅ CSS: ruta absoluta (evita 404) -->
+  <link rel="stylesheet" href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=4" />
 </head>
 
 <body>
@@ -41,7 +41,7 @@
     </p>
 
     <label for="talla">Talla (cm)</label>
-    <input type="number" id="talla" min="80" max="250" />
+    <input type="number" id="talla" min="80" max="250" step="1" inputmode="numeric" />
 
     <label for="sexo">Sexo</label>
     <select id="sexo">
@@ -52,7 +52,7 @@
 
     <button type="button" onclick="calcularPesoIdeal()">Calcular PBW</button>
 
-    <div id="resultadoPeso" class="result"></div>
+    <div id="resultadoPeso" class="result" role="status" aria-live="polite"></div>
 
   </section>
 
@@ -69,29 +69,29 @@
     </p>
 
     <label for="pco2Act">PCO₂ actual (mmHg)</label>
-    <input type="number" id="pco2Act" step="0.1" />
+    <input type="number" id="pco2Act" step="0.1" inputmode="decimal" />
 
     <label for="pco2Des">PCO₂ deseada (mmHg)</label>
-    <input type="number" id="pco2Des" step="0.1" />
+    <input type="number" id="pco2Des" step="0.1" inputmode="decimal" />
 
     <div class="grid-2">
       <div>
         <label for="fr_actual">FR actual (rpm)</label>
-        <input type="number" id="fr_actual" />
+        <input type="number" id="fr_actual" step="1" inputmode="numeric" />
       </div>
       <div>
         <label for="vt_actual">VT actual (mL)</label>
-        <input type="number" id="vt_actual" />
+        <input type="number" id="vt_actual" step="10" inputmode="numeric" />
       </div>
     </div>
 
     <label for="vmin_actual">Ventilación minuto actual (L/min)</label>
-    <input type="number" id="vmin_actual" step="0.1" />
+    <input type="number" id="vmin_actual" step="0.1" inputmode="decimal" />
 
     <button type="button" onclick="ajustarPCO2()">Calcular ajuste</button>
 
-    <div id="resultadoPCO2" class="result"></div>
-    <div id="resultadoPCO2Detalle" class="note"></div>
+    <div id="resultadoPCO2" class="result" role="status" aria-live="polite"></div>
+    <div id="resultadoPCO2Detalle" class="note" aria-live="polite"></div>
 
   </section>
 
@@ -103,30 +103,27 @@
     <h2>🫁 Driving Pressure (ΔP)</h2>
 
     <p class="note">
-      Diferencia entre presión plateau y PEEP. Predictor de lesión pulmonar.
+      Diferencia entre presión plateau y PEEP.
       <br><strong>ΔP = Pplat − PEEP</strong>
     </p>
 
     <label for="pplat">Presión Plateau (cmH₂O)</label>
-    <input type="number" id="pplat" step="0.1" />
+    <input type="number" id="pplat" step="0.1" inputmode="decimal" />
 
     <label for="peep">PEEP (cmH₂O)</label>
-    <input type="number" id="peep" step="0.1" />
+    <input type="number" id="peep" step="0.1" inputmode="decimal" />
 
     <button type="button" onclick="calcularDeltaP()">Calcular ΔP</button>
 
-    <div id="resultadoDeltaP" class="result"></div>
-    <div id="interpretacionDeltaP" class="note"></div>
+    <div id="resultadoDeltaP" class="result" role="status" aria-live="polite"></div>
+    <div id="interpretacionDeltaP" class="note" aria-live="polite"></div>
 
   </section>
 
 </main>
 
-<!-- JS -->
-<script src="./ventilacion.js" defer></script>
-<script src="./driving-pressure.js" defer></script>
+<!-- ✅ JS: ruta absoluta (evita 404) | ✅ sin driving-pressure.js -->
+<script src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=4" defer></script>
 
 </body>
 </html>
-
-
