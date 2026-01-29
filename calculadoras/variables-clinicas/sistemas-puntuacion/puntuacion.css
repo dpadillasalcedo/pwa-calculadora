@@ -1,14 +1,12 @@
 :root {
-  --bg: #020617;
-  --card: #0b1220;
-  --card-2: #0f172a;
-  --border: #1e293b;
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
-  --text: #e5e7eb;
-  --muted: #cbd5e1;
-  --warn: #fbbf24;
-  --danger: #ef4444;
+  --bg:#020617;
+  --card:#0b1220;
+  --card-2:#0f172a;
+  --border:#1e293b;
+  --primary:#38bdf8;
+  --primary-strong:#0ea5e9;
+  --text:#e5e7eb;
+  --muted:#cbd5e1;
 }
 
 /* =========================
@@ -27,9 +25,9 @@ body {
 }
 
 .container {
-  max-width: 980px;
+  max-width: 960px;
   margin: auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1.5rem;
 }
 
 /* =========================
@@ -42,13 +40,13 @@ body {
 }
 
 .subtitle {
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
   color: var(--muted);
   font-size: 0.95rem;
 }
 
 /* =========================
-   PANEL
+   PANEL (igual a otros módulos)
 ========================= */
 .panel {
   background: linear-gradient(180deg, var(--card), var(--card-2));
@@ -56,7 +54,6 @@ body {
   border-radius: 18px;
   padding: 1.75rem;
   margin-top: 2rem;
-  position: relative;
 }
 
 .panel > * {
@@ -90,7 +87,6 @@ fieldset {
 
 legend {
   padding: 0;
-  margin-bottom: 0.5rem;
 }
 
 label {
@@ -124,7 +120,6 @@ button {
   color: #020617;
   font-weight: 700;
   cursor: pointer;
-  transition: filter 0.15s ease;
 }
 
 button:hover {
@@ -132,7 +127,7 @@ button:hover {
 }
 
 /* =========================
-   RESULTS
+   RESULTS (igual que otros bloques)
 ========================= */
 .result {
   margin-top: 1rem;
@@ -143,42 +138,16 @@ button:hover {
 .note {
   margin-top: 0.75rem;
   padding: 12px;
-  background: rgba(2, 6, 23, 0.85);
+  background: #020617;
   border-left: 4px solid var(--primary);
   border-radius: 10px;
   font-size: 0.88rem;
   color: var(--muted);
-}
-
-.note strong {
-  color: #f8fafc;
+  line-height: 1.4;
 }
 
 /* =========================
-   RISK / ALERTS
-========================= */
-.alert {
-  margin-top: 0.8rem;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  color: #fde68a;
-  font-size: 0.9rem;
-}
-
-.warn {
-  color: var(--warn);
-  font-weight: 700;
-}
-
-.danger {
-  color: var(--danger);
-  font-weight: 700;
-}
-
-/* =========================
-   ICONS (opcional)
+   ICONOS (neutros)
 ========================= */
 .icon {
   display: inline-flex;
@@ -193,7 +162,7 @@ button:hover {
 }
 
 /* =========================
-   ADS / PLACEHOLDERS
+   ADS / PLACEHOLDER
 ========================= */
 .ad-slot {
   margin-top: 1.2rem;
@@ -207,7 +176,7 @@ button:hover {
 ========================= */
 @media (max-width: 768px) {
   .container {
-    padding: 1.2rem 0.8rem 2.5rem;
+    padding: 1.25rem 0.9rem;
   }
 
   .panel {
