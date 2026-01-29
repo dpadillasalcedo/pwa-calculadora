@@ -1,91 +1,103 @@
 /* =========================
-   SCORES
+   HELPERS
 ========================= */
-function resaltarRangoSOFA(score) {
-  const list = document.getElementById("sofaMortalityList");
-  if (!list || !Number.isFinite(score)) return;
-  list.querySelectorAll("li").forEach(li => {
-    li.classList.remove("active-range");
-    const min = Number(li.dataset.min);
-    const max = Number(li.dataset.max);
-    if (Number.isFinite(min) && Number.isFinite(max) && score >= min && score <= max) {
-      li.classList.add("active-range");
-    }
-  });
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
 }
 
-function limpiarRangoSOFA() {
-  const list = document.getElementById("sofaMortalityList");
-  if (!list) return;
-  list.querySelectorAll("li").forEach(li => li.classList.remove("active-range"));
-}
-
+/* =========================
+   SOFA-2
+========================= */
 function calcularSOFA2() {
-  const ids = ["sofa_neuro","sofa_resp","sofa_cv","sofa_hep","sofa_renal","sofa_coag"];
-  let total = 0;
-
-  for (const id of ids) {
-    const el = document.getElementById(id);
-    if (!el) {
-      setHTML("resultadoSOFA2","<strong>SOFA-2:</strong> Error de configuración");
-      limpiarRangoSOFA();
-      return;
-    }
-    const value = Number(el.value);
-    if (!Number.isFinite(value) || value < 0 || value > 4) {
-      setHTML("resultadoSOFA2","<strong>SOFA-2:</strong> Seleccione todas las variables");
-      limpiarRangoSOFA();
-      return;
-    }
-    total += value;
-  }
-
-  let mortalidadTxt = "";
-  const list = document.getElementById("sofaMortalityList");
-  if (list) {
-    const match = Array.from(list.querySelectorAll("li")).find(li => {
-      const min = Number(li.dataset.min);
-      const max = Number(li.dataset.max);
-      return Number.isFinite(min) && Number.isFinite(max) && total >= min && total <= max;
-    });
-    if (match) {
-      const text = match.textContent.trim();
-      const idx = text.indexOf(":");
-      mortalidadTxt = idx !== -1 ? text.slice(idx + 1).trim() : text;
-    }
-  }
-
-  setHTML(
-    "resultadoSOFA2",
-    `<strong>SOFA-2 total:</strong> ${total} / 24${
-      mortalidadTxt ? `<br><strong>Mortalidad estimada:</strong> ${mortalidadTxt}` : ""
-    }`
-  );
-
-  resaltarRangoSOFA(total);
-  const report = document.getElementById("sofaMortalityReport");
-  if (report) report.style.display = "block";
-
-  if (typeof trackEvent === "function") {
-    trackEvent("calculate_sofa2_score", { sofa2_score: total });
-  }
-}
-
-function calcularAPACHE2() {
   const ids = [
-    "ap_temp","ap_map","ap_hr","ap_ph",
-    "ap_na","ap_k","ap_cr","ap_gcs",
-    "ap_age","ap_chronic"
+    "sofa2_neuro",
+    "sofa2_resp",
+    "sofa2_cv",
+    "sofa2_liver",
+    "sofa2_platelets",
+    "sofa2_renal"
   ];
 
   let total = 0;
 
   for (const id of ids) {
     const el = document.getElementById(id);
+
     if (!el || el.value === "") {
-      setHTML("resultadoAPACHE2", "<strong>APACHE II:</strong> Complete todas las variables");
+      setHTML(
+        "resultadoSOFA2",
+        "<strong>SOFA-2:</strong> Seleccione todas las variables"
+      );
+      setHTML("interpretacionSOFA2", "");
       return;
     }
+
+    const value = Number(el.value);
+    if (!Number.isFinite(value) || value < 0 || value > 4) {
+      setHTML(
+        "resultadoSOFA2",
+        "<strong>SOFA-2:</strong> Error en los valores seleccionados"
+      );
+      setHTML("interpretacionSOFA2", "");
+      return;
+    }
+
+    total += value;
+  }
+
+  let interpretacion =
+    total <= 2 ? "Disfunción orgánica mínima"
+    : total <= 6 ? "Disfunción orgánica leve"
+    : total <= 9 ? "Disfunción orgánica moderada"
+    : total <= 12 ? "Disfunción orgánica severa"
+    : "Alto riesgo de mortalidad";
+
+  setHTML(
+    "resultadoSOFA2",
+    `<strong>SOFA-2 total:</strong> ${total} / 24`
+  );
+
+  setHTML(
+    "interpretacionSOFA2",
+    interpretacion
+  );
+
+  if (typeof trackEvent === "function") {
+    trackEvent("calculate_sofa2_score", { sofa2_score: total });
+  }
+}
+
+/* =========================
+   APACHE II
+========================= */
+function calcularAPACHE2() {
+  const ids = [
+    "ap_temp",
+    "ap_map",
+    "ap_hr",
+    "ap_ph",
+    "ap_na",
+    "ap_k",
+    "ap_cr",
+    "ap_gcs",
+    "ap_age",
+    "ap_chronic"
+  ];
+
+  let total = 0;
+
+  for (const id of ids) {
+    const el = document.getElementById(id);
+
+    if (!el || el.value === "") {
+      setHTML(
+        "resultadoAPACHE2",
+        "<strong>APACHE II:</strong> Complete todas las variables"
+      );
+      return;
+    }
+
     total += Number(el.value);
   }
 
@@ -106,16 +118,31 @@ function calcularAPACHE2() {
   }
 }
 
+/* =========================
+   SAPS II
+========================= */
 function calcularSAPS2() {
-  const ids = ["saps_age","saps_hr","saps_map","saps_temp","saps_gcs"];
+  const ids = [
+    "saps_age",
+    "saps_hr",
+    "saps_map",
+    "saps_temp",
+    "saps_gcs"
+  ];
+
   let total = 0;
 
   for (const id of ids) {
     const el = document.getElementById(id);
+
     if (!el || el.value === "") {
-      setHTML("resultadoSAPS2","<strong>SAPS II:</strong> Complete todas las variables");
+      setHTML(
+        "resultadoSAPS2",
+        "<strong>SAPS II:</strong> Complete todas las variables"
+      );
       return;
     }
+
     total += Number(el.value);
   }
 
@@ -135,3 +162,9 @@ function calcularSAPS2() {
   }
 }
 
+/* =========================
+   EXPONER FUNCIONES
+========================= */
+window.calcularSOFA2 = calcularSOFA2;
+window.calcularAPACHE2 = calcularAPACHE2;
+window.calcularSAPS2 = calcularSAPS2;
