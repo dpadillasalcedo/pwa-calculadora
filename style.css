@@ -169,3 +169,8 @@ footer {
   }
 }
 
+/* Alineación de títulos */
+.centered {
+  text-align: center;
+}
+
