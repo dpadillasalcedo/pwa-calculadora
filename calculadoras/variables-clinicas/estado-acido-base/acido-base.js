@@ -394,11 +394,16 @@ function setResumen(nac, tonicidad, uosm, una, ucl, clinVol, diur) {
   setHTML("resumen", parts.join(" · "));
 
   const uParts = [];
-  if (uosm !== null) uParts.push(`Uosm ${uosm.toFixed(0)} (ref: &lt;100 ADH off)`);
-  if (una !== null) uParts.push(`UNa ${una.toFixed(0)} (umbral ~30)`);
-  if (ucl !== null) uParts.push(`UCl ${ucl.toFixed(0)} (umbral ~30)`);
+  if (Number.isFinite(uosm)) uParts.push(`Uosm ${uosm.toFixed(0)} (ref &lt;100 ADH off)`);
+  if (Number.isFinite(una))  uParts.push(`UNa ${una.toFixed(0)} (umbral ~30)`);
+  if (Number.isFinite(ucl))  uParts.push(`UCl ${ucl.toFixed(0)} (umbral ~30)`);
 
-  setHTML("resumen_note", uParts.length ? uParts.join(" · ") : "Sin datos urinarios suficientes para subclasificar.");
+  setHTML(
+    "resumen_note",
+    uParts.length
+      ? uParts.join(" · ")
+      : "Sin datos urinarios suficientes para subclasificar."
+  );
 }
 
 /* =========================
