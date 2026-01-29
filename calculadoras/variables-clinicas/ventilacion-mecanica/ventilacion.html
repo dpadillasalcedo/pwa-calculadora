@@ -8,13 +8,12 @@
 
   <meta
     name="description"
-    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos: PBW y ajuste de PCO₂."
+    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos."
   />
 
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0b5fff" />
+  <meta name="theme-color" content="#020617" />
 
-  <!-- ✅ CSS EN LA MISMA CARPETA -->
   <link rel="stylesheet" href="./ventilacion.css" />
 </head>
 
@@ -25,96 +24,78 @@
   <header class="app-header">
     <h1>Ventilación mecánica</h1>
     <p class="subtitle">
-      Herramientas orientativas para pacientes adultos (interpretar siempre en contexto clínico)
+      Herramientas orientativas. Interpretar siempre en contexto clínico.
     </p>
   </header>
 
-  <!-- =========================
-       Peso corporal predicho (PBW)
-  ========================== -->
-  <section id="pesoteorico" class="panel">
+  <!-- =========================================================
+       PBW
+  ========================================================= -->
+  <section class="panel">
 
-    <h2>
-      <span class="icon icon-lung"></span>
-      Peso corporal predicho (PBW)
-    </h2>
+    <h2>🫁 Peso corporal predicho (PBW)</h2>
 
     <p class="note">
-      Cálculo basado en talla y sexo. Útil para referencia de ventilación protectora (VT 6–8 mL/kg PBW).
+      Cálculo basado en ARDSnet. Se utiliza para definir ventilación protectora.
     </p>
 
-    <fieldset>
-      <legend><h3>Peso ideal</h3></legend>
+    <label for="talla">Talla (cm)</label>
+    <input type="number" id="talla" min="80" max="250" />
 
-      <label for="talla">Talla (cm)</label>
-      <input type="number" id="talla" min="80" max="250" step="1" />
+    <label for="sexo">Sexo</label>
+    <select id="sexo">
+      <option value="">Seleccione</option>
+      <option value="hombre">Hombre</option>
+      <option value="mujer">Mujer</option>
+    </select>
 
-      <label for="sexo">Sexo</label>
-      <select id="sexo">
-        <option value="">Seleccione</option>
-        <option value="hombre">Hombre</option>
-        <option value="mujer">Mujer</option>
-      </select>
+    <button onclick="calcularPesoIdeal()">Calcular PBW</button>
 
-      <button type="button" onclick="calcularPesoIdeal()">
-        Calcular peso ideal
-      </button>
+    <div id="resultadoPeso" class="result"></div>
 
-      <div id="resultadoPeso" class="result" role="status"></div>
-    </fieldset>
   </section>
 
-  <!-- =========================
-       Ajuste de PCO₂
-  ========================== -->
-  <section id="ajuste-pco2" class="panel">
+  <!-- =========================================================
+       AJUSTE DE PCO2
+  ========================================================= -->
+  <section class="panel">
 
-    <h2>
-      <span class="icon icon-lung"></span>
-      Ajuste de PCO₂ deseada
-    </h2>
+    <h2>🫁 Ajuste de PCO₂</h2>
 
     <p class="note">
-      Aproximación basada en la relación:
-      <strong>PCO₂ ∝ 1 / ventilación minuto</strong>.
-      No reemplaza gasometría ni evaluación clínica.
+      Relación inversa entre PCO₂ y ventilación minuto.
+      No reemplaza gasometría ni criterio clínico.
     </p>
 
-    <fieldset>
-      <legend><h3>Ajuste de ventilación minuto</h3></legend>
+    <label for="pco2Act">PCO₂ actual (mmHg)</label>
+    <input type="number" id="pco2Act" step="0.1" />
 
-      <label for="pco2Act">PCO₂ actual (mmHg)</label>
-      <input type="number" id="pco2Act" step="0.1" />
+    <label for="pco2Des">PCO₂ deseada (mmHg)</label>
+    <input type="number" id="pco2Des" step="0.1" />
 
-      <label for="pco2Des">PCO₂ deseada (mmHg)</label>
-      <input type="number" id="pco2Des" step="0.1" />
-
-      <div class="grid-2">
-        <div>
-          <label for="fr_actual">Frecuencia respiratoria (rpm)</label>
-          <input type="number" id="fr_actual" step="1" />
-        </div>
-        <div>
-          <label for="vt_actual">Volumen corriente VT (mL)</label>
-          <input type="number" id="vt_actual" step="10" />
-        </div>
+    <div class="grid-2">
+      <div>
+        <label for="fr_actual">FR actual (rpm)</label>
+        <input type="number" id="fr_actual" />
       </div>
+      <div>
+        <label for="vt_actual">VT actual (mL)</label>
+        <input type="number" id="vt_actual" />
+      </div>
+    </div>
 
-      <label for="vmin_actual">Ventilación minuto (L/min)</label>
-      <input type="number" id="vmin_actual" step="0.1" />
+    <label for="vmin_actual">Ventilación minuto actual (L/min)</label>
+    <input type="number" id="vmin_actual" step="0.1" />
 
-      <button type="button" onclick="ajustarPCO2()">
-        Calcular ajuste
-      </button>
+    <button onclick="ajustarPCO2()">Calcular ajuste</button>
 
-      <div id="resultadoPCO2" class="result"></div>
-      <div id="resultadoPCO2Detalle" class="note"></div>
-    </fieldset>
+    <div id="resultadoPCO2" class="result"></div>
+    <div id="resultadoPCO2Detalle" class="note"></div>
+
   </section>
 
 </main>
 
-<!-- ✅ JS EN LA MISMA CARPETA -->
 <script src="./ventilacion.js" defer></script>
 
 </body>
