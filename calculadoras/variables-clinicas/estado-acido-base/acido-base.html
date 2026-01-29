@@ -85,8 +85,150 @@
     <div id="resultadoCaCorregido" class="result"></div>
   </section>
 
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Algoritmo de Hiponatremia | Calculadora UCI</title>
+  <link rel="stylesheet" href="./hiponatremia.css">
+</head>
+
+<body>
+<main class="container">
+
+  <header class="app-header">
+    <h1>Hiponatremia</h1>
+    <p class="subtitle">Algoritmo por pasos con análisis de ionograma urinario</p>
+  </header>
+
+  <!-- =========================
+       ENTRADAS
+  ========================== -->
+  <section class="panel">
+    <h2>🧪 Datos séricos</h2>
+
+    <div class="grid-2">
+      <div>
+        <label for="s_na">Na sérico (mEq/L)</label>
+        <input id="s_na" type="number" step="0.1" placeholder="Ej: 124">
+      </div>
+
+      <div>
+        <label for="s_glu">Glucosa (mg/dL)</label>
+        <input id="s_glu" type="number" step="1" placeholder="Ej: 180">
+      </div>
+
+      <div>
+        <label for="s_bun">BUN / Urea nitrogenada (mg/dL) (opcional)</label>
+        <input id="s_bun" type="number" step="1" placeholder="Ej: 20">
+      </div>
+
+      <div>
+        <label for="s_osm_meas">Osmolalidad sérica medida (mOsm/kg) (opcional)</label>
+        <input id="s_osm_meas" type="number" step="1" placeholder="Ej: 265">
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label for="clin_vol">Estado de volemia (clínico)</label>
+        <select id="clin_vol">
+          <option value="">Seleccionar…</option>
+          <option value="hypo">Hipovolémico</option>
+          <option value="euvo">Euvolémico</option>
+          <option value="hyper">Hipervolémico</option>
+        </select>
+        <div class="hint">Usar signos clínicos (edema, mucosas, ortostatismo, IVC/eco, balance).</div>
+      </div>
+
+      <div>
+        <label for="diuretics">Uso reciente de diuréticos</label>
+        <select id="diuretics">
+          <option value="">Seleccionar…</option>
+          <option value="no">No</option>
+          <option value="yes">Sí (tiazidas/asa)</option>
+        </select>
+        <div class="hint">Puede alterar UNa/UCl e interpretación.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🧫 Ionograma urinario</h2>
+
+    <div class="grid-2">
+      <div>
+        <label for="u_osm">Osmolalidad urinaria (Uosm) (mOsm/kg)</label>
+        <input id="u_osm" type="number" step="1" placeholder="Ej: 520">
+      </div>
+
+      <div>
+        <label for="u_na">Na urinario (UNa) (mEq/L)</label>
+        <input id="u_na" type="number" step="1" placeholder="Ej: 12">
+      </div>
+
+      <div>
+        <label for="u_cl">Cl urinario (UCl) (mEq/L)</label>
+        <input id="u_cl" type="number" step="1" placeholder="Ej: 8">
+      </div>
+
+      <div>
+        <label for="u_k">K urinario (UK) (mEq/L) (opcional)</label>
+        <input id="u_k" type="number" step="1" placeholder="Ej: 30">
+      </div>
+    </div>
+
+    <button type="button" onclick="analizarHiponatremia()">Analizar hiponatremia</button>
+
+    <div id="alerta" class="alert"></div>
+  </section>
+
+  <!-- =========================
+       RESULTADOS
+  ========================== -->
+  <section class="panel">
+    <h2>🧭 Resultados por pasos</h2>
+
+    <div class="result-block">
+      <div id="resumen" class="result"></div>
+      <div id="resumen_note" class="note"></div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">Paso 1 — Confirmar hiponatremia y corregir por glucosa</div>
+        <div id="p1" class="note"></div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">Paso 2 — Determinar tonicidad (osmolalidad)</div>
+        <div id="p2" class="note"></div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">Paso 3 — Si es hipotónica: evaluar Uosm (ADH on/off)</div>
+        <div id="p3" class="note"></div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">Paso 4 — Si Uosm ≥ 100: usar UNa/UCl + volemia</div>
+        <div id="p4" class="note"></div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">Paso 5 — Conclusión sugerida (diferenciales más probables)</div>
+        <div id="p5" class="note"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footnote">
+    Esto es apoyo educativo y no reemplaza juicio clínico. Ante síntomas neurológicos severos o Na muy bajo, priorizar manejo urgente según guías locales.
+  </footer>
+
 </main>
 
-<script src="./acido-base.js"></script>
+<script src="./hiponatremia.js"></script>
 </body>
 </html>
