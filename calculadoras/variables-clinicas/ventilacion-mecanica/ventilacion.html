@@ -100,3 +100,69 @@
 
 </body>
 </html>
+
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Driving Pressure | Ventilación mecánica</title>
+
+  <meta
+    name="description"
+    content="Cálculo de Driving Pressure (ΔP) en ventilación mecánica invasiva con interpretación clínica."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- CSS del módulo -->
+  <link rel="stylesheet" href="./ventilacion.css" />
+</head>
+
+<body>
+
+<main class="app container">
+
+  <header class="app-header">
+    <h1>Driving Pressure (ΔP)</h1>
+    <p class="subtitle">
+      Indicador de estrés pulmonar en ventilación mecánica invasiva
+    </p>
+  </header>
+
+  <!-- =========================================================
+       DRIVING PRESSURE
+  ========================================================= -->
+  <section class="panel">
+
+    <h2>🫁 Cálculo de Driving Pressure</h2>
+
+    <p class="note">
+      La <strong>Driving Pressure (ΔP)</strong> se calcula como la diferencia entre
+      la presión plateau y la PEEP:
+      <br><strong>ΔP = Pplat − PEEP</strong>
+    </p>
+
+    <label for="pplat">Presión Plateau (cmH₂O)</label>
+    <input type="number" id="pplat" step="0.1" />
+
+    <label for="peep">PEEP (cmH₂O)</label>
+    <input type="number" id="peep" step="0.1" />
+
+    <button onclick="calcularDrivingPressure()">
+      Calcular ΔP
+    </button>
+
+    <div id="resultadoDP" class="result"></div>
+    <div id="interpretacionDP" class="note"></div>
+
+  </section>
+
+</main>
+
+<script src="./driving-pressure.js" defer></script>
+
+</body>
+</html>
