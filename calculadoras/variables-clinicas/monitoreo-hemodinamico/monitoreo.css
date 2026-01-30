@@ -131,3 +131,38 @@ button:hover {
   background: #020617;
   border-left: 4px solid var(--primary);
   border-radius
+
+  /* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ✅ centra links y separador */
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap; /* ✅ en mobile no se rompe feo */
+}
+
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0; /* ✅ evita que quede “corrida” por márgenes default */
+  line-height: 1.4;
+}
