@@ -1,22 +1,40 @@
-function calcularSOFA() {
+function calcularSOFA2() {
+
   const total =
-    +sofa_resp.value +
-    +sofa_neuro.value +
-    +sofa_cardio.value +
-    +sofa_coag.value +
-    +sofa_hep.value +
-    +sofa_renal.value;
+    Number(document.getElementById("sofa_neuro").value) +
+    Number(document.getElementById("sofa_resp").value) +
+    Number(document.getElementById("sofa_cardio").value) +
+    Number(document.getElementById("sofa_liver").value) +
+    Number(document.getElementById("sofa_renal").value) +
+    Number(document.getElementById("sofa_hemo").value);
 
-  let mort, msg;
-  if (total <= 1) { mort = "<5%"; msg = "Riesgo bajo"; }
-  else if (total <= 4) { mort = "5–10%"; msg = "Disfunción leve"; }
-  else if (total <= 8) { mort = "15–25%"; msg = "Disfunción moderada"; }
-  else if (total <= 12) { mort = "40–50%"; msg = "Falla orgánica severa"; }
-  else { mort = ">80%"; msg = "Falla multiorgánica"; }
+  let mortalidad, interpretacion;
 
-  resultadoSOFA.innerHTML = `SOFA-2 total: <strong>${total}</strong>`;
-  interpretacionSOFA.innerHTML = `Mortalidad estimada: <strong>${mort}</strong><br>${msg}`;
+  if (total <= 1) {
+    mortalidad = "<5 %";
+    interpretacion = "Función orgánica preservada o mínima disfunción.";
+  } else if (total <= 4) {
+    mortalidad = "5–10 %";
+    interpretacion = "Disfunción orgánica leve.";
+  } else if (total <= 8) {
+    mortalidad = "15–25 %";
+    interpretacion = "Disfunción orgánica moderada.";
+  } else if (total <= 12) {
+    mortalidad = "40–50 %";
+    interpretacion = "Falla orgánica severa.";
+  } else {
+    mortalidad = ">80 %";
+    interpretacion =
+      "Falla multiorgánica. Riesgo extremadamente alto de mortalidad.";
+  }
+
+  document.getElementById("resultadoSOFA").innerHTML =
+    `SOFA-2 total: <strong>${total}</strong>`;
+
+  document.getElementById("interpretacionSOFA").innerHTML =
+    `Mortalidad hospitalaria estimada: <strong>${mortalidad}</strong><br>${interpretacion}`;
 }
+
 
 function calcularAPACHE() {
   const total =
