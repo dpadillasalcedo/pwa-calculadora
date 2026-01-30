@@ -2,8 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ácido–Base | Calculadora UCI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ácido–Base | Calculadora UCI</title>
+  <meta
+    name="description"
+    content="Evaluación ácido–base y electrolitos en el paciente crítico: anion gap, delta–delta y correcciones bioquímicas."
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="./acido-base.css">
 </head>
 
@@ -11,15 +20,41 @@
 
 <main class="container">
 
+  <!-- =========================
+       BREADCRUMB
+  ========================== -->
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a href="/">Inicio</a>
+    <span>›</span>
+    <a href="/calculadoras/">Calculadoras</a>
+    <span>›</span>
+    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
+    <span>›</span>
+    <span aria-current="page">Ácido–Base</span>
+  </nav>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
   <header class="app-header">
     <h1>Ácido–Base y electrolitos</h1>
-    <p class="subtitle">Evaluación ácido–base y correcciones bioquímicas</p>
+    <p class="subtitle">
+      Evaluación ácido–base y correcciones bioquímicas en el paciente crítico.
+    </p>
+
+    <!-- Sub navegación -->
+    <nav class="subnav" aria-label="Secciones">
+      <a href="#anion-gap">Anion Gap</a>
+      <a href="#delta-delta">Δ/Δ</a>
+      <a href="#electrolitos">Electrolitos</a>
+    </nav>
   </header>
 
   <!-- =========================
        ANION GAP
   ========================== -->
-  <section class="panel">
+  <section id="anion-gap" class="panel">
+
     <h2>🧪 Anion Gap corregido</h2>
 
     <label>Na⁺</label>
@@ -37,14 +72,18 @@
     <label>Albúmina (g/dL)</label>
     <input id="ab_alb" type="number" step="0.1">
 
-    <button onclick="calcularAnionGapCorregido()">Calcular AG</button>
-    <div id="resultadoAnionGap" class="result"></div>
+    <button type="button" onclick="calcularAnionGapCorregido()">Calcular AG</button>
+    <div id="resultadoAnionGap" class="result" aria-live="polite"></div>
+
   </section>
+
+  <hr />
 
   <!-- =========================
        DELTA / DELTA
   ========================== -->
-  <section class="panel">
+  <section id="delta-delta" class="panel">
+
     <h2>Δ/Δ (Delta–Delta)</h2>
 
     <label>Anion Gap</label>
@@ -53,15 +92,19 @@
     <label>HCO₃⁻</label>
     <input id="dd_hco3" type="number">
 
-    <button onclick="calcularDeltaGap()">Calcular Δ/Δ</button>
-    <div id="resultadoDeltaGap" class="result"></div>
-    <div id="interpretacionDeltaGap" class="note"></div>
+    <button type="button" onclick="calcularDeltaGap()">Calcular Δ/Δ</button>
+    <div id="resultadoDeltaGap" class="result" aria-live="polite"></div>
+    <div id="interpretacionDeltaGap" class="note" aria-live="polite"></div>
+
   </section>
 
- <!-- =========================
+  <hr />
+
+  <!-- =========================
        ELECTROLITOS
   ========================== -->
-  <section class="panel">
+  <section id="electrolitos" class="panel">
+
     <h2>🧂 Electrolitos corregidos</h2>
 
     <h3>Sodio corregido</h3>
@@ -71,8 +114,8 @@
     <label>Glucosa</label>
     <input id="glu" type="number">
 
-    <button onclick="calcularSodioCorregido()">Calcular Na corregido</button>
-    <div id="resultadoNaCorregido" class="result"></div>
+    <button type="button" onclick="calcularSodioCorregido()">Calcular Na corregido</button>
+    <div id="resultadoNaCorregido" class="result" aria-live="polite"></div>
 
     <h3>Calcio corregido</h3>
     <label>Calcio medido</label>
@@ -81,17 +124,38 @@
     <label>Albúmina</label>
     <input id="alb_meas" type="number" step="0.1">
 
-    <button onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
-    <div id="resultadoCaCorregido" class="result"></div>
+    <button type="button" onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
+    <div id="resultadoCaCorregido" class="result" aria-live="polite"></div>
+
   </section>
 
+  <!-- =========================
+       VOLVER
+  ========================== -->
+  <div class="nav-back">
+    <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
+  </div>
+
 </main>
+
+<!-- =========================
+     FOOTER
+========================== -->
 <footer>
+  <nav class="footer-nav">
+    <a href="/">Inicio</a> ·
+    <a href="/calculadoras/">Calculadoras</a> ·
+    <a href="/aviso-legal/">Aviso legal</a>
+  </nav>
+
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
     No reemplaza el juicio médico ni las guías institucionales.
   </p>
 </footer>
+
+<!-- JS -->
 <script src="./acido-base.js"></script>
+
 </body>
 </html>
