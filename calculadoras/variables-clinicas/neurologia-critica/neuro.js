@@ -36,61 +36,126 @@ try {
   /* =========================================================
      CAM-ICU
   ========================================================= */
-  function resetCAMICU() {
-    ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
-      const el = $(id);
-      if (el) el.value = "";
-    });
+/* =========================================================
+   CAM-ICU
+========================================================= */
+function resetCAMICU() {
+  ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
+    const el = $(id);
+    if (el) el.value = "";
+  });
 
+  $("cam_steps34")?.classList.add("hidden");
+  $("cam_wait")?.classList.remove("hidden");
+
+  setResultBox("resultadoCAMICU");
+  setHTML("interpretacionCAMICU");
+}
+
+function evaluarCAMICU() {
+  const s1 = getSelectInt("cam_step1"); // Inicio agudo / curso fluctuante
+  const s2 = getSelectInt("cam_step2"); // Inatención
+  const s3 = getSelectInt("cam_step3"); // Alteración conciencia (RASS ≠ 0)
+  const s4 = getSelectInt("cam_step4"); // Pensamiento desorganizado
+
+  // Reset visual previo
+  setResultBox("resultadoCAMICU");
+  setHTML("interpretacionCAMICU");
+
+  /* =========================
+     PASO 1
+     Negativo → descarta delirium
+  ========================= */
+  if (s1 === null) return;
+
+  if (s1 === 0) {
     $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.remove("hidden");
-
-    setResultBox("resultadoCAMICU");
-    setHTML("interpretacionCAMICU");
-  }
-
-  function evaluarCAMICU() {
-    const s1 = getSelectInt("cam_step1");
-    const s2 = getSelectInt("cam_step2");
-    const s3 = getSelectInt("cam_step3");
-    const s4 = getSelectInt("cam_step4");
-
-    // Siempre limpiar resultado antes de evaluar
-    setResultBox("resultadoCAMICU");
-
-    if (s1 === null || s2 === null) return;
-
-    if (s1 === 0 || s2 === 0) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Negativo.",
-        "result-ok"
-      );
-      return;
-    }
-
-    $("cam_steps34")?.classList.remove("hidden");
     $("cam_wait")?.classList.add("hidden");
 
-    if (s3 === null && s4 === null) return;
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
 
-    if (s3 === 1 || s4 === 1) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Positivo.",
-        "result-bad"
-      );
-      return;
-    }
-
-    if (s3 === 0 && s4 === 0) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Negativo.",
-        "result-ok"
-      );
-    }
+    setHTML(
+      "interpretacionCAMICU",
+      "No cumple criterio de inicio agudo o curso fluctuante. Delirium descartado."
+    );
+    return;
   }
+
+  /* =========================
+     PASO 2
+     Inatención
+  ========================= */
+  if (s2 === null) {
+    $("cam_wait")?.classList.remove("hidden");
+    return;
+  }
+
+  if (s2 === 0) {
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.add("hidden");
+
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
+
+    setHTML(
+      "interpretacionCAMICU",
+      "No se detecta inatención. Delirium descartado."
+    );
+    return;
+  }
+
+  /* =========================
+     PASOS 3 y 4
+     (habilitados solo si 1 + 2 positivos)
+  ========================= */
+  $("cam_steps34")?.classList.remove("hidden");
+  $("cam_wait")?.classList.add("hidden");
+
+  if (s3 === null && s4 === null) return;
+
+  /* =========================
+     PASO 3 (RASS ≠ 0)
+     o PASO 4 positivo
+  ========================= */
+  if (s3 === 1 || s4 === 1) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Positivo.",
+      "result-bad"
+    );
+
+    setHTML(
+      "interpretacionCAMICU",
+      "Cumple criterios CAM-ICU: inicio agudo + inatención y alteración del nivel de conciencia (RASS ≠ 0) y/o pensamiento desorganizado."
+    );
+    return;
+  }
+
+  /* =========================
+     PASOS 3 y 4 negativos
+  ========================= */
+  if (s3 === 0 && s4 === 0) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
+
+    setHTML(
+      "interpretacionCAMICU",
+      "No se evidencia alteración del nivel de conciencia (RASS = 0) ni pensamiento desorganizado."
+    );
+  }
+}
+ 
+ 
 
   /* =========================================================
      NIHSS
