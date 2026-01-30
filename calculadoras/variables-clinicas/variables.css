@@ -242,3 +242,38 @@ footer {
     gap: 1.25rem;
   }
 }
+
+/* =========================================================
+   OVERRIDES · NAV HEAD + FOOTER EN BLANCO
+   (sin modificar el resto del diseño)
+========================================================= */
+
+/* Breadcrumb (head) */
+.breadcrumb {
+  color: #f8fafc;
+}
+
+.breadcrumb a {
+  color: #f8fafc;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-strong);
+}
+
+/* Footer */
+.footer-nav {
+  color: #f8fafc;
+}
+
+.footer-nav a {
+  color: #f8fafc;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-strong);
+}
+
+.footer-copy {
+  color: #f8fafc;
+}
