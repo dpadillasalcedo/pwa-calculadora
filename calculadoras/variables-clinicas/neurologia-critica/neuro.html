@@ -15,7 +15,10 @@
   <meta name="theme-color" content="#020617" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="neuro.css?v=3" />
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=3"
+  />
 </head>
 
 <body>
@@ -44,7 +47,6 @@
       Evaluación neurológica del paciente crítico mediante escalas clínicas validadas.
     </p>
 
-    <!-- Sub navegación -->
     <nav class="subnav" aria-label="Secciones neurológicas">
       <a href="#camicu">CAM-ICU</a>
       <a href="#nihss">NIHSS</a>
@@ -54,117 +56,75 @@
     </nav>
   </header>
 
-  <!-- =========================================================
-       CAM-ICU
-  ========================================================= -->
+  <!-- CAM-ICU -->
   <section id="camicu" class="panel">
-
     <h2>🧠 CAM-ICU · Delirium</h2>
-
     <p class="note">
       Diagnóstico positivo si se cumple:
       <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
     </p>
 
-    <!-- (CONTENIDO CAM-ICU INTACTO) -->
-    <!-- NO SE MODIFICA NADA -->
-
     <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
     <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
-
   </section>
 
   <hr />
 
-  <!-- =========================================================
-       NIHSS
-  ========================================================= -->
+  <!-- NIHSS -->
   <section id="nihss" class="panel">
-
     <h2>🧠 NIHSS · Stroke Scale</h2>
-
     <p class="note">
       Complete todos los ítems y luego presione <strong>Calcular</strong>.
     </p>
-
-    <!-- (CONTENIDO NIHSS INTACTO) -->
 
     <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
 
     <div id="resultadoNIHSS" class="resultado" aria-live="polite"></div>
     <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
-
   </section>
 
   <hr />
 
-  <!-- =========================================================
-       FISHER
-  ========================================================= -->
+  <!-- Fisher -->
   <section id="fisher" class="panel">
-
     <h2>🧠 Escala de Fisher · HSA</h2>
-
     <p class="note">
       Clasificación tomográfica de la hemorragia subaracnoidea y riesgo de vasoespasmo.
     </p>
-
-    <!-- (TABLA FISHER INTACTA) -->
-
   </section>
 
   <hr />
 
-  <!-- =========================================================
-       HUNT & HESS
-  ========================================================= -->
+  <!-- Hunt & Hess -->
   <section id="hunt-hess" class="panel">
-
     <h2>🧠 Hunt & Hess · HSA</h2>
-
     <p class="note">
       Clasificación clínica de severidad neurológica en hemorragia subaracnoidea.
     </p>
-
-    <!-- (TABLA HUNT & HESS INTACTA) -->
-
   </section>
 
   <hr />
 
-  <!-- =========================================================
-       MARSHALL
-  ========================================================= -->
+  <!-- Marshall -->
   <section id="marshall" class="panel">
-
     <h2>🧠 Marshall Score · TCE</h2>
-
     <p class="note">
       Clasificación tomográfica del traumatismo craneoencefálico.
     </p>
-
-    <!-- (TABLA MARSHALL INTACTA) -->
-
   </section>
 
-  <!-- =========================
-       VOLVER
-  ========================= -->
   <div class="nav-back">
     <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
   </div>
 
 </main>
 
-<!-- =========================
-     FOOTER
-========================= -->
 <footer>
-<nav class="footer-nav">
-  <a href="/">Inicio</a> ·
-  <a href="referencia-bibliografica/bibliografia.html/">Bibliografia</a> ·
-  <a href="legal/aviso-legal.html">Aviso legal</a>
-</nav>
+  <nav class="footer-nav">
+    <a href="/">Inicio</a> ·
+    <a href="/bibliografia/">Bibliografía</a> ·
+    <a href="/aviso-legal/">Aviso legal</a>
+  </nav>
 
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
