@@ -54,17 +54,22 @@ hr {
 }
 
 /* =========================================================
-   LAYOUT
+   LAYOUT · ESCALAS
 ========================================================= */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.5rem;
+
+/* NIHSS ocupa todo el ancho */
+#nihss {
+  margin-bottom: 4rem;
 }
 
-.app {
-  display: block;
+/* Contenedor de escalas descriptivas */
+#fisher,
+#hunt-hess,
+#marshall {
+  max-width: 760px;
+  margin: 0 auto 3rem auto;
 }
+
 
 /* =========================================================
    BREADCRUMB
