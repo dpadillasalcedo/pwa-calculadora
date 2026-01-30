@@ -1,69 +1,88 @@
-function calcularSOFA2() {
+/* =====================================================
+   SOFA-2
+===================================================== */
+function calcSOFA() {
+  const campos = [
+    "sofa_neuro",
+    "sofa_resp",
+    "sofa_cardio",
+    "sofa_liver",
+    "sofa_renal",
+    "sofa_hemo"
+  ];
 
-  const total =
-    Number(document.getElementById("sofa_neuro").value) +
-    Number(document.getElementById("sofa_resp").value) +
-    Number(document.getElementById("sofa_cardio").value) +
-    Number(document.getElementById("sofa_liver").value) +
-    Number(document.getElementById("sofa_renal").value) +
-    Number(document.getElementById("sofa_hemo").value);
+  let total = 0;
+  campos.forEach(id => {
+    total += Number(document.getElementById(id).value);
+  });
 
-  let mortalidad, interpretacion;
+  let interpretacion = "";
+  if (total <= 5) interpretacion = "Disfunción orgánica leve";
+  else if (total <= 9) interpretacion = "Disfunción orgánica moderada";
+  else if (total <= 12) interpretacion = "Disfunción orgánica severa";
+  else interpretacion = "Alto riesgo de mortalidad";
 
-  if (total <= 1) {
-    mortalidad = "<5 %";
-    interpretacion = "Función orgánica preservada o mínima disfunción.";
-  } else if (total <= 4) {
-    mortalidad = "5–10 %";
-    interpretacion = "Disfunción orgánica leve.";
-  } else if (total <= 8) {
-    mortalidad = "15–25 %";
-    interpretacion = "Disfunción orgánica moderada.";
-  } else if (total <= 12) {
-    mortalidad = "40–50 %";
-    interpretacion = "Falla orgánica severa.";
+  document.getElementById("sofa_result").textContent =
+    `SOFA-2 total: ${total} puntos`;
+  document.getElementById("interpretacionSOFA")?.remove();
+}
+
+
+
+/* =====================================================
+   APACHE II
+   (estructura completa + interpretación)
+===================================================== */
+function calcAPACHE() {
+  const fisio = Number(document.getElementById("apache_phys").value);
+  const edad = Number(document.getElementById("apache_age").value);
+  const cronica = Number(document.getElementById("apache_chronic").value);
+
+  const total = fisio + edad + cronica;
+
+  let interpretacion = "";
+  if (total < 10) {
+    interpretacion = "Gravedad baja · Mortalidad estimada < 10%";
+  } else if (total < 20) {
+    interpretacion = "Gravedad moderada · Mortalidad estimada 10–30%";
+  } else if (total < 30) {
+    interpretacion = "Gravedad alta · Mortalidad estimada 30–60%";
   } else {
-    mortalidad = ">80 %";
-    interpretacion =
-      "Falla multiorgánica. Riesgo extremadamente alto de mortalidad.";
+    interpretacion = "Gravedad extrema · Mortalidad estimada > 60%";
   }
 
-  document.getElementById("resultadoSOFA").innerHTML =
-    `SOFA-2 total: <strong>${total}</strong>`;
-
-  document.getElementById("interpretacionSOFA").innerHTML =
-    `Mortalidad hospitalaria estimada: <strong>${mortalidad}</strong><br>${interpretacion}`;
+  document.getElementById("apache_result").textContent =
+    `APACHE II total: ${total} puntos`;
+  document.getElementById("interpretacionAPACHE").textContent =
+    interpretacion;
 }
 
 
-function calcularAPACHE() {
-  const total =
-    +apache_phys.value +
-    +apache_age.value +
-    +apache_chronic.value;
 
-  let mort;
-  if (total < 10) mort = "<10%";
-  else if (total < 20) mort = "15–25%";
-  else if (total < 30) mort = "40–55%";
-  else mort = ">75%";
+/* =====================================================
+   SAPS II
+   (estructura completa + interpretación)
+===================================================== */
+function calcSAPS() {
+  const fisio = Number(document.getElementById("saps_phys").value);
+  const edad = Number(document.getElementById("saps_age").value);
+  const ingreso = Number(document.getElementById("saps_adm").value);
 
-  resultadoAPACHE.innerHTML = `APACHE II: <strong>${total}</strong>`;
-  interpretacionAPACHE.innerHTML = `Mortalidad hospitalaria estimada: <strong>${mort}</strong>`;
-}
+  const total = fisio + edad + ingreso;
 
-function calcularSAPS() {
-  const total =
-    +saps_phys.value +
-    +saps_age.value +
-    +saps_adm.value;
+  let interpretacion = "";
+  if (total < 20) {
+    interpretacion = "Riesgo bajo · Mortalidad estimada < 10%";
+  } else if (total < 40) {
+    interpretacion = "Riesgo intermedio · Mortalidad estimada 10–30%";
+  } else if (total < 60) {
+    interpretacion = "Riesgo alto · Mortalidad estimada 30–60%";
+  } else {
+    interpretacion = "Riesgo muy alto · Mortalidad estimada > 60%";
+  }
 
-  let mort;
-  if (total < 30) mort = "<10%";
-  else if (total < 40) mort = "10–25%";
-  else if (total < 50) mort = "30–50%";
-  else mort = ">75%";
-
-  resultadoSAPS.innerHTML = `SAPS II: <strong>${total}</strong>`;
-  interpretacionSAPS.innerHTML = `Mortalidad hospitalaria estimada: <strong>${mort}</strong>`;
+  document.getElementById("saps_result").textContent =
+    `SAPS II total: ${total} puntos`;
+  document.getElementById("interpretacionSAPS").textContent =
+    interpretacion;
 }
