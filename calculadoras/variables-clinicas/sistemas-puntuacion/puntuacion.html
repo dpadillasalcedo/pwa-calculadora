@@ -7,7 +7,7 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- CSS local -->
+  <!-- CSS -->
   <link rel="stylesheet" href="./puntuacion.css">
 </head>
 
@@ -32,46 +32,200 @@
   <header class="app-header">
     <h1>Sistemas de puntuación</h1>
     <p class="note">
-      Herramientas estandarizadas para estimar gravedad y pronóstico
-      en pacientes críticos. Interpretar siempre en contexto clínico.
+      Herramientas estandarizadas para estimar gravedad y pronóstico en pacientes críticos.
+      Interpretar siempre en contexto clínico.
     </p>
   </header>
 
-  <!-- =========================
-       SOFA-2
-  ========================== -->
+  <!-- ======================================================
+       SOFA-2 · JAMA 2025
+  ======================================================= -->
   <section id="sofa2" class="panel">
-    <h2>SOFA-2 · Puntuación (JAMA 2025)</h2>
+    <h2>SOFA-2 · Puntuación</h2>
+
     <p class="note">
-      Evaluación de disfunción orgánica basada en la actualización SOFA-2.
+      Sequential Organ Failure Assessment 2 (SOFA-2).
+      Actualización validada en JAMA 2025.
     </p>
+
+    <!-- Respiratorio -->
+    <h3>🫁 Respiratorio</h3>
+    <label>PaO₂ / FiO₂</label>
+    <input type="number" id="sofa_pafi">
+
+    <label>Ventilación mecánica</label>
+    <select id="sofa_vm">
+      <option value="0">No</option>
+      <option value="1">Sí</option>
+    </select>
+
+    <!-- Neurológico -->
+    <h3>🧠 Neurológico</h3>
+    <label>Glasgow Coma Scale</label>
+    <input type="number" id="sofa_gcs" min="3" max="15">
+
+    <!-- Cardiovascular -->
+    <h3>❤️ Cardiovascular</h3>
+    <label>PAM (mmHg)</label>
+    <input type="number" id="sofa_map">
+
+    <label>Vasopresores</label>
+    <select id="sofa_vaso">
+      <option value="0">Ninguno</option>
+      <option value="1">Dosis baja</option>
+      <option value="2">Dosis moderada</option>
+      <option value="3">Dosis alta</option>
+    </select>
+
+    <!-- Coagulación -->
+    <h3>🩸 Coagulación</h3>
+    <label>Plaquetas (×10³/µL)</label>
+    <input type="number" id="sofa_plaq">
+
+    <!-- Hepático -->
+    <h3>🧪 Hepático</h3>
+    <label>Bilirrubina total (mg/dL)</label>
+    <input type="number" id="sofa_bili" step="0.1">
+
+    <!-- Renal -->
+    <h3>🧫 Renal</h3>
+    <label>Creatinina (mg/dL)</label>
+    <input type="number" id="sofa_crea" step="0.1">
 
     <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
     <div id="resultadoSOFA2" class="result"></div>
     <div id="interpretacionSOFA2" class="note"></div>
   </section>
 
-  <!-- =========================
+  <!-- ======================================================
        APACHE II
-  ========================== -->
+  ======================================================= -->
   <section id="apache2" class="panel">
-    <h2>APACHE II · puntuación</h2>
+    <h2>APACHE II · Puntuación</h2>
+
     <p class="note">
-      Estima gravedad de enfermedad y riesgo de mortalidad hospitalaria.
+      Acute Physiology And Chronic Health Evaluation II.
+      Critical Care Medicine, 1985.
     </p>
+
+    <h3>Fisiología aguda (peor valor en 24 h)</h3>
+
+    <label>Temperatura (°C)</label>
+    <input type="number" id="ap_temp" step="0.1">
+
+    <label>PAM (mmHg)</label>
+    <input type="number" id="ap_map">
+
+    <label>Frecuencia cardíaca (lpm)</label>
+    <input type="number" id="ap_hr">
+
+    <label>Frecuencia respiratoria (rpm)</label>
+    <input type="number" id="ap_rr">
+
+    <label>PaO₂ (mmHg)</label>
+    <input type="number" id="ap_pao2">
+
+    <label>pH arterial</label>
+    <input type="number" id="ap_ph" step="0.01">
+
+    <label>Sodio (mEq/L)</label>
+    <input type="number" id="ap_na">
+
+    <label>Potasio (mEq/L)</label>
+    <input type="number" id="ap_k">
+
+    <label>Creatinina (mg/dL)</label>
+    <input type="number" id="ap_crea" step="0.1">
+
+    <label>Hematocrito (%)</label>
+    <input type="number" id="ap_hcto">
+
+    <label>Leucocitos (×10³/µL)</label>
+    <input type="number" id="ap_wbc">
+
+    <label>Glasgow Coma Scale</label>
+    <input type="number" id="ap_gcs" min="3" max="15">
+
+    <h3>Edad</h3>
+    <label>Edad (años)</label>
+    <input type="number" id="ap_age">
+
+    <h3>Enfermedad crónica grave</h3>
+    <select id="ap_chronic">
+      <option value="0">Ninguna</option>
+      <option value="2">No quirúrgico</option>
+      <option value="5">Postoperatorio urgente</option>
+      <option value="2">Postoperatorio electivo</option>
+    </select>
 
     <button type="button" onclick="calcularAPACHE2()">Calcular APACHE II</button>
     <div id="resultadoAPACHE2" class="result"></div>
   </section>
 
-  <!-- =========================
+  <!-- ======================================================
        SAPS II
-  ========================== -->
+  ======================================================= -->
   <section id="saps2" class="panel">
-    <h2>SAPS II · puntuación</h2>
+    <h2>SAPS II · Puntuación</h2>
+
     <p class="note">
-      Estima probabilidad de mortalidad hospitalaria.
+      Simplified Acute Physiology Score II.
+      JAMA, 1993.
     </p>
+
+    <label>Edad (años)</label>
+    <input type="number" id="saps_age">
+
+    <label>Frecuencia cardíaca (lpm)</label>
+    <input type="number" id="saps_hr">
+
+    <label>Presión arterial sistólica (mmHg)</label>
+    <input type="number" id="saps_sbp">
+
+    <label>Temperatura (°C)</label>
+    <input type="number" id="saps_temp" step="0.1">
+
+    <label>PaO₂ / FiO₂</label>
+    <input type="number" id="saps_pafi">
+
+    <label>Diuresis 24 h (mL)</label>
+    <input type="number" id="saps_diuresis">
+
+    <label>Urea (mg/dL)</label>
+    <input type="number" id="saps_urea">
+
+    <label>Leucocitos (×10³/µL)</label>
+    <input type="number" id="saps_wbc">
+
+    <label>Potasio (mEq/L)</label>
+    <input type="number" id="saps_k">
+
+    <label>Sodio (mEq/L)</label>
+    <input type="number" id="saps_na">
+
+    <label>Bicarbonato (mEq/L)</label>
+    <input type="number" id="saps_hco3">
+
+    <label>Bilirrubina (mg/dL)</label>
+    <input type="number" id="saps_bili" step="0.1">
+
+    <label>Glasgow Coma Scale</label>
+    <input type="number" id="saps_gcs" min="3" max="15">
+
+    <label>Tipo de ingreso</label>
+    <select id="saps_adm">
+      <option value="0">Quirúrgico electivo</option>
+      <option value="6">Quirúrgico urgente</option>
+      <option value="8">Médico</option>
+    </select>
+
+    <label>Enfermedad crónica</label>
+    <select id="saps_chronic">
+      <option value="0">Ninguna</option>
+      <option value="17">SIDA</option>
+      <option value="10">Neoplasia metastásica</option>
+      <option value="6">Hematológica</option>
+    </select>
 
     <button type="button" onclick="calcularSAPS2()">Calcular SAPS II</button>
     <div id="resultadoSAPS2" class="result"></div>
@@ -82,13 +236,16 @@
 <!-- =========================
      FOOTER
 ========================= -->
-<footer>
-<nav class="footer-nav" aria-label="Footer">
-  <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-  <span aria-hidden="true">·</span>
-  <a href="https://criticalcaretools.com/legal/aviso-legal.html">Aviso legal</a>
-</nav>
-
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">
+      Bibliografía
+    </a>
+    <span aria-hidden="true">·</span>
+    <a href="https://criticalcaretools.com/legal/aviso-legal.html">
+      Aviso legal
+    </a>
+  </nav>
 
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
