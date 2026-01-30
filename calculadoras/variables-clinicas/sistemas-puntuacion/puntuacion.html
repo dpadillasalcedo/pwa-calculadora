@@ -1,238 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Sistemas de puntuación | Calculadora UCI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#020617">
-  <link rel="stylesheet" href="./puntuacion.css">
+<meta charset="UTF-8">
+<title>Sistemas de puntuación | Calculadora UCI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#020617">
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1.5rem;
+}
+.panel {
+  background: #0b1220;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+h1, h2, h3 {
+  color: #f8fafc;
+}
+label {
+  display: block;
+  margin-top: 0.8rem;
+}
+select, button {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+}
+button {
+  margin-top: 1rem;
+  background: #0ea5e9;
+  color: #020617;
+  font-weight: 600;
+  cursor: pointer;
+}
+.result {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.note {
+  margin-top: 0.5rem;
+  color: #cbd5e1;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #94a3b8;
+}
+</style>
 </head>
 
 <body>
-
 <main class="container">
 
-  <!-- BREADCRUMB -->
-  <nav class="breadcrumb">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span>›</span>
-    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
-      Variables clínicas
-    </a>
-  </nav>
+<header>
+  <h1>Sistemas de puntuación UCI</h1>
+  <p class="note">Cálculo automático con escalas validadas · Uso educativo</p>
+</header>
 
-  <header class="app-header">
-    <h1>Sistemas de puntuación</h1>
-    <p class="note">
-      Seleccione las categorías clínicas correspondientes.
-      El cálculo se realiza automáticamente según escalas validadas.
-    </p>
-  </header>
+<!-- =====================================================
+     SOFA-2
+===================================================== -->
+<section class="panel">
+<h2>SOFA-2</h2>
 
-  <!-- =====================================================
-       SOFA-2 · JAMA 2025
-  ====================================================== -->
-<section class="panel" id="sofa2">
+<h3>🧠 Neurológico</h3>
+<select id="sofa_neuro">
+  <option value="0">GCS 15</option>
+  <option value="1">GCS 13–14 / delirium tratado</option>
+  <option value="2">GCS 9–12</option>
+  <option value="3">GCS 6–8</option>
+  <option value="4">GCS ≤5</option>
+</select>
 
-    <h2>SOFA-2 · Puntuación</h2>
+<h3>🫁 Respiratorio (PaO₂/FiO₂ + soporte)</h3>
+<select id="sofa_resp">
+  <option value="0">&gt; 300</option>
+  <option value="1">≤ 300</option>
+  <option value="2">≤ 225</option>
+  <option value="3">≤ 150 con soporte avanzado</option>
+  <option value="4">≤ 75 con soporte avanzado o ECMO</option>
+</select>
 
-    <p class="note">
-      Ranzani OT, Singer M, Salluh JIF, et al.
-      <em>Development and Validation of the Sequential Organ Failure Assessment (SOFA)-2 Score</em>.
-      <strong>JAMA</strong>. 2025.
-    </p>
+<h3>❤️ Cardiovascular</h3>
+<select id="sofa_cardio">
+  <option value="0">PAM ≥ 70</option>
+  <option value="1">PAM &lt; 70</option>
+  <option value="2">Vasopresor bajo</option>
+  <option value="3">Vasopresor medio</option>
+  <option value="4">Vasopresor alto / soporte mecánico</option>
+</select>
 
-    <!-- ================
-         BRAIN
-    ================= -->
-    <h3>🧠 Cerebro</h3>
-    <label for="sofa_neuro">Neurológico</label>
-    <select id="sofa_neuro">
-      <option value="0">0 — GCS 15</option>
-      <option value="1">1 — GCS 13–14 o tratamiento para delirium</option>
-      <option value="2">2 — GCS 9–12 o retirada al dolor</option>
-      <option value="3">3 — GCS 6–8 o flexión al dolor</option>
-      <option value="4">4 — GCS 3–5 o extensión al dolor / sin respuesta</option>
-    </select>
+<h3>🧪 Hígado</h3>
+<select id="sofa_liver">
+  <option value="0">BT ≤ 1.2</option>
+  <option value="1">BT ≤ 3</option>
+  <option value="2">BT ≤ 6</option>
+  <option value="3">BT ≤ 12</option>
+  <option value="4">BT &gt; 12</option>
+</select>
 
-    <!-- ================
-         RESPIRATORY
-    ================= -->
-    <h3>🫁 Respiratorio</h3>
+<h3>🧫 Riñón (Cr / diuresis / RRT)</h3>
+<select id="sofa_renal">
+  <option value="0">Cr ≤ 1.2</option>
+  <option value="1">Cr ≤ 2.0 o diuresis baja</option>
+  <option value="2">Cr ≤ 3.5</option>
+  <option value="3">Cr &gt; 3.5 o anuria</option>
+  <option value="4">RRT</option>
+</select>
 
-    <label for="sofa_adv_resp">Soporte ventilatorio avanzado</label>
-    <select id="sofa_adv_resp">
-      <option value="0">No</option>
-      <option value="1">Sí (HFNC/CPAP/BiPAP/NIV/VM/traqueostomía)</option>
-    </select>
+<h3>🩸 Plaquetas</h3>
+<select id="sofa_hemo">
+  <option value="0">&gt; 150</option>
+  <option value="1">≤ 150</option>
+  <option value="2">≤ 100</option>
+  <option value="3">≤ 80</option>
+  <option value="4">≤ 50</option>
+</select>
 
-    <label for="sofa_resp">PaO₂/FiO₂</label>
-    <select id="sofa_resp">
-      <option value="0" data-requires-adv="0">0 — &gt; 300 mmHg</option>
-      <option value="1" data-requires-adv="0">1 — ≤ 300 mmHg</option>
-      <option value="2" data-requires-adv="0">2 — ≤ 225 mmHg</option>
-      <option value="3" data-requires-adv="1">3 — ≤ 150 mmHg + soporte avanzado</option>
-      <option value="4" data-requires-adv="1">4 — ≤ 75 mmHg + soporte avanzado o ECMO</option>
-    </select>
+<button onclick="calcSOFA()">Calcular SOFA-2</button>
+<div id="sofa_result" class="result"></div>
+</section>
 
-    <p class="hint">
-      Nota: sin soporte ventilatorio avanzado, el componente respiratorio puntúa máximo 2.
-    </p>
+<!-- =====================================================
+     APACHE II
+===================================================== -->
+<section class="panel">
+<h2>APACHE II</h2>
 
-    <!-- ================
-         CARDIOVASCULAR
-    ================= -->
-    <h3>❤️ Cardiovascular</h3>
-    <label for="sofa_cardio">Cardiovascular (PAM / vasopresores)</label>
-    <select id="sofa_cardio">
-      <option value="0">0 — PAM ≥ 70, sin vasopresor/inotrópico</option>
-      <option value="1">1 — PAM &lt; 70, sin vasopresor/inotrópico</option>
-      <option value="2">2 — Vasopresor bajo: NE+Epi ≤ 0.2 µg/kg/min (o cualquier dosis de otro vasopresor/inotrópico)</option>
-      <option value="3">3 — Vasopresor medio: NE+Epi &gt; 0.2 a &lt; 0.4 µg/kg/min (o bajo + otro vaso/inotrópico)</option>
-      <option value="4">4 — Vasopresor alto: NE+Epi &gt; 0.4 µg/kg/min o soporte mecánico</option>
-    </select>
+<h3>Variables fisiológicas</h3>
+<select id="apache_phys">
+  <option value="0">Normal / leves</option>
+  <option value="5">Alteración moderada</option>
+  <option value="10">Alteración severa</option>
+  <option value="15">Muy severa</option>
+  <option value="20">Extrema</option>
+</select>
 
-    <!-- ================
-         LIVER
-    ================= -->
-    <h3>🧪 Hígado</h3>
-    <label for="sofa_liver">Bilirrubina total (mg/dL)</label>
-    <select id="sofa_liver">
-      <option value="0">0 — ≤ 1.20</option>
-      <option value="1">1 — ≤ 3.0</option>
-      <option value="2">2 — ≤ 6.0</option>
-      <option value="3">3 — ≤ 12.0</option>
-      <option value="4">4 — &gt; 12</option>
-    </select>
+<h3>Edad</h3>
+<select id="apache_age">
+  <option value="0">&lt; 45</option>
+  <option value="2">45–54</option>
+  <option value="3">55–64</option>
+  <option value="5">65–74</option>
+  <option value="6">≥ 75</option>
+</select>
 
-    <!-- ================
-         KIDNEY
-    ================= -->
-    <h3>🧫 Riñón</h3>
+<h3>Enfermedad crónica grave</h3>
+<select id="apache_chronic">
+  <option value="0">No</option>
+  <option value="5">Sí</option>
+</select>
 
-    <label for="sofa_rrt">Terapia de reemplazo renal (RRT)</label>
-    <select id="sofa_rrt">
-      <option value="0">No</option>
-      <option value="4">Sí (aguda o crónica) → 4 puntos</option>
-    </select>
+<button onclick="calcAPACHE()">Calcular APACHE II</button>
+<div id="apache_result" class="result"></div>
+</section>
 
-    <label for="sofa_renal">Creatinina / diuresis</label>
-    <select id="sofa_renal">
-      <option value="0">0 — Creatinina ≤ 1.20</option>
-      <option value="1">1 — Creatinina ≤ 2.0 o diuresis &lt; 0.5 mL/kg/h por 6–12 h</option>
-      <option value="2">2 — Creatinina ≤ 3.50</option>
-      <option value="3">3 — Creatinina &gt; 3.50 o diuresis &lt; 0.3 mL/kg/h por ≥ 24 h o anuria ≥ 12 h</option>
-      <option value="4">4 — (reservado si aplica criterio equivalente a RRT según tabla)</option>
-    </select>
+<!-- =====================================================
+     SAPS II
+===================================================== -->
+<section class="panel">
+<h2>SAPS II</h2>
 
-    <p class="hint">
-      Si hay RRT, se debe puntuar 4 puntos en el componente renal.
-    </p>
+<h3>Puntaje fisiológico</h3>
+<select id="saps_phys">
+  <option value="0">Leve</option>
+  <option value="10">Moderado</option>
+  <option value="20">Severo</option>
+  <option value="30">Muy severo</option>
+  <option value="40">Crítico</option>
+</select>
 
-    <!-- ================
-         HEMOSTASIS
-    ================= -->
-    <h3>🩸 Hemostasia</h3>
-    <label for="sofa_hemo">Plaquetas (×10³/µL)</label>
-    <select id="sofa_hemo">
-      <option value="0">0 — &gt; 150</option>
-      <option value="1">1 — ≤ 150</option>
-      <option value="2">2 — ≤ 100</option>
-      <option value="3">3 — ≤ 80</option>
-      <option value="4">4 — ≤ 50</option>
-    </select>
+<h3>Edad</h3>
+<select id="saps_age">
+  <option value="0">&lt; 40</option>
+  <option value="7">40–59</option>
+  <option value="12">60–69</option>
+  <option value="15">70–74</option>
+  <option value="18">≥ 75</option>
+</select>
 
-    <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
+<h3>Tipo de ingreso</h3>
+<select id="saps_adm">
+  <option value="0">Quirúrgico electivo</option>
+  <option value="6">Quirúrgico urgente</option>
+  <option value="8">Médico</option>
+</select>
 
-    <div id="resultadoSOFA" class="result" aria-live="polite"></div>
-    <div id="interpretacionSOFA" class="note" aria-live="polite"></div>
-
-  </section>
-
-
-  <!-- =====================================================
-       APACHE II
-  ====================================================== -->
-  <section class="panel">
-    <h2>APACHE II</h2>
-
-    <label>Fisiología aguda (puntos)</label>
-    <select id="apache_phys">
-      <option value="0">0–4</option>
-      <option value="5">5–9</option>
-      <option value="10">10–14</option>
-      <option value="15">15–19</option>
-      <option value="20">≥ 20</option>
-    </select>
-
-    <label>Edad</label>
-    <select id="apache_age">
-      <option value="0">&lt; 45</option>
-      <option value="2">45–54</option>
-      <option value="3">55–64</option>
-      <option value="5">65–74</option>
-      <option value="6">≥ 75</option>
-    </select>
-
-    <label>Enfermedad crónica grave</label>
-    <select id="apache_chronic">
-      <option value="0">No</option>
-      <option value="5">Sí</option>
-    </select>
-
-    <button onclick="calcularAPACHE()">Calcular APACHE II</button>
-    <div id="resultadoAPACHE" class="result"></div>
-    <div id="interpretacionAPACHE" class="note"></div>
-  </section>
-
-  <!-- =====================================================
-       SAPS II
-  ====================================================== -->
-  <section class="panel">
-    <h2>SAPS II</h2>
-
-    <label>Puntaje fisiológico</label>
-    <select id="saps_phys">
-      <option value="0">0–10</option>
-      <option value="10">11–20</option>
-      <option value="20">21–30</option>
-      <option value="30">31–40</option>
-      <option value="40">≥ 41</option>
-    </select>
-
-    <label>Edad</label>
-    <select id="saps_age">
-      <option value="0">&lt; 40</option>
-      <option value="7">40–59</option>
-      <option value="12">60–69</option>
-      <option value="15">70–74</option>
-      <option value="18">≥ 75</option>
-    </select>
-
-    <label>Tipo de ingreso</label>
-    <select id="saps_adm">
-      <option value="0">Quirúrgico electivo</option>
-      <option value="6">Quirúrgico urgente</option>
-      <option value="8">Médico</option>
-    </select>
-
-    <button onclick="calcularSAPS()">Calcular SAPS II</button>
-    <div id="resultadoSAPS" class="result"></div>
-    <div id="interpretacionSAPS" class="note"></div>
-  </section>
+<button onclick="calcSAPS()">Calcular SAPS II</button>
+<div id="saps_result" class="result"></div>
+</section>
 
 </main>
 
-<footer class="site-footer">
-  <nav class="footer-nav">
-    <a href="/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-    <span>·</span>
-    <a href="/legal/aviso-legal.html">Aviso legal</a>
-  </nav>
-  <p>© 2026 Critical Care Tools · Uso educativo.</p>
+<footer>
+© 2026 Critical Care Tools · Uso educativo
 </footer>
 
-<script src="./puntuacion.js"></script>
+<script>
+function calcSOFA() {
+  const ids = ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"];
+  let total = ids.reduce((s,id)=>s+Number(document.getElementById(id).value),0);
+  document.getElementById("sofa_result").textContent =
+    "SOFA-2 total: " + total + " puntos";
+}
+
+function calcAPACHE() {
+  let total =
+    Number(apache_phys.value) +
+    Number(apache_age.value) +
+    Number(apache_chronic.value);
+  document.getElementById("apache_result").textContent =
+    "APACHE II total: " + total + " puntos";
+}
+
+function calcSAPS() {
+  let total =
+    Number(saps_phys.value) +
+    Number(saps_age.value) +
+    Number(saps_adm.value);
+  document.getElementById("saps_result").textContent =
+    "SAPS II total: " + total + " puntos";
+}
+</script>
+
 </body>
 </html>
