@@ -378,3 +378,107 @@ th {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   ESCALAS CLÍNICAS · TABLAS
+========================================================= */
+
+/* Contenedor de tablas */
+.panel .card .table-wrap,
+.panel .card table {
+  margin-top: 0.75rem;
+}
+
+/* Tabla base */
+table {
+  background: rgba(2, 6, 23, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Encabezado */
+table thead th {
+  background: rgba(15, 23, 42, 0.9);
+  color: #f8fafc;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Celdas */
+table tbody td {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Filas alternadas (lectura clínica) */
+table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+/* Hover sutil (no interactivo, solo lectura) */
+table tbody tr:hover {
+  background: rgba(56, 189, 248, 0.05);
+}
+
+/* =========================================================
+   ESCALA FISHER · DESTACADA
+========================================================= */
+#fisher .card {
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(11, 18, 32, 0.9)
+  );
+}
+
+/* Grado Fisher más visual */
+#fisher table tbody td:first-child {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--primary);
+  width: 80px;
+}
+
+/* =========================================================
+   HUNT & HESS
+========================================================= */
+#hunt-hess .card {
+  border-left: 4px solid var(--warn);
+}
+
+/* =========================================================
+   MARSHALL
+========================================================= */
+#marshall .card {
+  border-left: 4px solid var(--bad);
+}
+
+/* =========================================================
+   TABLAS · AJUSTES FINOS
+========================================================= */
+th,
+td {
+  padding: 0.7rem 0.9rem;
+  vertical-align: top;
+}
+
+/* Columnas de grado más compactas */
+td:first-child,
+th:first-child {
+  width: 90px;
+  white-space: nowrap;
+}
+
+/* Responsive tablas */
+@media (max-width: 640px) {
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem 0.6rem;
+  }
+}
