@@ -16,11 +16,53 @@ function resetForm(ids, resultId) {
 }
 
 /* =====================================================
+   SOFA (SIMPLIFICADO – CORREGIDO)
+===================================================== */
+function calcSOFA() {
+  const variables = [
+    "sofa_neuro",
+    "sofa_resp",
+    "sofa_cardio",
+    "sofa_liver",
+    "sofa_renal",
+    "sofa_hemo"
+  ];
+
+  let total = 0;
+
+  for (let id of variables) {
+    const value = getValue(id);
+    if (value === null) {
+      document.getElementById("sofa_result").textContent =
+        "⚠️ Complete todas las variables para calcular SOFA";
+      return;
+    }
+    total += value;
+  }
+
+  document.getElementById("sofa_result").textContent =
+    `SOFA total: ${total} puntos`;
+}
+
+function resetSOFA() {
+  resetForm(
+    [
+      "sofa_neuro",
+      "sofa_resp",
+      "sofa_cardio",
+      "sofa_liver",
+      "sofa_renal",
+      "sofa_hemo"
+    ],
+    "sofa_result"
+  );
+}
+
+/* =====================================================
    APACHE II (COMPLETO)
-   12 variables fisiológicas + edad + crónicos
+   12 fisiológicas + edad + crónicos
 ===================================================== */
 function calcAPACHE() {
-
   const variables = [
     "ap_temp",
     "ap_map",
@@ -78,10 +120,8 @@ function resetAPACHE() {
 
 /* =====================================================
    SAPS II (COMPLETO)
-   17 variables originales
 ===================================================== */
 function calcSAPS() {
-
   const variables = [
     "saps_age",
     "saps_hr",
