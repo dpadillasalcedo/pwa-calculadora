@@ -1,5 +1,50 @@
 /* =========================================================
-   ROOT · DARK CLINICAL THEME
+   RESET + FIX GLOBAL (ANTI BLANCO DEFINITIVO)
+========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: #020617 !important;
+  overscroll-behavior: none;
+}
+
+/* Fondo fijo para evitar flashes blancos */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: #020617;
+  z-index: -1;
+}
+
+/* =========================================================
+   ROOT APP WRAPPER (CLAVE)
+========================================================= */
+.app-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
+    #020617;
+
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   VARIABLES
 ========================================================= */
 :root {
   --bg: #020617;
@@ -16,46 +61,10 @@
 }
 
 /* =========================================================
-   RESET / BASE
-========================================================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* =========================================================
-   HTML / BODY · VIEWPORT MODERNO (ANTI BLANCO)
-========================================================= */
-html {
-  height: 100%;
-  background-color: var(--bg);
-}
-
-body {
-  min-height: 100dvh; /* clave para Chrome móvil */
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
-    var(--bg);
-
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.55;
-}
-
-/* =========================================================
-   LAYOUT
+   MAIN LAYOUT
 ========================================================= */
 main {
   flex: 1;
-  background-color: transparent;
   max-width: 1040px;
   margin: 0 auto;
   padding: 2.5rem 1.25rem 4rem;
@@ -74,33 +83,31 @@ a:hover {
 }
 
 /* =========================================================
-   BREADCRUMB · CENTRADO
+   BREADCRUMB
 ========================================================= */
 .breadcrumb {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: .35rem;
-
-  font-size: .8rem;
+  gap: .25rem;
+  font-size: .85rem;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .breadcrumb a {
   color: var(--muted);
-  padding: .15rem .35rem;
-  border-radius: 6px;
-  transition: background-color .15s ease, color .15s ease;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
 }
 
 .breadcrumb a:hover {
   color: var(--accent);
-  background-color: var(--accent-soft);
+  border-bottom-color: var(--accent-soft);
 }
 
 .breadcrumb span {
+  margin: 0 .35rem;
   color: #64748b;
 }
 
@@ -115,7 +122,6 @@ a:hover {
 header {
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--border);
-  text-align: center;
 }
 
 header h1 {
@@ -127,7 +133,7 @@ header h1 {
 }
 
 .subtitle {
-  margin: 0 auto;
+  margin: 0;
   max-width: 780px;
   color: var(--muted);
   font-size: 1rem;
@@ -141,16 +147,14 @@ header h1 {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.75rem;
   margin-top: 3rem;
-  align-items: stretch;
 }
 
 .menu a {
   display: flex;
-  height: 100%;
 }
 
 /* =========================================================
-   CARD · CLINICAL GRADE
+   CARD
 ========================================================= */
 .card {
   flex: 1;
@@ -201,38 +205,29 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER · CENTRADO
+   FOOTER (CENTRADO)
 ========================================================= */
 footer {
   background-color: var(--bg-soft);
   border-top: 1px solid var(--border);
-  padding: 2.5rem 1.25rem 2rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .75rem;
-
+  padding: 2.25rem 1.25rem;
   text-align: center;
   font-size: .85rem;
   color: var(--muted);
 }
 
 .footer-nav {
-  display: flex;
-  gap: .75rem;
+  margin-bottom: .75rem;
 }
 
 .footer-nav a {
   color: var(--muted);
-  padding: .25rem .5rem;
-  border-radius: 6px;
-  transition: background-color .15s ease, color .15s ease;
+  margin: 0 .5rem;
+  transition: color .15s ease;
 }
 
 .footer-nav a:hover {
   color: var(--accent);
-  background-color: var(--accent-soft);
 }
 
 /* =========================================================
