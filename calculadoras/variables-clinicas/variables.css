@@ -144,3 +144,65 @@ footer {
     gap: 1.25rem;
   }
 }
+
+/* =========================
+   NAVEGACIÓN / BREADCRUMB
+========================= */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #475569;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #94a3b8; /* separador más suave */
+  margin: 0 0.25rem;
+}
+
+/* Página actual */
+.breadcrumb [aria-current="page"] {
+  color: #0f172a;
+  font-weight: 500;
+  cursor: default;
+}
+
+/* =========================
+   SUBNAVEGACIÓN (si existe)
+========================= */
+.subnav {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.subnav a {
+  font-size: 0.85rem;
+  color: #475569;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.subnav a:hover {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
