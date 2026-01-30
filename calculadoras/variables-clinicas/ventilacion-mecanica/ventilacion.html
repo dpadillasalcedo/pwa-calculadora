@@ -14,14 +14,31 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- ✅ CSS: ruta absoluta (evita 404) -->
-  <link rel="stylesheet" href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=4" />
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=4"
+  />
 </head>
 
 <body>
 
 <main class="app container">
 
+  <!-- =========================
+       NAVEGACIÓN SUPERIOR
+  ========================= -->
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a href="/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Ventilación mecánica</span>
+  </nav>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
   <header class="app-header">
     <h1>Ventilación mecánica</h1>
     <p class="subtitle">
@@ -120,14 +137,38 @@
 
   </section>
 
+  <!-- =========================
+       VOLVER
+  ========================= -->
+  <div class="nav-back">
+    <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
+  </div>
+
 </main>
+
+<!-- =========================
+     FOOTER
+========================= -->
 <footer>
+  <nav class="footer-nav">
+    <a href="/">Inicio</a>
+    <span>·</span>
+    <a href="/calculadoras/">Calculadoras</a>
+    <span>·</span>
+    <a href="/aviso-legal/">Aviso legal</a>
+  </nav>
+
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
     No reemplaza el juicio médico ni las guías institucionales.
   </p>
-<!-- ✅ JS: ruta absoluta (evita 404) | ✅ sin driving-pressure.js -->
-<script src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=4" defer></script>
+</footer>
+
+<!-- JS -->
+<script
+  src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=4"
+  defer
+></script>
 
 </body>
 </html>
