@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos."
+    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. Uso educativo en cuidados intensivos."
   />
 
   <meta name="robots" content="index, follow" />
@@ -31,10 +31,11 @@
     <a href="/">Inicio</a>
     <span aria-hidden="true">›</span>
     <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Ventilación mecánica</span>
   </nav>
 
+  <!-- =========================
+       HEADER
+  ========================= -->
   <header class="app-header">
     <h1>Ventilación mecánica</h1>
     <p class="subtitle">
@@ -42,17 +43,36 @@
     </p>
   </header>
 
-  <!-- (CONTENIDO CLÍNICO INTACTO) -->
+  <!-- =========================
+       CONTENIDO CLÍNICO
+       (SECCIÓN PRINCIPAL)
+  ========================= -->
+  <section class="content">
+    <!-- 
+      Aquí va todo el contenido clínico existente:
+      calculadoras, formularios, tablas, ayudas, etc.
+      No se modifica esta sección.
+    -->
+  </section>
 
+  <!-- =========================
+       NAVEGACIÓN INFERIOR
+  ========================= -->
   <div class="nav-back">
-    <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
+    <a href="/calculadoras/variables-clinicas/">
+      ← Volver a Variables clínicas
+    </a>
   </div>
 
 </main>
 
+<!-- =========================
+     FOOTER
+========================= -->
 <footer>
   <nav class="footer-nav">
     <a href="/">Inicio</a> ·
+    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a> ·
     <a href="/bibliografia/">Bibliografía</a> ·
     <a href="/aviso-legal/">Aviso legal</a>
   </nav>
@@ -63,6 +83,9 @@
   </p>
 </footer>
 
+<!-- =========================
+     SCRIPTS
+========================= -->
 <script
   src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=4"
   defer
