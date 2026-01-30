@@ -33,67 +33,123 @@
   <!-- =====================================================
        SOFA-2 · JAMA 2025
   ====================================================== -->
-  <section class="panel">
-    <h2>SOFA-2</h2>
+<section class="panel" id="sofa2">
 
-    <label>Respiratorio (PaO₂/FiO₂)</label>
-    <select id="sofa_resp">
-      <option value="0">≥ 400</option>
-      <option value="1">300–399</option>
-      <option value="2">200–299</option>
-      <option value="3">100–199</option>
-      <option value="4">&lt; 100</option>
-    </select>
+    <h2>SOFA-2 · Puntuación</h2>
 
-    <label>Neurológico (GCS)</label>
+    <p class="note">
+      Ranzani OT, Singer M, Salluh JIF, et al.
+      <em>Development and Validation of the Sequential Organ Failure Assessment (SOFA)-2 Score</em>.
+      <strong>JAMA</strong>. 2025.
+    </p>
+
+    <!-- ================
+         BRAIN
+    ================= -->
+    <h3>🧠 Cerebro</h3>
+    <label for="sofa_neuro">Neurológico</label>
     <select id="sofa_neuro">
-      <option value="0">15</option>
-      <option value="1">13–14</option>
-      <option value="2">10–12</option>
-      <option value="3">6–9</option>
-      <option value="4">&lt; 6</option>
+      <option value="0">0 — GCS 15</option>
+      <option value="1">1 — GCS 13–14 o tratamiento para delirium</option>
+      <option value="2">2 — GCS 9–12 o retirada al dolor</option>
+      <option value="3">3 — GCS 6–8 o flexión al dolor</option>
+      <option value="4">4 — GCS 3–5 o extensión al dolor / sin respuesta</option>
     </select>
 
-    <label>Cardiovascular</label>
+    <!-- ================
+         RESPIRATORY
+    ================= -->
+    <h3>🫁 Respiratorio</h3>
+
+    <label for="sofa_adv_resp">Soporte ventilatorio avanzado</label>
+    <select id="sofa_adv_resp">
+      <option value="0">No</option>
+      <option value="1">Sí (HFNC/CPAP/BiPAP/NIV/VM/traqueostomía)</option>
+    </select>
+
+    <label for="sofa_resp">PaO₂/FiO₂</label>
+    <select id="sofa_resp">
+      <option value="0" data-requires-adv="0">0 — &gt; 300 mmHg</option>
+      <option value="1" data-requires-adv="0">1 — ≤ 300 mmHg</option>
+      <option value="2" data-requires-adv="0">2 — ≤ 225 mmHg</option>
+      <option value="3" data-requires-adv="1">3 — ≤ 150 mmHg + soporte avanzado</option>
+      <option value="4" data-requires-adv="1">4 — ≤ 75 mmHg + soporte avanzado o ECMO</option>
+    </select>
+
+    <p class="hint">
+      Nota: sin soporte ventilatorio avanzado, el componente respiratorio puntúa máximo 2.
+    </p>
+
+    <!-- ================
+         CARDIOVASCULAR
+    ================= -->
+    <h3>❤️ Cardiovascular</h3>
+    <label for="sofa_cardio">Cardiovascular (PAM / vasopresores)</label>
     <select id="sofa_cardio">
-      <option value="0">PAM ≥ 70</option>
-      <option value="1">PAM &lt; 70</option>
-      <option value="2">Vasopresor dosis baja</option>
-      <option value="3">Vasopresor dosis moderada</option>
-      <option value="4">Vasopresor dosis alta</option>
+      <option value="0">0 — PAM ≥ 70, sin vasopresor/inotrópico</option>
+      <option value="1">1 — PAM &lt; 70, sin vasopresor/inotrópico</option>
+      <option value="2">2 — Vasopresor bajo: NE+Epi ≤ 0.2 µg/kg/min (o cualquier dosis de otro vasopresor/inotrópico)</option>
+      <option value="3">3 — Vasopresor medio: NE+Epi &gt; 0.2 a &lt; 0.4 µg/kg/min (o bajo + otro vaso/inotrópico)</option>
+      <option value="4">4 — Vasopresor alto: NE+Epi &gt; 0.4 µg/kg/min o soporte mecánico</option>
     </select>
 
-    <label>Coagulación</label>
-    <select id="sofa_coag">
-      <option value="0">≥ 150</option>
-      <option value="1">100–149</option>
-      <option value="2">50–99</option>
-      <option value="3">20–49</option>
-      <option value="4">&lt; 20</option>
+    <!-- ================
+         LIVER
+    ================= -->
+    <h3>🧪 Hígado</h3>
+    <label for="sofa_liver">Bilirrubina total (mg/dL)</label>
+    <select id="sofa_liver">
+      <option value="0">0 — ≤ 1.20</option>
+      <option value="1">1 — ≤ 3.0</option>
+      <option value="2">2 — ≤ 6.0</option>
+      <option value="3">3 — ≤ 12.0</option>
+      <option value="4">4 — &gt; 12</option>
     </select>
 
-    <label>Hepático</label>
-    <select id="sofa_hep">
-      <option value="0">&lt; 1.2</option>
-      <option value="1">1.2–1.9</option>
-      <option value="2">2.0–5.9</option>
-      <option value="3">6.0–11.9</option>
-      <option value="4">≥ 12</option>
+    <!-- ================
+         KIDNEY
+    ================= -->
+    <h3>🧫 Riñón</h3>
+
+    <label for="sofa_rrt">Terapia de reemplazo renal (RRT)</label>
+    <select id="sofa_rrt">
+      <option value="0">No</option>
+      <option value="4">Sí (aguda o crónica) → 4 puntos</option>
     </select>
 
-    <label>Renal</label>
+    <label for="sofa_renal">Creatinina / diuresis</label>
     <select id="sofa_renal">
-      <option value="0">Creat &lt; 1.2</option>
-      <option value="1">1.2–1.9</option>
-      <option value="2">2.0–3.4</option>
-      <option value="3">3.5–4.9</option>
-      <option value="4">≥ 5.0 / diálisis</option>
+      <option value="0">0 — Creatinina ≤ 1.20</option>
+      <option value="1">1 — Creatinina ≤ 2.0 o diuresis &lt; 0.5 mL/kg/h por 6–12 h</option>
+      <option value="2">2 — Creatinina ≤ 3.50</option>
+      <option value="3">3 — Creatinina &gt; 3.50 o diuresis &lt; 0.3 mL/kg/h por ≥ 24 h o anuria ≥ 12 h</option>
+      <option value="4">4 — (reservado si aplica criterio equivalente a RRT según tabla)</option>
     </select>
 
-    <button onclick="calcularSOFA()">Calcular SOFA-2</button>
-    <div id="resultadoSOFA" class="result"></div>
-    <div id="interpretacionSOFA" class="note"></div>
+    <p class="hint">
+      Si hay RRT, se debe puntuar 4 puntos en el componente renal.
+    </p>
+
+    <!-- ================
+         HEMOSTASIS
+    ================= -->
+    <h3>🩸 Hemostasia</h3>
+    <label for="sofa_hemo">Plaquetas (×10³/µL)</label>
+    <select id="sofa_hemo">
+      <option value="0">0 — &gt; 150</option>
+      <option value="1">1 — ≤ 150</option>
+      <option value="2">2 — ≤ 100</option>
+      <option value="3">3 — ≤ 80</option>
+      <option value="4">4 — ≤ 50</option>
+    </select>
+
+    <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
+
+    <div id="resultadoSOFA" class="result" aria-live="polite"></div>
+    <div id="interpretacionSOFA" class="note" aria-live="polite"></div>
+
   </section>
+
 
   <!-- =====================================================
        APACHE II
