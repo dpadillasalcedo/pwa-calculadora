@@ -1,298 +1,199 @@
-/* =========================
-   RESET
-========================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* =========================
-   VARIABLES · CLÍNICO DARK
-========================= */
+/* =========================================================
+   ROOT · DARK THEME
+========================================================= */
 :root {
   --bg: #020617;
-  --card: #0b1220;
-  --card-2: #0f172a;
+  --panel: #0b1220;
+  --card: #0f172a;
   --border: #1e293b;
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 
   --primary: #38bdf8;
   --primary-strong: #0ea5e9;
 
-  --text: #e5e7eb;
-  --muted: #cbd5e1;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --bad: #ef4444;
 }
 
-/* =========================
-   BASE
-========================= */
+/* =========================================================
+   RESET / BASE
+========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-strong);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 1.5rem;
 }
 
-/* =========================
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+.breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+}
+
+.breadcrumb a {
+  color: #f8fafc;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-strong);
+}
+
+.breadcrumb span {
+  margin: 0 0.4rem;
+}
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
+.app-header {
+  margin-bottom: 2rem;
+}
+
 .app-header h1 {
   margin: 0;
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.8rem;
   color: #f8fafc;
 }
 
-.subtitle {
-  margin-top: 0.4rem;
-  font-size: 0.95rem;
+.app-header .note {
+  margin-top: 0.5rem;
   color: var(--muted);
+  max-width: 760px;
+  font-size: 0.9rem;
 }
 
-/* =========================
-   PANEL (estándar módulos)
-========================= */
+/* =========================================================
+   PANELS
+========================================================= */
 .panel {
-  margin-top: 2rem;
-  padding: 1.75rem;
-  background: linear-gradient(180deg, var(--card), var(--card-2));
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.panel > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================
-   HEADINGS
-========================= */
-h2 {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #f8fafc;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
   color: #f8fafc;
 }
 
-/* =========================
-   FORM / FIELDSETS
-========================= */
-fieldset {
-  border: none;
-  margin-bottom: 1.6rem;
-}
-
-legend {
-  padding: 0;
-}
-
-label {
-  display: block;
-  margin-top: 0.8rem;
+/* =========================================================
+   TEXT / NOTES / RESULTS
+========================================================= */
+.note {
   font-size: 0.85rem;
   color: var(--muted);
+  margin: 0.5rem 0 1rem;
 }
 
-select {
-  width: 100%;
-  margin-top: 0.4rem;
-  padding: 10px 12px;
-  font-size: 0.9rem;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-button {
-  width: 100%;
+.result {
   margin-top: 1rem;
-  padding: 12px;
-  font-size: 0.95rem;
   font-weight: 700;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+  appearance: none;
+  background: var(--primary);
   color: #020617;
-  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
   border: none;
-  border-radius: 12px;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 700;
+  margin-top: 0.75rem;
   cursor: pointer;
 }
 
 button:hover {
-  filter: brightness(1.05);
+  background: var(--primary-strong);
 }
 
-/* =========================
-   RESULTS / NOTES
-========================= */
-.result {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-
-.note {
-  margin-top: 0.75rem;
-  padding: 12px;
-  font-size: 0.88rem;
-  line-height: 1.4;
-  color: var(--muted);
-  background: #020617;
-  border-left: 4px solid var(--primary);
-  border-radius: 10px;
-}
-
-/* =========================
-   ICONOS
-========================= */
-.icon {
-  width: 1.4rem;
-  height: 1.4rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--primary);
-  font-size: 0.85rem;
-}
-
-/* =========================
-   ADS / PLACEHOLDER
-========================= */
-.ad-slot {
-  margin-top: 1.2rem;
-  min-height: 60px;
-  background: rgba(30, 41, 59, 0.4);
-  border-radius: 12px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .container {
-    padding: 1.25rem 0.9rem;
-  }
-
-  .panel {
-    padding: 1.4rem;
-  }
-
-  h2 {
-    font-size: 1.15rem;
-  }
-}
-
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 footer {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
   text-align: center;
-  padding: 2rem 1.5rem;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  border-top: 1px solid var(--color-border);
 }
 
-/* =========================
-   MODAL SUGERENCIAS
-========================= */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(2, 6, 23, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-content {
-  width: 100%;
-  max-width: 520px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  border: 1px solid #1e293b;
-  border-radius: 18px;
-  padding: 2rem;
-  color: #e5e7eb;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  color: #38bdf8;
-}
-
-.modal-subtitle {
+.footer-nav {
   font-size: 0.9rem;
-  color: #cbd5e1;
-  margin-bottom: 1.25rem;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
 }
 
-.modal-content label {
-  display: block;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-}
-
-.modal-content textarea,
-.modal-content input {
-  width: 100%;
-  margin-top: 0.35rem;
-  padding: 0.6rem;
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  color: #e5e7eb;
-  font-family: inherit;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.btn-primary {
-  background: #38bdf8;
-  border: none;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
+.footer-nav a {
+  color: #f8fafc;
   font-weight: 500;
-  cursor: pointer;
 }
 
-.btn-secondary {
-  background: transparent;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  color: #cbd5e1;
-  cursor: pointer;
+.footer-nav a:hover {
+  color: var(--primary-strong);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: #f8fafc;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.55rem;
+  }
 }
