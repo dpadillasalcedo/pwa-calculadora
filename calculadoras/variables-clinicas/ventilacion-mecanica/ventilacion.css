@@ -1,5 +1,5 @@
 /* =========================================================
-   ROOT · DARK CLINICAL THEME
+   ROOT · DARK THEME
 ========================================================= */
 :root {
   --bg: #020617;
@@ -12,7 +12,6 @@
 
   --primary: #38bdf8;
   --primary-strong: #0ea5e9;
-  --primary-soft: rgba(56,189,248,.18);
 
   --ok: #22c55e;
   --warn: #f59e0b;
@@ -22,35 +21,21 @@
 /* =========================================================
    RESET / BASE
 ========================================================= */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
+html,
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
 }
 
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.75rem 1.25rem 3rem;
-}
-
-.app {
-  padding-top: .5rem;
+body {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 a {
@@ -62,36 +47,68 @@ a:hover {
   color: var(--primary-strong);
 }
 
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app {
+  padding-top: 0.5rem;
+}
+
 /* =========================================================
    BREADCRUMB
 ========================================================= */
 .breadcrumb {
-  font-size: .85rem;
-  color: var(--muted);
+  font-size: 0.85rem;
+  color: #f8fafc; /* blanco */
   margin-bottom: 1.5rem;
 }
 
+.breadcrumb a {
+  color: #f8fafc; /* blanco */
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-strong);
+}
+
 .breadcrumb span {
-  margin: 0 .4rem;
+  margin: 0 0.4rem;
 }
 
 /* =========================================================
    HEADER
 ========================================================= */
 .app-header {
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #f8fafc;
 }
 
 .subtitle {
-  margin-top: .5rem;
-  max-width: 720px;
+  margin-top: 0.5rem;
   color: var(--muted);
+  max-width: 720px;
 }
 
 /* =========================================================
@@ -102,24 +119,22 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
-}
-
-.panel + .panel {
-  margin-top: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .panel h2 {
-  margin: 0 0 .75rem;
-  font-size: 1.25rem;
+  margin-top: 0;
+  font-size: 1.3rem;
 }
 
 /* =========================================================
-   TEXT HELPERS
+   GRID
 ========================================================= */
-.note {
-  font-size: .85rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
 }
 
 /* =========================================================
@@ -127,21 +142,20 @@ a:hover {
 ========================================================= */
 label {
   display: block;
-  margin-top: .9rem;
-  font-size: .9rem;
-  color: var(--text);
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
 }
 
 input,
 select {
   width: 100%;
-  margin-top: .35rem;
-  padding: .5rem .55rem;
   background: #020617;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: .9rem;
+  padding: 0.55rem 0.6rem;
+  margin-top: 0.35rem;
+  font-family: inherit;
 }
 
 input:focus,
@@ -150,25 +164,32 @@ select:focus {
   border-color: var(--primary);
 }
 
-/* grid para FR / VT */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem 1.25rem;
-  margin-top: .5rem;
+/* =========================================================
+   TEXT / NOTES
+========================================================= */
+.note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1rem;
+}
+
+.result {
+  margin-top: 1rem;
+  font-weight: 700;
 }
 
 /* =========================================================
-   BUTTONS
+   ACTIONS / BUTTONS
 ========================================================= */
 button {
-  margin-top: 1.25rem;
+  appearance: none;
   background: var(--primary);
   color: #020617;
   border: none;
   border-radius: 999px;
-  padding: .55rem 1.25rem;
+  padding: 0.55rem 1.1rem;
   font-weight: 700;
+  margin-top: 1rem;
   cursor: pointer;
 }
 
@@ -177,68 +198,35 @@ button:hover {
 }
 
 /* =========================================================
-   RESULTS
-========================================================= */
-.result {
-  margin-top: 1rem;
-  padding: .75rem 1rem;
-  border-radius: 10px;
-  font-weight: 700;
-  border: 1px solid var(--border);
-  background: rgba(2,6,23,.4);
-}
-
-.result.ok {
-  background: rgba(34,197,94,.15);
-  color: var(--ok);
-}
-
-.result.warn {
-  background: rgba(245,158,11,.15);
-  color: var(--warn);
-}
-
-.result.bad {
-  background: rgba(239,68,68,.15);
-  color: var(--bad);
-}
-
-/* =========================================================
-   NAV BACK
-========================================================= */
-.nav-back {
-  margin-top: 3rem;
-  text-align: center;
-}
-
-.nav-back a {
-  font-size: .9rem;
-  color: var(--primary);
-}
-
-/* =========================================================
    FOOTER
 ========================================================= */
 footer {
-  margin-top: 3.5rem;
-  padding: 2rem 1.25rem;
   border-top: 1px solid var(--border);
+  background: var(--panel);
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
   text-align: center;
-  font-size: .85rem;
-  color: var(--muted);
 }
 
 .footer-nav {
-  margin-bottom: .75rem;
+  font-size: 0.9rem;
+  color: #f8fafc; /* blanco */
+  margin-bottom: 0.5rem;
 }
 
 .footer-nav a {
-  color: var(--muted);
-  margin: 0 .4rem;
+  color: #f8fafc; /* blanco */
+  font-weight: 500;
 }
 
 .footer-nav a:hover {
   color: var(--primary-strong);
+}
+
+.footer-copy,
+footer p {
+  font-size: 0.8rem;
+  color: #f8fafc; /* blanco */
+  margin: 0;
 }
 
 /* =========================================================
@@ -246,10 +234,10 @@ footer {
 ========================================================= */
 @media (max-width: 640px) {
   .container {
-    padding: 1.25rem 1rem 2.5rem;
+    padding: 1rem;
   }
 
   .app-header h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
 }
