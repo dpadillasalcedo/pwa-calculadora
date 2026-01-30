@@ -43,10 +43,16 @@ select, button {
 }
 button {
   margin-top: 1rem;
-  background: #0ea5e9;
-  color: #020617;
   font-weight: 600;
   cursor: pointer;
+}
+button.primary {
+  background: #0ea5e9;
+  color: #020617;
+}
+button.secondary {
+  background: #020617;
+  color: #94a3b8;
 }
 .result {
   margin-top: 1rem;
@@ -79,61 +85,57 @@ footer {
 <section class="panel">
 <h2>SOFA-2</h2>
 
-<h3>🧠 Neurológico</h3>
 <select id="sofa_neuro">
-  <option value="0">GCS 15</option>
-  <option value="1">GCS 13–14 / delirium tratado</option>
+  <option value="0">Neurológico · GCS 15</option>
+  <option value="1">GCS 13–14</option>
   <option value="2">GCS 9–12</option>
   <option value="3">GCS 6–8</option>
   <option value="4">GCS ≤5</option>
 </select>
 
-<h3>🫁 Respiratorio (PaO₂/FiO₂ + soporte)</h3>
 <select id="sofa_resp">
-  <option value="0">&gt; 300</option>
+  <option value="0">Respiratorio · &gt; 300</option>
   <option value="1">≤ 300</option>
   <option value="2">≤ 225</option>
-  <option value="3">≤ 150 con soporte avanzado</option>
-  <option value="4">≤ 75 con soporte avanzado o ECMO</option>
+  <option value="3">≤ 150 + soporte</option>
+  <option value="4">≤ 75 + soporte / ECMO</option>
 </select>
 
-<h3>❤️ Cardiovascular</h3>
 <select id="sofa_cardio">
-  <option value="0">PAM ≥ 70</option>
+  <option value="0">Cardio · PAM ≥ 70</option>
   <option value="1">PAM &lt; 70</option>
   <option value="2">Vasopresor bajo</option>
   <option value="3">Vasopresor medio</option>
-  <option value="4">Vasopresor alto / soporte mecánico</option>
+  <option value="4">Vasopresor alto</option>
 </select>
 
-<h3>🧪 Hígado</h3>
 <select id="sofa_liver">
-  <option value="0">BT ≤ 1.2</option>
+  <option value="0">Hígado · BT ≤ 1.2</option>
   <option value="1">BT ≤ 3</option>
   <option value="2">BT ≤ 6</option>
   <option value="3">BT ≤ 12</option>
   <option value="4">BT &gt; 12</option>
 </select>
 
-<h3>🧫 Riñón (Cr / diuresis / RRT)</h3>
 <select id="sofa_renal">
-  <option value="0">Cr ≤ 1.2</option>
-  <option value="1">Cr ≤ 2.0 o diuresis baja</option>
+  <option value="0">Riñón · Cr ≤ 1.2</option>
+  <option value="1">Cr ≤ 2.0</option>
   <option value="2">Cr ≤ 3.5</option>
-  <option value="3">Cr &gt; 3.5 o anuria</option>
+  <option value="3">Cr &gt; 3.5 / anuria</option>
   <option value="4">RRT</option>
 </select>
 
-<h3>🩸 Plaquetas</h3>
 <select id="sofa_hemo">
-  <option value="0">&gt; 150</option>
+  <option value="0">Plaquetas &gt; 150</option>
   <option value="1">≤ 150</option>
   <option value="2">≤ 100</option>
   <option value="3">≤ 80</option>
   <option value="4">≤ 50</option>
 </select>
 
-<button onclick="calcSOFA()">Calcular SOFA-2</button>
+<button class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
+<button class="secondary" onclick="resetSOFA()">Reiniciar cálculo</button>
+
 <div id="sofa_result" class="result"></div>
 </section>
 
@@ -143,31 +145,30 @@ footer {
 <section class="panel">
 <h2>APACHE II</h2>
 
-<h3>Variables fisiológicas</h3>
 <select id="apache_phys">
-  <option value="0">Normal / leves</option>
+  <option value="0">Fisiología normal / leve</option>
   <option value="5">Alteración moderada</option>
-  <option value="10">Alteración severa</option>
+  <option value="10">Severa</option>
   <option value="15">Muy severa</option>
   <option value="20">Extrema</option>
 </select>
 
-<h3>Edad</h3>
 <select id="apache_age">
-  <option value="0">&lt; 45</option>
+  <option value="0">Edad &lt; 45</option>
   <option value="2">45–54</option>
   <option value="3">55–64</option>
   <option value="5">65–74</option>
   <option value="6">≥ 75</option>
 </select>
 
-<h3>Enfermedad crónica grave</h3>
 <select id="apache_chronic">
-  <option value="0">No</option>
-  <option value="5">Sí</option>
+  <option value="0">Sin enfermedad crónica grave</option>
+  <option value="5">Con enfermedad crónica grave</option>
 </select>
 
-<button onclick="calcAPACHE()">Calcular APACHE II</button>
+<button class="primary" onclick="calcAPACHE()">Calcular APACHE II</button>
+<button class="secondary" onclick="resetAPACHE()">Reiniciar cálculo</button>
+
 <div id="apache_result" class="result"></div>
 </section>
 
@@ -177,32 +178,31 @@ footer {
 <section class="panel">
 <h2>SAPS II</h2>
 
-<h3>Puntaje fisiológico</h3>
 <select id="saps_phys">
-  <option value="0">Leve</option>
-  <option value="10">Moderado</option>
-  <option value="20">Severo</option>
-  <option value="30">Muy severo</option>
-  <option value="40">Crítico</option>
+  <option value="0">Fisiología leve</option>
+  <option value="10">Moderada</option>
+  <option value="20">Severa</option>
+  <option value="30">Muy severa</option>
+  <option value="40">Crítica</option>
 </select>
 
-<h3>Edad</h3>
 <select id="saps_age">
-  <option value="0">&lt; 40</option>
+  <option value="0">Edad &lt; 40</option>
   <option value="7">40–59</option>
   <option value="12">60–69</option>
   <option value="15">70–74</option>
   <option value="18">≥ 75</option>
 </select>
 
-<h3>Tipo de ingreso</h3>
 <select id="saps_adm">
   <option value="0">Quirúrgico electivo</option>
   <option value="6">Quirúrgico urgente</option>
   <option value="8">Médico</option>
 </select>
 
-<button onclick="calcSAPS()">Calcular SAPS II</button>
+<button class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
+<button class="secondary" onclick="resetSAPS()">Reiniciar cálculo</button>
+
 <div id="saps_result" class="result"></div>
 </section>
 
@@ -213,29 +213,52 @@ footer {
 </footer>
 
 <script>
+function resetSelects(ids, resultId) {
+  ids.forEach(id => document.getElementById(id).selectedIndex = 0);
+  document.getElementById(resultId).textContent = "";
+}
+
 function calcSOFA() {
   const ids = ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"];
-  let total = ids.reduce((s,id)=>s+Number(document.getElementById(id).value),0);
+  const total = ids.reduce((s,id)=>s+Number(document.getElementById(id).value),0);
   document.getElementById("sofa_result").textContent =
     "SOFA-2 total: " + total + " puntos";
 }
+function resetSOFA() {
+  resetSelects(
+    ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"],
+    "sofa_result"
+  );
+}
 
 function calcAPACHE() {
-  let total =
+  const total =
     Number(apache_phys.value) +
     Number(apache_age.value) +
     Number(apache_chronic.value);
   document.getElementById("apache_result").textContent =
     "APACHE II total: " + total + " puntos";
 }
+function resetAPACHE() {
+  resetSelects(
+    ["apache_phys","apache_age","apache_chronic"],
+    "apache_result"
+  );
+}
 
 function calcSAPS() {
-  let total =
+  const total =
     Number(saps_phys.value) +
     Number(saps_age.value) +
     Number(saps_adm.value);
   document.getElementById("saps_result").textContent =
     "SAPS II total: " + total + " puntos";
+}
+function resetSAPS() {
+  resetSelects(
+    ["saps_phys","saps_age","saps_adm"],
+    "saps_result"
+  );
 }
 </script>
 
