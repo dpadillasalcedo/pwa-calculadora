@@ -171,31 +171,181 @@
   <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
 </section>
 
-  <!-- =========================
-       NIHSS
-  ========================= -->
-  <section id="nihss" class="panel">
-    <div class="panel-head">
-      <h2>🧠 NIHSS · Stroke Scale</h2>
-      <p class="note">Completar todos los ítems y presionar calcular.</p>
-    </div>
+ <!-- =========================
+     NIHSS
+========================= -->
+<section id="nihss" class="panel">
+  <div class="panel-head">
+    <h2>🧠 NIHSS · Stroke Scale</h2>
+    <p class="note">
+      Completar todos los ítems y luego presionar <strong>Calcular NIHSS</strong>.
+      <br />
+      Se informará el resultado como:
+      <strong>ACV menor</strong>, <strong>ACV moderado</strong>,
+      <strong>ACV severo</strong> o
+      <strong>ACV menor con síntomas discapacitantes</strong>.
+    </p>
+  </div>
 
-    <div class="card">
-      <div class="nihss-grid">
-        <!-- Ítems NIHSS (sin cambios funcionales) -->
-      </div>
+  <div class="card">
+    <div class="nihss-grid">
 
-      <div class="actions">
-        <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
-        <button type="button" class="btn-secondary" id="nihss_reset">Reiniciar NIHSS</button>
-      </div>
+      <!-- 1a -->
+      <label class="field">
+        <span>1a. Nivel de conciencia</span>
+        <select id="n_1a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Alerta</option>
+          <option value="1">1 = Somnoliento</option>
+          <option value="2">2 = Estupor</option>
+          <option value="3">3 = Coma</option>
+        </select>
+      </label>
 
-      <div id="resultadoNIHSS" class="resultado" aria-live="polite"></div>
-      <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
-    </div>
-  </section>
+      <!-- 1b -->
+      <label class="field">
+        <span>1b. Preguntas LOC (mes / edad)</span>
+        <select id="n_1b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Ambas correctas</option>
+          <option value="1">1 = Una correcta</option>
+          <option value="2">2 = Ninguna correcta</option>
+        </select>
+      </label>
 
-  <hr />
+      <!-- 1c -->
+      <label class="field">
+        <span>1c. Órdenes LOC</span>
+        <select id="n_1c">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Ambas correctas</option>
+          <option value="1">1 = Una correcta</option>
+          <option value="2">2 = Ninguna correcta</option>
+        </select>
+      </label>
+
+      <!-- 2 -->
+      <label class="field">
+        <span>2. Mirada</span>
+        <select id="n_2">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Parálisis parcial</option>
+          <option value="2">2 = Desviación forzada</option>
+        </select>
+      </label>
+
+      <!-- 3 -->
+      <label class="field">
+        <span>3. Campos visuales</span>
+        <select id="n_3">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Hemianopsia parcial</option>
+          <option value="2">2 = Hemianopsia homónima completa</option>
+          <option value="3">3 = Ceguera bilateral</option>
+        </select>
+      </label>
+
+      <!-- 4 -->
+      <label class="field">
+        <span>4. Parálisis facial</span>
+        <select id="n_4">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Leve</option>
+          <option value="2">2 = Parcial</option>
+          <option value="3">3 = Completa</option>
+        </select>
+      </label>
+
+      <!-- 5a -->
+      <label class="field">
+        <span>5a. Motor brazo izquierdo</span>
+        <select id="n_5a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
+
+      <!-- 5b -->
+      <label class="field">
+        <span>5b. Motor brazo derecho</span>
+        <select id="n_5b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
+
+      <!-- 6a -->
+      <label class="field">
+        <span>6a. Motor pierna izquierda</span>
+        <select id="n_6a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
+
+      <!-- 6b -->
+      <label class="field">
+        <span>6b. Motor pierna derecha</span>
+        <select id="n_6b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
+
+      <!-- 7 -->
+      <label class="field">
+        <span>7. Ataxia</span>
+        <select id="n_7">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = No</option>
+          <option value="1">1 = Un miembro</option>
+          <option value="2">2 = Dos miembros</option>
+        </select>
+      </label>
+
+      <!-- 8 -->
+      <label class="field">
+        <span>8. Sensibilidad</span>
+        <select id="n_8">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Pérdida leve/moderada</option>
+          <option value="2">2 = Pérdida severa</option>
+        </select>
+      </label>
+
+      <!-- 9 -->
+      <label class="field">
+        <span>9. Lenguaje (afasia)</span>
+        <select id="n_9">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Afasia leve/moderada</option>
+          <option value="2">2 = Afasia severa</option>
+          <option value="3">3 = Afasia global</option>
+        </select>
+      </label>
+
+      <!-- 10 -->
 
   <!-- =========================
        FISHER
