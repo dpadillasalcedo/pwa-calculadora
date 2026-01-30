@@ -1,317 +1,229 @@
+/* =========================================================
+   ROOT · DARK THEME
+========================================================= */
 :root {
-  --bg:#020617;
-  --card:#0b1220;
-  --border:#1e293b;
-  --primary:#38bdf8;
-  --text:#e5e7eb;
-  --muted:#cbd5e1;
+  --bg: #020617;
+  --panel: #0b1220;
+  --card: #0f172a;
+  --border: #1e293b;
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
+
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --bad: #ef4444;
+}
+
+/* =========================================================
+   RESET / BASE
+========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
 }
 
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui, sans-serif;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-strong);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
 .container {
-  max-width:900px;
-  margin:auto;
-  padding:1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+.breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  color: #f8fafc; /* blanco */
+}
+
+.breadcrumb a {
+  color: #f8fafc;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-strong);
+}
+
+.breadcrumb span {
+  margin: 0 0.4rem;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.app-header {
+  margin-bottom: 2rem;
 }
 
 .app-header h1 {
-  color:#f8fafc;
+  margin: 0;
+  font-size: 1.8rem;
+  color: #f8fafc;
 }
 
 .subtitle {
-  color:var(--muted);
+  margin-top: 0.5rem;
+  color: var(--muted);
+  max-width: 720px;
 }
 
+/* =========================================================
+   PANELS
+========================================================= */
 .panel {
-  background:linear-gradient(180deg,var(--card),#0f172a);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:1.75rem;
-  margin-top:2rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-h2, h3 {
-  margin-top:0;
-  color:#f8fafc;
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
 }
 
+.panel h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #f8fafc;
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
 label {
-  display:block;
-  margin-top:10px;
-  font-size:.85rem;
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
 }
 
 input {
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border-radius:10px;
-  background:#020617;
-  border:1px solid var(--border);
-  color:var(--text);
-}
-
-button {
-  width:100%;
-  margin-top:14px;
-  padding:12px;
-  background:linear-gradient(180deg,var(--primary),#0ea5e9);
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.result {
-  margin-top:12px;
-  font-weight:600;
-}
-
-.note {
-  margin-top:8px;
-  padding:12px;
-  background:#020617;
-  border-left:4px solid var(--primary);
-  border-radius:10px;
-  font-size:.85rem;
-  color:var(--muted);
-}
-
-.panel > * {
-  position:relative;
-  z-index:1;
-}
-
-:root {
-  --bg:#020617;
-  --card:#0b1220;
-  --border:#1e293b;
-  --primary:#38bdf8;
-  --text:#e5e7eb;
-  --muted:#cbd5e1;
-  --warn:#fbbf24;
-}
-
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui, sans-serif;
-}
-
-.container {
-  max-width:980px;
-  margin:auto;
-  padding:1.5rem 1rem 3rem;
-}
-
-.app-header h1 { color:#f8fafc; margin:0; }
-.subtitle { color:var(--muted); margin-top:.4rem; }
-
-.panel {
-  background:linear-gradient(180deg,var(--card),#0f172a);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:1.75rem;
-  margin-top:2rem;
-}
-
-h2 { margin:0 0 1rem 0; color:#f8fafc; }
-h3 { margin:1.2rem 0 .4rem 0; color:#f8fafc; font-size:1rem; }
-
-label {
-  display:block;
-  margin-top:10px;
-  font-size:.85rem;
-}
-
-input, select {
-  width:100%;
-  margin-top:6px;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--bg);
-  color:var(--text);
-}
-
-button {
-  margin-top:14px;
-  width:100%;
-  background:linear-gradient(180deg,var(--primary),#0ea5e9);
-  border:none;
-  border-radius:10px;
-  padding:12px;
-  font-weight:700;
-  color:#020617;
-  cursor:pointer;
-}
-
-.grid-2 {
-  display:grid;
-  gap:14px;
-  grid-template-columns:repeat(2,1fr);
-}
-
-@media (max-width:768px) {
-  .grid-2 { grid-template-columns:1fr; }
-}
-
-.result {
-  margin-top:12px;
-  font-weight:700;
-  line-height:1.35;
-}
-
-.note {
-  margin-top:10px;
-  padding:12px;
-  background:rgba(2,6,23,0.85);
-  border-left:4px solid var(--primary);
-  border-radius:10px;
-  font-size:.88rem;
-  color:var(--muted);
-  line-height:1.4;
-}
-
-.alert {
-  margin-top:12px;
-  padding:12px;
-  border-radius:10px;
-  background:rgba(251,191,36,0.12);
-  border:1px solid rgba(251,191,36,0.35);
-  color:#fde68a;
-  font-size:.9rem;
-}
-
-.steps {
-  margin-top:1rem;
-  display:grid;
-  gap:14px;
-}
-
-.step {
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  background:rgba(2,6,23,0.35);
-}
-
-.step-title {
-  font-weight:800;
-  color:#f8fafc;
-  margin-bottom:8px;
-}
-
-.muted { color:var(--muted); }
-.warn { color:var(--warn); font-weight:700; }
-
-.hint {
-  margin-top:8px;
-  font-size:.82rem;
-  color:var(--muted);
-}
-
-.footnote {
-  margin-top:18px;
-  color:var(--muted);
-  font-size:.85rem;
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  border-top: 1px solid var(--color-border);
-}
-
-/* =========================
-   MODAL SUGERENCIAS
-========================= */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(2, 6, 23, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal[hidden] {
-  display: none;
-}
-
-.modal-content {
   width: 100%;
-  max-width: 520px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  border: 1px solid #1e293b;
-  border-radius: 18px;
-  padding: 2rem;
-  color: #e5e7eb;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  color: #38bdf8;
-}
-
-.modal-subtitle {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  margin-bottom: 1.25rem;
-}
-
-.modal-content label {
-  display: block;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-}
-
-.modal-content textarea,
-.modal-content input {
-  width: 100%;
-  margin-top: 0.35rem;
-  padding: 0.6rem;
   background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  color: #e5e7eb;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.6rem;
+  margin-top: 0.35rem;
   font-family: inherit;
 }
 
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+input:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
-.btn-primary {
-  background: #38bdf8;
+/* =========================================================
+   TEXT / NOTES / RESULTS
+========================================================= */
+.note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0.5rem 0 1rem;
+}
+
+.result {
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+  appearance: none;
+  background: var(--primary);
+  color: #020617;
   border: none;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-weight: 700;
+  margin-top: 1rem;
   cursor: pointer;
 }
 
-.btn-secondary {
-  background: transparent;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  color: #cbd5e1;
-  cursor: pointer;
+button:hover {
+  background: var(--primary-strong);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
+  text-align: center;
+}
+
+.footer-nav {
+  font-size: 0.9rem;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+.footer-nav a {
+  color: #f8fafc;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-strong);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: #f8fafc;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.55rem;
+  }
 }
