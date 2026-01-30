@@ -1,266 +1,177 @@
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --card-2:#0f172a;
-  --border:#1e293b;
-  --primary:#38bdf8;
-  --primary-strong:#0ea5e9;
-  --text:#e5e7eb;
-  --muted:#cbd5e1;
-  --danger:#fb7185;
-  --ok:#34d399;
-  --warn:#fbbf24;
-}
+try {
+  console.log("neuro.js cargado correctamente");
 
-*{ box-sizing:border-box; }
+  /* =========================================================
+     HELPERS
+  ========================================================= */
+  function $(id) {
+    return document.getElementById(id);
+  }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.5;
-}
+  function setHTML(id, html) {
+    const el = $(id);
+    if (el) el.innerHTML = html;
+  }
 
-.container{
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
+  function getSelectInt(id) {
+    const el = $(id);
+    if (!el) return null;
+    if (el.value === "") return null;
+    const n = Number(el.value);
+    return Number.isFinite(n) ? n : null;
+  }
 
-/* Breadcrumb */
-.breadcrumb{
-  font-size:.85rem;
-  color:var(--muted);
-  margin-bottom: 1rem;
-}
-.breadcrumb a{
-  color:var(--primary);
-  text-decoration:none;
-}
-.breadcrumb a:hover{ text-decoration:underline; }
-.breadcrumb span{ margin:0 .4rem; }
+  function safeMax(a, b) {
+    if (a === null && b === null) return 0;
+    if (a === null) return b;
+    if (b === null) return a;
+    return Math.max(a, b);
+  }
 
-/* Header */
-.app-header h1{
-  margin:0;
-  font-size:1.65rem;
-  color:#f8fafc;
-}
-.subtitle{
-  margin:.35rem 0 0;
-  color:var(--muted);
-}
+  function setResultBox(id, html, kind) {
+    const el = $(id);
+    if (!el) return;
+    el.classList.remove("result-ok", "result-bad", "result-warn");
+    if (kind) el.classList.add(kind);
+    el.innerHTML = html;
+  }
 
-/* Subnav */
-.subnav{
-  margin-top: 1rem;
-  display:flex;
-  flex-wrap:wrap;
-  gap:.6rem;
-}
-.subnav a{
-  font-size:.85rem;
-  color:var(--primary);
-  text-decoration:none;
-  padding:.38rem .62rem;
-  border:1px solid var(--border);
-  border-radius:.55rem;
-  background: transparent;
-}
-.subnav a:hover{ background: var(--card-2); }
+  /* =========================================================
+     INIT
+  ========================================================= */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof resetCAMICU === "function") resetCAMICU();
+    if (typeof resetNIHSS === "function") resetNIHSS();
 
-/* Panels */
-.panel{
-  margin-top: 1.25rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: .9rem;
-  padding: 1.25rem;
-}
-.panel-head{
-  margin-bottom: 1rem;
-}
-.panel h2{
-  margin:0;
-  font-size:1.15rem;
-}
-.note{
-  color:var(--muted);
-  font-size:.92rem;
-  margin:.45rem 0 0;
-}
+    ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
+      const el = $(id);
+      if (el) el.addEventListener("change", evaluarCAMICU);
+    });
 
-hr{
-  border:none;
-  border-top: 1px solid var(--border);
-  margin: 1.3rem 0;
-}
+    const camReset = $("cam_reset");
+    if (camReset) camReset.addEventListener("click", resetCAMICU);
 
-.card{
-  background: var(--card-2);
-  border: 1px solid var(--border);
-  border-radius: .85rem;
-  padding: 1rem;
-}
+    const nihssReset = $("nihss_reset");
+    if (nihssReset) nihssReset.addEventListener("click", resetNIHSS);
+  });
 
-.grid-2{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-@media (min-width: 860px){
-  .grid-2{ grid-template-columns: 1fr 1fr; }
-}
+  /* =========================================================
+     CAM-ICU
+  ========================================================= */
+  function resetCAMICU() {
+    ["cam_step1","cam_step2","cam_step3","cam_step4"].forEach((id) => {
+      const el = $(id);
+      if (el) el.value = "";
+    });
 
-.hint{
-  margin:.4rem 0 .75rem;
-  color: var(--muted);
-  font-size:.9rem;
-}
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.remove("hidden");
 
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:.45rem;
-  margin:.45rem 0;
-}
-.field span{
-  font-size: .92rem;
-}
+    setResultBox("resultadoCAMICU", "", null);
+    setHTML("interpretacionCAMICU", "");
+  }
 
-select{
-  width:100%;
-  padding:.55rem .6rem;
-  border-radius:.65rem;
-  border:1px solid var(--border);
-  background: #071022;
-  color: var(--text);
-  outline:none;
-}
-select:focus{
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(56,189,248,.15);
-}
+  function evaluarCAMICU() {
+    const s1 = getSelectInt("cam_step1");
+    const s2 = getSelectInt("cam_step2");
+    const s3 = getSelectInt("cam_step3");
+    const s4 = getSelectInt("cam_step4");
 
-.actions{
-  margin-top: .9rem;
-  display:flex;
-  gap:.65rem;
-  flex-wrap:wrap;
-}
+    if (s1 === null || s2 === null) return;
 
-button{
-  padding:.55rem .9rem;
-  border:none;
-  border-radius: .65rem;
-  cursor:pointer;
-  font-size:.9rem;
-  background: var(--primary);
-  color: #02101a;
-  font-weight: 700;
-}
-button:hover{ background: var(--primary-strong); }
+    if (s1 === 0 || s2 === 0) {
+      setResultBox(
+        "resultadoCAMICU",
+        "<strong>CAM-ICU:</strong> Negativo.",
+        "result-ok"
+      );
+      return;
+    }
 
-.btn-secondary{
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-weight: 600;
-}
-.btn-secondary:hover{
-  background: rgba(255,255,255,.04);
-}
+    $("cam_steps34")?.classList.remove("hidden");
+    $("cam_wait")?.classList.add("hidden");
 
-/* Result boxes */
-.resultado{
-  margin-top: 1rem;
-  padding: .9rem 1rem;
-  border-radius: .85rem;
-  border: 1px solid var(--border);
-  background: rgba(2,6,23,.35);
-  min-height: 52px;
-}
-.result-ok{ border-color: rgba(52,211,153,.35); }
-.result-bad{ border-color: rgba(251,113,133,.35); }
-.result-warn{ border-color: rgba(251,191,36,.35); }
+    if (s3 === null && s4 === null) return;
 
-.callout{
-  margin-top: 1rem;
-  padding: .85rem 1rem;
-  border-radius: .85rem;
-  border: 1px dashed var(--border);
-  color: var(--muted);
-  background: rgba(15,23,42,.35);
-}
-.callout.subtle{
-  margin-top: .9rem;
-  font-size: .9rem;
-}
+    if (s3 === 1 || s4 === 1) {
+      setResultBox(
+        "resultadoCAMICU",
+        "<strong>CAM-ICU:</strong> Positivo.",
+        "result-bad"
+      );
+      return;
+    }
 
-.hidden{ display:none !important; }
+    if (s3 === 0 && s4 === 0) {
+      setResultBox(
+        "resultadoCAMICU",
+        "<strong>CAM-ICU:</strong> Negativo.",
+        "result-ok"
+      );
+    }
+  }
 
-/* NIHSS grid */
-.nihss-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: .9rem;
-  margin-top: .5rem;
-}
-@media (min-width: 860px){
-  .nihss-grid{ grid-template-columns: 1fr 1fr; }
-}
+  /* =========================================================
+     NIHSS
+  ========================================================= */
+  function resetNIHSS() {
+    [
+      "n_1a","n_1b","n_1c","n_2","n_3","n_4","n_5a","n_5b",
+      "n_6a","n_6b","n_7","n_8","n_9","n_10","n_11"
+    ].forEach((id) => {
+      const el = $(id);
+      if (el) el.value = "";
+    });
 
-/* Tables */
-.table-wrap{
-  overflow:auto;
-  border-radius: .85rem;
-  border: 1px solid var(--border);
-}
-table{
-  width:100%;
-  border-collapse: collapse;
-  min-width: 640px;
-  background: #071022;
-}
-thead th{
-  text-align:left;
-  font-size:.9rem;
-  padding:.75rem .85rem;
-  background: rgba(56,189,248,.08);
-  border-bottom: 1px solid var(--border);
-}
-tbody td{
-  padding:.75rem .85rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  font-size:.92rem;
-}
-tbody tr:last-child td{ border-bottom:none; }
+    setResultBox("resultadoNIHSS", "", null);
+    setHTML("interpretacionNIHSS", "");
+  }
 
-/* Back + footer */
-.nav-back{
-  margin: 2rem 0 0;
-}
-.nav-back a{
-  color: var(--primary);
-  text-decoration:none;
-}
-.nav-back a:hover{ text-decoration:underline; }
+  function calcularNIHSS() {
+    let total = 0;
 
-footer{
-  margin-top: 3rem;
-  padding: 2rem 1rem;
-  border-top: 1px solid var(--border);
-  text-align:center;
-  color: var(--muted);
-  font-size: .85rem;
+    const visual = getSelectInt("n_3");
+    const neglect = getSelectInt("n_11");
+    const afasia = getSelectInt("n_9");
+
+    const motorArm = safeMax(
+      getSelectInt("n_5a"),
+      getSelectInt("n_5b")
+    );
+
+    const motorLeg = safeMax(
+      getSelectInt("n_6a"),
+      getSelectInt("n_6b")
+    );
+
+    document.querySelectorAll("#nihss select").forEach((sel) => {
+      const v = Number(sel.value);
+      if (Number.isFinite(v)) total += v;
+    });
+
+    const discapacitante =
+      visual === 2 ||
+      (neglect !== null && neglect >= 1) ||
+      (afasia !== null && afasia >= 1) ||
+      motorArm >= 2 ||
+      motorLeg >= 2;
+
+    let clasif = "ACV severo";
+    if (total <= 4) clasif = discapacitante ? "ACV menor discapacitante" : "ACV menor";
+    else if (total <= 15) clasif = "ACV moderado";
+
+    setResultBox(
+      "resultadoNIHSS",
+      `<strong>NIHSS:</strong> ${total} · ${clasif}`,
+      clasif.includes("severo") ? "result-bad" : clasif.includes("moderado") ? "result-warn" : "result-ok"
+    );
+  }
+
+  /* =========================================================
+     GLOBAL
+  ========================================================= */
+  window.calcularNIHSS = calcularNIHSS;
+
+} catch (err) {
+  console.error("❌ Error crítico en neuro.js:", err);
 }
-.footer-nav{
-  margin-bottom: .75rem;
-}
-.footer-nav a{
-  color: var(--muted);
-  text-decoration:none;
-}
-.footer-nav a:hover{ color: var(--primary); }
