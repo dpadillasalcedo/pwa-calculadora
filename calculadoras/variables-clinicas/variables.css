@@ -1,4 +1,21 @@
 /* =========================================================
+   VIEWPORT / OVERSCROLL FIX (ANTI BLANCO DEFINITIVO)
+========================================================= */
+html,
+body {
+  background-color: #020617 !important;
+  overscroll-behavior: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: #020617;
+  z-index: -1;
+}
+
+/* =========================================================
    ROOT · DARK CLINICAL THEME
 ========================================================= */
 :root {
@@ -232,3 +249,4 @@ footer {
     gap: 1.25rem;
   }
 }
+
