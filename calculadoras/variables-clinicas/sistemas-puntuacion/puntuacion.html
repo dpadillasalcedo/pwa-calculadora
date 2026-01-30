@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#020617">
-
   <link rel="stylesheet" href="./puntuacion.css">
 </head>
 
@@ -27,12 +26,12 @@
     <h1>Sistemas de puntuación</h1>
     <p class="note">
       Seleccione las categorías clínicas correspondientes.
-      El sistema calcula automáticamente el puntaje y la mortalidad estimada.
+      El cálculo se realiza automáticamente según escalas validadas.
     </p>
   </header>
 
   <!-- =====================================================
-       SOFA-2 (JAMA 2025)
+       SOFA-2 · JAMA 2025
   ====================================================== -->
   <section class="panel">
     <h2>SOFA-2</h2>
@@ -64,7 +63,7 @@
       <option value="4">Vasopresor dosis alta</option>
     </select>
 
-    <label>Coagulación (plaquetas)</label>
+    <label>Coagulación</label>
     <select id="sofa_coag">
       <option value="0">≥ 150</option>
       <option value="1">100–149</option>
@@ -73,7 +72,7 @@
       <option value="4">&lt; 20</option>
     </select>
 
-    <label>Hepático (bilirrubina)</label>
+    <label>Hepático</label>
     <select id="sofa_hep">
       <option value="0">&lt; 1.2</option>
       <option value="1">1.2–1.9</option>
@@ -88,13 +87,83 @@
       <option value="1">1.2–1.9</option>
       <option value="2">2.0–3.4</option>
       <option value="3">3.5–4.9</option>
-      <option value="4">≥ 5.0 o diálisis</option>
+      <option value="4">≥ 5.0 / diálisis</option>
     </select>
 
     <button onclick="calcularSOFA()">Calcular SOFA-2</button>
-
     <div id="resultadoSOFA" class="result"></div>
     <div id="interpretacionSOFA" class="note"></div>
+  </section>
+
+  <!-- =====================================================
+       APACHE II
+  ====================================================== -->
+  <section class="panel">
+    <h2>APACHE II</h2>
+
+    <label>Fisiología aguda (puntos)</label>
+    <select id="apache_phys">
+      <option value="0">0–4</option>
+      <option value="5">5–9</option>
+      <option value="10">10–14</option>
+      <option value="15">15–19</option>
+      <option value="20">≥ 20</option>
+    </select>
+
+    <label>Edad</label>
+    <select id="apache_age">
+      <option value="0">&lt; 45</option>
+      <option value="2">45–54</option>
+      <option value="3">55–64</option>
+      <option value="5">65–74</option>
+      <option value="6">≥ 75</option>
+    </select>
+
+    <label>Enfermedad crónica grave</label>
+    <select id="apache_chronic">
+      <option value="0">No</option>
+      <option value="5">Sí</option>
+    </select>
+
+    <button onclick="calcularAPACHE()">Calcular APACHE II</button>
+    <div id="resultadoAPACHE" class="result"></div>
+    <div id="interpretacionAPACHE" class="note"></div>
+  </section>
+
+  <!-- =====================================================
+       SAPS II
+  ====================================================== -->
+  <section class="panel">
+    <h2>SAPS II</h2>
+
+    <label>Puntaje fisiológico</label>
+    <select id="saps_phys">
+      <option value="0">0–10</option>
+      <option value="10">11–20</option>
+      <option value="20">21–30</option>
+      <option value="30">31–40</option>
+      <option value="40">≥ 41</option>
+    </select>
+
+    <label>Edad</label>
+    <select id="saps_age">
+      <option value="0">&lt; 40</option>
+      <option value="7">40–59</option>
+      <option value="12">60–69</option>
+      <option value="15">70–74</option>
+      <option value="18">≥ 75</option>
+    </select>
+
+    <label>Tipo de ingreso</label>
+    <select id="saps_adm">
+      <option value="0">Quirúrgico electivo</option>
+      <option value="6">Quirúrgico urgente</option>
+      <option value="8">Médico</option>
+    </select>
+
+    <button onclick="calcularSAPS()">Calcular SAPS II</button>
+    <div id="resultadoSAPS" class="result"></div>
+    <div id="interpretacionSAPS" class="note"></div>
   </section>
 
 </main>
@@ -105,7 +174,6 @@
     <span>·</span>
     <a href="/legal/aviso-legal.html">Aviso legal</a>
   </nav>
-
   <p>© 2026 Critical Care Tools · Uso educativo.</p>
 </footer>
 
