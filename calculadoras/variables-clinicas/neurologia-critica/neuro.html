@@ -1,166 +1,178 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --bg: #020617;
+  --card: #0b1220;
+  --card-2: #0f172a;
+  --border: #1e293b;
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
+  --text: #e5e7eb;
+  --muted: #cbd5e1;
+}
 
-  <title>Neurología crítica | Calculadoras UCI</title>
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
 
-  <meta
-    name="description"
-    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt and Hess, Fisher y Marshall score."
-  />
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 1.5rem;
+}
 
-  <!-- CSS -->
-  <link
-    rel="stylesheet"
-    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=3"
-  />
-</head>
+/* =========================
+   BREADCRUMB
+========================= */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
 
-<body>
+.breadcrumb a {
+  color: var(--primary);
+  text-decoration: none;
+}
 
-<main class="app container">
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
 
-  <!-- =========================
-       BREADCRUMB (CORREGIDO)
-  ========================= -->
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
-  </nav>
+.breadcrumb span {
+  margin: 0 0.4rem;
+}
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-  <header class="app-header">
-    <h1>Neurología crítica</h1>
-    <p class="subtitle">
-      Evaluación neurológica del paciente crítico mediante escalas clínicas validadas.
-    </p>
+/* =========================
+   HEADER
+========================= */
+.app-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #f8fafc;
+}
 
-    <!-- Subnavegación interna -->
-    <nav class="subnav" aria-label="Secciones neurológicas">
-      <a href="#camicu">CAM-ICU</a>
-      <a href="#nihss">NIHSS</a>
-      <a href="#fisher">Fisher</a>
-      <a href="#hunt-hess">Hunt & Hess</a>
-      <a href="#marshall">Marshall</a>
-    </nav>
-  </header>
+.subtitle {
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
 
-  <!-- =========================
-       CAM-ICU
-  ========================= -->
-  <section id="camicu" class="panel">
-    <h2>🧠 CAM-ICU · Delirium</h2>
-    <p class="note">
-      Diagnóstico positivo si se cumple:
-      <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
-    </p>
+/* =========================
+   SUBNAV
+========================= */
+.subnav {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
 
-    <!-- Inputs CAM-ICU deberían ir acá -->
+.subnav a {
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+}
 
-    <button type="button" onclick="calcularCAMICU()">Calcular CAM-ICU</button>
+.subnav a:hover {
+  background: var(--card-2);
+}
 
-    <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
-  </section>
+/* =========================
+   PANELS
+========================= */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 1.25rem;
+}
 
-  <hr />
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
 
-  <!-- =========================
-       NIHSS
-  ========================= -->
-  <section id="nihss" class="panel">
-    <h2>🧠 NIHSS · Stroke Scale</h2>
-    <p class="note">
-      Complete todos los ítems y luego presione <strong>Calcular</strong>.
-    </p>
+.note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 
-    <!-- Inputs NIHSS deberían ir acá -->
+.resultado {
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
 
-    <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
+/* =========================
+   BUTTONS
+========================= */
+button {
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--primary);
+  color: #020617;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
 
-    <div id="resultadoNIHSS" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
-  </section>
+button:hover {
+  background: var(--primary-strong);
+}
 
-  <hr />
+/* =========================
+   NAV BACK
+========================= */
+.nav-back {
+  margin-top: 2.5rem;
+}
 
-  <!-- =========================
-       FISHER
-  ========================= -->
-  <section id="fisher" class="panel">
-    <h2>🧠 Escala de Fisher · HSA</h2>
-    <p class="note">
-      Clasificación tomográfica de la hemorragia subaracnoidea y riesgo de vasoespasmo.
-    </p>
-  </section>
+.nav-back a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
 
-  <hr />
+.nav-back a:hover {
+  text-decoration: underline;
+}
 
-  <!-- =========================
-       HUNT & HESS
-  ========================= -->
-  <section id="hunt-hess" class="panel">
-    <h2>🧠 Hunt & Hess · HSA</h2>
-    <p class="note">
-      Clasificación clínica de severidad neurológica en hemorragia subaracnoidea.
-    </p>
-  </section>
+/* =========================
+   FOOTER
+========================= */
+footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
 
-  <hr />
+.footer-nav {
+  margin-bottom: 0.75rem;
+}
 
-  <!-- =========================
-       MARSHALL
-  ========================= -->
-  <section id="marshall" class="panel">
-    <h2>🧠 Marshall Score · TCE</h2>
-    <p class="note">
-      Clasificación tomográfica del traumatismo craneoencefálico.
-    </p>
-  </section>
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
 
-  <!-- =========================
-       NAV BACK
-  ========================= -->
-  <div class="nav-back">
-    <a href="/calculadoras/variables-clinicas/">
-      ← Volver a Variables clínicas
-    </a>
-  </div>
-
-</main>
-
-<!-- =========================
-     FOOTER
-========================= -->
-<footer>
-  <nav class="footer-nav">
-    <a href="/">Inicio</a> ·
-    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a> ·
-    <a href="/bibliografia/">Bibliografía</a> ·
-    <a href="/aviso-legal/">Aviso legal</a>
-  </nav>
-
-  <p>
-    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-    No reemplaza el juicio médico ni las guías institucionales.
-  </p>
-</footer>
-
-<!-- =========================
-     JAVASCRIPT (CLAVE)
-========================= -->
-<script
-  src="/calculadoras/variables-clinicas/neurologia-critica/neuro.js?v=3"
-  defer
-></script>
-
-</body>
-</html>
+.footer-nav a:hover {
+  color: var(--primary);
+}
