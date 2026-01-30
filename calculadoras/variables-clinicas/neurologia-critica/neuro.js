@@ -4,62 +4,40 @@ try {
   /* =========================================================
      HELPERS
   ========================================================= */
-  function $(id) {
-    return document.getElementById(id);
-  }
+  const $ = (id) => document.getElementById(id);
 
-  function setHTML(id, html) {
+  const setHTML = (id, html = "") => {
     const el = $(id);
     if (el) el.innerHTML = html;
-  }
+  };
 
-  function getSelectInt(id) {
+  const getSelectInt = (id) => {
     const el = $(id);
-    if (!el) return null;
-    if (el.value === "") return null;
+    if (!el || el.value === "") return null;
     const n = Number(el.value);
     return Number.isFinite(n) ? n : null;
-  }
+  };
 
-  function safeMax(a, b) {
+  const safeMax = (a, b) => {
     if (a === null && b === null) return 0;
     if (a === null) return b;
     if (b === null) return a;
     return Math.max(a, b);
-  }
+  };
 
-  function setResultBox(id, html, kind) {
+  const setResultBox = (id, html = "", kind = null) => {
     const el = $(id);
     if (!el) return;
     el.classList.remove("result-ok", "result-bad", "result-warn");
     if (kind) el.classList.add(kind);
     el.innerHTML = html;
-  }
-
-  /* =========================================================
-     INIT
-  ========================================================= */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (typeof resetCAMICU === "function") resetCAMICU();
-    if (typeof resetNIHSS === "function") resetNIHSS();
-
-    ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
-      const el = $(id);
-      if (el) el.addEventListener("change", evaluarCAMICU);
-    });
-
-    const camReset = $("cam_reset");
-    if (camReset) camReset.addEventListener("click", resetCAMICU);
-
-    const nihssReset = $("nihss_reset");
-    if (nihssReset) nihssReset.addEventListener("click", resetNIHSS);
-  });
+  };
 
   /* =========================================================
      CAM-ICU
   ========================================================= */
   function resetCAMICU() {
-    ["cam_step1","cam_step2","cam_step3","cam_step4"].forEach((id) => {
+    ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
       const el = $(id);
       if (el) el.value = "";
     });
@@ -67,8 +45,8 @@ try {
     $("cam_steps34")?.classList.add("hidden");
     $("cam_wait")?.classList.remove("hidden");
 
-    setResultBox("resultadoCAMICU", "", null);
-    setHTML("interpretacionCAMICU", "");
+    setResultBox("resultadoCAMICU");
+    setHTML("interpretacionCAMICU");
   }
 
   function evaluarCAMICU() {
@@ -76,6 +54,9 @@ try {
     const s2 = getSelectInt("cam_step2");
     const s3 = getSelectInt("cam_step3");
     const s4 = getSelectInt("cam_step4");
+
+    // Siempre limpiar resultado antes de evaluar
+    setResultBox("resultadoCAMICU");
 
     if (s1 === null || s2 === null) return;
 
@@ -116,15 +97,16 @@ try {
   ========================================================= */
   function resetNIHSS() {
     [
-      "n_1a","n_1b","n_1c","n_2","n_3","n_4","n_5a","n_5b",
-      "n_6a","n_6b","n_7","n_8","n_9","n_10","n_11"
+      "n_1a","n_1b","n_1c","n_2","n_3","n_4",
+      "n_5a","n_5b","n_6a","n_6b",
+      "n_7","n_8","n_9","n_10","n_11"
     ].forEach((id) => {
       const el = $(id);
       if (el) el.value = "";
     });
 
-    setResultBox("resultadoNIHSS", "", null);
-    setHTML("interpretacionNIHSS", "");
+    setResultBox("resultadoNIHSS");
+    setHTML("interpretacionNIHSS");
   }
 
   function calcularNIHSS() {
@@ -134,20 +116,15 @@ try {
     const neglect = getSelectInt("n_11");
     const afasia = getSelectInt("n_9");
 
-    const motorArm = safeMax(
-      getSelectInt("n_5a"),
-      getSelectInt("n_5b")
-    );
+    const motorArm = safeMax(getSelectInt("n_5a"), getSelectInt("n_5b"));
+    const motorLeg = safeMax(getSelectInt("n_6a"), getSelectInt("n_6b"));
 
-    const motorLeg = safeMax(
-      getSelectInt("n_6a"),
-      getSelectInt("n_6b")
-    );
-
-    document.querySelectorAll("#nihss select").forEach((sel) => {
-      const v = Number(sel.value);
-      if (Number.isFinite(v)) total += v;
-    });
+    document
+      .querySelectorAll('select[id^="n_"]')
+      .forEach((sel) => {
+        const v = Number(sel.value);
+        if (Number.isFinite(v)) total += v;
+      });
 
     const discapacitante =
       visual === 2 ||
@@ -157,15 +134,38 @@ try {
       motorLeg >= 2;
 
     let clasif = "ACV severo";
-    if (total <= 4) clasif = discapacitante ? "ACV menor discapacitante" : "ACV menor";
-    else if (total <= 15) clasif = "ACV moderado";
+    if (total <= 4) {
+      clasif = discapacitante
+        ? "ACV menor discapacitante"
+        : "ACV menor";
+    } else if (total <= 15) {
+      clasif = "ACV moderado";
+    }
 
     setResultBox(
       "resultadoNIHSS",
       `<strong>NIHSS:</strong> ${total} · ${clasif}`,
-      clasif.includes("severo") ? "result-bad" : clasif.includes("moderado") ? "result-warn" : "result-ok"
+      clasif.includes("severo")
+        ? "result-bad"
+        : clasif.includes("moderado")
+        ? "result-warn"
+        : "result-ok"
     );
   }
+
+  /* =========================================================
+     INIT (defer-safe)
+  ========================================================= */
+  resetCAMICU();
+  resetNIHSS();
+
+  ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
+    const el = $(id);
+    if (el) el.addEventListener("change", evaluarCAMICU);
+  });
+
+  $("cam_reset")?.addEventListener("click", resetCAMICU);
+  $("nihss_reset")?.addEventListener("click", resetNIHSS);
 
   /* =========================================================
      GLOBAL
