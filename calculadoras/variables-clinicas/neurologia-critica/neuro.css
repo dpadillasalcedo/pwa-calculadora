@@ -21,12 +21,9 @@
 /* =========================================================
    RESET / BASE
 ========================================================= */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
+html, body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -42,34 +39,27 @@ a {
   color: var(--primary);
   text-decoration: none;
 }
-
-a:hover {
-  color: var(--primary-strong);
-}
+a:hover { color: var(--primary-strong); }
 
 hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 3rem 0;
+  margin: 2.5rem 0;
 }
+
+/* helpers */
+.hidden { display: none !important; }
 
 /* =========================================================
-   LAYOUT · ESCALAS
+   LAYOUT
 ========================================================= */
-
-/* NIHSS ocupa todo el ancho */
-#nihss {
-  margin-bottom: 4rem;
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
-/* Contenedor de escalas descriptivas */
-#fisher,
-#hunt-hess,
-#marshall {
-  max-width: 760px;
-  margin: 0 auto 3rem auto;
-}
-
+.app { padding-top: 0.5rem; }
 
 /* =========================================================
    BREADCRUMB
@@ -79,17 +69,12 @@ hr {
   color: var(--muted);
   margin-bottom: 1.5rem;
 }
-
-.breadcrumb span {
-  margin: 0 0.4rem;
-}
+.breadcrumb span { margin: 0 0.4rem; }
 
 /* =========================================================
    HEADER
 ========================================================= */
-.app-header {
-  margin-bottom: 2rem;
-}
+.app-header { margin-bottom: 2rem; }
 
 .app-header h1 {
   margin: 0;
@@ -111,10 +96,6 @@ hr {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
-}
-
-.panel + .panel {
-  margin-top: 3rem;
 }
 
 .panel-head h2 {
@@ -149,14 +130,14 @@ hr {
 }
 
 .card h3 {
-  margin-top: 0;
+  margin: 0 0 0.5rem 0;
   font-size: 1.05rem;
 }
 
 .hint {
   font-size: 0.85rem;
   color: var(--muted);
-  margin-bottom: 0.75rem;
+  margin: 0 0 0.75rem 0;
 }
 
 /* =========================================================
@@ -178,7 +159,7 @@ select {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 0.45rem 0.5rem;
+  padding: 0.5rem 0.55rem;
 }
 
 select:focus {
@@ -187,7 +168,7 @@ select:focus {
 }
 
 /* =========================================================
-   CALLOUTS
+   CALLOUTS / NOTE
 ========================================================= */
 .callout {
   margin-top: 1.25rem;
@@ -196,11 +177,7 @@ select:focus {
   background: #020617;
   border: 1px dashed var(--border);
   font-size: 0.9rem;
-}
-
-.callout.subtle {
-  background: transparent;
-  border-style: solid;
+  color: var(--text);
 }
 
 .note {
@@ -219,29 +196,46 @@ select:focus {
   flex-wrap: wrap;
 }
 
-button {
+/* unifica: .btn y <button> se ven igual */
+button,
+.btn {
+  appearance: none;
   background: var(--primary);
   color: #020617;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 999px;
-  padding: 0.45rem 1rem;
-  font-weight: 600;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
   cursor: pointer;
   touch-action: manipulation;
 }
 
-button:hover {
+button:hover,
+.btn:hover {
   background: var(--primary-strong);
 }
 
+button:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* secundario */
 .btn-secondary {
   background: transparent;
   color: var(--primary);
-  border: 1px solid var(--primary);
+  border-color: var(--primary);
 }
 
 .btn-secondary:hover {
   background: rgba(56, 189, 248, 0.1);
+}
+
+/* por si usás .primary en algún botón */
+.btn.primary,
+button.primary {
+  background: var(--primary);
 }
 
 /* =========================================================
@@ -251,30 +245,33 @@ button:hover {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.35);
 }
 
 .result-ok {
-  background: rgba(34, 197, 94, 0.15);
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
   color: var(--ok);
 }
 
 .result-warn {
-  background: rgba(245, 158, 11, 0.15);
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
   color: var(--warn);
 }
 
 .result-bad {
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
   color: var(--bad);
 }
 
 /* =========================================================
    NIHSS
 ========================================================= */
-#nihss {
-  margin-bottom: 3rem;
-}
+#nihss { margin-bottom: 3rem; }
 
 .nihss-grid {
   display: grid;
@@ -283,21 +280,23 @@ button:hover {
   margin-top: 0.75rem;
 }
 
+/* ojo: en tu HTML cada item es <label class="field"> dentro de .nihss-grid */
 .nihss-grid .field {
   background: rgba(2, 6, 23, 0.6);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.75rem;
+  margin-top: 0; /* evita doble margen */
 }
 
 .nihss-grid .field span {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nihss-grid select {
   margin-top: 0.35rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 #nihss .actions {
@@ -306,11 +305,7 @@ button:hover {
   padding-top: 1rem;
 }
 
-#resultadoNIHSS {
-  margin-top: 1.25rem;
-  font-size: 1rem;
-}
-
+#resultadoNIHSS { margin-top: 1.25rem; }
 #interpretacionNIHSS {
   margin-top: 0.5rem;
   font-size: 0.85rem;
@@ -318,7 +313,7 @@ button:hover {
 }
 
 /* =========================================================
-   TABLES · BASE
+   TABLAS
 ========================================================= */
 .table-wrap {
   overflow-x: auto;
@@ -362,53 +357,31 @@ table th:first-child,
 table td:first-child {
   width: 90px;
   white-space: nowrap;
-  font-weight: 600;
-}
-
-/* =========================================================
-   ESCALAS CLÍNICAS · JERARQUÍA
-========================================================= */
-#fisher .card {
-  border-left: 4px solid var(--primary);
-}
-
-#fisher table td:first-child {
-  color: var(--primary);
   font-weight: 700;
 }
 
-#hunt-hess .card {
-  border-left: 4px solid var(--warn);
-}
+/* =========================================================
+   ESCALAS CLÍNICAS · JERARQUÍA (TABLAS)
+========================================================= */
+#fisher .card { border-left: 4px solid var(--primary); }
+#fisher table td:first-child { color: var(--primary); }
 
-#hunt-hess table td:first-child {
-  color: var(--warn);
-}
+#hunt-hess .card { border-left: 4px solid var(--warn); }
+#hunt-hess table td:first-child { color: var(--warn); }
 
-#marshall .card {
-  border-left: 4px solid var(--bad);
-}
-
-#marshall table td:first-child {
-  color: var(--bad);
-}
+#marshall .card { border-left: 4px solid var(--bad); }
+#marshall table td:first-child { color: var(--bad); }
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 @media (max-width: 640px) {
-  table {
-    font-size: 0.85rem;
-  }
+  .container { padding: 1rem; }
 
-  table th,
-  table td {
-    padding: 0.55rem 0.6rem;
-  }
+  table { font-size: 0.85rem; }
+  table th, table td { padding: 0.55rem 0.6rem; }
 
-  .nihss-grid {
-    grid-template-columns: 1fr;
-  }
+  .nihss-grid { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
@@ -436,9 +409,7 @@ table td:first-child {
   color: var(--muted);
 }
 
-.footer-nav span {
-  margin: 0 0.4rem;
-}
+.footer-nav span { margin: 0 0.4rem; }
 
 .footer-copy {
   font-size: 0.8rem;
