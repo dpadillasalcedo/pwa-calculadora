@@ -36,7 +36,6 @@
       en pacientes críticos. Interpretar siempre en contexto clínico.
     </p>
 
-    <!-- Navegación interna rápida -->
     <nav class="subnav" aria-label="Secciones">
       <a href="#sofa2">SOFA-2</a>
       <a href="#apache2">APACHE II</a>
@@ -45,70 +44,43 @@
   </header>
 
   <!-- =========================
-       SOFA-2 · JAMA 2025
+       SOFA-2
   ========================== -->
-  <section id="sofa2" class="panel" data-module="sofa2">
-
-    <h2>
-      <span class="icon icon-stetho"></span>
-      SOFA-2 · Puntuación (JAMA 2025)
-    </h2>
-
+  <section id="sofa2" class="panel">
+    <h2>SOFA-2 · Puntuación (JAMA 2025)</h2>
     <p class="note">
-      Evaluación de disfunción orgánica basada en la actualización
-      <strong>SOFA-2</strong> (JAMA, 2025).
+      Evaluación de disfunción orgánica basada en la actualización SOFA-2.
     </p>
-
-    <!-- (contenido intacto) -->
-    <!-- ... TODOS TUS FIELDSETS SIN CAMBIOS ... -->
 
     <button type="button" onclick="calcularSOFA2()">Calcular SOFA-2</button>
     <div id="resultadoSOFA2" class="result"></div>
     <div id="interpretacionSOFA2" class="note"></div>
-
   </section>
 
   <!-- =========================
        APACHE II
   ========================== -->
-  <section id="apache2" class="panel" data-module="apache2">
-
-    <h2>
-      <span class="icon icon-stetho"></span>
-      APACHE II · puntuación
-    </h2>
-
+  <section id="apache2" class="panel">
+    <h2>APACHE II · puntuación</h2>
     <p class="note">
-      Estima gravedad de enfermedad y riesgo de mortalidad hospitalaria
-      durante las primeras 24 horas en UCI.
+      Estima gravedad de enfermedad y riesgo de mortalidad hospitalaria.
     </p>
-
-    <!-- (contenido intacto) -->
 
     <button type="button" onclick="calcularAPACHE2()">Calcular APACHE II</button>
     <div id="resultadoAPACHE2" class="result"></div>
-
   </section>
 
   <!-- =========================
        SAPS II
   ========================== -->
-  <section id="saps2" class="panel" data-module="saps2">
-
-    <h2>
-      <span class="icon icon-stetho"></span>
-      SAPS II · puntuación
-    </h2>
-
+  <section id="saps2" class="panel">
+    <h2>SAPS II · puntuación</h2>
     <p class="note">
-      Estima probabilidad de mortalidad hospitalaria usando variables fisiológicas y edad.
+      Estima probabilidad de mortalidad hospitalaria.
     </p>
-
-    <!-- (contenido intacto) -->
 
     <button type="button" onclick="calcularSAPS2()">Calcular SAPS II</button>
     <div id="resultadoSAPS2" class="result"></div>
-
   </section>
 
   <!-- =========================
@@ -120,15 +92,12 @@
 
 </main>
 
-<!-- =========================
-     FOOTER
-========================== -->
 <footer>
-<nav class="footer-nav">
-  <a href="/">Inicio</a> ·
-  <a href="referencia-bibliografica/bibliografia.html/">Bibliografia</a> ·
-  <a href="legal/aviso-legal.html">Aviso legal</a>
-</nav>
+  <nav class="footer-nav">
+    <a href="/">Inicio</a> ·
+    <a href="/bibliografia/">Bibliografía</a> ·
+    <a href="/aviso-legal/">Aviso legal</a>
+  </nav>
 
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
@@ -136,7 +105,6 @@
   </p>
 </footer>
 
-<!-- JS local -->
 <script src="./puntuacion.js"></script>
 
 </body>
