@@ -36,7 +36,7 @@
       el.innerHTML = html;
     };
 
-   /* =========================================================
+/* =========================================================
    CAM-ICU (PASO A PASO REAL)
    Regla: positivo si (1 + 2) y (3 o 4)
 ========================================================= */
@@ -47,7 +47,7 @@ function resetCAMICU() {
     if (el) el.value = "";
   });
 
-  // ocultar todo menos paso 1
+  // Estado inicial: solo Paso 1 visible
   $("cam_step2")?.closest(".card")?.classList.add("hidden");
   $("cam_steps34")?.classList.add("hidden");
   $("cam_step4")?.closest(".card")?.classList.add("hidden");
@@ -70,7 +70,6 @@ function evaluarCAMICU() {
      PASO 1
   ========================= */
 
-  // Paso 1 no respondido
   if (s1 === null) {
     $("cam_step2")?.closest(".card")?.classList.add("hidden");
     $("cam_steps34")?.classList.add("hidden");
@@ -78,7 +77,6 @@ function evaluarCAMICU() {
     return;
   }
 
-  // Paso 1 = NO → descarta delirium
   if (s1 === 0) {
     $("cam_step2").value = "";
     $("cam_step3").value = "";
@@ -112,7 +110,6 @@ function evaluarCAMICU() {
     return;
   }
 
-  // Paso 2 = NO → descarta delirium
   if (s2 === 0) {
     $("cam_step3").value = "";
     $("cam_step4").value = "";
@@ -143,26 +140,48 @@ function evaluarCAMICU() {
   if (s3 === null) return;
 
   /* =========================
-     PASO 4 (solo después de Paso 3)
+     SI PASO 3 = SÍ → CAM-ICU POSITIVO
+     (NO SE MUESTRA PASO 4)
+  ========================= */
+
+  if (s3 === 1) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Positivo.",
+      "result-bad"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Paso 3 positivo (alteración del nivel de conciencia)."
+    );
+    return;
+  }
+
+  /* =========================
+     PASO 4 (solo si Paso 3 = NO)
   ========================= */
 
   $("cam_step4")?.closest(".card")?.classList.remove("hidden");
 
-// CAM-ICU positivo si 3 o 4 es positivo
-if (s3 === 1 || s4 === 1) {
-  setResultBox(
-    "resultadoCAMICU",
-    "<strong>CAM-ICU:</strong> Positivo.",
-    "result-bad"
-  );
-  setHTML(
-    "interpretacionCAMICU",
-    "Cumple criterios: Paso 1 + Paso 2 y (Paso 3 o Paso 4)."
-  );
-}
+  if (s4 === null) return;
 
-// Ambos negativos (solo si ambos fueron evaluados)
-if (s3 === 0 && s4 === 0) {
+  if (s4 === 1) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Positivo.",
+      "result-bad"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Paso 4 positivo (pensamiento desorganizado)."
+    );
+    return;
+  }
+
+  /* =========================
+     PASO 3 = NO y PASO 4 = NO
+  ========================= */
+
   setResultBox(
     "resultadoCAMICU",
     "<strong>CAM-ICU:</strong> Negativo.",
