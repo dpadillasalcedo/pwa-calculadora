@@ -4,19 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Ventilación mecánica | Calculadora UCI</title>
+  <title>Ventilación mecánica | Calculadoras UCI</title>
 
   <meta
     name="description"
-    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. Uso educativo en cuidados intensivos."
+    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. PBW, ajuste de PCO₂ y Driving Pressure (ΔP). Uso educativo en cuidados intensivos."
   />
 
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
+  <!-- CSS -->
   <link
     rel="stylesheet"
-    href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=4"
+    href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=5"
   />
 </head>
 
@@ -28,9 +29,11 @@
        BREADCRUMB
   ========================= -->
   <nav class="breadcrumb" aria-label="Navegación">
-    <a href="/">Inicio</a>
+    <a href="https://criticalcaretools.com/">Inicio</a>
     <span aria-hidden="true">›</span>
-    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
+    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
+      Variables clínicas
+    </a>
   </nav>
 
   <!-- =========================
@@ -44,22 +47,110 @@
   </header>
 
   <!-- =========================
-       CONTENIDO CLÍNICO
-       (SECCIÓN PRINCIPAL)
+       PBW · PESO CORPORAL PREDICHO
   ========================= -->
-  <section class="content">
-    <!-- 
-      Aquí va todo el contenido clínico existente:
-      calculadoras, formularios, tablas, ayudas, etc.
-      No se modifica esta sección.
-    -->
+  <section class="panel">
+
+    <h2>🫁 Peso corporal predicho (PBW)</h2>
+
+    <p class="note">
+      Cálculo basado en ARDSnet. Se utiliza para definir ventilación protectora.
+    </p>
+
+    <label for="talla">Talla (cm)</label>
+    <input type="number" id="talla" min="80" max="250" />
+
+    <label for="sexo">Sexo</label>
+    <select id="sexo">
+      <option value="">Seleccione</option>
+      <option value="hombre">Hombre</option>
+      <option value="mujer">Mujer</option>
+    </select>
+
+    <button type="button" onclick="calcularPesoIdeal()">
+      Calcular PBW
+    </button>
+
+    <div id="resultadoPeso" class="result"></div>
+
+  </section>
+
+  <!-- =========================
+       AJUSTE DE PCO₂
+  ========================= -->
+  <section class="panel">
+
+    <h2>🫁 Ajuste de PCO₂</h2>
+
+    <p class="note">
+      Relación inversa entre PCO₂ y ventilación minuto.
+      No reemplaza gasometría ni criterio clínico.
+    </p>
+
+    <label for="pco2Act">PCO₂ actual (mmHg)</label>
+    <input type="number" id="pco2Act" step="0.1" />
+
+    <label for="pco2Des">PCO₂ deseada (mmHg)</label>
+    <input type="number" id="pco2Des" step="0.1" />
+
+    <div class="grid-2">
+      <div>
+        <label for="fr_actual">FR actual (rpm)</label>
+        <input type="number" id="fr_actual" />
+      </div>
+      <div>
+        <label for="vt_actual">VT actual (mL)</label>
+        <input type="number" id="vt_actual" />
+      </div>
+    </div>
+
+    <label for="vmin_actual">Ventilación minuto actual (L/min)</label>
+    <input type="number" id="vmin_actual" step="0.1" />
+
+    <button type="button" onclick="ajustarPCO2()">
+      Calcular ajuste
+    </button>
+
+    <div id="resultadoPCO2" class="result"></div>
+    <div id="resultadoPCO2Detalle" class="note"></div>
+
+  </section>
+
+  <!-- =========================
+       DRIVING PRESSURE
+  ========================= -->
+  <section class="panel">
+
+    <h2>🫁 Driving Pressure (ΔP)</h2>
+
+    <p class="note">
+      La <strong>Driving Pressure (ΔP)</strong> se calcula como:
+      <br />
+      <strong>ΔP = Presión Plateau − PEEP</strong>
+      <br />
+      Predictor de estrés pulmonar y lesión asociada a ventilación.
+    </p>
+
+    <label for="pplat">Presión Plateau (cmH₂O)</label>
+    <input type="number" id="pplat" step="0.1" />
+
+    <label for="peep">PEEP (cmH₂O)</label>
+    <input type="number" id="peep" step="0.1" />
+
+    <button type="button" onclick="calcularDeltaP()">
+      Calcular ΔP
+    </button>
+
+    <div id="resultadoDeltaP" class="result"></div>
+    <div id="interpretacionDeltaP" class="note"></div>
+
   </section>
 
   <!-- =========================
        NAVEGACIÓN INFERIOR
   ========================= -->
   <div class="nav-back">
-    <a href="/calculadoras/variables-clinicas/">
+    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
       ← Volver a Variables clínicas
     </a>
   </div>
@@ -71,10 +162,12 @@
 ========================= -->
 <footer>
   <nav class="footer-nav">
-    <a href="/">Inicio</a> ·
-    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a> ·
-    <a href="/bibliografia/">Bibliografía</a> ·
-    <a href="/aviso-legal/">Aviso legal</a>
+    <a href="https://criticalcaretools.com/">Inicio</a> ·
+    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
+      Variables clínicas
+    </a> ·
+    <a href="https://criticalcaretools.com/bibliografia/">Bibliografía</a> ·
+    <a href="https://criticalcaretools.com/aviso-legal/">Aviso legal</a>
   </nav>
 
   <p>
@@ -87,7 +180,11 @@
      SCRIPTS
 ========================= -->
 <script
-  src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=4"
+  src="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.js?v=5"
+  defer
+></script>
+<script
+  src="/calculadoras/variables-clinicas/ventilacion-mecanica/driving-pressure.js?v=5"
   defer
 ></script>
 
