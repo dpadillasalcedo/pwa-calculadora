@@ -26,16 +26,12 @@
 <main class="app container">
 
   <!-- =========================
-       BREADCRUMB
+       BREADCRUMB (CORREGIDO)
   ========================= -->
   <nav class="breadcrumb" aria-label="Navegación">
     <a href="/">Inicio</a>
-    <span>›</span>
-    <a href="/calculadoras/">Calculadoras</a>
-    <span>›</span>
+    <span aria-hidden="true">›</span>
     <a href="/calculadoras/variables-clinicas/">Variables clínicas</a>
-    <span>›</span>
-    <span aria-current="page">Neurología crítica</span>
   </nav>
 
   <!-- =========================
@@ -47,6 +43,7 @@
       Evaluación neurológica del paciente crítico mediante escalas clínicas validadas.
     </p>
 
+    <!-- Subnavegación interna -->
     <nav class="subnav" aria-label="Secciones neurológicas">
       <a href="#camicu">CAM-ICU</a>
       <a href="#nihss">NIHSS</a>
@@ -56,7 +53,9 @@
     </nav>
   </header>
 
-  <!-- CAM-ICU -->
+  <!-- =========================
+       CAM-ICU
+  ========================= -->
   <section id="camicu" class="panel">
     <h2>🧠 CAM-ICU · Delirium</h2>
     <p class="note">
@@ -64,18 +63,26 @@
       <strong>1 + 2</strong> y <strong>(3 o 4)</strong>.
     </p>
 
+    <!-- Inputs CAM-ICU deberían ir acá -->
+
+    <button type="button" onclick="calcularCAMICU()">Calcular CAM-ICU</button>
+
     <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
     <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
   </section>
 
   <hr />
 
-  <!-- NIHSS -->
+  <!-- =========================
+       NIHSS
+  ========================= -->
   <section id="nihss" class="panel">
     <h2>🧠 NIHSS · Stroke Scale</h2>
     <p class="note">
       Complete todos los ítems y luego presione <strong>Calcular</strong>.
     </p>
+
+    <!-- Inputs NIHSS deberían ir acá -->
 
     <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
 
@@ -85,7 +92,9 @@
 
   <hr />
 
-  <!-- Fisher -->
+  <!-- =========================
+       FISHER
+  ========================= -->
   <section id="fisher" class="panel">
     <h2>🧠 Escala de Fisher · HSA</h2>
     <p class="note">
@@ -95,7 +104,9 @@
 
   <hr />
 
-  <!-- Hunt & Hess -->
+  <!-- =========================
+       HUNT & HESS
+  ========================= -->
   <section id="hunt-hess" class="panel">
     <h2>🧠 Hunt & Hess · HSA</h2>
     <p class="note">
@@ -105,7 +116,9 @@
 
   <hr />
 
-  <!-- Marshall -->
+  <!-- =========================
+       MARSHALL
+  ========================= -->
   <section id="marshall" class="panel">
     <h2>🧠 Marshall Score · TCE</h2>
     <p class="note">
@@ -113,15 +126,24 @@
     </p>
   </section>
 
+  <!-- =========================
+       NAV BACK
+  ========================= -->
   <div class="nav-back">
-    <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
+    <a href="/calculadoras/variables-clinicas/">
+      ← Volver a Variables clínicas
+    </a>
   </div>
 
 </main>
 
+<!-- =========================
+     FOOTER
+========================= -->
 <footer>
   <nav class="footer-nav">
     <a href="/">Inicio</a> ·
+    <a href="/calculadoras/variables-clinicas/">Variables clínicas</a> ·
     <a href="/bibliografia/">Bibliografía</a> ·
     <a href="/aviso-legal/">Aviso legal</a>
   </nav>
@@ -131,6 +153,14 @@
     No reemplaza el juicio médico ni las guías institucionales.
   </p>
 </footer>
+
+<!-- =========================
+     JAVASCRIPT (CLAVE)
+========================= -->
+<script
+  src="/calculadoras/variables-clinicas/neurologia-critica/neuro.js?v=3"
+  defer
+></script>
 
 </body>
 </html>
