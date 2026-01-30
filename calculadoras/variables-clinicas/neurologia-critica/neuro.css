@@ -1,177 +1,324 @@
-try {
-  console.log("neuro.js cargado correctamente");
+/* =========================================================
+   ROOT · DARK THEME
+========================================================= */
+:root {
+  --bg: #020617;
+  --panel: #0b1220;
+  --card: #0f172a;
+  --border: #1e293b;
 
-  /* =========================================================
-     HELPERS
-  ========================================================= */
-  function $(id) {
-    return document.getElementById(id);
-  }
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 
-  function setHTML(id, html) {
-    const el = $(id);
-    if (el) el.innerHTML = html;
-  }
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
 
-  function getSelectInt(id) {
-    const el = $(id);
-    if (!el) return null;
-    if (el.value === "") return null;
-    const n = Number(el.value);
-    return Number.isFinite(n) ? n : null;
-  }
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --bad: #ef4444;
+}
 
-  function safeMax(a, b) {
-    if (a === null && b === null) return 0;
-    if (a === null) return b;
-    if (b === null) return a;
-    return Math.max(a, b);
-  }
+/* =========================================================
+   RESET / BASE
+========================================================= */
+* {
+  box-sizing: border-box;
+}
 
-  function setResultBox(id, html, kind) {
-    const el = $(id);
-    if (!el) return;
-    el.classList.remove("result-ok", "result-bad", "result-warn");
-    if (kind) el.classList.add(kind);
-    el.innerHTML = html;
-  }
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
 
-  /* =========================================================
-     INIT
-  ========================================================= */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (typeof resetCAMICU === "function") resetCAMICU();
-    if (typeof resetNIHSS === "function") resetNIHSS();
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
 
-    ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
-      const el = $(id);
-      if (el) el.addEventListener("change", evaluarCAMICU);
-    });
+a:hover {
+  color: var(--primary-strong);
+}
 
-    const camReset = $("cam_reset");
-    if (camReset) camReset.addEventListener("click", resetCAMICU);
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
 
-    const nihssReset = $("nihss_reset");
-    if (nihssReset) nihssReset.addEventListener("click", resetNIHSS);
-  });
+/* =========================================================
+   LAYOUT
+========================================================= */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
 
-  /* =========================================================
-     CAM-ICU
-  ========================================================= */
-  function resetCAMICU() {
-    ["cam_step1","cam_step2","cam_step3","cam_step4"].forEach((id) => {
-      const el = $(id);
-      if (el) el.value = "";
-    });
+.app {
+  display: block;
+}
 
-    $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.remove("hidden");
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
 
-    setResultBox("resultadoCAMICU", "", null);
-    setHTML("interpretacionCAMICU", "");
-  }
+.breadcrumb span {
+  margin: 0 0.4rem;
+}
 
-  function evaluarCAMICU() {
-    const s1 = getSelectInt("cam_step1");
-    const s2 = getSelectInt("cam_step2");
-    const s3 = getSelectInt("cam_step3");
-    const s4 = getSelectInt("cam_step4");
+/* =========================================================
+   HEADER
+========================================================= */
+.app-header {
+  margin-bottom: 2rem;
+}
 
-    if (s1 === null || s2 === null) return;
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #f8fafc;
+}
 
-    if (s1 === 0 || s2 === 0) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Negativo.",
-        "result-ok"
-      );
-      return;
-    }
+.subtitle {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  max-width: 720px;
+}
 
-    $("cam_steps34")?.classList.remove("hidden");
-    $("cam_wait")?.classList.add("hidden");
+/* =========================================================
+   PANELS
+========================================================= */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
 
-    if (s3 === null && s4 === null) return;
+.panel-head h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
 
-    if (s3 === 1 || s4 === 1) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Positivo.",
-        "result-bad"
-      );
-      return;
-    }
+.panel-head .note {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 
-    if (s3 === 0 && s4 === 0) {
-      setResultBox(
-        "resultadoCAMICU",
-        "<strong>CAM-ICU:</strong> Negativo.",
-        "result-ok"
-      );
-    }
-  }
+/* =========================================================
+   GRID
+========================================================= */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
 
-  /* =========================================================
-     NIHSS
-  ========================================================= */
-  function resetNIHSS() {
-    [
-      "n_1a","n_1b","n_1c","n_2","n_3","n_4","n_5a","n_5b",
-      "n_6a","n_6b","n_7","n_8","n_9","n_10","n_11"
-    ].forEach((id) => {
-      const el = $(id);
-      if (el) el.value = "";
-    });
+/* =========================================================
+   CARDS
+========================================================= */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
 
-    setResultBox("resultadoNIHSS", "", null);
-    setHTML("interpretacionNIHSS", "");
-  }
+.card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
 
-  function calcularNIHSS() {
-    let total = 0;
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
 
-    const visual = getSelectInt("n_3");
-    const neglect = getSelectInt("n_11");
-    const afasia = getSelectInt("n_9");
+/* =========================================================
+   FORMS
+========================================================= */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
 
-    const motorArm = safeMax(
-      getSelectInt("n_5a"),
-      getSelectInt("n_5b")
-    );
+.field span {
+  font-size: 0.9rem;
+}
 
-    const motorLeg = safeMax(
-      getSelectInt("n_6a"),
-      getSelectInt("n_6b")
-    );
+select {
+  background: #020617;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.5rem;
+}
 
-    document.querySelectorAll("#nihss select").forEach((sel) => {
-      const v = Number(sel.value);
-      if (Number.isFinite(v)) total += v;
-    });
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
 
-    const discapacitante =
-      visual === 2 ||
-      (neglect !== null && neglect >= 1) ||
-      (afasia !== null && afasia >= 1) ||
-      motorArm >= 2 ||
-      motorLeg >= 2;
+/* =========================================================
+   CALLOUTS
+========================================================= */
+.callout {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #020617;
+  border: 1px dashed var(--border);
+  font-size: 0.9rem;
+}
 
-    let clasif = "ACV severo";
-    if (total <= 4) clasif = discapacitante ? "ACV menor discapacitante" : "ACV menor";
-    else if (total <= 15) clasif = "ACV moderado";
+.callout.subtle {
+  background: transparent;
+  border-style: solid;
+}
 
-    setResultBox(
-      "resultadoNIHSS",
-      `<strong>NIHSS:</strong> ${total} · ${clasif}`,
-      clasif.includes("severo") ? "result-bad" : clasif.includes("moderado") ? "result-warn" : "result-ok"
-    );
-  }
+.note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}
 
-  /* =========================================================
-     GLOBAL
-  ========================================================= */
-  window.calcularNIHSS = calcularNIHSS;
+/* =========================================================
+   ACTIONS / BUTTONS
+========================================================= */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
 
-} catch (err) {
-  console.error("❌ Error crítico en neuro.js:", err);
+button {
+  background: var(--primary);
+  color: #020617;
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+/* =========================================================
+   RESULTADOS
+========================================================= */
+.resultado {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.result-ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--ok);
+}
+
+.result-warn {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--warn);
+}
+
+.result-bad {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--bad);
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+th {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   NAV BACK
+========================================================= */
+.nav-back {
+  margin: 2rem 0;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-nav {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.footer-nav span {
+  margin: 0 0.4rem;
+  color: var(--muted);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--muted);
 }
