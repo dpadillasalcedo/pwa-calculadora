@@ -25,7 +25,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -255,6 +256,51 @@ button:hover {
 }
 
 /* =========================================================
+   NIHSS
+========================================================= */
+.nihss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.nihss-grid .field {
+  background: rgba(2, 6, 23, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.nihss-grid .field span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.nihss-grid select {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+}
+
+#nihss .actions {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+#resultadoNIHSS {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+}
+
+#interpretacionNIHSS {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* =========================================================
    TABLES
 ========================================================= */
 .table-wrap {
@@ -267,7 +313,8 @@ table {
   font-size: 0.9rem;
 }
 
-th, td {
+th,
+td {
   padding: 0.6rem 0.7rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
@@ -321,4 +368,13 @@ th {
 .footer-copy {
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 520px) {
+  .nihss-grid {
+    grid-template-columns: 1fr;
+  }
 }
