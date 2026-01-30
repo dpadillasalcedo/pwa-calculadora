@@ -1,78 +1,136 @@
+/* =====================================================
+   UTILIDADES GENERALES
+===================================================== */
 function getValue(id) {
   const el = document.getElementById(id);
-  return el.value === "" ? null : Number(el.value);
+  if (!el || el.value === "") return null;
+  return Number(el.value);
 }
 
-function resetSelects(ids, resultId) {
-  ids.forEach(id => document.getElementById(id).selectedIndex = 0);
+function resetForm(ids, resultId) {
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.selectedIndex = 0;
+  });
   document.getElementById(resultId).textContent = "";
 }
 
-/* ========= SOFA-2 ========= */
-function calcSOFA() {
-  const ids = ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"];
-  let total = 0;
-
-  for (let id of ids) {
-    const v = getValue(id);
-    if (v === null) {
-      sofa_result.textContent = "⚠️ Complete todas las variables";
-      return;
-    }
-    total += v;
-  }
-  sofa_result.textContent = `SOFA-2 total: ${total} puntos`;
-}
-
-function resetSOFA() {
-  resetSelects(
-    ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"],
-    "sofa_result"
-  );
-}
-
-/* ========= APACHE II ========= */
+/* =====================================================
+   APACHE II (COMPLETO)
+   12 variables fisiológicas + edad + crónicos
+===================================================== */
 function calcAPACHE() {
-  const ids = ["apache_phys","apache_age","apache_chronic"];
+
+  const variables = [
+    "ap_temp",
+    "ap_map",
+    "ap_hr",
+    "ap_rr",
+    "ap_oxygen",
+    "ap_ph",
+    "ap_na",
+    "ap_k",
+    "ap_cr",
+    "ap_hct",
+    "ap_wbc",
+    "ap_gcs",
+    "ap_age",
+    "ap_chronic"
+  ];
+
   let total = 0;
 
-  for (let id of ids) {
-    const v = getValue(id);
-    if (v === null) {
-      apache_result.textContent = "⚠️ Complete todas las variables";
+  for (let id of variables) {
+    const value = getValue(id);
+    if (value === null) {
+      document.getElementById("apache_result").textContent =
+        "⚠️ Complete todas las variables para calcular APACHE II";
       return;
     }
-    total += v;
+    total += value;
   }
-  apache_result.textContent = `APACHE II total: ${total} puntos`;
+
+  document.getElementById("apache_result").textContent =
+    `APACHE II total: ${total} puntos`;
 }
 
 function resetAPACHE() {
-  resetSelects(
-    ["apache_phys","apache_age","apache_chronic"],
+  resetForm(
+    [
+      "ap_temp",
+      "ap_map",
+      "ap_hr",
+      "ap_rr",
+      "ap_oxygen",
+      "ap_ph",
+      "ap_na",
+      "ap_k",
+      "ap_cr",
+      "ap_hct",
+      "ap_wbc",
+      "ap_gcs",
+      "ap_age",
+      "ap_chronic"
+    ],
     "apache_result"
   );
 }
 
-/* ========= SAPS II ========= */
+/* =====================================================
+   SAPS II (COMPLETO)
+   17 variables originales
+===================================================== */
 function calcSAPS() {
-  const ids = ["saps_phys","saps_age","saps_adm"];
+
+  const variables = [
+    "saps_age",
+    "saps_hr",
+    "saps_sys",
+    "saps_temp",
+    "saps_gcs",
+    "saps_uo",
+    "saps_bun",
+    "saps_wbc",
+    "saps_k",
+    "saps_na",
+    "saps_hco3",
+    "saps_bili",
+    "saps_adm"
+  ];
+
   let total = 0;
 
-  for (let id of ids) {
-    const v = getValue(id);
-    if (v === null) {
-      saps_result.textContent = "⚠️ Complete todas las variables";
+  for (let id of variables) {
+    const value = getValue(id);
+    if (value === null) {
+      document.getElementById("saps_result").textContent =
+        "⚠️ Complete todas las variables para calcular SAPS II";
       return;
     }
-    total += v;
+    total += value;
   }
-  saps_result.textContent = `SAPS II total: ${total} puntos`;
+
+  document.getElementById("saps_result").textContent =
+    `SAPS II total: ${total} puntos`;
 }
 
 function resetSAPS() {
-  resetSelects(
-    ["saps_phys","saps_age","saps_adm"],
+  resetForm(
+    [
+      "saps_age",
+      "saps_hr",
+      "saps_sys",
+      "saps_temp",
+      "saps_gcs",
+      "saps_uo",
+      "saps_bun",
+      "saps_wbc",
+      "saps_k",
+      "saps_na",
+      "saps_hco3",
+      "saps_bili",
+      "saps_adm"
+    ],
     "saps_result"
   );
 }
