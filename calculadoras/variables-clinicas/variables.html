@@ -43,6 +43,28 @@
       padding: 2.5rem 1.25rem 4rem;
     }
 
+    /* =========================
+       BREADCRUMB
+    ========================= */
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .breadcrumb a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--accent);
+    }
+
+    .breadcrumb span {
+      margin: 0 0.35rem;
+    }
+
     h1 {
       color: var(--title);
       font-size: 2rem;
@@ -55,20 +77,29 @@
       max-width: 720px;
     }
 
+    /* =========================
+       MENU
+    ========================= */
     .menu {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.75rem;
       margin-top: 3rem;
+      align-items: stretch;
     }
 
-    a {
+    .menu a {
+      height: 100%;
       text-decoration: none;
       color: inherit;
+      display: flex;
     }
 
     .card {
-      height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
       padding: 1.75rem 1.5rem;
       background: linear-gradient(
         180deg,
@@ -105,6 +136,31 @@
       line-height: 1.45;
     }
 
+    /* =========================
+       FOOTER
+    ========================= */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .footer-nav {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    .footer-nav a:hover {
+      color: var(--accent);
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.6rem;
@@ -120,6 +176,17 @@
 
 <main>
 
+  <!-- =========================
+       BREADCRUMB
+  ========================= -->
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a href="/">Inicio</a>
+    <span>›</span>
+    <a href="/calculadoras/">Calculadoras</a>
+    <span>›</span>
+    <span aria-current="page">Variables clínicas</span>
+  </nav>
+
   <header>
     <h1>Variables clínicas</h1>
     <p class="subtitle">
@@ -130,7 +197,6 @@
 
   <section class="menu">
 
-    <!-- Neurología crítica -->
     <a href="neurologia-critica/neuro.html">
       <div class="card">
         <div class="icon">🧠</div>
@@ -141,7 +207,6 @@
       </div>
     </a>
 
-    <!-- Ventilación mecánica -->
     <a href="ventilacion-mecanica/ventilacion.html">
       <div class="card">
         <div class="icon">🫁</div>
@@ -152,7 +217,6 @@
       </div>
     </a>
 
-    <!-- Hemodinamia -->
     <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
       <div class="card">
         <div class="icon">🩺</div>
@@ -163,7 +227,6 @@
       </div>
     </a>
 
-    <!-- Ácido-base -->
     <a href="estado-acido-base/acido-base.html">
       <div class="card">
         <div class="icon">🩸</div>
@@ -174,7 +237,6 @@
       </div>
     </a>
 
-    <!-- Sistemas de puntuación -->
     <a href="sistemas-puntuacion/puntuacion.html">
       <div class="card">
         <div class="icon">📈</div>
@@ -188,7 +250,13 @@
   </section>
 
 </main>
-  <footer>
+
+<footer>
+  <nav class="footer-nav">
+    <a href="/">Inicio</a>·
+    <a href="/calculadoras/">Calculadoras</a>·
+    <a href="/aviso-legal/">Aviso legal</a>
+  </nav>
   <p>
     © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
     No reemplaza el juicio médico ni las guías institucionales.
@@ -197,8 +265,3 @@
 
 </body>
 </html>
-
-
-
-
-
