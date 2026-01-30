@@ -37,12 +37,12 @@ body {
 }
 
 /* =========================
-   HEADER (bloque conceptual)
+   HEADER
 ========================= */
 header {
   text-align: center;
   padding: 3.5rem 1.5rem 2.5rem;
-  margin-bottom: 3rem; /* 👈 AIRE VISUAL CLAVE */
+  margin-bottom: 3rem;
 }
 
 header h1 {
@@ -75,16 +75,19 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  align-items: stretch; /* 👈 clave para igualar alturas */
 }
 
 /* =========================
-   CARD / BOTÓN (panel clínico)
+   CARD / BOTÓN
 ========================= */
 .menu a {
-  position: relative;
-  display: block;
+  height: 100%;                 /* 👈 misma altura */
+  display: flex;                /* 👈 layout interno */
+  flex-direction: column;
+
   background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
-  padding: 2.2rem 2rem 2.6rem;
+  padding: 2.2rem 2rem 2.2rem;
   border-radius: 18px;
   border: 1px solid var(--color-border);
   text-decoration: none;
@@ -118,20 +121,27 @@ main {
 .menu p {
   font-size: 0.95rem;
   color: var(--color-muted);
-  max-width: 420px;
+
+  /* Limita el texto para que no rompa alturas */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;      /* ajustable */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* =========================
-   CTA IMPLÍCITO
+   CTA (alineado abajo)
 ========================= */
 .menu a::after {
   content: "Ingresar →";
-  position: absolute;
-  right: 1.8rem;
-  bottom: 1.4rem;
+  margin-top: auto;           /* 👈 empuja al fondo */
+  align-self: flex-end;
+  padding-top: 1.4rem;
+
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-primary);
+
   opacity: 0;
   transform: translateY(6px);
   transition:
@@ -164,7 +174,7 @@ footer {
   }
 
   header {
-    margin-bottom: 2rem; /* menos aire en mobile */
+    margin-bottom: 2rem;
   }
 
   .menu {
@@ -180,6 +190,5 @@ footer {
 }
 
 .intro {
-  margin-bottom: 3.5rem; /* 👈 aire visual claro */
+  margin-bottom: 3.5rem;
 }
-
