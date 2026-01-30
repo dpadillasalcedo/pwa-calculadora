@@ -1,18 +1,18 @@
 /* =========================================================
-   ROOT · LIGHT CLINICAL THEME
+   ROOT · DARK CLINICAL THEME
 ========================================================= */
 :root {
-  --bg: #f7fbff;
-  --bg-soft: #eef6ff;
-  --card: #ffffff;
-  --border: #dbeafe;
+  --bg: #020617;
+  --bg-soft: #0b1220;
+  --card: #0f172a;
+  --border: #1e293b;
 
-  --text: #0f172a;
-  --muted: #475569;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 
   --accent: #38bdf8;
   --accent-strong: #0ea5e9;
-  --accent-soft: rgba(56, 189, 248, 0.18);
+  --accent-soft: rgba(56,189,248,.18);
 }
 
 /* =========================================================
@@ -33,7 +33,7 @@ body {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.18), transparent 60%),
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
     radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
     var(--bg);
   color: var(--text);
@@ -51,8 +51,12 @@ main {
 }
 
 a {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-strong);
 }
 
 /* =========================================================
@@ -75,13 +79,13 @@ a {
 }
 
 .breadcrumb a:hover {
-  color: var(--accent-strong);
+  color: var(--accent);
   border-bottom-color: var(--accent-soft);
 }
 
 .breadcrumb span {
   margin: 0 .35rem;
-  color: #94a3b8;
+  color: #64748b;
 }
 
 .breadcrumb [aria-current="page"] {
@@ -95,7 +99,7 @@ a {
 header h1 {
   margin: 0 0 .5rem;
   font-size: 2rem;
-  color: #0b1220;
+  color: #f8fafc;
 }
 
 .subtitle {
@@ -134,7 +138,7 @@ header h1 {
   border: 1px solid var(--border);
   border-radius: 18px;
 
-  box-shadow: 0 10px 26px rgba(15, 23, 42, .08);
+  box-shadow: 0 10px 26px rgba(2, 6, 23, .6);
 
   transition:
     transform .18s ease,
@@ -146,7 +150,7 @@ header h1 {
   transform: translateY(-4px);
   border-color: var(--accent);
   box-shadow:
-    0 18px 35px rgba(15, 23, 42, .10),
+    0 18px 35px rgba(2, 6, 23, .85),
     0 0 0 3px var(--accent-soft);
 }
 
@@ -161,7 +165,7 @@ header h1 {
 .card h3 {
   margin: .1rem 0 .5rem;
   font-size: 1.15rem;
-  color: var(--accent-strong);
+  color: var(--accent);
 }
 
 .card p {
@@ -194,7 +198,7 @@ footer {
 }
 
 .footer-nav a:hover {
-  color: var(--accent-strong);
+  color: var(--accent);
 }
 
 /* =========================================================
