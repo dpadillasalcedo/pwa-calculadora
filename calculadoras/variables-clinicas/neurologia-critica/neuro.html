@@ -48,7 +48,7 @@
   <div class="panel-head">
     <h2>🧠 CAM-ICU · Delirium</h2>
     <p class="note">
-      Diagnóstico <strong>positivo</strong> si se cumple:
+      El CAM-ICU es <strong>positivo</strong> si se cumple:
       <strong>Paso 1 + Paso 2</strong> y <strong>(Paso 3 o Paso 4)</strong>.
       <br />
       Si el <strong>Paso 1 es negativo</strong>, el delirium queda <strong>descartado</strong>.
@@ -60,9 +60,12 @@
     <div class="card">
       <h3>Paso 1 · Inicio agudo o curso fluctuante</h3>
       <p class="hint">
-        Cambio agudo del estado mental respecto al basal o fluctuaciones durante el día.
-        Ejemplos: desorientación reciente, alternancia entre somnolencia y agitación,
-        cambios conductuales no explicados por sedación.
+        Cambio agudo del estado mental respecto al basal o fluctuaciones
+        del nivel de conciencia durante el día.
+        <br /><br />
+        <strong>Ejemplos:</strong> desorientación reciente, cambios conductuales agudos,
+        alternancia entre somnolencia y agitación, empeoramiento cognitivo no explicado
+        solo por sedación.
       </p>
 
       <label class="field">
@@ -84,8 +87,10 @@
         <strong>Test de letras:</strong> deletrear lentamente
         <strong>CASABLANCA</strong> y pedir al paciente que apriete la mano
         cada vez que escuche la letra <strong>A</strong>.
-        <br />
-        Se considera <strong>inatención</strong> si comete errores o no puede sostener la tarea.
+        <br /><br />
+        Se considera <strong>inatención</strong> si presenta
+        <strong>≥ 2 errores</strong> (omite respuestas, responde a letras incorrectas
+        o no puede sostener la tarea).
       </p>
 
       <label class="field">
@@ -112,9 +117,11 @@
     <div class="card">
       <h3>Paso 3 · Alteración del nivel de conciencia</h3>
       <p class="hint">
-        Evaluar con <strong>RASS</strong>.
+        Evaluar con la escala <strong>RASS</strong>.
+        <br />
         Se considera <strong>positivo</strong> si
-        <strong>RASS ≠ 0</strong> (cualquier nivel distinto a alerta y calmado).
+        <strong>RASS ≠ 0</strong>
+        (cualquier nivel distinto de alerta y calmado).
       </p>
 
       <label class="field">
@@ -133,9 +140,12 @@
     <div class="card">
       <h3>Paso 4 · Pensamiento desorganizado</h3>
       <p class="hint">
-        Ejemplos de preguntas:
+        Preguntas de sí/no:
         “¿Puede una piedra flotar?” · “¿Hay peces en el mar?”<br />
-        Órdenes simples: “Apriete mi mano” y “Suelte”.
+        Órdenes simples:
+        “Apriete mi mano” y “Suelte”.
+        <br />
+        Respuestas incoherentes o incapacidad para seguir órdenes sugieren positividad.
       </p>
 
       <label class="field">
@@ -151,14 +161,12 @@
     </div>
   </div>
 
-  <!-- ACCIONES -->
   <div class="actions">
     <button type="button" class="btn-secondary" id="cam_reset">
       Reiniciar CAM-ICU
     </button>
   </div>
 
-  <!-- RESULTADOS -->
   <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
   <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
 </section>
