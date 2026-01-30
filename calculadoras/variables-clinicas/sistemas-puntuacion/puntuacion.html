@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Sistemas de puntuación | Calculadora UCI</title>
+<title>APACHE II y SAPS II | Calculadora UCI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#020617">
 
@@ -14,7 +14,7 @@ body {
   color: #e5e7eb;
 }
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
   padding: 1.5rem;
 }
@@ -25,13 +25,13 @@ body {
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
-h1, h2 {
+h1, h2, h3 {
   color: #f8fafc;
 }
 select, button {
   width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.5rem;
+  padding: .6rem;
+  margin-top: .4rem;
   background: #020617;
   color: #e5e7eb;
   border: 1px solid #1e293b;
@@ -62,146 +62,77 @@ footer {
 <main class="container">
 
 <header>
-  <h1>Sistemas de puntuación UCI</h1>
-  <p>Uso educativo · Escalas validadas</p>
+  <h1>Calculadoras UCI</h1>
+  <p>APACHE II y SAPS II · Uso educativo</p>
 </header>
 
-<!-- ===================== SOFA-2 ===================== -->
-<section class="panel">
-<h2>SOFA-2</h2>
-
-<select id="sofa_neuro">
-  <option value="">Neurológico</option>
-  <option value="0">GCS 15</option>
-  <option value="1">GCS 13–14</option>
-  <option value="2">GCS 9–12</option>
-  <option value="3">GCS 6–8</option>
-  <option value="4">GCS ≤5</option>
-</select>
-
-<select id="sofa_resp">
-  <option value="">Respiratorio</option>
-  <option value="0">&gt; 300</option>
-  <option value="1">≤ 300</option>
-  <option value="2">≤ 225</option>
-  <option value="3">≤ 150 + soporte</option>
-  <option value="4">≤ 75 + soporte / ECMO</option>
-</select>
-
-<select id="sofa_cardio">
-  <option value="">Cardiovascular</option>
-  <option value="0">PAM ≥ 70</option>
-  <option value="1">PAM &lt; 70</option>
-  <option value="2">Vasopresor bajo</option>
-  <option value="3">Vasopresor medio</option>
-  <option value="4">Vasopresor alto</option>
-</select>
-
-<select id="sofa_liver">
-  <option value="">Hígado</option>
-  <option value="0">BT ≤ 1.2</option>
-  <option value="1">BT ≤ 3</option>
-  <option value="2">BT ≤ 6</option>
-  <option value="3">BT ≤ 12</option>
-  <option value="4">BT &gt; 12</option>
-</select>
-
-<select id="sofa_renal">
-  <option value="">Riñón</option>
-  <option value="0">Cr ≤ 1.2</option>
-  <option value="1">Cr ≤ 2.0</option>
-  <option value="2">Cr ≤ 3.5</option>
-  <option value="3">Cr &gt; 3.5 / anuria</option>
-  <option value="4">RRT</option>
-</select>
-
-<select id="sofa_hemo">
-  <option value="">Plaquetas</option>
-  <option value="0">&gt; 150</option>
-  <option value="1">≤ 150</option>
-  <option value="2">≤ 100</option>
-  <option value="3">≤ 80</option>
-  <option value="4">≤ 50</option>
-</select>
-
-<button class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
-<button class="secondary" onclick="resetSOFA()">Reiniciar cálculo</button>
-<div id="sofa_result" class="result"></div>
-</section>
-
-<!-- ===================== APACHE II ===================== -->
+<!-- ======================== APACHE II ======================== -->
 <section class="panel">
 <h2>APACHE II</h2>
 
-<select id="apache_phys">
-  <option value="">Fisiología</option>
-  <option value="0">Normal / leve</option>
-  <option value="5">Moderada</option>
-  <option value="10">Severa</option>
-  <option value="15">Muy severa</option>
-  <option value="20">Extrema</option>
-</select>
+<h3>Variables fisiológicas</h3>
 
-<select id="apache_age">
-  <option value="">Edad</option>
-  <option value="0">&lt; 45</option>
-  <option value="2">45–54</option>
-  <option value="3">55–64</option>
-  <option value="5">65–74</option>
-  <option value="6">≥ 75</option>
-</select>
+<select id="ap_temp"><option value="">Temperatura (°C)</option><option value="0">36–38.4</option><option value="1">34–35.9 / 38.5–38.9</option><option value="2">32–33.9 / 39–40.9</option><option value="3">30–31.9</option><option value="4">&lt;29.9 o ≥41</option></select>
 
-<select id="apache_chronic">
-  <option value="">Enfermedad crónica grave</option>
-  <option value="0">No</option>
-  <option value="5">Sí</option>
-</select>
+<select id="ap_map"><option value="">PAM (mmHg)</option><option value="0">70–109</option><option value="2">50–69 / 110–129</option><option value="4">&lt;50 o ≥130</option></select>
+
+<select id="ap_hr"><option value="">Frecuencia cardíaca</option><option value="0">70–109</option><option value="2">55–69 / 110–139</option><option value="3">40–54 / 140–179</option><option value="4">&lt;40 o ≥180</option></select>
+
+<select id="ap_rr"><option value="">Frecuencia respiratoria</option><option value="0">12–24</option><option value="1">10–11 / 25–34</option><option value="2">6–9</option><option value="3">35–49</option><option value="4">&lt;6 o ≥50</option></select>
+
+<select id="ap_oxygen"><option value="">Oxigenación</option><option value="0">Normal</option><option value="2">PaO₂ &lt;70 o A–aDO₂ ↑</option><option value="4">PaO₂ &lt;55</option></select>
+
+<select id="ap_ph"><option value="">pH arterial</option><option value="0">7.33–7.49</option><option value="2">7.25–7.32 / 7.50–7.59</option><option value="3">7.15–7.24 / 7.60–7.69</option><option value="4">&lt;7.15 o ≥7.70</option></select>
+
+<select id="ap_na"><option value="">Sodio (mmol/L)</option><option value="0">130–149</option><option value="1">120–129 / 150–154</option><option value="2">111–119 / 155–159</option><option value="3">110–160</option><option value="4">&lt;110 o ≥160</option></select>
+
+<select id="ap_k"><option value="">Potasio (mmol/L)</option><option value="0">3.5–5.4</option><option value="1">3.0–3.4 / 5.5–5.9</option><option value="2">2.5–2.9 / 6.0–6.9</option><option value="4">&lt;2.5 o ≥7</option></select>
+
+<select id="ap_cr"><option value="">Creatinina (mg/dL)</option><option value="0">&lt;1.5</option><option value="2">1.5–1.9</option><option value="3">2.0–3.4</option><option value="4">≥3.5</option></select>
+
+<select id="ap_hct"><option value="">Hematocrito (%)</option><option value="0">30–45.9</option><option value="2">20–29.9 / 46–49.9</option><option value="4">&lt;20 o ≥50</option></select>
+
+<select id="ap_wbc"><option value="">Leucocitos</option><option value="0">3–14.9</option><option value="2">1–2.9 / 15–19.9</option><option value="4">&lt;1 o ≥20</option></select>
+
+<select id="ap_gcs"><option value="">Glasgow</option><option value="0">15</option><option value="1">13–14</option><option value="2">10–12</option><option value="3">6–9</option><option value="4">≤5</option></select>
+
+<h3>Edad</h3>
+<select id="ap_age"><option value="">Edad</option><option value="0">&lt;45</option><option value="2">45–54</option><option value="3">55–64</option><option value="5">65–74</option><option value="6">≥75</option></select>
+
+<h3>Enfermedad crónica grave</h3>
+<select id="ap_chronic"><option value="">Condición crónica</option><option value="0">No</option><option value="5">Sí</option></select>
 
 <button class="primary" onclick="calcAPACHE()">Calcular APACHE II</button>
-<button class="secondary" onclick="resetAPACHE()">Reiniciar cálculo</button>
+<button class="secondary" onclick="resetAPACHE()">Reiniciar</button>
 <div id="apache_result" class="result"></div>
 </section>
 
-<!-- ===================== SAPS II ===================== -->
+<!-- ======================== SAPS II ======================== -->
 <section class="panel">
 <h2>SAPS II</h2>
 
-<select id="saps_phys">
-  <option value="">Fisiología</option>
-  <option value="0">Leve</option>
-  <option value="10">Moderada</option>
-  <option value="20">Severa</option>
-  <option value="30">Muy severa</option>
-  <option value="40">Crítica</option>
-</select>
-
-<select id="saps_age">
-  <option value="">Edad</option>
-  <option value="0">&lt; 40</option>
-  <option value="7">40–59</option>
-  <option value="12">60–69</option>
-  <option value="15">70–74</option>
-  <option value="18">≥ 75</option>
-</select>
-
-<select id="saps_adm">
-  <option value="">Tipo de ingreso</option>
-  <option value="0">Quirúrgico electivo</option>
-  <option value="6">Quirúrgico urgente</option>
-  <option value="8">Médico</option>
-</select>
+<select id="saps_age"><option value="">Edad</option><option value="0">&lt;40</option><option value="7">40–59</option><option value="12">60–69</option><option value="15">70–74</option><option value="18">≥75</option></select>
+<select id="saps_hr"><option value="">Frecuencia cardíaca</option><option value="0">70–119</option><option value="4">120–159</option><option value="7">≥160</option></select>
+<select id="saps_sys"><option value="">PAS</option><option value="0">100–199</option><option value="13">&lt;100</option><option value="17">≥200</option></select>
+<select id="saps_temp"><option value="">Temperatura</option><option value="0">≥39</option><option value="3">&lt;39</option></select>
+<select id="saps_gcs"><option value="">Glasgow</option><option value="0">15</option><option value="5">13–14</option><option value="10">10–12</option><option value="15">6–9</option><option value="26">≤5</option></select>
+<select id="saps_uo"><option value="">Diuresis</option><option value="0">≥1 L</option><option value="11">&lt;1 L</option></select>
+<select id="saps_bun"><option value="">Urea</option><option value="0">&lt;28</option><option value="6">28–83</option><option value="10">≥84</option></select>
+<select id="saps_wbc"><option value="">Leucocitos</option><option value="0">1–19.9</option><option value="3">&lt;1 o ≥20</option></select>
+<select id="saps_k"><option value="">Potasio</option><option value="0">3–4.9</option><option value="3">&lt;3 o ≥5</option></select>
+<select id="saps_na"><option value="">Sodio</option><option value="0">125–144</option><option value="5">&lt;125 o ≥145</option></select>
+<select id="saps_hco3"><option value="">HCO₃</option><option value="0">≥20</option><option value="6">&lt;20</option></select>
+<select id="saps_bili"><option value="">Bilirrubina</option><option value="0">&lt;4</option><option value="4">4–5.9</option><option value="9">≥6</option></select>
+<select id="saps_adm"><option value="">Tipo ingreso</option><option value="0">Quirúrgico electivo</option><option value="6">Urgente</option><option value="8">Médico</option></select>
 
 <button class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
-<button class="secondary" onclick="resetSAPS()">Reiniciar cálculo</button>
+<button class="secondary" onclick="resetSAPS()">Reiniciar</button>
 <div id="saps_result" class="result"></div>
 </section>
 
 </main>
 
-<footer>
-© 2026 Critical Care Tools · Uso educativo
-</footer>
-
+<footer>© 2026 · Uso educativo</footer>
 <script src="puntuacion.js"></script>
 </body>
 </html>
