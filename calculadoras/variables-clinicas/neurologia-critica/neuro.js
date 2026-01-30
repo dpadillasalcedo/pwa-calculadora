@@ -138,86 +138,213 @@ try {
     }
   }
 
-  /* =========================================================
+<!-- =========================
      NIHSS
-  ========================================================= */
-  function resetNIHSS() {
-    [
-      "n_1a","n_1b","n_1c","n_2","n_3","n_4",
-      "n_5a","n_5b","n_6a","n_6b",
-      "n_7","n_8","n_9","n_10","n_11"
-    ].forEach((id) => {
-      const el = $(id);
-      if (el) el.value = "";
-    });
+========================= -->
+<section id="nihss" class="panel">
+  <div class="panel-head">
+    <h2>🧠 NIHSS · Stroke Scale</h2>
+    <p class="note">
+      Completar todos los ítems y luego presionar <strong>Calcular NIHSS</strong>.
+      <br />
+      Se informará el resultado como:
+      <strong>ACV menor</strong>, <strong>ACV moderado</strong>,
+      <strong>ACV severo</strong> o
+      <strong>ACV menor con síntomas discapacitantes</strong>.
+    </p>
+  </div>
 
-    setResultBox("resultadoNIHSS");
-    setHTML("interpretacionNIHSS");
-  }
+  <div class="card">
+    <div class="nihss-grid">
 
-  function calcularNIHSS() {
-    let total = 0;
+      <!-- 1a -->
+      <label class="field">
+        <span>1a. Nivel de conciencia</span>
+        <select id="n_1a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Alerta</option>
+          <option value="1">1 = Somnoliento</option>
+          <option value="2">2 = Estupor</option>
+          <option value="3">3 = Coma</option>
+        </select>
+      </label>
 
-    const visual = getSelectInt("n_3");
-    const neglect = getSelectInt("n_11");
-    const afasia = getSelectInt("n_9");
+      <!-- 1b -->
+      <label class="field">
+        <span>1b. Preguntas LOC (mes / edad)</span>
+        <select id="n_1b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Ambas correctas</option>
+          <option value="1">1 = Una correcta</option>
+          <option value="2">2 = Ninguna correcta</option>
+        </select>
+      </label>
 
-    const motorArm = safeMax(getSelectInt("n_5a"), getSelectInt("n_5b"));
-    const motorLeg = safeMax(getSelectInt("n_6a"), getSelectInt("n_6b"));
+      <!-- 1c -->
+      <label class="field">
+        <span>1c. Órdenes LOC</span>
+        <select id="n_1c">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Ambas correctas</option>
+          <option value="1">1 = Una correcta</option>
+          <option value="2">2 = Ninguna correcta</option>
+        </select>
+      </label>
 
-    document
-      .querySelectorAll('select[id^="n_"]')
-      .forEach((sel) => {
-        const v = Number(sel.value);
-        if (Number.isFinite(v)) total += v;
-      });
+      <!-- 2 -->
+      <label class="field">
+        <span>2. Mirada</span>
+        <select id="n_2">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Parálisis parcial</option>
+          <option value="2">2 = Desviación forzada</option>
+        </select>
+      </label>
 
-    const discapacitante =
-      visual === 2 ||
-      (neglect !== null && neglect >= 1) ||
-      (afasia !== null && afasia >= 1) ||
-      motorArm >= 2 ||
-      motorLeg >= 2;
+      <!-- 3 -->
+      <label class="field">
+        <span>3. Campos visuales</span>
+        <select id="n_3">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Hemianopsia parcial</option>
+          <option value="2">2 = Hemianopsia homónima completa</option>
+          <option value="3">3 = Ceguera bilateral</option>
+        </select>
+      </label>
 
-    let clasif = "ACV severo";
-    if (total <= 4) {
-      clasif = discapacitante
-        ? "ACV menor discapacitante"
-        : "ACV menor";
-    } else if (total <= 15) {
-      clasif = "ACV moderado";
-    }
+      <!-- 4 -->
+      <label class="field">
+        <span>4. Parálisis facial</span>
+        <select id="n_4">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Leve</option>
+          <option value="2">2 = Parcial</option>
+          <option value="3">3 = Completa</option>
+        </select>
+      </label>
 
-    setResultBox(
-      "resultadoNIHSS",
-      `<strong>NIHSS:</strong> ${total} · ${clasif}`,
-      clasif.includes("severo")
-        ? "result-bad"
-        : clasif.includes("moderado")
-        ? "result-warn"
-        : "result-ok"
-    );
-  }
+      <!-- 5a -->
+      <label class="field">
+        <span>5a. Motor brazo izquierdo</span>
+        <select id="n_5a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
 
-  /* =========================================================
-     INIT (defer-safe)
-  ========================================================= */
-  resetCAMICU();
-  resetNIHSS();
+      <!-- 5b -->
+      <label class="field">
+        <span>5b. Motor brazo derecho</span>
+        <select id="n_5b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
 
-  ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
-    const el = $(id);
-    if (el) el.addEventListener("change", evaluarCAMICU);
-  });
+      <!-- 6a -->
+      <label class="field">
+        <span>6a. Motor pierna izquierda</span>
+        <select id="n_6a">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
 
-  $("cam_reset")?.addEventListener("click", resetCAMICU);
-  $("nihss_reset")?.addEventListener("click", resetNIHSS);
+      <!-- 6b -->
+      <label class="field">
+        <span>6b. Motor pierna derecha</span>
+        <select id="n_6b">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Sin caída</option>
+          <option value="1">1 = Caída leve</option>
+          <option value="2">2 = Contra gravedad</option>
+          <option value="3">3 = Sin esfuerzo contra gravedad</option>
+          <option value="4">4 = Sin movimiento</option>
+        </select>
+      </label>
 
-  /* =========================================================
-     GLOBAL
-  ========================================================= */
-  window.calcularNIHSS = calcularNIHSS;
+      <!-- 7 -->
+      <label class="field">
+        <span>7. Ataxia</span>
+        <select id="n_7">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = No</option>
+          <option value="1">1 = Un miembro</option>
+          <option value="2">2 = Dos miembros</option>
+        </select>
+      </label>
 
-} catch (err) {
-  console.error("❌ Error crítico en neuro.js:", err);
-}
+      <!-- 8 -->
+      <label class="field">
+        <span>8. Sensibilidad</span>
+        <select id="n_8">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Pérdida leve/moderada</option>
+          <option value="2">2 = Pérdida severa</option>
+        </select>
+      </label>
+
+      <!-- 9 -->
+      <label class="field">
+        <span>9. Lenguaje (afasia)</span>
+        <select id="n_9">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Afasia leve/moderada</option>
+          <option value="2">2 = Afasia severa</option>
+          <option value="3">3 = Afasia global</option>
+        </select>
+      </label>
+
+      <!-- 10 -->
+      <label class="field">
+        <span>10. Disartria</span>
+        <select id="n_10">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = Normal</option>
+          <option value="1">1 = Leve/moderada</option>
+          <option value="2">2 = Severa</option>
+        </select>
+      </label>
+
+      <!-- 11 -->
+      <label class="field">
+        <span>11. Neglect / extinción</span>
+        <select id="n_11">
+          <option value="">Seleccionar…</option>
+          <option value="0">0 = No</option>
+          <option value="1">1 = Parcial</option>
+          <option value="2">2 = Profundo</option>
+        </select>
+      </label>
+
+    </div>
+
+    <div class="actions">
+      <button type="button" onclick="calcularNIHSS()">Calcular NIHSS</button>
+      <button type="button" class="btn-secondary" id="nihss_reset">Reiniciar NIHSS</button>
+    </div>
+
+    <div id="resultadoNIHSS" class="resultado" aria-live="polite"></div>
+    <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
+  </div>
+</section>
+
+<hr />
+
