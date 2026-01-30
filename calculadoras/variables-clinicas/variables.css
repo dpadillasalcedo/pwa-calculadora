@@ -9,10 +9,10 @@
 
 body {
   margin: 0;
-  background: #020617;
-  color: #e5e7eb;
+  background-color: #f1f5f9; /* GRIS CLARO */
+  color: #0f172a;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* =========================
@@ -20,17 +20,17 @@ body {
 ========================= */
 .breadcrumb {
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #475569;
   margin-bottom: 1.75rem;
 }
 
 .breadcrumb a {
-  color: #cbd5e1;
+  color: #475569;
   text-decoration: none;
 }
 
 .breadcrumb a:hover {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 .breadcrumb span {
@@ -43,13 +43,13 @@ body {
 header h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .subtitle {
   max-width: 720px;
   font-size: 1rem;
-  color: #cbd5e1;
+  color: #475569;
 }
 
 /* =========================
@@ -62,7 +62,7 @@ header h1 {
   margin-top: 3rem;
 }
 
-/* El <a> debe ser el contenedor clickeable */
+/* El <a> es clickeable */
 .menu a {
   display: block;
   text-decoration: none;
@@ -75,16 +75,19 @@ header h1 {
 .card {
   height: 100%;
   padding: 1.75rem 1.5rem 2.5rem;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  border: 1px solid #1e293b;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 18px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .menu a:hover .card {
   transform: translateY(-4px);
-  border-color: #38bdf8;
-  box-shadow: 0 18px 35px rgba(2, 6, 23, 0.6);
+  border-color: #2563eb;
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
 }
 
 .icon {
@@ -94,13 +97,13 @@ header h1 {
 
 .card h3 {
   margin: 0.25rem 0 0.5rem;
-  color: #38bdf8;
+  color: #2563eb;
   font-size: 1.15rem;
 }
 
 .card p {
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: #475569;
 }
 
 /* =========================
@@ -111,8 +114,8 @@ footer {
   padding: 2rem 1.5rem;
   text-align: center;
   font-size: 0.85rem;
-  color: #cbd5e1;
-  border-top: 1px solid #1e293b;
+  color: #475569;
+  border-top: 1px solid #e2e8f0;
 }
 
 .footer-nav {
@@ -120,13 +123,13 @@ footer {
 }
 
 .footer-nav a {
-  color: #cbd5e1;
+  color: #475569;
   text-decoration: none;
   margin: 0 0.5rem;
 }
 
 .footer-nav a:hover {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 /* =========================
