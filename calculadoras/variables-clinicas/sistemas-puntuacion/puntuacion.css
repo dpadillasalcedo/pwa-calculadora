@@ -1,199 +1,61 @@
-/* =========================================================
-   ROOT · DARK THEME
-========================================================= */
 :root {
-  --bg: #020617;
-  --panel: #0b1220;
-  --card: #0f172a;
-  --border: #1e293b;
-
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
-
-  --ok: #22c55e;
-  --warn: #f59e0b;
-  --bad: #ef4444;
-}
-
-/* =========================================================
-   RESET / BASE
-========================================================= */
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
+  --bg:#020617; --panel:#0b1220; --border:#1e293b;
+  --text:#e5e7eb; --muted:#94a3b8;
+  --primary:#38bdf8; --primary-strong:#0ea5e9;
 }
 
 body {
-  padding-bottom: env(safe-area-inset-bottom);
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:system-ui,sans-serif;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
+.container { max-width:960px; margin:auto; padding:1.5rem; }
 
-a:hover {
-  color: var(--primary-strong);
-}
+.breadcrumb { color:#f8fafc; font-size:.85rem; margin-bottom:1.5rem; }
+.breadcrumb a { color:#f8fafc; }
 
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
-}
+.app-header h1 { margin:0; color:#f8fafc; }
+.note { color:var(--muted); font-size:.85rem; }
 
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb {
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
-  color: #f8fafc;
-}
-
-.breadcrumb a {
-  color: #f8fafc;
-  font-weight: 500;
-}
-
-.breadcrumb a:hover {
-  color: var(--primary-strong);
-}
-
-.breadcrumb span {
-  margin: 0 0.4rem;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-.app-header {
-  margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #f8fafc;
-}
-
-.app-header .note {
-  margin-top: 0.5rem;
-  color: var(--muted);
-  max-width: 760px;
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   PANELS
-========================================================= */
 .panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:1.75rem;
+  margin-bottom:2.5rem;
 }
 
-.panel h2 {
-  margin-top: 0;
-  font-size: 1.3rem;
-  color: #f8fafc;
+label { display:block; margin-top:.85rem; font-size:.85rem; }
+
+select {
+  width:100%; margin-top:.35rem;
+  background:#020617; color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px; padding:.5rem;
 }
 
-/* =========================================================
-   TEXT / NOTES / RESULTS
-========================================================= */
-.note {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0.5rem 0 1rem;
+button {
+  margin-top:1.25rem;
+  background:var(--primary);
+  border:none; border-radius:999px;
+  padding:.6rem 1.25rem;
+  font-weight:700; cursor:pointer;
 }
+
+button:hover { background:var(--primary-strong); }
 
 .result {
-  margin-top: 1rem;
-  font-weight: 700;
+  margin-top:1rem;
+  padding:.75rem 1rem;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(2,6,23,.4);
+  font-weight:700;
 }
 
-/* =========================================================
-   BUTTONS
-========================================================= */
-button {
-  appearance: none;
-  background: var(--primary);
-  color: #020617;
-  border: none;
-  border-radius: 999px;
-  padding: 0.55rem 1.1rem;
-  font-weight: 700;
-  margin-top: 0.75rem;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--primary-strong);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
 footer {
-  border-top: 1px solid var(--border);
-  background: var(--panel);
-  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
-  text-align: center;
-}
-
-.footer-nav {
-  font-size: 0.9rem;
-  color: #f8fafc;
-  margin-bottom: 0.5rem;
-}
-
-.footer-nav a {
-  color: #f8fafc;
-  font-weight: 500;
-}
-
-.footer-nav a:hover {
-  color: var(--primary-strong);
-}
-
-footer p {
-  font-size: 0.8rem;
-  color: #f8fafc;
-  margin: 0;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 640px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .app-header h1 {
-    font-size: 1.55rem;
-  }
+  border-top:1px solid var(--border);
+  background:var(--panel);
+  padding:2rem 1rem;
+  text-align:center;
 }
