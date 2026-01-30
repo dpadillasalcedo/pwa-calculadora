@@ -34,6 +34,10 @@ body {
   line-height: 1.5;
 }
 
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 a {
   color: var(--primary);
   text-decoration: none;
@@ -46,7 +50,7 @@ a:hover {
 hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
+  margin: 3rem 0;
 }
 
 /* =========================================================
@@ -102,6 +106,10 @@ hr {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
+}
+
+.panel + .panel {
+  margin-top: 3rem;
 }
 
 .panel-head h2 {
@@ -214,6 +222,7 @@ button {
   padding: 0.45rem 1rem;
   font-weight: 600;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:hover {
@@ -258,11 +267,15 @@ button:hover {
 /* =========================================================
    NIHSS
 ========================================================= */
+#nihss {
+  margin-bottom: 3rem;
+}
+
 .nihss-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem 1.25rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .nihss-grid .field {
@@ -275,7 +288,6 @@ button:hover {
 .nihss-grid .field span {
   font-size: 0.85rem;
   font-weight: 600;
-  line-height: 1.3;
 }
 
 .nihss-grid select {
@@ -305,7 +317,7 @@ button:hover {
 ========================================================= */
 .table-wrap {
   overflow-x: auto;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 }
 
 table {
@@ -317,37 +329,30 @@ table {
   font-size: 0.9rem;
 }
 
-/* Encabezados */
 table thead th {
   background: rgba(15, 23, 42, 0.9);
   color: #f8fafc;
-  font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 
-/* Celdas */
 table th,
 table td {
   padding: 0.7rem 0.9rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
   vertical-align: top;
-  color: var(--text);
 }
 
-/* Filas alternadas */
 table tbody tr:nth-child(even) {
   background: rgba(15, 23, 42, 0.35);
 }
 
-/* Hover sutil (solo lectura) */
 table tbody tr:hover {
   background: rgba(56, 189, 248, 0.05);
 }
 
-/* Columna de grado */
 table th:first-child,
 table td:first-child {
   width: 90px;
@@ -358,15 +363,8 @@ table td:first-child {
 /* =========================================================
    ESCALAS CLÍNICAS · JERARQUÍA
 ========================================================= */
-
-/* FISHER */
 #fisher .card {
   border-left: 4px solid var(--primary);
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.9),
-    rgba(11, 18, 32, 0.9)
-  );
 }
 
 #fisher table td:first-child {
@@ -374,7 +372,6 @@ table td:first-child {
   font-weight: 700;
 }
 
-/* HUNT & HESS */
 #hunt-hess .card {
   border-left: 4px solid var(--warn);
 }
@@ -383,7 +380,6 @@ table td:first-child {
   color: var(--warn);
 }
 
-/* MARSHALL */
 #marshall .card {
   border-left: 4px solid var(--bad);
 }
@@ -393,7 +389,7 @@ table td:first-child {
 }
 
 /* =========================================================
-   TABLES · RESPONSIVE
+   RESPONSIVE
 ========================================================= */
 @media (max-width: 640px) {
   table {
@@ -404,11 +400,42 @@ table td:first-child {
   table td {
     padding: 0.55rem 0.6rem;
   }
+
+  .nihss-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
+  background: var(--panel);
+}
 
-  th,
-  td {
-    padding: 0.55rem 0.6rem;
-  }
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.footer-nav {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer-nav span {
+  margin: 0 0.4rem;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--muted);
 }
