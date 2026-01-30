@@ -22,13 +22,26 @@
 *::before,
 *::after {
   box-sizing: border-box;
+html {
+  min-height: 100%;
+  background-color: var(--bg);
 }
 
-html,
 body {
+  min-height: 100%;
   margin: 0;
   padding: 0;
+
+  background:
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
+    var(--bg);
+
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
 }
+
 
 body {
   min-height: 100vh;
@@ -235,3 +248,4 @@ body {
 main {
   background-color: var(--bg);
 }
+
