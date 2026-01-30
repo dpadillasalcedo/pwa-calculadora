@@ -3,57 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Infusión de fármacos | En construcción</title>
 
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f9fb;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      text-align: center;
-      max-width: 500px;
-      padding: 40px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    h1 {
-      margin-bottom: 16px;
-    }
-    p {
-      font-size: 1.1em;
-      line-height: 1.5;
-    }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #0066cc;
-      font-weight: bold;
-    }
-  </style>
+  <title>Fármacos | Calculadoras UCI</title>
+  <meta name="description" content="Cálculo de dosis en UCI. Vancomicina en infusión continua." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./farmacos.css" />
 </head>
 
 <body>
-  <div class="container">
-    <h1>🛠 Página en construcción</h1>
-    <p>
-      La sección de <strong>Infusión de fármacos</strong> se encuentra
-      en desarrollo.
+
+<main class="app container">
+
+  <!-- =========================
+       BREADCRUMB
+  ========================= -->
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a href="https://criticalcaretools.com/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
+      Variables clínicas
+    </a>
+  </nav>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+  <header class="app-header">
+    <h1>Fármacos</h1>
+    <p class="subtitle">Calculadoras orientativas. Interpretar siempre en contexto clínico.</p>
+  </header>
+
+  <!-- =========================
+       BLOQUE: VANCOMICINA
+  ========================= -->
+  <section class="panel" aria-labelledby="vanco-title">
+
+    <h2 id="vanco-title">CÁLCULO DE DOSIS DE VANCOMICINA EN INFUSION CONTINUA</h2>
+
+    <p class="note">
+      Basado en estimación de función renal (MDRD) y objetivo de vancocinemia.
+      Uso educativo. No reemplaza monitoreo, guías ni criterio clínico.
     </p>
-    <p>
-      Estamos trabajando para ofrecer una herramienta segura y útil
-      para el entorno de cuidados críticos.
+
+    <div class="grid-2">
+      <div class="field">
+        <label for="cr">Creatinina (mg/dL)</label>
+        <input type="number" id="cr" step="0.01" min="0" placeholder="Ej: 1.2" />
+      </div>
+
+      <div class="field">
+        <label for="edad">Edad (años)</label>
+        <input type="number" id="edad" step="1" min="0" placeholder="Ej: 65" />
+      </div>
+
+      <div class="field">
+        <label for="sexo">Sexo</label>
+        <select id="sexo">
+          <option value="">Seleccione</option>
+          <option value="v">Varón (v)</option>
+          <option value="m">Mujer (m)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="meta">Meta de vancocinemia (mg/L)</label>
+        <input type="number" id="meta" step="0.1" min="0" placeholder="Ej: 20" />
+      </div>
+
+      <div class="field">
+        <label for="peso">Peso real (kg)</label>
+        <input type="number" id="peso" step="0.1" min="0" placeholder="Ej: 70" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="btnCalcular">Calcular</button>
+      <button type="button" class="btn-secondary" id="btnLimpiar">Limpiar</button>
+    </div>
+
+    <div id="errores" class="callout hidden" role="alert"></div>
+
+    <div class="results">
+      <div id="res-egfr" class="resultado" aria-live="polite"></div>
+      <div id="res-cl" class="resultado" aria-live="polite"></div>
+      <div id="res-mant" class="resultado" aria-live="polite"></div>
+      <div id="res-carga" class="resultado" aria-live="polite"></div>
+      <div id="res-notas" class="note" aria-live="polite"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="https://criticalcaretools.com/bibliografia/">Bibliografía</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://criticalcaretools.com/aviso-legal/">Aviso legal</a>
+    </nav>
+
+    <p class="footer-copy">
+      © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+      No reemplaza el juicio médico ni las guías institucionales.
     </p>
-    <a href="/">← Volver al inicio</a>
   </div>
+</footer>
+
+<!-- JS -->
+<script src="./farmacos.js" defer></script>
+
 </body>
 </html>
-
