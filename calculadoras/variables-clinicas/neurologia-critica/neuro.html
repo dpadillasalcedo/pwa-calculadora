@@ -1,454 +1,296 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+(() => {
+  "use strict";
 
-  <title>Neurología crítica | Calculadoras UCI</title>
+  try {
+    console.log("✅ neuro.js cargado correctamente");
 
-  <meta
-    name="description"
-    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt & Hess, Fisher y Marshall score."
-  />
+    /* =========================================================
+       HELPERS
+    ========================================================= */
+    const $ = (id) => document.getElementById(id);
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+    const setHTML = (id, html = "") => {
+      const el = $(id);
+      if (el) el.innerHTML = html;
+    };
 
-  <!-- GitHub Pages friendly -->
-  <link rel="stylesheet" href="./neuro.css?v=4" />
-</head>
+    const getSelectInt = (id) => {
+      const el = $(id);
+      if (!el || el.value === "") return null;
+      const n = Number(el.value);
+      return Number.isFinite(n) ? n : null;
+    };
 
-<body>
+    const safeMax = (a, b) => {
+      if (a === null && b === null) return 0;
+      if (a === null) return b;
+      if (b === null) return a;
+      return Math.max(a, b);
+    };
 
-<main class="app container">
+    const setResultBox = (id, html = "", kind = null) => {
+      const el = $(id);
+      if (!el) return;
+      el.classList.remove("result-ok", "result-bad", "result-warn");
+      if (kind) el.classList.add(kind);
+      el.innerHTML = html;
+    };
 
-  <!-- =========================
-       BREADCRUMB
-  ========================= -->
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a>
-  </nav>
+/* =========================================================
+   CAM-ICU
+   Regla: positivo si (1 + 2) y (3 o 4)
+========================================================= */
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-  <header class="app-header">
-    <h1>Neurología crítica</h1>
-    <p class="subtitle">
-      Herramientas orientativas. Interpretar siempre en contexto clínico y según guías institucionales.
-    </p>
-  </header>
+function resetCAMICU() {
+  ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
+    const el = $(id);
+    if (el) el.value = "";
+  });
 
-<!-- =========================
-     CAM-ICU
-========================= -->
-<section id="camicu" class="panel">
-  <div class="panel-head">
-    <h2>🧠 CAM-ICU · Delirium</h2>
-    <p class="note">
-      El CAM-ICU es <strong>positivo</strong> si se cumple:
-      <strong>Paso 1 + Paso 2</strong> y <strong>(Paso 3 o Paso 4)</strong>.
-      <br />
-      Si el <strong>Paso 1 es negativo</strong>, el delirium queda <strong>descartado</strong>.
-    </p>
-  </div>
+  $("cam_steps34")?.classList.add("hidden");
+  $("cam_wait")?.classList.add("hidden");
 
-  <div class="grid-2">
-    <!-- PASO 1 -->
-    <div class="card">
-      <h3>Paso 1 · Inicio agudo o curso fluctuante</h3>
-      <p class="hint">
-        Cambio agudo del estado mental respecto al basal o fluctuaciones
-        del nivel de conciencia durante el día.
-        <br /><br />
-        <strong>Ejemplos:</strong> desorientación reciente, cambios conductuales agudos,
-        alternancia entre somnolencia y agitación, empeoramiento cognitivo no explicado
-        solo por sedación.
-      </p>
+  setResultBox("resultadoCAMICU");
+  setHTML("interpretacionCAMICU");
+}
 
-      <label class="field">
-        <span>
-          ¿Existe <strong>inicio agudo</strong> o <strong>curso fluctuante</strong>?
-        </span>
-        <select id="cam_step1">
-          <option value="">Seleccionar…</option>
-          <option value="1">Sí</option>
-          <option value="0">No</option>
-        </select>
-      </label>
-    </div>
+function evaluarCAMICU() {
+  const s1 = getSelectInt("cam_step1");
+  const s2 = getSelectInt("cam_step2");
+  const s3 = getSelectInt("cam_step3");
+  const s4 = getSelectInt("cam_step4");
 
-    <!-- PASO 2 -->
-    <div class="card">
-      <h3>Paso 2 · Inatención</h3>
-      <p class="hint">
-        <strong>Test de letras:</strong> deletrear lentamente
-        <strong>CASABLANCA</strong> y pedir al paciente que apriete la mano
-        cada vez que escuche la letra <strong>A</strong>.
-        <br /><br />
-        Se considera <strong>inatención</strong> si presenta
-        <strong>≥ 2 errores</strong> (omite respuestas, responde a letras incorrectas
-        o no puede sostener la tarea).
-      </p>
+  // Limpieza base
+  setResultBox("resultadoCAMICU");
+  setHTML("interpretacionCAMICU");
 
-      <label class="field">
-        <span>
-          ¿Se detecta <strong>inatención</strong>?
-        </span>
-        <select id="cam_step2">
-          <option value="">Seleccionar…</option>
-          <option value="1">Sí</option>
-          <option value="0">No</option>
-        </select>
-      </label>
-    </div>
-  </div>
+  /* =========================
+     PASO 1
+  ========================= */
 
-  <!-- MENSAJE DE ESPERA -->
-  <div id="cam_wait" class="callout">
-    Completar <strong>Paso 1</strong> y <strong>Paso 2</strong> para continuar la evaluación.
-  </div>
+  // Paso 1 no respondido → no mostrar nada
+  if (s1 === null) {
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.add("hidden");
+    return;
+  }
 
-  <!-- PASOS 3 y 4 -->
-  <div id="cam_steps34" class="grid-2 hidden">
-    <!-- PASO 3 -->
-    <div class="card">
-      <h3>Paso 3 · Alteración del nivel de conciencia</h3>
-      <p class="hint">
-        Evaluar con la escala <strong>RASS</strong>.
-        <br />
-        Se considera <strong>positivo</strong> si
-        <strong>RASS ≠ 0</strong>
-        (cualquier nivel distinto de alerta y calmado).
-      </p>
+  // Paso 1 = NO → descarta delirium
+  if (s1 === 0) {
+    // resetear pasos siguientes
+    $("cam_step2").value = "";
+    $("cam_step3").value = "";
+    $("cam_step4").value = "";
 
-      <label class="field">
-        <span>
-          ¿Hay <strong>alteración del nivel de conciencia</strong> (RASS ≠ 0)?
-        </span>
-        <select id="cam_step3">
-          <option value="">Seleccionar…</option>
-          <option value="1">Sí</option>
-          <option value="0">No</option>
-        </select>
-      </label>
-    </div>
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.add("hidden");
 
-    <!-- PASO 4 -->
-    <div class="card">
-      <h3>Paso 4 · Pensamiento desorganizado</h3>
-      <p class="hint">
-        Preguntas de sí/no:
-        “¿Puede una piedra flotar?” · “¿Hay peces en el mar?”<br />
-        Órdenes simples:
-        “Apriete mi mano” y “Suelte”.
-        <br />
-        Respuestas incoherentes o incapacidad para seguir órdenes sugieren positividad.
-      </p>
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Paso 1 negativo (sin inicio agudo o curso fluctuante). Delirium descartado."
+    );
+    return;
+  }
 
-      <label class="field">
-        <span>
-          ¿Existe <strong>pensamiento desorganizado</strong>?
-        </span>
-        <select id="cam_step4">
-          <option value="">Seleccionar…</option>
-          <option value="1">Sí</option>
-          <option value="0">No</option>
-        </select>
-      </label>
-    </div>
-  </div>
+  /* =========================
+     PASO 2
+  ========================= */
 
-  <div class="actions">
-    <button type="button" class="btn-secondary" id="cam_reset">
-      Reiniciar CAM-ICU
-    </button>
-  </div>
+  // Paso 1 = Sí, Paso 2 no respondido
+  if (s2 === null) {
+    // ocultar pasos 3–4 y resetearlos
+    $("cam_step3").value = "";
+    $("cam_step4").value = "";
 
-  <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
-  <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
-</section>
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.remove("hidden");
+    return;
+  }
 
- <!-- =========================
-     NIHSS
-========================= -->
-<section id="nihss" class="panel">
-  <div class="panel-head">
-    <h2>🧠 NIHSS · Stroke Scale</h2>
-    <p class="note">
-      Completar todos los ítems y luego presionar <strong>Calcular NIHSS</strong>.
-      <br />
-      Se informará el resultado como:
-      <strong>ACV menor</strong>, <strong>ACV moderado</strong>,
-      <strong>ACV severo</strong> o
-      <strong>ACV menor con síntomas discapacitantes</strong>.
-    </p>
-  </div>
+  // Paso 2 = NO → descarta delirium
+  if (s2 === 0) {
+    $("cam_step3").value = "";
+    $("cam_step4").value = "";
 
-  <div class="card">
-    <div class="nihss-grid">
+    $("cam_steps34")?.classList.add("hidden");
+    $("cam_wait")?.classList.add("hidden");
 
-      <!-- 1a -->
-      <label class="field">
-        <span>1a. Nivel de conciencia</span>
-        <select id="n_1a">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Alerta</option>
-          <option value="1">1 = Somnoliento</option>
-          <option value="2">2 = Estupor</option>
-          <option value="3">3 = Coma</option>
-        </select>
-      </label>
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Paso 2 negativo (sin inatención). Delirium descartado."
+    );
+    return;
+  }
 
-      <!-- 1b -->
-      <label class="field">
-        <span>1b. Preguntas LOC (mes / edad)</span>
-        <select id="n_1b">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Ambas correctas</option>
-          <option value="1">1 = Una correcta</option>
-          <option value="2">2 = Ninguna correcta</option>
-        </select>
-      </label>
+  /* =========================
+     PASOS 3 y 4
+  ========================= */
 
-      <!-- 1c -->
-      <label class="field">
-        <span>1c. Órdenes LOC</span>
-        <select id="n_1c">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Ambas correctas</option>
-          <option value="1">1 = Una correcta</option>
-          <option value="2">2 = Ninguna correcta</option>
-        </select>
-      </label>
+  // Paso 1 + 2 = Sí → mostrar 3 y 4
+  $("cam_steps34")?.classList.remove("hidden");
+  $("cam_wait")?.classList.add("hidden");
 
-      <!-- 2 -->
-      <label class="field">
-        <span>2. Mirada</span>
-        <select id="n_2">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Normal</option>
-          <option value="1">1 = Parálisis parcial</option>
-          <option value="2">2 = Desviación forzada</option>
-        </select>
-      </label>
+  // Aún no evaluados
+  if (s3 === null && s4 === null) return;
 
-      <!-- 3 -->
-      <label class="field">
-        <span>3. Campos visuales</span>
-        <select id="n_3">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Normal</option>
-          <option value="1">1 = Hemianopsia parcial</option>
-          <option value="2">2 = Hemianopsia homónima completa</option>
-          <option value="3">3 = Ceguera bilateral</option>
-        </select>
-      </label>
+  // Positivo si 3 o 4 es positivo
+  if (s3 === 1 || s4 === 1) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Positivo.",
+      "result-bad"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Cumple criterios: Paso 1 + Paso 2 y (Paso 3 o Paso 4)."
+    );
+    return;
+  }
 
-      <!-- 4 -->
-      <label class="field">
-        <span>4. Parálisis facial</span>
-        <select id="n_4">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Normal</option>
-          <option value="1">1 = Leve</option>
-          <option value="2">2 = Parcial</option>
-          <option value="3">3 = Completa</option>
-        </select>
-      </label>
+  // Ambos negativos
+  if (s3 === 0 && s4 === 0) {
+    setResultBox(
+      "resultadoCAMICU",
+      "<strong>CAM-ICU:</strong> Negativo.",
+      "result-ok"
+    );
+    setHTML(
+      "interpretacionCAMICU",
+      "Paso 3 y Paso 4 negativos (RASS = 0 y sin pensamiento desorganizado)."
+    );
+  }
+}
 
-      <!-- 5a -->
-      <label class="field">
-        <span>5a. Motor brazo izquierdo</span>
-        <select id="n_5a">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Sin caída</option>
-          <option value="1">1 = Caída leve</option>
-          <option value="2">2 = Contra gravedad</option>
-          <option value="3">3 = Sin esfuerzo contra gravedad</option>
-          <option value="4">4 = Sin movimiento</option>
-        </select>
-      </label>
 
-      <!-- 5b -->
-      <label class="field">
-        <span>5b. Motor brazo derecho</span>
-        <select id="n_5b">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Sin caída</option>
-          <option value="1">1 = Caída leve</option>
-          <option value="2">2 = Contra gravedad</option>
-          <option value="3">3 = Sin esfuerzo contra gravedad</option>
-          <option value="4">4 = Sin movimiento</option>
-        </select>
-      </label>
+    /* =========================================================
+       NIHSS
+       Clasificación automática:
+       - NIHSS ≤ 4 -> ACV menor
+         -> ACV menor con síntomas discapacitantes si:
+            * Hemianopsia homónima (n_3 === 2)
+            * Neglect (n_11 ≥ 1)
+            * Afasia (n_9 ≥ 1)
+            * Déficit motor contra gravedad (n_5x ≥ 2 o n_6x ≥ 2)
+       - NIHSS 5–15 -> ACV moderado
+       - NIHSS > 15 -> ACV severo
+    ========================================================= */
+    function resetNIHSS() {
+      [
+        "n_1a","n_1b","n_1c","n_2","n_3","n_4",
+        "n_5a","n_5b","n_6a","n_6b",
+        "n_7","n_8","n_9","n_10","n_11"
+      ].forEach((id) => {
+        const el = $(id);
+        if (el) el.value = "";
+      });
 
-      <!-- 6a -->
-      <label class="field">
-        <span>6a. Motor pierna izquierda</span>
-        <select id="n_6a">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Sin caída</option>
-          <option value="1">1 = Caída leve</option>
-          <option value="2">2 = Contra gravedad</option>
-          <option value="3">3 = Sin esfuerzo contra gravedad</option>
-          <option value="4">4 = Sin movimiento</option>
-        </select>
-      </label>
+      setResultBox("resultadoNIHSS");
+      setHTML("interpretacionNIHSS");
+    }
 
-      <!-- 6b -->
-      <label class="field">
-        <span>6b. Motor pierna derecha</span>
-        <select id="n_6b">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Sin caída</option>
-          <option value="1">1 = Caída leve</option>
-          <option value="2">2 = Contra gravedad</option>
-          <option value="3">3 = Sin esfuerzo contra gravedad</option>
-          <option value="4">4 = Sin movimiento</option>
-        </select>
-      </label>
+    function calcularNIHSS() {
+      let total = 0;
 
-      <!-- 7 -->
-      <label class="field">
-        <span>7. Ataxia</span>
-        <select id="n_7">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = No</option>
-          <option value="1">1 = Un miembro</option>
-          <option value="2">2 = Dos miembros</option>
-        </select>
-      </label>
+      // Suma solo lo seleccionado
+      document.querySelectorAll('select[id^="n_"]').forEach((sel) => {
+        const v = Number(sel.value);
+        if (Number.isFinite(v)) total += v;
+      });
 
-      <!-- 8 -->
-      <label class="field">
-        <span>8. Sensibilidad</span>
-        <select id="n_8">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Normal</option>
-          <option value="1">1 = Pérdida leve/moderada</option>
-          <option value="2">2 = Pérdida severa</option>
-        </select>
-      </label>
+      // Discapacitantes (según tu definición)
+      const hemianopsia = getSelectInt("n_3") === 2;
+      const neglect = (getSelectInt("n_11") ?? 0) >= 1;
+      const afasia = (getSelectInt("n_9") ?? 0) >= 1;
 
-      <!-- 9 -->
-      <label class="field">
-        <span>9. Lenguaje (afasia)</span>
-        <select id="n_9">
-          <option value="">Seleccionar…</option>
-          <option value="0">0 = Normal</option>
-          <option value="1">1 = Afasia leve/moderada</option>
-          <option value="2">2 = Afasia severa</option>
-          <option value="3">3 = Afasia global</option>
-        </select>
-      </label>
+      const motorBrazo = safeMax(getSelectInt("n_5a"), getSelectInt("n_5b"));
+      const motorPierna = safeMax(getSelectInt("n_6a"), getSelectInt("n_6b"));
+      const motorContraGravedad = motorBrazo >= 2 || motorPierna >= 2;
 
-      <!-- 10 -->
+      const discapacitante =
+        hemianopsia || neglect || afasia || motorContraGravedad;
 
-  <!-- =========================
-       FISHER
-  ========================= -->
-  <section id="fisher" class="panel">
-    <div class="panel-head">
-      <h2>🧠 Escala de Fisher · HSA</h2>
-    </div>
+      let clasif = "ACV severo";
+      let clase = "result-bad";
 
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Grado</th><th>Descripción</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Sin sangre visible.</td></tr>
-          <tr><td>2</td><td>Sangre difusa &lt; 1 mm.</td></tr>
-          <tr><td>3</td><td>Coágulo ≥ 1 mm.</td></tr>
-          <tr><td>4</td><td>HIV o HIC asociada.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+      if (total <= 4) {
+        clasif = discapacitante
+          ? "ACV menor con síntomas discapacitantes"
+          : "ACV menor";
+        clase = discapacitante ? "result-warn" : "result-ok";
+      } else if (total <= 15) {
+        clasif = "ACV moderado";
+        clase = "result-warn";
+      }
 
-  <hr />
+      setResultBox(
+        "resultadoNIHSS",
+        `<strong>NIHSS:</strong> ${total} · ${clasif}`,
+        clase
+      );
 
-  <!-- =========================
-       HUNT & HESS
-  ========================= -->
-  <section id="hunt-hess" class="panel">
-    <div class="panel-head">
-      <h2>🧠 Hunt &amp; Hess · HSA</h2>
-    </div>
+      const hallazgos = [];
+      if (hemianopsia) hallazgos.push("Hemianopsia homónima");
+      if (neglect) hallazgos.push("Neglect");
+      if (afasia) hallazgos.push("Afasia");
+      if (motorContraGravedad) hallazgos.push("Déficit motor contra gravedad");
 
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Grado</th><th>Descripción</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>I</td><td>Asintomático.</td></tr>
-          <tr><td>II</td><td>Cefalea moderada.</td></tr>
-          <tr><td>III</td><td>Confusión o déficit leve.</td></tr>
-          <tr><td>IV</td><td>Estupor.</td></tr>
-          <tr><td>V</td><td>Coma profundo.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+      setHTML(
+        "interpretacionNIHSS",
+        hallazgos.length
+          ? `<strong>Síntomas discapacitantes:</strong> ${hallazgos.join(", ")}.`
+          : ""
+      );
+    }
 
-  <hr />
+    /* =========================================================
+       INIT (ROBUSTO)
+    ========================================================= */
+    function init() {
+      // CAM-ICU: delegation dentro del panel
+      const camSection = $("camicu");
+      if (camSection) {
+        camSection.addEventListener("change", (e) => {
+          const t = e.target;
+          if (t && t.tagName === "SELECT" && t.id.startsWith("cam_step")) {
+            evaluarCAMICU();
+          }
+        });
+      }
 
-  <!-- =========================
-       MARSHALL
-  ========================= -->
-  <section id="marshall" class="panel">
-    <div class="panel-head">
-      <h2>🧠 Marshall Score · TCE</h2>
-    </div>
+      // Botones
+      $("cam_reset")?.addEventListener("click", resetCAMICU);
+      $("nihss_reset")?.addEventListener("click", resetNIHSS);
 
-    <div class="card">
-      <table>
-        <thead>
-          <tr><th>Categoría</th><th>Descripción</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>I</td><td>TC normal.</td></tr>
-          <tr><td>II</td><td>Lesión difusa leve.</td></tr>
-          <tr><td>III</td><td>Edema difuso.</td></tr>
-          <tr><td>IV</td><td>Desviación ≥ 5 mm.</td></tr>
-          <tr><td>V</td><td>Masa evacuada.</td></tr>
-          <tr><td>VI</td><td>Masa no evacuada.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+      // Importante: si seguís usando onclick en HTML, esto lo hace robusto igual
+      window.calcularNIHSS = calcularNIHSS;
 
-  <div class="nav-back">
-    <a href="/calculadoras/variables-clinicas/">← Volver a Variables clínicas</a>
-  </div>
+      // Si querés testear
+      window.evaluarCAMICU = evaluarCAMICU;
 
-</main>
+      // Estado inicial
+      resetCAMICU();
+      resetNIHSS();
 
-<!-- =========================
-     FOOTER
-========================= -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <nav class="footer-nav">
-      <a href="/">Inicio</a>
-      <span>·</span>
-      <a href="/bibliografia/">Bibliografía</a>
-      <span>·</span>
-      <a href="/aviso-legal/">Aviso legal</a>
-    </nav>
+      console.log("✅ neuro.js inicializado");
+    }
 
-    <p class="footer-copy">
-      © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-      No reemplaza el juicio médico ni las guías institucionales.
-    </p>
-  </div>
-</footer>
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+      init();
+    }
 
-<script src="./neuro.js?v=5" defer></script>
-</body>
-</html>
+  } catch (err) {
+    console.error("❌ Error crítico en neuro.js:", err);
+  }
+})();
