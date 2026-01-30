@@ -148,33 +148,32 @@ function evaluarCAMICU() {
 
   $("cam_step4")?.closest(".card")?.classList.remove("hidden");
 
-  // CAM-ICU positivo si 3 o 4 es positivo
-  if (s3 === 1 || s4 === 1) {
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Positivo.",
-      "result-bad"
-    );
-    setHTML(
-      "interpretacionCAMICU",
-      "Cumple criterios: Paso 1 + Paso 2 y (Paso 3 o Paso 4)."
-    );
-    return;
-  }
-
-  // Ambos negativos
-  if (s3 === 0 && s4 === 0) {
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Negativo.",
-      "result-ok"
-    );
-    setHTML(
-      "interpretacionCAMICU",
-      "Paso 3 y Paso 4 negativos (RASS = 0 y sin pensamiento desorganizado)."
-    );
-  }
+// CAM-ICU positivo si 3 o 4 es positivo
+if (s3 === 1 || s4 === 1) {
+  setResultBox(
+    "resultadoCAMICU",
+    "<strong>CAM-ICU:</strong> Positivo.",
+    "result-bad"
+  );
+  setHTML(
+    "interpretacionCAMICU",
+    "Cumple criterios: Paso 1 + Paso 2 y (Paso 3 o Paso 4)."
+  );
 }
+
+// Ambos negativos (solo si ambos fueron evaluados)
+if (s3 === 0 && s4 === 0) {
+  setResultBox(
+    "resultadoCAMICU",
+    "<strong>CAM-ICU:</strong> Negativo.",
+    "result-ok"
+  );
+  setHTML(
+    "interpretacionCAMICU",
+    "Paso 3 y Paso 4 negativos (RASS = 0 y sin pensamiento desorganizado)."
+  );
+}
+
 
     /* =========================================================
        NIHSS
