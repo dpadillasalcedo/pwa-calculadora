@@ -1,14 +1,24 @@
+/* =========================================================
+   ROOT · DARK THEME
+========================================================= */
 :root {
   --bg: #020617;
-  --card: #0b1220;
+  --panel: #0b1220;
   --border: #1e293b;
+
   --text: #e5e7eb;
-  --muted: #cbd5e1;
-  --title: #f8fafc;
-  --accent: #38bdf8;
+  --muted: #94a3b8;
+
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
 }
 
-body {
+/* =========================================================
+   BASE
+========================================================= */
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -16,88 +26,147 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2.5rem 1.25rem 4rem;
+body {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Breadcrumb */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-strong);
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app {
+  padding-top: 0.5rem;
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
 .breadcrumb {
   font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
 }
 
 .breadcrumb a {
-  color: var(--muted);
-  text-decoration: none;
+  color: #f8fafc;
+  font-weight: 500;
 }
 
 .breadcrumb a:hover {
-  color: var(--accent);
+  color: var(--primary-strong);
 }
 
-/* Header */
+.breadcrumb span {
+  margin: 0 0.4rem;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.app-header {
+  margin-bottom: 2rem;
+}
+
 .app-header h1 {
-  font-size: 2rem;
-  color: var(--title);
-  margin-bottom: 0.5rem;
+  margin: 0;
+  font-size: 1.8rem;
+  color: #f8fafc;
 }
 
 .subtitle {
+  margin-top: 0.5rem;
   color: var(--muted);
-  max-width: 720px;
+  max-width: 760px;
 }
 
-/* Legal sections */
-.legal-section {
-  margin-top: 2.5rem;
-  padding: 1.75rem 1.75rem;
-  background: linear-gradient(180deg, var(--card), #0f172a);
+/* =========================================================
+   PANEL
+========================================================= */
+.panel {
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 14px;
+  padding: 1.75rem;
 }
 
-.legal-section h2 {
+.panel h2 {
+  margin-top: 1.75rem;
+  font-size: 1.2rem;
+  color: #f8fafc;
+}
+
+.panel h2:first-child {
   margin-top: 0;
-  color: var(--accent);
-  font-size: 1.15rem;
 }
 
-.legal-section p {
-  margin-bottom: 0.75rem;
+.panel p {
+  margin-top: 0.5rem;
+  color: var(--text);
 }
 
-/* Back */
-.nav-back {
-  margin-top: 3rem;
-}
-
-.nav-back a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-/* Footer */
-footer {
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer {
   border-top: 1px solid var(--border);
-  padding: 2rem 1.25rem;
+  margin-top: 3rem;
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
+  background: var(--panel);
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .footer-nav {
-  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #f8fafc;
 }
 
 .footer-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  margin: 0 0.5rem;
+  color: #f8fafc;
+  font-weight: 500;
 }
 
 .footer-nav a:hover {
-  color: var(--accent);
+  color: var(--primary-strong);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: #f8fafc;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.55rem;
+  }
 }
