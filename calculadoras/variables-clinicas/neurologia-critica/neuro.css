@@ -301,129 +301,65 @@ button:hover {
 }
 
 /* =========================================================
-   TABLES
+   TABLES · BASE
 ========================================================= */
 .table-wrap {
   overflow-x: auto;
+  margin-top: 0.75rem;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-th,
-td {
-  padding: 0.6rem 0.7rem;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-}
-
-th {
-  color: #f8fafc;
-  font-weight: 600;
-}
-
-/* =========================================================
-   UTILITIES
-========================================================= */
-.hidden {
-  display: none !important;
-}
-
-/* =========================================================
-   NAV BACK
-========================================================= */
-.nav-back {
-  margin: 2rem 0;
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.site-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding: 2rem 1rem;
-}
-
-.footer-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.footer-nav {
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-}
-
-.footer-nav span {
-  margin: 0 0.4rem;
-  color: var(--muted);
-}
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 520px) {
-  .nihss-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================================================
-   ESCALAS CLÍNICAS · TABLAS
-========================================================= */
-
-/* Contenedor de tablas */
-.panel .card .table-wrap,
-.panel .card table {
-  margin-top: 0.75rem;
-}
-
-/* Tabla base */
-table {
   background: rgba(2, 6, 23, 0.4);
   border-radius: 12px;
   overflow: hidden;
+  font-size: 0.9rem;
 }
 
-/* Encabezado */
+/* Encabezados */
 table thead th {
   background: rgba(15, 23, 42, 0.9);
   color: #f8fafc;
+  font-weight: 600;
   font-size: 0.85rem;
-  letter-spacing: 0.02em;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 /* Celdas */
-table tbody td {
-  font-size: 0.9rem;
+table th,
+table td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
   color: var(--text);
 }
 
-/* Filas alternadas (lectura clínica) */
+/* Filas alternadas */
 table tbody tr:nth-child(even) {
   background: rgba(15, 23, 42, 0.35);
 }
 
-/* Hover sutil (no interactivo, solo lectura) */
+/* Hover sutil (solo lectura) */
 table tbody tr:hover {
   background: rgba(56, 189, 248, 0.05);
 }
 
+/* Columna de grado */
+table th:first-child,
+table td:first-child {
+  width: 90px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
 /* =========================================================
-   ESCALA FISHER · DESTACADA
+   ESCALAS CLÍNICAS · JERARQUÍA
 ========================================================= */
+
+/* FISHER */
 #fisher .card {
   border-left: 4px solid var(--primary);
   background: linear-gradient(
@@ -433,49 +369,43 @@ table tbody tr:hover {
   );
 }
 
-/* Grado Fisher más visual */
-#fisher table tbody td:first-child {
-  font-weight: 700;
-  font-size: 0.95rem;
+#fisher table td:first-child {
   color: var(--primary);
-  width: 80px;
+  font-weight: 700;
 }
 
-/* =========================================================
-   HUNT & HESS
-========================================================= */
+/* HUNT & HESS */
 #hunt-hess .card {
   border-left: 4px solid var(--warn);
 }
 
-/* =========================================================
-   MARSHALL
-========================================================= */
+#hunt-hess table td:first-child {
+  color: var(--warn);
+}
+
+/* MARSHALL */
 #marshall .card {
   border-left: 4px solid var(--bad);
 }
 
+#marshall table td:first-child {
+  color: var(--bad);
+}
+
 /* =========================================================
-   TABLAS · AJUSTES FINOS
+   TABLES · RESPONSIVE
 ========================================================= */
-th,
-td {
-  padding: 0.7rem 0.9rem;
-  vertical-align: top;
-}
-
-/* Columnas de grado más compactas */
-td:first-child,
-th:first-child {
-  width: 90px;
-  white-space: nowrap;
-}
-
-/* Responsive tablas */
 @media (max-width: 640px) {
   table {
     font-size: 0.85rem;
   }
+
+  table th,
+  table td {
+    padding: 0.55rem 0.6rem;
+  }
+}
+
 
   th,
   td {
