@@ -21,7 +21,7 @@ body {
 }
 
 /* =========================
-   BREADCRUMB
+   BREADCRUMB (HEAD)
 ========================= */
 .breadcrumb {
   display: flex;
@@ -29,11 +29,11 @@ body {
   gap: 0.4rem;
   font-size: 0.8rem;
   margin-bottom: 1.25rem;
-  color: #f8fafc; /* blanco */
+  color: #f8fafc;
 }
 
 .breadcrumb a {
-  color: #f8fafc; /* blanco */
+  color: #f8fafc;
   text-decoration: none;
   font-weight: 500;
 }
@@ -76,7 +76,7 @@ h2 {
 
 fieldset {
   border:none;
-  margin:0 0 32px 0; /* evita que el siguiente cálculo suba */
+  margin:0 0 32px 0;
   padding:0;
 }
 
@@ -130,31 +130,36 @@ button:hover {
   padding: 12px;
   background: #020617;
   border-left: 4px solid var(--primary);
-  border-radius
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: block;
+}
 
-  /* =========================
+/* =========================
    FOOTER
 ========================= */
 footer {
   text-align: center;
   padding: 2rem 1.5rem;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: #f8fafc; /* blanco */
   border-top: 1px solid var(--border);
 }
 
 .footer-nav {
   display: flex;
   align-items: center;
-  justify-content: center; /* ✅ centra links y separador */
+  justify-content: center;
   gap: 0.6rem;
   margin-bottom: 0.75rem;
-  flex-wrap: wrap; /* ✅ en mobile no se rompe feo */
+  flex-wrap: wrap;
 }
 
 .footer-nav a {
-  color: var(--muted);
+  color: #f8fafc; /* blanco */
   text-decoration: none;
+  font-weight: 500;
 }
 
 .footer-nav a:hover {
@@ -163,6 +168,6 @@ footer {
 }
 
 footer p {
-  margin: 0; /* ✅ evita que quede “corrida” por márgenes default */
+  margin: 0;
   line-height: 1.4;
 }
