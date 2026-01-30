@@ -1,5 +1,5 @@
 /* ======================================================
-   RESET TOTAL (ANTI ESTILOS POR DEFECTO)
+   RESET TOTAL
 ====================================================== */
 *,
 *::before,
@@ -10,67 +10,23 @@
 }
 
 html, body {
-  background-color: #f1f5f9 !important; /* gris claro */
-  color: #0f172a !important;
+  background-color: #f1f5f9;
+  color: #0f172a;
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.55;
 }
 
-/* Neutraliza estilos HTML por defecto */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* ======================================================
-   ICONOS MÉDICOS POR SECCIÓN
-====================================================== */
-
-.menu-card h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* 🧠 Neurología crítica */
-.menu-card[href*="neurologia-critica"] h2::before {
-  content: "🧠";
-  font-size: 1.4rem;
-}
-
-/* 🫁 Ventilación mecánica */
-.menu-card[href*="ventilacion-mecanica"] h2::before {
-  content: "🫁";
-  font-size: 1.4rem;
-}
-
-/* 🩺 Monitoreo hemodinámico */
-.menu-card[href*="monitoreo-hemodinamico"] h2::before {
-  content: "🩺";
-  font-size: 1.4rem;
-}
-
-/* 🩸 Estado ácido-base */
-.menu-card[href*="estado-acido-base"] h2::before {
-  content: "🩸";
-  font-size: 1.4rem;
-}
-
-/* 📊 Sistemas de puntuación */
-.menu-card[href*="sistemas-puntuacion"] h2::before {
-  content: "📊";
-  font-size: 1.4rem;
-}
-
-
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 /* ======================================================
-   VARIABLES DE DISEÑO (LIGHT CLÍNICO)
+   VARIABLES (LIGHT CLÍNICO)
 ====================================================== */
 :root {
   --bg-main: #f1f5f9;
@@ -86,7 +42,7 @@ ul {
 }
 
 /* ======================================================
-   CONTENEDOR PRINCIPAL
+   CONTENEDOR
 ====================================================== */
 .app.container {
   max-width: 1200px;
@@ -108,7 +64,6 @@ ul {
   font-size: 2.1rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--color-text);
 }
 
 .subtitle {
@@ -119,7 +74,7 @@ ul {
 }
 
 /* ======================================================
-   GRID DE NAVEGACIÓN
+   GRID
 ====================================================== */
 .clinical-menu {
   display: grid;
@@ -128,27 +83,21 @@ ul {
 }
 
 /* ======================================================
-   CARD / BOTÓN DE NAVEGACIÓN
+   CARD
 ====================================================== */
 .menu-card {
   position: relative;
-  display: block;
   background-color: var(--bg-card);
   padding: 2.2rem 2.2rem 2.9rem;
   border-radius: 18px;
   border: 1px solid var(--color-border);
-  color: var(--color-text);
   cursor: pointer;
 
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
 
-  transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    border-color 0.22s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
-/* Hover / foco = botón */
 .menu-card:hover,
 .menu-card:focus-visible {
   transform: translateY(-5px);
@@ -160,38 +109,58 @@ ul {
 }
 
 /* ======================================================
-   TÍTULO DE CARD
+   ICONOS POR SECCIÓN (CORREGIDO)
 ====================================================== */
 .menu-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.9rem;
   color: var(--color-primary);
 }
 
+a[href*="neurologia-critica"] .menu-card h2::before {
+  content: "🧠";
+}
+
+a[href*="ventilacion-mecanica"] .menu-card h2::before {
+  content: "🫁";
+}
+
+a[href*="monitoreo-hemodinamico"] .menu-card h2::before {
+  content: "🩺";
+}
+
+a[href*="estado-acido-base"] .menu-card h2::before {
+  content: "🩸";
+}
+
+a[href*="sistemas-puntuacion"] .menu-card h2::before {
+  content: "📊";
+}
+
 /* ======================================================
-   LISTA DE HERRAMIENTAS
+   LISTA
 ====================================================== */
 .menu-card li {
   position: relative;
   padding-left: 18px;
   margin-bottom: 8px;
   font-size: 0.9rem;
-  line-height: 1.45;
   color: var(--color-muted);
 }
 
-/* Bullet clínico */
 .menu-card li::before {
   content: "▸";
   position: absolute;
   left: 0;
   color: var(--color-primary);
-  font-size: 0.9rem;
 }
 
 /* ======================================================
-   CTA VISUAL
+   CTA
 ====================================================== */
 .menu-card::after {
   content: "Entrar →";
@@ -212,48 +181,8 @@ ul {
 }
 
 /* ======================================================
-   SECCIÓN PUBLICIDAD (PLACEHOLDER)
-====================================================== */
-.bottom-ad-section {
-  margin-top: 4.5rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.bottom-ad-slot {
-  min-height: 90px;
-  background-color: var(--bg-surface);
-  border-radius: 12px;
-}
-
-/* ======================================================
-   RESPONSIVE
-====================================================== */
-@media (max-width: 768px) {
-  .app-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .clinical-menu {
-    gap: 1.5rem;
-  }
-
-  .menu-card {
-    padding: 1.8rem 1.8rem 2.4rem;
-  }
-
-  .menu-card h2 {
-    font-size: 1.1rem;
-  }
-
-  .menu-card li {
-    font-size: 0.85rem;
-  }
-}
-
-/* =========================
    FOOTER
-========================= */
+====================================================== */
 footer {
   text-align: center;
   padding: 2rem 1.5rem;
@@ -262,13 +191,13 @@ footer {
   border-top: 1px solid var(--color-border);
 }
 
-/* =========================
-   MODAL SUGERENCIAS
-========================= */
+/* ======================================================
+   MODAL (LIGHT CONSISTENTE)
+====================================================== */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.75);
+  background: rgba(15, 23, 42, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,30 +209,21 @@ footer {
 }
 
 .modal-content {
-  width: 100%;
   max-width: 520px;
-  background: linear-gradient(180deg, #0b1220, #0f172a);
-  border: 1px solid #1e293b;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
   border-radius: 18px;
   padding: 2rem;
-  color: #e5e7eb;
 }
 
 .modal-content h2 {
-  margin-top: 0;
-  color: #38bdf8;
+  color: var(--color-primary);
 }
 
 .modal-subtitle {
   font-size: 0.9rem;
-  color: #cbd5e1;
-  margin-bottom: 1.25rem;
-}
-
-.modal-content label {
-  display: block;
-  margin-top: 1rem;
-  font-size: 0.85rem;
+  color: var(--color-muted);
 }
 
 .modal-content textarea,
@@ -311,35 +231,7 @@ footer {
   width: 100%;
   margin-top: 0.35rem;
   padding: 0.6rem;
-  background: #020617;
-  border: 1px solid #1e293b;
+  background: var(--bg-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
-  color: #e5e7eb;
-  font-family: inherit;
 }
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.btn-primary {
-  background: #38bdf8;
-  border: none;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  color: #cbd5e1;
-  cursor: pointer;
-}
-
