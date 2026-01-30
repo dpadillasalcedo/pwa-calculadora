@@ -25,43 +25,30 @@ body {
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
-h1, h2, h3 {
+h1, h2 {
   color: #f8fafc;
-}
-label {
-  display: block;
-  margin-top: 0.8rem;
 }
 select, button {
   width: 100%;
   padding: 0.6rem;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   background: #020617;
   color: #e5e7eb;
   border: 1px solid #1e293b;
   border-radius: 8px;
 }
-button {
-  margin-top: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
 button.primary {
   background: #0ea5e9;
   color: #020617;
+  font-weight: 600;
 }
 button.secondary {
-  background: #020617;
+  background: transparent;
   color: #94a3b8;
 }
 .result {
   margin-top: 1rem;
-  font-size: 1.1rem;
   font-weight: 700;
-}
-.note {
-  margin-top: 0.5rem;
-  color: #cbd5e1;
 }
 footer {
   text-align: center;
@@ -76,17 +63,16 @@ footer {
 
 <header>
   <h1>Sistemas de puntuación UCI</h1>
-  <p class="note">Cálculo automático con escalas validadas · Uso educativo</p>
+  <p>Uso educativo · Escalas validadas</p>
 </header>
 
-<!-- =====================================================
-     SOFA-2
-===================================================== -->
+<!-- ===================== SOFA-2 ===================== -->
 <section class="panel">
 <h2>SOFA-2</h2>
 
 <select id="sofa_neuro">
-  <option value="0">Neurológico · GCS 15</option>
+  <option value="">Neurológico</option>
+  <option value="0">GCS 15</option>
   <option value="1">GCS 13–14</option>
   <option value="2">GCS 9–12</option>
   <option value="3">GCS 6–8</option>
@@ -94,7 +80,8 @@ footer {
 </select>
 
 <select id="sofa_resp">
-  <option value="0">Respiratorio · &gt; 300</option>
+  <option value="">Respiratorio</option>
+  <option value="0">&gt; 300</option>
   <option value="1">≤ 300</option>
   <option value="2">≤ 225</option>
   <option value="3">≤ 150 + soporte</option>
@@ -102,7 +89,8 @@ footer {
 </select>
 
 <select id="sofa_cardio">
-  <option value="0">Cardio · PAM ≥ 70</option>
+  <option value="">Cardiovascular</option>
+  <option value="0">PAM ≥ 70</option>
   <option value="1">PAM &lt; 70</option>
   <option value="2">Vasopresor bajo</option>
   <option value="3">Vasopresor medio</option>
@@ -110,7 +98,8 @@ footer {
 </select>
 
 <select id="sofa_liver">
-  <option value="0">Hígado · BT ≤ 1.2</option>
+  <option value="">Hígado</option>
+  <option value="0">BT ≤ 1.2</option>
   <option value="1">BT ≤ 3</option>
   <option value="2">BT ≤ 6</option>
   <option value="3">BT ≤ 12</option>
@@ -118,7 +107,8 @@ footer {
 </select>
 
 <select id="sofa_renal">
-  <option value="0">Riñón · Cr ≤ 1.2</option>
+  <option value="">Riñón</option>
+  <option value="0">Cr ≤ 1.2</option>
   <option value="1">Cr ≤ 2.0</option>
   <option value="2">Cr ≤ 3.5</option>
   <option value="3">Cr &gt; 3.5 / anuria</option>
@@ -126,7 +116,8 @@ footer {
 </select>
 
 <select id="sofa_hemo">
-  <option value="0">Plaquetas &gt; 150</option>
+  <option value="">Plaquetas</option>
+  <option value="0">&gt; 150</option>
   <option value="1">≤ 150</option>
   <option value="2">≤ 100</option>
   <option value="3">≤ 80</option>
@@ -135,26 +126,25 @@ footer {
 
 <button class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
 <button class="secondary" onclick="resetSOFA()">Reiniciar cálculo</button>
-
 <div id="sofa_result" class="result"></div>
 </section>
 
-<!-- =====================================================
-     APACHE II
-===================================================== -->
+<!-- ===================== APACHE II ===================== -->
 <section class="panel">
 <h2>APACHE II</h2>
 
 <select id="apache_phys">
-  <option value="0">Fisiología normal / leve</option>
-  <option value="5">Alteración moderada</option>
+  <option value="">Fisiología</option>
+  <option value="0">Normal / leve</option>
+  <option value="5">Moderada</option>
   <option value="10">Severa</option>
   <option value="15">Muy severa</option>
   <option value="20">Extrema</option>
 </select>
 
 <select id="apache_age">
-  <option value="0">Edad &lt; 45</option>
+  <option value="">Edad</option>
+  <option value="0">&lt; 45</option>
   <option value="2">45–54</option>
   <option value="3">55–64</option>
   <option value="5">65–74</option>
@@ -162,24 +152,23 @@ footer {
 </select>
 
 <select id="apache_chronic">
-  <option value="0">Sin enfermedad crónica grave</option>
-  <option value="5">Con enfermedad crónica grave</option>
+  <option value="">Enfermedad crónica grave</option>
+  <option value="0">No</option>
+  <option value="5">Sí</option>
 </select>
 
 <button class="primary" onclick="calcAPACHE()">Calcular APACHE II</button>
 <button class="secondary" onclick="resetAPACHE()">Reiniciar cálculo</button>
-
 <div id="apache_result" class="result"></div>
 </section>
 
-<!-- =====================================================
-     SAPS II
-===================================================== -->
+<!-- ===================== SAPS II ===================== -->
 <section class="panel">
 <h2>SAPS II</h2>
 
 <select id="saps_phys">
-  <option value="0">Fisiología leve</option>
+  <option value="">Fisiología</option>
+  <option value="0">Leve</option>
   <option value="10">Moderada</option>
   <option value="20">Severa</option>
   <option value="30">Muy severa</option>
@@ -187,7 +176,8 @@ footer {
 </select>
 
 <select id="saps_age">
-  <option value="0">Edad &lt; 40</option>
+  <option value="">Edad</option>
+  <option value="0">&lt; 40</option>
   <option value="7">40–59</option>
   <option value="12">60–69</option>
   <option value="15">70–74</option>
@@ -195,6 +185,7 @@ footer {
 </select>
 
 <select id="saps_adm">
+  <option value="">Tipo de ingreso</option>
   <option value="0">Quirúrgico electivo</option>
   <option value="6">Quirúrgico urgente</option>
   <option value="8">Médico</option>
@@ -202,7 +193,6 @@ footer {
 
 <button class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
 <button class="secondary" onclick="resetSAPS()">Reiniciar cálculo</button>
-
 <div id="saps_result" class="result"></div>
 </section>
 
@@ -212,55 +202,6 @@ footer {
 © 2026 Critical Care Tools · Uso educativo
 </footer>
 
-<script>
-function resetSelects(ids, resultId) {
-  ids.forEach(id => document.getElementById(id).selectedIndex = 0);
-  document.getElementById(resultId).textContent = "";
-}
-
-function calcSOFA() {
-  const ids = ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"];
-  const total = ids.reduce((s,id)=>s+Number(document.getElementById(id).value),0);
-  document.getElementById("sofa_result").textContent =
-    "SOFA-2 total: " + total + " puntos";
-}
-function resetSOFA() {
-  resetSelects(
-    ["sofa_neuro","sofa_resp","sofa_cardio","sofa_liver","sofa_renal","sofa_hemo"],
-    "sofa_result"
-  );
-}
-
-function calcAPACHE() {
-  const total =
-    Number(apache_phys.value) +
-    Number(apache_age.value) +
-    Number(apache_chronic.value);
-  document.getElementById("apache_result").textContent =
-    "APACHE II total: " + total + " puntos";
-}
-function resetAPACHE() {
-  resetSelects(
-    ["apache_phys","apache_age","apache_chronic"],
-    "apache_result"
-  );
-}
-
-function calcSAPS() {
-  const total =
-    Number(saps_phys.value) +
-    Number(saps_age.value) +
-    Number(saps_adm.value);
-  document.getElementById("saps_result").textContent =
-    "SAPS II total: " + total + " puntos";
-}
-function resetSAPS() {
-  resetSelects(
-    ["saps_phys","saps_age","saps_adm"],
-    "saps_result"
-  );
-}
-</script>
-
+<script src="puntuacion.js"></script>
 </body>
 </html>
