@@ -12,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: #020617 !important;
+  background-color: #020617;
   overscroll-behavior: none;
 }
 
@@ -23,24 +23,6 @@ body::before {
   inset: 0;
   background-color: #020617;
   z-index: -1;
-}
-
-/* =========================================================
-   ROOT APP WRAPPER (CLAVE)
-========================================================= */
-.app-root {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-
-  background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
-    #020617;
-
-  color: #e5e7eb;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.55;
 }
 
 /* =========================================================
@@ -58,6 +40,24 @@ body::before {
   --accent: #38bdf8;
   --accent-strong: #0ea5e9;
   --accent-soft: rgba(56,189,248,.18);
+}
+
+/* =========================================================
+   ROOT APP WRAPPER (CLAVE)
+========================================================= */
+.app-root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
+    var(--bg);
+
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
 }
 
 /* =========================================================
@@ -91,28 +91,27 @@ a:hover {
   flex-wrap: wrap;
   gap: .25rem;
   font-size: .85rem;
-  color: var(--muted);
   margin-bottom: 1.75rem;
+  color: #f8fafc;
 }
 
 .breadcrumb a {
-  color: var(--muted);
+  color: #f8fafc;
   border-bottom: 1px solid transparent;
   transition: color .15s ease, border-color .15s ease;
 }
 
 .breadcrumb a:hover {
-  color: var(--accent);
+  color: var(--accent-strong);
   border-bottom-color: var(--accent-soft);
 }
 
 .breadcrumb span {
   margin: 0 .35rem;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .breadcrumb [aria-current="page"] {
-  color: var(--text);
   font-weight: 600;
 }
 
@@ -162,8 +161,11 @@ header h1 {
   flex-direction: column;
 
   padding: 1.75rem 1.5rem 2.25rem;
-  background:
-    linear-gradient(180deg, rgba(15,23,42,.95), rgba(11,18,32,.95));
+  background: linear-gradient(
+    180deg,
+    rgba(15,23,42,.95),
+    rgba(11,18,32,.95)
+  );
   border: 1px solid var(--border);
   border-radius: 18px;
 
@@ -205,7 +207,7 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER (CENTRADO)
+   FOOTER
 ========================================================= */
 footer {
   background-color: var(--bg-soft);
@@ -213,7 +215,7 @@ footer {
   padding: 2.25rem 1.25rem;
   text-align: center;
   font-size: .85rem;
-  color: var(--muted);
+  color: #f8fafc;
 }
 
 .footer-nav {
@@ -221,13 +223,13 @@ footer {
 }
 
 .footer-nav a {
-  color: var(--muted);
+  color: #f8fafc;
   margin: 0 .5rem;
   transition: color .15s ease;
 }
 
 .footer-nav a:hover {
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 /* =========================================================
@@ -241,39 +243,4 @@ footer {
   .menu {
     gap: 1.25rem;
   }
-}
-
-/* =========================================================
-   OVERRIDES · NAV HEAD + FOOTER EN BLANCO
-   (sin modificar el resto del diseño)
-========================================================= */
-
-/* Breadcrumb (head) */
-.breadcrumb {
-  color: #f8fafc;
-}
-
-.breadcrumb a {
-  color: #f8fafc;
-}
-
-.breadcrumb a:hover {
-  color: var(--primary-strong);
-}
-
-/* Footer */
-.footer-nav {
-  color: #f8fafc;
-}
-
-.footer-nav a {
-  color: #f8fafc;
-}
-
-.footer-nav a:hover {
-  color: var(--primary-strong);
-}
-
-.footer-copy {
-  color: #f8fafc;
 }
