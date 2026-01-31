@@ -245,3 +245,36 @@ footer {
   }
 }
 
+footer{
+  background:#020617;
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:1.5rem;
+}
+
+.footer-nav{
+  display:flex;
+  justify-content:center;
+  gap:.5rem;
+  margin-bottom:.75rem;
+}
+
+.footer-nav a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:.9rem;
+}
+
+.footer-nav a:hover{
+  text-decoration:underline;
+}
+
+footer p{
+  margin:0;
+  font-size:.85rem;
+  color:var(--muted);
+  max-width:900px;
+  margin-inline:auto;
+}
+
+
