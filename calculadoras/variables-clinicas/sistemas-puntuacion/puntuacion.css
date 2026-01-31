@@ -12,7 +12,7 @@
 }
 
 /* =========================================================
-   RESET / BASE
+   RESET
 ========================================================= */
 *{
   box-sizing:border-box;
@@ -20,10 +20,13 @@
 
 html, body{
   width:100%;
+  margin:0;
 }
 
+/* =========================================================
+   BODY
+========================================================= */
 body{
-  margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   background:var(--bg);
   color:var(--text);
@@ -31,196 +34,59 @@ body{
 }
 
 /* =========================================================
-   HEADER
-========================================================= */
-header{
-  background:#020617;
-  border-bottom:1px solid var(--border);
-}
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb-nav{
-  max-width:1100px;
-  margin:0 auto;
-  padding:1rem 1.5rem;
-  display:flex;
-  align-items:center;
-}
-
-.breadcrumb-link{
-  color:var(--white);
-  text-decoration:none;
-  font-weight:500;
-}
-
-.breadcrumb-link:hover{
-  text-decoration:underline;
-}
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:1.5rem;
-}
-
-.panel{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1.5rem;
-  margin-bottom:2.5rem;
-}
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-h1{
-  color:#f8fafc;
-  font-size:1.8rem;
-  margin:0 0 1.5rem 0;
-}
-
-.panel > h2{
-  color:#f8fafc;
-  font-size:1.4rem;
-  margin:0 0 .5rem 0;
-  font-weight:600;
-}
-
-/* =========================================================
-   FORM ELEMENTS
-========================================================= */
-label{
-  font-size:.9rem;
-  display:flex;
-  flex-direction:column;
-  gap:.35rem;
-}
-
-select,
-button{
-  width:100%;
-  padding:.55rem;
-  background:#020617;
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:8px;
-  font-size:.9rem;
-}
-
-select option{
-  background:#0b1220;
-  color:var(--text);
-}
-
-/* =========================================================
-   GRID & ACTIONS
-========================================================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.8rem;
-  margin-top:1rem;
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-button.primary{
-  background:var(--primary);
-  color:#020617;
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-}
-
-button.primary:hover{
-  filter:brightness(1.1);
-}
-
-button.secondary{
-  color:var(--muted);
-  background:#020617;
-  cursor:pointer;
-}
-
-button.secondary:hover{
-  color:var(--white);
-}
-
-/* =========================================================
-   RESULTS / NOTES
-========================================================= */
-.result{
-  margin-top:1rem;
-  font-weight:700;
-  color:#f8fafc;
-}
-
-.note{
-  font-size:.85rem;
-  color:var(--muted);
-}
-
-/* =========================================================
-   FOOTER — CENTRADO REAL (CLAVE)
+   FOOTER — CENTRADO ABSOLUTO
 ========================================================= */
 footer{
   background:#020617;
   border-top:1px solid var(--border);
   padding:1.5rem 1rem;
+
+  /* 🔥 ESTO LE GANA A TODO */
+  display:grid !important;
+  place-items:center !important;
+  width:100% !important;
 }
 
-/* CONTENEDOR DEL FOOTER (MISMO ANCHO QUE EL MAIN) */
+/* CONTENEDOR */
 .footer-container{
-  max-width:1100px;
-  margin:0 auto;
+  width:100% !important;
+  max-width:1100px !important;
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  display:grid !important;
+  place-items:center !important;
 
-  text-align:center;
+  margin:0 auto !important;
+  text-align:center !important;
 }
 
-/* NAV DEL FOOTER */
+/* NAV */
 .footer-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:.5rem;
-  margin-bottom:.75rem;
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:.5rem !important;
+  margin-bottom:.75rem !important;
+  width:100% !important;
 }
 
-/* LINKS Y SEPARADOR */
+/* LINKS */
 .footer-nav a,
 .footer-nav span{
-  color:var(--white);
-  font-size:.9rem;
-  text-decoration:none;
+  color:var(--white) !important;
+  font-size:.9rem !important;
+  text-decoration:none !important;
 }
 
 .footer-nav a:hover{
-  text-decoration:underline;
+  text-decoration:underline !important;
 }
 
-/* TEXTO LEGAL */
+/* TEXTO */
 .footer-container p{
-  margin:0;
-  max-width:900px;
-  color:var(--white);
-  font-size:.85rem;
-  line-height:1.4;
+  margin:0 !important;
+  max-width:900px !important;
+  color:var(--white) !important;
+  font-size:.85rem !important;
+  line-height:1.4 !important;
+  text-align:center !important;
 }
