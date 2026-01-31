@@ -37,31 +37,39 @@ body {
 }
 
 /* =========================
-   BREADCRUMB – TEXTO BLANCO
+   BREADCRUMB / TOP NAV
 ========================= */
-.breadcrumb,
+.breadcrumb {
+  font-size: .85rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
 .breadcrumb a,
 .breadcrumb span,
 .breadcrumb [aria-current="page"] {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+/* Top navigation */
 .top-nav {
-  background:#020617;
-  border-bottom:1px solid #334155;
+  background: #020617;
+  border-bottom: 1px solid #334155;
 }
 
-.top-nav a {
-  color:#f8fafc;
+.top-nav a,
+.top-nav span {
+  color: #ffffff;
 }
 
 .top-nav a:hover {
-  color:var(--primary);
+  color: var(--primary);
 }
 
-.top-nav span {
-  color:#cbd5f5;
-}
 
 /* =========================
    PANEL
@@ -159,41 +167,29 @@ button:hover {
    FOOTER
 ========================= */
 footer {
-  background:#0b1220;
-  border-top:1px solid #1e293b;
-
-  padding:2rem 1rem;
-  text-align:center;
-
-  color:#f8fafc;
+  background: #0b1220;
+  border-top: 1px solid #1e293b;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #ffffff;
 }
 
 footer a {
-  color:#38bdf8;
-  text-decoration:none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 footer a:hover {
-  color:#7dd3fc;
-  text-decoration:underline;
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 footer .footer-nav span {
-  color:#64748b;
+  color: #ffffff;
 }
 
 footer p {
-  color:#94a3b8;
-  font-size:.85rem;
+  color: #ffffff;
+  font-size: .85rem;
 }
 
-/* =========================
-   FOOTER – TEXTO BLANCO
-========================= */
-footer,
-footer a,
-footer span,
-footer p,
-footer .footer-nav {
-  color: #ffffff;
-}
