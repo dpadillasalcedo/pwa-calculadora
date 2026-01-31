@@ -190,3 +190,36 @@ button.secondary{
   margin-top:1rem;
   font-weight:700;
 }
+
+/* =========================================================
+   FIX FINAL BREADCRUMB + FOOTER
+========================================================= */
+
+/* Breadcrumb */
+header nav a,
+.breadcrumb-nav a{
+  color:#ffffff !important;
+}
+
+/* Footer centrado real */
+footer{
+  display:flex;
+  justify-content:center;
+}
+
+footer .container{
+  width:100%;
+  max-width:1100px;
+  text-align:center;
+}
+
+/* Links del footer en blanco */
+footer a{
+  color:#ffffff !important;
+}
+
+/* Nav del footer centrado */
+.footer-nav nav{
+  justify-content:center;
+}
+
