@@ -18,7 +18,12 @@ function calcularGCEco() {
 
   if ([d, vti, fc].includes(null)) return;
 
+  // Gasto cardíaco
   const gc = ((Math.PI * (d / 2) ** 2) * vti * fc) / 1000;
+
+  // Umbral de respuesta (+15%)
+  const gc15 = gc * 1.15;
+
   const normal = "Normal: 4–6 L/min";
 
   let interp =
@@ -26,9 +31,24 @@ function calcularGCEco() {
     gc <= 6 ? "Gasto cardíaco normal" :
     "Estado hiperdinámico";
 
-  setHTML("resultadoGCEco", `<strong>GC:</strong> ${gc.toFixed(2)} L/min`);
-  setHTML("interpretacionGCEco", `${interp} (${normal})`);
+  setHTML(
+    "resultadoGCEco",
+    `
+    <strong>GC:</strong> ${gc.toFixed(2)} L/min<br>
+    <strong>GC +15% (respondedor):</strong> ${gc15.toFixed(2)} L/min
+    `
+  );
+
+  setHTML(
+    "interpretacionGCEco",
+    `
+    ${interp} (${normal}).<br>
+    Se considera <strong>respondedor</strong> si el GC alcanza o supera 
+    <strong>${gc15.toFixed(2)} L/min</strong>.
+    `
+  );
 }
+
 
 /* =========================
    FA
