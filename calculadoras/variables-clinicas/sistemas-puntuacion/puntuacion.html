@@ -1,213 +1,64 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Calculadoras UCI – SOFA-2 · APACHE II · SAPS II</title>
+/* ===================== SOFA-2 ===================== */
+function calcSOFA(){
+  let total = 0;
+  document.querySelectorAll(".sofa").forEach(s => {
+    total += Number(s.value);
+  });
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Calculadoras clínicas UCI: SOFA-2, APACHE II y SAPS II. Uso educativo y apoyo clínico.">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#020617">
+  document.getElementById("sofa_result").textContent =
+    "SOFA-2 total: " + total;
 
-<style>
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --border:#1e293b;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --primary:#0ea5e9;
+  document.getElementById("sofa_mortality").textContent =
+    total <= 1 ? "Mortalidad <10%" :
+    total <= 5 ? "Mortalidad 10–20%" :
+    total <= 9 ? "Mortalidad 20–40%" :
+    total <= 12 ? "Mortalidad 40–50%" :
+    "Mortalidad >50–90%";
 }
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+
+function resetSOFA(){
+  document.querySelectorAll(".sofa").forEach(s => s.selectedIndex = 0);
+  sofa_result.textContent = "";
+  sofa_mortality.textContent = "";
 }
-header,footer{
-  background:#020617;
-  border-bottom:1px solid var(--border);
+
+/* ===================== APACHE II ===================== */
+function calcAPACHE(){
+  const aps = +document.getElementById("apache_aps").value;
+  const age = +document.getElementById("apache_age").value;
+  const chronic = +document.getElementById("apache_chronic").value;
+
+  const total = aps + age + chronic;
+
+  document.getElementById("apache_result").textContent =
+    "APACHE II total: " + total;
+
+  document.getElementById("apache_mortality").textContent =
+    total < 10 ? "Mortalidad ~5%" :
+    total < 20 ? "Mortalidad ~15%" :
+    total < 30 ? "Mortalidad ~35%" :
+    "Mortalidad >50%";
 }
-footer{border-top:1px solid var(--border)}
-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:1rem 1.5rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+
+function resetAPACHE(){
+  apache_result.textContent = "";
+  apache_mortality.textContent = "";
 }
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:1.5rem;
+
+/* ===================== SAPS II ===================== */
+function calcSAPS(){
+  const score = +document.getElementById("saps_score").value;
+  const logit = -7.7631 + (0.0737 * score);
+  const mortality = (Math.exp(logit) / (1 + Math.exp(logit))) * 100;
+
+  document.getElementById("saps_result").textContent =
+    "SAPS II total: " + score;
+
+  document.getElementById("saps_mortality").textContent =
+    "Mortalidad estimada: " + mortality.toFixed(1) + "%";
 }
-.panel{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1.5rem;
-  margin-bottom:2.5rem;
+
+function resetSAPS(){
+  saps_result.textContent = "";
+  saps_mortality.textContent = "";
 }
-h1,h2{color:#f8fafc}
-label{font-size:.9rem}
-input,select,button{
-  width:100%;
-  padding:.55rem;
-  background:#020617;
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
-}
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.8rem;
-  margin-top:1rem;
-}
-button.primary{
-  background:var(--primary);
-  color:#020617;
-  font-weight:700;
-  border:none;
-}
-button.secondary{color:var(--muted)}
-.result{margin-top:1rem;font-weight:700}
-.note{font-size:.8rem;color:var(--muted)}
-footer .container{
-  font-size:.75rem;
-  color:var(--muted;
-  text-align:center;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <nav>
-    <strong>Critical Care Tools</strong>
-    <a href="#" style="color:var(--primary)">Inicio</a>
-  </nav>
-</header>
-
-<main class="container">
-<h1>Calculadoras UCI</h1>
-
-<!-- ======================= SOFA-2 ======================= -->
-<section class="panel">
-<h2>SOFA-2</h2>
-<p class="note">Puntaje máximo por sistema en 24 h</p>
-
-<div class="grid">
-<label>GCS<input id="sofa_gcs" type="number" min="3" max="15"></label>
-<label>PaO₂/FiO₂<input id="sofa_pafi" type="number"></label>
-<label>Soporte ventilatorio<select id="sofa_vent"><option value="0">No</option><option value="1">Sí</option></select></label>
-<label>PAM (mmHg)<input id="sofa_map" type="number"></label>
-<label>NE/Epi (µg/kg/min)<input id="sofa_vaso" type="number" step="0.01"></label>
-<label>Bilirrubina<input id="sofa_bili" type="number" step="0.1"></label>
-<label>Creatinina<input id="sofa_crea" type="number" step="0.1"></label>
-<label>Diuresis ml/kg/h<input id="sofa_urine" type="number" step="0.1"></label>
-<label>RRT<select id="sofa_rrt"><option value="0">No</option><option value="1">Sí</option></select></label>
-<label>Plaquetas<input id="sofa_platelets" type="number"></label>
-</div>
-
-<div class="actions">
-<button class="primary" onclick="calcSOFA()">Calcular</button>
-<button class="secondary" onclick="resetSOFA()">Reiniciar</button>
-</div>
-
-<div id="sofa_result" class="result"></div>
-<div id="sofa_mortality" class="note"></div>
-</section>
-
-<!-- ===================== APACHE II ===================== -->
-<section class="panel">
-<h2>APACHE II</h2>
-
-<div class="grid">
-<label>Temp °C<input id="a_temp" type="number" step="0.1"></label>
-<label>PAM<input id="a_map" type="number"></label>
-<label>FC<input id="a_hr" type="number"></label>
-<label>FR<input id="a_rr" type="number"></label>
-<label>pH<input id="a_ph" type="number" step="0.01"></label>
-<label>Na<input id="a_na" type="number"></label>
-<label>K<input id="a_k" type="number" step="0.1"></label>
-<label>Creatinina<input id="a_crea" type="number" step="0.1"></label>
-<label>Hematocrito<input id="a_hct" type="number"></label>
-<label>Leucocitos<input id="a_wbc" type="number"></label>
-<label>GCS<input id="a_gcs" type="number" min="3" max="15"></label>
-
-<label>Edad
-<select id="a_age">
-<option value="0">&lt;44</option>
-<option value="2">45–54</option>
-<option value="3">55–64</option>
-<option value="5">65–74</option>
-<option value="6">≥75</option>
-</select>
-</label>
-
-<label>Enfermedad crónica
-<select id="a_chronic">
-<option value="0">No</option>
-<option value="5">No quirúrgico</option>
-<option value="2">Quirúrgico</option>
-</select>
-</label>
-</div>
-
-<div class="actions">
-<button class="primary" onclick="calcAPACHE()">Calcular</button>
-<button class="secondary" onclick="resetAPACHE()">Reiniciar</button>
-</div>
-
-<div id="apache_result" class="result"></div>
-</section>
-
-<!-- ====================== SAPS II ====================== -->
-<section class="panel">
-<h2>SAPS II</h2>
-
-<div class="grid">
-<label>Edad<input id="s_age" type="number"></label>
-<label>FC<input id="s_hr" type="number"></label>
-<label>PAS<input id="s_sbp" type="number"></label>
-<label>Temperatura<input id="s_temp" type="number"></label>
-<label>GCS<input id="s_gcs" type="number"></label>
-<label>PaO₂/FiO₂<input id="s_pafi" type="number"></label>
-<label>Urea<input id="s_urea" type="number"></label>
-<label>Na<input id="s_na" type="number"></label>
-<label>K<input id="s_k" type="number"></label>
-<label>Bicarbonato<input id="s_hco3" type="number"></label>
-<label>Bilirrubina<input id="s_bili" type="number"></label>
-<label>Diuresis 24h<input id="s_urine" type="number"></label>
-</div>
-
-<div class="actions">
-<button class="primary" onclick="calcSAPS()">Calcular</button>
-<button class="secondary" onclick="resetSAPS()">Reiniciar</button>
-</div>
-
-<div id="saps_result" class="result"></div>
-</section>
-
-</main>
-
-<footer>
-<div class="container">
-<strong>Bibliografía · Aviso legal</strong><br>
-© 2026 Critical Care Tools · Uso educativo y de apoyo clínico.  
-No reemplaza el juicio médico ni las guías institucionales.
-</div>
-</footer>
-
-<script src="app.js"></script>
-</body>
-</html>
