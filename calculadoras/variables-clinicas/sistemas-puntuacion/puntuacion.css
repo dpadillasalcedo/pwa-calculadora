@@ -14,9 +14,9 @@
 /* =========================================================
    RESET / BASE
 ========================================================= */
-*{
-  box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
+
+html, body{ width:100%; }
 
 body{
   margin:0;
@@ -27,24 +27,11 @@ body{
 }
 
 /* =========================================================
-   HEADER / FOOTER
+   HEADER
 ========================================================= */
 header{
   background:#020617;
   border-bottom:1px solid var(--border);
-}
-
-footer{
-  background:#020617;
-  border-top:1px solid var(--border);
-  padding:1.5rem 1rem;
-
-  /* 🔑 CLAVE PARA EL CENTRADO REAL */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
 }
 
 /* =========================================================
@@ -59,71 +46,13 @@ footer{
 }
 
 .breadcrumb-link{
-  color:var(--white);
+  color:var(--white) !important;
   text-decoration:none;
   font-weight:500;
 }
 
 .breadcrumb-link:hover{
   text-decoration:underline;
-}
-
-/* =========================================================
-   FOOTER NAV
-========================================================= */
-footer{
-  background:#020617;
-  border-top:1px solid var(--border);
-  padding:1.5rem 1rem;
-}
-
-/* CONTENEDOR REAL CENTRADO */
-.footer-container{
-  max-width:1100px;
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-
-/* NAV */
-.footer-nav{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:.5rem;
-  margin-bottom:.75rem;
-}
-
-.footer-nav a,
-.footer-nav span{
-  color:var(--white);
-  font-size:.9rem;
-  text-decoration:none;
-}
-
-.footer-nav a:hover{
-  text-decoration:underline;
-}
-
-/* TEXTO */
-.footer-container p{
-  margin:0;
-  font-size:.85rem;
-  color:var(--white);
-  line-height:1.4;
-}
-
-/* =========================================================
-   FOOTER TEXT
-========================================================= */
-footer p{
-  margin:0;
-  font-size:.85rem;
-  color:var(--white);
-  max-width:900px;
-  line-height:1.4;
 }
 
 /* =========================================================
@@ -149,7 +78,7 @@ footer p{
 h1{
   color:#f8fafc;
   font-size:1.8rem;
-  margin-bottom:1.5rem;
+  margin:0 0 1.5rem 0;
 }
 
 .panel > h2{
@@ -212,9 +141,7 @@ button.primary{
   cursor:pointer;
 }
 
-button.primary:hover{
-  filter:brightness(1.1);
-}
+button.primary:hover{ filter:brightness(1.1); }
 
 button.secondary{
   color:var(--muted);
@@ -222,9 +149,7 @@ button.secondary{
   cursor:pointer;
 }
 
-button.secondary:hover{
-  color:var(--white);
-}
+button.secondary:hover{ color:var(--white); }
 
 /* =========================================================
    RESULTS / NOTES
@@ -238,4 +163,63 @@ button.secondary:hover{
 .note{
   font-size:.85rem;
   color:var(--muted);
+}
+
+/* =========================================================
+   FOOTER (FORZADO A CENTRO)
+   - Esto le gana a reglas globales que lo estén pisando
+========================================================= */
+footer{
+  background:#020617;
+  border-top:1px solid var(--border);
+  padding:1.5rem 1rem;
+}
+
+/* Si tenés <nav class="footer-nav"> directo dentro del footer */
+footer .footer-nav{
+  width:100% !important;
+  max-width:1100px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+
+  display:flex !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:.5rem !important;
+
+  text-align:center !important;
+  margin-bottom:.75rem !important;
+}
+
+/* Links y separador en blanco */
+footer .footer-nav a,
+footer .footer-nav span{
+  color:var(--white) !important;
+  font-size:.9rem !important;
+  text-decoration:none;
+}
+
+footer .footer-nav a:hover{
+  text-decoration:underline;
+}
+
+/* Párrafo centrado y con ancho controlado */
+footer p{
+  width:100% !important;
+  max-width:1100px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+
+  color:var(--white) !important;
+  font-size:.85rem !important;
+  line-height:1.4 !important;
+
+  text-align:center !important;
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+
+/* Evita que alguna regla global lo alinee a la izquierda */
+footer, footer *{
+  text-align:center !important;
 }
