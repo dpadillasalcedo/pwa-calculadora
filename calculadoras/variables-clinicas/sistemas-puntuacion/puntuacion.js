@@ -64,28 +64,28 @@ function resetBySelector(selector){
   });
 }
 
-/* =========================================================
+<script>
+/* =========================
    APACHE II
-========================================================= */
+========================= */
 function calcAPACHE(){
+  // suma de las 12 variables fisiológicas
   const aps = sumBySelector('.apache');
 
+  // edad
   const ageEl = document.getElementById('apache_age');
-  const chronicEl = document.getElementById('apache_chronic');
+  const age = ageEl ? Number(ageEl.value || 0) : 0;
 
-  const age = ageEl && ageEl.value !== "" ? Number(ageEl.value) : 0;
-  const chronic = chronicEl && chronicEl.value !== "" ? Number(chronicEl.value) : 0;
+  // enfermedad crónica
+  const chronicEl = document.getElementById('apache_chronic');
+  const chronic = chronicEl ? Number(chronicEl.value || 0) : 0;
 
   const total = aps + age + chronic;
 
-  const res = document.getElementById('apache_result');
-  const mort = document.getElementById('apache_mortality');
+  document.getElementById('apache_result').textContent =
+    `APACHE II total: ${total} (APS: ${aps})`;
 
-  if (!res || !mort) return;
-
-  res.textContent = `APACHE II total: ${total} (APS: ${aps})`;
-
-  mort.textContent =
+  document.getElementById('apache_mortality').textContent =
     total < 10 ? 'Mortalidad estimada <10%' :
     total < 20 ? 'Mortalidad estimada 15–25%' :
     total < 30 ? 'Mortalidad estimada 40–55%' :
@@ -99,6 +99,8 @@ function resetAPACHE(){
   document.getElementById('apache_result').textContent = '';
   document.getElementById('apache_mortality').textContent = '';
 }
+</script>
+
 
 /* =========================================================
    SAPS II
