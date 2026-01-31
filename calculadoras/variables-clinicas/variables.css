@@ -39,11 +39,11 @@ body::before {
 
   --accent: #38bdf8;
   --accent-strong: #0ea5e9;
-  --accent-soft: rgba(56,189,248,.18);
+  --accent-soft: rgba(56, 189, 248, .18);
 }
 
 /* =========================================================
-   ROOT APP WRAPPER (CLAVE)
+   ROOT APP WRAPPER
 ========================================================= */
 .app-root {
   min-height: 100dvh;
@@ -108,7 +108,7 @@ a:hover {
 
 .breadcrumb span {
   margin: 0 .35rem;
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .breadcrumb [aria-current="page"] {
@@ -207,29 +207,57 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER
+   FOOTER — CENTRADO REAL
 ========================================================= */
 footer {
   background-color: var(--bg-soft);
   border-top: 1px solid var(--border);
   padding: 2.25rem 1.25rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* CONTENEDOR INTERNO */
+.footer-container {
+  max-width: 1040px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   text-align: center;
   font-size: .85rem;
   color: #f8fafc;
 }
 
+/* NAV FOOTER */
 .footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
   margin-bottom: .75rem;
 }
 
-.footer-nav a {
+.footer-nav a,
+.footer-nav span {
   color: #f8fafc;
-  margin: 0 .5rem;
-  transition: color .15s ease;
+  font-size: .85rem;
+  text-decoration: none;
 }
 
 .footer-nav a:hover {
   color: var(--accent-strong);
+}
+
+/* TEXTO LEGAL */
+.footer-container p {
+  margin: 0;
+  max-width: 900px;
+  line-height: 1.4;
 }
 
 /* =========================================================
