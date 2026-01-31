@@ -103,71 +103,39 @@ function sumBySelector(selector){
   return total;
 }
 
+<script>
 /* =========================================================
-   APACHE II
+   UTILIDAD COMÚN
 ========================================================= */
-function calcAPACHE(){
-  console.log('calcAPACHE ejecutado');
-
-  const aps = sumBySelector('.apache');
-
-  const ageEl = document.getElementById('apache_age');
-  const chronicEl = document.getElementById('apache_chronic');
-
-  if (!ageEl || !chronicEl){
-    console.error('Faltan apache_age o apache_chronic');
-    return;
-  }
-
-  const age = ageEl.value === "" ? 0 : Number(ageEl.value);
-  const chronic = chronicEl.value === "" ? 0 : Number(chronicEl.value);
-
-  const total = aps + age + chronic;
-
-  const res = document.getElementById('apache_result');
-  const mort = document.getElementById('apache_mortality');
-
-  if (!res || !mort){
-    console.error('Faltan elementos de resultado APACHE');
-    return;
-  }
-
-  res.textContent = `APACHE II total: ${total} (APS: ${aps})`;
-
-  mort.textContent =
-    total < 10 ? 'Mortalidad estimada <10%' :
-    total < 20 ? 'Mortalidad estimada 15–25%' :
-    total < 30 ? 'Mortalidad estimada 40–55%' :
-                 'Mortalidad estimada >75%';
+function sumBySelector(selector){
+  let total = 0;
+  document.querySelectorAll(selector).forEach(el => {
+    if (el.value !== "") {
+      total += Number(el.value);
+    }
+  });
+  return total;
 }
-
-/* =========================================================
-   RESET APACHE II
-========================================================= */
-function resetAPACHE(){
-  document.querySelectorAll('.apache').forEach(el => el.selectedIndex = 0);
-
-  document.getElementById('apache_age').selectedIndex = 0;
-  document.getElementById('apache_chronic').selectedIndex = 0;
-
-  document.getElementById('apache_result').textContent = '';
-  document.getElementById('apache_mortality').textContent = '';
-}
-</script>
-
 
 /* =========================================================
    SAPS II
 ========================================================= */
 function calcSAPS(){
+  console.log('calcSAPS ejecutado');
+
   const score = sumBySelector('.saps');
 
   const res = document.getElementById('saps_result');
   const mort = document.getElementById('saps_mortality');
 
+  if (!res || !mort){
+    console.error('Faltan elementos de resultado SAPS');
+    return;
+  }
+
   res.textContent = `SAPS II total: ${score}`;
 
-  // Fórmula logística SAPS II original
+  // Fórmula logística ORIGINAL SAPS II
   const logit = (score - 32.6659) / 7.3068;
   const mortality = 100 / (1 + Math.exp(-logit));
 
@@ -175,12 +143,12 @@ function calcSAPS(){
     `Mortalidad hospitalaria estimada: ${mortality.toFixed(1)}%`;
 }
 
+/* =========================================================
+   RESET SAPS II
+========================================================= */
 function resetSAPS(){
-  document.querySelectorAll('.saps').forEach(el=>{
-    el.selectedIndex = 0;
-  });
-
+  document.querySelectorAll('.saps').forEach(el => el.selectedIndex = 0);
   document.getElementById('saps_result').textContent = '';
   document.getElementById('saps_mortality').textContent = '';
 }
-
+</script>
