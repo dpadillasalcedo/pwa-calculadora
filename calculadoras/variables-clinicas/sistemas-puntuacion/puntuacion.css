@@ -207,19 +207,16 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER — CENTRADO GARANTIZADO (ÚNICO BLOQUE)
+   FOOTER — BLOQUE ÚNICO, LIMPIO Y AISLADO
 ========================================================= */
-
-footer{
+footer {
   background-color: var(--bg-soft);
   border-top: 1px solid var(--border);
   padding: 2.25rem 1.25rem;
 
-  /* Esto evita el típico “se corre por el ancho” */
   width: 100%;
   box-sizing: border-box;
 
-  /* Centramos el contenido con grid (más robusto que flex en casos raros) */
   display: grid;
   place-items: center;
 
@@ -227,95 +224,48 @@ footer{
   color: #f8fafc;
   font-size: .85rem;
 
-  /* Aisla stacking/context (no layout) pero ayuda a evitar conflictos visuales */
   isolation: isolate;
-
-  /* Por si algo externo mete transform/left en footer */
-  position: relative;
-  left: 0;
-  right: 0;
 }
 
-/* CONTENEDOR INTERNO: mismo ancho que main */
-footer .footer-container{
+/* CONTENEDOR INTERNO */
+footer .footer-container {
   width: min(1040px, 100%);
   margin: 0 auto;
 
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-
-  /* Mata cualquier padding lateral heredado */
-  padding: 0;
 
   text-align: center;
 }
 
-/* NAV */
-footer .footer-nav{
-  display: inline-flex;      /* clave: no se estira */
+/* NAV DEL FOOTER */
+footer .footer-nav {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: .5rem;
-  margin: 0 auto .75rem auto;
 
+  margin: 0 auto .75rem auto;
   width: fit-content;
 }
 
-/* LINKS */
+/* LINKS FOOTER */
 footer .footer-nav a,
-footer .footer-nav span{
+footer .footer-nav span {
   color: #f8fafc;
   font-size: .85rem;
   text-decoration: none;
 }
 
-footer .footer-nav a:hover{
+footer .footer-nav a:hover {
   color: var(--accent-strong);
 }
 
-/* TEXTO */
-footer p{
+/* TEXTO LEGAL */
+footer p {
   margin: 0;
   max-width: 900px;
-  text-align: center;
   line-height: 1.4;
-}
-
-/* FIX DEFINITIVO PARA <nav class="footer-nav"> */
-
-footer .footer-nav{
-  display: inline-flex !important;  /* clave */
-  justify-content: center !important;
-  align-items: center !important;
-
-  width: auto !important;            /* mata el 100% */
-  max-width: none !important;
-
-  margin-left: auto !important;
-  margin-right: auto !important;
-
-  text-align: center !important;
-}
-
-footer .footer-nav{
-  all: unset;                 /* ← clave */
-  display:inline-flex;
-  gap:.5rem;
-  justify-content:center;
-  align-items:center;
-  margin:0 auto .75rem auto;
-}
-
-footer .footer-nav a,
-footer .footer-nav span{
-  color:#ffffff;
-  font-size:.85rem;
-  text-decoration:none;
-}
-
-footer p{
-  margin:0;
-  max-width:900px;
-  text-align:center;
+  text-align: center;
 }
