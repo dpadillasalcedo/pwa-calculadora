@@ -19,30 +19,25 @@
   --primary:#0ea5e9;
 }
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
+
 header,footer{
   background:#020617;
   border-bottom:1px solid var(--border);
 }
-footer{border-top:1px solid var(--border)}
-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:1rem 1.5rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+
 .container{
   max-width:1100px;
   margin:auto;
   padding:1.5rem;
 }
+
 .panel{
   background:var(--card);
   border:1px solid var(--border);
@@ -50,8 +45,10 @@ nav{
   padding:1.5rem;
   margin-bottom:2.5rem;
 }
+
 h1,h2{color:#f8fafc}
 label{font-size:.9rem}
+
 select,button{
   width:100%;
   padding:.55rem;
@@ -60,30 +57,41 @@ select,button{
   border:1px solid var(--border);
   border-radius:8px;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:1rem;
 }
+
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:.8rem;
   margin-top:1rem;
 }
+
 button.primary{
   background:var(--primary);
   color:#020617;
   font-weight:700;
   border:none;
 }
+
 button.secondary{color:var(--muted)}
+
 .result{margin-top:1rem;font-weight:700}
 .note{font-size:.85rem;color:var(--muted)}
-footer .container{
-  font-size:.75rem;
-  color:var(--muted);
-  text-align:center;
+
+.breadcrumb-nav{
+  max-width:1100px;
+  margin:auto;
+  padding:1rem 1.5rem;
+}
+
+.breadcrumb-link{
+  color:#fff;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -91,17 +99,12 @@ footer .container{
 <body>
 
 <header>
-      <!-- =========================
-           BREADCRUMB
-      ========================= -->
-      <nav class="breadcrumb" aria-label="Navegación">
-        <a href="/">Inicio</a>
-        <span>›</span>
-      </nav>
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="https://criticalcaretools.com" class="breadcrumb-link">Inicio</a>
+  </nav>
 </header>
 
 <main class="container">
-<h1>Calculadoras UCI</h1>
 
 <!-- ======================= SOFA-2 ======================= -->
 <section class="panel">
@@ -171,13 +174,60 @@ footer .container{
 </div>
 
 <div class="actions">
-<button class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
-<button class="secondary" onclick="resetSOFA()">Reiniciar</button>
+  <button type="button" class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
+  <button type="button" class="secondary" onclick="resetSOFA()">Reiniciar</button>
 </div>
 
 <div id="sofa_result" class="result"></div>
 <div id="sofa_mortality" class="note"></div>
 </section>
+
+</main>
+
+<script>
+
+/* =========================
+   UTILIDADES
+========================= */
+function sumBySelector(selector){
+  let total = 0;
+  document.querySelectorAll(selector).forEach(el=>{
+    total += Number(el.value || 0);
+  });
+  return total;
+}
+
+function resetBySelector(selector){
+  document.querySelectorAll(selector).forEach(el=>{
+    el.selectedIndex = 0;
+  });
+}
+
+/* =========================
+   SOFA-2
+========================= */
+function calcSOFA(){
+  const total = sumBySelector('.sofa');
+
+  document.getElementById('sofa_result').textContent =
+    `SOFA-2 total: ${total}`;
+
+  document.getElementById('sofa_mortality').textContent =
+    total <= 1  ? 'Mortalidad estimada <10%' :
+    total <= 5  ? 'Mortalidad estimada 10–20%' :
+    total <= 9  ? 'Mortalidad estimada 20–40%' :
+    total <= 12 ? 'Mortalidad estimada 40–50%' :
+                  'Mortalidad estimada >50–90%';
+}
+
+function resetSOFA(){
+  resetBySelector('.sofa');
+  document.getElementById('sofa_result').textContent = '';
+  document.getElementById('sofa_mortality').textContent = '';
+}
+</script>
+  </section>
+
 
 <!-- ===================== APACHE II ===================== -->
 <section class="panel">
