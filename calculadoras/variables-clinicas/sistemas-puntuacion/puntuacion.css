@@ -14,9 +14,13 @@
 /* =========================================================
    RESET / BASE
 ========================================================= */
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
 
-html, body{ width:100%; }
+html, body{
+  width:100%;
+}
 
 body{
   margin:0;
@@ -46,7 +50,7 @@ header{
 }
 
 .breadcrumb-link{
-  color:var(--white) !important;
+  color:var(--white);
   text-decoration:none;
   font-weight:500;
 }
@@ -141,7 +145,9 @@ button.primary{
   cursor:pointer;
 }
 
-button.primary:hover{ filter:brightness(1.1); }
+button.primary:hover{
+  filter:brightness(1.1);
+}
 
 button.secondary{
   color:var(--muted);
@@ -149,7 +155,9 @@ button.secondary{
   cursor:pointer;
 }
 
-button.secondary:hover{ color:var(--white); }
+button.secondary:hover{
+  color:var(--white);
+}
 
 /* =========================================================
    RESULTS / NOTES
@@ -166,8 +174,7 @@ button.secondary:hover{ color:var(--white); }
 }
 
 /* =========================================================
-   FOOTER (FORZADO A CENTRO)
-   - Esto le gana a reglas globales que lo estén pisando
+   FOOTER — CENTRADO REAL (CLAVE)
 ========================================================= */
 footer{
   background:#020617;
@@ -175,51 +182,45 @@ footer{
   padding:1.5rem 1rem;
 }
 
-/* Si tenés <nav class="footer-nav"> directo dentro del footer */
-footer .footer-nav{
-  width:100% !important;
-  max-width:1100px !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
+/* CONTENEDOR DEL FOOTER (MISMO ANCHO QUE EL MAIN) */
+.footer-container{
+  max-width:1100px;
+  margin:0 auto;
 
-  display:flex !important;
-  justify-content:center !important;
-  align-items:center !important;
-  gap:.5rem !important;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-  text-align:center !important;
-  margin-bottom:.75rem !important;
+  text-align:center;
 }
 
-/* Links y separador en blanco */
-footer .footer-nav a,
-footer .footer-nav span{
-  color:var(--white) !important;
-  font-size:.9rem !important;
+/* NAV DEL FOOTER */
+.footer-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:.5rem;
+  margin-bottom:.75rem;
+}
+
+/* LINKS Y SEPARADOR */
+.footer-nav a,
+.footer-nav span{
+  color:var(--white);
+  font-size:.9rem;
   text-decoration:none;
 }
 
-footer .footer-nav a:hover{
+.footer-nav a:hover{
   text-decoration:underline;
 }
 
-/* Párrafo centrado y con ancho controlado */
-footer p{
-  width:100% !important;
-  max-width:1100px !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-
-  color:var(--white) !important;
-  font-size:.85rem !important;
-  line-height:1.4 !important;
-
-  text-align:center !important;
-  margin-top:0 !important;
-  margin-bottom:0 !important;
-}
-
-/* Evita que alguna regla global lo alinee a la izquierda */
-footer, footer *{
-  text-align:center !important;
+/* TEXTO LEGAL */
+.footer-container p{
+  margin:0;
+  max-width:900px;
+  color:var(--white);
+  font-size:.85rem;
+  line-height:1.4;
 }
