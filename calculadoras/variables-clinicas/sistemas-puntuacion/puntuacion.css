@@ -146,39 +146,4 @@ function resetSAPS() {
 }
 </script>
 
-   /* =========================
-   BREADCRUMB – TEXTO BLANCO
-========================= */
-.top-nav,
-.top-nav a,
-.top-nav span,
-.top-nav [aria-current="page"] {
-  color: #ffffff;
-}
-
-/* Hover del link */
-.top-nav a:hover {
-  color: #38bdf8;
-}
-
-/* Separador › un poco más suave */
-.top-nav span[aria-hidden="true"] {
-  color: #cbd5e1;
-}
-
-/* =========================
-   FOOTER – TEXTO BLANCO
-========================= */
-footer,
-footer a,
-footer span,
-footer p {
-  color: #ffffff;
-}
-
-/* Hover links footer */
-footer a:hover {
-  color: #38bdf8;
-  text-decoration: underline;
-}
 
