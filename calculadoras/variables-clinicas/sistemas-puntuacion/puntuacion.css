@@ -61,22 +61,36 @@ footer{
 /* =========================================================
    FOOTER
 ========================================================= */
+footer{
+  display:flex;
+  justify-content:center;
+}
+
 footer .container{
   max-width:1100px;
+  width:100%;
   margin:0 auto;
   padding:1rem 1.5rem;
   text-align:center;
   color:#ffffff;
 }
 
+/* contenedor de la navegación */
+.footer-nav{
+  display:flex;
+  justify-content:center;
+}
+
+/* navegación */
 .footer-nav nav{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:.75rem;
-  margin-bottom:.4rem;
+  margin:0 auto .4rem auto;
 }
 
+/* links */
 .footer-nav a{
   color:#ffffff;
   text-decoration:none;
@@ -86,6 +100,7 @@ footer .container{
 .footer-nav a:hover{
   text-decoration:underline;
 }
+
 
 /* =========================================================
    LAYOUT
