@@ -15,7 +15,6 @@ function resetSelects(prefix) {
 
 /* =========================================================
    SOFA-2
-   Mortalidad aproximada según score total
 ========================================================= */
 function calcSOFA() {
   const total =
@@ -54,7 +53,6 @@ function resetSOFA() {
 
 /* =========================================================
    APACHE II
-   Mortalidad aproximada (%)
 ========================================================= */
 function calcAPACHE() {
   const total =
@@ -101,7 +99,6 @@ function resetAPACHE() {
 
 /* =========================================================
    SAPS II
-   Mortalidad aproximada (%)
 ========================================================= */
 function calcSAPS() {
   const total =
@@ -146,4 +143,35 @@ function resetSAPS() {
 }
 </script>
 
+<style>
+/* =========================================================
+   CORRECCIÓN VISUAL
+   Breadcrumb + Footer en BLANCO
+   (sin afectar el resto)
+========================================================= */
 
+/* Breadcrumb / navegación */
+.top-nav,
+.top-nav a,
+.top-nav span,
+.top-nav [aria-current="page"] {
+  color: #ffffff;
+}
+
+.top-nav a:hover {
+  color: #38bdf8;
+}
+
+/* Footer */
+footer,
+footer a,
+footer span,
+footer p {
+  color: #ffffff;
+}
+
+footer a:hover {
+  color: #38bdf8;
+  text-decoration: underline;
+}
+</style>
