@@ -1,29 +1,26 @@
-/* =========================================================
-   BASE
-========================================================= */
+/* =========================
+   RESET / BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
 body{
   margin:0;
-  font-family:system-ui,sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   background:#020617;
   color:#e5e7eb;
+  line-height:1.45;
 }
 
-h1,h2,h3{
+h1,h2{
   color:#f8fafc;
+  margin-top:0;
 }
 
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:1.5rem;
-}
-
-/* =========================================================
-   NAV / BREADCRUMB
-========================================================= */
+/* =========================
+   BREADCRUMB / TOP NAV
+========================= */
 .top-nav{
   display:flex;
   align-items:center;
@@ -34,33 +31,37 @@ h1,h2,h3{
   font-size:.85rem;
 }
 
-/* SOLO TEXTO DEL BREADCRUMB */
 .top-nav a,
-.top-nav span,
-.top-nav [aria-current="page"]{
+.top-nav span{
   color:#ffffff;
   text-decoration:none;
 }
 
-/* Hover link */
 .top-nav a:hover{
   color:#38bdf8;
   text-decoration:underline;
 }
 
-/* Separador › */
 .top-nav span[aria-hidden="true"]{
   color:#cbd5e1;
 }
 
-/* Página actual */
 .top-nav span[aria-current="page"]{
   font-weight:600;
 }
 
-/* =========================================================
-   PANEL CALCULADORAS
-========================================================= */
+/* =========================
+   LAYOUT
+========================= */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:1.5rem;
+}
+
+/* =========================
+   PANELS
+========================= */
 .panel{
   background:#0b1220;
   border:1px solid #1e293b;
@@ -69,40 +70,57 @@ h1,h2,h3{
   margin-bottom:2rem;
 }
 
-/* =========================================================
+/* =========================
    TABLES
-========================================================= */
+========================= */
 table{
   width:100%;
   border-collapse:collapse;
   margin-top:1rem;
 }
 
-th,td{
+th, td{
   border:1px solid #1e293b;
   padding:.6rem;
+  vertical-align:top;
 }
 
 th{
   background:#020617;
   text-align:left;
+  color:#f8fafc;
 }
 
-/* =========================================================
-   FORM ELEMENTS
-========================================================= */
+/* =========================
+   FORM CONTROLS
+========================= */
 select{
   width:100%;
-  padding:.5rem;
+  padding:.5rem .6rem;
   background:#020617;
   color:#e5e7eb;
   border:1px solid #1e293b;
   border-radius:8px;
+
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
 }
 
-/* =========================================================
-   ACTIONS / BUTTONS
-========================================================= */
+select option{
+  background:#020617;
+  color:#e5e7eb;
+}
+
+select:focus{
+  outline:none;
+  border-color:#38bdf8;
+  box-shadow:0 0 0 2px rgba(56,189,248,.25);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -112,54 +130,70 @@ select{
 
 button{
   width:100%;
-  padding:.5rem;
-  border-radius:8px;
-  border:1px solid #1e293b;
-  background:#020617;
-  color:#e5e7eb;
+  padding:.55rem;
+  border-radius:999px;
+  font-weight:600;
   cursor:pointer;
+  border:1px solid transparent;
 }
 
 button.primary{
   background:#0ea5e9;
   color:#020617;
-  font-weight:600;
-  border:none;
+}
+
+button.primary:hover{
+  background:#38bdf8;
 }
 
 button.secondary{
   background:transparent;
   color:#94a3b8;
+  border:1px solid #1e293b;
 }
 
-/* =========================================================
-   RESULT
-========================================================= */
+button.secondary:hover{
+  color:#e5e7eb;
+  border-color:#38bdf8;
+}
+
+/* =========================
+   RESULTS
+========================= */
 .result{
   margin-top:1rem;
+  padding:.75rem 1rem;
+  background:rgba(2,6,23,.5);
+  border:1px solid #1e293b;
+  border-radius:10px;
   font-weight:700;
+  color:#f8fafc;
 }
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 footer{
-  text-align:center;
-  padding:1rem;
   background:#0b1220;
   border-top:1px solid #1e293b;
+  text-align:center;
+  padding:1.25rem 1rem;
 }
 
-/* SOLO TEXTO DEL FOOTER */
 footer a,
 footer span,
 footer p{
   color:#ffffff;
   text-decoration:none;
+  font-size:.85rem;
 }
 
-/* Hover links footer */
 footer a:hover{
   color:#38bdf8;
   text-decoration:underline;
+}
+
+footer p{
+  margin:.75rem 0 0;
+  color:#cbd5e1;
 }
