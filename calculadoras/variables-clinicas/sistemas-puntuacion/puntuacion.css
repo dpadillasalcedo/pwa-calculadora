@@ -207,20 +207,27 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER — CENTRADO REAL
+   FOOTER — AISLADO DEL RESTO DEL HTML
 ========================================================= */
+
 footer {
   background-color: var(--bg-soft);
   border-top: 1px solid var(--border);
   padding: 2.25rem 1.25rem;
   width: 100%;
 
+  /* Aislamiento visual y de layout */
+  isolation: isolate;
+  text-align: center;
+  color: #f8fafc;
+  font-size: .85rem;
+
   display: flex;
   justify-content: center;
 }
 
 /* CONTENEDOR INTERNO */
-.footer-container {
+footer .footer-container {
   max-width: 1040px;
   width: 100%;
 
@@ -229,12 +236,10 @@ footer {
   align-items: center;
 
   text-align: center;
-  font-size: .85rem;
-  color: #f8fafc;
 }
 
-/* NAV FOOTER */
-.footer-nav {
+/* NAV */
+footer .footer-nav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -242,23 +247,25 @@ footer {
   margin-bottom: .75rem;
 }
 
-.footer-nav a,
-.footer-nav span {
+/* LINKS */
+footer .footer-nav a,
+footer .footer-nav span {
   color: #f8fafc;
   font-size: .85rem;
   text-decoration: none;
 }
 
-.footer-nav a:hover {
+footer .footer-nav a:hover {
   color: var(--accent-strong);
 }
 
 /* TEXTO LEGAL */
-.footer-container p {
+footer p {
   margin: 0;
   max-width: 900px;
   line-height: 1.4;
 }
+
 
 /* =========================================================
    RESPONSIVE
