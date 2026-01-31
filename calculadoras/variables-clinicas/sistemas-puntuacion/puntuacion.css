@@ -201,3 +201,31 @@ button.secondary{
   margin-top:1rem;
   font-weight:700;
 }
+
+/* =========================================================
+   FIX DEFINITIVO FOOTER CENTRADO (NO SOBREESCRIBE)
+========================================================= */
+
+/* asegura centrado del bloque footer */
+footer{
+  display:block;
+  text-align:center;
+}
+
+/* fuerza centrado real del contenido visible */
+footer .container{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* centra el bloque de navegación como elemento */
+.footer-nav{
+  width:100%;
+}
+
+/* centra el nav como caja */
+.footer-nav nav{
+  margin-left:auto;
+  margin-right:auto;
+}
+
