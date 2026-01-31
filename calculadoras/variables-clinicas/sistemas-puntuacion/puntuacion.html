@@ -7,17 +7,51 @@
 <meta name="theme-color" content="#020617">
 
 <style>
+/* =========================
+   BASE
+========================= */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:#020617;
-  color:#e5e7eb;
+  color:#f8fafc;
 }
+
 .container{
   max-width:1100px;
   margin:auto;
   padding:1.5rem;
 }
+
+/* =========================
+   NAV + BREADCRUMB
+========================= */
+.top-nav{
+  background:#020617;
+  border-bottom:1px solid #1e293b;
+}
+
+.breadcrumb{
+  max-width:1100px;
+  margin:auto;
+  padding:0.75rem 1.5rem;
+  font-size:.85rem;
+  color:#ffffff;
+}
+
+.breadcrumb a,
+.breadcrumb span{
+  color:#ffffff;
+  text-decoration:none;
+}
+
+.breadcrumb a:hover{
+  color:#38bdf8;
+}
+
+/* =========================
+   CONTENT
+========================= */
 .panel{
   background:#0b1220;
   border:1px solid #1e293b;
@@ -25,61 +59,49 @@ body{
   padding:1.5rem;
   margin-bottom:2rem;
 }
+
 h1,h2,h3{
   color:#f8fafc;
 }
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:1rem;
-}
-th,td{
-  border:1px solid #1e293b;
-  padding:.6rem;
-}
-th{
-  background:#020617;
-  text-align:left;
-}
-select,button{
-  width:100%;
-  padding:.5rem;
-  background:#020617;
-  color:#e5e7eb;
-  border:1px solid #1e293b;
-  border-radius:8px;
-}
-button.primary{
-  background:#0ea5e9;
-  color:#020617;
-  font-weight:600;
-}
-button.secondary{
-  background:transparent;
-  color:#94a3b8;
-}
-.result{
-  margin-top:1rem;
-  font-weight:700;
-}
+
 footer{
   text-align:center;
-  padding:1rem;
-  color:#94a3b8;
+  padding:1.5rem;
+  color:#ffffff;
+  background:#0b1220;
+  border-top:1px solid #1e293b;
 }
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.8rem;
-  margin-top:1rem;
+
+footer a,
+footer span{
+  color:#ffffff;
+  text-decoration:none;
+}
+
+footer a:hover{
+  color:#38bdf8;
+}
+
+footer p{
+  font-size:.85rem;
+  margin-top:.75rem;
 }
 </style>
 </head>
-<nav class="breadcrumb" aria-label="Navegación principal">
-  <a href="/">Inicio</a>
-  <span aria-hidden="true">›</span>
-</nav>
+
 <body>
+
+<!-- =========================
+     NAV / BREADCRUMB
+========================= -->
+<nav class="top-nav" aria-label="Navegación principal">
+  <div class="breadcrumb">
+    <a href="/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Calculadoras UCI</span>
+  </div>
+</nav>
+
 <main class="container">
 
 <header>
@@ -255,18 +277,19 @@ footer{
 
 </main>
 
-    <footer>
-<nav class="footer-nav" aria-label="Footer">
-  <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-  <span aria-hidden="true">·</span>
-  <a href="https://criticalcaretools.com/legal/aviso-legal.html">Aviso legal</a>
-</nav>
+<footer>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://criticalcaretools.com/legal/aviso-legal.html">Aviso legal</a>
+  </nav>
 
-      <p>
-        © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-        No reemplaza el juicio médico ni las guías institucionales.
-      </p>
-    </footer>
+  <p>
+    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+    No reemplaza el juicio médico ni las guías institucionales.
+  </p>
+</footer>
+
 
   </div>
 </body>
