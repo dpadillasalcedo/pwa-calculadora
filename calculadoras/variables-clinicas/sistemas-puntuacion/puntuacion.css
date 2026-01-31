@@ -43,7 +43,7 @@ body {
 .breadcrumb a,
 .breadcrumb span,
 .breadcrumb [aria-current="page"] {
-  color: #f8fafc !important;
+  color: #ffffff !important;
 }
 
 .top-nav {
@@ -185,4 +185,15 @@ footer .footer-nav span {
 footer p {
   color:#94a3b8;
   font-size:.85rem;
+}
+
+/* =========================
+   FOOTER – TEXTO BLANCO
+========================= */
+footer,
+footer a,
+footer span,
+footer p,
+footer .footer-nav {
+  color: #ffffff;
 }
