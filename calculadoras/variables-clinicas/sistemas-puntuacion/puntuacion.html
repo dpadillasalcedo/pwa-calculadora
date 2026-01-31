@@ -10,6 +10,9 @@
 <meta name="theme-color" content="#020617">
 
 <style>
+/* =========================================================
+   VARIABLES
+========================================================= */
 :root{
   --bg:#020617;
   --card:#0b1220;
@@ -18,7 +21,11 @@
   --muted:#94a3b8;
   --primary:#0ea5e9;
 }
-*{box-sizing:border-box}
+
+/* =========================================================
+   RESET / BASE
+========================================================= */
+*{ box-sizing:border-box; }
 
 body{
   margin:0;
@@ -27,14 +34,46 @@ body{
   color:var(--text);
 }
 
-header,footer{
+/* =========================================================
+   HEADER / FOOTER
+========================================================= */
+header{
   background:#020617;
   border-bottom:1px solid var(--border);
 }
 
+footer{
+  background:#020617;
+  border-top:1px solid var(--border);
+}
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+.breadcrumb-nav{
+  max-width:1100px;
+  margin:0 auto;
+  padding:1rem 1.5rem;
+  display:flex;
+  align-items:center;
+}
+
+.breadcrumb-link{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.breadcrumb-link:hover{
+  text-decoration:underline;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
 .container{
   max-width:1100px;
-  margin:auto;
+  margin:0 auto;
   padding:1.5rem;
 }
 
@@ -46,10 +85,29 @@ header,footer{
   margin-bottom:2.5rem;
 }
 
-h1,h2{color:#f8fafc}
-label{font-size:.9rem}
+/* =========================================================
+   HEADINGS
+========================================================= */
+h1{
+  color:#f8fafc;
+  font-size:1.8rem;
+  margin-bottom:1.5rem;
+}
 
-select,button{
+.panel > h2{
+  color:#f8fafc;
+  font-size:1.4rem;
+  margin:0 0 .5rem 0;
+  font-weight:600;
+}
+
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+label{ font-size:.9rem; }
+
+select,
+button{
   width:100%;
   padding:.55rem;
   background:#020617;
@@ -58,6 +116,14 @@ select,button{
   border-radius:8px;
 }
 
+select option{
+  background:#0b1220;
+  color:var(--text);
+}
+
+/* =========================================================
+   GRID & ACTIONS
+========================================================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -71,6 +137,9 @@ select,button{
   margin-top:1rem;
 }
 
+/* =========================================================
+   BUTTONS
+========================================================= */
 button.primary{
   background:var(--primary);
   color:#020617;
@@ -78,21 +147,15 @@ button.primary{
   border:none;
 }
 
-button.secondary{color:var(--muted)}
-
-.result{margin-top:1rem;font-weight:700}
-.note{font-size:.85rem;color:var(--muted)}
-
-.breadcrumb-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:1rem 1.5rem;
+button.secondary{
+  color:var(--muted);
 }
 
-.breadcrumb-link{
-  color:#fff;
-  text-decoration:none;
-}
+/* =========================================================
+   RESULTS / NOTES
+========================================================= */
+.result{ margin-top:1rem; font-weight:700; }
+.note{ font-size:.85rem; color:var(--muted); }
 </style>
 </head>
 
@@ -105,6 +168,8 @@ button.secondary{color:var(--muted)}
 </header>
 
 <main class="container">
+  <h1>Calculadoras UCI</h1>
+
 
 <!-- ======================= SOFA-2 ======================= -->
 <section class="panel">
