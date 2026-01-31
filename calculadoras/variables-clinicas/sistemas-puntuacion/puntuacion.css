@@ -1,5 +1,5 @@
 /* =========================================================
-   RESET + BASE
+   RESET + ANTI FLASH BLANCO
 ========================================================= */
 *,
 *::before,
@@ -12,169 +12,124 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-}
-
-body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #020617;
-  color: #f8fafc;
+  background-color: #020617;
+  color: #ffffff;
 }
 
 /* =========================================================
    VARIABLES
 ========================================================= */
 :root {
-  --bg: #020617;
-  --panel: #0b1220;
-  --panel-strong: #0f172a;
-  --border: #1e293b;
+  --bg:#020617;
+  --panel:#0b1220;
+  --border:#1e293b;
 
-  --text: #f8fafc;
-  --muted: #94a3b8;
+  --text:#ffffff;
+  --muted:#94a3b8;
 
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
+  --primary:#38bdf8;
+  --primary-strong:#0ea5e9;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 /* =========================================================
    LAYOUT
 ========================================================= */
 .container {
-  max-width: 1100px;
+  max-width: 960px;
   margin: auto;
   padding: 1.5rem;
 }
 
-/* =========================================================
-   NAV + BREADCRUMB
-========================================================= */
-.top-nav {
-  background: #020617;
-  border-bottom: 1px solid var(--border);
+.app-header h1 {
+  margin: 0;
+  color: #ffffff;
 }
 
-.breadcrumb {
-  max-width: 1100px;
-  margin: auto;
-  padding: .75rem 1.5rem;
+.note {
+  color: var(--muted);
   font-size: .85rem;
-  color: #ffffff;
+}
+
+/* =========================================================
+   BREADCRUMB – BLANCO FORZADO
+========================================================= */
+.breadcrumb {
+  font-size: .85rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff !important;
 }
 
 .breadcrumb a,
 .breadcrumb span,
 .breadcrumb [aria-current="page"] {
-  color: #ffffff;
-  text-decoration: none;
+  color: #ffffff !important;
 }
 
 .breadcrumb a:hover {
-  color: var(--primary);
+  color: var(--primary) !important;
 }
 
 /* =========================================================
-   HEADER
+   TOP NAV (si existe)
 ========================================================= */
-header h1 {
-  margin: 0 0 1.5rem;
-  color: #f8fafc;
+.top-nav {
+  background: #020617;
+  border-bottom: 1px solid #334155;
+}
+
+.top-nav a,
+.top-nav span {
+  color: #ffffff !important;
+}
+
+.top-nav a:hover {
+  color: var(--primary) !important;
 }
 
 /* =========================================================
-   PANEL – CALCULADORAS
+   PANEL
 ========================================================= */
 .panel {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(15,23,42,.96),
-      rgba(11,18,32,.96)
-    );
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 1.75rem;
   margin-bottom: 2.5rem;
-
-  box-shadow:
-    0 10px 30px rgba(2,6,23,.65),
-    inset 0 1px 0 rgba(255,255,255,.03);
-}
-
-.panel h2 {
-  margin: 0 0 1.25rem;
-  font-size: 1.25rem;
-  color: #f8fafc;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: .5rem;
 }
 
 /* =========================================================
-   TABLE
-========================================================= */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th {
-  background: rgba(2,6,23,.65);
-  color: #cbd5f5;
-  font-weight: 600;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-
-td {
-  border-bottom: 1px solid rgba(30,41,59,.6);
-}
-
-th,
-td {
-  padding: .75rem;
-}
-
-tbody tr:hover {
-  background: rgba(56,189,248,.04);
-}
-
-/* =========================================================
-   FORM ELEMENTS
+   FORM
 ========================================================= */
 label {
   display: block;
   margin-top: .85rem;
   font-size: .85rem;
-  color: #f8fafc;
+  color: #ffffff;
 }
 
-/* SELECT – CLÍNICO DARK */
 select {
   width: 100%;
-  padding: .55rem .65rem;
-
-  background: #020617;
-  color: #f8fafc;
-
-  border: 1px solid #334155;
+  margin-top: .35rem;
+  background-color: #020617;
+  color: #ffffff;
+  border: 1px solid var(--border);
   border-radius: 10px;
-
+  padding: .55rem .6rem;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  transition:
-    border-color .15s ease,
-    box-shadow .15s ease;
 }
 
 select option {
-  background: #020617;
-  color: #f8fafc;
-}
-
-select:hover {
-  border-color: #475569;
+  background-color: #020617;
+  color: #ffffff;
 }
 
 select:focus {
@@ -184,84 +139,56 @@ select:focus {
 }
 
 /* =========================================================
-   ACTIONS
+   BUTTON
 ========================================================= */
-.actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .8rem;
-  margin-top: 1.25rem;
-}
-
 button {
-  padding: .65rem 1.35rem;
+  margin-top: 1.25rem;
+  background: var(--primary);
+  color: #020617;
+  border: none;
   border-radius: 999px;
+  padding: .6rem 1.25rem;
   font-weight: 700;
   cursor: pointer;
 }
 
-/* Primary */
-button.primary {
-  background: linear-gradient(180deg, #38bdf8, #0ea5e9);
-  color: #020617;
-  border: none;
-}
-
-button.primary:hover {
-  filter: brightness(1.05);
-}
-
-/* Secondary */
-button.secondary {
-  background: transparent;
-  color: #94a3b8;
-  border: 1px solid #334155;
-}
-
-button.secondary:hover {
-  color: #f8fafc;
-  border-color: #64748b;
+button:hover {
+  background: var(--primary-strong);
 }
 
 /* =========================================================
    RESULT
 ========================================================= */
 .result {
-  margin-top: 1.25rem;
-  padding: .85rem 1.1rem;
-
-  background: rgba(2,6,23,.6);
+  margin-top: 1rem;
+  padding: .75rem 1rem;
   border: 1px solid var(--border);
-  border-radius: 14px;
-
-  color: #f8fafc;
+  border-radius: 12px;
+  background: rgba(2,6,23,.4);
+  color: #ffffff;
   font-weight: 700;
 }
 
 /* =========================================================
-   FOOTER
+   FOOTER – BLANCO FORZADO
 ========================================================= */
 footer {
   background: #0b1220;
-  border-top: 1px solid var(--border);
-  padding: 1.75rem 1rem;
+  border-top: 1px solid #1e293b;
+  padding: 2rem 1rem;
   text-align: center;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
-footer a,
-footer span {
-  color: #ffffff;
+footer * {
+  color: #ffffff !important;
+}
+
+footer a {
   text-decoration: none;
 }
 
 footer a:hover {
-  color: var(--primary);
+  color: var(--primary) !important;
   text-decoration: underline;
-}
-
-footer p {
-  margin-top: .75rem;
-  font-size: .85rem;
-  color: #ffffff;
 }
