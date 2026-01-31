@@ -27,21 +27,18 @@ body{
 /* =========================================================
    HEADER / FOOTER BASE
 ========================================================= */
-header,
-footer{
-  background:#020617;
-}
-
 header{
+  background:#020617;
   border-bottom:1px solid var(--border);
 }
 
 footer{
+  background:#020617;
   border-top:1px solid var(--border);
 }
 
 /* =========================================================
-   BREADCRUMB (FORZADO A BLANCO)
+   BREADCRUMB
 ========================================================= */
 .breadcrumb-nav{
   max-width:1100px;
@@ -52,7 +49,7 @@ footer{
 }
 
 .breadcrumb-link{
-  color:#ffffff !important;
+  color:#ffffff;
   text-decoration:none;
   font-weight:500;
 }
@@ -62,14 +59,14 @@ footer{
 }
 
 /* =========================================================
-   FOOTER (CENTRADO + BLANCO)
+   FOOTER
 ========================================================= */
 footer .container{
   max-width:1100px;
   margin:0 auto;
   padding:1rem 1.5rem;
   text-align:center;
-  color:#ffffff !important;
+  color:#ffffff;
 }
 
 .footer-nav nav{
@@ -81,7 +78,7 @@ footer .container{
 }
 
 .footer-nav a{
-  color:#ffffff !important;
+  color:#ffffff;
   text-decoration:none;
   font-size:.75rem;
 }
@@ -108,7 +105,7 @@ footer .container{
 }
 
 /* =========================================================
-   HEADINGS (MISMO NIVEL VISUAL)
+   HEADINGS
 ========================================================= */
 h1{
   color:#f8fafc;
@@ -118,7 +115,7 @@ h1{
 
 .panel > h2{
   color:#f8fafc;
-  font-size:1.4rem;      /* 👈 ESTE ES EL FIX CLAVE */
+  font-size:1.4rem;
   margin:0 0 .5rem 0;
   font-weight:600;
 }
@@ -190,36 +187,3 @@ button.secondary{
   margin-top:1rem;
   font-weight:700;
 }
-
-/* =========================================================
-   FIX FINAL BREADCRUMB + FOOTER
-========================================================= */
-
-/* Breadcrumb */
-header nav a,
-.breadcrumb-nav a{
-  color:#ffffff !important;
-}
-
-/* Footer centrado real */
-footer{
-  display:flex;
-  justify-content:center;
-}
-
-footer .container{
-  width:100%;
-  max-width:1100px;
-  text-align:center;
-}
-
-/* Links del footer en blanco */
-footer a{
-  color:#ffffff !important;
-}
-
-/* Nav del footer centrado */
-.footer-nav nav{
-  justify-content:center;
-}
-
