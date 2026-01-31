@@ -143,61 +143,41 @@ function resetAPACHE(){
 
 
 /* =========================================================
-   SAPS II — COMPLETO (17 VARIABLES)
-   HTML esperado: <select> con el puntaje SAPS de cada variable
+   UTILIDAD
+========================================================= */
+function sumBySelector(selector){
+  let total = 0;
+  document.querySelectorAll(selector).forEach(el=>{
+    total += Number(el.value || 0);
+  });
+  return total;
+}
 
-   IDs esperados:
-   - s_age
-   - s_hr
-   - s_sbp
-   - s_temp
-   - s_gcs
-   - s_pafi
-   - s_urine
-   - s_urea
-   - s_wbc
-   - s_k
-   - s_na
-   - s_hco3
-   - s_bili
-   - s_admission
-   - s_chronic
-   - s_aids
-   - s_cancer
+/* =========================================================
+   SAPS II
 ========================================================= */
 function calcSAPS(){
-  const score =
-    Number(s_age.value) +
-    Number(s_hr.value) +
-    Number(s_sbp.value) +
-    Number(s_temp.value) +
-    Number(s_gcs.value) +
-    Number(s_pafi.value) +
-    Number(s_urine.value) +
-    Number(s_urea.value) +
-    Number(s_wbc.value) +
-    Number(s_k.value) +
-    Number(s_na.value) +
-    Number(s_hco3.value) +
-    Number(s_bili.value) +
-    Number(s_admission.value) +
-    Number(s_chronic.value) +
-    Number(s_aids.value) +
-    Number(s_cancer.value);
+  const score = sumBySelector('.saps');
 
-  // Fórmula logística oficial SAPS II
-  const logit = -7.7631 + (0.0737 * score);
-  const mortality = (Math.exp(logit) / (1 + Math.exp(logit))) * 100;
+  const res = document.getElementById('saps_result');
+  const mort = document.getElementById('saps_mortality');
 
-  document.getElementById('saps_result').textContent =
-    `SAPS II total: ${score}`;
+  res.textContent = `SAPS II total: ${score}`;
 
-  document.getElementById('saps_mortality').textContent =
-    `Mortalidad estimada: ${mortality.toFixed(1)}%`;
+  // Fórmula logística SAPS II original
+  const logit = (score - 32.6659) / 7.3068;
+  const mortality = 100 / (1 + Math.exp(-logit));
+
+  mort.textContent =
+    `Mortalidad hospitalaria estimada: ${mortality.toFixed(1)}%`;
 }
 
 function resetSAPS(){
-  resetBySelector('#s_age, #s_hr, #s_sbp, #s_temp, #s_gcs, #s_pafi, #s_urine, #s_urea, #s_wbc, #s_k, #s_na, #s_hco3, #s_bili, #s_admission, #s_chronic, #s_aids, #s_cancer');
+  document.querySelectorAll('.saps').forEach(el=>{
+    el.selectedIndex = 0;
+  });
+
   document.getElementById('saps_result').textContent = '';
   document.getElementById('saps_mortality').textContent = '';
 }
+
