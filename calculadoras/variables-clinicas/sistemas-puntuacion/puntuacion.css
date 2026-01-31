@@ -282,4 +282,19 @@ footer p{
   line-height: 1.4;
 }
 
+/* FIX DEFINITIVO PARA <nav class="footer-nav"> */
+
+footer .footer-nav{
+  display: inline-flex !important;  /* clave */
+  justify-content: center !important;
+  align-items: center !important;
+
+  width: auto !important;            /* mata el 100% */
+  max-width: none !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  text-align: center !important;
+}
 
