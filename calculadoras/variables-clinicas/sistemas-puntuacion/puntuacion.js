@@ -88,33 +88,52 @@ function resetBySelector(selector){
   });
 }
 
+<script>
+/* =========================================================
+   UTILIDAD
+========================================================= */
+function sumBySelector(selector){
+  let total = 0;
+  document.querySelectorAll(selector).forEach(el => {
+    const val = el.value;
+    if (val !== "") {
+      total += Number(val);
+    }
+  });
+  return total;
+}
+
 /* =========================================================
    APACHE II
-   - APS = suma de las 12 variables fisiológicas (.apache)
-   - Total = APS + edad + enfermedad crónica
 ========================================================= */
 function calcAPACHE(){
+  console.log('calcAPACHE ejecutado');
+
   const aps = sumBySelector('.apache');
 
   const ageEl = document.getElementById('apache_age');
   const chronicEl = document.getElementById('apache_chronic');
 
-  const age = ageEl ? Number(ageEl.value) : 0;
-  const chronic = chronicEl ? Number(chronicEl.value) : 0;
+  if (!ageEl || !chronicEl){
+    console.error('Faltan apache_age o apache_chronic');
+    return;
+  }
+
+  const age = ageEl.value === "" ? 0 : Number(ageEl.value);
+  const chronic = chronicEl.value === "" ? 0 : Number(chronicEl.value);
 
   const total = aps + age + chronic;
 
   const res = document.getElementById('apache_result');
   const mort = document.getElementById('apache_mortality');
 
-  if (!res || !mort) {
-    console.error('Faltan elementos #apache_result o #apache_mortality');
+  if (!res || !mort){
+    console.error('Faltan elementos de resultado APACHE');
     return;
   }
 
   res.textContent = `APACHE II total: ${total} (APS: ${aps})`;
 
-  // Mortalidad orientativa clásica (no predictiva individual)
   mort.textContent =
     total < 10 ? 'Mortalidad estimada <10%' :
     total < 20 ? 'Mortalidad estimada 15–25%' :
@@ -126,32 +145,16 @@ function calcAPACHE(){
    RESET APACHE II
 ========================================================= */
 function resetAPACHE(){
-  resetBySelector('.apache');
+  document.querySelectorAll('.apache').forEach(el => el.selectedIndex = 0);
 
-  const ageEl = document.getElementById('apache_age');
-  const chronicEl = document.getElementById('apache_chronic');
+  document.getElementById('apache_age').selectedIndex = 0;
+  document.getElementById('apache_chronic').selectedIndex = 0;
 
-  if (ageEl) ageEl.selectedIndex = 0;
-  if (chronicEl) chronicEl.selectedIndex = 0;
-
-  const res = document.getElementById('apache_result');
-  const mort = document.getElementById('apache_mortality');
-
-  if (res) res.textContent = '';
-  if (mort) mort.textContent = '';
+  document.getElementById('apache_result').textContent = '';
+  document.getElementById('apache_mortality').textContent = '';
 }
+</script>
 
-
-/* =========================================================
-   UTILIDAD
-========================================================= */
-function sumBySelector(selector){
-  let total = 0;
-  document.querySelectorAll(selector).forEach(el=>{
-    total += Number(el.value || 0);
-  });
-  return total;
-}
 
 /* =========================================================
    SAPS II
