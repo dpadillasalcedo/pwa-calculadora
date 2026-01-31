@@ -1,127 +1,39 @@
 /* =========================================================
-   VARIABLES
+   FOOTER — CENTRADO DEFINITIVO (SIN PISADAS)
 ========================================================= */
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --border:#1e293b;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --primary:#0ea5e9;
-  --white:#ffffff;
-}
 
-/* =========================================================
-   RESET
-========================================================= */
-*{
-  box-sizing:border-box;
-}
-
-html, body{
+footer{
+  background:#020617;
+  border-top:1px solid var(--border);
+  padding:1.5rem 1rem;
   width:100%;
-  margin:0;
+
+  display:flex;
+  justify-content:center;
 }
 
-/* =========================================================
-   BODY
-========================================================= */
-body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.45;
-}
-
-/* =========================================================
-   FOOTER — CENTRADO ABSOLUTO
-========================================================= */
-footer{
-  background:#020617;
-  border-top:1px solid var(--border);
-  padding:1.5rem 1rem;
-
-  /* 🔥 ESTO LE GANA A TODO */
-  display:grid !important;
-  place-items:center !important;
-  width:100% !important;
-}
-
-/* CONTENEDOR */
-.footer-container{
-  width:100% !important;
-  max-width:1100px !important;
-
-  display:grid !important;
-  place-items:center !important;
-
-  margin:0 auto !important;
-  text-align:center !important;
-}
-
-/* NAV */
-.footer-nav{
-  display:flex !important;
-  justify-content:center !important;
-  align-items:center !important;
-  gap:.5rem !important;
-  margin-bottom:.75rem !important;
-  width:100% !important;
-}
-
-/* LINKS */
-.footer-nav a,
-.footer-nav span{
-  color:var(--white) !important;
-  font-size:.9rem !important;
-  text-decoration:none !important;
-}
-
-.footer-nav a:hover{
-  text-decoration:underline !important;
-}
-
-/* TEXTO */
-.footer-container p{
-  margin:0 !important;
-  max-width:900px !important;
-  color:var(--white) !important;
-  font-size:.85rem !important;
-  line-height:1.4 !important;
-  text-align:center !important;
-}
-
-/* =========================================================
-   FOOTER — CENTRADO REAL
-========================================================= */
-footer{
-  background:#020617;
-  border-top:1px solid var(--border);
-  padding:1.5rem 1rem;
-}
-
-/* CONTENEDOR INTERNO (MISMO ANCHO QUE MAIN) */
+/* CONTENEDOR INTERNO */
 .footer-container{
   max-width:1100px;
-  margin:0 auto;
+  width:100%;
 
   display:flex;
   flex-direction:column;
   align-items:center;
-
   text-align:center;
 }
 
-/* NAV DEL FOOTER */
+/* NAV */
 .footer-nav{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:.5rem;
   margin-bottom:.75rem;
+  width:fit-content;
 }
 
-/* LINKS Y SEPARADOR */
+/* LINKS */
 .footer-nav a,
 .footer-nav span{
   color:#ffffff;
@@ -140,59 +52,5 @@ footer{
   color:#ffffff;
   font-size:.85rem;
   line-height:1.4;
-}
-
-/* =========================================================
-   FOOTER — FORZAR CENTRADO (ANTI-PISADAS)
-========================================================= */
-footer{
-  background:#020617;
-  border-top:1px solid var(--border);
-  padding:1.5rem 1rem;
-  text-align:center !important;
-}
-
-footer .footer-container{
-  max-width:1100px;
-  margin:0 auto;
-  width:100%;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  text-align:center !important;
-}
-
-footer .footer-nav{
-  display:flex;
-  justify-content:center !important;
-  align-items:center;
-  gap:.5rem;
-
-  /* clave: que NO ocupe todo el ancho */
-  width:fit-content;
-  margin:0 auto .75rem auto;
-
-  text-align:center !important;
-}
-
-footer .footer-nav a,
-footer .footer-nav span{
-  color:#ffffff;
-  font-size:.9rem;
-  text-decoration:none;
-}
-
-footer .footer-nav a:hover{
-  text-decoration:underline;
-}
-
-footer p{
-  margin:0;
-  max-width:900px;
-  color:#ffffff;
-  font-size:.85rem;
-  line-height:1.4;
-  text-align:center !important;
+  text-align:center;
 }
