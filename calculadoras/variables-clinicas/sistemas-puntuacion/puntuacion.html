@@ -5,11 +5,10 @@
 <title>Calculadoras UCI – SOFA-2 · APACHE II · SAPS II</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Calculadoras clínicas UCI: SOFA-2, APACHE II y SAPS II. Uso educativo y apoyo clínico. No reemplaza el juicio médico.">
+<meta name="description" content="Calculadoras clínicas UCI: SOFA-2, APACHE II y SAPS II. Uso educativo y apoyo clínico.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#020617">
 
-<!-- ================== ESTILOS ================== -->
 <style>
 :root{
   --bg:#020617;
@@ -18,7 +17,6 @@
   --text:#e5e7eb;
   --muted:#94a3b8;
   --primary:#0ea5e9;
-  --danger:#ef4444;
 }
 *{box-sizing:border-box}
 body{
@@ -62,7 +60,6 @@ input,select,button{
   border:1px solid var(--border);
   border-radius:8px;
 }
-input[type="number"]{appearance:textfield}
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -81,22 +78,11 @@ button.primary{
   border:none;
 }
 button.secondary{color:var(--muted)}
-.result{
-  margin-top:1rem;
-  font-weight:700;
-}
-.note{
-  font-size:.8rem;
-  color:var(--muted);
-}
-.alert{
-  margin-top:.5rem;
-  font-size:.85rem;
-  color:var(--danger);
-}
+.result{margin-top:1rem;font-weight:700}
+.note{font-size:.8rem;color:var(--muted)}
 footer .container{
   font-size:.75rem;
-  color:var(--muted);
+  color:var(--muted;
   text-align:center;
 }
 </style>
@@ -112,68 +98,28 @@ footer .container{
 </header>
 
 <main class="container">
-
 <h1>Calculadoras UCI</h1>
 
-<!-- ===================================================== -->
-<!-- ======================= SOFA-2 ====================== -->
-<!-- ===================================================== -->
+<!-- ======================= SOFA-2 ======================= -->
 <section class="panel">
 <h2>SOFA-2</h2>
-<p class="note">Sequential Organ Failure Assessment – puntaje máximo en 24 horas</p>
+<p class="note">Puntaje máximo por sistema en 24 h</p>
 
 <div class="grid">
-
-<label>GCS
-<input id="sofa_gcs" type="number" min="3" max="15">
-</label>
-
-<label>PaO₂ / FiO₂
-<input id="sofa_pafi" type="number">
-</label>
-
-<label>Soporte ventilatorio avanzado
-<select id="sofa_vent">
-<option value="0">No</option>
-<option value="1">Sí</option>
-</select>
-</label>
-
-<label>PAM (mmHg)
-<input id="sofa_map" type="number">
-</label>
-
-<label>Dosis norepinefrina/epinefrina (µg/kg/min)
-<input id="sofa_vaso" type="number" step="0.01">
-</label>
-
-<label>Bilirrubina (mg/dL)
-<input id="sofa_bili" type="number" step="0.1">
-</label>
-
-<label>Creatinina (mg/dL)
-<input id="sofa_crea" type="number" step="0.1">
-</label>
-
-<label>Diuresis (ml/kg/h)
-<input id="sofa_urine" type="number" step="0.1">
-</label>
-
-<label>RRT
-<select id="sofa_rrt">
-<option value="0">No</option>
-<option value="4">Sí</option>
-</select>
-</label>
-
-<label>Plaquetas (x10³/µL)
-<input id="sofa_platelets" type="number">
-</label>
-
+<label>GCS<input id="sofa_gcs" type="number" min="3" max="15"></label>
+<label>PaO₂/FiO₂<input id="sofa_pafi" type="number"></label>
+<label>Soporte ventilatorio<select id="sofa_vent"><option value="0">No</option><option value="1">Sí</option></select></label>
+<label>PAM (mmHg)<input id="sofa_map" type="number"></label>
+<label>NE/Epi (µg/kg/min)<input id="sofa_vaso" type="number" step="0.01"></label>
+<label>Bilirrubina<input id="sofa_bili" type="number" step="0.1"></label>
+<label>Creatinina<input id="sofa_crea" type="number" step="0.1"></label>
+<label>Diuresis ml/kg/h<input id="sofa_urine" type="number" step="0.1"></label>
+<label>RRT<select id="sofa_rrt"><option value="0">No</option><option value="1">Sí</option></select></label>
+<label>Plaquetas<input id="sofa_platelets" type="number"></label>
 </div>
 
 <div class="actions">
-<button class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
+<button class="primary" onclick="calcSOFA()">Calcular</button>
 <button class="secondary" onclick="resetSOFA()">Reiniciar</button>
 </div>
 
@@ -181,23 +127,20 @@ footer .container{
 <div id="sofa_mortality" class="note"></div>
 </section>
 
-<!-- ===================================================== -->
 <!-- ===================== APACHE II ===================== -->
-<!-- ===================================================== -->
 <section class="panel">
 <h2>APACHE II</h2>
-<p class="note">Acute Physiology Score + Edad + Comorbilidad</p>
 
 <div class="grid">
-<label>Temperatura (°C)<input id="a_temp" type="number" step="0.1"></label>
-<label>PAM (mmHg)<input id="a_map" type="number"></label>
-<label>FC (lpm)<input id="a_hr" type="number"></label>
-<label>FR (rpm)<input id="a_rr" type="number"></label>
-<label>pH arterial<input id="a_ph" type="number" step="0.01"></label>
-<label>Na (mEq/L)<input id="a_na" type="number"></label>
-<label>K (mEq/L)<input id="a_k" type="number" step="0.1"></label>
+<label>Temp °C<input id="a_temp" type="number" step="0.1"></label>
+<label>PAM<input id="a_map" type="number"></label>
+<label>FC<input id="a_hr" type="number"></label>
+<label>FR<input id="a_rr" type="number"></label>
+<label>pH<input id="a_ph" type="number" step="0.01"></label>
+<label>Na<input id="a_na" type="number"></label>
+<label>K<input id="a_k" type="number" step="0.1"></label>
 <label>Creatinina<input id="a_crea" type="number" step="0.1"></label>
-<label>Hematocrito %<input id="a_hct" type="number"></label>
+<label>Hematocrito<input id="a_hct" type="number"></label>
 <label>Leucocitos<input id="a_wbc" type="number"></label>
 <label>GCS<input id="a_gcs" type="number" min="3" max="15"></label>
 
@@ -221,19 +164,16 @@ footer .container{
 </div>
 
 <div class="actions">
-<button class="primary" onclick="calcAPACHE()">Calcular APACHE II</button>
+<button class="primary" onclick="calcAPACHE()">Calcular</button>
 <button class="secondary" onclick="resetAPACHE()">Reiniciar</button>
 </div>
 
 <div id="apache_result" class="result"></div>
 </section>
 
-<!-- ===================================================== -->
 <!-- ====================== SAPS II ====================== -->
-<!-- ===================================================== -->
 <section class="panel">
 <h2>SAPS II</h2>
-<p class="note">Cálculo con función logística oficial</p>
 
 <div class="grid">
 <label>Edad<input id="s_age" type="number"></label>
@@ -251,7 +191,7 @@ footer .container{
 </div>
 
 <div class="actions">
-<button class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
+<button class="primary" onclick="calcSAPS()">Calcular</button>
 <button class="secondary" onclick="resetSAPS()">Reiniciar</button>
 </div>
 
@@ -268,120 +208,6 @@ No reemplaza el juicio médico ni las guías institucionales.
 </div>
 </footer>
 
-<!-- ================== JAVASCRIPT ================== -->
-<script>
-/* ================= SOFA-2 ================= */
-function calcSOFA(){
-  let score=0;
-
-  const gcs=+sofa_gcs.value;
-  if(gcs<=5)score+=4;
-  else if(gcs<=8)score+=3;
-  else if(gcs<=12)score+=2;
-  else if(gcs<=14)score+=1;
-
-  const pafi=+sofa_pafi.value;
-  const vent=+sofa_vent.value;
-  if(pafi<=75 && vent)score+=4;
-  else if(pafi<=150 && vent)score+=3;
-  else if(pafi<=225)score+=2;
-  else if(pafi<=300)score+=1;
-
-  const map=+sofa_map.value;
-  const vaso=+sofa_vaso.value;
-  if(vaso>0.4)score+=4;
-  else if(vaso>0.2)score+=3;
-  else if(vaso>0)score+=2;
-  else if(map<70)score+=1;
-
-  const bili=+sofa_bili.value;
-  if(bili>12)score+=4;
-  else if(bili>6)score+=3;
-  else if(bili>2)score+=2;
-  else if(bili>1.2)score+=1;
-
-  const rrt=+sofa_rrt.value;
-  if(rrt)score+=4;
-  else{
-    const crea=+sofa_crea.value;
-    if(crea>3.5)score+=3;
-    else if(crea>2)score+=2;
-    else if(crea>1.2)score+=1;
-  }
-
-  const plt=+sofa_platelets.value;
-  if(plt<=50)score+=4;
-  else if(plt<=80)score+=3;
-  else if(plt<=100)score+=2;
-  else if(plt<=150)score+=1;
-
-  sofa_result.textContent="SOFA-2 total: "+score;
-  sofa_mortality.textContent =
-    score<=1?"Mortalidad <10%":
-    score<=5?"Mortalidad 10–20%":
-    score<=9?"Mortalidad 20–40%":
-    score<=12?"Mortalidad 40–50%":
-    "Mortalidad >50%";
-}
-function resetSOFA(){
-  document.querySelectorAll('[id^="sofa_"]').forEach(e=>e.value="");
-  sofa_result.textContent="";
-  sofa_mortality.textContent="";
-}
-
-/* ================= APACHE II ================= */
-function calcAPACHE(){
-  const aps =
-    scoreRange(a_temp.value,[30,32,34,36,38,41]) +
-    scoreRange(a_map.value,[50,70,110,130]) +
-    scoreRange(a_hr.value,[40,55,70,110,140]) +
-    scoreRange(a_rr.value,[6,10,12,25,35]) +
-    scoreRange(a_ph.value,[7.15,7.25,7.33,7.5]) +
-    scoreRange(a_na.value,[120,130,150,160]) +
-    scoreRange(a_k.value,[2.5,3,3.5,5.5,6]) +
-    scoreRange(a_crea.value,[0.6,1.5,2,3.5],true) +
-    scoreRange(a_hct.value,[20,30,46,50]) +
-    scoreRange(a_wbc.value,[1,3,15,20,40]) +
-    (15 - a_gcs.value);
-
-  const total = aps + +a_age.value + +a_chronic.value;
-  apache_result.textContent="APACHE II total: "+total;
-}
-function resetAPACHE(){
-  document.querySelectorAll('[id^="a_"]').forEach(e=>e.value="");
-  apache_result.textContent="";
-}
-
-/* ================= SAPS II ================= */
-function calcSAPS(){
-  let saps =
-    +s_age.value*0.0737 +
-    +s_hr.value*0.02 +
-    +s_sbp.value*-0.02 +
-    +s_gcs.value*-0.3;
-
-  const logit = -7.7631 + saps;
-  const mortality = Math.exp(logit)/(1+Math.exp(logit))*100;
-
-  saps_result.textContent =
-    "Mortalidad estimada SAPS II: "+mortality.toFixed(1)+"%";
-}
-function resetSAPS(){
-  document.querySelectorAll('[id^="s_"]').forEach(e=>e.value="");
-  saps_result.textContent="";
-}
-
-/* Util */
-function scoreRange(v,arr,double=false){
-  v=+v;
-  let s=0;
-  if(v<arr[0]||v>arr[arr.length-1])s=4;
-  else if(v<arr[1]||v>arr[arr.length-2])s=3;
-  else if(v<arr[2]||v>arr[arr.length-3])s=2;
-  else if(v<arr[3]||v>arr[arr.length-4])s=1;
-  return double?s*2:s;
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
