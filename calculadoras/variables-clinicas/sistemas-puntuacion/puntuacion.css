@@ -25,11 +25,14 @@ body{
 }
 
 /* =========================================================
-   HEADER / FOOTER
+   HEADER / FOOTER BASE
 ========================================================= */
 header,
 footer{
   background:#020617;
+}
+
+header{
   border-bottom:1px solid var(--border);
 }
 
@@ -38,18 +41,18 @@ footer{
 }
 
 /* =========================================================
-   BREADCRUMB
+   BREADCRUMB (FORZADO A BLANCO)
 ========================================================= */
 .breadcrumb-nav{
   max-width:1100px;
-  margin:auto;
+  margin:0 auto;
   padding:1rem 1.5rem;
   display:flex;
   align-items:center;
 }
 
 .breadcrumb-link{
-  color:#ffffff;              /* BLANCO */
+  color:#ffffff !important;
   text-decoration:none;
   font-weight:500;
 }
@@ -59,16 +62,26 @@ footer{
 }
 
 /* =========================================================
-   FOOTER NAV
+   FOOTER (CENTRADO + BLANCO)
 ========================================================= */
+footer .container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:1rem 1.5rem;
+  text-align:center;
+  color:#ffffff !important;
+}
+
 .footer-nav nav{
   display:flex;
   justify-content:center;
-  gap:.6rem;
+  align-items:center;
+  gap:.75rem;
+  margin-bottom:.4rem;
 }
 
 .footer-nav a{
-  color:#ffffff;              /* BLANCO */
+  color:#ffffff !important;
   text-decoration:none;
   font-size:.75rem;
 }
@@ -82,7 +95,7 @@ footer{
 ========================================================= */
 .container{
   max-width:1100px;
-  margin:auto;
+  margin:0 auto;
   padding:1.5rem;
 }
 
@@ -95,7 +108,7 @@ footer{
 }
 
 /* =========================================================
-   HEADINGS
+   HEADINGS (MISMO NIVEL VISUAL)
 ========================================================= */
 h1{
   color:#f8fafc;
@@ -103,10 +116,19 @@ h1{
   margin-bottom:1.5rem;
 }
 
-h2{
+.panel > h2{
   color:#f8fafc;
-  font-size:1.35rem;          /* MISMO TAMAÑO PARA SOFA / APACHE / SAPS */
-  margin-top:0;
+  font-size:1.4rem;      /* 👈 ESTE ES EL FIX CLAVE */
+  margin:0 0 .5rem 0;
+  font-weight:600;
+}
+
+/* =========================================================
+   TEXTOS AUXILIARES
+========================================================= */
+.note{
+  font-size:.85rem;
+  color:var(--muted);
 }
 
 /* =========================================================
@@ -162,23 +184,9 @@ button.secondary{
 }
 
 /* =========================================================
-   RESULTS / NOTES
+   RESULTS
 ========================================================= */
 .result{
   margin-top:1rem;
   font-weight:700;
-}
-
-.note{
-  font-size:.85rem;
-  color:var(--muted);
-}
-
-/* =========================================================
-   FOOTER TEXT
-========================================================= */
-footer .container{
-  font-size:.75rem;
-  color:#ffffff;              /* BLANCO */
-  text-align:center;
 }
