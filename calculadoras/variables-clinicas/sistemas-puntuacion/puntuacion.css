@@ -1,194 +1,40 @@
-/* =========================================================
-   RESET + ANTI FLASH BLANCO
-========================================================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background-color: #020617;
-  color: #ffffff;
-}
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-:root {
-  --bg:#020617;
-  --panel:#0b1220;
-  --border:#1e293b;
-
-  --text:#ffffff;
-  --muted:#94a3b8;
-
-  --primary:#38bdf8;
-  --primary-strong:#0ea5e9;
-}
-
-/* =========================================================
-   BODY
-========================================================= */
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 1.5rem;
-}
-
-.app-header h1 {
-  margin: 0;
-  color: #ffffff;
-}
-
-.note {
-  color: var(--muted);
-  font-size: .85rem;
-}
-
-/* =========================================================
-   BREADCRUMB – BLANCO FORZADO
-========================================================= */
-.breadcrumb {
-  font-size: .85rem;
-  margin-bottom: 1.5rem;
-  color: #ffffff !important;
-}
-
-.breadcrumb a,
-.breadcrumb span,
-.breadcrumb [aria-current="page"] {
-  color: #ffffff !important;
-}
-
-.breadcrumb a:hover {
-  color: var(--primary) !important;
-}
-
-/* =========================================================
-   TOP NAV (si existe)
-========================================================= */
+/* =========================
+   TOP NAV / BREADCRUMB
+========================= */
 .top-nav {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+
+  padding: .75rem 1.5rem;
   background: #020617;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #1e293b;
+
+  font-size: .85rem;
 }
 
+/* Links y texto */
 .top-nav a,
 .top-nav span {
-  color: #ffffff !important;
-}
-
-.top-nav a:hover {
-  color: var(--primary) !important;
-}
-
-/* =========================================================
-   PANEL
-========================================================= */
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.75rem;
-  margin-bottom: 2.5rem;
-}
-
-/* =========================================================
-   FORM
-========================================================= */
-label {
-  display: block;
-  margin-top: .85rem;
-  font-size: .85rem;
   color: #ffffff;
-}
-
-select {
-  width: 100%;
-  margin-top: .35rem;
-  background-color: #020617;
-  color: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: .55rem .6rem;
-  appearance: none;
-}
-
-select option {
-  background-color: #020617;
-  color: #ffffff;
-}
-
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(56,189,248,.25);
-}
-
-/* =========================================================
-   BUTTON
-========================================================= */
-button {
-  margin-top: 1.25rem;
-  background: var(--primary);
-  color: #020617;
-  border: none;
-  border-radius: 999px;
-  padding: .6rem 1.25rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--primary-strong);
-}
-
-/* =========================================================
-   RESULT
-========================================================= */
-.result {
-  margin-top: 1rem;
-  padding: .75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgba(2,6,23,.4);
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* =========================================================
-   FOOTER – BLANCO FORZADO
-========================================================= */
-footer {
-  background: #0b1220;
-  border-top: 1px solid #1e293b;
-  padding: 2rem 1rem;
-  text-align: center;
-  color: #ffffff !important;
-}
-
-footer * {
-  color: #ffffff !important;
-}
-
-footer a {
   text-decoration: none;
+  line-height: 1;
 }
 
-footer a:hover {
-  color: var(--primary) !important;
+/* Hover del link */
+.top-nav a:hover {
+  color: #38bdf8;
   text-decoration: underline;
+}
+
+/* Separador › */
+.top-nav span[aria-hidden="true"] {
+  color: #94a3b8;
+  margin: 0 .15rem;
+}
+
+/* Página actual */
+.top-nav span[aria-current="page"] {
+  font-weight: 600;
+  color: #f8fafc;
 }
