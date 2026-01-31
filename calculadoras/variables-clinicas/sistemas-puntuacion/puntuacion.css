@@ -59,3 +59,53 @@ footer {
   padding:2rem 1rem;
   text-align:center;
 }
+
+/* =========================
+   BREADCRUMB / TOP NAV
+========================= */
+.top-nav{
+  background:#020617;        /* fondo */
+  border-bottom:1px solid #334155;
+}
+
+.top-nav a{
+  color:#22d3ee;             /* link Inicio */
+}
+
+.top-nav a:hover{
+  color:#67e8f9;
+}
+
+.top-nav span{
+  color:#cbd5f5;             /* separador y texto actual */
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  background:#0b1220;        /* fondo footer */
+  border-top:1px solid #1e293b;
+  color:#cbd5e1;
+}
+
+footer a{
+  color:#38bdf8;
+  text-decoration:none;
+}
+
+footer a:hover{
+  color:#7dd3fc;
+  text-decoration:underline;
+}
+
+footer .footer-nav span{
+  color:#64748b;             /* separador · */
+}
+
+footer p{
+  color:#94a3b8;             /* texto legal */
+  font-size:0.85rem;
+}
+
