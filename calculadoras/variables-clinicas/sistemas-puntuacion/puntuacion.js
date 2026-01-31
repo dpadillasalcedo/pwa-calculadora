@@ -95,40 +95,30 @@ document.addEventListener('DOMContentLoaded', () => {
    - #ap_chronic
 ========================================================= */
 function calcAPACHE(){
-  const aps =
-    Number(ap_temp.value) +
-    Number(ap_map.value) +
-    Number(ap_hr.value) +
-    Number(ap_rr.value) +
-    Number(ap_ox.value) +
-    Number(ap_ph.value) +
-    Number(ap_na.value) +
-    Number(ap_k.value) +
-    Number(ap_crea.value) +
-    Number(ap_hct.value) +
-    Number(ap_wbc.value) +
-    Number(ap_gcs.value);
-
-  const age = Number(ap_age.value);
-  const chronic = Number(ap_chronic.value);
+  const aps = sumBySelector('.apache');
+  const age = Number(document.getElementById('apache_age').value);
+  const chronic = Number(document.getElementById('apache_chronic').value);
 
   const total = aps + age + chronic;
 
   document.getElementById('apache_result').textContent =
-    `APACHE II total: ${total}`;
+    `APACHE II total: ${total} (APS: ${aps})`;
 
   document.getElementById('apache_mortality').textContent =
-    total < 10 ? 'Mortalidad aproximada ~5%' :
-    total < 20 ? 'Mortalidad aproximada ~15%' :
-    total < 30 ? 'Mortalidad aproximada ~35%' :
-                 'Mortalidad aproximada >50%';
+    total < 10 ? 'Mortalidad estimada <10%' :
+    total < 20 ? 'Mortalidad estimada 15–25%' :
+    total < 30 ? 'Mortalidad estimada 40–55%' :
+                 'Mortalidad estimada >75%';
 }
 
 function resetAPACHE(){
-  resetBySelector('#ap_temp, #ap_map, #ap_hr, #ap_rr, #ap_ox, #ap_ph, #ap_na, #ap_k, #ap_crea, #ap_hct, #ap_wbc, #ap_gcs, #ap_age, #ap_chronic');
+  resetBySelector('.apache');
+  document.getElementById('apache_age').selectedIndex = 0;
+  document.getElementById('apache_chronic').selectedIndex = 0;
   document.getElementById('apache_result').textContent = '';
   document.getElementById('apache_mortality').textContent = '';
 }
+
 
 /* =========================================================
    SAPS II — COMPLETO (17 VARIABLES)
