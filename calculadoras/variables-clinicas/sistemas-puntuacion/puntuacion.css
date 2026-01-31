@@ -175,3 +175,32 @@ footer a:hover {
   text-decoration: underline;
 }
 </style>
+
+/* =========================================================
+   SOLO BREADCRUMB – TEXTO BLANCO
+========================================================= */
+.top-nav a,
+.top-nav span,
+.top-nav [aria-current="page"] {
+  color: #ffffff;
+}
+
+/* Hover breadcrumb */
+.top-nav a:hover {
+  color: #38bdf8;
+}
+
+/* =========================================================
+   SOLO FOOTER – TEXTO BLANCO
+========================================================= */
+footer a,
+footer span,
+footer p {
+  color: #ffffff;
+}
+
+/* Hover links footer */
+footer a:hover {
+  color: #38bdf8;
+  text-decoration: underline;
+}
