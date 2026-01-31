@@ -64,19 +64,15 @@ function resetBySelector(selector){
   });
 }
 
-<script>
-/* =========================
+/* =========================================================
    APACHE II
-========================= */
+========================================================= */
 function calcAPACHE(){
-  // suma de las 12 variables fisiológicas
   const aps = sumBySelector('.apache');
 
-  // edad
   const ageEl = document.getElementById('apache_age');
   const age = ageEl ? Number(ageEl.value || 0) : 0;
 
-  // enfermedad crónica
   const chronicEl = document.getElementById('apache_chronic');
   const chronic = chronicEl ? Number(chronicEl.value || 0) : 0;
 
@@ -99,21 +95,16 @@ function resetAPACHE(){
   document.getElementById('apache_result').textContent = '';
   document.getElementById('apache_mortality').textContent = '';
 }
-</script>
 
-
-<script>
-/* =========================
+/* =========================================================
    SAPS II
-========================= */
+========================================================= */
 function calcSAPS(){
-  // suma de las 17 variables
   const score = sumBySelector('.saps');
 
   document.getElementById('saps_result').textContent =
     `SAPS II total: ${score}`;
 
-  // Fórmula logística original SAPS II
   const logit = (score - 32.6659) / 7.3068;
   const mortality = 100 / (1 + Math.exp(-logit));
 
@@ -126,5 +117,4 @@ function resetSAPS(){
   document.getElementById('saps_result').textContent = '';
   document.getElementById('saps_mortality').textContent = '';
 }
-</script>
 
