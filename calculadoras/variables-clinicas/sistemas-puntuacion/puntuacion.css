@@ -298,3 +298,24 @@ footer .footer-nav{
   text-align: center !important;
 }
 
+footer .footer-nav{
+  all: unset;                 /* ← clave */
+  display:inline-flex;
+  gap:.5rem;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto .75rem auto;
+}
+
+footer .footer-nav a,
+footer .footer-nav span{
+  color:#ffffff;
+  font-size:.85rem;
+  text-decoration:none;
+}
+
+footer p{
+  margin:0;
+  max-width:900px;
+  text-align:center;
+}
