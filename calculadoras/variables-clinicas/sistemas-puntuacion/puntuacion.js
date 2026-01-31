@@ -72,51 +72,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =========================================================
-   APACHE II — COMPLETO
-   12 VARIABLES FISIOLÓGICAS (APS) + EDAD + COMORBILIDAD
+   UTILIDADES GENERALES
+========================================================= */
+function sumBySelector(selector){
+  let total = 0;
+  document.querySelectorAll(selector).forEach(el => {
+    total += Number(el.value || 0);
+  });
+  return total;
+}
 
-   HTML esperado (todos <select> con puntaje ya calculado):
-   Fisiológicas (12):
-   - #ap_temp
-   - #ap_map
-   - #ap_hr
-   - #ap_rr
-   - #ap_ox (PaO2 o A–a según FiO2)
-   - #ap_ph
-   - #ap_na
-   - #ap_k
-   - #ap_crea (ya considera ARF x2 si aplica)
-   - #ap_hct
-   - #ap_wbc
-   - #ap_gcs (usar 15 − GCS real)
+function resetBySelector(selector){
+  document.querySelectorAll(selector).forEach(el => {
+    el.selectedIndex = 0;
+  });
+}
 
-   Otros:
-   - #ap_age
-   - #ap_chronic
+/* =========================================================
+   APACHE II
+   - APS = suma de las 12 variables fisiológicas (.apache)
+   - Total = APS + edad + enfermedad crónica
 ========================================================= */
 function calcAPACHE(){
   const aps = sumBySelector('.apache');
-  const age = Number(document.getElementById('apache_age').value);
-  const chronic = Number(document.getElementById('apache_chronic').value);
+
+  const ageEl = document.getElementById('apache_age');
+  const chronicEl = document.getElementById('apache_chronic');
+
+  const age = ageEl ? Number(ageEl.value) : 0;
+  const chronic = chronicEl ? Number(chronicEl.value) : 0;
 
   const total = aps + age + chronic;
 
-  document.getElementById('apache_result').textContent =
-    `APACHE II total: ${total} (APS: ${aps})`;
+  const res = document.getElementById('apache_result');
+  const mort = document.getElementById('apache_mortality');
 
-  document.getElementById('apache_mortality').textContent =
+  if (!res || !mort) {
+    console.error('Faltan elementos #apache_result o #apache_mortality');
+    return;
+  }
+
+  res.textContent = `APACHE II total: ${total} (APS: ${aps})`;
+
+  // Mortalidad orientativa clásica (no predictiva individual)
+  mort.textContent =
     total < 10 ? 'Mortalidad estimada <10%' :
     total < 20 ? 'Mortalidad estimada 15–25%' :
     total < 30 ? 'Mortalidad estimada 40–55%' :
                  'Mortalidad estimada >75%';
 }
 
+/* =========================================================
+   RESET APACHE II
+========================================================= */
 function resetAPACHE(){
   resetBySelector('.apache');
-  document.getElementById('apache_age').selectedIndex = 0;
-  document.getElementById('apache_chronic').selectedIndex = 0;
-  document.getElementById('apache_result').textContent = '';
-  document.getElementById('apache_mortality').textContent = '';
+
+  const ageEl = document.getElementById('apache_age');
+  const chronicEl = document.getElementById('apache_chronic');
+
+  if (ageEl) ageEl.selectedIndex = 0;
+  if (chronicEl) chronicEl.selectedIndex = 0;
+
+  const res = document.getElementById('apache_result');
+  const mort = document.getElementById('apache_mortality');
+
+  if (res) res.textContent = '';
+  if (mort) mort.textContent = '';
 }
 
 
