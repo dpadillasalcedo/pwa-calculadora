@@ -1,206 +1,165 @@
-<script>
 /* =========================================================
-   UTILIDADES
+   BASE
 ========================================================= */
-function getValue(id) {
-  const el = document.getElementById(id);
-  return el && el.value !== "" ? parseInt(el.value, 10) : 0;
+body{
+  margin:0;
+  font-family:system-ui,sans-serif;
+  background:#020617;
+  color:#e5e7eb;
 }
 
-function resetSelects(prefix) {
-  document
-    .querySelectorAll(`select[id^="${prefix}"]`)
-    .forEach(s => s.value = "");
-}
-
-/* =========================================================
-   SOFA-2
-========================================================= */
-function calcSOFA() {
-  const total =
-    getValue("sofa_neuro") +
-    getValue("sofa_resp") +
-    getValue("sofa_cardio") +
-    getValue("sofa_liver") +
-    getValue("sofa_renal") +
-    getValue("sofa_hemo");
-
-  let risk = "";
-  let mortality = "";
-
-  if (total <= 1) {
-    risk = "Riesgo bajo";
-    mortality = "~5%";
-  } else if (total <= 6) {
-    risk = "Disfunción orgánica moderada";
-    mortality = "10–20%";
-  } else if (total <= 9) {
-    risk = "Disfunción orgánica severa";
-    mortality = "25–40%";
-  } else {
-    risk = "Alto riesgo de mortalidad";
-    mortality = ">50%";
-  }
-
-  document.getElementById("sofa_result").textContent =
-    `SOFA-2 total: ${total} — ${risk} · Mortalidad estimada: ${mortality}`;
-}
-
-function resetSOFA() {
-  resetSelects("sofa_");
-  document.getElementById("sofa_result").textContent = "";
+h1,h2,h3{
+  color:#f8fafc;
 }
 
 /* =========================================================
-   APACHE II
+   LAYOUT
 ========================================================= */
-function calcAPACHE() {
-  const total =
-    getValue("ap_temp") +
-    getValue("ap_map") +
-    getValue("ap_hr") +
-    getValue("ap_rr") +
-    getValue("ap_oxygen") +
-    getValue("ap_ph") +
-    getValue("ap_na") +
-    getValue("ap_k") +
-    getValue("ap_cr") +
-    getValue("ap_hct") +
-    getValue("ap_wbc") +
-    getValue("ap_gcs") +
-    getValue("ap_age") +
-    getValue("ap_chronic");
-
-  let risk = "";
-  let mortality = "";
-
-  if (total < 10) {
-    risk = "Riesgo bajo";
-    mortality = "<10%";
-  } else if (total < 20) {
-    risk = "Riesgo moderado";
-    mortality = "15–25%";
-  } else if (total < 30) {
-    risk = "Riesgo alto";
-    mortality = "40–55%";
-  } else {
-    risk = "Riesgo muy alto";
-    mortality = ">75%";
-  }
-
-  document.getElementById("apache_result").textContent =
-    `APACHE II total: ${total} — ${risk} · Mortalidad estimada: ${mortality}`;
-}
-
-function resetAPACHE() {
-  resetSelects("ap_");
-  document.getElementById("apache_result").textContent = "";
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:1.5rem;
 }
 
 /* =========================================================
-   SAPS II
+   NAV / BREADCRUMB
 ========================================================= */
-function calcSAPS() {
-  const total =
-    getValue("saps_age") +
-    getValue("saps_hr") +
-    getValue("saps_sys") +
-    getValue("saps_temp") +
-    getValue("saps_gcs") +
-    getValue("saps_uo") +
-    getValue("saps_bun") +
-    getValue("saps_wbc") +
-    getValue("saps_k") +
-    getValue("saps_na") +
-    getValue("saps_hco3") +
-    getValue("saps_bili") +
-    getValue("saps_adm");
-
-  let risk = "";
-  let mortality = "";
-
-  if (total < 30) {
-    risk = "Riesgo bajo";
-    mortality = "<10%";
-  } else if (total < 50) {
-    risk = "Riesgo moderado";
-    mortality = "20–35%";
-  } else if (total < 70) {
-    risk = "Riesgo alto";
-    mortality = "50–65%";
-  } else {
-    risk = "Riesgo muy alto";
-    mortality = ">75%";
-  }
-
-  document.getElementById("saps_result").textContent =
-    `SAPS II total: ${total} — ${risk} · Mortalidad estimada: ${mortality}`;
+.top-nav{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.75rem 1.5rem;
+  background:#020617;
+  border-bottom:1px solid #1e293b;
+  font-size:.85rem;
 }
 
-function resetSAPS() {
-  resetSelects("saps_");
-  document.getElementById("saps_result").textContent = "";
-}
-</script>
-
-<style>
-/* =========================================================
-   CORRECCIÓN VISUAL
-   Breadcrumb + Footer en BLANCO
-   (sin afectar el resto)
-========================================================= */
-
-/* Breadcrumb / navegación */
-.top-nav,
+/* SOLO TEXTO DEL BREADCRUMB */
 .top-nav a,
 .top-nav span,
-.top-nav [aria-current="page"] {
-  color: #ffffff;
+.top-nav [aria-current="page"]{
+  color:#ffffff;
+  text-decoration:none;
 }
 
-.top-nav a:hover {
-  color: #38bdf8;
+/* Hover link */
+.top-nav a:hover{
+  color:#38bdf8;
+  text-decoration:underline;
 }
 
-/* Footer */
-footer,
-footer a,
-footer span,
-footer p {
-  color: #ffffff;
+/* Separador › */
+.top-nav span[aria-hidden="true"]{
+  color:#cbd5e1;
 }
 
-footer a:hover {
-  color: #38bdf8;
-  text-decoration: underline;
-}
-</style>
-
-/* =========================================================
-   SOLO BREADCRUMB – TEXTO BLANCO
-========================================================= */
-.top-nav a,
-.top-nav span,
-.top-nav [aria-current="page"] {
-  color: #ffffff;
-}
-
-/* Hover breadcrumb */
-.top-nav a:hover {
-  color: #38bdf8;
+/* Página actual */
+.top-nav span[aria-current="page"]{
+  font-weight:600;
 }
 
 /* =========================================================
-   SOLO FOOTER – TEXTO BLANCO
+   PANEL CALCULADORAS
 ========================================================= */
+.panel{
+  background:#0b1220;
+  border:1px solid #1e293b;
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:2rem;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:1rem;
+}
+
+th,td{
+  border:1px solid #1e293b;
+  padding:.6rem;
+}
+
+th{
+  background:#020617;
+  text-align:left;
+}
+
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+select{
+  width:100%;
+  padding:.5rem;
+  background:#020617;
+  color:#e5e7eb;
+  border:1px solid #1e293b;
+  border-radius:8px;
+}
+
+/* =========================================================
+   ACTIONS / BUTTONS
+========================================================= */
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+  margin-top:1rem;
+}
+
+button{
+  width:100%;
+  padding:.5rem;
+  border-radius:8px;
+  border:1px solid #1e293b;
+  background:#020617;
+  color:#e5e7eb;
+  cursor:pointer;
+}
+
+button.primary{
+  background:#0ea5e9;
+  color:#020617;
+  font-weight:600;
+  border:none;
+}
+
+button.secondary{
+  background:transparent;
+  color:#94a3b8;
+}
+
+/* =========================================================
+   RESULT
+========================================================= */
+.result{
+  margin-top:1rem;
+  font-weight:700;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer{
+  text-align:center;
+  padding:1rem;
+  background:#0b1220;
+  border-top:1px solid #1e293b;
+}
+
+/* SOLO TEXTO DEL FOOTER */
 footer a,
 footer span,
-footer p {
-  color: #ffffff;
+footer p{
+  color:#ffffff;
+  text-decoration:none;
 }
 
 /* Hover links footer */
-footer a:hover {
-  color: #38bdf8;
-  text-decoration: underline;
+footer a:hover{
+  color:#38bdf8;
+  text-decoration:underline;
 }
