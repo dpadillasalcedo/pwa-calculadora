@@ -16,6 +16,7 @@ function resetBySelector(selector){
     el.selectedIndex = 0;
   });
 }
+
 /* =========================================================
    SOFA-2
 ========================================================= */
@@ -41,26 +42,6 @@ function resetSOFA(){
   resetBySelector('.sofa');
   document.getElementById('sofa_result').textContent = '';
   document.getElementById('sofa_mortality').textContent = '';
-}
-
-<script>
-/* =========================================================
-   UTILIDADES COMUNES (OBLIGATORIAS)
-========================================================= */
-function sumBySelector(selector){
-  let total = 0;
-  document.querySelectorAll(selector).forEach(el => {
-    if (el.value !== "") {
-      total += Number(el.value);
-    }
-  });
-  return total;
-}
-
-function resetBySelector(selector){
-  document.querySelectorAll(selector).forEach(el => {
-    el.selectedIndex = 0;
-  });
 }
 
 /* =========================================================
@@ -116,4 +97,3 @@ function resetSAPS(){
   document.getElementById('saps_result').textContent = '';
   document.getElementById('saps_mortality').textContent = '';
 }
-
