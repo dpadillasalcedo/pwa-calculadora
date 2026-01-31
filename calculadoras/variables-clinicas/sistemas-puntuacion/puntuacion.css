@@ -37,16 +37,13 @@ body {
 }
 
 /* =========================
-   BREADCRUMB / TOP NAV
+   BREADCRUMB – TEXTO BLANCO
 ========================= */
-.breadcrumb {
-  color:#f8fafc;
-  font-size:.85rem;
-  margin-bottom:1.5rem;
-}
-
-.breadcrumb a {
-  color:#f8fafc;
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span,
+.breadcrumb [aria-current="page"] {
+  color: #f8fafc !important;
 }
 
 .top-nav {
