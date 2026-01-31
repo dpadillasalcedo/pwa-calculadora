@@ -59,35 +59,33 @@ footer{
 }
 
 /* =========================================================
-   FOOTER
+   FOOTER (CENTRADO REAL)
 ========================================================= */
 footer{
-  display:flex;
-  justify-content:center;
+  background:#020617;
+  border-top:1px solid var(--border);
 }
 
 footer .container{
   max-width:1100px;
-  width:100%;
   margin:0 auto;
   padding:1rem 1.5rem;
   text-align:center;
   color:#ffffff;
 }
 
-/* contenedor de la navegación */
+/* navegación del footer */
 .footer-nav{
   display:flex;
   justify-content:center;
 }
 
-/* navegación */
 .footer-nav nav{
   display:flex;
   justify-content:center;
   align-items:center;
   gap:.75rem;
-  margin:0 auto .4rem auto;
+  margin:0 auto;
 }
 
 /* links */
@@ -100,6 +98,7 @@ footer .container{
 .footer-nav a:hover{
   text-decoration:underline;
 }
+
 
 
 /* =========================================================
