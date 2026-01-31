@@ -55,7 +55,6 @@
 <body>
 
 <header>
-  <!-- Breadcrumb / navegación -->
   <nav class="top-nav" aria-label="Navegación principal">
     <a href="/">Inicio</a>
     <span aria-hidden="true">›</span>
@@ -67,108 +66,107 @@
 
   <h1>Calculadoras UCI</h1>
 
+  <!-- =========================
+       SOFA-2
+  ========================= -->
+  <section class="panel">
+    <h2>SOFA-2</h2>
 
-<!-- =====================================================
-     SOFA-2
-===================================================== -->
-<section class="panel">
-<h2>SOFA-2</h2>
+    <table>
+      <tr><th>Sistema</th><th>Variable</th></tr>
 
-<table>
-<tr><th>Sistema</th><th>Variable</th></tr>
+      <tr>
+        <td>Neurológico</td>
+        <td>
+          <select id="sofa_neuro">
+            <option value="">Seleccionar</option>
+            <option value="0">GCS 15</option>
+            <option value="1">GCS 13–14 ó delirium tratado</option>
+            <option value="2">GCS 9–12</option>
+            <option value="3">GCS 6–8</option>
+            <option value="4">GCS ≤5</option>
+          </select>
+        </td>
+      </tr>
 
-<tr>
-<td>Neurológico</td>
-<td>
-<select id="sofa_neuro">
-<option value="">Seleccionar</option>
-<option value="0">GCS 15</option>
-<option value="1">GCS 13–14 ó delirium tratado</option>
-<option value="2">GCS 9–12</option>
-<option value="3">GCS 6–8</option>
-<option value="4">GCS ≤5</option>
-</select>
-</td>
-</tr>
+      <tr>
+        <td>Respiratorio</td>
+        <td>
+          <select id="sofa_resp">
+            <option value="">Seleccionar</option>
+            <option value="0">PaO₂/FiO₂ &gt; 300</option>
+            <option value="1">≤ 300</option>
+            <option value="2">≤ 225</option>
+            <option value="3">≤ 150 + soporte</option>
+            <option value="4">≤ 75 + soporte avanzado / ECMO</option>
+          </select>
+        </td>
+      </tr>
 
-<tr>
-<td>Respiratorio</td>
-<td>
-<select id="sofa_resp">
-<option value="">Seleccionar</option>
-<option value="0">PaO₂/FiO₂ &gt; 300</option>
-<option value="1">≤ 300</option>
-<option value="2">≤ 225</option>
-<option value="3">≤ 150 + soporte</option>
-<option value="4">≤ 75 + soporte avanzado / ECMO</option>
-</select>
-</td>
-</tr>
+      <tr>
+        <td>Cardiovascular</td>
+        <td>
+          <select id="sofa_cardio">
+            <option value="">Seleccionar</option>
+            <option value="0">0 — PAM ≥ 70 mmHg, sin vasopresores ni inotrópicos</option>
+            <option value="1">1 — PAM &lt; 70 mmHg, sin vasopresores ni inotrópicos</option>
+            <option value="2">2 — Vasopresor dosis baja</option>
+            <option value="3">3 — Vasopresor dosis media</option>
+            <option value="4">4 — Vasopresor dosis alta / soporte mecánico</option>
+          </select>
+        </td>
+      </tr>
 
-<tr>
-<td>Cardiovascular</td>
-<td>
-<select id="sofa_cardio">
-<option value="">Seleccionar</option>
-<option value="0">0 — PAM ≥ 70 mmHg, sin vasopresores ni inotrópicos</option>
-<option value="1">1 — PAM &lt; 70 mmHg, sin vasopresores ni inotrópicos</option>
-<option value="2">2 — Vasopresor dosis baja: (NE+Epi) ≤ 0.2 µg/kg/min O cualquier dosis de otro vasopresor/inotrópico</option>
-<option value="3">3 — Vasopresor dosis media: (NE+Epi) &gt; 0.2 a ≤ 0.4 µg/kg/min O (NE+Epi) ≤ 0.2 + otro vasopresor/inotrópico</option>
-<option value="4">4 — Vasopresor dosis alta: (NE+Epi) &gt; 0.4 µg/kg/min O (NE+Epi) &gt; 0.2 a ≤ 0.4 + otro vasopresor/inotrópico O soporte mecánico</option>
-</select>
-</td>
-</tr>
+      <tr>
+        <td>Hígado</td>
+        <td>
+          <select id="sofa_liver">
+            <option value="">Seleccionar</option>
+            <option value="0">BT ≤ 1.2</option>
+            <option value="1">BT ≤ 3</option>
+            <option value="2">BT ≤ 6</option>
+            <option value="3">BT ≤ 12</option>
+            <option value="4">BT &gt; 12</option>
+          </select>
+        </td>
+      </tr>
 
-<tr>
-<td>Hígado</td>
-<td>
-<select id="sofa_liver">
-<option value="">Seleccionar</option>
-<option value="0">BT ≤ 1.2</option>
-<option value="1">BT ≤ 3</option>
-<option value="2">BT ≤ 6</option>
-<option value="3">BT ≤ 12</option>
-<option value="4">BT &gt; 12</option>
-</select>
-</td>
-</tr>
+      <tr>
+        <td>Riñón</td>
+        <td>
+          <select id="sofa_renal">
+            <option value="">Seleccionar</option>
+            <option value="0">Cr ≤ 1.2</option>
+            <option value="1">Cr ≤ 2.0</option>
+            <option value="2">Cr ≤ 3.5</option>
+            <option value="3">Cr &gt; 3.5 / anuria</option>
+            <option value="4">RRT</option>
+          </select>
+        </td>
+      </tr>
 
-<tr>
-<td>Riñón</td>
-<td>
-<select id="sofa_renal">
-<option value="">Seleccionar</option>
-<option value="0">Cr ≤ 1.2</option>
-<option value="1">Cr ≤ 2.0</option>
-<option value="2">Cr ≤ 3.5</option>
-<option value="3">Cr &gt; 3.5 / anuria</option>
-<option value="4">RRT</option>
-</select>
-</td>
-</tr>
+      <tr>
+        <td>Coagulación</td>
+        <td>
+          <select id="sofa_hemo">
+            <option value="">Seleccionar</option>
+            <option value="0">Plaquetas &gt; 150</option>
+            <option value="1">≤ 150</option>
+            <option value="2">≤ 100</option>
+            <option value="3">≤ 80</option>
+            <option value="4">≤ 50</option>
+          </select>
+        </td>
+      </tr>
+    </table>
 
-<tr>
-<td>Coagulación</td>
-<td>
-<select id="sofa_hemo">
-<option value="">Seleccionar</option>
-<option value="0">Plaquetas &gt; 150</option>
-<option value="1">≤ 150</option>
-<option value="2">≤ 100</option>
-<option value="3">≤ 80</option>
-<option value="4">≤ 50</option>
-</select>
-</td>
-</tr>
-</table>
+    <div class="actions">
+      <button class="primary" onclick="calcSOFA()">Iniciar cálculo</button>
+      <button class="secondary" onclick="resetSOFA()">Reiniciar valores</button>
+    </div>
 
-<div class="actions">
-<button class="primary" onclick="calcSOFA()">Iniciar cálculo</button>
-<button class="secondary" onclick="resetSOFA()">Reiniciar valores</button>
-</div>
-
-<div id="sofa_result" class="result"></div>
-</section>
+    <div id="sofa_result" class="result"></div>
+  </section>
 
 <!-- =====================================================
      APACHE II
