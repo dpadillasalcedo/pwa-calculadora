@@ -1,37 +1,55 @@
-/* =========================
+/* =========================================================
+   VARIABLES
+========================================================= */
+:root{
+  --bg:#020617;
+  --card:#0b1220;
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#0ea5e9;
+}
+
+/* =========================================================
    RESET / BASE
-========================= */
-* {
-  box-sizing: border-box;
+========================================================= */
+*{
+  box-sizing:border-box;
 }
 
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* =========================================================
+   HEADER / FOOTER
+========================================================= */
+header,
+footer{
   background:#020617;
-  color:#e5e7eb;
-  line-height:1.45;
+  border-bottom:1px solid var(--border);
 }
 
-h1,h2{
-  color:#f8fafc;
-  margin-top:0;
+footer{
+  border-top:1px solid var(--border);
 }
 
-/* =========================
-   BREADCRUMB / TOP NAV
-========================= */
+/* =========================================================
+   BREADCRUMB
+========================================================= */
 .breadcrumb-nav{
   max-width:1100px;
   margin:auto;
   padding:1rem 1.5rem;
   display:flex;
-  justify-content:flex-start;
   align-items:center;
 }
 
 .breadcrumb-link{
-  color:#ffffff;
+  color:#ffffff;              /* BLANCO */
   text-decoration:none;
   font-weight:500;
 }
@@ -40,78 +58,88 @@ h1,h2{
   text-decoration:underline;
 }
 
+/* =========================================================
+   FOOTER NAV
+========================================================= */
+.footer-nav nav{
+  display:flex;
+  justify-content:center;
+  gap:.6rem;
+}
 
-/* =========================
+.footer-nav a{
+  color:#ffffff;              /* BLANCO */
+  text-decoration:none;
+  font-size:.75rem;
+}
+
+.footer-nav a:hover{
+  text-decoration:underline;
+}
+
+/* =========================================================
    LAYOUT
-========================= */
+========================================================= */
 .container{
   max-width:1100px;
   margin:auto;
   padding:1.5rem;
 }
 
-/* =========================
-   PANELS
-========================= */
 .panel{
-  background:#0b1220;
-  border:1px solid #1e293b;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:12px;
   padding:1.5rem;
-  margin-bottom:2rem;
+  margin-bottom:2.5rem;
 }
 
-/* =========================
-   TABLES
-========================= */
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:1rem;
-}
-
-th, td{
-  border:1px solid #1e293b;
-  padding:.6rem;
-  vertical-align:top;
-}
-
-th{
-  background:#020617;
-  text-align:left;
+/* =========================================================
+   HEADINGS
+========================================================= */
+h1{
   color:#f8fafc;
+  font-size:1.8rem;
+  margin-bottom:1.5rem;
 }
 
-/* =========================
-   FORM CONTROLS
-========================= */
-select{
-  width:100%;
-  padding:.5rem .6rem;
-  background:#020617;
-  color:#e5e7eb;
-  border:1px solid #1e293b;
-  border-radius:8px;
+h2{
+  color:#f8fafc;
+  font-size:1.35rem;          /* MISMO TAMAÑO PARA SOFA / APACHE / SAPS */
+  margin-top:0;
+}
 
-  appearance:none;
-  -webkit-appearance:none;
-  -moz-appearance:none;
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+label{
+  font-size:.9rem;
+}
+
+select,
+button{
+  width:100%;
+  padding:.55rem;
+  background:#020617;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:8px;
 }
 
 select option{
-  background:#020617;
-  color:#e5e7eb;
+  background:#0b1220;
+  color:var(--text);
 }
 
-select:focus{
-  outline:none;
-  border-color:#38bdf8;
-  box-shadow:0 0 0 2px rgba(56,189,248,.25);
+/* =========================================================
+   GRID & ACTIONS
+========================================================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;
 }
 
-/* =========================
-   ACTION BUTTONS
-========================= */
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -119,72 +147,38 @@ select:focus{
   margin-top:1rem;
 }
 
-button{
-  width:100%;
-  padding:.55rem;
-  border-radius:999px;
-  font-weight:600;
-  cursor:pointer;
-  border:1px solid transparent;
-}
-
+/* =========================================================
+   BUTTONS
+========================================================= */
 button.primary{
-  background:#0ea5e9;
+  background:var(--primary);
   color:#020617;
-}
-
-button.primary:hover{
-  background:#38bdf8;
+  font-weight:700;
+  border:none;
 }
 
 button.secondary{
-  background:transparent;
-  color:#94a3b8;
-  border:1px solid #1e293b;
+  color:var(--muted);
 }
 
-button.secondary:hover{
-  color:#e5e7eb;
-  border-color:#38bdf8;
-}
-
-/* =========================
-   RESULTS
-========================= */
+/* =========================================================
+   RESULTS / NOTES
+========================================================= */
 .result{
   margin-top:1rem;
-  padding:.75rem 1rem;
-  background:rgba(2,6,23,.5);
-  border:1px solid #1e293b;
-  border-radius:10px;
   font-weight:700;
-  color:#f8fafc;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer{
-  background:#0b1220;
-  border-top:1px solid #1e293b;
-  text-align:center;
-  padding:1.25rem 1rem;
-}
-
-footer a,
-footer span,
-footer p{
-  color:#ffffff;
-  text-decoration:none;
+.note{
   font-size:.85rem;
+  color:var(--muted);
 }
 
-footer a:hover{
-  color:#38bdf8;
-  text-decoration:underline;
-}
-
-footer p{
-  margin:.75rem 0 0;
-  color:#cbd5e1;
+/* =========================================================
+   FOOTER TEXT
+========================================================= */
+footer .container{
+  font-size:.75rem;
+  color:#ffffff;              /* BLANCO */
+  text-align:center;
 }
