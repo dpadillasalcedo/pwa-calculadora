@@ -102,24 +102,22 @@ function resetAPACHE(){
 </script>
 
 
-/* =========================================================
+<script>
+/* =========================
    SAPS II
-========================================================= */
+========================= */
 function calcSAPS(){
+  // suma de las 17 variables
   const score = sumBySelector('.saps');
 
-  const res = document.getElementById('saps_result');
-  const mort = document.getElementById('saps_mortality');
+  document.getElementById('saps_result').textContent =
+    `SAPS II total: ${score}`;
 
-  if (!res || !mort) return;
-
-  res.textContent = `SAPS II total: ${score}`;
-
-  // Fórmula logística ORIGINAL SAPS II
+  // Fórmula logística original SAPS II
   const logit = (score - 32.6659) / 7.3068;
   const mortality = 100 / (1 + Math.exp(-logit));
 
-  mort.textContent =
+  document.getElementById('saps_mortality').textContent =
     `Mortalidad hospitalaria estimada: ${mortality.toFixed(1)}%`;
 }
 
@@ -129,3 +127,4 @@ function resetSAPS(){
   document.getElementById('saps_mortality').textContent = '';
 }
 </script>
+
