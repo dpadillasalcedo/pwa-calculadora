@@ -4,33 +4,35 @@
 function sumBySelector(selector){
   let t = 0;
   document.querySelectorAll(selector).forEach(el=>{
-    t += Number(el.value || 0);
+    t += Number(el.value ?? 0);
   });
   return t;
 }
 
 function resetBySelector(selector){
   document.querySelectorAll(selector).forEach(el=>{
+    // vuelve al primer option (placeholder o "0")
     el.selectedIndex = 0;
+    el.dispatchEvent(new Event("change", { bubbles: true }));
   });
 }
 
 /* =========================================================
-   SOFA-2 (6 sistemas) — TABLA OFICIAL
-   HTML esperado:
-   <select class="sofa"> con valores 0–4 para:
-   - Neuro
-   - Resp
-   - CV
-   - Hepático
-   - Renal
-   - Hemostasia
+   SOFA-2
 ========================================================= */
-function calcSOFA(){
+function calcSOFA(e){
+  // Evita submit/recarga si el botón está dentro de un form
+  if (e) e.preventDefault();
+
   const total = sumBySelector('.sofa');
 
-  const res = document.getElementById('sofa_result');
+  const res  = document.getElementById('sofa_result');
   const mort = document.getElementById('sofa_mortality');
+
+  if (!res || !mort){
+    console.error('Faltan elementos #sofa_result o #sofa_mortality en el HTML');
+    return;
+  }
 
   res.textContent = `SOFA-2 total: ${total}`;
 
@@ -42,11 +44,32 @@ function calcSOFA(){
                   'Mortalidad estimada >50–90%';
 }
 
-function resetSOFA(){
+function resetSOFA(e){
+  if (e) e.preventDefault();
+
   resetBySelector('.sofa');
-  document.getElementById('sofa_result').textContent = '';
-  document.getElementById('sofa_mortality').textContent = '';
+
+  const res  = document.getElementById('sofa_result');
+  const mort = document.getElementById('sofa_mortality');
+
+  if (res)  res.textContent = '';
+  if (mort) mort.textContent = '';
 }
+
+/* =========================================================
+   BINDING AUTOMÁTICO (para que los botones funcionen sin onclick)
+   Requiere:
+   - botón calcular: id="btn_calc_sofa"
+   - botón reiniciar: id="btn_reset_sofa"
+========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const btnCalc  = document.getElementById('btn_calc_sofa');
+  const btnReset = document.getElementById('btn_reset_sofa');
+
+  if (btnCalc)  btnCalc.addEventListener('click', calcSOFA);
+  if (btnReset) btnReset.addEventListener('click', resetSOFA);
+});
+
 
 /* =========================================================
    APACHE II — COMPLETO
