@@ -114,6 +114,7 @@ button.secondary{color:var(--muted)}
 <div class="grid">
 <label>Neurológico (GCS)
 <select class="sofa">
+<option value="" selected></option>
 <option value="0">GCS 15</option>
 <option value="1">GCS 13–14 / delirium tratado</option>
 <option value="2">GCS 9–12</option>
@@ -124,6 +125,7 @@ button.secondary{color:var(--muted)}
 
 <label>Respiratorio
 <select class="sofa">
+<option value="" selected></option>
 <option value="0">PaO₂/FiO₂ &gt;300</option>
 <option value="1">≤300</option>
 <option value="2">≤225</option>
@@ -133,6 +135,7 @@ button.secondary{color:var(--muted)}
 </label>
 
 <label>Cardiovascular
+<option value="" selected></option>
 <select class="sofa">
 <option value="0">PAM ≥70, sin vasopresores</option>
 <option value="1">PAM &lt;70</option>
@@ -144,6 +147,7 @@ button.secondary{color:var(--muted)}
 
 <label>Hepático (Bilirrubina)
 <select class="sofa">
+<option value="" selected></option>
 <option value="0">≤1.2 mg/dL</option>
 <option value="1">≤3.0</option>
 <option value="2">≤6.0</option>
@@ -154,6 +158,7 @@ button.secondary{color:var(--muted)}
 
 <label>Renal
 <select class="sofa">
+<option value="" selected></option>
 <option value="0">Creat ≤1.2</option>
 <option value="1">≤2.0 o diuresis &lt;0.5 ml/kg/h (6–12h)</option>
 <option value="2">≤3.5 o diuresis &lt;0.5 ml/kg/h ≥12h</option>
@@ -164,6 +169,7 @@ button.secondary{color:var(--muted)}
 
 <label>Hemostasia (Plaquetas)
 <select class="sofa">
+<option value="" selected></option>
 <option value="0">&gt;150.000</option>
 <option value="1">≤150.000</option>
 <option value="2">≤100.000</option>
@@ -237,6 +243,7 @@ function resetSOFA(){
 <div class="grid">
   <label>Temperatura (°C)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">36–38.4</option>
       <option value="1">34–35.9 / 38.5–38.9</option>
       <option value="2">32–33.9 / 39–40.9</option>
@@ -247,6 +254,7 @@ function resetSOFA(){
 
   <label>PAM (mmHg)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">70–109</option>
       <option value="2">50–69 / 110–129</option>
       <option value="3">130–159</option>
@@ -256,6 +264,7 @@ function resetSOFA(){
 
   <label>Frecuencia cardíaca
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">70–109</option>
       <option value="2">55–69 / 110–139</option>
       <option value="3">40–54 / 140–179</option>
@@ -265,6 +274,7 @@ function resetSOFA(){
 
   <label>Frecuencia respiratoria
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">12–24</option>
       <option value="1">10–11 / 25–34</option>
       <option value="2">6–9</option>
@@ -275,6 +285,7 @@ function resetSOFA(){
 
   <label>Oxigenación (PaO₂ / A-a)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">Normal</option>
       <option value="1">Leve</option>
       <option value="3">Moderada</option>
@@ -284,6 +295,7 @@ function resetSOFA(){
 
   <label>pH arterial
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">7.33–7.49</option>
       <option value="2">7.25–7.32 / 7.50–7.59</option>
       <option value="3">7.15–7.24 / 7.60–7.69</option>
@@ -293,6 +305,7 @@ function resetSOFA(){
 
   <label>Sodio (mmol/L)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">130–149</option>
       <option value="1">150–154</option>
       <option value="2">120–129 / 155–159</option>
@@ -303,6 +316,7 @@ function resetSOFA(){
 
   <label>Potasio (mmol/L)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">3.5–5.4</option>
       <option value="1">3.0–3.4 / 5.5–5.9</option>
       <option value="2">2.5–2.9 / 6.0–6.9</option>
@@ -312,6 +326,7 @@ function resetSOFA(){
 
   <label>Creatinina (mg/dL)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">&lt;1.5</option>
       <option value="2">1.5–1.9</option>
       <option value="3">2.0–3.4</option>
@@ -321,6 +336,7 @@ function resetSOFA(){
 
   <label>Hematocrito (%)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">30–45</option>
       <option value="2">20–29.9 / 46–49.9</option>
       <option value="3">50–59.9</option>
@@ -330,6 +346,7 @@ function resetSOFA(){
 
   <label>Leucocitos (x10³)
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">3–14.9</option>
       <option value="1">15–19.9</option>
       <option value="2">1–2.9 / ≥20</option>
@@ -339,6 +356,7 @@ function resetSOFA(){
 
   <label>Glasgow
     <select class="apache">
+      <option value="" selected></option>
       <option value="0">15</option>
       <option value="1">13–14</option>
       <option value="2">10–12</option>
@@ -353,6 +371,7 @@ function resetSOFA(){
 <div class="grid">
   <label>Edad
     <select id="apache_age">
+      <option value="" selected></option>
       <option value="0">&lt;44</option>
       <option value="2">45–54</option>
       <option value="3">55–64</option>
@@ -363,6 +382,7 @@ function resetSOFA(){
 
   <label>Enfermedad crónica
     <select id="apache_chronic">
+      <option value="" selected></option>
       <option value="0">No</option>
       <option value="2">Quirúrgico</option>
       <option value="5">No quirúrgico</option>
@@ -385,21 +405,177 @@ function resetSOFA(){
 <p class="note">17 variables – mortalidad logística</p>
 
 <div class="grid">
-<label>Puntaje SAPS II total
-<select id="saps_score">
-<option value="10">≤20</option>
-<option value="25">21–30</option>
-<option value="35">31–40</option>
-<option value="45">41–50</option>
-<option value="55">51–60</option>
-<option value="65">&gt;60</option>
+
+<!-- 1 Edad -->
+<label>Edad
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;40</option>
+<option value="7">40–59</option>
+<option value="12">60–69</option>
+<option value="15">70–74</option>
+<option value="16">75–79</option>
+<option value="18">≥80</option>
 </select>
 </label>
+
+<!-- 2 FC -->
+<label>Frecuencia cardíaca
+<select class="saps">
+<option value="" selected></option>
+<option value="0">70–119</option>
+<option value="2">55–69 / 120–159</option>
+<option value="4">&lt;55 / ≥160</option>
+</select>
+</label>
+
+<!-- 3 PAS -->
+<label>Presión sistólica
+<select class="saps">
+<option value="" selected></option>
+<option value="0">100–199</option>
+<option value="5">70–99</option>
+<option value="13">&lt;70 / ≥200</option>
+</select>
+</label>
+
+<!-- 4 Temp -->
+<label>Temperatura
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥39</option>
+<option value="3">38–38.9</option>
+<option value="6">&lt;38</option>
+</select>
+</label>
+
+<!-- 5 Glasgow -->
+<label>Glasgow
+<select class="saps">
+<option value="" selected></option>
+<option value="0">15</option>
+<option value="5">13–14</option>
+<option value="10">10–12</option>
+<option value="15">&lt;10</option>
+</select>
+</label>
+
+<!-- 6 PaO2/FiO2 -->
+<label>Oxigenación (PaO₂/FiO₂)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥200</option>
+<option value="9">&lt;200</option>
+</select>
+</label>
+
+<!-- 7 Urea -->
+<label>Urea (mg/dL)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;10</option>
+<option value="6">10–29</option>
+<option value="10">30–59</option>
+<option value="15">≥60</option>
+</select>
+</label>
+
+<!-- 8 Sodio -->
+<label>Sodio
+<select class="saps">
+<option value="" selected></option>
+<option value="0">125–144</option>
+<option value="5">&lt;125 / ≥145</option>
+</select>
+</label>
+
+<!-- 9 Potasio -->
+<label>Potasio
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–4.9</option>
+<option value="3">&lt;3 / ≥5</option>
+</select>
+</label>
+
+<!-- 10 Bicarbonato -->
+<label>Bicarbonato
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥20</option>
+<option value="6">&lt;20</option>
+</select>
+</label>
+
+<!-- 11 Bilirrubina -->
+<label>Bilirrubina
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;4</option>
+<option value="4">4–5.9</option>
+<option value="9">≥6</option>
+</select>
+</label>
+
+<!-- 12 Leucocitos -->
+<label>Leucocitos
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–20</option>
+<option value="3">&lt;3 / ≥20</option>
+</select>
+</label>
+
+<!-- 13 Diuresis -->
+<label>Diuresis 24h
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥1 L</option>
+<option value="11">&lt;1 L</option>
+</select>
+</label>
+
+<!-- 14 Tipo admisión -->
+<label>Tipo de admisión
+<select class="saps">
+<option value="" selected></option>
+<option value="0">Programada</option>
+<option value="6">Urgente</option>
+</select>
+</label>
+
+<!-- 15 Cirugía -->
+<label>Cirugía
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="8">Sí</option>
+</select>
+</label>
+
+<!-- 16 SIDA -->
+<label>SIDA
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="17">Sí</option>
+</select>
+</label>
+
+<!-- 17 Neoplasia -->
+<label>Neoplasia hematológica
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="10">Sí</option>
+</select>
+</label>
+
 </div>
 
 <div class="actions">
-<button class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
-<button class="secondary" onclick="resetSAPS()">Reiniciar</button>
+  <button type="button" class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
+  <button type="button" class="secondary" onclick="resetSAPS()">Reiniciar</button>
 </div>
 
 <div id="saps_result" class="result"></div>
