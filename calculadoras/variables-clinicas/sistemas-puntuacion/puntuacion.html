@@ -375,15 +375,37 @@ function resetSOFA(){
     </select>
   </label>
 
-  <label>Oxigenación (PaO₂ / A-a)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">Normal</option>
-      <option value="1">Leve</option>
-      <option value="3">Moderada</option>
-      <option value="4">Severa</option>
-    </select>
-  </label>
+<label for="oxygenation">
+  Oxigenación (PaO₂ / Gradiente A–a)
+  <select id="oxygenation" class="apache">
+    <option value="" selected disabled>Seleccionar categoría</option>
+    <option value="0">
+      Normal — PaO₂ ≥ 70 mmHg (FiO₂ < 0.5)
+    </option>
+    <option value="1">
+      Leve — PaO₂ 61–70 mmHg (FiO₂ < 0.5)
+    </option>
+    <option value="3">
+      Moderada — PaO₂ 55–60 mmHg (FiO₂ < 0.5)
+    </option>
+    <option value="4">
+      Severa — PaO₂ &lt; 55 mmHg (FiO₂ < 0.5)
+    </option>>
+    <option value="0">
+      Normal — Gradiente A–a &lt; 200 mmHg (FiO₂ ≥ 0.5)
+    </option>
+    <option value="2">
+      Moderada — Gradiente A–a 200–349 mmHg (FiO₂ ≥ 0.5)
+    </option>
+    <option value="3">
+      Severa — Gradiente A–a 350–499 mmHg (FiO₂ ≥ 0.5)
+    </option>
+    <option value="4">
+      Muy severa — Gradiente A–a ≥ 500 mmHg (FiO₂ ≥ 0.5)
+    </option>
+  </select>
+</label>
+
 
   <label>pH arterial
     <select class="apache">
