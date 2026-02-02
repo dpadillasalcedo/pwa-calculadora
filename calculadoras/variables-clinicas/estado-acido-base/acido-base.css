@@ -228,57 +228,67 @@ footer p {
   }
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f8fafc;
-  padding: 2rem;
-  color: #1e293b;
-}
-
+/* =========================================================
+   TABLE · ACID BASE (DARK)
+========================================================= */
 .table-wrapper {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-h2 {
+.table-wrapper h2 {
   margin-bottom: 1rem;
   font-size: 1.25rem;
+  color: #f8fafc;
 }
 
 .acid-base-table {
   width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .acid-base-table th,
 .acid-base-table td {
   padding: 1rem;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border);
   text-align: left;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: var(--text);
 }
 
+/* Section headers */
 .acid-base-table .section th {
-  background-color: #fed7aa;
+  background: #0b1f36;
   font-weight: 700;
   font-size: 1.05rem;
+  color: #e5e7eb;
 }
 
+/* Content rows */
 .acid-base-table .content td {
-  background-color: #fff7ed;
+  background: var(--card);
+  font-size: 0.95rem;
 }
 
-.acid-base-table .content:hover {
-  background-color: #ffedd5;
-  cursor: pointer;
+/* Hover */
+.acid-base-table .content:hover td {
+  background: #12223d;
 }
 
+/* Medical emphasis */
+.acid-base-table strong {
+  color: var(--primary);
+}
+
+/* Mobile */
 @media (max-width: 640px) {
   .acid-base-table th,
   .acid-base-table td {
-    font-size: 0.95rem;
     padding: 0.75rem;
+    font-size: 0.9rem;
   }
 }
