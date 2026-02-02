@@ -1,37 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Critical Care Tools | Utilidades clínicas para Cuidados Intensivos</title>
 
-  <meta name="description"
-    content="Critical Care Tools es una plataforma de calculadoras clínicas para cuidados intensivos. Variables clínicas, infusión de fármacos y soporte nutricional en UCI." />
+  <meta
+    name="description"
+    content="Critical Care Tools es una plataforma de calculadoras clínicas para cuidados intensivos. Variables clínicas, infusión de fármacos y soporte nutricional en UCI."
+  />
 
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- Canonical -->
   <link rel="canonical" href="https://criticalcaretools.com/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Critical Care Tools | Herramientas clínicas para UCI" />
   <meta property="og:description"
-    content="Calculadoras clínicas y herramientas de apoyo para el manejo del paciente crítico en cuidados intensivos." />
+        content="Calculadoras clínicas y herramientas de apoyo para el manejo del paciente crítico en cuidados intensivos." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://criticalcaretools.com/" />
 
+  <!-- =========================
+       CSS
+  ========================== -->
   <link rel="stylesheet" href="/style.css" />
 
-  <!-- Google Analytics GA4 -->
+  <!-- =========================
+       Google Analytics GA4
+  ========================== -->
+
+  <!-- Librería GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script type="text/plain" data-cookieconsent="statistics">
+
+  <!-- Inicialización base + Consent Mode v2 -->
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
     gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4');
+
+    /* Consent Mode por defecto (NO mide hasta consentimiento) */
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+  </script>
+
+  <!-- Activación GA4 SOLO con consentimiento de estadísticas -->
+  <script type="text/plain" data-cookieconsent="statistics">
+    gtag('consent', 'update', {
+      analytics_storage: 'granted'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true
+    });
   </script>
 
 </head>
-
  
 
 <body>
