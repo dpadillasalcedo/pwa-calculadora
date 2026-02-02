@@ -154,4 +154,3 @@ document.querySelectorAll('.content').forEach(row => {
     row.classList.toggle('active');
   });
 });
-
