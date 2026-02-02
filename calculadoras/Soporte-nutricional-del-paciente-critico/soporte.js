@@ -1,97 +1,88 @@
-/* ======================================================
-   Critical Care Tools – JS Base
-   Seguro, liviano y orientado a analítica clínica
-====================================================== */
+/* =========================
+   CriticalCareTools – JS
+   ========================= */
 
-(function () {
-  "use strict";
+// Estrategias (valores superiores)
+const STRATEGIES = {
+  trofico: { kcalKg: 15, protKg: 0.8 },
+  full:    { kcalKg: 30, protKg: 2.0 },
+  hipo:    { kcalKg: 20, protKg: 1.5 }
+};
 
-  /* =========================
-     Helpers
-  ========================= */
+const $ = (id) => document.getElementById(id);
 
-  function isAnalyticsEnabled() {
-    return typeof window.gtag === "function";
+// Helpers
+const roundKcal = (v) => Math.round(v / 10) * 10;
+const roundInt  = (v) => Math.round(v);
+
+function validNumber(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function updateText(id, text) {
+  $(id).textContent = text;
+}
+
+// Cálculo genérico
+function calculate(weight, kcalKg, protKg) {
+  const kcal = weight * kcalKg;
+  const protein = weight * protKg;
+  const kcalFromProtein = protein * 4;
+  const kcalNonProtein = Math.max(0, kcal - kcalFromProtein);
+
+  return {
+    kcal: roundKcal(kcal),
+    protein: roundInt(protein),
+    kcalFromProtein: roundKcal(kcalFromProtein),
+    kcalNonProtein: roundKcal(kcalNonProtein)
+  };
+}
+
+// Recalcular todo
+function recompute() {
+  const pesoReal = validNumber($("pesoReal").value);
+  const isObese = $("toggleObeso").checked;
+
+  $("boxPesoIdeal").style.display = isObese ? "block" : "none";
+  $("notaObesidad").style.display = isObese ? "block" : "none";
+
+  if (!pesoReal) return;
+
+  // --- Trófico ---
+  const trof = calculate(pesoReal, STRATEGIES.trofico.kcalKg, STRATEGIES.trofico.protKg);
+  updateText("kcalTrofico", `${trof.kcal} kcal/día`);
+  updateText("protTrofico", `${trof.protein} g/día`);
+  updateText("kcalProtTrofico", `${trof.kcalFromProtein} kcal`);
+  updateText("kcalNoProtTrofico", `${trof.kcalNonProtein} kcal`);
+
+  // --- Full feeding ---
+  const full = calculate(pesoReal, STRATEGIES.full.kcalKg, STRATEGIES.full.protKg);
+  updateText("kcalFull", `${full.kcal} kcal/día`);
+  updateText("protFull", `${full.protein} g/día`);
+  updateText("kcalProtFull", `${full.kcalFromProtein} kcal`);
+  updateText("kcalNoProtFull", `${full.kcalNonProtein} kcal`);
+
+  // --- Hipocalórico / hiperproteico ---
+  let pesoHipo = pesoReal;
+  if (isObese) {
+    const pesoIdeal = validNumber($("pesoIdeal").value);
+    if (pesoIdeal) pesoHipo = pesoIdeal;
   }
 
-  function trackEvent(eventName, params = {}) {
-    if (!isAnalyticsEnabled()) return;
+  const hipo = calculate(pesoHipo, STRATEGIES.hipo.kcalKg, STRATEGIES.hipo.protKg);
+  updateText("pesoUsadoHipo", `${pesoHipo} kg`);
+  updateText("kcalHipo", `${hipo.kcal} kcal/día`);
+  updateText("protHipo", `${hipo.protein} g/día`);
+  updateText("kcalProtHipo", `${hipo.kcalFromProtein} kcal`);
+  updateText("kcalNoProtHipo", `${hipo.kcalNonProtein} kcal`);
+}
 
-    gtag("event", eventName, {
-      page_title: document.title,
-      page_location: window.location.href,
-      ...params
-    });
-  }
+// Eventos
+["pesoReal", "pesoIdeal", "toggleObeso"].forEach(id => {
+  $(id).addEventListener("input", recompute);
+  $(id).addEventListener("change", recompute);
+});
 
-  /* =========================
-     Page View Manual (fallback)
-     Solo si GA4 no lo dispara
-  ========================= */
-  document.addEventListener("DOMContentLoaded", function () {
-    trackEvent("page_loaded");
-  });
-
-  /* =========================
-     Engagement básico real
-     (sin inflar métricas)
-  ========================= */
-
-  let engaged = false;
-
-  function markEngagement() {
-    if (engaged) return;
-    engaged = true;
-
-    trackEvent("user_engagement", {
-      engagement_time_msec: 10000
-    });
-
-    removeEngagementListeners();
-  }
-
-  function removeEngagementListeners() {
-    window.removeEventListener("scroll", markEngagement);
-    window.removeEventListener("click", markEngagement);
-    window.removeEventListener("keydown", markEngagement);
-  }
-
-  window.addEventListener("scroll", markEngagement, { once: true });
-  window.addEventListener("click", markEngagement, { once: true });
-  window.addEventListener("keydown", markEngagement, { once: true });
-
-  /* =========================
-     Scroll clínico relevante
-     (solo >75%)
-  ========================= */
-
-  window.addEventListener("scroll", function () {
-    const scrollPercent =
-      (window.scrollY + window.innerHeight) /
-      document.documentElement.scrollHeight;
-
-    if (scrollPercent > 0.75) {
-      trackEvent("scroll_depth", {
-        percent_scrolled: 75
-      });
-    }
-  });
-
-  /* =========================
-     Clicks relevantes
-     (extensible a calculadoras)
-  ========================= */
-
-  document.addEventListener("click", function (e) {
-    const target = e.target.closest("[data-track]");
-
-    if (!target) return;
-
-    const eventName = target.getAttribute("data-track");
-
-    trackEvent(eventName, {
-      element_text: target.innerText.trim().slice(0, 100)
-    });
-  });
-
-})();
+// Init
+document.addEventListener("DOMContentLoaded", recompute);
