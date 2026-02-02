@@ -148,3 +148,10 @@ window.calcularAnionGapCorregido = calcularAnionGapCorregido;
 window.calcularDeltaGap = calcularDeltaGap;
 window.calcularSodioCorregido = calcularSodioCorregido;
 window.calcularCalcioCorregido = calcularCalcioCorregido;
+
+document.querySelectorAll('.content').forEach(row => {
+  row.addEventListener('click', () => {
+    row.classList.toggle('active');
+  });
+});
+
