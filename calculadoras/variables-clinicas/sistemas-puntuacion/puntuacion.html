@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Cookiebot (SIEMPRE primero) -->
-  <script id="Cookiebot"
+
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
     data-blockingmode="auto"
@@ -31,158 +35,133 @@
   <meta property="og:url"
         content="https://criticalcaretools.com/calculadoras/puntuacion/uci-scores/" />
 
-  <!-- CSS interno -->
+  <!-- =========================
+       CSS INTERNO
+  ========================== -->
   <style>
-/* =========================================================
-   VARIABLES
-========================================================= */
-:root{
-  --bg:#020617;
-  --card:#0b1220;
-  --border:#1e293b;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --primary:#0ea5e9;
-}
-
-/* =========================================================
-   RESET / BASE
-========================================================= */
-*{ box-sizing:border-box; }
-
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-
-/* =========================================================
-   HEADER / FOOTER
-========================================================= */
-header{
-  background:#020617;
-  border-bottom:1px solid var(--border);
-}
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb-nav{
-  max-width:1100px;
-  margin:0 auto;
-  padding:1rem 1.5rem;
-  display:flex;
-  align-items:center;
-}
-
-.breadcrumb-link{
-  color:#ffffff;
-  text-decoration:none;
-  font-weight:500;
-}
-
-.breadcrumb-link:hover{
-  text-decoration:underline;
-}
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container{
-  max-width:1100px;
-  margin:0 auto;
-  padding:1.5rem;
-}
-
-.panel{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1.5rem;
-  margin-bottom:2.5rem;
-}
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-h1{
-  color:#f8fafc;
-  font-size:1.8rem;
-  margin-bottom:1.5rem;
-}
-
-.panel > h2{
-  color:#f8fafc;
-  font-size:1.4rem;
-  margin:0 0 .5rem 0;
-  font-weight:600;
-}
-
-/* =========================================================
-   FORM ELEMENTS
-========================================================= */
-label{ font-size:.9rem; }
-
-select,
-button{
-  width:100%;
-  padding:.55rem;
-  background:#020617;
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-
-select option{
-  background:#0b1220;
-  color:var(--text);
-}
-
-/* =========================================================
-   GRID & ACTIONS
-========================================================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:.8rem;
-  margin-top:1rem;
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-button.primary{
-  background:var(--primary);
-  color:#020617;
-  font-weight:700;
-  border:none;
-}
-
-button.secondary{
-  color:var(--muted);
-}
-
-/* =========================================================
-   RESULTS / NOTES
-========================================================= */
-.result{ margin-top:1rem; font-weight:700; }
-.note{ font-size:.85rem; color:var(--muted); }
+    /* (tu CSS queda EXACTAMENTE igual, no se toca nada) */
+    :root{
+      --bg:#020617;
+      --card:#0b1220;
+      --border:#1e293b;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --primary:#0ea5e9;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    header{
+      background:#020617;
+      border-bottom:1px solid var(--border);
+    }
+    .breadcrumb-nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:1rem 1.5rem;
+      display:flex;
+      align-items:center;
+    }
+    .breadcrumb-link{
+      color:#ffffff;
+      text-decoration:none;
+      font-weight:500;
+    }
+    .breadcrumb-link:hover{ text-decoration:underline; }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:1.5rem;
+    }
+    .panel{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:1.5rem;
+      margin-bottom:2.5rem;
+    }
+    h1{
+      color:#f8fafc;
+      font-size:1.8rem;
+      margin-bottom:1.5rem;
+    }
+    .panel > h2{
+      color:#f8fafc;
+      font-size:1.4rem;
+      margin:0 0 .5rem 0;
+      font-weight:600;
+    }
+    label{ font-size:.9rem; }
+    select,
+    button{
+      width:100%;
+      padding:.55rem;
+      background:#020617;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:8px;
+    }
+    select option{
+      background:#0b1220;
+      color:var(--text);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1rem;
+    }
+    .actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.8rem;
+      margin-top:1rem;
+    }
+    button.primary{
+      background:var(--primary);
+      color:#020617;
+      font-weight:700;
+      border:none;
+    }
+    button.secondary{ color:var(--muted); }
+    .result{ margin-top:1rem; font-weight:700; }
+    .note{ font-size:.85rem; color:var(--muted); }
   </style>
 
-  <!-- Google Analytics GA4 -->
+  <!-- =========================
+       Google Analytics GA4
+  ========================== -->
+
+  <!-- Librería GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script type="text/plain" data-cookieconsent="statistics">
+
+  <!-- Inicialización base + Consent Mode v2 -->
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
     gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4');
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+  </script>
+
+  <!-- Activación GA4 SOLO con consentimiento -->
+  <script type="text/plain" data-cookieconsent="statistics">
+    gtag('consent', 'update', {
+      analytics_storage: 'granted'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true
+    });
   </script>
 
 </head>
