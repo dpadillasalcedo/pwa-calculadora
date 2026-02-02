@@ -227,3 +227,58 @@ footer p {
     font-size: 1.55rem;
   }
 }
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f8fafc;
+  padding: 2rem;
+  color: #1e293b;
+}
+
+.table-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.acid-base-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+}
+
+.acid-base-table th,
+.acid-base-table td {
+  padding: 1rem;
+  border: 1px solid #cbd5e1;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.acid-base-table .section th {
+  background-color: #fed7aa;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.acid-base-table .content td {
+  background-color: #fff7ed;
+}
+
+.acid-base-table .content:hover {
+  background-color: #ffedd5;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .acid-base-table th,
+  .acid-base-table td {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+}
