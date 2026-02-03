@@ -22,7 +22,6 @@
   --color-border: #1e293b;
 
   --color-primary: #38bdf8;
-  --color-primary-strong: #0ea5e9;
   --color-primary-soft: rgba(56, 189, 248, 0.15);
 
   --color-success: #22c55e;
@@ -45,13 +44,13 @@ body {
 ========================= */
 header {
   text-align: center;
-  padding: 3.5rem 1.5rem 2.5rem;
+  padding: 3rem 1.5rem 2rem;
 }
 
 header h1 {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   color: #f8fafc;
 }
 
@@ -72,7 +71,7 @@ header p {
 }
 
 /* =========================
-   SEPARADORES
+   DIVIDER
 ========================= */
 .divider {
   height: 1px;
@@ -114,14 +113,13 @@ header p {
 /* =========================
    TEXTOS
 ========================= */
-p.small {
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
-
 .small {
   font-size: 0.85rem;
   color: var(--color-muted);
+}
+
+p.small {
+  margin-top: 0.3rem;
 }
 
 .muted {
@@ -129,7 +127,7 @@ p.small {
 }
 
 /* =========================
-   FORM
+   FORM / INPUTS
 ========================= */
 .row {
   display: grid;
@@ -138,7 +136,7 @@ p.small {
 
 @media (min-width: 700px) {
   .row {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr;
     align-items: start;
   }
 }
@@ -152,7 +150,7 @@ label {
 
 input[type="number"] {
   width: 100%;
-  padding: 0.6rem 0.7rem;
+  padding: 0.65rem 0.75rem;
   border-radius: 10px;
   border: 1px solid var(--color-border);
   background: #020617;
@@ -179,6 +177,30 @@ input[type="number"]:focus {
 
 .toggle input {
   margin-top: 0.3rem;
+}
+
+/* =========================
+   RECORDATORIO CLÍNICO
+========================= */
+.clinical-reminder {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(56,189,248,0.08);
+  border: 1px dashed rgba(56,189,248,0.35);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.clinical-reminder strong {
+  display: block;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.clinical-reminder p {
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* =========================
@@ -289,22 +311,10 @@ input[type="number"]:focus {
 }
 
 /* =========================
-   EVALUACIÓN COLORES
+   EVALUACIÓN
 ========================= */
 .tabla-enterales .eval {
   font-weight: 600;
-}
-
-.tabla-enterales .eval:contains("Cumple") {
-  color: var(--color-success);
-}
-
-.tabla-enterales .eval:contains("Se aproxima") {
-  color: var(--color-warning);
-}
-
-.tabla-enterales .eval:contains("No cumple") {
-  color: var(--color-danger);
 }
 
 /* =========================
