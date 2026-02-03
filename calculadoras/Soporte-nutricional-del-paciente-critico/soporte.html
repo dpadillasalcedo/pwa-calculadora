@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Soporte nutricional en el paciente crítico | Critical Care Tools</title>
+  <title>Soporte nutricional enteral en el paciente crítico | Critical Care Tools</title>
 
   <meta name="description"
         content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN." />
@@ -53,13 +53,27 @@
   </header>
 
   <!-- ================= INPUTS ================= -->
-  <section class="card">
-    <div class="row">
-      <div>
-        <label for="pesoReal">Peso real (kg)</label>
-        <input id="pesoReal" type="number" min="1" step="0.1" value="0">
-      </div>
-  </section>
+<section class="card">
+  <div class="row">
+
+    <!-- Input peso -->
+    <div>
+      <label for="pesoReal">Peso real (kg)</label>
+      <input id="pesoReal" type="number" min="1" step="0.1" value="0">
+    </div>
+
+    <!-- Recordatorio clínico -->
+    <div class="clinical-reminder">
+      <strong>Recordatorio clínico</strong>
+      <p>
+        Ajustar el soporte nutricional si el paciente presenta
+        <b>enfermedad renal crónica</b>, <b>quemaduras &gt;15% de la superficie corporal</b>
+        o <b>IMC &gt;30 kg/m²</b>.
+      </p>
+    </div>
+
+  </div>
+</section>
 
   <!-- BOTÓN -->
   <div style="margin:2rem 0;text-align:center;">
