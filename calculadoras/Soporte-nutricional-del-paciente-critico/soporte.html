@@ -10,7 +10,7 @@
         content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN." />
 
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/" />
+  <link rel="canonical" href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html" />
   <meta name="theme-color" content="#020617" />
 
   <!-- Cookiebot -->
@@ -57,38 +57,8 @@
     <div class="row">
       <div>
         <label for="pesoReal">Peso real (kg)</label>
-        <input id="pesoReal" type="number" min="1" step="0.1" value="70">
+        <input id="pesoReal" type="number" min="1" step="0.1" value="0">
       </div>
-
-      <div class="toggle">
-        <input id="toggleObeso" type="checkbox">
-        <div>
-          <strong>Paciente obeso</strong>
-          <div class="small">
-            Uso de peso ideal para estrategia hipocalórica/hiperproteica
-          </div>
-        </div>
-      </div>
-
-      <div id="boxPesoIdeal" style="display:none;">
-        <label for="pesoIdeal">
-          Peso ideal (kg)
-          <span class="small">(solo hipocalórico)</span>
-        </label>
-        <input id="pesoIdeal" type="number" min="1" step="0.1" value="60">
-      </div>
-    </div>
-
-    <div id="notaObesidad" class="note" style="display:none;">
-      <b>Aclaración:</b>
-      En pacientes con obesidad se recomienda una estrategia
-      <b>hipocalórica–hiperproteica</b>, utilizando peso ideal o ajustado.
-    </div>
-
-    <div class="foot">
-      Conversión energética de referencia:
-      HC 4 kcal/g · proteínas 4 kcal/g · lípidos 9 kcal/g.
-    </div>
   </section>
 
   <!-- BOTÓN -->
