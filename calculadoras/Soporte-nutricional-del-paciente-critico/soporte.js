@@ -26,6 +26,9 @@ function setText(id, value = "—") {
   if (el) el.textContent = value;
 }
 
+/* =========================
+   Limpieza de resultados
+========================= */
 function clearOutputs() {
   [
     "kcalTrofico","protTrofico","kcalProtTrofico","kcalNoProtTrofico",
@@ -36,7 +39,9 @@ function clearOutputs() {
   clearEnteralTable();
 }
 
-/* === Cálculo base === */
+/* =========================
+   Cálculo base
+========================= */
 function calculate(weight, kcalKg, protKg) {
   const kcal = weight * kcalKg;
   const protein = weight * protKg;
@@ -51,7 +56,9 @@ function calculate(weight, kcalKg, protKg) {
   };
 }
 
-/* === Tabla enteral automática === */
+/* =========================
+   Tabla enteral automática
+========================= */
 function clearEnteralTable() {
   const rows = document.querySelectorAll(".tabla-enterales tbody tr");
   rows.forEach(row => {
@@ -75,9 +82,7 @@ function updateEnteralTable(targetKcal, targetProtein) {
     if (!kcalMl || !prot100) return;
 
     const vol = targetKcal / kcalMl;
-    const kcalReal = vol * kcalMl;
     const protReal = vol * (prot100 / 100);
-
     const ratio = protReal / targetProtein;
 
     let evalText = "❌ No cumple";
@@ -85,29 +90,36 @@ function updateEnteralTable(targetKcal, targetProtein) {
     else if (ratio >= 0.8) evalText = "🟡 Se aproxima";
 
     row.querySelector(".vol").textContent  = `${round0(vol)} ml`;
-    row.querySelector(".kcal").textContent = `${round10(kcalReal)} kcal`;
+    row.querySelector(".kcal").textContent = `${round10(targetKcal)} kcal`;
     row.querySelector(".prot").textContent = `${round0(protReal)} g`;
     row.querySelector(".eval").textContent = evalText;
   });
 }
 
-/* === Evento principal === */
+/* =========================
+   Evento principal
+========================= */
 function runCalculation() {
 
-  const pesoReal = validNumber($("pesoReal").value);
+  const msg = $("msgPeso");
+  const pesoReal = validNumber($("pesoReal")?.value);
   const isObese = $("toggleObeso")?.checked;
 
   $("boxPesoIdeal").style.display = isObese ? "block" : "none";
   $("notaObesidad").style.display = isObese ? "block" : "none";
 
+  /* 👉 Input vacío o inválido */
   if (!pesoReal) {
     clearOutputs();
+    if (msg) msg.style.display = "block";
     return;
   }
 
+  if (msg) msg.style.display = "none";
+
   let pesoHipo = pesoReal;
   if (isObese) {
-    const pi = validNumber($("pesoIdeal").value);
+    const pi = validNumber($("pesoIdeal")?.value);
     if (pi) pesoHipo = pi;
   }
 
@@ -137,8 +149,18 @@ function runCalculation() {
   updateEnteralTable(full.kcal, full.protein);
 }
 
-/* === Listeners === */
+/* =========================
+   Listeners
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = $("btnCalcular");
-  if (btn) btn.addEventListener("click", runCalculation);
+  $("btnCalcular")?.addEventListener("click", runCalculation);
+
+  /* Recalcular automáticamente */
+  ["pesoReal", "pesoIdeal", "toggleObeso"].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener("input", runCalculation);
+      el.addEventListener("change", runCalculation);
+    }
+  });
 });
