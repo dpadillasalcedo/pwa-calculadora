@@ -6,34 +6,24 @@
 
   <title>Soporte nutricional en el paciente crítico | Critical Care Tools</title>
 
-  <meta
-    name="description"
-    content="Sección dedicada al soporte nutricional en el paciente crítico. Herramientas clínicas, cálculos y guías basadas en evidencia para UCI."
-  />
+  <meta name="description"
+        content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN." />
 
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- =========================
-       Cookiebot (SIEMPRE PRIMERO)
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    type="text/javascript">
-  </script>
+  <!-- Cookiebot -->
+  <script id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+          data-blockingmode="auto"
+          type="text/javascript"></script>
 
-  <!-- =========================
-       CSS
-  ========================== -->
+  <!-- CSS -->
   <link rel="stylesheet" href="soporte.css">
 
-  <!-- =========================
-       Google Analytics GA4
-  ========================== -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,177 +37,217 @@
 
 <body>
 
-  <!-- =========================
-       HEADER GLOBAL
-  ========================== -->
+<header>
+  <h1>Critical Care Tools</h1>
+  <p>Herramientas clínicas para la evaluación y el manejo del paciente crítico en UCI</p>
+</header>
+
+<main class="wrap">
+
   <header>
-    <h1>Critical Care Tools</h1>
+    <h1>Soporte nutricional del paciente crítico</h1>
     <p>
-      Herramientas clínicas para la evaluación y el manejo del paciente crítico
-      en la Unidad de Cuidados Intensivos
+      Calculadora clínica de apoyo basada en peso corporal y rangos
+      recomendados por guías <b>ASPEN / ESPEN</b>.
     </p>
   </header>
 
-  <!-- =========================
-       CONTENIDO PRINCIPAL
-  ========================== -->
-  <main class="wrap">
+  <!-- ================= INPUTS ================= -->
+  <section class="card">
+    <div class="row">
+      <div>
+        <label for="pesoReal">Peso real (kg)</label>
+        <input id="pesoReal" type="number" min="1" step="0.1" value="70">
+      </div>
 
-    <header>
-      <h1>Soporte nutricional del paciente crítico (FREE)</h1>
-      <p>
-        Calculadora clínica basada en <b>peso real</b>.
-        Se utilizan los <b>valores superiores</b> de kcal/kg y g de proteína/kg
-        para cada estrategia.
-      </p>
-    </header>
-
-    <!-- =========================
-         INPUTS
-    ========================== -->
-    <section class="card">
-      <div class="row">
+      <div class="toggle">
+        <input id="toggleObeso" type="checkbox">
         <div>
-          <label for="pesoReal">Peso real (kg)</label>
-          <input id="pesoReal" type="number" min="1" step="0.1" value="70" />
-        </div>
-
-        <div class="toggle" style="flex:1; min-width:260px;">
-          <input id="toggleObeso" type="checkbox" />
-          <div>
-            <strong>Paciente obeso</strong>
-            <div class="small">
-              Activa recomendación y uso de <b>peso ideal</b> en el cálculo
-              hipocalórico/hiperproteico.
-            </div>
+          <strong>Paciente obeso</strong>
+          <div class="small">
+            Uso de peso ideal para estrategia hipocalórica/hiperproteica
           </div>
         </div>
-
-        <div id="boxPesoIdeal" style="display:none;">
-          <label for="pesoIdeal">
-            Peso ideal (kg)
-            <span class="small">(solo hipocalórico/hiperproteico)</span>
-          </label>
-          <input id="pesoIdeal" type="number" min="1" step="0.1" value="60" />
-        </div>
       </div>
 
-      <div id="notaObesidad" class="note" style="display:none;">
-        <b>Aclaración (obesidad):</b>
-        En pacientes con obesidad, varias guías recomiendan estrategia
-        <b>hipocalórica–hiperproteica</b> y, con frecuencia, usar
-        <b>peso ideal o ajustado</b> para estimaciones.
+      <div id="boxPesoIdeal" style="display:none;">
+        <label for="pesoIdeal">
+          Peso ideal (kg)
+          <span class="small">(solo hipocalórico)</span>
+        </label>
+        <input id="pesoIdeal" type="number" min="1" step="0.1" value="60">
       </div>
-
-      <div class="foot">
-        Conversión energética de referencia:
-        carbohidratos 4 kcal/g · proteínas 4 kcal/g · lípidos 9 kcal/g.
-      </div>
-    </section>
-
-    <!-- =========================
-         BOTÓN DE CÁLCULO
-    ========================== -->
-    <div style="margin: 2rem 0; text-align: center;">
-      <button id="btnCalcular" class="btn">
-        Calcular soporte nutricional enteral
-      </button>
     </div>
 
-    <div class="divider"></div>
+    <div id="notaObesidad" class="note" style="display:none;">
+      <b>Aclaración:</b>
+      En pacientes con obesidad se recomienda una estrategia
+      <b>hipocalórica–hiperproteica</b>, utilizando peso ideal o ajustado.
+    </div>
 
-    <!-- =========================
-         RESULTADOS
-    ========================== -->
-    <section class="grid">
+    <div class="foot">
+      Conversión energética de referencia:
+      HC 4 kcal/g · proteínas 4 kcal/g · lípidos 9 kcal/g.
+    </div>
+  </section>
 
-      <!-- Trófico -->
-      <article class="card">
-        <div class="pill">Cálculo 1</div>
-        <h2>Soporte trófico</h2>
-        <p class="small">
-          Valor calculado: <b>20 kcal/kg/día</b> · <b>0.8 g proteína/kg/día</b>
-        </p>
+  <!-- BOTÓN -->
+  <div style="margin:2rem 0;text-align:center;">
+    <button id="btnCalcular" class="btn">
+      Calcular soporte nutricional
+    </button>
+  </div>
 
-        <div class="result">
-          <div class="metric"><span>Objetivo calórico</span><b id="kcalTrofico">—</b></div>
-          <div class="metric"><span>Objetivo proteico</span><b id="protTrofico">—</b></div>
-          <div class="metric"><span>kcal desde proteína</span><b id="kcalProtTrofico">—</b></div>
-          <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtTrofico">—</b></div>
-        </div>
-      </article>
+  <div class="divider"></div>
 
-      <!-- Full -->
-      <article class="card">
-        <div class="pill">Cálculo 2</div>
-        <h2>Soporte Full feeding</h2>
-        <p class="small">
-          Valor calculado: <b>30 kcal/kg/día</b> · <b>2.0 g proteína/kg/día</b>
-        </p>
+  <!-- ================= RESULTADOS ================= -->
+  <section class="grid">
 
-        <div class="result">
-          <div class="metric"><span>Objetivo calórico</span><b id="kcalFull">—</b></div>
-          <div class="metric"><span>Objetivo proteico</span><b id="protFull">—</b></div>
-          <div class="metric"><span>kcal desde proteína</span><b id="kcalProtFull">—</b></div>
-          <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtFull">—</b></div>
-        </div>
-      </article>
+    <article class="card">
+      <div class="pill">Estrategia 1</div>
+      <h2>Soporte trófico</h2>
+      <p class="small">15 kcal/kg/día · 0.8 g proteína/kg/día</p>
+      <div class="result">
+        <div class="metric"><span>Objetivo calórico</span><b id="kcalTrofico">—</b></div>
+        <div class="metric"><span>Objetivo proteico</span><b id="protTrofico">—</b></div>
+        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtTrofico">—</b></div>
+        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtTrofico">—</b></div>
+      </div>
+    </article>
 
-      <!-- Hipocalórico -->
-      <article class="card">
-        <div class="pill">Cálculo 3</div>
-        <h2>Hipocalórico / hiperproteico</h2>
-        <p class="small">
-          Valor calculado: <b>15 kcal/kg/día</b> · <b>2.0 g proteína/kg/día</b>
-        </p>
+    <article class="card">
+      <div class="pill">Estrategia 2</div>
+      <h2>Full feeding</h2>
+      <p class="small">30 kcal/kg/día · 2.0 g proteína/kg/día</p>
+      <div class="result">
+        <div class="metric"><span>Objetivo calórico</span><b id="kcalFull">—</b></div>
+        <div class="metric"><span>Objetivo proteico</span><b id="protFull">—</b></div>
+        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtFull">—</b></div>
+        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtFull">—</b></div>
+      </div>
+    </article>
 
-        <div class="result">
-          <div class="metric"><span>Peso utilizado</span><b id="pesoUsadoHipo">—</b></div>
-          <div class="metric"><span>Objetivo calórico</span><b id="kcalHipo">—</b></div>
-          <div class="metric"><span>Objetivo proteico</span><b id="protHipo">—</b></div>
-          <div class="metric"><span>kcal desde proteína</span><b id="kcalProtHipo">—</b></div>
-          <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtHipo">—</b></div>
-        </div>
-      </article>
+    <article class="card">
+      <div class="pill">Estrategia 3</div>
+      <h2>Hipocalórico / hiperproteico</h2>
+      <p class="small">15 kcal/kg/día · 2.0 g proteína/kg/día</p>
+      <div class="result">
+        <div class="metric"><span>Peso utilizado</span><b id="pesoUsadoHipo">—</b></div>
+        <div class="metric"><span>Objetivo calórico</span><b id="kcalHipo">—</b></div>
+        <div class="metric"><span>Objetivo proteico</span><b id="protHipo">—</b></div>
+        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtHipo">—</b></div>
+        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtHipo">—</b></div>
+      </div>
+    </article>
 
-    </section>
+  </section>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-    <!-- =========================
-         PREMIUM
-    ========================== -->
-    <section class="card premium">
-      <h2>💎 Premium: fórmulas enterales y adaptación de objetivos</h2>
-      <p class="muted">
-        Acceso a la tabla de nutriciones enterales y cálculo automático de
-        <b>volumen diario</b>, <b>proteína entregada</b> y <b>brecha</b>
-        respecto al objetivo.
-      </p>
-      <a class="btn" href="/premium">Desbloquear Premium</a>
-    </section>
-
-  </main>
-
-  <!-- =========================
-       FOOTER + NAVEGACIÓN
-  ========================== -->
-  <footer>
-    <nav style="margin-bottom: 0.75rem;">
-      <a href="https://criticalcaretools.com" style="color:#38bdf8; text-decoration:none; font-weight:500;">
-        ← Volver a CriticalCareTools.com
-      </a>
-    </nav>
-    <p>
-      © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-      No reemplaza el juicio médico ni las guías institucionales.
+  <!-- ================= TABLA INTELIGENTE ================= -->
+  <section class="card">
+    <h2>Sugerencia automática de nutrición enteral</h2>
+    <p class="small">
+      Comparación automática de fórmulas según los requerimientos calculados.
+      Uso orientativo, no prescriptivo.
     </p>
-  </footer>
 
-  <!-- =========================
-       JS
-  ========================== -->
-  <script src="soporte.js"></script>
+    <div style="overflow-x:auto;margin-top:1.5rem;">
+      <table class="tabla-enterales">
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Fórmula</th>
+            <th>kcal/ml</th>
+            <th>Proteína<br>(g/100 ml)</th>
+            <th>Volumen<br>(ml/día)</th>
+            <th>kcal<br>/día</th>
+            <th>Proteína<br>(g/día)</th>
+            <th>Evaluación</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr data-kcalml="1.0" data-prot100="4.0">
+            <td>Yeviti</td>
+            <td>Isocalórica estándar</td>
+            <td>1.0</td>
+            <td>4.0</td>
+            <td class="vol">—</td>
+            <td class="kcal">—</td>
+            <td class="prot">—</td>
+            <td class="eval">—</td>
+          </tr>
+
+          <tr data-kcalml="1.25" data-prot100="5.6">
+            <td>Energy</td>
+            <td>Hipercalórica</td>
+            <td>1.25</td>
+            <td>5.6</td>
+            <td class="vol">—</td>
+            <td class="kcal">—</td>
+            <td class="prot">—</td>
+            <td class="eval">—</td>
+          </tr>
+
+          <tr data-kcalml="1.25" data-prot100="6.3">
+            <td>Intense</td>
+            <td>Hiperproteica</td>
+            <td>1.25</td>
+            <td>6.3</td>
+            <td class="vol">—</td>
+            <td class="kcal">—</td>
+            <td class="prot">—</td>
+            <td class="eval">—</td>
+          </tr>
+
+          <tr data-kcalml="1.5" data-prot100="7.5">
+            <td>Protison</td>
+            <td>Hiperproteica alta densidad</td>
+            <td>1.5</td>
+            <td>7.5</td>
+            <td class="vol">—</td>
+            <td class="kcal">—</td>
+            <td class="prot">—</td>
+            <td class="eval">—</td>
+          </tr>
+
+          <tr data-kcalml="1.5" data-prot100="7.2">
+            <td>Supportan</td>
+            <td>Hiperproteica especializada</td>
+            <td>1.5</td>
+            <td>7.2</td>
+            <td class="vol">—</td>
+            <td class="kcal">—</td>
+            <td class="prot">—</td>
+            <td class="eval">—</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:1.5rem;">
+      <b>Nota clínica:</b><br>
+      En pacientes con quemaduras &gt;15% SCQ, incluso con enfermedad renal,
+      los requerimientos proteicos pueden ser elevados y deben individualizarse
+      según guías ASPEN / ESPEN y criterio clínico.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <nav style="margin-bottom:0.75rem;">
+    <a href="https://criticalcaretools.com"
+       style="color:#38bdf8;text-decoration:none;font-weight:500;">
+      ← Volver a CriticalCareTools.com
+    </a>
+  </nav>
+  <p>© 2026 Critical Care Tools · Uso educativo · No reemplaza juicio médico</p>
+</footer>
+
+<script src="soporte.js"></script>
 
 </body>
 </html>
