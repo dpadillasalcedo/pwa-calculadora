@@ -1,146 +1,122 @@
 /* =========================
-   CriticalCareTools
-   Soporte nutricional – JS
-========================= */
+   CriticalCareTools – Soporte Nutricional
+   ========================= */
 
-/* =========================
-   CONSTANTES CLÍNICAS
-========================= */
-
-// Valores superiores por estrategia
+// Estrategias (valores superiores)
 const STRATEGIES = {
-  trofico: { kcalKg: 20, protKg: 0.8 },
-  full:    { kcalKg: 25, protKg: 2.0 },
+  trofico: { kcalKg: 15, protKg: 0.8 },
+  full:    { kcalKg: 30, protKg: 2.0 },
   hipo:    { kcalKg: 15, protKg: 2.0 }
 };
 
-/* =========================
-   HELPERS
-========================= */
-
 const $ = (id) => document.getElementById(id);
 
-function isValidNumber(value) {
-  const n = Number(value);
+// Helpers
+const round10 = (v) => Math.round(v / 10) * 10;
+const round1  = (v) => Math.round(v * 10) / 10;
+const round0  = (v) => Math.round(v);
+
+function validNumber(v) {
+  const n = Number(v);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-function roundKcal(value) {
-  return Math.round(value / 10) * 10; // redondeo clínico
-}
-
-function roundInt(value) {
-  return Math.round(value);
-}
-
-function setText(id, text) {
-  const el = $(id);
-  if (el) el.textContent = text;
+function setText(id, value) {
+  $(id).textContent = value;
 }
 
 /* =========================
-   CÁLCULO BASE
+   Cálculo base
 ========================= */
-
-function calculate(weightKg, kcalPerKg, proteinPerKg) {
-  const kcal = weightKg * kcalPerKg;
-  const protein = weightKg * proteinPerKg;
-
+function calculate(weight, kcalKg, protKg) {
+  const kcal = weight * kcalKg;
+  const protein = weight * protKg;
   const kcalFromProtein = protein * 4;
   const kcalNonProtein = Math.max(0, kcal - kcalFromProtein);
 
   return {
-    kcal: roundKcal(kcal),
-    protein: roundInt(protein),
-    kcalFromProtein: roundKcal(kcalFromProtein),
-    kcalNonProtein: roundKcal(kcalNonProtein)
+    kcal: round10(kcal),
+    protein: round0(protein),
+    kcalProt: round10(kcalFromProtein),
+    kcalNoProt: round10(kcalNonProtein)
   };
 }
 
 /* =========================
-   UI – OBESIDAD
+   Tabla enteral automática
 ========================= */
+function updateEnteralTable(targetKcal, targetProtein) {
+  const rows = document.querySelectorAll(".tabla-enterales tbody tr");
 
-function handleObesityUI() {
+  rows.forEach(row => {
+    const kcalMl = Number(row.dataset.kcalml);
+    const prot100 = Number(row.dataset.prot100);
+
+    const vol = targetKcal / kcalMl;
+    const kcalReal = vol * kcalMl;
+    const protReal = vol * (prot100 / 100);
+
+    const ratio = protReal / targetProtein;
+
+    let evalText = "❌ No cumple";
+    if (ratio >= 1) evalText = "✅ Cumple";
+    else if (ratio >= 0.8) evalText = "🟡 Se aproxima";
+
+    row.querySelector(".vol").textContent = `${round0(vol)} ml`;
+    row.querySelector(".kcal").textContent = `${round10(kcalReal)} kcal`;
+    row.querySelector(".prot").textContent = `${round0(protReal)} g`;
+    row.querySelector(".eval").textContent = evalText;
+  });
+}
+
+/* =========================
+   Evento principal
+========================= */
+function runCalculation() {
+
+  const pesoReal = validNumber($("pesoReal").value);
+  if (!pesoReal) return;
+
   const isObese = $("toggleObeso").checked;
 
   $("boxPesoIdeal").style.display = isObese ? "block" : "none";
   $("notaObesidad").style.display = isObese ? "block" : "none";
-}
 
-/* =========================
-   CÁLCULO PRINCIPAL
-========================= */
-
-function calcularSoporteNutricional() {
-  const pesoReal = isValidNumber($("pesoReal").value);
-
-  if (!pesoReal) {
-    alert("Ingresá un peso real válido (kg).");
-    return;
+  let pesoHipo = pesoReal;
+  if (isObese) {
+    const pi = validNumber($("pesoIdeal").value);
+    if (pi) pesoHipo = pi;
   }
 
-  const isObese = $("toggleObeso").checked;
-
-  /* -------- Trófico -------- */
-  const trof = calculate(
-    pesoReal,
-    STRATEGIES.trofico.kcalKg,
-    STRATEGIES.trofico.protKg
-  );
-
+  // --- Trófico ---
+  const trof = calculate(pesoReal, STRATEGIES.trofico.kcalKg, STRATEGIES.trofico.protKg);
   setText("kcalTrofico", `${trof.kcal} kcal/día`);
   setText("protTrofico", `${trof.protein} g/día`);
-  setText("kcalProtTrofico", `${trof.kcalFromProtein} kcal`);
-  setText("kcalNoProtTrofico", `${trof.kcalNonProtein} kcal`);
+  setText("kcalProtTrofico", `${trof.kcalProt} kcal`);
+  setText("kcalNoProtTrofico", `${trof.kcalNoProt} kcal`);
 
-  /* -------- Full feeding -------- */
-  const full = calculate(
-    pesoReal,
-    STRATEGIES.full.kcalKg,
-    STRATEGIES.full.protKg
-  );
-
+  // --- Full ---
+  const full = calculate(pesoReal, STRATEGIES.full.kcalKg, STRATEGIES.full.protKg);
   setText("kcalFull", `${full.kcal} kcal/día`);
   setText("protFull", `${full.protein} g/día`);
-  setText("kcalProtFull", `${full.kcalFromProtein} kcal`);
-  setText("kcalNoProtFull", `${full.kcalNonProtein} kcal`);
+  setText("kcalProtFull", `${full.kcalProt} kcal`);
+  setText("kcalNoProtFull", `${full.kcalNoProt} kcal`);
 
-  /* -------- Hipocalórico / hiperproteico -------- */
-  let pesoHipo = pesoReal;
-
-  if (isObese) {
-    const pesoIdeal = isValidNumber($("pesoIdeal").value);
-
-    if (!pesoIdeal) {
-      alert("Ingresá un peso ideal válido para paciente obeso.");
-      return;
-    }
-
-    pesoHipo = pesoIdeal;
-  }
-
-  const hipo = calculate(
-    pesoHipo,
-    STRATEGIES.hipo.kcalKg,
-    STRATEGIES.hipo.protKg
-  );
-
-  setText("pesoUsadoHipo", `${pesoHipo} kg`);
+  // --- Hipocalórico ---
+  const hipo = calculate(pesoHipo, STRATEGIES.hipo.kcalKg, STRATEGIES.hipo.protKg);
+  setText("pesoUsadoHipo", `${round1(pesoHipo)} kg`);
   setText("kcalHipo", `${hipo.kcal} kcal/día`);
   setText("protHipo", `${hipo.protein} g/día`);
-  setText("kcalProtHipo", `${hipo.kcalFromProtein} kcal`);
-  setText("kcalNoProtHipo", `${hipo.kcalNonProtein} kcal`);
+  setText("kcalProtHipo", `${hipo.kcalProt} kcal`);
+  setText("kcalNoProtHipo", `${hipo.kcalNoProt} kcal`);
+
+  // 👉 Tabla enteral basada en FULL FEEDING
+  updateEnteralTable(full.kcal, full.protein);
 }
 
 /* =========================
-   EVENTOS
+   Listeners
 ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Toggle obesidad (solo UI)
-  $("toggleObeso").addEventListener("change", handleObesityUI);
-
-  // Botón calcular
-  $("btnCalcular").addEventListener("click", calcularSoporteNutricional);
+  $("btnCalcular").addEventListener("click", runCalculation);
 });
