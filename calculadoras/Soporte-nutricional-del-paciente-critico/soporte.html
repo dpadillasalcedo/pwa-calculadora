@@ -59,7 +59,8 @@
     <!-- Input peso -->
     <div>
       <label for="pesoReal">Peso real (kg)</label>
-      <input id="pesoReal" type="number" min="1" step="0.1" value="0">
+      <input id="pesoReal" type="number" min="1" step="0.1" placeholder="Ej: 70">
+  
     </div>
 
     <!-- Recordatorio clínico -->
@@ -81,6 +82,11 @@
       Calcular soporte nutricional
     </button>
   </div>
+
+  <p id="msgPeso" class="form-hint" style="display:none;">
+  Ingrese un <b>peso válido</b> para calcular los requerimientos nutricionales.
+</p>
+
 
   <div class="divider"></div>
 
