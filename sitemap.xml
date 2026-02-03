@@ -81,5 +81,35 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- =========================
+     INFUSIÓN DE FÁRMACOS
+========================== -->
+<url>
+  <loc>https://criticalcaretools.com/calculadoras/infusion-farmacos/</loc>
+  <xhtml:link 
+    rel="alternate" 
+    hreflang="es" 
+    href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html" />
+  <lastmod>2026-01-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
+
+  <!-- =========================
+     SOPORTE NUTRICIONAL
+========================== -->
+<url>
+  <loc>https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/</loc>
+  <xhtml:link 
+    rel="alternate" 
+    hreflang="es" 
+    href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" />
+  <lastmod>2026-01-28</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
+
+
 </urlset>
+
 
