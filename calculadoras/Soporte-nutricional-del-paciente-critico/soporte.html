@@ -27,22 +27,19 @@
   </script>
 
   <!-- =========================
-       CSS ESPECÍFICO
+       CSS
   ========================== -->
   <link rel="stylesheet" href="soporte.css">
-
 
   <!-- =========================
        Google Analytics GA4
   ========================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
   </script>
-
   <script type="text/plain" data-cookieconsent="statistics">
     gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
   </script>
@@ -56,7 +53,8 @@
   <header>
     <h1>Critical Care Tools</h1>
     <p>
-      Herramientas clínicas para la evaluación y el manejo del paciente crítico en la Unidad de Cuidados Intensivos
+      Herramientas clínicas para la evaluación y el manejo del paciente crítico
+      en la Unidad de Cuidados Intensivos
     </p>
   </header>
 
@@ -68,12 +66,15 @@
     <header>
       <h1>Soporte nutricional del paciente crítico (FREE)</h1>
       <p>
-        Calculadora rápida basada en <b>peso real</b>.
-        Se muestran <b>los valores superiores</b> de kcal/kg y g de proteína/kg para cada estrategia.
+        Calculadora clínica basada en <b>peso real</b>.
+        Se utilizan los <b>valores superiores</b> de kcal/kg y g de proteína/kg
+        para cada estrategia.
       </p>
     </header>
 
-    <!-- INPUTS -->
+    <!-- =========================
+         INPUTS
+    ========================== -->
     <section class="card">
       <div class="row">
         <div>
@@ -86,7 +87,8 @@
           <div>
             <strong>Paciente obeso</strong>
             <div class="small">
-              Activa recomendación y uso de <b>peso ideal</b> en el cálculo hipocalórico/hiperproteico.
+              Activa recomendación y uso de <b>peso ideal</b> en el cálculo
+              hipocalórico/hiperproteico.
             </div>
           </div>
         </div>
@@ -108,14 +110,25 @@
       </div>
 
       <div class="foot">
-        Conversión energética (referencia):
+        Conversión energética de referencia:
         carbohidratos 4 kcal/g · proteínas 4 kcal/g · lípidos 9 kcal/g.
       </div>
     </section>
 
+    <!-- =========================
+         BOTÓN DE CÁLCULO
+    ========================== -->
+    <div style="margin: 2rem 0; text-align: center;">
+      <button id="btnCalcular" class="btn">
+        Calcular soporte nutricional
+      </button>
+    </div>
+
     <div class="divider"></div>
 
-    <!-- CALCULOS -->
+    <!-- =========================
+         RESULTADOS
+    ========================== -->
     <section class="grid">
 
       <!-- Trófico -->
@@ -123,7 +136,7 @@
         <div class="pill">Cálculo 1</div>
         <h2>Soporte trófico</h2>
         <p class="small">
-          Valor superior: <b>15 kcal/kg/día</b> y <b>0.8 g proteína/kg/día</b>.
+          Valor superior: <b>15 kcal/kg/día</b> · <b>0.8 g proteína/kg/día</b>
         </p>
 
         <div class="result">
@@ -139,7 +152,7 @@
         <div class="pill">Cálculo 2</div>
         <h2>Soporte Full feeding</h2>
         <p class="small">
-          Valor superior: <b>30 kcal/kg/día</b> y <b>2.0 g proteína/kg/día</b>.
+          Valor superior: <b>30 kcal/kg/día</b> · <b>2.0 g proteína/kg/día</b>
         </p>
 
         <div class="result">
@@ -155,7 +168,7 @@
         <div class="pill">Cálculo 3</div>
         <h2>Hipocalórico / hiperproteico</h2>
         <p class="small">
-          Valor superior: <b>20 kcal/kg/día</b> y <b>1.5 g proteína/kg/día</b>.
+          Valor superior: <b>20 kcal/kg/día</b> · <b>1.5 g proteína/kg/día</b>
         </p>
 
         <div class="result">
@@ -171,12 +184,15 @@
 
     <div class="divider"></div>
 
-    <!-- PREMIUM -->
+    <!-- =========================
+         PREMIUM
+    ========================== -->
     <section class="card premium">
       <h2>💎 Premium: fórmulas enterales y adaptación de objetivos</h2>
       <p class="muted">
         Acceso a la tabla de nutriciones enterales y cálculo automático de
-        <b>volumen diario</b>, <b>proteína entregada</b> y <b>brecha</b> respecto al objetivo.
+        <b>volumen diario</b>, <b>proteína entregada</b> y <b>brecha</b>
+        respecto al objetivo.
       </p>
       <a class="btn" href="/premium">Desbloquear Premium</a>
     </section>
@@ -184,19 +200,24 @@
   </main>
 
   <!-- =========================
-       FOOTER
+       FOOTER + NAVEGACIÓN
   ========================== -->
   <footer>
+    <nav style="margin-bottom: 0.75rem;">
+      <a href="https://criticalcaretools.com" style="color:#38bdf8; text-decoration:none; font-weight:500;">
+        ← Volver a CriticalCareTools.com
+      </a>
+    </nav>
     <p>
       © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-      No reemplaza el juicio médico.
+      No reemplaza el juicio médico ni las guías institucionales.
     </p>
   </footer>
 
   <!-- =========================
        JS
   ========================== -->
-  <script src="/soporte.js"></script>
+  <script src="soporte.js"></script>
 
 </body>
 </html>
