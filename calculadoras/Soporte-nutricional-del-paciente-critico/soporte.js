@@ -160,10 +160,12 @@ function runCalculation() {
   updateEnteralTable(full.kcal, full.protein);
 }
 
-/* =========================
-   Listeners
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  $("btnCalcular")?.addEventListener("click", runCalculation);
-  $("pesoReal")?.addEventListener("input", runCalculation);
+  const peso = $("pesoReal");
+
+  if (peso) {
+    peso.addEventListener("input", runCalculation);
+    peso.addEventListener("change", runCalculation);
+    peso.addEventListener("blur", runCalculation);
+  }
 });
