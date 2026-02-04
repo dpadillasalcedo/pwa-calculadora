@@ -91,4 +91,15 @@
     <priority>0.85</priority>
   </url>
 
+    <!-- =========================
+       FARMACOTECA UCI
+  ========================== -->
+  <url>
+    <loc>https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
 </urlset>
+
