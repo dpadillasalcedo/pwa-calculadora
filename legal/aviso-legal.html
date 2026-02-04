@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Cookiebot (SIEMPRE primero) -->
-  <script id="Cookiebot"
+
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
     data-blockingmode="auto"
@@ -33,19 +37,48 @@
   <meta property="og:url"
         content="https://criticalcaretools.com/aviso-legal/" />
 
-  <!-- CSS -->
+  <!-- =========================
+       CSS
+  ========================== -->
   <link rel="stylesheet" href="./aviso-legal.css" />
 
-  <!-- Google Analytics GA4 -->
+  <!-- =========================
+       Google Analytics GA4
+       + Consent Mode v2 (CORRECTO)
+  ========================== -->
+
+  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script type="text/plain" data-cookieconsent="statistics">
+
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
     gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4');
+
+    /*
+      Consent por defecto:
+      - Fuera de Europa → analytics GRANTED
+      - En Europa → Cookiebot lo ajusta
+    */
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    /*
+      GA4 siempre activo
+      (cookieless si no hay consentimiento)
+    */
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true
+    });
   </script>
 
 </head>
+
 
 
 <body>
