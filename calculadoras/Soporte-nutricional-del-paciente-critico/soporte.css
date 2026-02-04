@@ -204,26 +204,6 @@ input[type="number"]:focus {
 }
 
 /* =========================
-   BUTTON
-========================= */
-.btn {
-  background: var(--color-primary);
-  color: #020617;
-  border: none;
-  border-radius: 14px;
-  padding: 0.9rem 1.6rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(56,189,248,0.35);
-}
-
-/* =========================
    RESULTADOS
 ========================= */
 .result {
