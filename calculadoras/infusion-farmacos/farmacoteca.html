@@ -4,135 +4,57 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>
-    Farmacoteca cuidados críticos | Inotrópicos, vasopresores, sedantes, relajantes musculares,
-    analgésicos y antimicrobianos | Critical Care Tools
-  </title>
+  <title>Farmacoteca UCI | Vasopresores, Inotrópicos, Sedantes y BNM | Critical Care Tools</title>
 
   <meta name="description"
-        content="Farmacoteca de UCI para consulta rápida: vasopresores, inotrópicos, antiarrítmicos, sedantes, analgésicos, relajantes musculares y antimicrobianos. Uso educativo y de apoyo clínico." />
+        content="Farmacoteca de uso en terapia intensiva: vasopresores, inotrópicos, sedantes, analgésicos de infusión y bloqueantes neuromusculares. Uso educativo y de apoyo clínico." />
 
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/farmacoteca-uci/farmacoteca.html" />
-
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html" />
   <meta name="theme-color" content="#020617" />
 
   <!-- =========================
-       Cookiebot (solo UE / GDPR)
+       Cookiebot (SIEMPRE PRIMERO)
   ========================== -->
   <script
     id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
     data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
     data-blockingmode="auto"
-    data-georegions="{'region':'EU','country':[]}"
     type="text/javascript">
   </script>
 
-  <!-- =========================
-       Open Graph
-  ========================== -->
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_AR" />
-  <meta property="og:site_name" content="Critical Care Tools" />
-  <meta property="og:title" content="Farmacoteca UCI | Critical Care Tools" />
-  <meta property="og:description"
-        content="Consulta rápida de fármacos en terapia intensiva: grupos, preparaciones y rangos. Uso educativo y de apoyo clínico." />
-  <meta property="og:url" content="https://criticalcaretools.com/farmacoteca-uci/farmacoteca.html" />
-
-  <!-- =========================
-       Twitter
-  ========================== -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Farmacoteca UCI | Critical Care Tools" />
-  <meta name="twitter:description"
-        content="Vasopresores, inotrópicos, antiarrítmicos, sedantes, analgésicos, relajantes musculares y antimicrobianos." />
-
-  <!-- =========================
-       Schema.org (Medical Web Tool)
-  ========================== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Farmacoteca UCI - Critical Care Tools",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "Web",
-    "description": "Farmacoteca de terapia intensiva para consulta rápida por grupos farmacológicos. Uso educativo y de apoyo clínico.",
-    "isAccessibleForFree": true,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Critical Care Tools"
-    }
-  }
-  </script>
-
-  <!-- =========================
-       Google Analytics 4
-       (activo por defecto, bloqueado solo en UE)
-  ========================== -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
-    });
+  </script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
   </script>
 
-  <!-- =========================
-       CSS
-  ========================== -->
   <link rel="stylesheet" href="farmacoteca.css" />
 </head>
 
+<body class="app-root">
 
-<body>
-  <div class="app-root">
+<main class="container">
 
-    <!-- Header / Hero -->
-    <header class="topbar">
-      <div class="container">
-        <div class="brand">
-          <div class="logo" aria-hidden="true">CCT</div>
-          <div>
-            <h1>Farmacoteca UCI</h1>
-            <p class="subtitle">
-              Biblioteca clínica para consulta rápida por grupos farmacológicos.
-              <span class="muted">Uso educativo y de apoyo clínico.</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="container">
-
-  <!-- =========================
-       BREADCRUMB
-  ========================== -->
+  <!-- Breadcrumb -->
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="https://criticalcaretools.com/">Inicio</a>
     <span aria-hidden="true">›</span>
     <span aria-current="page">Farmacoteca UCI</span>
   </nav>
 
-  <!-- =========================
-       CONTROLES
-  ========================== -->
+  <!-- Controls -->
   <section class="card controls">
     <div class="controls-grid">
-
       <div>
         <label for="q">Buscar fármaco</label>
-        <input
-          id="q"
-          type="search"
-          placeholder="Ej: Noradrenalina, Propofol, Fentanilo…"
-          autocomplete="off"
-        />
+        <input id="q" type="search" placeholder="Ej: Noradrenalina, Propofol, Fentanilo…" autocomplete="off" />
       </div>
 
       <div>
@@ -148,155 +70,646 @@
       </div>
 
       <div class="controls-actions">
-        <button type="button" class="btn secondary" id="btnReset">
-          Limpiar
-        </button>
+        <button type="button" class="btn secondary" id="btnReset">Limpiar</button>
       </div>
-
     </div>
 
     <div class="hint">
-      Tip: podés buscar por nombre o filtrar por grupo farmacológico.
-      En el próximo paso cargamos presentaciones, diluciones y rangos.
+      Tip: podés filtrar por grupo y buscar por nombre. Ajustá presentaciones/diluciones y rangos según protocolo institucional.
     </div>
   </section>
 
-  <!-- =========================
-       TABS DE GRUPOS
-  ========================== -->
+  <!-- Tabs -->
   <section class="tabs" aria-label="Grupos farmacológicos">
     <button class="tab is-active" data-group="all" type="button">Todos</button>
     <button class="tab" data-group="vasopresores" type="button">Vasopresores</button>
     <button class="tab" data-group="inotropicos" type="button">Inotrópicos</button>
     <button class="tab" data-group="sedantes" type="button">Sedantes</button>
     <button class="tab" data-group="analgesicos" type="button">Analgésicos</button>
-    <button class="tab" data-group="relajantes" type="button">Relajantes musculares</button>
+    <button class="tab" data-group="relajantes" type="button">Relajantes</button>
   </section>
 
-  <!-- =========================
-       LISTADO
-  ========================== -->
+  <!-- Content -->
   <section class="card">
     <div class="section-head">
       <h2>Listado de fármacos</h2>
-      <p class="muted small">
-        Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico.
-      </p>
+      <p class="muted small">Cada card se expande para mostrar la ficha clínica editable (sin cálculos todavía).</p>
     </div>
 
-    <!-- =========================
-         GRID DE FARMACOS
-    ========================== -->
     <div id="drugGrid" class="drug-grid" aria-live="polite">
 
-      <!-- =========================
+      <!-- ======================================================
            VASOPRESORES
-      ========================== -->
+      ======================================================= -->
 
-      <article class="drug-card" data-group="vasopresores">
-        <h3>Noradrenalina</h3>
-        <p class="muted small">Vasopresor</p>
+      <article class="drug-card" id="noradrenalina" data-group="vasopresores">
+        <header class="drug-head">
+          <div>
+            <h3>Noradrenalina</h3>
+            <p class="muted small">Vasopresor</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any" placeholder="Ej: 0.01"></label>
+              <label>Mín rel<input type="number" step="any" placeholder="Ej: 0.05"></label>
+              <label>Máx rel<input type="number" step="any" placeholder="Ej: 0.3"></label>
+              <label>Máx abs<input type="number" step="any" placeholder="Ej: 1"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> titular según PAM objetivo, perfusión tisular y lactato.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="vasopresores">
-        <h3>Adrenalina</h3>
-        <p class="muted small">Vasopresor</p>
+      <article class="drug-card" id="adrenalina" data-group="vasopresores">
+        <header class="drug-head">
+          <div>
+            <h3>Adrenalina</h3>
+            <p class="muted small">Vasopresor / Inotrópico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> monitorizar cronotropismo, lactato y riesgo arrítmico según contexto.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="vasopresores">
-        <h3>Vasopresina</h3>
-        <p class="muted small">Vasopresor</p>
+      <article class="drug-card" id="vasopresina" data-group="vasopresores">
+        <header class="drug-head">
+          <div>
+            <h3>Vasopresina</h3>
+            <p class="muted small">Vasopresor</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">U/min o U/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> útil como coadyuvante en shock vasodilatado; vigilar isquemia periférica/mesentérica.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="vasopresores">
-        <h3>Fenilefrina</h3>
-        <p class="muted small">Vasopresor</p>
+      <article class="drug-card" id="fenilefrina" data-group="vasopresores">
+        <header class="drug-head">
+          <div>
+            <h3>Fenilefrina</h3>
+            <p class="muted small">Vasopresor</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> considerar bradicardia refleja y descenso del gasto en algunos perfiles.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="vasopresores">
-        <h3>Dopamina</h3>
-        <p class="muted small">Vasopresor / Inotrópico</p>
+      <article class="drug-card" id="dopamina" data-group="vasopresores">
+        <header class="drug-head">
+          <div>
+            <h3>Dopamina</h3>
+            <p class="muted small">Vasopresor / Inotrópico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> vigilar riesgo arrítmico; uso según protocolo y perfil hemodinámico.
+          </div>
+        </section>
       </article>
 
-      <!-- =========================
+      <!-- ======================================================
            INOTRÓPICOS
-      ========================== -->
+      ======================================================= -->
 
-      <article class="drug-card" data-group="inotropicos">
-        <h3>Dobutamina</h3>
-        <p class="muted small">Inotrópico</p>
+      <article class="drug-card" id="dobutamina" data-group="inotropicos">
+        <header class="drug-head">
+          <div>
+            <h3>Dobutamina</h3>
+            <p class="muted small">Inotrópico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> ajustar a respuesta clínica (GC/ScvO₂) y perfusión; vigilar taquiarritmias.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="inotropicos">
-        <h3>Milrinona</h3>
-        <p class="muted small">Inodilatador</p>
+      <article class="drug-card" id="milrinona" data-group="inotropicos">
+        <header class="drug-head">
+          <div>
+            <h3>Milrinona</h3>
+            <p class="muted small">Inodilatador</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min o mcg/kg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> ajustar por función renal y tensión arterial; vigilar hipotensión/arrítmias.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="inotropicos">
-        <h3>Levosimendán</h3>
-        <p class="muted small">Inotrópico</p>
+      <article class="drug-card" id="levosimendan" data-group="inotropicos">
+        <header class="drug-head">
+          <div>
+            <h3>Levosimendán</h3>
+            <p class="muted small">Inotrópico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> vigilar hipotensión; considerar duración de efecto prolongada por metabolitos.
+          </div>
+        </section>
       </article>
 
-      <!-- =========================
+      <!-- ======================================================
            SEDANTES
-      ========================== -->
+      ======================================================= -->
 
-      <article class="drug-card" data-group="sedantes">
-        <h3>Propofol</h3>
-        <p class="muted small">Sedante</p>
+      <article class="drug-card" id="propofol" data-group="sedantes">
+        <header class="drug-head">
+          <div>
+            <h3>Propofol</h3>
+            <p class="muted small">Sedante</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución</span><b contenteditable="true">No requiere / según protocolo</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min o mg/kg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> vigilar hipotensión, TG y riesgo de síndrome de infusión prolongada.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="sedantes">
-        <h3>Midazolam</h3>
-        <p class="muted small">Sedante</p>
+      <article class="drug-card" id="midazolam" data-group="sedantes">
+        <header class="drug-head">
+          <div>
+            <h3>Midazolam</h3>
+            <p class="muted small">Sedante</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mg/h o mg/kg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> riesgo de acumulación (especialmente en disfunción hepática/renal); plan de destete.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="sedantes">
-        <h3>Dexmedetomidina</h3>
-        <p class="muted small">Sedante</p>
+      <article class="drug-card" id="dexmedetomidina" data-group="sedantes">
+        <header class="drug-head">
+          <div>
+            <h3>Dexmedetomidina</h3>
+            <p class="muted small">Sedante</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> vigilar bradicardia/hipotensión; útil en sedación ligera con cooperación.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="sedantes">
-        <h3>Ketamina</h3>
-        <p class="muted small">Sedante / Analgésico</p>
+      <article class="drug-card" id="ketamina" data-group="sedantes">
+        <header class="drug-head">
+          <div>
+            <h3>Ketamina</h3>
+            <p class="muted small">Sedante / Analgésico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mg/kg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> considerar efectos simpaticomiméticos y delirium; ajustar a objetivos de sedoanalgesia.
+          </div>
+        </section>
       </article>
 
-      <!-- =========================
+      <!-- ======================================================
            ANALGÉSICOS (INFUSIÓN)
-      ========================== -->
+      ======================================================= -->
 
-      <article class="drug-card" data-group="analgesicos">
-        <h3>Fentanilo</h3>
-        <p class="muted small">Analgésico</p>
+      <article class="drug-card" id="fentanilo" data-group="analgesicos">
+        <header class="drug-head">
+          <div>
+            <h3>Fentanilo</h3>
+            <p class="muted small">Analgésico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/h o mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> vigilar acumulación en infusiones prolongadas y rigidez torácica con bolos rápidos.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="analgesicos">
-        <h3>Remifentanilo</h3>
-        <p class="muted small">Analgésico</p>
+      <article class="drug-card" id="remifentanilo" data-group="analgesicos">
+        <header class="drug-head">
+          <div>
+            <h3>Remifentanilo</h3>
+            <p class="muted small">Analgésico</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> inicio/fin muy rápidos; planificar analgesia alternativa antes de suspender.
+          </div>
+        </section>
       </article>
 
-      <!-- =========================
-           RELAJANTES MUSCULARES
-      ========================== -->
+      <!-- ======================================================
+           RELAJANTES MUSCULARES (BNM)
+      ======================================================= -->
 
-      <article class="drug-card" data-group="relajantes">
-        <h3>Atracurio</h3>
-        <p class="muted small">Bloqueante neuromuscular</p>
+      <article class="drug-card" id="atracurio" data-group="relajantes">
+        <header class="drug-head">
+          <div>
+            <h3>Atracurio</h3>
+            <p class="muted small">Bloqueante neuromuscular</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> asegurar sedoanalgesia adecuada y monitoreo (TOF) cuando esté disponible.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="relajantes">
-        <h3>Cisatracurio</h3>
-        <p class="muted small">Bloqueante neuromuscular</p>
+      <article class="drug-card" id="cisatracurio" data-group="relajantes">
+        <header class="drug-head">
+          <div>
+            <h3>Cisatracurio</h3>
+            <p class="muted small">Bloqueante neuromuscular</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> útil cuando se busca perfil más predecible; ajustar a TOF y condición clínica.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="relajantes">
-        <h3>Rocuronio</h3>
-        <p class="muted small">Bloqueante neuromuscular</p>
+      <article class="drug-card" id="rocuronio" data-group="relajantes">
+        <header class="drug-head">
+          <div>
+            <h3>Rocuronio</h3>
+            <p class="muted small">Bloqueante neuromuscular</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min o mg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> asegurar sedoanalgesia continua; monitorear TOF y plan de suspensión.
+          </div>
+        </section>
       </article>
 
-      <article class="drug-card" data-group="relajantes">
-        <h3>Vecuronio</h3>
-        <p class="muted small">Bloqueante neuromuscular</p>
+      <article class="drug-card" id="vecuronio" data-group="relajantes">
+        <header class="drug-head">
+          <div>
+            <h3>Vecuronio</h3>
+            <p class="muted small">Bloqueante neuromuscular</p>
+          </div>
+          <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+        </header>
+
+        <section class="drug-sheet hidden">
+          <div class="sheet-grid">
+            <div><span>Presentación</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Dilución habitual</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Concentración</span><b contenteditable="true">EDITAR</b></div>
+            <div><span>Unidad</span><b contenteditable="true">mcg/kg/min o mg/h</b></div>
+          </div>
+
+          <div class="dose-block">
+            <h4>Rangos de dosis (editables)</h4>
+            <div class="dose-grid">
+              <label>Mín abs<input type="number" step="any"></label>
+              <label>Mín rel<input type="number" step="any"></label>
+              <label>Máx rel<input type="number" step="any"></label>
+              <label>Máx abs<input type="number" step="any"></label>
+            </div>
+          </div>
+
+          <div class="clinical-note">
+            <b>Nota clínica:</b> considerar acumulación en disfunción hepática/renal; ajustar a TOF si disponible.
+          </div>
+        </section>
       </article>
 
     </div>
@@ -304,27 +717,80 @@
 
 </main>
 
+<footer>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="https://criticalcaretools.com/">Inicio</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
+  </nav>
 
-    <hr class="divider" />
+  <p>
+    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+    No reemplaza el juicio médico ni las guías institucionales.
+  </p>
+</footer>
 
-    <!-- Footer centrado, links blancos -->
-    <footer>
-      <div class="footer-container">
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="https://criticalcaretools.com/">Inicio</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-        </nav>
+<script>
+  // Toggle fichas
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".toggle-sheet");
+    if (!btn) return;
 
-        <p>
-          © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-          No reemplaza el juicio médico ni las guías institucionales.
-        </p>
-      </div>
-    </footer>
+    const card = btn.closest(".drug-card");
+    const sheet = card.querySelector(".drug-sheet");
+    const isOpen = !sheet.classList.contains("hidden");
 
-  </div>
+    sheet.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    btn.textContent = isOpen ? "Ver ficha" : "Ocultar ficha";
+  });
 
-  <script src="farmacoteca.js" defer></script>
+  // Tabs + select + search (solo UI; sin cálculos)
+  const q = document.getElementById("q");
+  const grupo = document.getElementById("grupo");
+  const btnReset = document.getElementById("btnReset");
+  const tabs = Array.from(document.querySelectorAll(".tab"));
+  const cards = Array.from(document.querySelectorAll(".drug-card"));
+
+  function applyFilters() {
+    const query = (q.value || "").trim().toLowerCase();
+    const g = grupo.value || "all";
+
+    cards.forEach(card => {
+      const name = card.querySelector("h3")?.textContent?.toLowerCase() || "";
+      const group = card.getAttribute("data-group") || "all";
+
+      const okName = !query || name.includes(query);
+      const okGroup = (g === "all") || (group === g);
+
+      card.style.display = (okName && okGroup) ? "" : "none";
+    });
+  }
+
+  q.addEventListener("input", applyFilters);
+  grupo.addEventListener("change", () => {
+    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === grupo.value));
+    applyFilters();
+  });
+
+  tabs.forEach(t => {
+    t.addEventListener("click", () => {
+      const g = t.dataset.group;
+      grupo.value = g;
+      tabs.forEach(x => x.classList.toggle("is-active", x === t));
+      applyFilters();
+    });
+  });
+
+  btnReset.addEventListener("click", () => {
+    q.value = "";
+    grupo.value = "all";
+    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === "all"));
+    applyFilters();
+  });
+
+  applyFilters();
+</script>
+
 </body>
 </html>
