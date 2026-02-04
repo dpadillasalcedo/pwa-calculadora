@@ -8,32 +8,53 @@
 
   <meta name="description"
         content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN." />
-
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html" />
   <meta name="theme-color" content="#020617" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="soporte.css">
 
   <!-- Cookiebot -->
   <script id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-          data-blockingmode="auto"
+          data-blockingmode="manual"
           type="text/javascript"></script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="soporte.css">
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <!-- Google Analytics (solo se bloquea en Europa si no hay consentimiento) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  </script>
-  <script type="text/plain" data-cookieconsent="statistics">
-    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
+    function loadGA() {
+      // Carga el script de GA
+      const script = document.createElement('script');
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4";
+      script.async = true;
+      document.head.appendChild(script);
+
+      // Inicializa GA
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
+    }
+
+    // Evento de Cookiebot: carga GA solo si se acepta estadística
+    window.addEventListener('CookieConsentDeclaration', function() {
+      if (Cookiebot && Cookiebot.consents && Cookiebot.consents.statistics) {
+        loadGA();
+      }
+    });
+
+    // Carga GA inmediatamente si el usuario NO está en Europa
+    window.addEventListener('load', function() {
+      if (Cookiebot && Cookiebot.data && Cookiebot.data.region !== "EU") {
+        loadGA();
+      }
+    });
   </script>
 </head>
+
 
 <body>
 
