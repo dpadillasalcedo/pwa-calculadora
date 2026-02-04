@@ -26,7 +26,7 @@ body::before {
 }
 
 /* =========================================================
-   VARIABLES
+   VARIABLES (ÚNICAS Y COHERENTES)
 ========================================================= */
 :root {
   --bg: #020617;
@@ -80,6 +80,17 @@ a {
 
 a:hover {
   color: var(--accent-strong);
+}
+
+/* =========================================================
+   DIVIDER (ALINEADO CON LAYOUT)
+========================================================= */
+.divider {
+  width: min(1040px, 100%);
+  height: 1px;
+  margin: 3rem auto;
+  background: var(--border);
+  border: none;
 }
 
 /* =========================================================
@@ -207,53 +218,17 @@ header h1 {
 }
 
 /* =========================================================
-   FOOTER — BLOQUE ÚNICO, LIMPIO Y AISLADO
+   FOOTER (CENTRADO REAL, SIN CONFLICTOS)
 ========================================================= */
 footer {
-  text-align: center;
+  width: 100%;
+  border-top: 1px solid var(--border);
   padding: 2rem 1.5rem;
-  border-top: 1px solid var(--color-border);
-}
 
-.footer-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.footer-nav {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.75rem;
 }
 
-.footer-nav a {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.85rem;
-}
-
-.footer-nav a:hover {
-  text-decoration: underline;
-}
-
-.footer-nav span {
-  color: var(--color-muted);
-}
-
-footer p {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  line-height: 1.4;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-
-/* CONTENEDOR INTERNO */
 footer .footer-container {
   width: min(1040px, 100%);
   margin: 0 auto;
@@ -265,33 +240,37 @@ footer .footer-container {
   text-align: center;
 }
 
-/* NAV DEL FOOTER */
 footer .footer-nav {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: .5rem;
+  flex-wrap: wrap;
 
-  margin: 0 auto .75rem auto;
-  width: fit-content;
+  margin-bottom: .75rem;
 }
 
-/* LINKS FOOTER */
-footer .footer-nav a,
-footer .footer-nav span {
-  color: #f8fafc;
+footer .footer-nav a {
+  color: var(--accent);
   font-size: .85rem;
+  font-weight: 500;
   text-decoration: none;
 }
 
 footer .footer-nav a:hover {
   color: var(--accent-strong);
+  text-decoration: underline;
 }
 
-/* TEXTO LEGAL */
+footer .footer-nav span {
+  color: var(--muted);
+}
+
 footer p {
   margin: 0;
   max-width: 900px;
+  font-size: .8rem;
   line-height: 1.4;
+  color: var(--muted);
   text-align: center;
 }
