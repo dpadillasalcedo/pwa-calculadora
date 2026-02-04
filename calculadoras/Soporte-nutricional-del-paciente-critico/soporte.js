@@ -76,34 +76,40 @@ function clearEnteralTable() {
 function updateEnteralTable(targetKcal, targetProtein) {
   if (!targetKcal || !targetProtein) return;
 
-  const rows = document.querySelectorAll(".tabla-enterales tbody tr");
-  if (!rows.length) return;
+  const tbody = document.querySelector(".tabla-enterales tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
 
-  rows.forEach(row => {
+  const calculated = rows.map(row => {
     const kcalMl = Number(row.dataset.kcalml);
     const prot100 = Number(row.dataset.prot100);
-
-    if (!kcalMl || !prot100) return;
+    if (!kcalMl || !prot100) return null;
 
     const vol = targetKcal / kcalMl;
     const protReal = vol * (prot100 / 100);
-    const ratio = protReal / targetProtein;
     const deficit = Math.max(0, targetProtein - protReal);
 
-    let evalText = "❌ No cumple";
-    if (ratio >= 1) evalText = "✅ Cumple";
-    else if (ratio >= 0.8) evalText = "🟡 Se aproxima";
+    return { row, vol, protReal, deficit };
+  }).filter(Boolean);
+
+  // 🔝 Ordenar por menor déficit proteico
+  calculated.sort((a, b) => a.deficit - b.deficit);
+
+  calculated.forEach((item, index) => {
+    const { row, vol, protReal, deficit } = item;
 
     row.querySelector(".vol").textContent  = `${Math.round(vol)} ml`;
     row.querySelector(".kcal").textContent = `${Math.round(targetKcal / 10) * 10} kcal`;
     row.querySelector(".prot").textContent = `${Math.round(protReal)} g`;
-
     row.querySelector(".deficit").textContent =
       deficit > 0 ? `-${Math.round(deficit)} g` : "0 g";
 
-    row.querySelector(".eval").textContent = evalText;
+    // ⭐ marcar mejor opción (menor déficit)
+    row.classList.toggle("best-option", index === 0);
+
+    tbody.appendChild(row);
   });
 }
+
 
 /* =========================
    Evento principal
