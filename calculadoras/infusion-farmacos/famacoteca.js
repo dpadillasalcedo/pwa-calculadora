@@ -1,6 +1,6 @@
 // =========================================================
-// FARMACOTECA UCI – UI CORE
-// Sin cálculos clínicos (etapa 1)
+// FARMACOTECA UCI – UI + CÁLCULO AUTOMÁTICO
+// Sin botones · cálculo en tiempo real
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,27 +49,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // =========================
-  // Eventos
-  // =========================
   if (q) q.addEventListener("input", applyFilters);
 
   if (grupo) {
     grupo.addEventListener("change", () => {
       const g = grupo.value;
-      tabs.forEach(t => {
-        t.classList.toggle("is-active", t.dataset.group === g);
-      });
+      tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === g));
       applyFilters();
     });
   }
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-      const g = tab.dataset.group;
       if (!grupo) return;
-
-      grupo.value = g;
+      grupo.value = tab.dataset.group;
       tabs.forEach(t => t.classList.toggle("is-active", t === tab));
       applyFilters();
     });
@@ -79,17 +72,57 @@ document.addEventListener("DOMContentLoaded", () => {
     btnReset.addEventListener("click", () => {
       if (q) q.value = "";
       if (grupo) grupo.value = "all";
-
-      tabs.forEach(t => {
-        t.classList.toggle("is-active", t.dataset.group === "all");
-      });
-
+      tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === "all"));
       applyFilters();
     });
   }
 
-  // Inicializar vista
+  // =========================
+  // CÁLCULO AUTOMÁTICO
+  // =========================
+  function calcular(card) {
+    const peso = parseFloat(card.querySelector(".peso")?.value);
+    const dosis = parseFloat(card.querySelector(".dosis")?.value);
+    const conc = parseFloat(card.querySelector(".concentracion")?.value);
+    const unidad = card.querySelector(".unidad")?.textContent || "";
+    const out = card.querySelector(".resultado");
+
+    if (!peso || !dosis || !conc || !out) {
+      if (out) out.textContent = "—";
+      return;
+    }
+
+    let mlh = 0;
+
+    // mcg/kg/min → ml/h
+    if (unidad.includes("mcg/kg/min")) {
+      mlh = (dosis * peso * 60) / conc;
+    }
+
+    // mcg/kg/h → ml/h
+    if (unidad.includes("mcg/kg/h")) {
+      mlh = (dosis * peso) / conc;
+    }
+
+    if (!Number.isFinite(mlh)) {
+      out.textContent = "—";
+      return;
+    }
+
+    out.textContent = `${mlh.toFixed(2)} ml/h`;
+  }
+
+  // =========================
+  // Escuchar inputs (sin botones)
+  // =========================
+  cards.forEach(card => {
+    card.querySelectorAll("input, select").forEach(el => {
+      el.addEventListener("input", () => calcular(card));
+      el.addEventListener("change", () => calcular(card));
+    });
+  });
+
+  // Inicializar
   applyFilters();
 
 });
-
