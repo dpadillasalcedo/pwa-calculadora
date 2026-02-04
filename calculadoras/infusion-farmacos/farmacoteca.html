@@ -109,76 +109,201 @@
     </header>
 
     <main class="container">
-      <!-- Breadcrumb (opcional, pero suma UX/SEO interno) -->
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="https://criticalcaretools.com/">Inicio</a>
-        <span aria-hidden="true">›</span>
-        <span aria-current="page">Farmacoteca UCI</span>
-      </nav>
 
-      <!-- Controls -->
-      <section class="card controls">
-        <div class="controls-grid">
-          <div>
-            <label for="q">Buscar fármaco</label>
-            <input id="q" type="search" placeholder="Ej: Noradrenalina, Propofol, Amiodarona…" autocomplete="off" />
-          </div>
+  <!-- =========================
+       BREADCRUMB
+  ========================== -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="https://criticalcaretools.com/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Farmacoteca UCI</span>
+  </nav>
 
-          <div>
-            <label for="grupo">Grupo</label>
-            <select id="grupo">
-              <option value="all">Todos</option>
-              <option value="vasopresores">Vasopresores</option>
-              <option value="inotropicos">Inotrópicos</option>
-              <option value="antiarritmicos">Antiarrítmicos</option>
-              <option value="sedantes">Sedantes</option>
-              <option value="analgesicos">Analgésicos</option>
-              <option value="relajantes">Relajantes musculares</option>
-              <option value="antimicrobianos">Antimicrobianos</option>
-            </select>
-          </div>
+  <!-- =========================
+       CONTROLES
+  ========================== -->
+  <section class="card controls">
+    <div class="controls-grid">
 
-          <div class="controls-actions">
-            <button type="button" class="btn secondary" id="btnReset">Limpiar</button>
-          </div>
-        </div>
+      <div>
+        <label for="q">Buscar fármaco</label>
+        <input
+          id="q"
+          type="search"
+          placeholder="Ej: Noradrenalina, Propofol, Fentanilo…"
+          autocomplete="off"
+        />
+      </div>
 
-        <div class="hint">
-          Tip: podés filtrar por grupo y buscar por nombre. En el próximo paso cargamos tus datos (presentación, dilución, rangos).
-        </div>
-      </section>
+      <div>
+        <label for="grupo">Grupo</label>
+        <select id="grupo">
+          <option value="all">Todos</option>
+          <option value="vasopresores">Vasopresores</option>
+          <option value="inotropicos">Inotrópicos</option>
+          <option value="sedantes">Sedantes</option>
+          <option value="analgesicos">Analgésicos</option>
+          <option value="relajantes">Relajantes musculares</option>
+        </select>
+      </div>
 
-      <!-- Tabs / Quick categories (para futuro) -->
-      <section class="tabs" aria-label="Grupos farmacológicos">
-        <button class="tab is-active" data-group="all" type="button">Todos</button>
-        <button class="tab" data-group="vasopresores" type="button">Vasopresores</button>
-        <button class="tab" data-group="inotropicos" type="button">Inotrópicos</button>
-        <button class="tab" data-group="antiarritmicos" type="button">Antiarrítmicos</button>
-        <button class="tab" data-group="sedantes" type="button">Sedantes</button>
-        <button class="tab" data-group="analgesicos" type="button">Analgésicos</button>
-        <button class="tab" data-group="relajantes" type="button">Relajantes</button>
-        <button class="tab" data-group="antimicrobianos" type="button">Antimicrobianos</button>
-      </section>
+      <div class="controls-actions">
+        <button type="button" class="btn secondary" id="btnReset">
+          Limpiar
+        </button>
+      </div>
 
-      <!-- Content placeholder -->
-      <section class="card">
-        <div class="section-head">
-          <h2>Listado de fármacos</h2>
-          <p class="muted small">A continuación se mostrarán los fármacos filtrados. (En el siguiente paso cargamos el contenido.)</p>
-        </div>
+    </div>
 
-        <!-- Grid donde luego renderizamos cards -->
-        <div id="drugGrid" class="drug-grid" aria-live="polite">
-          <!-- Placeholder -->
-          <div class="empty">
-            <b>Sin datos cargados todavía.</b>
-            <p class="muted">
-              Ya está listo el esqueleto (SEO + UI). En el próximo paso importamos tu farmacoteca y la mostramos por grupos....
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+    <div class="hint">
+      Tip: podés buscar por nombre o filtrar por grupo farmacológico.
+      En el próximo paso cargamos presentaciones, diluciones y rangos.
+    </div>
+  </section>
+
+  <!-- =========================
+       TABS DE GRUPOS
+  ========================== -->
+  <section class="tabs" aria-label="Grupos farmacológicos">
+    <button class="tab is-active" data-group="all" type="button">Todos</button>
+    <button class="tab" data-group="vasopresores" type="button">Vasopresores</button>
+    <button class="tab" data-group="inotropicos" type="button">Inotrópicos</button>
+    <button class="tab" data-group="sedantes" type="button">Sedantes</button>
+    <button class="tab" data-group="analgesicos" type="button">Analgésicos</button>
+    <button class="tab" data-group="relajantes" type="button">Relajantes musculares</button>
+  </section>
+
+  <!-- =========================
+       LISTADO
+  ========================== -->
+  <section class="card">
+    <div class="section-head">
+      <h2>Listado de fármacos</h2>
+      <p class="muted small">
+        Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico.
+      </p>
+    </div>
+
+    <!-- =========================
+         GRID DE FARMACOS
+    ========================== -->
+    <div id="drugGrid" class="drug-grid" aria-live="polite">
+
+      <!-- =========================
+           VASOPRESORES
+      ========================== -->
+
+      <article class="drug-card" data-group="vasopresores">
+        <h3>Noradrenalina</h3>
+        <p class="muted small">Vasopresor</p>
+      </article>
+
+      <article class="drug-card" data-group="vasopresores">
+        <h3>Adrenalina</h3>
+        <p class="muted small">Vasopresor</p>
+      </article>
+
+      <article class="drug-card" data-group="vasopresores">
+        <h3>Vasopresina</h3>
+        <p class="muted small">Vasopresor</p>
+      </article>
+
+      <article class="drug-card" data-group="vasopresores">
+        <h3>Fenilefrina</h3>
+        <p class="muted small">Vasopresor</p>
+      </article>
+
+      <article class="drug-card" data-group="vasopresores">
+        <h3>Dopamina</h3>
+        <p class="muted small">Vasopresor / Inotrópico</p>
+      </article>
+
+      <!-- =========================
+           INOTRÓPICOS
+      ========================== -->
+
+      <article class="drug-card" data-group="inotropicos">
+        <h3>Dobutamina</h3>
+        <p class="muted small">Inotrópico</p>
+      </article>
+
+      <article class="drug-card" data-group="inotropicos">
+        <h3>Milrinona</h3>
+        <p class="muted small">Inodilatador</p>
+      </article>
+
+      <article class="drug-card" data-group="inotropicos">
+        <h3>Levosimendán</h3>
+        <p class="muted small">Inotrópico</p>
+      </article>
+
+      <!-- =========================
+           SEDANTES
+      ========================== -->
+
+      <article class="drug-card" data-group="sedantes">
+        <h3>Propofol</h3>
+        <p class="muted small">Sedante</p>
+      </article>
+
+      <article class="drug-card" data-group="sedantes">
+        <h3>Midazolam</h3>
+        <p class="muted small">Sedante</p>
+      </article>
+
+      <article class="drug-card" data-group="sedantes">
+        <h3>Dexmedetomidina</h3>
+        <p class="muted small">Sedante</p>
+      </article>
+
+      <article class="drug-card" data-group="sedantes">
+        <h3>Ketamina</h3>
+        <p class="muted small">Sedante / Analgésico</p>
+      </article>
+
+      <!-- =========================
+           ANALGÉSICOS (INFUSIÓN)
+      ========================== -->
+
+      <article class="drug-card" data-group="analgesicos">
+        <h3>Fentanilo</h3>
+        <p class="muted small">Analgésico</p>
+      </article>
+
+      <article class="drug-card" data-group="analgesicos">
+        <h3>Remifentanilo</h3>
+        <p class="muted small">Analgésico</p>
+      </article>
+
+      <!-- =========================
+           RELAJANTES MUSCULARES
+      ========================== -->
+
+      <article class="drug-card" data-group="relajantes">
+        <h3>Atracurio</h3>
+        <p class="muted small">Bloqueante neuromuscular</p>
+      </article>
+
+      <article class="drug-card" data-group="relajantes">
+        <h3>Cisatracurio</h3>
+        <p class="muted small">Bloqueante neuromuscular</p>
+      </article>
+
+      <article class="drug-card" data-group="relajantes">
+        <h3>Rocuronio</h3>
+        <p class="muted small">Bloqueante neuromuscular</p>
+      </article>
+
+      <article class="drug-card" data-group="relajantes">
+        <h3>Vecuronio</h3>
+        <p class="muted small">Bloqueante neuromuscular</p>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
 
     <hr class="divider" />
 
