@@ -210,22 +210,48 @@ header h1 {
    FOOTER — BLOQUE ÚNICO, LIMPIO Y AISLADO
 ========================================================= */
 footer {
-  background-color: var(--bg-soft);
-  border-top: 1px solid var(--border);
-  padding: 2.25rem 1.25rem;
-
-  width: 100%;
-  box-sizing: border-box;
-
-  display: grid;
-  place-items: center;
-
   text-align: center;
-  color: #f8fafc;
-  font-size: .85rem;
-
-  isolation: isolate;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--color-border);
 }
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.footer-nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+.footer-nav span {
+  color: var(--color-muted);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 
 /* CONTENEDOR INTERNO */
 footer .footer-container {
