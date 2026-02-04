@@ -20,28 +20,64 @@ function resetBySelector(selector){
 /* =========================================================
    SOFA-2
 ========================================================= */
-function calcSOFA(){
-  const total = sumBySelector('.sofa');
+function calcSOFA() {
+  const selects = document.querySelectorAll(".sofa");
+  let total = 0;
+  let breakdown = [];
 
-  const res  = document.getElementById('sofa_result');
-  const mort = document.getElementById('sofa_mortality');
+  selects.forEach(select => {
+    const value = Number(select.value);
+    if (isNaN(value) || value === 0) return;
 
-  if (!res || !mort) return;
+    const label = select.closest("label").childNodes[0].textContent.trim();
+    total += value;
 
-  res.textContent = `SOFA-2 total: ${total}`;
+    breakdown.push({
+      system: label,
+      points: value
+    });
+  });
 
-  mort.textContent =
-    total <= 1  ? 'Mortalidad estimada <10%' :
-    total <= 5  ? 'Mortalidad estimada 10–20%' :
-    total <= 9  ? 'Mortalidad estimada 20–40%' :
-    total <= 12 ? 'Mortalidad estimada 40–50%' :
-                  'Mortalidad estimada >50–90%';
+  const result = document.getElementById("sofa_result");
+  const mortality = document.getElementById("sofa_mortality");
+  const detail = document.getElementById("sofa_breakdown");
+
+  // Resultado total
+  result.innerHTML = `<b>SOFA total:</b> ${total} puntos`;
+
+  // Mortalidad orientativa
+  let mortText = "";
+  if (total === 0) mortText = "Sin disfunción orgánica.";
+  else if (total <= 6) mortText = "Riesgo de mortalidad bajo–moderado.";
+  else if (total <= 9) mortText = "Riesgo de mortalidad intermedio.";
+  else if (total <= 12) mortText = "Riesgo de mortalidad alto.";
+  else mortText = "Riesgo de mortalidad muy alto.";
+
+  mortality.textContent = mortText;
+
+  // Desglose clínico
+  if (breakdown.length > 0) {
+    let html = "<b>Desglose por sistemas comprometidos:</b><ul>";
+    breakdown.forEach(item => {
+      html += `<li>${item.system}: ${item.points} punto${item.points > 1 ? "s" : ""}</li>`;
+    });
+    html += "</ul>";
+
+    detail.innerHTML = html;
+    detail.style.display = "block";
+  } else {
+    detail.style.display = "none";
+  }
 }
 
-function resetSOFA(){
-  resetBySelector('.sofa');
-  document.getElementById('sofa_result').textContent = '';
-  document.getElementById('sofa_mortality').textContent = '';
+function resetSOFA() {
+  document.querySelectorAll(".sofa").forEach(select => {
+    select.value = "";
+  });
+
+  document.getElementById("sofa_result").textContent = "";
+  document.getElementById("sofa_mortality").textContent = "";
+  document.getElementById("sofa_breakdown").style.display = "none";
 }
 
 /* =========================================================
