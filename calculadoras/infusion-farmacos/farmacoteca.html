@@ -1,1 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <title>Farmacoteca UCI | Vasopresores, sedantes, analgésicos y antimicrobianos | Critical Care Tools</title>
+
+  <meta name="description"
+        content="Farmacoteca de UCI para consulta rápida: vasopresores, inotrópicos, antiarrítmicos, sedantes, analgésicos, relajantes musculares y antimicrobianos. Uso educativo y de apoyo clínico." />
+
+  <meta name="robots" content="index, follow" />
+  <!-- Ajustá esta URL cuando publiques la página -->
+  <link rel="canonical" href="https://criticalcaretools.com/farmacoteca-uci/farmacoteca.html" />
+
+  <meta name="theme-color" content="#020617" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Critical Care Tools" />
+  <meta property="og:title" content="Farmacoteca UCI | Critical Care Tools" />
+  <meta property="og:description"
+        content="Consulta rápida de fármacos en terapia intensiva: grupos, preparaciones y rangos. Uso educativo y de apoyo clínico." />
+  <meta property="og:url" content="https://criticalcaretools.com/farmacoteca-uci/farmacoteca.html" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Farmacoteca UCI | Critical Care Tools" />
+  <meta name="twitter:description"
+        content="Vasopresores, inotrópicos, antiarrítmicos, sedantes, analgésicos, relajantes musculares y antimicrobianos." />
+
+  <!-- Schema.org (SoftwareApplication / Medical web tool) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Farmacoteca UCI - Critical Care Tools",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "description": "Farmacoteca de terapia intensiva para consulta rápida por grupos farmacológicos. Uso educativo y de apoyo clínico.",
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Critical Care Tools"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="farmacoteca.css" />
+</head>
+
+<body>
+  <div class="app-root">
+
+    <!-- Header / Hero -->
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">CCT</div>
+          <div>
+            <h1>Farmacoteca UCI</h1>
+            <p class="subtitle">
+              Biblioteca clínica para consulta rápida por grupos farmacológicos.
+              <span class="muted">Uso educativo y de apoyo clínico.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Breadcrumb (opcional, pero suma UX/SEO interno) -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="https://criticalcaretools.com/">Inicio</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Farmacoteca UCI</span>
+      </nav>
+
+      <!-- Controls -->
+      <section class="card controls">
+        <div class="controls-grid">
+          <div>
+            <label for="q">Buscar fármaco</label>
+            <input id="q" type="search" placeholder="Ej: Noradrenalina, Propofol, Amiodarona…" autocomplete="off" />
+          </div>
+
+          <div>
+            <label for="grupo">Grupo</label>
+            <select id="grupo">
+              <option value="all">Todos</option>
+              <option value="vasopresores">Vasopresores</option>
+              <option value="inotropicos">Inotrópicos</option>
+              <option value="antiarritmicos">Antiarrítmicos</option>
+              <option value="sedantes">Sedantes</option>
+              <option value="analgesicos">Analgésicos</option>
+              <option value="relajantes">Relajantes musculares</option>
+              <option value="antimicrobianos">Antimicrobianos</option>
+            </select>
+          </div>
+
+          <div class="controls-actions">
+            <button type="button" class="btn secondary" id="btnReset">Limpiar</button>
+          </div>
+        </div>
+
+        <div class="hint">
+          Tip: podés filtrar por grupo y buscar por nombre. En el próximo paso cargamos tus datos (presentación, dilución, rangos).
+        </div>
+      </section>
+
+      <!-- Tabs / Quick categories (para futuro) -->
+      <section class="tabs" aria-label="Grupos farmacológicos">
+        <button class="tab is-active" data-group="all" type="button">Todos</button>
+        <button class="tab" data-group="vasopresores" type="button">Vasopresores</button>
+        <button class="tab" data-group="inotropicos" type="button">Inotrópicos</button>
+        <button class="tab" data-group="antiarritmicos" type="button">Antiarrítmicos</button>
+        <button class="tab" data-group="sedantes" type="button">Sedantes</button>
+        <button class="tab" data-group="analgesicos" type="button">Analgésicos</button>
+        <button class="tab" data-group="relajantes" type="button">Relajantes</button>
+        <button class="tab" data-group="antimicrobianos" type="button">Antimicrobianos</button>
+      </section>
+
+      <!-- Content placeholder -->
+      <section class="card">
+        <div class="section-head">
+          <h2>Listado de fármacos</h2>
+          <p class="muted small">A continuación se mostrarán los fármacos filtrados. (En el siguiente paso cargamos el contenido.)</p>
+        </div>
+
+        <!-- Grid donde luego renderizamos cards -->
+        <div id="drugGrid" class="drug-grid" aria-live="polite">
+          <!-- Placeholder -->
+          <div class="empty">
+            <b>Sin datos cargados todavía.</b>
+            <p class="muted">
+              Ya está listo el esqueleto (SEO + UI). En el próximo paso importamos tu farmacoteca y la mostramos por grupos.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <hr class="divider" />
+
+    <!-- Footer centrado, links blancos -->
+    <footer>
+      <div class="footer-container">
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="https://criticalcaretools.com/">Inicio</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
+        </nav>
+
+        <p>
+          © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+          No reemplaza el juicio médico ni las guías institucionales.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="farmacoteca.js" defer></script>
+</body>
+</html>
