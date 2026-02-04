@@ -3,7 +3,7 @@
 <head>
 
   <!-- =========================
-       Cookiebot (SIEMPRE primero)
+       Cookiebot (SIEMPRE PRIMERO)
   ========================== -->
   <script
     id="Cookiebot"
@@ -31,9 +31,11 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Privacidad y Cookies | Critical Care Tools" />
-  <meta property="og:description" content="Política de Privacidad y Política de Cookies de Critical Care Tools." />
+  <meta property="og:description"
+        content="Política de Privacidad y Política de Cookies de Critical Care Tools." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/privacidad/" />
+  <meta property="og:url"
+        content="https://criticalcaretools.com/privacidad/" />
 
   <!-- =========================
        CSS
@@ -42,39 +44,41 @@
 
   <!-- =========================
        Google Analytics GA4
+       + Consent Mode v2 (CORRECTO)
   ========================== -->
 
-  <!-- Librería GA4 -->
+  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
-  <!-- Inicialización base + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
 
     gtag('js', new Date());
 
-    /* Consent Mode por defecto (NO mide nada) */
+    /*
+      Consent por defecto:
+      - Fuera de Europa → analytics GRANTED
+      - En Europa → Cookiebot lo ajusta
+    */
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
-  </script>
 
-  <!-- Activación GA4 SOLO si el usuario acepta estadísticas -->
-  <script type="text/plain" data-cookieconsent="statistics">
-    gtag('consent', 'update', {
-      analytics_storage: 'granted'
-    });
-
+    /*
+      GA4 siempre activo
+      (cookieless si no hay consentimiento)
+    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true
     });
   </script>
 
 </head>
+
 
 <body>
   <!-- =========================
