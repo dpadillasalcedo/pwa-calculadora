@@ -1,13 +1,13 @@
 // =========================================================
-// FARMACOTECA UCI – UI + CÁLCULO AUTOMÁTICO
-// Sin botones · cálculo en tiempo real
+// FARMACOTECA UCI – CORE JS
+// Cálculo automático de infusiones (sin botones)
 // =========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =========================
+  // =====================================================
   // Toggle ficha clínica
-  // =========================
+  // =====================================================
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".toggle-sheet");
     if (!btn) return;
@@ -18,46 +18,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const sheet = card.querySelector(".drug-sheet");
     if (!sheet) return;
 
-    const isOpen = !sheet.classList.contains("hidden");
-
+    const open = !sheet.classList.contains("hidden");
     sheet.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", String(!isOpen));
-    btn.textContent = isOpen ? "Ver ficha" : "Ocultar ficha";
+    btn.textContent = open ? "Ver ficha" : "Ocultar ficha";
+    btn.setAttribute("aria-expanded", String(!open));
   });
 
-  // =========================
+  // =====================================================
   // Filtros
-  // =========================
+  // =====================================================
   const q = document.getElementById("q");
   const grupo = document.getElementById("grupo");
-  const btnReset = document.getElementById("btnReset");
   const tabs = Array.from(document.querySelectorAll(".tab"));
   const cards = Array.from(document.querySelectorAll(".drug-card"));
+  const btnReset = document.getElementById("btnReset");
 
   function applyFilters() {
-    const query = (q?.value || "").trim().toLowerCase();
+    const text = (q?.value || "").toLowerCase();
     const g = grupo?.value || "all";
 
     cards.forEach(card => {
-      const name = card.querySelector("h3")?.textContent?.toLowerCase() || "";
-      const group = card.getAttribute("data-group") || "all";
+      const name = card.querySelector("h3")?.textContent.toLowerCase() || "";
+      const group = card.dataset.group || "all";
 
-      const okName = !query || name.includes(query);
-      const okGroup = (g === "all") || (group === g);
+      const okText = !text || name.includes(text);
+      const okGroup = g === "all" || g === group;
 
-      card.style.display = (okName && okGroup) ? "" : "none";
+      card.style.display = (okText && okGroup) ? "" : "none";
     });
   }
 
-  if (q) q.addEventListener("input", applyFilters);
+  q?.addEventListener("input", applyFilters);
 
-  if (grupo) {
-    grupo.addEventListener("change", () => {
-      const g = grupo.value;
-      tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === g));
-      applyFilters();
-    });
-  }
+  grupo?.addEventListener("change", () => {
+    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === grupo.value));
+    applyFilters();
+  });
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
@@ -68,43 +64,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (btnReset) {
-    btnReset.addEventListener("click", () => {
-      if (q) q.value = "";
-      if (grupo) grupo.value = "all";
-      tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === "all"));
-      applyFilters();
-    });
-  }
+  btnReset?.addEventListener("click", () => {
+    if (q) q.value = "";
+    if (grupo) grupo.value = "all";
+    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === "all"));
+    applyFilters();
+  });
 
-  // =========================
-  // CÁLCULO AUTOMÁTICO
-  // =========================
+  applyFilters();
+
+  // =====================================================
+  // Cálculo automático de infusión
+  // =====================================================
   function calcular(card) {
-    const peso = parseFloat(card.querySelector(".peso")?.value);
-    const dosis = parseFloat(card.querySelector(".dosis")?.value);
-    const conc = parseFloat(card.querySelector(".concentracion")?.value);
+    const peso = card.querySelector(".peso")?.value;
+    const dosis = card.querySelector(".dosis")?.value;
+    const conc = card.querySelector(".concentracion")?.value;
     const unidad = card.querySelector(".unidad")?.textContent || "";
     const out = card.querySelector(".resultado");
 
-    if (!peso || !dosis || !conc || !out) {
-      if (out) out.textContent = "—";
+    if (!out) return;
+
+    const p = parseFloat(peso);
+    const d = parseFloat(dosis);
+    const c = parseFloat(conc);
+
+    if (!d || !c) {
+      out.textContent = "—";
       return;
     }
 
-    let mlh = 0;
+    let mlh = null;
 
-    // mcg/kg/min → ml/h
+    // ===============================
+    // mcg/kg/min
+    // ===============================
     if (unidad.includes("mcg/kg/min")) {
-      mlh = (dosis * peso * 60) / conc;
+      if (!p) return out.textContent = "—";
+      mlh = (d * p * 60) / c;
     }
 
-    // mcg/kg/h → ml/h
-    if (unidad.includes("mcg/kg/h")) {
-      mlh = (dosis * peso) / conc;
+    // ===============================
+    // mcg/kg/h
+    // ===============================
+    else if (unidad.includes("mcg/kg/h")) {
+      if (!p) return out.textContent = "—";
+      mlh = (d * p) / c;
     }
 
-    if (!Number.isFinite(mlh)) {
+    // ===============================
+    // mcg/min (NO depende de peso)
+    // ===============================
+    else if (unidad.includes("mcg/min")) {
+      mlh = (d * 60) / c;
+    }
+
+    // ===============================
+    // mg/kg/h → convertir a mcg
+    // ===============================
+    else if (unidad.includes("mg/kg/h")) {
+      if (!p) return out.textContent = "—";
+      mlh = (d * p * 1000) / c;
+    }
+
+    if (!mlh || !isFinite(mlh)) {
       out.textContent = "—";
       return;
     }
@@ -112,17 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
     out.textContent = `${mlh.toFixed(2)} ml/h`;
   }
 
-  // =========================
-  // Escuchar inputs (sin botones)
-  // =========================
-  cards.forEach(card => {
-    card.querySelectorAll("input, select").forEach(el => {
-      el.addEventListener("input", () => calcular(card));
-      el.addEventListener("change", () => calcular(card));
+  // =====================================================
+  // Listeners automáticos en inputs
+  // =====================================================
+  document.querySelectorAll(".drug-card").forEach(card => {
+    card.querySelectorAll("input").forEach(inp => {
+      inp.addEventListener("input", () => calcular(card));
+      inp.addEventListener("change", () => calcular(card));
     });
   });
-
-  // Inicializar
-  applyFilters();
 
 });
