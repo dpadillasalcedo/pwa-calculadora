@@ -28,30 +28,25 @@
   <!-- =========================
        Google Analytics GA4
   ========================== -->
-
   <!-- Librería GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
-  <!-- Inicialización base + Consent Mode -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-
     gtag('js', new Date());
 
-    /* Consent Mode por defecto */
+    /*
+      Consent Mode:
+      - Usuarios fuera de Europa: analytics_storage = granted automáticamente
+      - Usuarios UE: Cookiebot controla consentimiento
+      - Mantiene IP anonimizada
+    */
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
-    });
-  </script>
-
-  <!-- Configuración GA4 (solo con consentimiento de estadísticas) -->
-  <script type="text/plain" data-cookieconsent="statistics">
-    gtag('consent', 'update', {
-      analytics_storage: 'granted'
     });
 
     gtag('config', 'G-WQREHQ56Q4', {
@@ -59,7 +54,20 @@
     });
   </script>
 
+  <!-- =========================
+       Activación GA4 SOLO con consentimiento en UE
+  ========================== -->
+  <script type="text/plain" data-cookieconsent="statistics">
+    gtag('consent', 'update', {
+      analytics_storage: 'granted'
+    });
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true
+    });
+  </script>
+
 </head>
+
 
 
 
