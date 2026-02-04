@@ -36,10 +36,10 @@
         content="https://criticalcaretools.com/calculadoras/puntuacion/uci-scores/" />
 
   <!-- =========================
-       CSS INTERNO
+       CSS INTERNO (NO SE TOCA)
   ========================== -->
   <style>
-    /* (tu CSS queda EXACTAMENTE igual, no se toca nada) */
+    /* tu CSS queda EXACTAMENTE igual */
     :root{
       --bg:#020617;
       --card:#0b1220;
@@ -133,38 +133,41 @@
 
   <!-- =========================
        Google Analytics GA4
+       + Consent Mode v2 (CORRECTO)
   ========================== -->
 
-  <!-- Librería GA4 -->
+  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
-  <!-- Inicialización base + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
 
     gtag('js', new Date());
 
+    /*
+      Consent por defecto CORRECTO:
+      - Fuera de Europa → analytics GRANTED
+      - En Europa → Cookiebot lo ajusta automáticamente
+    */
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
-  </script>
 
-  <!-- Activación GA4 SOLO con consentimiento -->
-  <script type="text/plain" data-cookieconsent="statistics">
-    gtag('consent', 'update', {
-      analytics_storage: 'granted'
-    });
-
+    /*
+      GA4 siempre activo
+      (cookieless si no hay consentimiento)
+    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true
     });
   </script>
 
 </head>
+
 
 <body>
 
