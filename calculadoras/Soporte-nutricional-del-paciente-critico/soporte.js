@@ -88,14 +88,19 @@ function updateEnteralTable(targetKcal, targetProtein) {
     const vol = targetKcal / kcalMl;
     const protReal = vol * (prot100 / 100);
     const ratio = protReal / targetProtein;
+    const deficit = Math.max(0, targetProtein - protReal);
 
     let evalText = "❌ No cumple";
     if (ratio >= 1) evalText = "✅ Cumple";
     else if (ratio >= 0.8) evalText = "🟡 Se aproxima";
 
-    row.querySelector(".vol").textContent  = `${round0(vol)} ml`;
-    row.querySelector(".kcal").textContent = `${round10(targetKcal)} kcal`;
-    row.querySelector(".prot").textContent = `${round0(protReal)} g`;
+    row.querySelector(".vol").textContent  = `${Math.round(vol)} ml`;
+    row.querySelector(".kcal").textContent = `${Math.round(targetKcal / 10) * 10} kcal`;
+    row.querySelector(".prot").textContent = `${Math.round(protReal)} g`;
+
+    row.querySelector(".deficit").textContent =
+      deficit > 0 ? `-${Math.round(deficit)} g` : "0 g";
+
     row.querySelector(".eval").textContent = evalText;
   });
 }
