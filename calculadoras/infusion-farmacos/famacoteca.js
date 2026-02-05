@@ -112,5 +112,43 @@ document.addEventListener("click", function (e) {
     const card = e.target.closest("#vasopresina");
     if (card) recalcularVasopresina(card);
   });
+
+// =========================
+// mcg/min (nitroglicerina)
+// =========================
+if (tipo === "mcg-min") {
+  const conc = parseFloat(opt.dataset.mcgPerMl);
+  if (!Number.isFinite(conc)) return;
+
+  concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+
+  const vel = parseFloat(velEl.value);
+  if (!vel) {
+    resEl.textContent = "—";
+    return;
+  }
+
+  const dosis = (vel * conc) / 60;
+  resEl.textContent = `${dosis.toFixed(1)} mcg/min`;
+}
+
+// =========================
+// mg/min (labetalol)
+// =========================
+if (tipo === "mg-min") {
+  const conc = parseFloat(opt.dataset.mgPerMl);
+  if (!Number.isFinite(conc)) return;
+
+  concEl.textContent = `${conc.toFixed(2)} mg/ml`;
+
+  const vel = parseFloat(velEl.value);
+  if (!vel) {
+    resEl.textContent = "—";
+    return;
+  }
+
+  const dosis = (vel * conc) / 60;
+  resEl.textContent = `${dosis.toFixed(2)} mg/min`;
+}
 </script>
 
