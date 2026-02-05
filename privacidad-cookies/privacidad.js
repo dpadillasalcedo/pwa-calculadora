@@ -1,23 +1,42 @@
-(() => {
-  // Año dinámico
+/* =========================
+   PRIVACIDAD · JS
+   Página legal / contenido
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     Año dinámico en footer
+  ========================= */
   const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 
-  // Botón "Configurar cookies" → abre el panel de Cookiebot
-  const btn = document.getElementById("btn-cookie-settings");
-  if (btn) {
-    btn.addEventListener("click", () => {
-      // Cookiebot expone métodos si el script cargó correctamente
-      if (window.Cookiebot && typeof window.Cookiebot.renew === "function") {
-        window.Cookiebot.renew();
-        return;
+  /* =========================
+     Botón Configurar cookies
+  ========================= */
+  const cookieBtn = document.getElementById("btn-cookie-settings");
+
+  if (cookieBtn) {
+    cookieBtn.addEventListener("click", () => {
+      if (window.Cookiebot) {
+        // Abre el panel de configuración de Cookiebot
+        Cookiebot.show();
+      } else {
+        console.warn("Cookiebot no está disponible todavía.");
       }
-
-      // Fallback: si Cookiebot no está listo (por caché/red), avisar
-      alert("El panel de cookies no está disponible en este momento. Por favor, recargá la página e intentá nuevamente.");
     });
   }
 
-  // Asegurar que anchors no queden escondidos bajo header (si sumás header sticky en el futuro)
-  // (opcional, no hace nada si no hay offset)
-})();
+  /* =========================
+     Foco por hash (TOC)
+     Mejora UX al navegar #secciones
+  ========================= */
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    }
+  }
+});
