@@ -91,156 +91,102 @@
   // -------------------------
   // Cálculos (según data-calc)
   // -------------------------
-  function recalcular(card) {
-    const tipo = card.dataset.calc;
+   function recalcular(card) {
+  const tipo = card.dataset.calc;
 
-    const sel = card.querySelector(".dilucion");
-    const concEl = card.querySelector(".concentracion");
-    const pesoEl = card.querySelector(".peso");
-    const velEl = card.querySelector(".velocidad");
-    const resEl = card.querySelector(".resultado");
+  const sel = card.querySelector(".dilucion");
+  const concEl = card.querySelector(".concentracion");
+  const pesoEl = card.querySelector(".peso");
+  const velEl = card.querySelector(".velocidad");
+  const resEl = card.querySelector(".resultado");
 
-    if (!sel || !concEl || !velEl || !resEl) return;
+  if (!sel || !concEl || !resEl) return;
 
-    const opt = sel.options[sel.selectedIndex];
-    if (!opt) return;
+  const opt = sel.options[sel.selectedIndex];
+  if (!opt || sel.selectedIndex === 0) {
+    concEl.textContent = "—";
+    resEl.textContent = "—";
+    return;
+  }
 
-    const vel = parseFloat(velEl.value);
+  let conc, dosis;
 
-    // Si no hay dilución seleccionada, reset
-    if (sel.selectedIndex === 0) {
-      concEl.textContent = "—";
+  /* =========================
+     mcg/kg/min
+  ========================= */
+  if (tipo === "mcg-kg-min") {
+    conc = parseFloat(opt.dataset.mcgPerMl);
+    concEl.textContent = Number.isFinite(conc) ? `${conc} mcg/ml` : "—";
+
+    const peso = parseFloat(pesoEl?.value);
+    const vel = parseFloat(velEl?.value);
+
+    if (!Number.isFinite(peso) || !Number.isFinite(vel) || peso <= 0 || vel <= 0) {
       resEl.textContent = "—";
       return;
     }
 
-    // -------------------------
-    // mcg/kg/min
-    // -------------------------
-    if (tipo === "mcg-kg-min") {
-      const conc = parseFloat(opt.dataset.mcgPerMl);
-      const peso = parseFloat(pesoEl?.value);
-
-      if (!Number.isFinite(conc)) {
-        concEl.textContent = "—";
-        resEl.textContent = "—";
-        return;
-      }
-
-      concEl.textContent = `${fmt(conc, 1)} mcg/ml`;
-
-      if (!Number.isFinite(peso) || peso <= 0 || !Number.isFinite(vel) || vel <= 0) {
-        resEl.textContent = "—";
-        return;
-      }
-
-      // mcg/kg/min = (ml/h × mcg/ml) / (kg × 60)
-      const dosis = (vel * conc) / (peso * 60);
-      resEl.textContent = `${fmt(dosis, 3)} mcg/kg/min`;
-      return;
-    }
-
-    // -------------------------
-    // mcg/min
-    // -------------------------
-    if (tipo === "mcg-min") {
-      const conc = parseFloat(opt.dataset.mcgPerMl);
-
-      if (!Number.isFinite(conc)) {
-        concEl.textContent = "—";
-        resEl.textContent = "—";
-        return;
-      }
-
-      concEl.textContent = `${fmt(conc, 0)} mcg/ml`;
-
-      if (!Number.isFinite(vel) || vel <= 0) {
-        resEl.textContent = "—";
-        return;
-      }
-
-      // mcg/min = (ml/h × mcg/ml) / 60
-      const dosis = (vel * conc) / 60;
-      resEl.textContent = `${fmt(dosis, 0)} mcg/min`;
-      return;
-    }
-
-    // -------------------------
-    // mg/kg/h
-    // -------------------------
-    if (tipo === "mg-kg-h") {
-      const conc = parseFloat(opt.dataset.mgPerMl);
-      const peso = parseFloat(pesoEl?.value);
-
-      if (!Number.isFinite(conc)) {
-        concEl.textContent = "—";
-        resEl.textContent = "—";
-        return;
-      }
-
-      concEl.textContent = `${fmt(conc, 2)} mg/ml`;
-
-      if (!Number.isFinite(peso) || peso <= 0 || !Number.isFinite(vel) || vel <= 0) {
-        resEl.textContent = "—";
-        return;
-      }
-
-      // mg/kg/h = (ml/h × mg/ml) / kg
-      const dosis = (vel * conc) / peso;
-      resEl.textContent = `${fmt(dosis, 3)} mg/kg/h`;
-      return;
-    }
-
-    // -------------------------
-    // UI/min
-    // -------------------------
-    if (tipo === "ui-min") {
-      const conc = parseFloat(opt.dataset.uiPerMl);
-
-      if (!Number.isFinite(conc)) {
-        concEl.textContent = "—";
-        resEl.textContent = "—";
-        return;
-      }
-
-      concEl.textContent = `${fmt(conc, 2)} UI/ml`;
-
-      if (!Number.isFinite(vel) || vel <= 0) {
-        resEl.textContent = "—";
-        return;
-      }
-
-      // UI/min = (ml/h × UI/ml) / 60
-      const dosis = (vel * conc) / 60;
-      resEl.textContent = `${fmt(dosis, 3)} UI/min`;
-      return;
-    }
-
-    // Si el tipo no está definido o está mal escrito:
-    concEl.textContent = "—";
-    resEl.textContent = "—";
+    dosis = (vel * conc) / (peso * 60);
+    resEl.textContent = `${dosis.toFixed(3)} mcg/kg/min`;
+    return;
   }
 
-  // Eventos de cálculo: change (dilución) + input (peso/vel)
-  document.addEventListener("change", function (e) {
-    if (!e.target.classList.contains("dilucion")) return;
-    const card = e.target.closest(".drug-card");
-    if (!card) return;
-    recalcular(card);
-  });
+  /* =========================
+     mcg/min
+  ========================= */
+  if (tipo === "mcg-min") {
+    conc = parseFloat(opt.dataset.mcgPerMl);
+    concEl.textContent = Number.isFinite(conc) ? `${conc} mcg/ml` : "—";
 
-  document.addEventListener("input", function (e) {
-    if (
-      !e.target.classList.contains("peso") &&
-      !e.target.classList.contains("velocidad")
-    ) return;
+    const vel = parseFloat(velEl?.value);
+    if (!Number.isFinite(vel) || vel <= 0) {
+      resEl.textContent = "—";
+      return;
+    }
 
-    const card = e.target.closest(".drug-card");
-    if (!card) return;
-    recalcular(card);
-  });
+    dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(0)} mcg/min`;
+    return;
+  }
 
-  // Al cargar, aplica filtros una vez
-  window.addEventListener("load", applyFilters);
+  /* =========================
+     mg/kg/h
+  ========================= */
+  if (tipo === "mg-kg-h") {
+    conc = parseFloat(opt.dataset.mgPerMl);
+    concEl.textContent = Number.isFinite(conc) ? `${conc} mg/ml` : "—";
 
-})();
+    const peso = parseFloat(pesoEl?.value);
+    const vel = parseFloat(velEl?.value);
+
+    if (!Number.isFinite(peso) || !Number.isFinite(vel) || peso <= 0 || vel <= 0) {
+      resEl.textContent = "—";
+      return;
+    }
+
+    dosis = (vel * conc) / peso;
+    resEl.textContent = `${dosis.toFixed(3)} mg/kg/h`;
+    return;
+  }
+
+  /* =========================
+     UI/min
+  ========================= */
+  if (tipo === "ui-min") {
+    conc = parseFloat(opt.dataset.uiPerMl);
+    concEl.textContent = Number.isFinite(conc) ? `${conc} UI/ml` : "—";
+
+    const vel = parseFloat(velEl?.value);
+    if (!Number.isFinite(vel) || vel <= 0) {
+      resEl.textContent = "—";
+      return;
+    }
+
+    dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(3)} UI/min`;
+    return;
+  }
+
+  concEl.textContent = "—";
+  resEl.textContent = "—";
+}
