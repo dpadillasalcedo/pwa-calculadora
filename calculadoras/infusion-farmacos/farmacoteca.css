@@ -439,3 +439,8 @@ main h2::before {
 .drug-sheet .hint {
   margin-top: 0.75rem;
 }
+
+/* Forzar ocultamiento de fichas */
+.hidden {
+  display: none !important;
+}
