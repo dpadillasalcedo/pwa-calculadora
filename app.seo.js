@@ -1,7 +1,7 @@
 /* =========================
-   SEO + ANALYTICS (URL-based)
+   SEO DINÁMICO (NO ANALYTICS)
    Domain: https://criticalcaretools.com
-   Uso: SPA ligera / páginas estáticas
+   Uso: multipágina (NO SPA)
 ========================= */
 
 const SITE_URL = "https://criticalcaretools.com";
@@ -84,7 +84,7 @@ function setMeta(nameOrProperty, value, isProperty = false) {
 }
 
 /* =========================
-   APPLY SEO
+   APPLY SEO (solo SEO)
 ========================= */
 function applySEO() {
   const path = normalizePath(window.location.pathname);
@@ -94,13 +94,13 @@ function applySEO() {
 
   const canonicalUrl = `${SITE_URL}${path === "/" ? "" : path}`;
 
-  /* ---------- Title ---------- */
+  // Title
   document.title = cfg.title;
 
-  /* ---------- Meta description ---------- */
+  // Meta description
   setMeta("description", cfg.description);
 
-  /* ---------- Canonical ---------- */
+  // Canonical
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement("link");
@@ -109,20 +109,11 @@ function applySEO() {
   }
   canonical.setAttribute("href", canonicalUrl);
 
-  /* ---------- Open Graph ---------- */
+  // Open Graph
   setMeta("og:title", cfg.title, true);
   setMeta("og:description", cfg.description, true);
   setMeta("og:url", canonicalUrl, true);
   setMeta("og:type", "website", true);
-
-  /* ---------- Analytics (solo si existe gtag) ---------- */
-  if (typeof gtag === "function") {
-    gtag("event", "page_view", {
-      page_path: path,
-      page_location: canonicalUrl,
-      page_title: cfg.title
-    });
-  }
 }
 
 /* =========================
