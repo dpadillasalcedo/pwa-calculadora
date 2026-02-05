@@ -39,7 +39,9 @@ function clearOutputs() {
     "pesoUsadoHipo","kcalHipo","protHipo","kcalProtHipo","kcalNoProtHipo"
   ].forEach(id => setText(id));
 
-  clearEnteralTable();
+  clearEnteralTable("tablaTrofico");
+  clearEnteralTable("tablaFull");
+  clearEnteralTable("tablaHipo");
 }
 
 /* =========================
@@ -60,27 +62,27 @@ function calculate(weight, kcalKg, protKg) {
 }
 
 /* =========================
-   Tabla enteral
+   Tablas enterales
 ========================= */
-function clearEnteralTable() {
-  document
-    .querySelectorAll(".tabla-enterales tbody tr")
-    .forEach(row => {
-      row.querySelector(".vol").textContent  = "—";
-      row.querySelector(".kcal").textContent = "—";
-      row.querySelector(".prot").textContent = "—";
-      row.querySelector(".eval").textContent = "—";
-    });
+function clearEnteralTable(tableId) {
+  const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+  rows.forEach(row => {
+    row.querySelector(".vol").textContent     = "—";
+    row.querySelector(".kcal").textContent    = "—";
+    row.querySelector(".prot").textContent    = "—";
+    row.querySelector(".deficit").textContent = "—";
+    row.classList.remove("best-option");
+  });
 }
 
-function updateEnteralTable(targetKcal, targetProtein) {
+function updateEnteralTable(tableId, targetKcal, targetProtein) {
   if (!targetKcal || !targetProtein) return;
 
-  const tbody = document.querySelector(".tabla-enterales tbody");
+  const tbody = document.querySelector(`#${tableId} tbody`);
   const rows = Array.from(tbody.querySelectorAll("tr"));
 
   const calculated = rows.map(row => {
-    const kcalMl = Number(row.dataset.kcalml);
+    const kcalMl  = Number(row.dataset.kcalml);
     const prot100 = Number(row.dataset.prot100);
     if (!kcalMl || !prot100) return null;
 
@@ -91,25 +93,21 @@ function updateEnteralTable(targetKcal, targetProtein) {
     return { row, vol, protReal, deficit };
   }).filter(Boolean);
 
-  // 🔝 Ordenar por menor déficit proteico
   calculated.sort((a, b) => a.deficit - b.deficit);
 
   calculated.forEach((item, index) => {
     const { row, vol, protReal, deficit } = item;
 
     row.querySelector(".vol").textContent  = `${Math.round(vol)} ml`;
-    row.querySelector(".kcal").textContent = `${Math.round(targetKcal / 10) * 10} kcal`;
+    row.querySelector(".kcal").textContent = `${targetKcal} kcal`;
     row.querySelector(".prot").textContent = `${Math.round(protReal)} g`;
     row.querySelector(".deficit").textContent =
       deficit > 0 ? `-${Math.round(deficit)} g` : "0 g";
 
-    // ⭐ marcar mejor opción (menor déficit)
     row.classList.toggle("best-option", index === 0);
-
     tbody.appendChild(row);
   });
 }
-
 
 /* =========================
    Evento principal
@@ -121,10 +119,68 @@ function runCalculation() {
 
   const pesoReal = validNumber(pesoInput?.value);
 
-  /* Validación */
   if (!pesoReal) {
     clearOutputs();
     if (msg) msg.style.display = "block";
+    return;
+  }
+
+  if (msg) msg.style.display = "none";
+
+  /* --- Trófico --- */
+  const trof = calculate(
+    pesoReal,
+    STRATEGIES.trofico.kcalKg,
+    STRATEGIES.trofico.protKg
+  );
+
+  setText("kcalTrofico", `${trof.kcal} kcal/día`);
+  setText("protTrofico", `${trof.protein} g/día`);
+  setText("kcalProtTrofico", `${trof.kcalProt} kcal`);
+  setText("kcalNoProtTrofico", `${trof.kcalNoProt} kcal`);
+
+  /* --- Full feeding --- */
+  const full = calculate(
+    pesoReal,
+    STRATEGIES.full.kcalKg,
+    STRATEGIES.full.protKg
+  );
+
+  setText("kcalFull", `${full.kcal} kcal/día`);
+  setText("protFull", `${full.protein} g/día`);
+  setText("kcalProtFull", `${full.kcalProt} kcal`);
+  setText("kcalNoProtFull", `${full.kcalNoProt} kcal`);
+
+  /* --- Hipocalórico / hiperproteico --- */
+  const hipo = calculate(
+    pesoReal,
+    STRATEGIES.hipo.kcalKg,
+    STRATEGIES.hipo.protKg
+  );
+
+  setText("pesoUsadoHipo", `${round1(pesoReal)} kg`);
+  setText("kcalHipo", `${hipo.kcal} kcal/día`);
+  setText("protHipo", `${hipo.protein} g/día`);
+  setText("kcalProtHipo", `${hipo.kcalProt} kcal`);
+  setText("kcalNoProtHipo", `${hipo.kcalNoProt} kcal`);
+
+  /* --- Tablas enterales por estrategia --- */
+  updateEnteralTable("tablaTrofico", trof.kcal, trof.protein);
+  updateEnteralTable("tablaFull", full.kcal, full.protein);
+  updateEnteralTable("tablaHipo", hipo.kcal, hipo.protein);
+}
+
+/* =========================
+   Init
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const peso = $("pesoReal");
+  if (peso) {
+    peso.addEventListener("input", runCalculation);
+    peso.addEventListener("change", runCalculation);
+    peso.addEventListener("blur", runCalculation);
+  }
+});
     return;
   }
 
