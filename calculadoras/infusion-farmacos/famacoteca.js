@@ -66,3 +66,51 @@ document.addEventListener("click", function (e) {
   sheet.classList.toggle("hidden");
   btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
 });
+
+<script>
+  // =========================
+  // Vasopresina (UI/min)
+  // =========================
+  function recalcularVasopresina(card) {
+    const sel = card.querySelector(".dilucion.vasopresina");
+    const concEl = card.querySelector(".concentracion");
+    const velEl = card.querySelector(".velocidad");
+    const resEl = card.querySelector(".resultado");
+
+    if (!sel || !concEl || !velEl || !resEl) return;
+
+    const opt = sel.options[sel.selectedIndex];
+    const conc = parseFloat(opt?.dataset?.uiPerMl);
+
+    if (!Number.isFinite(conc)) {
+      concEl.textContent = "—";
+      resEl.textContent = "—";
+      return;
+    }
+
+    concEl.textContent = `${conc.toFixed(2)} UI/ml`;
+
+    const vel = parseFloat(velEl.value);
+    if (!Number.isFinite(vel) || vel <= 0) {
+      resEl.textContent = "—";
+      return;
+    }
+
+    // UI/min = (ml/h × UI/ml) / 60
+    const dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(3)} UI/min`;
+  }
+
+  document.addEventListener("change", (e) => {
+    if (!e.target.classList.contains("vasopresina")) return;
+    const card = e.target.closest(".drug-card");
+    if (card) recalcularVasopresina(card);
+  });
+
+  document.addEventListener("input", (e) => {
+    if (!e.target.classList.contains("velocidad")) return;
+    const card = e.target.closest("#vasopresina");
+    if (card) recalcularVasopresina(card);
+  });
+</script>
+
