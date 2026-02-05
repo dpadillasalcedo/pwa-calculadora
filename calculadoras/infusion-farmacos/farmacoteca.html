@@ -141,24 +141,12 @@
 
       <div>
         <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 4 mg = 4000 mcg; 4000/250 = 16.0 -->
-          <option value="4-250" data-mcg-per-ml="16">
-            4 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
-
-          <!-- 8 mg = 8000 mcg; 8000/100 = 80.0 -->
-          <option value="8-100" data-mcg-per-ml="80">
-            8 mg en 100 ml (DX 5% / SF 0.9%)
-          </option>
-
-          <!-- 20 mg = 20000 mcg; 20000/250 = 80.0 -->
-          <option value="20-250" data-mcg-per-ml="80">
-            20 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
-        </select>
+<select class="dilucion">
+  <option value="">Seleccionar</option>
+  <option data-mcg-per-ml="16">4 mg en 250 ml</option>
+  <option data-mcg-per-ml="80">8 mg en 100 ml</option>
+  <option data-mcg-per-ml="80">20 mg en 250 ml</option>
+</select>
       </div>
 
       <div><span>Concentración</span><b class="concentracion">—</b></div>
