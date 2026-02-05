@@ -1,13 +1,3 @@
-// =========================================================
-// FARMACOTECA UCI – CORE JS
-// Cálculo automático de infusiones (sin botones)
-// =========================================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  // =====================================================
-  // Toggle ficha clínica
-  // =====================================================
 document.addEventListener("DOMContentLoaded", () => {
 
   // Toggle ficha
@@ -72,4 +62,3 @@ document.addEventListener("DOMContentLoaded", () => {
     velocidadInput.addEventListener("input", calcular);
   });
 });
-
