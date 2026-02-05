@@ -1,19 +1,21 @@
 {
-  "name": "Calculadora UCI",
-  "short_name": "UCI",
+  "name": "Critical Care Tools",
+  "short_name": "CCTools",
+  "description": "Calculadoras clínicas y herramientas para cuidados intensivos",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0b5fff",
-  "theme_color": "#0b5fff",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "lang": "es",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
