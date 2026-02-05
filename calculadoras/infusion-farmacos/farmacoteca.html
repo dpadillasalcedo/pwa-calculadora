@@ -902,90 +902,140 @@
 
 <!-- ================= JS ÚNICO ================= -->
 <script>
-document.addEventListener("click",e=>{
-const b=e.target.closest(".toggle-sheet");
-if(!b)return;
-const s=b.closest(".drug-card").querySelector(".drug-sheet");
-s.classList.toggle("hidden");
-b.textContent=s.classList.contains("hidden")?"Ver ficha":"Ocultar ficha";
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".toggle-sheet");
+  if (!btn) return;
+
+  const card = btn.closest(".drug-card");
+  const sheet = card.querySelector(".drug-sheet");
+
+  sheet.classList.toggle("hidden");
+  btn.textContent = sheet.classList.contains("hidden")
+    ? "Ver ficha"
+    : "Ocultar ficha";
 });
 
-document.addEventListener("input",e=>{
-const c=e.target.closest(".drug-card");
-if(!c)return;
-calc(c);
-});
-document.addEventListener("change",e=>{
-const c=e.target.closest(".drug-card");
-if(!c)return;
-calc(c);
+document.addEventListener("input", e => {
+  const card = e.target.closest(".drug-card");
+  if (card) calc(card);
 });
 
-function calc(c){
-const t=c.dataset.calc;
-const o=c.querySelector(".dilucion")?.selectedOptions[0];
-if(!o)return;
-const vel=+c.querySelector(".velocidad")?.value;
-const peso=+c.querySelector(".peso")?.value;
-let conc,res;
+document.addEventListener("change", e => {
+  const card = e.target.closest(".drug-card");
+  if (card) calc(card);
+});
 
-if(t==="mcg-kg-min"){
-conc=+o.dataset.mcgPerMl;
-c.querySelector(".concentracion").textContent=conc+" mcg/ml";
-if(vel>0&&peso>0)res=(vel*conc)/(peso*60);
-}
-if(t==="ui-min"){
-conc=+o.dataset.uiPerMl;
-c.querySelector(".concentracion").textContent=conc+" UI/ml";
-if(vel>0)res=(vel*conc)/60;
-}
-if(t==="mg-kg-h"){
-conc=+o.dataset.mgPerMl;
-c.querySelector(".concentracion").textContent=conc+" mg/ml";
-if(vel>0&&peso>0)res=(vel*conc)/peso;
-}
-c.querySelector(".resultado").textContent=res?res.toFixed(3):"—";
+function calc(card) {
+  const type = card.dataset.calc;
+  const dil = card.querySelector(".dilucion")?.selectedOptions[0];
+  if (!dil) return;
+
+  const vel = parseFloat(card.querySelector(".velocidad")?.value);
+  const peso = parseFloat(card.querySelector(".peso")?.value);
+  let conc, res, unit = "";
+
+  const outConc = card.querySelector(".concentracion");
+  const outRes = card.querySelector(".resultado");
+
+  if (!outRes) return;
+
+  // ================= mcg/kg/min =================
+  if (type === "mcg-kg-min") {
+    conc = +dil.dataset.mcgPerMl;
+    unit = "mcg/kg/min";
+    outConc.textContent = conc + " mcg/ml";
+
+    if (vel > 0 && peso > 0) {
+      res = (vel * conc) / (peso * 60);
+    }
+  }
+
+  // ================= mcg/min =================
+  if (type === "mcg-min") {
+    conc = +dil.dataset.mcgPerMl;
+    unit = "mcg/min";
+    outConc.textContent = conc + " mcg/ml";
+
+    if (vel > 0) {
+      res = (vel * conc) / 60;
+    }
+  }
+
+  // ================= mcg/kg/h =================
+  if (type === "mcg-kg-h") {
+    conc = +dil.dataset.mcgPerMl;
+    unit = "mcg/kg/h";
+    outConc.textContent = conc + " mcg/ml";
+
+    if (vel > 0 && peso > 0) {
+      res = (vel * conc) / peso;
+    }
+  }
+
+  // ================= mcg/kg/hr =================
+  if (type === "mcg-kg-hr") {
+    conc = +dil.dataset.mcgPerMl;
+    unit = "mcg/kg/hr";
+    outConc.textContent = conc + " mcg/ml";
+
+    if (vel > 0 && peso > 0) {
+      res = (vel * conc) / peso;
+    }
+  }
+
+  // ================= mg/kg/h =================
+  if (type === "mg-kg-h") {
+    conc = +dil.dataset.mgPerMl;
+    unit = "mg/kg/h";
+    outConc.textContent = conc + " mg/ml";
+
+    if (vel > 0 && peso > 0) {
+      res = (vel * conc) / peso;
+    }
+  }
+
+  // ================= mg/kg/hr =================
+  if (type === "mg-kg-hr") {
+    conc = +dil.dataset.mgPerMl;
+    unit = "mg/kg/hr";
+    outConc.textContent = conc + " mg/ml";
+
+    if (vel > 0 && peso > 0) {
+      res = (vel * conc) / peso;
+    }
+  }
+
+  // ================= mg/min =================
+  if (type === "mg-min") {
+    conc = +dil.dataset.mgPerMl;
+    unit = "mg/min";
+    outConc.textContent = conc + " mg/ml";
+
+    if (vel > 0) {
+      res = (vel * conc) / 60;
+    }
+  }
+
+  // ================= UI/min =================
+  if (type === "ui-min") {
+    conc = +dil.dataset.uiPerMl;
+    unit = "UI/min";
+    outConc.textContent = conc + " UI/ml";
+
+    if (vel > 0) {
+      res = (vel * conc) / 60;
+    }
+  }
+
+  // ================= Resultado =================
+  if (res && isFinite(res)) {
+    outRes.textContent = res.toFixed(2) + " " + unit;
+  } else {
+    outRes.textContent = "—";
+  }
 }
 </script>
 
-  <script>
-const inputQ = document.getElementById("q");
-const selectGrupo = document.getElementById("grupo");
-const btnReset = document.getElementById("btnReset");
-const cards = document.querySelectorAll(".drug-card");
-
-function filtrarFarmacos() {
-  const texto = inputQ.value.toLowerCase().trim();
-  const grupo = selectGrupo.value;
-
-  cards.forEach(card => {
-    const nombre = card.querySelector("h3")?.textContent.toLowerCase() || "";
-    const grupoCard = card.dataset.group;
-
-    const matchTexto = nombre.includes(texto);
-    const matchGrupo = grupo === "all" || grupoCard === grupo;
-
-    card.style.display = (matchTexto && matchGrupo) ? "" : "none";
-  });
-}
-
-inputQ.addEventListener("input", filtrarFarmacos);
-selectGrupo.addEventListener("change", filtrarFarmacos);
-
-btnReset.addEventListener("click", () => {
-  inputQ.value = "";
-  selectGrupo.value = "all";
-  filtrarFarmacos();
-});
-</script>
-
-  <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js", { scope: "/" });
-  });
-}
-</script>
 
 </body>
 </html>
