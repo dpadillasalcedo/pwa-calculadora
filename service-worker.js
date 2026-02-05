@@ -1,12 +1,14 @@
-const CACHE_NAME = 'critical-care-tools-v2';
+const CACHE_NAME = 'critical-care-tools-v3';
 
 /*
-  SOLO assets estáticos
-  (NO HTML, NO rutas)
+  Cache SOLO de assets estáticos seguros
+  (NO HTML, NO cálculos, NO datos clínicos)
 */
 const STATIC_ASSETS = [
   '/style.css',
-  '/manifest.json'
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 // Install
@@ -37,12 +39,12 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(event.request.url);
 
-  // ❌ NO interceptar navegación HTML
+  // ❌ No interceptar navegación (HTML siempre desde red)
   if (event.request.mode === 'navigate') {
     return;
   }
 
-  // ❌ NO cachear Google / Analytics
+  // ❌ No tocar Analytics ni Google
   if (
     url.hostname.includes('google-analytics.com') ||
     url.hostname.includes('googletagmanager.com')
