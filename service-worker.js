@@ -1,59 +1,49 @@
-const CACHE_NAME = "criticalcaretools-v2";
+const CACHE_NAME = 'critical-care-tools-v1';
 
-const ASSETS = [
-  "/", 
-  "/index.html",
-
-  // Manifest
-  "/manifest.webmanifest",
-
-  // Farmacoteca UCI
-  "/calculadoras/infusion-farmacos/farmacoteca.html",
-  "/calculadoras/infusion-farmacos/farmacoteca.css",
-  "/calculadoras/infusion-farmacos/farmacoteca.js"
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/manifest.json'
 ];
 
-// =========================================================
-// INSTALL
-// =========================================================
-self.addEventListener("install", event => {
+// Install
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
+  );
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
-  );
 });
 
-// =========================================================
-// ACTIVATE
-// =========================================================
-self.addEventListener("activate", event => {
+// Activate
+self.addEventListener('activate', event => {
   event.waitUntil(
-    (async () => {
-      const keys = await caches.keys();
-      await Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
-      );
-      await self.clients.claim();
-    })()
+    caches.keys().then(keys =>
+      Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      )
+    )
   );
+  self.clients.claim();
 });
 
-// =========================================================
-// FETCH
-// Network first, fallback cache
-// =========================================================
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
+// Fetch
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+
+  // 🔴 IMPORTANTE: no cachear requests a Google / Analytics
+  if (
+    event.request.url.includes('google-analytics.com') ||
+    event.request.url.includes('googletagmanager.com')
+  ) {
+    return;
+  }
 
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, clone);
-        });
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
