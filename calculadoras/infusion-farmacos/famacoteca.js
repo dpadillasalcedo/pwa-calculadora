@@ -1,43 +1,47 @@
 (() => {
-  // Diluciones disponibles
-  const diluciones = {
-    "4-250": { mg: 4, ml: 250 },
-    "8-100": { mg: 8, ml: 100 },
-    "20-250": { mg: 20, ml: 250 }
-  };
+  // Marca para verificar que el script cargó
+  window.__drugCalcLoaded = true;
 
+  // Convierte "1,5" a 1.5 y parsea a número
   function toNum(v) {
+    if (typeof v !== "string") v = String(v ?? "");
+    v = v.replace(",", ".").trim();
     const n = parseFloat(v);
     return Number.isFinite(n) ? n : NaN;
   }
 
   function calcForCard(card) {
-    const dilucionSelect = card.querySelector(".dilucion");
+    const sel = card.querySelector("select.dilucion");
     const concEl = card.querySelector(".concentracion");
-    const pesoInput = card.querySelector(".peso");
-    const velInput = card.querySelector(".velocidad");
+    const pesoEl = card.querySelector("input.peso");
+    const velEl = card.querySelector("input.velocidad");
     const resEl = card.querySelector(".resultado");
 
-    if (!dilucionSelect || !concEl || !pesoInput || !velInput || !resEl) return;
+    // Si falta algo, no rompe (pero tampoco calcula)
+    if (!sel || !concEl || !pesoEl || !velEl || !resEl) return;
 
-    const cfg = diluciones[dilucionSelect.value];
+    const opt = sel.options[sel.selectedIndex];
+    const mg = toNum(opt?.dataset?.mg);
+    const ml = toNum(opt?.dataset?.ml);
 
-    // 1) Concentración automática según dilución
-    if (!cfg) {
-      card.dataset.concentracion = "";
+    // Si no hay dilución válida, limpiar
+    if (!Number.isFinite(mg) || !Number.isFinite(ml) || ml <= 0) {
       concEl.textContent = "—";
       resEl.textContent = "—";
+      card.dataset.concentracion = "";
       return;
     }
 
-    const concentracion = (cfg.mg * 1000) / cfg.ml; // mcg/ml
+    // Concentración mcg/ml
+    const concentracion = (mg * 1000) / ml;
     card.dataset.concentracion = String(concentracion);
     concEl.textContent = `${concentracion.toFixed(1)} mcg/ml`;
 
-    // 2) Dosis (gammas) automática según peso y ml/h
-    const peso = toNum(pesoInput.value);
-    const velocidad = toNum(velInput.value);
+    // Inputs
+    const peso = toNum(pesoEl.value);
+    const velocidad = toNum(velEl.value);
 
+    // Si falta peso o velocidad, mostrar guión
     if (!Number.isFinite(peso) || peso <= 0 || !Number.isFinite(velocidad) || velocidad <= 0) {
       resEl.textContent = "—";
       return;
@@ -65,30 +69,35 @@
     btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
   });
 
-  // Cambios de dilución (delegado)
+  // Recalcular al cambiar dilución
   document.addEventListener("change", (e) => {
-    if (!e.target.matches(".dilucion")) return;
-    const card = e.target.closest(".drug-card");
+    const sel = e.target.closest("select.dilucion");
+    if (!sel) return;
+
+    const card = sel.closest(".drug-card");
     if (!card) return;
+
     calcForCard(card);
   });
 
-  // Inputs peso / velocidad (delegado)
+  // Recalcular al tipear peso o velocidad
   document.addEventListener("input", (e) => {
-    if (!e.target.matches(".peso, .velocidad")) return;
+    if (!e.target.matches("input.peso, input.velocidad")) return;
+
     const card = e.target.closest(".drug-card");
     if (!card) return;
+
     calcForCard(card);
   });
 
-  // Inicializa fichas ya presentes (por si ya están en DOM)
-  function initExisting() {
-    document.querySelectorAll(".drug-card").forEach(card => calcForCard(card));
+  // Inicializa cards existentes
+  function init() {
+    document.querySelectorAll(".drug-card").forEach(calcForCard);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initExisting);
+    document.addEventListener("DOMContentLoaded", init);
   } else {
-    initExisting();
+    init();
   }
 })();
