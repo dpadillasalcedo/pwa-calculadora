@@ -13,6 +13,9 @@
     type="text/javascript">
   </script>
 
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,24 +29,38 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/variables.html" />
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph -->
+  <!-- =========================
+       Canonical (CORRECTO)
+  ========================== -->
+  <link rel="canonical"
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
   <meta property="og:title" content="Variables clínicas | Calculadoras UCI" />
-  <meta property="og:description"
-        content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
+  <meta
+    property="og:description"
+    content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación."
+  />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/variables.html" />
+  <meta property="og:url"
+        content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
   <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet" href="variables.css" />
+  <link rel="stylesheet"
+        href="/calculadoras/variables-clinicas/variables.css" />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (CORRECTO)
+       + Consent Mode v2 (ROBUSTO)
   ========================== -->
 
   <!-- GA4 Library -->
@@ -51,14 +68,14 @@
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
     /*
-      Consent por defecto:
-      - Fuera de Europa → analytics GRANTED
-      - En Europa → Cookiebot lo ajusta automáticamente
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -68,11 +85,11 @@
     });
 
     /*
-      GA4 siempre activo
-      (cookieless si no hay consentimiento)
+      Configuración GA4 segura para PWA
     */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
@@ -184,6 +201,7 @@
 
 </body>
 </html>
+
 
 
 
