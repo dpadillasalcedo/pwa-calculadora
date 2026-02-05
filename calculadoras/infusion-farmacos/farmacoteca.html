@@ -1,19 +1,6 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Farmacoteca UCI | Critical Care Tools</title>
-
-  <meta name="description"
-        content="Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html" />
-
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <meta name="theme-color" content="#020617" />
 
   <!-- =========================
        Cookiebot (SIEMPRE PRIMERO)
@@ -27,59 +14,78 @@
   </script>
 
   <!-- =========================
-       Google Analytics GA4
-       UE → con consentimiento
-       NO UE → automático
+       Meta básicos
   ========================== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Farmacoteca UCI | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico."
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- =========================
+       PWA (UNIFICADO)
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
+  />
+
+  <!-- =========================
+       CSS
+  ========================== -->
+  <link
+    rel="stylesheet"
+    href="/calculadoras/infusion-farmacos/farmacoteca.css"
+  />
+
+  <!-- =========================
+       Google Analytics GA4
+       + Consent Mode v2 (ÚNICO EN TODO EL SITIO)
+  ========================== -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
-    // Estado seguro por defecto (UE)
-    gtag("consent", "default", {
-      analytics_storage: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied"
+    gtag('js', new Date());
+
+    /*
+      Consent Mode por defecto:
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
+      - GA funciona cookieless hasta aceptar
+    */
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
 
-    function loadGA() {
-      if (window.__gaLoaded) return;
-      window.__gaLoaded = true;
-
-      const s = document.createElement("script");
-      s.src = "https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4";
-      s.async = true;
-      document.head.appendChild(s);
-
-      gtag("js", new Date());
-      gtag("config", "G-WQREHQ56Q4", { anonymize_ip: true });
-    }
-
-    // NO UE → GA automático
-    window.addEventListener("load", () => {
-      if (window.Cookiebot && Cookiebot.data?.region !== "EU") {
-        gtag("consent", "update", { analytics_storage: "granted" });
-        loadGA();
-      }
-    });
-
-    // UE → GA solo con consentimiento
-    window.addEventListener("CookieConsentDeclaration", () => {
-      if (
-        window.Cookiebot &&
-        Cookiebot.data?.region === "EU" &&
-        Cookiebot.consents?.statistics
-      ) {
-        gtag("consent", "update", { analytics_storage: "granted" });
-        loadGA();
-      }
+    /*
+      Configuración GA4 segura para PWA
+    */
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="farmacoteca.css" />
 </head>
+
 
 <body class="app-root">
 
