@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Fármacos | Calculadoras UCI</title>
-  <meta name="description" content="Cálculo de dosis en UCI. Vancomicina en infusión continua." />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
 
   <!-- =========================
        Cookiebot (SIEMPRE PRIMERO)
@@ -21,26 +14,60 @@
   </script>
 
   <!-- =========================
+       Meta básicos
+  ========================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Fármacos | Calculadoras UCI | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Cálculo de dosis en UCI. Vancomicina en infusión continua. Uso educativo y apoyo clínico."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/infusion-farmacos/"
+  />
+
+  <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet" href="./farmacos.css" />
+  <link
+    rel="stylesheet"
+    href="/calculadoras/infusion-farmacos/farmacos.css"
+  />
 
   <!-- =========================
        Google Analytics GA4
+       + Consent Mode v2 (ÚNICO)
   ========================== -->
+
   <!-- Librería GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
+
     gtag('js', new Date());
 
     /*
-      Consent Mode:
-      - Usuarios fuera de Europa: analytics_storage = granted automáticamente
-      - Usuarios UE: Cookiebot controla consentimiento
-      - Mantiene IP anonimizada
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -49,24 +76,17 @@
       ad_personalization: 'denied'
     });
 
+    /*
+      Configuración GA4 segura para PWA
+    */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
-    });
-  </script>
-
-  <!-- =========================
-       Activación GA4 SOLO con consentimiento en UE
-  ========================== -->
-  <script type="text/plain" data-cookieconsent="statistics">
-    gtag('consent', 'update', {
-      analytics_storage: 'granted'
-    });
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
 </head>
+
 
 
 
