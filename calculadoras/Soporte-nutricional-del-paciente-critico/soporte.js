@@ -3,7 +3,7 @@
 ========================= */
 
 const STRATEGIES = {
-  trofico: { kcalKg: 15, protKg: 0.8 },
+  trofico: { kcalKg: 20, protKg: 0.8 },
   full:    { kcalKg: 30, protKg: 2.0 },
   hipo:    { kcalKg: 15, protKg: 2.0 }
 };
