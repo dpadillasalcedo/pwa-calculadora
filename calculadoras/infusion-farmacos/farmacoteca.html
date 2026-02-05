@@ -129,47 +129,68 @@
       <h3>Noradrenalina</h3>
       <p class="muted small">Vasopresor</p>
     </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
   </header>
 
   <section class="drug-sheet hidden">
 
     <div class="sheet-grid">
-      <div><span>Presentación</span><b contenteditable="true">4 mg / 4 ml</b></div>
-      <div><span>Dilución habitual</span><b contenteditable="true">4 mg en 250 ml SF</b></div>
-      <div><span>Concentración</span><b contenteditable="true">16 mcg/ml</b></div>
-      <div><span>Unidad</span><b class="unidad">mcg/kg/min</b></div>
-    </div>
+      <div>
+        <span>Presentación</span>
+        <b>4 mg / 4 ml</b>
+      </div>
 
-    <div class="dose-block">
-      <h4>Rangos de dosis</h4>
-      <div class="dose-grid">
-        <label>Mín abs<input type="number" step="any"></label>
-        <label>Mín rel<input type="number" step="any"></label>
-        <label>Máx rel<input type="number" step="any"></label>
-        <label>Máx abs<input type="number" step="any"></label>
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+          <option value="4-250">4 mg en 250 ml (DX 5% / SF 0.9%)</option>
+          <option value="8-100">8 mg en 100 ml (DX 5% / SF 0.9%)</option>
+          <option value="20-250">20 mg en 250 ml (DX 5% / SF 0.9%)</option>
+        </select>
+      </div>
+
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>mcg/kg/min</b>
       </div>
     </div>
 
     <div class="calc-block">
-      <h4>Cálculo de infusión</h4>
+      <h4>Cálculo de dosis administrada</h4>
+
       <div class="calc-grid">
-        <label>Peso (kg)<input type="number" class="peso" step="0.1"></label>
-        <label>Dosis<input type="number" class="dosis" step="0.01"></label>
-        <label>Concentración (mcg/ml)<input type="number" class="concentracion" step="0.1"></label>
+        <label>
+          Peso (kg)
+          <input type="number" class="peso" step="0.1">
+        </label>
+
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1">
+        </label>
+
         <div class="calc-result">
-          <span>Velocidad</span>
+          <span>Dosis administrada</span>
           <b class="resultado">—</b>
         </div>
       </div>
     </div>
 
     <div class="clinical-note">
-      <b>Nota clínica:</b> titular según PAM objetivo, perfusión tisular y lactato.
+      <b>Nota clínica:</b> interpretar según PAM objetivo, perfusión tisular y lactato.
     </div>
 
   </section>
 </article>
+
 
 <!-- ================= ADRENALINA ================= -->
 
