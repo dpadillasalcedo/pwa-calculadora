@@ -13,6 +13,9 @@
     type="text/javascript">
   </script>
 
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,40 +29,58 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/" />
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph -->
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/"
+  />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
   <meta property="og:title" content="Neurología crítica | Calculadoras UCI" />
-  <meta property="og:description"
-        content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt & Hess, Fisher y Marshall Score." />
+  <meta
+    property="og:description"
+    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt & Hess, Fisher y Marshall Score."
+  />
   <meta property="og:type" content="website" />
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/"
+  />
 
   <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet" href="./neuro.css?v=7" />
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=7"
+  />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (CORRECTO)
+       + Consent Mode v2 (ROBUSTO)
   ========================== -->
 
-  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
     /*
-      Consent por defecto CORRECTO:
-      - Fuera de Europa → analytics GRANTED
-      - En Europa → Cookiebot lo ajusta automáticamente
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -69,15 +90,16 @@
     });
 
     /*
-      GA4 siempre activo
-      (cookieless si no hay consentimiento)
+      Configuración GA4 segura para PWA
     */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
 </head>
+
 
 
 
