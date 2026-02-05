@@ -13,6 +13,9 @@
     type="text/javascript">
   </script>
 
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,25 +29,44 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/acido-base/" />
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph -->
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/acido-base/"
+  />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
   <meta property="og:title" content="Ácido–Base | Calculadoras UCI" />
-  <meta property="og:description"
-        content="Evaluación ácido–base y electrolitos en el paciente crítico: anion gap, delta–delta y correcciones bioquímicas." />
+  <meta
+    property="og:description"
+    content="Evaluación ácido–base y electrolitos en el paciente crítico: anion gap, delta–delta y correcciones bioquímicas."
+  />
   <meta property="og:type" content="website" />
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/acido-base/" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/acido-base/"
+  />
 
   <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet" href="./acido-base.css" />
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/acido-base/acido-base.css"
+  />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 CORREGIDO
+       + Consent Mode v2 (ROBUSTO)
   ========================== -->
 
   <!-- Librería GA4 -->
@@ -52,14 +74,14 @@
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
     /*
-      Consent Mode por defecto:
-      - Fuera de Europa → analytics GRANTED automáticamente
-      - En Europa → Cookiebot controla el consentimiento
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -68,9 +90,12 @@
       ad_personalization: 'denied'
     });
 
-    /* Configuración GA4 */
+    /*
+      Configuración GA4 segura para PWA
+    */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
