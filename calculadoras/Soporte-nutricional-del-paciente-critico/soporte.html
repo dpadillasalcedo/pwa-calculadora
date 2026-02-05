@@ -55,187 +55,134 @@
   </script>
 </head>
 
-
 <body>
 
 <header>
   <h1>Critical Care Tools</h1>
-  <p>Herramientas clínicas para la evaluación y el manejo del paciente crítico en UCI</p>
+  <p>Herramientas clínicas para el manejo del paciente crítico en UCI</p>
 </header>
 
 <main class="wrap">
 
-  <header>
-    <h1>Soporte nutricional del paciente crítico</h1>
-    <p>
-      Calculadora clínica de apoyo basada en peso corporal y rangos
-      recomendados por guías <b>ASPEN / ESPEN</b>.
-    </p>
-  </header>
+<header>
+  <h1>Soporte nutricional del paciente crítico</h1>
+  <p>Calculadora clínica basada en guías <b>ASPEN / ESPEN</b></p>
+</header>
 
-  <!-- ================= INPUTS ================= -->
 <section class="card">
-  <div class="row">
-
-    <!-- Input peso -->
-    <div>
-      <label for="pesoReal">Peso real (kg)</label>
-      <input id="pesoReal" type="number" min="1" step="0.1" placeholder="Ej: 70">
-  
-    </div>
-
-    <!-- Recordatorio clínico -->
-    <div class="clinical-reminder">
-      <strong>Recordatorio clínico</strong>
-      <p>
-        Ajustar el soporte nutricional si el paciente presenta
-        <b>enfermedad renal crónica</b>, <b>quemaduras &gt;15% de la superficie corporal</b>
-        o <b>IMC &gt;30 kg/m²</b>.
-      </p>
-    </div>
-
-  </div>
+  <label for="pesoReal">Peso real (kg)</label>
+  <input id="pesoReal" type="number" min="1" step="0.1" placeholder="Ej: 70">
 </section>
 
-  <div class="divider"></div>
+<div class="divider"></div>
 
-  <!-- ================= RESULTADOS ================= -->
-  <section class="grid">
+<section class="grid">
 
-    <article class="card">
-      <div class="pill">Estrategia 1</div>
-      <h2>Soporte trófico</h2>
-      <p class="small">15 kcal/kg/día · 0.8 g proteína/kg/día</p>
-      <div class="result">
-        <div class="metric"><span>Objetivo calórico</span><b id="kcalTrofico">—</b></div>
-        <div class="metric"><span>Objetivo proteico</span><b id="protTrofico">—</b></div>
-        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtTrofico">—</b></div>
-        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtTrofico">—</b></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="pill">Estrategia 2</div>
-      <h2>Full feeding</h2>
-      <p class="small">30 kcal/kg/día · 2.0 g proteína/kg/día</p>
-      <div class="result">
-        <div class="metric"><span>Objetivo calórico</span><b id="kcalFull">—</b></div>
-        <div class="metric"><span>Objetivo proteico</span><b id="protFull">—</b></div>
-        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtFull">—</b></div>
-        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtFull">—</b></div>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="pill">Estrategia 3</div>
-      <h2>Hipocalórico / hiperproteico</h2>
-      <p class="small">15 kcal/kg/día · 2.0 g proteína/kg/día</p>
-      <div class="result">
-        <div class="metric"><span>Peso utilizado</span><b id="pesoUsadoHipo">—</b></div>
-        <div class="metric"><span>Objetivo calórico</span><b id="kcalHipo">—</b></div>
-        <div class="metric"><span>Objetivo proteico</span><b id="protHipo">—</b></div>
-        <div class="metric"><span>kcal desde proteína</span><b id="kcalProtHipo">—</b></div>
-        <div class="metric"><span>kcal no proteicas</span><b id="kcalNoProtHipo">—</b></div>
-      </div>
-    </article>
-
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ================= TABLA INTELIGENTE ================= -->
-  <section class="card">
-    <h2>Sugerencia automática de nutrición enteral</h2>
-    <p class="small">
-      Comparación automática de fórmulas según los requerimientos calculados.
-      Uso orientativo, no prescriptivo.
-    </p>
-
-    <div style="overflow-x:auto;margin-top:1.5rem;">
-      <table class="tabla-enterales">
-<thead>
-  <tr>
-    <th>Marca</th>
-    <th>Fórmula</th>
-    <th>kcal/ml</th>
-    <th>Proteína<br>(g/100 ml)</th>
-    <th>Volumen<br>(ml/día)</th>
-    <th>kcal<br>/día</th>
-    <th>Proteína<br>(g/día)</th>
-    <th>Déficit<br>proteico</th>
-  </tr>
-</thead>
-        <tbody>
-
-          <tr data-kcalml="1.0" data-prot100="4.0">
-            <td>Yeviti</td>
-            <td>Isocalórica estándar</td>
-            <td>1.0</td>
-            <td>4.0</td>
-            <td class="vol">—</td>
-            <td class="kcal">—</td>
-            <td class="prot">—</td>
-            <td class="deficit">—</td>
-        
-          </tr>
-
-          <tr data-kcalml="1.25" data-prot100="5.6">
-            <td>Energy</td>
-            <td>Hipercalórica</td>
-            <td>1.25</td>
-            <td>5.6</td>
-            <td class="vol">—</td>
-            <td class="kcal">—</td>
-            <td class="prot">—</td>
-            <td class="deficit">—</td>
-          </tr>
-
-          <tr data-kcalml="1.25" data-prot100="6.3">
-            <td>Intense</td>
-            <td>Hiperproteica</td>
-            <td>1.25</td>
-            <td>6.3</td>
-            <td class="vol">—</td>
-            <td class="kcal">—</td>
-            <td class="prot">—</td>
-            <td class="deficit">—</td>
-          </tr>
-
-          <tr data-kcalml="1.5" data-prot100="7.5">
-            <td>Protison</td>
-            <td>Hiperproteica alta densidad</td>
-            <td>1.5</td>
-            <td>7.5</td>
-            <td class="vol">—</td>
-            <td class="kcal">—</td>
-            <td class="prot">—</td>
-            <td class="deficit">—</td>
-          </tr>
-
-          <tr data-kcalml="1.5" data-prot100="7.2">
-            <td>Supportan</td>
-            <td>Hiperproteica especializada</td>
-            <td>1.5</td>
-            <td>7.2</td>
-            <td class="vol">—</td>
-            <td class="kcal">—</td>
-            <td class="prot">—</td>
-            <td class="deficit">—</td>
-          </tr>
-
-        </tbody>
-      </table>
+  <!-- TRÓFICO -->
+  <article class="card">
+    <h2>Soporte trófico</h2>
+    <p class="small">15 kcal/kg · 0.8 g proteína/kg</p>
+    <div class="result">
+      <b id="kcalTrofico">—</b>
+      <b id="protTrofico">—</b>
     </div>
+  </article>
 
-    <div class="note" style="margin-top:1.5rem;">
-      <b>Nota clínica:</b><br>
-      -En pacientes con quemaduras &gt;15% SCQ, incluso con enfermedad renal,
-      los requerimientos proteicos pueden ser elevados y deben individualizarse
-      según guías ASPEN / ESPEN y criterio clínico.
-      -Evaluar si se requiere suplementar deficit proteico. 
+  <!-- FULL -->
+  <article class="card">
+    <h2>Full feeding</h2>
+    <p class="small">30 kcal/kg · 2.0 g proteína/kg</p>
+    <div class="result">
+      <b id="kcalFull">—</b>
+      <b id="protFull">—</b>
     </div>
-  </section>
+  </article>
 
+  <!-- HIPO -->
+  <article class="card">
+    <h2>Hipocalórico / hiperproteico</h2>
+    <p class="small">15 kcal/kg · 2.0 g proteína/kg</p>
+    <div class="result">
+      <b id="kcalHipo">—</b>
+      <b id="protHipo">—</b>
+    </div>
+  </article>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= TABLAS ENTERALES ================= -->
+
+<!-- TRÓFICO -->
+<section class="card">
+  <h2>Sugerencia enteral – Soporte trófico</h2>
+  <table class="tabla-enterales" id="tablaTrofico">
+    <thead>
+      <tr>
+        <th>Fórmula</th>
+        <th>kcal/ml</th>
+        <th>Prot g/100ml</th>
+        <th>Volumen</th>
+        <th>Proteína</th>
+        <th>Déficit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-kcalml="1.0" data-prot100="4.0"><td>Yeviti</td><td>1.0</td><td>4.0</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="5.6"><td>Energy</td><td>1.25</td><td>5.6</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="6.3"><td>Intense</td><td>1.25</td><td>6.3</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.5" data-prot100="7.5"><td>Protison</td><td>1.5</td><td>7.5</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FULL -->
+<section class="card">
+  <h2>Sugerencia enteral – Full feeding</h2>
+  <table class="tabla-enterales" id="tablaFull">
+    <thead>
+      <tr>
+        <th>Fórmula</th>
+        <th>kcal/ml</th>
+        <th>Prot g/100ml</th>
+        <th>Volumen</th>
+        <th>Proteína</th>
+        <th>Déficit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-kcalml="1.0" data-prot100="4.0"><td>Yeviti</td><td>1.0</td><td>4.0</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="5.6"><td>Energy</td><td>1.25</td><td>5.6</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="6.3"><td>Intense</td><td>1.25</td><td>6.3</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.5" data-prot100="7.5"><td>Protison</td><td>1.5</td><td>7.5</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- HIPO -->
+<section class="card">
+  <h2>Sugerencia enteral – Hipocalórico / hiperproteico</h2>
+  <table class="tabla-enterales" id="tablaHipo">
+    <thead>
+      <tr>
+        <th>Fórmula</th>
+        <th>kcal/ml</th>
+        <th>Prot g/100ml</th>
+        <th>Volumen</th>
+        <th>Proteína</th>
+        <th>Déficit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-kcalml="1.0" data-prot100="4.0"><td>Yeviti</td><td>1.0</td><td>4.0</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="5.6"><td>Energy</td><td>1.25</td><td>5.6</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.25" data-prot100="6.3"><td>Intense</td><td>1.25</td><td>6.3</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+      <tr data-kcalml="1.5" data-prot100="7.5"><td>Protison</td><td>1.5</td><td>7.5</td><td class="vol">—</td><td class="prot">—</td><td class="deficit">—</td></tr>
+    </tbody>
+  </table>
+</section>
+  
 </main>
 
 <footer>
