@@ -363,3 +363,22 @@ footer p {
   font-size: 0.9rem;
   line-height: 1.45;
 }
+
+/* =========================================================
+   SECCIONES DE FARMACOS (H2)
+========================================================= */
+main h2 {
+  margin: 3rem 0 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(148,163,184,.18);
+  font-size: 1.25rem;
+  color: #f8fafc;
+}
+
+/* Primera sección no debe tener línea arriba */
+main h2:first-of-type {
+  margin-top: 2rem;
+  padding-top: 0;
+  border-top: none;
+}
+
