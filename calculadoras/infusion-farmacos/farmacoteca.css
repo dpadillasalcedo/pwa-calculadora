@@ -444,3 +444,23 @@ main h2::before {
 .hidden {
   display: none !important;
 }
+
+/* =========================================================
+   FIX TEXTO INPUTS VASOPRESORES
+========================================================= */
+
+/* Inputs sueltos dentro de fichas (vasopresores legacy) */
+.drug-sheet input {
+  color: #f8fafc;
+}
+
+/* Placeholder visible */
+.drug-sheet input::placeholder {
+  color: rgba(248, 250, 252, 0.6);
+}
+
+/* Select también por consistencia */
+.drug-sheet select {
+  color: #f8fafc;
+}
+
