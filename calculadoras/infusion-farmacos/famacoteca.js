@@ -11,9 +11,6 @@
 // =========================
 // TOGGLE DE FICHAS
 // =========================
-document.addEventListener("click", function (e) {
-  const btn = e.target.closest(".toggle-sheet");
-  if (!btn) return;
 
   const card = btn.closest(".drug-card");
   if (!card) return;
