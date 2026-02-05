@@ -76,6 +76,16 @@ function calc(card) {
     if (vel > 0) res = (vel * conc) / 60;
   }
 
+if (type === "mg-min") {
+  conc = +dil.dataset.mgPerMl;
+  unit = "mg/min";
+  outConc.textContent = conc + " mg/ml";
+
+  if (vel > 0) {
+    res = (vel * conc) / 60;
+  }
+}
+
   outRes.textContent =
     res && isFinite(res) ? res.toFixed(2) + " " + unit : "—";
 }
