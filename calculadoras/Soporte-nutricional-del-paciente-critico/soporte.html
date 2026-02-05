@@ -1,58 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Soporte nutricional enteral en el paciente crítico | Critical Care Tools</title>
 
-  <meta name="description"
-        content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN." />
+  <meta
+    name="description"
+    content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN."
+  />
+
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="soporte.css">
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Cookiebot -->
-  <script id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-          data-blockingmode="manual"
-          type="text/javascript"></script>
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html"
+  />
 
-  <!-- Google Analytics (solo se bloquea en Europa si no hay consentimiento) -->
+  <!-- =========================
+       CSS
+  ========================== -->
+  <link
+    rel="stylesheet"
+    href="/Soporte-nutricional-del-paciente-critico/soporte.css"
+  />
+
+  <!-- =========================
+       Google Analytics GA4
+       + Consent Mode v2 (ÚNICO)
+  ========================== -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+
   <script>
-    function loadGA() {
-      // Carga el script de GA
-      const script = document.createElement('script');
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4";
-      script.async = true;
-      document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
 
-      // Inicializa GA
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
-    }
+    gtag('js', new Date());
 
-    // Evento de Cookiebot: carga GA solo si se acepta estadística
-    window.addEventListener('CookieConsentDeclaration', function() {
-      if (Cookiebot && Cookiebot.consents && Cookiebot.consents.statistics) {
-        loadGA();
-      }
+    /*
+      Consent Mode por defecto:
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
+      - GA cookieless hasta consentimiento
+    */
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
 
-    // Carga GA inmediatamente si el usuario NO está en Europa
-    window.addEventListener('load', function() {
-      if (Cookiebot && Cookiebot.data && Cookiebot.data.region !== "EU") {
-        loadGA();
-      }
+    /*
+      Configuración GA4 segura para PWA
+    */
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
+
 </head>
 
 <body>
