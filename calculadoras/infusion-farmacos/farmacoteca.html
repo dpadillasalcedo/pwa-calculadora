@@ -114,6 +114,169 @@
     </section>
   </article>
 
+
+  <article class="drug-card" id="adrenalina" data-group="vasopresores">
+
+  <header class="drug-head">
+    <div>
+      <h3>Adrenalina</h3>
+      <p class="muted small">Vasopresor / Inotrópico</p>
+    </div>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div>
+        <span>Presentación</span>
+        <b>1 mg / 1 ml</b>
+      </div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+
+          <!-- 4000 / 250 -->
+          <option data-mcg-per-ml="16">
+            4 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
+
+          <!-- 8000 / 250 -->
+          <option data-mcg-per-ml="32">
+            8 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
+
+          <!-- 1000 / 100 -->
+          <option data-mcg-per-ml="10">
+            1 mg en 100 ml (DX 5% / SF 0.9%)
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>mcg/kg/min</b>
+      </div>
+    </div>
+
+    <div class="calc-block">
+      <h4>Cálculo de dosis administrada</h4>
+
+      <div class="calc-grid">
+        <label>
+          Peso (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b>
+      titular según respuesta hemodinámica, lactato y perfusión tisular.
+    </div>
+
+  </section>
+</article>
+
+  
+  <article class="drug-card" id="vasopresina" data-group="vasopresores">
+
+  <header class="drug-head">
+    <div>
+      <h3>Vasopresina</h3>
+      <p class="muted small">Vasopresor</p>
+    </div>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div>
+        <span>Presentación</span>
+        <b>20 UI / 1 ml</b>
+      </div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion vasopresina">
+          <option value="">Seleccionar</option>
+
+          <!-- 20 UI / 100 ml -->
+          <option data-ui-per-ml="0.2">
+            20 UI en 100 ml (SF 0.9%)
+          </option>
+
+          <!-- 20 UI / 50 ml -->
+          <option data-ui-per-ml="0.4">
+            20 UI en 50 ml (SF 0.9%)
+          </option>
+
+          <!-- 40 UI / 100 ml -->
+          <option data-ui-per-ml="0.4">
+            40 UI en 100 ml (SF 0.9%)
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>UI/min</b>
+      </div>
+    </div>
+
+    <div class="calc-block">
+      <h4>Cálculo de dosis administrada</h4>
+
+      <div class="calc-grid">
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b>
+      dosis habitual 0.01–0.04 UI/min. No titular por peso.
+    </div>
+
+  </section>
+</article>
+
+
+
 </main>
 
 <footer>
