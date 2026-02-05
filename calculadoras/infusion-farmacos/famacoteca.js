@@ -1,30 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
+  // =========================
   // Toggle ficha
+  // =========================
   document.querySelectorAll(".toggle-sheet").forEach(btn => {
     btn.addEventListener("click", () => {
-      const sheet = btn.closest(".drug-card").querySelector(".drug-sheet");
+      const card = btn.closest(".drug-card");
+      const sheet = card.querySelector(".drug-sheet");
       const expanded = btn.getAttribute("aria-expanded") === "true";
 
-      btn.setAttribute("aria-expanded", !expanded);
+      btn.setAttribute("aria-expanded", String(!expanded));
       sheet.classList.toggle("hidden");
       btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
     });
   });
 
-  // Diluciones disponibles
+  // =========================
+  // Diluciones (mcg/ml)
+  // =========================
   const diluciones = {
     "4-250": { mg: 4, ml: 250 },
     "8-100": { mg: 8, ml: 100 },
     "20-250": { mg: 20, ml: 250 }
   };
 
+  // =========================
+  // Lógica por ficha
+  // =========================
   document.querySelectorAll(".drug-card").forEach(card => {
 
     const dilucionSelect = card.querySelector(".dilucion");
     const pesoInput = card.querySelector(".peso");
     const velocidadInput = card.querySelector(".velocidad");
-    const concentracionEl = card.querySelector(".concentracion");
+    const concEl = card.querySelector(".concentracion");
     const resultadoEl = card.querySelector(".resultado");
 
     let concentracion = null; // mcg/ml
@@ -33,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const peso = parseFloat(pesoInput.value);
       const velocidad = parseFloat(velocidadInput.value);
 
-      if (!concentracion || !peso || !velocidad) {
+      if (!concentracion || peso <= 0 || velocidad <= 0) {
         resultadoEl.textContent = "—";
         return;
       }
@@ -42,23 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
       resultadoEl.textContent = `${gammas.toFixed(3)} mcg/kg/min`;
     }
 
-    // Cambio de dilución
+    // 👉 Cambio de dilución
     dilucionSelect.addEventListener("change", () => {
-      const config = diluciones[dilucionSelect.value];
+      const value = dilucionSelect.value;
 
-      if (!config) {
+      if (!diluciones[value]) {
         concentracion = null;
-        concentracionEl.textContent = "—";
-        calcular();
-        return;
-      }
-
-      concentracion = (config.mg * 1000) / config.ml;
-      concentracionEl.textContent = `${concentracion.toFixed(1)} mcg/ml`;
-      calcular();
-    });
-
-    pesoInput.addEventListener("input", calcular);
-    velocidadInput.addEventListener("input", calcular);
-  });
-});
