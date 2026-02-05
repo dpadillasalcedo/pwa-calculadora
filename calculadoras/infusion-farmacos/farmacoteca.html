@@ -690,5 +690,28 @@
 
 <script src="farmacoteca.js"></script>
 
+  <script>
+  // =========================
+  // TOGGLE DE FICHAS
+  // =========================
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".toggle-sheet");
+    if (!btn) return;
+
+    const card = btn.closest(".drug-card");
+    if (!card) return;
+
+    const sheet = card.querySelector(".drug-sheet");
+    if (!sheet) return;
+
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+
+    sheet.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!expanded));
+    btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
+  });
+</script>
+
+
 </body>
 </html>
