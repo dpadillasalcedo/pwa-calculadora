@@ -391,3 +391,51 @@ main h2::before {
   border-radius: 2px;
   margin-bottom: 0.6rem;
 }
+
+/* =========================================================
+   NORMALIZAR VASOPRESORES (HTML LEGACY)
+========================================================= */
+
+/* Inputs sueltos dentro de drug-sheet */
+.drug-sheet > input,
+.drug-sheet > select,
+.drug-sheet > div {
+  margin-bottom: 0.75rem;
+}
+
+/* Agrupar visualmente dilución + concentración */
+.drug-sheet > select.dilucion,
+.drug-sheet > div:has(.concentracion) {
+  background: rgba(2,6,23,.55);
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+}
+
+/* Inputs de peso y velocidad como grid */
+.drug-sheet > input.peso,
+.drug-sheet > input.velocidad {
+  background: rgba(2,6,23,.55);
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 14px;
+  padding: 0.7rem 0.8rem;
+}
+
+/* Resultado */
+.drug-sheet > div:has(.resultado) {
+  background: rgba(2,6,23,.55);
+  border: 1px solid rgba(148,163,184,.16);
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+}
+
+/* Alinear todo como bloque de cálculo */
+.drug-sheet {
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Tip clínico consistente */
+.drug-sheet .hint {
+  margin-top: 0.75rem;
+}
