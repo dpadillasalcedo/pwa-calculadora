@@ -13,6 +13,9 @@
     type="text/javascript">
   </script>
 
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,25 +29,44 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/" />
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph -->
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/"
+  />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
   <meta property="og:title" content="Monitoreo hemodinámico | Calculadoras UCI" />
-  <meta property="og:description"
-        content="Monitoreo hemodinámico y oxigenación tisular en UCI. Herramientas de apoyo clínico para el paciente crítico." />
+  <meta
+    property="og:description"
+    content="Monitoreo hemodinámico y oxigenación tisular en UCI. Herramientas de apoyo clínico para el paciente crítico."
+  />
   <meta property="og:type" content="website" />
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/"
+  />
 
   <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet" href="./monitoreo.css" />
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css"
+  />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (CORREGIDO)
+       + Consent Mode v2 (ROBUSTO)
   ========================== -->
 
   <!-- Librería GA4 -->
@@ -52,14 +74,14 @@
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
     /*
-      Consent Mode por defecto CORRECTO:
-      - Fuera de Europa → analytics GRANTED
-      - En Europa → Cookiebot lo ajusta automáticamente
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -69,15 +91,15 @@
     });
 
     /*
-      Configuración GA4
+      Configuración GA4 segura para PWA
     */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
 </head>
-
 
 
 <body>
