@@ -106,7 +106,7 @@
     <header class="drug-head">
       <div>
         <h3>Noradrenalina</h3>
-        <p class="muted small">Vasopresor</p>
+        <p class="muted small">Vasopresor/Inotrópico</p>
       </div>
       <button type="button" class="btn toggle-sheet" aria-expanded="false">
         Ver ficha
@@ -248,7 +248,7 @@
 
     <div class="clinical-note">
       <b>Nota clínica:</b>
-      titular según respuesta hemodinámica, lactato y perfusión tisular.
+      titular según respuesta hemodinámica y perfusión tisular.
     </div>
 
   </section>
@@ -336,7 +336,7 @@
   <header class="drug-head">
     <div>
       <h3>Azul de metileno</h3>
-      <p class="muted small">Antídoto / modulador óxido nítrico</p>
+      <p class="muted small">Vasopresor/ modulador óxido nítrico</p>
     </div>
     <button type="button" class="btn toggle-sheet" aria-expanded="false">
       Ver ficha
@@ -412,6 +412,252 @@
 
   </section>
 </article>
+
+  <article class="drug-card"
+         id="dopamina"
+         data-group="vasopresores"
+         data-calc="mcg-kg-min">
+
+  <header class="drug-head">
+    <div>
+      <h3>Dopamina</h3>
+      <p class="muted small">Vasopresor / Inotrópico</p>
+    </div>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div>
+        <span>Presentación</span>
+        <b>200 mg / 5 ml</b>
+      </div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+
+          <!-- 200.000 / 250 -->
+          <option data-mcg-per-ml="800">
+            200 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
+
+          <!-- 400.000 / 250 -->
+          <option data-mcg-per-ml="1600">
+            400 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
+
+          <!-- 200.000 / 500 -->
+          <option data-mcg-per-ml="400">
+            200 mg en 500 ml (DX 5% / SF 0.9%)
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>mcg/kg/min</b>
+      </div>
+    </div>
+
+    <div class="calc-block">
+      <h4>Cálculo de dosis administrada</h4>
+
+      <div class="calc-grid">
+        <label>
+          Peso (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b>
+      efectos dependientes de dosis: 2–5 mcg/kg/min (renal),
+      5–10 inotrópico, &gt;10 vasopresor. Mayor riesgo de arritmias.
+    </div>
+
+  </section>
+</article>
+
+
+  <article class="drug-card"
+         id="nitroglicerina"
+         data-group="vasodilatadores"
+         data-calc="mcg-min">
+
+  <header class="drug-head">
+    <div>
+      <h3>Nitroglicerina</h3>
+      <p class="muted small">Vasodilatador venoso</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">Ver ficha</button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div><span>Presentación</span><b>50 mg / 10 ml</b></div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+          <!-- 50.000 / 250 -->
+          <option data-mcg-per-ml="200">50 mg en 250 ml</option>
+          <!-- 50.000 / 500 -->
+          <option data-mcg-per-ml="100">50 mg en 500 ml</option>
+        </select>
+      </div>
+
+      <div><span>Concentración</span><b class="concentracion">—</b></div>
+      <div><span>Unidad</span><b>mcg/min</b></div>
+    </div>
+
+    <div class="calc-block">
+      <label>Velocidad (ml/h)
+        <input type="number" class="velocidad" step="0.1">
+      </label>
+
+      <div class="calc-result">
+        <span>Dosis administrada</span>
+        <b class="resultado">—</b>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b> iniciar 5–10 mcg/min, titular según TA y síntomas.
+    </div>
+
+  </section>
+</article>
+
+
+  <article class="drug-card"
+         id="nitroprusiato"
+         data-group="vasodilatadores"
+         data-calc="mcg-kg-min">
+
+  <header class="drug-head">
+    <div>
+      <h3>Nitroprusiato de sodio</h3>
+      <p class="muted small">Vasodilatador arterial y venoso</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">Ver ficha</button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div><span>Presentación</span><b>50 mg / 2 ml</b></div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+          <!-- 50.000 / 250 -->
+          <option data-mcg-per-ml="200">50 mg en 250 ml</option>
+          <!-- 50.000 / 500 -->
+          <option data-mcg-per-ml="100">50 mg en 500 ml</option>
+        </select>
+      </div>
+
+      <div><span>Concentración</span><b class="concentracion">—</b></div>
+      <div><span>Unidad</span><b>mcg/kg/min</b></div>
+    </div>
+
+    <div class="calc-block">
+      <label>Peso (kg)
+        <input type="number" class="peso" step="0.1">
+      </label>
+
+      <label>Velocidad (ml/h)
+        <input type="number" class="velocidad" step="0.1">
+      </label>
+
+      <div class="calc-result">
+        <span>Dosis administrada</span>
+        <b class="resultado">—</b>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b> 0.3–10 mcg/kg/min. Proteger de la luz. Riesgo de toxicidad por cianuro.
+    </div>
+
+  </section>
+</article>
+
+  <article class="drug-card"
+         id="labetalol"
+         data-group="vasodilatadores"
+         data-calc="mg-min">
+
+  <header class="drug-head">
+    <div>
+      <h3>Labetalol</h3>
+      <p class="muted small">Bloqueante α/β</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">Ver ficha</button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div><span>Presentación</span><b>100 mg / 20 ml</b></div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+          <!-- 100 / 100 -->
+          <option data-mg-per-ml="1">100 mg en 100 ml</option>
+          <!-- 200 / 200 -->
+          <option data-mg-per-ml="1">200 mg en 200 ml</option>
+        </select>
+      </div>
+
+      <div><span>Concentración</span><b class="concentracion">—</b></div>
+      <div><span>Unidad</span><b>mg/min</b></div>
+    </div>
+
+    <div class="calc-block">
+      <label>Velocidad (ml/h)
+        <input type="number" class="velocidad" step="0.1">
+      </label>
+
+      <div class="calc-result">
+        <span>Dosis administrada</span>
+        <b class="resultado">—</b>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b> 0.5–2 mg/min. Vigilar FC y broncoespasmo.
+    </div>
+
+  </section>
+</article>
+
 
 
 
