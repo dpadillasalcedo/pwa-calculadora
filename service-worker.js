@@ -1,8 +1,10 @@
-const CACHE_NAME = 'critical-care-tools-v1';
+const CACHE_NAME = 'critical-care-tools-v2';
 
-const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
+/*
+  SOLO assets estáticos
+  (NO HTML, NO rutas)
+*/
+const STATIC_ASSETS = [
   '/style.css',
   '/manifest.json'
 ];
@@ -10,7 +12,7 @@ const ASSETS_TO_CACHE = [
 // Install
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
   );
   self.skipWaiting();
 });
@@ -33,17 +35,25 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
-  // 🔴 IMPORTANTE: no cachear requests a Google / Analytics
+  const url = new URL(event.request.url);
+
+  // ❌ NO interceptar navegación HTML
+  if (event.request.mode === 'navigate') {
+    return;
+  }
+
+  // ❌ NO cachear Google / Analytics
   if (
-    event.request.url.includes('google-analytics.com') ||
-    event.request.url.includes('googletagmanager.com')
+    url.hostname.includes('google-analytics.com') ||
+    url.hostname.includes('googletagmanager.com')
   ) {
     return;
   }
 
+  // ✅ Cache-first SOLO para assets estáticos
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
     })
   );
 });
