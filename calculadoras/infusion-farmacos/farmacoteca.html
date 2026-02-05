@@ -428,57 +428,91 @@
      JS: UI + CÁLCULO
 ========================== -->
 <script>
-  // Toggle ficha
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".toggle-sheet");
-    if (!btn) return;
-
-    const card = btn.closest(".drug-card");
-    const sheet = card.querySelector(".drug-sheet");
-    const open = !sheet.classList.contains("hidden");
-
-    sheet.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", String(!open));
-    btn.textContent = open ? "Ver ficha" : "Ocultar ficha";
-  });
-
-  // =========================
-  // CÁLCULO FARMACOLÓGICO
-  // =========================
   function recalcular(card) {
+    const tipo = card.dataset.calc;
     const sel = card.querySelector(".dilucion");
     const concEl = card.querySelector(".concentracion");
     const pesoEl = card.querySelector(".peso");
     const velEl = card.querySelector(".velocidad");
     const resEl = card.querySelector(".resultado");
 
-    if (!sel || !concEl || !pesoEl || !velEl || !resEl) return;
+    if (!sel || !concEl || !velEl || !resEl) return;
 
     const opt = sel.options[sel.selectedIndex];
-    const conc = parseFloat(opt?.dataset?.mcgPerMl);
+    if (!opt) return;
 
-    if (!Number.isFinite(conc)) {
-      concEl.textContent = "—";
-      resEl.textContent = "—";
-      return;
+    let conc, resultado;
+
+    // =========================
+    // mcg/kg/min (noradrenalina, adrenalina)
+    // =========================
+    if (tipo === "mcg-kg-min") {
+      conc = parseFloat(opt.dataset.mcgPerMl);
+      if (!Number.isFinite(conc)) {
+        concEl.textContent = "—";
+        resEl.textContent = "—";
+        return;
+      }
+
+      concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+
+      const peso = parseFloat(pesoEl?.value);
+      const vel = parseFloat(velEl.value);
+      if (!peso || !vel) {
+        resEl.textContent = "—";
+        return;
+      }
+
+      resultado = (vel * conc) / (peso * 60);
+      resEl.textContent = `${resultado.toFixed(3)} mcg/kg/min`;
     }
 
-    concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+    // =========================
+    // UI/min (vasopresina)
+    // =========================
+    if (tipo === "ui-min") {
+      conc = parseFloat(opt.dataset.uiPerMl);
+      if (!Number.isFinite(conc)) {
+        concEl.textContent = "—";
+        resEl.textContent = "—";
+        return;
+      }
 
-    const peso = parseFloat(pesoEl.value);
-    const vel = parseFloat(velEl.value);
+      concEl.textContent = `${conc.toFixed(2)} UI/ml`;
 
-    if (
-      !Number.isFinite(peso) || peso <= 0 ||
-      !Number.isFinite(vel) || vel <= 0
-    ) {
-      resEl.textContent = "—";
-      return;
+      const vel = parseFloat(velEl.value);
+      if (!vel) {
+        resEl.textContent = "—";
+        return;
+      }
+
+      resultado = (vel * conc) / 60;
+      resEl.textContent = `${resultado.toFixed(3)} UI/min`;
     }
 
-    // mcg/kg/min = (ml/h × mcg/ml) / (kg × 60)
-    const dosis = (vel * conc) / (peso * 60);
-    resEl.textContent = `${dosis.toFixed(3)} mcg/kg/min`;
+    // =========================
+    // mg/kg/h (azul de metileno)
+    // =========================
+    if (tipo === "mg-kg-h") {
+      conc = parseFloat(opt.dataset.mgPerMl);
+      if (!Number.isFinite(conc)) {
+        concEl.textContent = "—";
+        resEl.textContent = "—";
+        return;
+      }
+
+      concEl.textContent = `${conc.toFixed(2)} mg/ml`;
+
+      const peso = parseFloat(pesoEl?.value);
+      const vel = parseFloat(velEl.value);
+      if (!peso || !vel) {
+        resEl.textContent = "—";
+        return;
+      }
+
+      resultado = (vel * conc) / peso;
+      resEl.textContent = `${resultado.toFixed(3)} mg/kg/h`;
+    }
   }
 
   document.addEventListener("change", (e) => {
@@ -489,14 +523,15 @@
 
   document.addEventListener("input", (e) => {
     if (
-      e.target.classList.contains("peso") ||
-      e.target.classList.contains("velocidad")
-    ) {
-      const card = e.target.closest(".drug-card");
-      if (card) recalcular(card);
-    }
+      !e.target.classList.contains("peso") &&
+      !e.target.classList.contains("velocidad")
+    ) return;
+
+    const card = e.target.closest(".drug-card");
+    if (card) recalcular(card);
   });
 </script>
+
 
 </body>
 </html>
