@@ -11,6 +11,9 @@
 // =========================
 // TOGGLE DE FICHAS
 // =========================
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".toggle-sheet");
+  if (!btn) return;
 
   const card = btn.closest(".drug-card");
   if (!card) return;
@@ -44,9 +47,7 @@ function recalcular(card) {
 
   let conc, vel, peso, dosis;
 
-  // =========================
   // mcg/kg/min
-  // =========================
   if (tipo === "mcg-kg-min") {
     conc = parseFloat(opt.dataset.mcgPerMl);
     peso = parseFloat(pesoEl?.value);
@@ -63,9 +64,7 @@ function recalcular(card) {
     resEl.textContent = `${dosis.toFixed(3)} mcg/kg/min`;
   }
 
-  // =========================
   // mcg/min
-  // =========================
   if (tipo === "mcg-min") {
     conc = parseFloat(opt.dataset.mcgPerMl);
     vel = parseFloat(velEl.value);
@@ -81,9 +80,7 @@ function recalcular(card) {
     resEl.textContent = `${dosis.toFixed(0)} mcg/min`;
   }
 
-  // =========================
   // mg/kg/h
-  // =========================
   if (tipo === "mg-kg-h") {
     conc = parseFloat(opt.dataset.mgPerMl);
     peso = parseFloat(pesoEl?.value);
@@ -100,9 +97,7 @@ function recalcular(card) {
     resEl.textContent = `${dosis.toFixed(3)} mg/kg/h`;
   }
 
-  // =========================
   // UI/min
-  // =========================
   if (tipo === "ui-min") {
     conc = parseFloat(opt.dataset.uiPerMl);
     vel = parseFloat(velEl.value);
@@ -120,7 +115,7 @@ function recalcular(card) {
 }
 
 // =========================
-// EVENTOS
+// EVENTOS DE CÁLCULO
 // =========================
 document.addEventListener("change", function (e) {
   if (!e.target.classList.contains("dilucion")) return;
@@ -136,24 +131,4 @@ document.addEventListener("input", function (e) {
 
   const card = e.target.closest(".drug-card");
   if (card) recalcular(card);
-});
-
-// =========================
-// TOGGLE DE FICHAS
-// =========================
-document.addEventListener("click", function (e) {
-  const btn = e.target.closest(".toggle-sheet");
-  if (!btn) return;
-
-  const card = btn.closest(".drug-card");
-  if (!card) return;
-
-  const sheet = card.querySelector(".drug-sheet");
-  if (!sheet) return;
-
-  const expanded = btn.getAttribute("aria-expanded") === "true";
-
-  sheet.classList.toggle("hidden");
-  btn.setAttribute("aria-expanded", String(!expanded));
-  btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
 });
