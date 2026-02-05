@@ -13,6 +13,9 @@
     type="text/javascript">
   </script>
 
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,16 +29,32 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/" />
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph -->
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/"
+  />
+
+  <!-- =========================
+       Open Graph
+  ========================== -->
   <meta property="og:title" content="Ventilación mecánica | Calculadoras UCI" />
-  <meta property="og:description"
-        content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. PBW, ajuste de PCO₂ y Driving Pressure (ΔP). Uso educativo en cuidados intensivos." />
+  <meta
+    property="og:description"
+    content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. PBW, ajuste de PCO₂ y Driving Pressure (ΔP). Uso educativo en cuidados intensivos."
+  />
   <meta property="og:type" content="website" />
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/"
+  />
 
   <!-- =========================
        CSS
@@ -47,7 +66,7 @@
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (CORRECTO)
+       + Consent Mode v2 (ROBUSTO)
   ========================== -->
 
   <!-- GA4 Library -->
@@ -55,14 +74,14 @@
 
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
     /*
-      Consent por defecto:
-      - Fuera de Europa → analytics GRANTED
-      - En Europa → Cookiebot lo ajusta automáticamente
+      Consent Mode por defecto
+      - Fuera de UE: analytics granted
+      - UE: Cookiebot ajusta automáticamente
     */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
@@ -72,15 +91,16 @@
     });
 
     /*
-      GA4 siempre activo
-      (cookieless si no hay consentimiento)
+      Configuración GA4 segura para PWA
     */
     gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true
+      anonymize_ip: true,
+      send_page_view: true
     });
   </script>
 
 </head>
+
 
 
 
