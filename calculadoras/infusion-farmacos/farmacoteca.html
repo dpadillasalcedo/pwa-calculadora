@@ -123,6 +123,8 @@
      VASOPRESORES
 ====================================================== -->
 
+      <!-- ================= Noradrenalina ================= -->
+
 <article class="drug-card" id="noradrenalina" data-group="vasopresores">
   <header class="drug-head">
     <div>
@@ -144,9 +146,15 @@
         <span>Dilución habitual</span>
         <select class="dilucion">
           <option value="">Seleccionar</option>
-          <option value="4-250">4 mg en 250 ml (DX 5% / SF 0.9%)</option>
-          <option value="8-100">8 mg en 100 ml (DX 5% / SF 0.9%)</option>
-          <option value="20-250">20 mg en 250 ml (DX 5% / SF 0.9%)</option>
+          <option value="4-250" data-mg="4" data-ml="250">
+            4 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
+          <option value="8-100" data-mg="8" data-ml="100">
+            8 mg en 100 ml (DX 5% / SF 0.9%)
+          </option>
+          <option value="20-250" data-mg="20" data-ml="250">
+            20 mg en 250 ml (DX 5% / SF 0.9%)
+          </option>
         </select>
       </div>
 
@@ -165,12 +173,14 @@
       <h4>Cálculo de dosis administrada</h4>
 
       <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
+        <label>
+          Peso (kg)
+          <input type="number" class="peso" step="0.1" min="0" inputmode="decimal">
         </label>
 
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0" inputmode="decimal">
         </label>
 
         <div class="calc-result">
@@ -186,7 +196,6 @@
 
   </section>
 </article>
-
 
 
 <!-- ================= ADRENALINA ================= -->
