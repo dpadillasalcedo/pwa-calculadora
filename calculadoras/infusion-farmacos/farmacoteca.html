@@ -846,11 +846,27 @@
 
 </main>
 
-<footer>
-  <p>
-    © 2026 Critical Care Tools · Uso educativo.
+<footer class="site-footer">
+  <nav class="footer-nav">
+    <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">
+      Bibliografía
+    </a>
+    ·
+    <a href="https://criticalcaretools.com/legal/aviso-legal.html">
+      Aviso legal
+    </a>
+    ·
+    <a href="https://criticalcaretools.com/privacidad-cookies/privacidad.html">
+      Privacidad y Cookies
+    </a>
+  </nav>
+
+  <p class="footer-copy">
+    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+    No reemplaza el juicio médico ni las guías institucionales.
   </p>
 </footer>
+
 
 <script src="farmacoteca.js"></script>
 
@@ -901,6 +917,38 @@ if(vel>0&&peso>0)res=(vel*conc)/peso;
 c.querySelector(".resultado").textContent=res?res.toFixed(3):"—";
 }
 </script>
+
+  <script>
+const inputQ = document.getElementById("q");
+const selectGrupo = document.getElementById("grupo");
+const btnReset = document.getElementById("btnReset");
+const cards = document.querySelectorAll(".drug-card");
+
+function filtrarFarmacos() {
+  const texto = inputQ.value.toLowerCase().trim();
+  const grupo = selectGrupo.value;
+
+  cards.forEach(card => {
+    const nombre = card.querySelector("h3")?.textContent.toLowerCase() || "";
+    const grupoCard = card.dataset.group;
+
+    const matchTexto = nombre.includes(texto);
+    const matchGrupo = grupo === "all" || grupoCard === grupo;
+
+    card.style.display = (matchTexto && matchGrupo) ? "" : "none";
+  });
+}
+
+inputQ.addEventListener("input", filtrarFarmacos);
+selectGrupo.addEventListener("change", filtrarFarmacos);
+
+btnReset.addEventListener("click", () => {
+  inputQ.value = "";
+  selectGrupo.value = "all";
+  filtrarFarmacos();
+});
+</script>
+
 
 </body>
 </html>
