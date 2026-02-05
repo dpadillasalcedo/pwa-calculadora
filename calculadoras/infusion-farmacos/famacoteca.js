@@ -91,53 +91,6 @@ if (type === "mg-min") {
 }
 
 // ================= FILTRO DE FARMACOS =================
-const qInput = document.getElementById("q");
-const grupoSelect = document.getElementById("grupo");
-const resetBtn = document.getElementById("btnReset");
-const cards = Array.from(document.querySelectorAll(".drug-card"));
-const headers = Array.from(document.querySelectorAll("main h2"));
-
-function filtrar() {
-  const texto = qInput.value.toLowerCase().trim();
-  const grupo = grupoSelect.value;
-
-  cards.forEach(card => {
-    const nombre = card.querySelector("h3")?.textContent.toLowerCase() || "";
-    const cardGrupo = card.dataset.group;
-
-    const matchTexto = nombre.includes(texto);
-    const matchGrupo = grupo === "all" || grupo === cardGrupo;
-
-    card.style.display = matchTexto && matchGrupo ? "" : "none";
-  });
-
-  // Ocultar títulos si no hay cards visibles debajo
-  headers.forEach(h2 => {
-    let visible = false;
-    let el = h2.nextElementSibling;
-
-    while (el && !el.matches("h2")) {
-      if (el.classList?.contains("drug-card") && el.style.display !== "none") {
-        visible = true;
-        break;
-      }
-      el = el.nextElementSibling;
-    }
-
-    h2.style.display = visible ? "" : "none";
-  });
-}
-
-// Eventos
-qInput.addEventListener("input", filtrar);
-grupoSelect.addEventListener("change", filtrar);
-
-resetBtn.addEventListener("click", () => {
-  qInput.value = "";
-  grupoSelect.value = "all";
-  filtrar();
-});
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const qInput = document.getElementById("q");
@@ -146,10 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = Array.from(document.querySelectorAll(".drug-card"));
   const headers = Array.from(document.querySelectorAll("main h2"));
 
-  if (!qInput || !grupoSelect || cards.length === 0) {
-    console.warn("Filtro: elementos no encontrados");
-    return;
-  }
+  if (!qInput || !grupoSelect || cards.length === 0) return;
 
   function filtrar() {
     const texto = qInput.value.toLowerCase().trim();
@@ -159,33 +109,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const nombre = card.querySelector("h3")?.textContent.toLowerCase() || "";
       const cardGrupo = card.dataset.group;
 
-      const matchTexto = nombre.includes(texto);
-      const matchGrupo = grupo === "all" || grupo === cardGrupo;
+      const visible =
+        nombre.includes(texto) &&
+        (grupo === "all" || grupo === cardGrupo);
 
-      card.style.display = (matchTexto && matchGrupo) ? "" : "none";
+      card.style.display = visible ? "" : "none";
     });
 
-    // Ocultar títulos si no hay fármacos visibles debajo
+    // Ocultar títulos sin cards visibles
     headers.forEach(h2 => {
-      let visible = false;
+      let tieneVisible = false;
       let el = h2.nextElementSibling;
 
       while (el && !el.matches("h2")) {
         if (
-          el.classList?.contains("drug-card") &&
+          el.classList.contains("drug-card") &&
           el.style.display !== "none"
         ) {
-          visible = true;
+          tieneVisible = true;
           break;
         }
         el = el.nextElementSibling;
       }
 
-      h2.style.display = visible ? "" : "none";
+      h2.style.display = tieneVisible ? "" : "none";
     });
   }
 
-  // Eventos
   qInput.addEventListener("input", filtrar);
   grupoSelect.addEventListener("change", filtrar);
 
@@ -196,4 +146,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
