@@ -607,40 +607,61 @@
   </section>
 </article>
 
- <article class="drug-card" data-calc="mcg-min" data-group="vasodilatadores">
-
+ <article class="drug-card"
+         id="labetalol"
+         data-calc="mcg-min"
+         data-group="vasodilatadores">
 
   <header class="drug-head">
     <div>
       <h3>Labetalol</h3>
       <p class="muted small">Bloqueante α/β</p>
     </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
   </header>
 
   <section class="drug-sheet hidden">
 
     <div class="sheet-grid">
-      <div><span>Presentación</span><b>100 mg / 20 ml</b></div>
+      <div>
+        <span>Presentación</span>
+        <b>100 mg / 20 ml</b>
+      </div>
 
       <div>
         <span>Dilución habitual</span>
         <select class="dilucion">
           <option value="">Seleccionar</option>
-          <!-- 200 / 100 -->
-         <option data-mcg-per-ml="200">200 mg en 100 ml</option>
-          <!-- 400 / 200 -->
-         <option data-mcg-per-ml="200">400 mg en 200 ml</option>
+
+          <!-- 200 mg = 200.000 mcg / 100 ml = 2000 mcg/ml -->
+          <option data-mcg-per-ml="2000">
+            200 mg en 100 ml
+          </option>
+
+          <!-- 400 mg = 400.000 mcg / 200 ml = 2000 mcg/ml -->
+          <option data-mcg-per-ml="2000">
+            400 mg en 200 ml
+          </option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mg/min</b></div>
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>mcg/min</b>
+      </div>
     </div>
 
     <div class="calc-block">
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1">
+      <label>
+        Velocidad (ml/h)
+        <input type="number" class="velocidad" step="0.1" min="0">
       </label>
 
       <div class="calc-result">
@@ -650,11 +671,13 @@
     </div>
 
     <div class="clinical-note">
-      <b>Nota clínica:</b> 0.5–2 mg/min. Vigilar FC y broncoespasmo.
+      <b>Nota clínica:</b>
+      dosis habitual equivalente a 500–2000 mcg/min. Vigilar FC, TA y broncoespasmo.
     </div>
 
   </section>
 </article>
+
 
 
 </main>
