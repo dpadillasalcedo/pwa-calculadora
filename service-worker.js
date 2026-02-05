@@ -1,14 +1,32 @@
-const CACHE_NAME = "criticalcaretools-v1";
+const CACHE_NAME = "criticalcaretools-v2";
+
 const ASSETS = [
-  "/",
+  "/", 
   "/index.html",
+
+  // Manifest
+  "/manifest.webmanifest",
+
+  // Farmacoteca UCI
+  "/calculadoras/infusion-farmacos/farmacoteca.html",
+  "/calculadoras/infusion-farmacos/farmacoteca.css",
+  "/calculadoras/infusion-farmacos/farmacoteca.js"
 ];
 
-self.addEventListener("install", (event) => {
+// =========================================================
+// INSTALL
+// =========================================================
+self.addEventListener("install", event => {
   self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
 });
 
-self.addEventListener("activate", (event) => {
+// =========================================================
+// ACTIVATE
+// =========================================================
+self.addEventListener("activate", event => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys();
@@ -20,12 +38,16 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-self.addEventListener("fetch", (event) => {
+// =========================================================
+// FETCH
+// Network first, fallback cache
+// =========================================================
+self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
     fetch(event.request)
-      .then((response) => {
+      .then(response => {
         const clone = response.clone();
         caches.open(CACHE_NAME).then(cache => {
           cache.put(event.request, clone);
