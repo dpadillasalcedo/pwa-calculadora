@@ -98,64 +98,536 @@
     </div>
   </section>
 
-  <!-- =========================
-       FARMACO
-  ========================== -->
-  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+  
+  <h2>Vasopresones/inotropicos</h2>
+ 
+  <!-- ================= NORADRENALINA ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+<header class="drug-head">
+<h3>Noradrenalina</h3>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilución</option>
+<option data-mcg-per-ml="16">4 mg en 250 ml</option>
+<option data-mcg-per-ml="32">8 mg en 250 ml</option>
+<option data-mcg-per-ml="80">8 mg en 100 ml</option>
+</select>
+<div>Concentración: <b class="concentracion">—</b></div>
+<input class="peso" placeholder="Peso kg">
+<input class="velocidad" placeholder="ml/h">
+<div>Dosis: <b class="resultado">—</b></div>
+</section>
+</article>
 
+<!-- ================= ADRENALINA ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+<header class="drug-head">
+<h3>Adrenalina</h3>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilución</option>
+<option data-mcg-per-ml="16">4 mg en 250 ml</option>
+<option data-mcg-per-ml="32">8 mg en 250 ml</option>
+<option data-mcg-per-ml="10">1 mg en 100 ml</option>
+</select>
+<div>Concentración: <b class="concentracion">—</b></div>
+<input class="peso" placeholder="Peso kg">
+<input class="velocidad" placeholder="ml/h">
+<div>Dosis: <b class="resultado">—</b></div>
+</section>
+</article>
+
+<!-- ================= DOPAMINA ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+<header class="drug-head">
+<h3>Dopamina</h3>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilución</option>
+<option data-mcg-per-ml="400">200 mg en 500 ml</option>
+<option data-mcg-per-ml="800">200 mg en 250 ml</option>
+<option data-mcg-per-ml="1600">400 mg en 250 ml</option>
+</select>
+<div>Concentración: <b class="concentracion">—</b></div>
+<input class="peso" placeholder="Peso kg">
+<input class="velocidad" placeholder="ml/h">
+<div>Dosis: <b class="resultado">—</b></div>
+</section>
+</article>
+
+<!-- ================= VASOPRESINA ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="ui-min">
+<header class="drug-head">
+<h3>Vasopresina</h3>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilución</option>
+<option data-ui-per-ml="0.4">20 UI en 50 ml</option>
+<option data-ui-per-ml="0.4">40 UI en 100 ml</option>
+</select>
+<div>Concentración: <b class="concentracion">—</b></div>
+<input class="velocidad" placeholder="ml/h">
+<div>Dosis: <b class="resultado">—</b></div>
+</section>
+</article>
+
+<!-- ================= AZUL DE METILENO ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mg-kg-h">
+<header class="drug-head">
+<h3>Azul de metileno</h3>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilución</option>
+<option data-mg-per-ml="0.5">50 mg en 100 ml</option>
+<option data-mg-per-ml="1">100 mg en 100 ml</option>
+<option data-mg-per-ml="0.4">100 mg en 250 ml</option>
+</select>
+<div>Concentración: <b class="concentracion">—</b></div>
+<input class="peso" placeholder="Peso kg">
+<input class="velocidad" placeholder="ml/h">
+<div>Dosis: <b class="resultado">—</b></div>
+</section>
+</article>
+
+  
+  <h2>Vasodilatadores</h2>
+
+<!-- ================= NITROGLICERINA ================= -->
+<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-min">
+<header class="drug-head">
+<h3>Nitroglicerina</h3>
+<p class="muted small">Vasodilatador venoso</p>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+<div><span>Presentación</span><b>50 mg / 10 ml</b></div>
+
+<div>
+<span>Dilución habitual</span>
+<select class="dilucion">
+<option value="">Seleccionar</option>
+<option data-mcg-per-ml="200">50 mg en 250 ml</option>
+<option data-mcg-per-ml="100">50 mg en 500 ml</option>
+</select>
+</div>
+
+<div><span>Concentración</span><b class="concentracion">—</b></div>
+<div><span>Unidad</span><b>mcg/min</b></div>
+</div>
+
+<div class="calc-block">
+<label>Velocidad (ml/h)
+<input type="number" class="velocidad" step="0.1" min="0">
+</label>
+
+<div class="calc-result">
+<span>Dosis administrada</span>
+<b class="resultado">—</b>
+</div>
+</div>
+
+<div class="clinical-note">
+<b>Nota clínica:</b> iniciar 5–10 mcg/min. Titular según TA y síntomas.
+</div>
+</section>
+</article>
+
+<!-- ================= NITROPRUSIATO ================= -->
+<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-kg-min">
+<header class="drug-head">
+<h3>Nitroprusiato de sodio</h3>
+<p class="muted small">Vasodilatador arterial y venoso</p>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+<div><span>Presentación</span><b>50 mg / 2 ml</b></div>
+
+<div>
+<span>Dilución habitual</span>
+<select class="dilucion">
+<option value="">Seleccionar</option>
+<option data-mcg-per-ml="200">50 mg en 250 ml</option>
+<option data-mcg-per-ml="100">50 mg en 500 ml</option>
+</select>
+</div>
+
+<div><span>Concentración</span><b class="concentracion">—</b></div>
+<div><span>Unidad</span><b>mcg/kg/min</b></div>
+</div>
+
+<div class="calc-block">
+<label>Peso (kg)
+<input type="number" class="peso" step="0.1" min="0">
+</label>
+
+<label>Velocidad (ml/h)
+<input type="number" class="velocidad" step="0.1" min="0">
+</label>
+
+<div class="calc-result">
+<span>Dosis administrada</span>
+<b class="resultado">—</b>
+</div>
+</div>
+
+<div class="clinical-note">
+<b>Nota clínica:</b> 0.3–10 mcg/kg/min. Proteger de la luz. Riesgo de toxicidad por cianuro/tiocianato.
+</div>
+</section>
+</article>
+
+<!-- ================= LABETALOL ================= -->
+<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-min">
+<header class="drug-head">
+<h3>Labetalol</h3>
+<p class="muted small">Bloqueante α/β</p>
+<button class="btn toggle-sheet">Ver ficha</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+<div><span>Presentación</span><b>100 mg / 20 ml</b></div>
+
+<div>
+<span>Dilución habitual</span>
+<select class="dilucion">
+<option value="">Seleccionar</option>
+<option data-mcg-per-ml="2000">200 mg en 100 ml</option>
+<option data-mcg-per-ml="2000">400 mg en 200 ml</option>
+</select>
+</div>
+
+<div><span>Concentración</span><b class="concentracion">—</b></div>
+<div><span>Unidad</span><b>mcg/min</b></div>
+</div>
+
+<div class="calc-block">
+<label>Velocidad (ml/h)
+<input type="number" class="velocidad" step="0.1" min="0">
+</label>
+
+<div class="calc-result">
+<span>Dosis administrada</span>
+<b class="resultado">—</b>
+</div>
+</div>
+
+<div class="clinical-note">
+<b>Nota clínica:</b> equivalente habitual 500–2000 mcg/min. Vigilar FC, TA y broncoespasmo.
+</div>
+</section>
+</article>
+
+  
+  <h2>Inodilatadores</h2>
+
+ <!-- ================= DOBUTAMINA ================= -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
     <header class="drug-head">
       <div>
-        <h3>Noradrenalina</h3>
-        <p class="muted small">Vasopresor/Inotrópico</p>
+        <h3>Dobutamina</h3>
+        <p class="muted small">Inodilatador</p>
       </div>
-      <button type="button" class="btn toggle-sheet" aria-expanded="false">
-        Ver ficha
-      </button>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
     </header>
 
     <section class="drug-sheet hidden">
-
       <div class="sheet-grid">
-        <div>
-          <span>Presentación</span>
-          <b>4 mg / 4 ml</b>
-        </div>
+        <div><span>Presentación</span><b>250 mg / 20 ml</b></div>
 
         <div>
           <span>Dilución habitual</span>
           <select class="dilucion">
             <option value="">Seleccionar</option>
-            <option data-mcg-per-ml="16">4 mg en 250 ml</option>
-            <option data-mcg-per-ml="80">8 mg en 100 ml</option>
-            <option data-mcg-per-ml="80">20 mg en 250 ml</option>
+            <!-- 250.000 mcg / 250 ml = 1000 mcg/ml -->
+            <option data-mcg-per-ml="1000">250 mg en 250 ml</option>
+            <!-- 250.000 mcg / 500 ml = 500 mcg/ml -->
+            <option data-mcg-per-ml="500">250 mg en 500 ml</option>
           </select>
         </div>
 
-        <div>
-          <span>Concentración</span>
-          <b class="concentracion">—</b>
-        </div>
-
-        <div>
-          <span>Unidad</span>
-          <b>mcg/kg/min</b>
-        </div>
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
       </div>
 
       <div class="calc-block">
         <h4>Cálculo de dosis administrada</h4>
-
         <div class="calc-grid">
-          <label>
-            Peso (kg)
+          <label>Peso (kg)
             <input type="number" class="peso" step="0.1" min="0">
           </label>
-
-          <label>
-            Velocidad (ml/h)
+          <label>Velocidad (ml/h)
             <input type="number" class="velocidad" step="0.1" min="0">
           </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
 
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 2–20 mcg/kg/min. Vigilar FC y arritmias.
+      </div>
+    </section>
+  </article>
+
+  <!-- ================= MILRINONA ================= -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Milrinona</h3>
+        <p class="muted small">Inodilatador (PDE-3)</p>
+      </div>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>10 mg / 10 ml</b></div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <!-- 10.000 mcg / 100 ml = 100 mcg/ml -->
+            <option data-mcg-per-ml="100">10 mg en 100 ml</option>
+            <!-- 20.000 mcg / 200 ml = 100 mcg/ml -->
+            <option data-mcg-per-ml="100">20 mg en 200 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+        <div class="calc-grid">
+          <label>Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+          <label>Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.125–0.75 mcg/kg/min. Ajustar en insuficiencia renal.
+      </div>
+    </section>
+  </article>
+
+  <!-- ================= LEVOSIMENDÁN ================= -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Levosimendán</h3>
+        <p class="muted small">Inodilatador (sensibilizador Ca)</p>
+      </div>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>12.5 mg / 5 ml</b></div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <!-- 12.500 mcg / 250 ml = 50 mcg/ml -->
+            <option data-mcg-per-ml="50">12.5 mg en 250 ml</option>
+            <!-- 12.500 mcg / 500 ml = 25 mcg/ml -->
+            <option data-mcg-per-ml="25">12.5 mg en 500 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+        <div class="calc-grid">
+          <label>Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+          <label>Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> infusión habitual 0.05–0.2 mcg/kg/min. Evitar bolo si hipotensión.
+      </div>
+    </section>
+  </article>
+
+
+  <h2>Sedantes</h2>
+
+  <!-- ================= PROPOFOL ================= -->
+  <article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
+    <header class="drug-head">
+      <div>
+        <h3>Propofol</h3>
+        <p class="muted small">Sedante hipnótico</p>
+      </div>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>20 mg / 1 ml (20%)</b></div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <!-- sin diluir -->
+            <option data-mg-per-ml="20">Sin diluir (20 mg/ml)</option>
+            <!-- 200 mg / 50 ml -->
+            <option data-mg-per-ml="4">200 mg en 50 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mg/kg/h</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label>Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+          <label>Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.5–4 mg/kg/h. Vigilar hipotensión, hipertrigliceridemia y PRIS.
+      </div>
+    </section>
+  </article>
+
+  <!-- ================= KETAMINA ================= -->
+  <article class="drug-card" data-group="sedantes" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Ketamina</h3>
+        <p class="muted small">Sedante disociativo</p>
+      </div>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>50 mg / 5 ml</b></div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <!-- 250 mcg / 250 ml = 1 mcg/ml -->
+            <option data-mcg-per-ml="1">
+              250 mcg en 250 ml (DX 5% / SF 0.9%)
+            </option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label>Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+          <label>Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.1–0.5 mcg/kg/min. Analgesia, broncodilatación y estabilidad hemodinámica.
+      </div>
+    </section>
+  </article>
+
+  <!-- ================= DEXMEDETOMIDINA ================= -->
+  <article class="drug-card" data-group="sedantes" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Dexmedetomidina</h3>
+        <p class="muted small">Agonista α2</p>
+      </div>
+      <button type="button" class="btn toggle-sheet">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>200 mcg / 2 ml</b></div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <!-- 400 mcg / 100 ml = 4 mcg/ml -->
+            <option data-mcg-per-ml="4">
+              400 mcg en 100 ml (SF 0.9%)
+            </option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label>Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+          <label>Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
           <div class="calc-result">
             <span>Dosis administrada</span>
             <b class="resultado">—</b>
@@ -165,1248 +637,212 @@
 
       <div class="clinical-note">
         <b>Nota clínica:</b>
-        interpretar según PAM objetivo, perfusión tisular.
+        0.002–0.012 mcg/kg/min (≈0.2–0.7 mcg/kg/h). Vigilar bradicardia e hipotensión.
       </div>
-
     </section>
-  </article>
-
-
-  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Adrenalina</h3>
-      <p class="muted small">Vasopresor / Inotrópico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>1 mg / 1 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 4000 / 250 -->
-          <option data-mcg-per-ml="16">
-            4 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
-
-          <!-- 8000 / 250 -->
-          <option data-mcg-per-ml="32">
-            8 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
-
-          <!-- 1000 / 100 -->
-          <option data-mcg-per-ml="10">
-            1 mg en 100 ml (DX 5% / SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      titular según respuesta hemodinámica y perfusión tisular.
-    </div>
-
-  </section>
-</article>
-
   
-  <article class="drug-card" id="vasopresina"
-         data-group="vasopresores"
-         data-calc="ui-min">
+  
+  </article>
+<h2>Analgésicos</h2>
 
-  <header class="drug-head">
-    <div>
-      <h3>Vasopresina</h3>
-      <p class="muted small">Vasopresor</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
+<!-- ================= FENTANILO ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-h">
+<header class="drug-head">
+  <div>
+    <h3>Fentanilo</h3>
+    <p class="muted small">Opioide</p>
+  </div>
+  <button class="btn toggle-sheet">Ver ficha</button>
+</header>
 
-  <section class="drug-sheet hidden">
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentación</span><b>500 mcg / 10 ml</b></div>
 
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>20 UI / 1 ml</b>
-      </div>
+  <div>
+    <span>Dilución habitual</span>
+    <select class="dilucion">
+      <option value="">Seleccionar</option>
+      <!-- 500 mcg / 100 ml = 5 mcg/ml -->
+      <option data-mcg-per-ml="5">500 mcg en 100 ml</option>
+      <!-- 1000 mcg / 100 ml = 10 mcg/ml -->
+      <option data-mcg-per-ml="10">1 mg en 100 ml</option>
+    </select>
+  </div>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion vasopresina">
-          <option value="">Seleccionar</option>
+  <div><span>Concentración</span><b class="concentracion">—</b></div>
+  <div><span>Unidad</span><b>mcg/kg/h</b></div>
+</div>
 
-          <!-- 20 UI / 50 ml -->
-          <option data-ui-per-ml="0.4">
-            20 UI en 50 ml (SF 0.9%)
-          </option>
+<div class="calc-block">
+  <label>Peso (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
 
-          <!-- 40 UI / 100 ml -->
-          <option data-ui-per-ml="0.4">
-            40 UI en 100 ml (SF 0.9%)
-          </option>
-        </select>
-      </div>
+  <label>Velocidad (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
 
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
+  <div class="calc-result">
+    <span>Dosis administrada</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
 
-      <div>
-        <span>Unidad</span>
-        <b>UI/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      dosis habitual 0.01–0.04 UI/min. No titular por peso.
-    </div>
-
-  </section>
+<div class="clinical-note">
+  <b>Nota clínica:</b> 0.5–5 mcg/kg/h. Vigilar depresión respiratoria y rigidez torácica.
+</div>
+</section>
 </article>
 
-<article class="drug-card" id="azul-metileno"
-         data-group="vasopresores"
-         data-calc="mg-kg-h">
+<!-- ================= MORFINA ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mg-kg-h">
+<header class="drug-head">
+  <div>
+    <h3>Morfina</h3>
+    <p class="muted small">Opioide</p>
+  </div>
+  <button class="btn toggle-sheet">Ver ficha</button>
+</header>
 
-  <header class="drug-head">
-    <div>
-      <h3>Azul de metileno</h3>
-      <p class="muted small">Vasopresor/ modulador óxido nítrico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentación</span><b>10 mg / 1 ml</b></div>
 
-  <section class="drug-sheet hidden">
+  <div>
+    <span>Dilución habitual</span>
+    <select class="dilucion">
+      <option value="">Seleccionar</option>
+      <option data-mg-per-ml="0.5">50 mg en 100 ml</option>
+      <option data-mg-per-ml="1">100 mg en 100 ml</option>
+    </select>
+  </div>
 
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>50 mg / 5 ml</b>
-      </div>
+  <div><span>Concentración</span><b class="concentracion">—</b></div>
+  <div><span>Unidad</span><b>mg/kg/h</b></div>
+</div>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
+<div class="calc-block">
+  <label>Peso (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
 
-          <!-- 50 / 100 -->
-          <option data-mg-per-ml="0.5">
-            50 mg en 100 ml (SF 0.9%)
-          </option>
+  <label>Velocidad (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
 
-          <!-- 100 / 100 -->
-          <option data-mg-per-ml="1">
-            100 mg en 100 ml (SF 0.9%)
-          </option>
+  <div class="calc-result">
+    <span>Dosis administrada</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
 
-          <!-- 100 / 250 -->
-          <option data-mg-per-ml="0.4">
-            100 mg en 250 ml (SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mg/kg/h</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      dosis habitual 0.25–2 mg/kg/h. Vigilar síndrome serotoninérgico, hemólisis y función renal.
-    </div>
-
-  </section>
+<div class="clinical-note">
+  <b>Nota clínica:</b> 0.01–0.1 mg/kg/h. Ajustar en insuficiencia renal.
+</div>
+</section>
 </article>
 
-  <article class="drug-card"
-         id="dopamina"
-         data-group="vasopresores"
-         data-calc="mcg-kg-min">
+<!-- ================= REMIFENTANILO ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-min">
+<header class="drug-head">
+  <div>
+    <h3>Remifentanilo</h3>
+    <p class="muted small">Opioide ultracorto</p>
+  </div>
+  <button class="btn toggle-sheet">Ver ficha</button>
+</header>
 
-  <header class="drug-head">
-    <div>
-      <h3>Dopamina</h3>
-      <p class="muted small">Vasopresor / Inotrópico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentación</span><b>5 mg / vial</b></div>
 
-  <section class="drug-sheet hidden">
+  <div>
+    <span>Dilución habitual</span>
+    <select class="dilucion">
+      <option value="">Seleccionar</option>
+      <option data-mcg-per-ml="20">5 mg en 250 ml</option>
+      <option data-mcg-per-ml="50">5 mg en 100 ml</option>
+    </select>
+  </div>
 
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>200 mg / 5 ml</b>
-      </div>
+  <div><span>Concentración</span><b class="concentracion">—</b></div>
+  <div><span>Unidad</span><b>mcg/kg/min</b></div>
+</div>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
+<div class="calc-block">
+  <label>Peso (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
 
-          <!-- 200.000 / 250 -->
-          <option data-mcg-per-ml="800">
-            200 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
+  <label>Velocidad (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
 
-          <!-- 400.000 / 250 -->
-          <option data-mcg-per-ml="1600">
-            400 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
+  <div class="calc-result">
+    <span>Dosis administrada</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
 
-          <!-- 200.000 / 500 -->
-          <option data-mcg-per-ml="400">
-            200 mg en 500 ml (DX 5% / SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      efectos dependientes de dosis: 2–5 mcg/kg/min (renal),
-      5–10 inotrópico, &gt;10 vasopresor. Mayor riesgo de arritmias.
-    </div>
-
-  </section>
+<div class="clinical-note">
+  <b>Nota clínica:</b> 0.05–2 mcg/kg/min. Inicio y offset ultrarrápidos.
+</div>
+</section>
 </article>
 
-
-  <article class="drug-card"
-         id="nitroglicerina"
-         data-group="vasodilatadores"
-         data-calc="mcg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Nitroglicerina</h3>
-      <p class="muted small">Vasodilatador venoso</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 10 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <!-- 50.000 / 250 -->
-          <option data-mcg-per-ml="200">50 mg en 250 ml</option>
-          <!-- 50.000 / 500 -->
-          <option data-mcg-per-ml="100">50 mg en 500 ml</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> iniciar 5–10 mcg/min, titular según TA y síntomas.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="nitroprusiato"
-         data-group="vasodilatadores"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Nitroprusiato de sodio</h3>
-      <p class="muted small">Vasodilatador arterial y venoso</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 2 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <!-- 50.000 / 250 -->
-          <option data-mcg-per-ml="200">50 mg en 250 ml</option>
-          <!-- 50.000 / 500 -->
-          <option data-mcg-per-ml="100">50 mg en 500 ml</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.3–10 mcg/kg/min. Proteger de la luz. Riesgo de toxicidad por cianuro.
-    </div>
-
-  </section>
-</article>
-
- <article class="drug-card"
-         id="labetalol"
-         data-calc="mcg-min"
-         data-group="vasodilatadores">
-
-  <header class="drug-head">
-    <div>
-      <h3>Labetalol</h3>
-      <p class="muted small">Bloqueante α/β</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>100 mg / 20 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 200 mg = 200.000 mcg / 100 ml = 2000 mcg/ml -->
-          <option data-mcg-per-ml="2000">
-            200 mg en 100 ml
-          </option>
-
-          <!-- 400 mg = 400.000 mcg / 200 ml = 2000 mcg/ml -->
-          <option data-mcg-per-ml="2000">
-            400 mg en 200 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <label>
-        Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      dosis habitual equivalente a 500–2000 mcg/min. Vigilar FC, TA y broncoespasmo.
-    </div>
-
-  </section>
-</article>
-
-  <article class="drug-card"
-         id="dobutamina"
-         data-group="inotropicos"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Dobutamina</h3>
-      <p class="muted small">Inodilatador</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>250 mg / 20 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 250.000 / 250 -->
-          <option data-mcg-per-ml="1000">250 mg en 250 ml</option>
-
-          <!-- 250.000 / 500 -->
-          <option data-mcg-per-ml="500">250 mg en 500 ml</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> dosis habitual 2–20 mcg/kg/min. Vigilar FC y arritmias.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="milrinona"
-         data-group="inotropicos"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Milrinona</h3>
-      <p class="muted small">Inodilatador (PDE-3)</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>10 mg / 10 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 10.000 / 100 -->
-          <option data-mcg-per-ml="100">10 mg en 100 ml</option>
-
-          <!-- 20.000 / 200 -->
-          <option data-mcg-per-ml="100">20 mg en 200 ml</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.125–0.75 mcg/kg/min. Ajustar en insuficiencia renal.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="levosimendan"
-         data-group="inotropicos"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Levosimendán</h3>
-      <p class="muted small">Inodilatador (sensibilizador Ca)</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>12.5 mg / 5 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 12.500 / 250 -->
-          <option data-mcg-per-ml="50">12.5 mg en 250 ml</option>
-
-          <!-- 12.500 / 500 -->
-          <option data-mcg-per-ml="25">12.5 mg en 500 ml</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> infusión habitual 0.05–0.2 mcg/kg/min. Evitar bolo si hipotensión.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="fentanilo"
-         data-group="analgesicos"
-         data-calc="mg-kg-h">
-
-  <header class="drug-head">
-    <div>
-      <h3>Fentanilo</h3>
-      <p class="muted small">Opioide</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>500 mcg / 10 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 0.5 mg / 100 ml -->
-          <option data-mg-per-ml="0.005">
-            500 mcg en 100 ml
-          </option>
-
-          <!-- 1 mg / 100 ml -->
-          <option data-mg-per-ml="0.01">
-            1 mg en 100 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/h</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.5–5 mcg/kg/h. Vigilar depresión respiratoria y rigidez torácica.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="morfina"
-         data-group="analgesicos"
-         data-calc="mg-kg-h">
-
-  <header class="drug-head">
-    <div>
-      <h3>Morfina</h3>
-      <p class="muted small">Opioide</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>10 mg / 1 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 50 mg / 100 ml -->
-          <option data-mg-per-ml="0.5">
-            50 mg en 100 ml
-          </option>
-
-          <!-- 100 mg / 100 ml -->
-          <option data-mg-per-ml="1">
-            100 mg en 100 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mg/kg/h</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.01–0.1 mg/kg/h. Ajustar en insuficiencia renal.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="remifentanilo"
-         data-group="analgesicos"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Remifentanilo</h3>
-      <p class="muted small">Opioide ultracorto</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>5 mg / vial</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 5000 / 250 -->
-          <option data-mcg-per-ml="20">
-            5 mg en 250 ml
-          </option>
-
-          <!-- 5000 / 100 -->
-          <option data-mcg-per-ml="50">
-            5 mg en 100 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.05–2 mcg/kg/min. Inicio y offset ultrarrápidos.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="atracurio"
-         data-group="relajantes"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Atracurio</h3>
-      <p class="muted small">Bloqueante neuromuscular no despolarizante</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>100 mg / 10 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 1000 mcg / 100 ml -->
-          <option data-mcg-per-ml="10">
-            1000 mcg en 100 ml (DX 5% / SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      dosis habitual 5–10 mcg/kg/min. Eliminación por Hofmann. Vigilar TOF y liberación de histamina.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="propofol"
-         data-group="sedantes"
-         data-calc="mg-kg-h">
-
-  <header class="drug-head">
-    <div>
-      <h3>Propofol</h3>
-      <p class="muted small">Sedante hipnótico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>20 mg / 1 ml (20%)</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- sin diluir -->
-          <option data-mg-per-ml="20">
-            Sin diluir (20 mg/ml)
-          </option>
-
-          <!-- 200 mg / 50 ml -->
-          <option data-mg-per-ml="4">
-            200 mg en 50 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mg/kg/h</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.5–4 mg/kg/h. Vigilar hipotensión, hipertrigliceridemia y PRIS.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="ketamina"
-         data-group="sedantes"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Ketamina</h3>
-      <p class="muted small">Sedante disociativo</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>50 mg / 5 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 250 mcg / 250 ml -->
-          <option data-mcg-per-ml="1">
-            250 mcg en 250 ml (DX 5% / SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.1–0.5 mcg/kg/min. Analgesia, broncodilatación y estabilidad hemodinámica.
-    </div>
-
-  </section>
-</article>
-
-
-  <article class="drug-card"
-         id="dexmedetomidina"
-         data-group="sedantes"
-         data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Dexmedetomidina</h3>
-      <p class="muted small">Agonista α2</p>
-    </div>
-    <button type="button" class="btn toggle-sheet" aria-expanded="false">
-      Ver ficha
-    </button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-      <div>
-        <span>Presentación</span>
-        <b>200 mcg / 2 ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-
-          <!-- 400 mcg / 100 ml -->
-          <option data-mcg-per-ml="4">
-            400 mcg en 100 ml (SF 0.9%)
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-
-      <div class="calc-grid">
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b>
-      0.002–0.012 mcg/kg/min (equivale a 0.2–0.7 mcg/kg/h). Vigilar bradicardia e hipotensión.
-    </div>
-
-  </section>
+<hr>
+
+<h2>Bloqueantes neuromusculares</h2>
+
+<!-- ================= ATRACURIO ================= -->
+<article class="drug-card" data-group="relajantes" data-calc="mcg-kg-min">
+<header class="drug-head">
+  <div>
+    <h3>Atracurio</h3>
+    <p class="muted small">BNM no despolarizante</p>
+  </div>
+  <button class="btn toggle-sheet">Ver ficha</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentación</span><b>100 mg / 10 ml</b></div>
+
+  <div>
+    <span>Dilución habitual</span>
+    <select class="dilucion">
+      <!-- 1000 mcg / 100 ml = 10 mcg/ml -->
+      <option value="">Seleccionar</option>
+      <option data-mcg-per-ml="10">
+        1000 mcg en 100 ml (DX 5% / SF 0.9%)
+      </option>
+    </select>
+  </div>
+
+  <div><span>Concentración</span><b class="concentracion">—</b></div>
+  <div><span>Unidad</span><b>mcg/kg/min</b></div>
+</div>
+
+<div class="calc-block">
+  <label>Peso (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
+
+  <label>Velocidad (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
+
+  <div class="calc-result">
+    <span>Dosis administrada</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
+
+<div class="clinical-note">
+  <b>Nota clínica:</b> 5–10 mcg/kg/min. Eliminación por Hofmann. Vigilar TOF e histaminoliberación.
+</div>
+</section>
 </article>
 
 </main>
@@ -1419,26 +855,53 @@
 
 <script src="farmacoteca.js"></script>
 
-  <script>
-  // TOGGLE DE FICHAS (inline de respaldo)
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest(".toggle-sheet");
-    if (!btn) return;
+<!-- ================= JS ÚNICO ================= -->
+<script>
+document.addEventListener("click",e=>{
+const b=e.target.closest(".toggle-sheet");
+if(!b)return;
+const s=b.closest(".drug-card").querySelector(".drug-sheet");
+s.classList.toggle("hidden");
+b.textContent=s.classList.contains("hidden")?"Ver ficha":"Ocultar ficha";
+});
 
-    const card = btn.closest(".drug-card");
-    if (!card) return;
+document.addEventListener("input",e=>{
+const c=e.target.closest(".drug-card");
+if(!c)return;
+calc(c);
+});
+document.addEventListener("change",e=>{
+const c=e.target.closest(".drug-card");
+if(!c)return;
+calc(c);
+});
 
-    const sheet = card.querySelector(".drug-sheet");
-    if (!sheet) return;
+function calc(c){
+const t=c.dataset.calc;
+const o=c.querySelector(".dilucion")?.selectedOptions[0];
+if(!o)return;
+const vel=+c.querySelector(".velocidad")?.value;
+const peso=+c.querySelector(".peso")?.value;
+let conc,res;
 
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-
-    sheet.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", String(!expanded));
-    btn.textContent = expanded ? "Ver ficha" : "Ocultar ficha";
-  });
+if(t==="mcg-kg-min"){
+conc=+o.dataset.mcgPerMl;
+c.querySelector(".concentracion").textContent=conc+" mcg/ml";
+if(vel>0&&peso>0)res=(vel*conc)/(peso*60);
+}
+if(t==="ui-min"){
+conc=+o.dataset.uiPerMl;
+c.querySelector(".concentracion").textContent=conc+" UI/ml";
+if(vel>0)res=(vel*conc)/60;
+}
+if(t==="mg-kg-h"){
+conc=+o.dataset.mgPerMl;
+c.querySelector(".concentracion").textContent=conc+" mg/ml";
+if(vel>0&&peso>0)res=(vel*conc)/peso;
+}
+c.querySelector(".resultado").textContent=res?res.toFixed(3):"—";
+}
 </script>
-
 
 </body>
 </html>
