@@ -9,6 +9,45 @@
   <meta name="description"
         content="Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico." />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="manual"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Google Analytics GA4
+  ========================== -->
+  <script>
+    function loadGA() {
+      const s = document.createElement("script");
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4";
+      s.async = true;
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", "G-WQREHQ56Q4", { anonymize_ip: true });
+    }
+
+    window.addEventListener("CookieConsentDeclaration", () => {
+      if (window.Cookiebot?.consents?.statistics) loadGA();
+    });
+
+    window.addEventListener("load", () => {
+      if (window.Cookiebot?.data?.region !== "EU") loadGA();
+    });
+  </script>
 
   <link rel="stylesheet" href="farmacoteca.css" />
 </head>
@@ -18,13 +57,19 @@
 <main class="container">
 
   <!-- =========================
-       CONTROLES
+       CONTROLES DE NAVEGACIÓN
   ========================== -->
   <section class="card controls">
     <div class="controls-grid">
+
       <div>
         <label for="q">Buscar fármaco</label>
-        <input id="q" type="search" placeholder="Ej: Noradrenalina…" />
+        <input
+          id="q"
+          type="search"
+          placeholder="Ej: Noradrenalina, Adrenalina…"
+          autocomplete="off"
+        />
       </div>
 
       <div>
@@ -32,12 +77,24 @@
         <select id="grupo">
           <option value="all">Todos</option>
           <option value="vasopresores">Vasopresores</option>
+          <option value="inotropicos">Inotrópicos</option>
+          <option value="sedantes">Sedantes</option>
+          <option value="analgesicos">Analgésicos</option>
+          <option value="relajantes">Relajantes musculares</option>
+          <option value="vasodilatadores">Vasodilatadores</option>
         </select>
       </div>
 
       <div class="controls-actions">
-        <button type="button" class="btn secondary" id="btnReset">Limpiar</button>
+        <button type="button" class="btn secondary" id="btnReset">
+          Limpiar
+        </button>
       </div>
+
+    </div>
+
+    <div class="hint">
+      Tip: podés buscar por nombre o filtrar por grupo farmacológico.
     </div>
   </section>
 
