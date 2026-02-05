@@ -1,3 +1,4 @@
+alert("farmacoteca.js cargado");
 (() => {
   // Marca para verificar que el script cargó
   window.__drugCalcLoaded = true;
