@@ -1,17 +1,72 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+  <!-- =========================
+       Cookiebot
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Meta básicos
+  ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculadora UCI</title>
-  <link rel="stylesheet" href="style-lightblue.css" />
+
+  <title>Calculadora UCI – Tema Azul | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Versión visual alternativa de Critical Care Tools con tema azul claro. Herramientas clínicas para cuidados intensivos."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- =========================
+       Canonical (MUY IMPORTANTE)
+  ========================== -->
+  <link rel="canonical" href="https://criticalcaretools.com/" />
+
+  <!-- =========================
+       CSS (tema alternativo)
+  ========================== -->
+  <link rel="stylesheet" href="/style-lightblue.css" />
+
+  <!-- =========================
+       Google Analytics GA4
+       + Consent Mode v2
+  ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
+
 </head>
-<body>
-  <div class="app">
-    <h1>Calculadora UCI</h1>
-    <p>Versión con azul claro aplicado correctamente</p>
-    <button>Botón de prueba</button>
-  </div>
-</body>
-</html>
