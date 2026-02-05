@@ -327,6 +327,89 @@
   </section>
 </article>
 
+  <article class="drug-card" id="azul-metileno" data-group="vasodilatadores">
+
+  <header class="drug-head">
+    <div>
+      <h3>Azul de metileno</h3>
+      <p class="muted small">Antídoto / modulador óxido nítrico</p>
+    </div>
+    <button type="button" class="btn toggle-sheet" aria-expanded="false">
+      Ver ficha
+    </button>
+  </header>
+
+  <section class="drug-sheet hidden">
+
+    <div class="sheet-grid">
+      <div>
+        <span>Presentación</span>
+        <b>50 mg / 5 ml</b>
+      </div>
+
+      <div>
+        <span>Dilución habitual</span>
+        <select class="dilucion">
+          <option value="">Seleccionar</option>
+
+          <!-- 50 / 100 -->
+          <option data-mg-per-ml="0.5">
+            50 mg en 100 ml (SF 0.9%)
+          </option>
+
+          <!-- 100 / 100 -->
+          <option data-mg-per-ml="1">
+            100 mg en 100 ml (SF 0.9%)
+          </option>
+
+          <!-- 100 / 250 -->
+          <option data-mg-per-ml="0.4">
+            100 mg en 250 ml (SF 0.9%)
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <span>Concentración</span>
+        <b class="concentracion">—</b>
+      </div>
+
+      <div>
+        <span>Unidad</span>
+        <b>mg/kg/h</b>
+      </div>
+    </div>
+
+    <div class="calc-block">
+      <h4>Cálculo de dosis administrada</h4>
+
+      <div class="calc-grid">
+        <label>
+          Peso (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+
+        <label>
+          Velocidad (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="clinical-note">
+      <b>Nota clínica:</b>
+      dosis habitual 0.25–2 mg/kg/h. Vigilar síndrome serotoninérgico, hemólisis y función renal.
+    </div>
+
+  </section>
+</article>
+
+
 
 
 </main>
