@@ -4,76 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Farmacoteca UCI | Vasopresores, vasodilatadores, inodilatadores, analgesicos, sedantes y BNM | Critical Care Tools</title>
+  <title>Farmacoteca UCI | Critical Care Tools</title>
 
   <meta name="description"
-        content="Farmacoteca de uso en terapia intensiva: vasopresores, inotrópicos, sedantes, analgésicos de infusión y bloqueantes neuromusculares. Uso educativo y de apoyo clínico." />
+        content="Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html" />
-  <meta name="theme-color" content="#020617" />
-
-  <!-- =========================
-       Cookiebot (SIEMPRE PRIMERO)
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="manual"
-    type="text/javascript">
-  </script>
-
-  <!-- Google Analytics (solo bloquea en Europa si no hay consentimiento) -->
-  <script>
-    function loadGA() {
-      const script = document.createElement('script');
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4";
-      script.async = true;
-      document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
-    }
-
-    // Carga GA si el usuario da consentimiento de estadísticas
-    window.addEventListener('CookieConsentDeclaration', function() {
-      if (Cookiebot && Cookiebot.consents && Cookiebot.consents.statistics) {
-        loadGA();
-      }
-    });
-
-    // Carga GA automáticamente si el usuario NO está en Europa
-    window.addEventListener('load', function() {
-      if (Cookiebot && Cookiebot.data && Cookiebot.data.region !== "EU") {
-        loadGA();
-      }
-    });
-  </script>
 
   <link rel="stylesheet" href="farmacoteca.css" />
 </head>
-
 
 <body class="app-root">
 
 <main class="container">
 
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Farmacoteca UCI</span>
-  </nav>
-
-  <!-- Controls -->
+  <!-- =========================
+       CONTROLES
+  ========================== -->
   <section class="card controls">
     <div class="controls-grid">
       <div>
         <label for="q">Buscar fármaco</label>
-        <input id="q" type="search" placeholder="Ej: Noradrenalina, Propofol, Fentanilo…" autocomplete="off" />
+        <input id="q" type="search" placeholder="Ej: Noradrenalina…" />
       </div>
 
       <div>
@@ -81,11 +32,6 @@
         <select id="grupo">
           <option value="all">Todos</option>
           <option value="vasopresores">Vasopresores</option>
-          <option value="inotropicos">Inodilatadores</option>
-          <option value="sedantes">Sedantes</option>
-          <option value="analgesicos">Analgésicos</option>
-          <option value="relajantes">Relajantes musculares</option>
-          <option value="relajantes">Vasodilatadores</option>
         </select>
       </div>
 
@@ -93,97 +39,161 @@
         <button type="button" class="btn secondary" id="btnReset">Limpiar</button>
       </div>
     </div>
-
-    <div class="hint">
-      Tip: podés filtrar por grupo y buscar por nombre. Ajustá presentaciones/diluciones y rangos según protocolo institucional.
-    </div>
   </section>
 
-  <!-- Tabs -->
-  <section class="tabs" aria-label="Grupos farmacológicos">
-    <button class="tab is-active" data-group="all" type="button">Todos</button>
-    <button class="tab" data-group="vasopresores" type="button">Vasopresores</button>
-    <button class="tab" data-group="inotropicos" type="button">Inodilatadores</button>
-    <button class="tab" data-group="sedantes" type="button">Sedantes</button>
-    <button class="tab" data-group="analgesicos" type="button">Analgésicos</button>
-    <button class="tab" data-group="relajantes" type="button">Relajantes</button>
-    <button class="tab" data-group="relajantes" type="button">Vasodilatadores</button>
-  </section>
+  <!-- =========================
+       FARMACO
+  ========================== -->
+  <article class="drug-card" id="noradrenalina" data-group="vasopresores">
 
+    <header class="drug-head">
+      <div>
+        <h3>Noradrenalina</h3>
+        <p class="muted small">Vasopresor</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">
+        Ver ficha
+      </button>
+    </header>
+
+    <section class="drug-sheet hidden">
+
+      <div class="sheet-grid">
+        <div>
+          <span>Presentación</span>
+          <b>4 mg / 4 ml</b>
+        </div>
+
+        <div>
+          <span>Dilución habitual</span>
+          <select class="dilucion">
+            <option value="">Seleccionar</option>
+            <option data-mcg-per-ml="16">4 mg en 250 ml</option>
+            <option data-mcg-per-ml="80">8 mg en 100 ml</option>
+            <option data-mcg-per-ml="80">20 mg en 250 ml</option>
+          </select>
+        </div>
+
+        <div>
+          <span>Concentración</span>
+          <b class="concentracion">—</b>
+        </div>
+
+        <div>
+          <span>Unidad</span>
+          <b>mcg/kg/min</b>
+        </div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+
+        <div class="calc-grid">
+          <label>
+            Peso (kg)
+            <input type="number" class="peso" step="0.1" min="0">
+          </label>
+
+          <label>
+            Velocidad (ml/h)
+            <input type="number" class="velocidad" step="0.1" min="0">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b>
+        interpretar según PAM objetivo, perfusión tisular y lactato.
+      </div>
+
+    </section>
+  </article>
+
+</main>
 
 <footer>
-  <nav class="footer-nav" aria-label="Footer">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">·</span>
-    <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-  </nav>
-
   <p>
-    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-    No reemplaza el juicio médico ni las guías institucionales.
+    © 2026 Critical Care Tools · Uso educativo.
   </p>
 </footer>
 
+<!-- =========================
+     JS: UI + CÁLCULO
+========================== -->
 <script>
-  // Toggle fichas
+  // Toggle ficha
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".toggle-sheet");
     if (!btn) return;
 
     const card = btn.closest(".drug-card");
     const sheet = card.querySelector(".drug-sheet");
-    const isOpen = !sheet.classList.contains("hidden");
+    const open = !sheet.classList.contains("hidden");
 
     sheet.classList.toggle("hidden");
-    btn.setAttribute("aria-expanded", String(!isOpen));
-    btn.textContent = isOpen ? "Ver ficha" : "Ocultar ficha";
+    btn.setAttribute("aria-expanded", String(!open));
+    btn.textContent = open ? "Ver ficha" : "Ocultar ficha";
   });
 
-  // Tabs + select + search (solo UI; sin cálculos)
-  const q = document.getElementById("q");
-  const grupo = document.getElementById("grupo");
-  const btnReset = document.getElementById("btnReset");
-  const tabs = Array.from(document.querySelectorAll(".tab"));
-  const cards = Array.from(document.querySelectorAll(".drug-card"));
+  // =========================
+  // CÁLCULO FARMACOLÓGICO
+  // =========================
+  function recalcular(card) {
+    const sel = card.querySelector(".dilucion");
+    const concEl = card.querySelector(".concentracion");
+    const pesoEl = card.querySelector(".peso");
+    const velEl = card.querySelector(".velocidad");
+    const resEl = card.querySelector(".resultado");
 
-  function applyFilters() {
-    const query = (q.value || "").trim().toLowerCase();
-    const g = grupo.value || "all";
+    if (!sel || !concEl || !pesoEl || !velEl || !resEl) return;
 
-    cards.forEach(card => {
-      const name = card.querySelector("h3")?.textContent?.toLowerCase() || "";
-      const group = card.getAttribute("data-group") || "all";
+    const opt = sel.options[sel.selectedIndex];
+    const conc = parseFloat(opt?.dataset?.mcgPerMl);
 
-      const okName = !query || name.includes(query);
-      const okGroup = (g === "all") || (group === g);
+    if (!Number.isFinite(conc)) {
+      concEl.textContent = "—";
+      resEl.textContent = "—";
+      return;
+    }
 
-      card.style.display = (okName && okGroup) ? "" : "none";
-    });
+    concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+
+    const peso = parseFloat(pesoEl.value);
+    const vel = parseFloat(velEl.value);
+
+    if (
+      !Number.isFinite(peso) || peso <= 0 ||
+      !Number.isFinite(vel) || vel <= 0
+    ) {
+      resEl.textContent = "—";
+      return;
+    }
+
+    // mcg/kg/min = (ml/h × mcg/ml) / (kg × 60)
+    const dosis = (vel * conc) / (peso * 60);
+    resEl.textContent = `${dosis.toFixed(3)} mcg/kg/min`;
   }
 
-  q.addEventListener("input", applyFilters);
-  grupo.addEventListener("change", () => {
-    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === grupo.value));
-    applyFilters();
+  document.addEventListener("change", (e) => {
+    if (!e.target.classList.contains("dilucion")) return;
+    const card = e.target.closest(".drug-card");
+    if (card) recalcular(card);
   });
 
-  tabs.forEach(t => {
-    t.addEventListener("click", () => {
-      const g = t.dataset.group;
-      grupo.value = g;
-      tabs.forEach(x => x.classList.toggle("is-active", x === t));
-      applyFilters();
-    });
+  document.addEventListener("input", (e) => {
+    if (
+      e.target.classList.contains("peso") ||
+      e.target.classList.contains("velocidad")
+    ) {
+      const card = e.target.closest(".drug-card");
+      if (card) recalcular(card);
+    }
   });
-
-  btnReset.addEventListener("click", () => {
-    q.value = "";
-    grupo.value = "all";
-    tabs.forEach(t => t.classList.toggle("is-active", t.dataset.group === "all"));
-    applyFilters();
-  });
-
-  applyFilters();
 </script>
 
 </body>
