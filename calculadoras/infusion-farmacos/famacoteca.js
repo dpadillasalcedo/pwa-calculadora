@@ -1,4 +1,4 @@
-console.log("farmacoteca.js activo");
+  console.log("farmacoteca.js activo");
 
 document.addEventListener("change", function (e) {
   if (!e.target.classList.contains("dilucion")) return;
@@ -71,84 +71,112 @@ document.addEventListener("click", function (e) {
   // =========================
   // Vasopresina (UI/min)
   // =========================
-  function recalcularVasopresina(card) {
-    const sel = card.querySelector(".dilucion.vasopresina");
-    const concEl = card.querySelector(".concentracion");
-    const velEl = card.querySelector(".velocidad");
-    const resEl = card.querySelector(".resultado");
+function recalcular(card) {
+  const tipo = card.dataset.calc;
+  const sel = card.querySelector(".dilucion");
+  const concEl = card.querySelector(".concentracion");
+  const pesoEl = card.querySelector(".peso");
+  const velEl = card.querySelector(".velocidad");
+  const resEl = card.querySelector(".resultado");
 
-    if (!sel || !concEl || !velEl || !resEl) return;
+  if (!sel || !concEl || !velEl || !resEl) return;
 
-    const opt = sel.options[sel.selectedIndex];
-    const conc = parseFloat(opt?.dataset?.uiPerMl);
+  const opt = sel.options[sel.selectedIndex];
+  if (!opt) return;
 
-    if (!Number.isFinite(conc)) {
+  let conc, vel, peso, dosis;
+
+  // =========================
+  // mcg/kg/min (noradrenalina, adrenalina, dopamina, nitroprusiato)
+  // =========================
+  if (tipo === "mcg-kg-min") {
+    conc = parseFloat(opt.dataset.mcgPerMl);
+    peso = parseFloat(pesoEl?.value);
+    vel = parseFloat(velEl.value);
+
+    if (!conc || !peso || !vel) {
+      concEl.textContent = "—";
+      resEl.textContent = "—";
+      return;
+    }
+
+    concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+    dosis = (vel * conc) / (peso * 60);
+    resEl.textContent = `${dosis.toFixed(3)} mcg/kg/min`;
+  }
+
+  // =========================
+  // UI/min (vasopresina)
+  // =========================
+  if (tipo === "ui-min") {
+    conc = parseFloat(opt.dataset.uiPerMl);
+    vel = parseFloat(velEl.value);
+
+    if (!conc || !vel) {
       concEl.textContent = "—";
       resEl.textContent = "—";
       return;
     }
 
     concEl.textContent = `${conc.toFixed(2)} UI/ml`;
+    dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(3)} UI/min`;
+  }
 
-    const vel = parseFloat(velEl.value);
-    if (!Number.isFinite(vel) || vel <= 0) {
+  // =========================
+  // mg/kg/h (azul de metileno)
+  // =========================
+  if (tipo === "mg-kg-h") {
+    conc = parseFloat(opt.dataset.mgPerMl);
+    peso = parseFloat(pesoEl?.value);
+    vel = parseFloat(velEl.value);
+
+    if (!conc || !peso || !vel) {
+      concEl.textContent = "—";
       resEl.textContent = "—";
       return;
     }
 
-    // UI/min = (ml/h × UI/ml) / 60
-    const dosis = (vel * conc) / 60;
-    resEl.textContent = `${dosis.toFixed(3)} UI/min`;
+    concEl.textContent = `${conc.toFixed(2)} mg/ml`;
+    dosis = (vel * conc) / peso;
+    resEl.textContent = `${dosis.toFixed(3)} mg/kg/h`;
   }
 
-  document.addEventListener("change", (e) => {
-    if (!e.target.classList.contains("vasopresina")) return;
-    const card = e.target.closest(".drug-card");
-    if (card) recalcularVasopresina(card);
-  });
+  // =========================
+  // mcg/min (nitroglicerina)
+  // =========================
+  if (tipo === "mcg-min") {
+    conc = parseFloat(opt.dataset.mcgPerMl);
+    vel = parseFloat(velEl.value);
 
-  document.addEventListener("input", (e) => {
-    if (!e.target.classList.contains("velocidad")) return;
-    const card = e.target.closest("#vasopresina");
-    if (card) recalcularVasopresina(card);
-  });
+    if (!conc || !vel) {
+      concEl.textContent = "—";
+      resEl.textContent = "—";
+      return;
+    }
 
-// =========================
-// mcg/min (nitroglicerina)
-// =========================
-if (tipo === "mcg-min") {
-  const conc = parseFloat(opt.dataset.mcgPerMl);
-  if (!Number.isFinite(conc)) return;
-
-  concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
-
-  const vel = parseFloat(velEl.value);
-  if (!vel) {
-    resEl.textContent = "—";
-    return;
+    concEl.textContent = `${conc.toFixed(1)} mcg/ml`;
+    dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(1)} mcg/min`;
   }
 
-  const dosis = (vel * conc) / 60;
-  resEl.textContent = `${dosis.toFixed(1)} mcg/min`;
-}
+  // =========================
+  // mg/min (labetalol)
+  // =========================
+  if (tipo === "mg-min") {
+    conc = parseFloat(opt.dataset.mgPerMl);
+    vel = parseFloat(velEl.value);
 
-// =========================
-// mg/min (labetalol)
-// =========================
-if (tipo === "mg-min") {
-  const conc = parseFloat(opt.dataset.mgPerMl);
-  if (!Number.isFinite(conc)) return;
+    if (!conc || !vel) {
+      concEl.textContent = "—";
+      resEl.textContent = "—";
+      return;
+    }
 
-  concEl.textContent = `${conc.toFixed(2)} mg/ml`;
-
-  const vel = parseFloat(velEl.value);
-  if (!vel) {
-    resEl.textContent = "—";
-    return;
+    concEl.textContent = `${conc.toFixed(2)} mg/ml`;
+    dosis = (vel * conc) / 60;
+    resEl.textContent = `${dosis.toFixed(2)} mg/min`;
   }
-
-  const dosis = (vel * conc) / 60;
-  resEl.textContent = `${dosis.toFixed(2)} mg/min`;
 }
 </script>
 
