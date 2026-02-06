@@ -207,3 +207,97 @@ footer p {
   font-size: 0.75rem;
   color: #94a3b8;
 }
+
+/* =========================
+   TABLA ÁCIDO–BASE (MEJORADA)
+========================= */
+
+.table-wrapper {
+  margin-top: 3rem;
+}
+
+.table-wrapper h2 {
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  color: #e0f2fe;
+}
+
+.acid-base-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* Filas */
+.acid-base-table th,
+.acid-base-table td {
+  padding: 1rem 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+/* Secciones (títulos de trastorno) */
+.acid-base-table .section th {
+  background: linear-gradient(
+    90deg,
+    #020617 0%,
+    #020617 100%
+  );
+  color: #7dd3fc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-bottom: 1px solid #1e293b;
+  letter-spacing: 0.02em;
+}
+
+/* Contenido */
+.acid-base-table .content td {
+  color: #e5e7eb;
+  background-color: #020617;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Resaltado sutil al hover (desktop) */
+@media (hover: hover) {
+  .acid-base-table .content:hover td {
+    background-color: #020617;
+  }
+}
+
+/* Negritas clínicas más visibles */
+.acid-base-table strong {
+  color: #bae6fd;
+  font-weight: 600;
+}
+
+/* Subíndices y superíndices más claros */
+.acid-base-table sub,
+.acid-base-table sup {
+  font-size: 0.7em;
+  color: #c7d2fe;
+}
+
+/* Última fila sin borde */
+.acid-base-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 640px) {
+  .acid-base-table th,
+  .acid-base-table td {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .acid-base-table .section th {
+    font-size: 0.85rem;
+  }
+}
