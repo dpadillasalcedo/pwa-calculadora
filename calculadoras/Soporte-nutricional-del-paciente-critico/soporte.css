@@ -5,8 +5,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 /* =========================
@@ -15,32 +13,30 @@
 :root {
   --bg-main: #020617;
   --bg-card: #0b1220;
-  --bg-card-2: #0f172a;
+  --bg-soft: #0f172a;
 
-  --color-text: #e5e7eb;
-  --color-muted: #cbd5e1;
-  --color-border: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
 
-  --color-primary: #38bdf8;
-  --color-primary-soft: rgba(56, 189, 248, 0.15);
+  --border: #1e293b;
 
-  --color-success: #22c55e;
-  --color-warning: #facc15;
-  --color-danger: #f87171;
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
 }
 
 /* =========================
    BODY
 ========================= */
 body {
+  margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background-color: var(--bg-main);
-  color: var(--color-text);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
 /* =========================
-   HEADER
+   HEADER GENERAL
 ========================= */
 header {
   text-align: center;
@@ -48,21 +44,19 @@ header {
 }
 
 header h1 {
-  font-size: 2.1rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
+  margin: 0 0 .5rem;
+  font-size: 2rem;
   color: #f8fafc;
 }
 
 header p {
-  font-size: 1rem;
-  color: var(--color-muted);
-  max-width: 780px;
-  margin: 0 auto;
+  margin: 0;
+  font-size: .95rem;
+  color: var(--text-muted);
 }
 
 /* =========================
-   MAIN WRAP
+   WRAP
 ========================= */
 .wrap {
   max-width: 1100px;
@@ -71,239 +65,158 @@ header p {
 }
 
 /* =========================
-   DIVIDER
-========================= */
-.divider {
-  height: 1px;
-  background: var(--color-border);
-  margin: 3rem 0;
-}
-
-/* =========================
-   GRID
-========================= */
-.grid {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* =========================
-   CARD
+   SECCIONES / CARD
 ========================= */
 .card {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 18px;
-  border: 1px solid var(--color-border);
-  padding: 1.8rem;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .card h2 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--color-primary);
+  margin: 0 0 .35rem;
+  font-size: 1.2rem;
+  color: var(--primary);
 }
 
-/* =========================
-   TEXTOS
-========================= */
 .small {
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
-
-p.small {
-  margin-top: 0.3rem;
-}
-
-.muted {
-  color: var(--color-muted);
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: .75rem;
 }
 
 /* =========================
-   FORM / INPUTS
+   INPUT PESO
 ========================= */
-.row {
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 700px) {
-  .row {
-    grid-template-columns: 1fr 2fr;
-    align-items: start;
-  }
-}
-
 label {
   display: block;
-  font-size: 0.8rem;
-  margin-bottom: 0.35rem;
-  color: var(--color-muted);
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-bottom: .35rem;
 }
 
 input[type="number"] {
   width: 100%;
-  padding: 0.65rem 0.75rem;
+  padding: .55rem .6rem;
   border-radius: 10px;
-  border: 1px solid var(--color-border);
-  background: #020617;
-  color: var(--color-text);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text-main);
+  font-size: .95rem;
 }
 
-input[type="number"]:focus {
+input:focus {
   outline: none;
-  border-color: var(--color-primary);
+  border-color: var(--primary);
 }
 
 /* =========================
-   TOGGLE
+   GRID TARJETAS
 ========================= */
-.toggle {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 0.75rem;
-  background: #020617;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-}
-
-.toggle input {
-  margin-top: 0.3rem;
-}
-
-/* =========================
-   RECORDATORIO CLÍNICO
-========================= */
-.clinical-reminder {
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
-  background: rgba(56,189,248,0.08);
-  border: 1px dashed rgba(56,189,248,0.35);
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
-
-.clinical-reminder strong {
-  display: block;
-  color: var(--color-primary);
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
-}
-
-.clinical-reminder p {
-  margin: 0;
-  line-height: 1.4;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
 /* =========================
    RESULTADOS
 ========================= */
 .result {
-  margin-top: 1.2rem;
-  padding: 1rem;
-  border-radius: 14px;
-  background: rgba(56,189,248,0.05);
-  border: 1px solid var(--color-border);
-}
-
-.metric {
   display: flex;
-  justify-content: space-between;
-  margin: 0.4rem 0;
-  font-size: 0.9rem;
-}
-
-.metric b {
-  font-weight: 600;
+  flex-direction: column;
+  gap: .25rem;
+  margin-top: .75rem;
+  font-size: .95rem;
 }
 
 /* =========================
-   PILL
+   DIVIDER
 ========================= */
-.pill {
-  display: inline-block;
-  font-size: 0.7rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  background: var(--color-primary-soft);
-  color: var(--color-primary);
-  margin-bottom: 0.6rem;
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 2.5rem 0;
 }
 
 /* =========================
-   NOTES
-========================= */
-.note {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: 14px;
-  background: rgba(250,204,21,0.1);
-  border: 1px solid rgba(250,204,21,0.35);
-  font-size: 0.85rem;
-  color: #fde68a;
-}
-
-/* =========================
-   FOOTER NOTE
-========================= */
-.foot {
-  margin-top: 1rem;
-  font-size: 0.75rem;
-  color: var(--color-muted);
-}
-
-/* =========================
-   TABLA ENTERALES
+   TABLAS ENTERALES
 ========================= */
 .tabla-enterales {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  font-size: .85rem;
+}
+
+.tabla-enterales thead {
+  background: var(--bg-soft);
 }
 
 .tabla-enterales th,
 .tabla-enterales td {
-  padding: 0.6rem 0.55rem;
-  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--border);
+  padding: .5rem .55rem;
   text-align: center;
 }
 
 .tabla-enterales th {
-  color: var(--color-primary);
   font-weight: 600;
+  color: #f8fafc;
 }
 
-.tabla-enterales td:first-child,
-.tabla-enterales th:first-child {
-  text-align: left;
+.tabla-enterales td {
+  color: var(--text-muted);
 }
 
-.tabla-enterales tr:hover {
-  background: rgba(56,189,248,0.06);
+.tabla-enterales tbody tr:hover {
+  background: rgba(56, 189, 248, 0.05);
 }
 
 /* =========================
-   EVALUACIÓN
+   NOTAS CLÍNICAS
 ========================= */
-.tabla-enterales .eval {
-  font-weight: 600;
+.note {
+  font-size: .85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
 }
 
 /* =========================
    FOOTER
 ========================= */
 footer {
-  text-align: center;
+  border-top: 1px solid var(--border);
   padding: 2rem 1.5rem;
-  border-top: 1px solid var(--color-border);
-  font-size: 0.85rem;
-  color: var(--color-muted);
+  text-align: center;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  header {
+    padding-top: 2.25rem;
+  }
+
+  header h1 {
+    font-size: 1.65rem;
+  }
+
+  .card {
+    padding: 1.4rem;
+  }
+
+  .tabla-enterales {
+    font-size: .8rem;
+  }
 }
