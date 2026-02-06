@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
   <!-- =========================
        Cookiebot (SIEMPRE PRIMERO)
   ========================== -->
@@ -29,82 +28,39 @@
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- =========================
-       PWA
-  ========================== -->
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.json" />
 
-  <!-- =========================
-       Canonical
-  ========================== -->
+  <!-- Canonical -->
   <link
     rel="canonical"
     href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html"
   />
 
-  <!-- =========================
-       CSS
-  ========================== -->
+  <!-- CSS -->
   <link
     rel="stylesheet"
     href="/Soporte-nutricional-del-paciente-critico/soporte.css"
   />
-
-  <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2 (ÚNICO)
-  ========================== -->
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    gtag('js', new Date());
-
-    /*
-      Consent Mode por defecto:
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-      - GA cookieless hasta consentimiento
-    */
-    gtag('consent', 'default', {
-      analytics_storage: 'granted',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-
-    /*
-      Configuración GA4 segura para PWA
-    */
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  </script>
-
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
   <h1>Critical Care Tools</h1>
   <p>Herramientas clínicas para el manejo del paciente crítico en UCI</p>
 </header>
 
 <main class="wrap">
 
-<header>
-  <h1>Soporte nutricional del paciente crítico</h1>
-  <p>Calculadora clínica basada en guías <b>ASPEN / ESPEN</b></p>
-</header>
-
-<section class="card">
-  <label for="pesoReal">Peso real (kg)</label>
-  <input id="pesoReal" type="number" min="1" step="0.1" placeholder="Ej: 70">
-</section>
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h2>Soporte nutricional del paciente crítico</h2>
+    <p>
+      Calculadora clínica basada en guías
+      <strong>ASPEN / ESPEN</strong>
+    </p>
+  </section>
 
 <div class="divider"></div>
 
