@@ -180,3 +180,30 @@ table {
   font-size: 0.8rem;
   color: var(--muted);
 }
+
+.site-footer {
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  padding: 2.5rem 1.5rem;
+  margin-top: 4rem;
+  background-color: #020617;
+}
+
+.site-footer .footer-nav {
+  margin-bottom: 0.75rem;
+}
+
+.site-footer a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
