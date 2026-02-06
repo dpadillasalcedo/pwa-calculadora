@@ -1,48 +1,30 @@
 /* =========================
-   VARIABLES · DARK CLÍNICO
-========================= */
-:root {
-  --bg-main: #020617;
-  --bg-panel: #0b1220;
-  --bg-panel-2: #0f172a;
-
-  --text-main: #e5e7eb;
-  --text-muted: #cbd5e1;
-
-  --border: #1e293b;
-
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
-
-  --radius: 18px;
-}
-
-/* =========================
    RESET + BASE
 ========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html,
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #020617;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
 }
 
 /* =========================
    CONTAINER
 ========================= */
 .container {
-  max-width: 960px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 1.5rem 1.25rem 3rem;
 }
 
 /* =========================
@@ -50,139 +32,116 @@ body {
 ========================= */
 .breadcrumb {
   font-size: 0.85rem;
-  margin-bottom: 2rem;
-  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  color: #94a3b8;
 }
 
 .breadcrumb a {
-  color: var(--primary);
+  color: #38bdf8;
   text-decoration: none;
 }
 
 .breadcrumb span {
-  margin: 0 0.4rem;
+  margin: 0 0.35rem;
 }
 
 /* =========================
    HEADER
 ========================= */
 .app-header {
-  text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .app-header h1 {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem;
   color: #f8fafc;
-  margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  color: var(--text-muted);
-  max-width: 720px;
-  margin: 0 auto;
   font-size: 0.95rem;
+  color: #cbd5f5;
 }
 
 /* =========================
-   PANEL
+   PANELS
 ========================= */
 .panel {
-  background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-2));
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2rem;
-  margin-bottom: 2.5rem;
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .panel h2 {
-  color: var(--primary);
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #e0f2fe;
 }
 
 .panel h3 {
   margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  color: #f8fafc;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  color: #bae6fd;
 }
 
 /* =========================
-   LABELS & INPUTS
+   FORM ELEMENTS
 ========================= */
 label {
   display: block;
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
 }
 
 input {
   width: 100%;
-  margin-top: 0.3rem;
-  padding: 0.7rem 0.75rem;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.6rem;
   background-color: #020617;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text-main);
-  font-size: 1rem;
+  border: 1px solid #334155;
+  border-radius: 0.45rem;
+  color: #f8fafc;
 }
 
 input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+  border-color: #38bdf8;
 }
 
 /* =========================
    BUTTONS
 ========================= */
 button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1rem;
+  background-color: #0284c7;
   border: none;
-  background: var(--primary);
-  color: #020617;
-  font-weight: 600;
-  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 button:hover {
-  background: var(--primary-strong);
-  transform: translateY(-1px);
+  background-color: #0369a1;
 }
 
 /* =========================
-   RESULT & NOTE
+   RESULTS & NOTES
 ========================= */
 .result {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: #a5f3fc;
 }
 
 .note {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: rgba(56, 189, 248, 0.08);
-  border-left: 4px solid var(--primary);
-  border-radius: 12px;
-  color: var(--text-muted);
+  margin-top: 0.5rem;
   font-size: 0.85rem;
-}
-
-/* =========================
-   HR
-========================= */
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 3rem 0;
+  color: #c7d2fe;
 }
 
 /* =========================
@@ -195,66 +154,56 @@ hr {
 .acid-base-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
 .acid-base-table th,
 .acid-base-table td {
-  border: 1px solid var(--border);
-  padding: 0.75rem;
+  padding: 0.9rem;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.85rem;
 }
 
 .acid-base-table .section th {
-  background: #020617;
-  color: var(--primary);
-  text-align: left;
+  background-color: #020617;
+  color: #7dd3fc;
   font-weight: 600;
 }
 
 .acid-base-table .content td {
-  background: var(--bg-panel);
-  color: var(--text-main);
+  color: #e5e7eb;
 }
 
 /* =========================
    FOOTER
 ========================= */
 footer {
-  border-top: 1px solid var(--border);
   margin-top: 4rem;
-  padding: 2.5rem 1.5rem 3rem;
+  padding: 2.5rem 1.25rem;
+  border-top: 1px solid #1e293b;
   text-align: center;
+  background-color: #020617;
 }
 
 .footer-nav {
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer-nav a {
-  color: var(--primary);
+  color: #38bdf8;
   text-decoration: none;
+  font-size: 0.85rem;
 }
 
 .footer-nav span {
-  margin: 0 0.4rem;
+  margin: 0 0.35rem;
+  color: #64748b;
 }
 
 footer p {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 600px) {
-  .app-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .panel {
-    padding: 1.5rem;
-  }
+  font-size: 0.75rem;
+  color: #94a3b8;
 }
