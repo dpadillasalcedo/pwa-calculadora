@@ -1,276 +1,214 @@
-/* =========================================================
-   RESET + FIX GLOBAL (ANTI BLANCO DEFINITIVO)
-========================================================= */
+/* =========================
+   RESET LOCAL
+========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background-color: #020617;
-  overscroll-behavior: none;
-}
-
-/* Fondo fijo para evitar flashes blancos */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: #020617;
-  z-index: -1;
-}
-
-/* =========================================================
-   VARIABLES (ÚNICAS Y COHERENTES)
-========================================================= */
+/* =========================
+   VARIABLES · DARK CLÍNICO
+========================= */
 :root {
-  --bg: #020617;
-  --bg-soft: #0b1220;
-  --card: #0f172a;
+  --bg-main: #020617;
+  --bg-card: #0b1220;
+  --bg-soft: #0f172a;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
   --border: #1e293b;
 
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
-  --accent-soft: rgba(56, 189, 248, .18);
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
 }
 
-/* =========================================================
-   ROOT APP WRAPPER
-========================================================= */
-.app-root {
-  min-height: 100dvh;
+/* =========================
+   BODY
+========================= */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER / BREADCRUMB
+========================= */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.breadcrumb-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+h1 {
+  display: none; /* no se usa en esta vista */
+}
+
+h2 {
+  margin: 0 0 .5rem;
+  color: #f8fafc;
+}
+
+.note {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   PANEL
+========================= */
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* =========================
+   GRID DE CAMPOS
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+label {
   display: flex;
   flex-direction: column;
-
-  background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
-    var(--bg);
-
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.55;
+  font-size: .9rem;
+  color: var(--text-muted);
+  gap: .35rem;
 }
 
-/* =========================================================
-   MAIN LAYOUT
-========================================================= */
-main {
-  flex: 1;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+/* =========================
+   SELECTS
+========================= */
+select {
+  background: var(--bg-soft);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .45rem .55rem;
+  font-size: .9rem;
 }
 
-/* =========================================================
-   LINKS
-========================================================= */
-a {
-  color: var(--accent);
-  text-decoration: none;
+select:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
-a:hover {
-  color: var(--accent-strong);
-}
-
-/* =========================================================
-   DIVIDER (ALINEADO CON LAYOUT)
-========================================================= */
-.divider {
-  width: min(1040px, 100%);
-  height: 1px;
-  margin: 3rem auto;
-  background: var(--border);
-  border: none;
-}
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb {
+/* =========================
+   ACCIONES
+========================= */
+.actions {
   display: flex;
-  align-items: center;
+  gap: .75rem;
   flex-wrap: wrap;
-  gap: .25rem;
-  font-size: .85rem;
-  margin-bottom: 1.75rem;
-  color: #f8fafc;
+  margin-top: .5rem;
 }
 
-.breadcrumb a {
-  color: #f8fafc;
-  border-bottom: 1px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
+button {
+  border-radius: 10px;
+  padding: .55rem 1.1rem;
+  font-size: .9rem;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 
-.breadcrumb a:hover {
-  color: var(--accent-strong);
-  border-bottom-color: var(--accent-soft);
-}
-
-.breadcrumb span {
-  margin: 0 .35rem;
-  color: var(--muted);
-}
-
-.breadcrumb [aria-current="page"] {
+button.primary {
+  background: var(--primary);
+  color: #020617;
   font-weight: 600;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
-header {
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border);
+button.secondary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
-header h1 {
-  margin: 0 0 .5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: #f8fafc;
+button.secondary:hover {
+  background: rgba(56, 189, 248, 0.12);
 }
 
-.subtitle {
-  margin: 0;
-  max-width: 780px;
-  color: var(--muted);
-  font-size: 1rem;
+/* =========================
+   RESULTADOS
+========================= */
+.result {
+  margin-top: .75rem;
+  font-weight: 600;
 }
 
-/* =========================================================
-   MENU GRID
-========================================================= */
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.75rem;
-  margin-top: 3rem;
+/* =========================
+   DIVIDER
+========================= */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
 }
 
-.menu a {
-  display: flex;
-}
-
-/* =========================================================
-   CARD
-========================================================= */
-.card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  padding: 1.75rem 1.5rem 2.25rem;
-  background: linear-gradient(
-    180deg,
-    rgba(15,23,42,.95),
-    rgba(11,18,32,.95)
-  );
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  box-shadow: 0 12px 28px rgba(2, 6, 23, .65);
-
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    border-color .18s ease;
-}
-
-.menu a:hover .card {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow:
-    0 18px 35px rgba(2, 6, 23, .85),
-    0 0 0 3px var(--accent-soft);
-}
-
-/* =========================================================
-   CARD CONTENT
-========================================================= */
-.icon {
-  font-size: 2.1rem;
-  margin-bottom: .75rem;
-}
-
-.card h3 {
-  margin: .1rem 0 .5rem;
-  font-size: 1.15rem;
-  color: var(--accent);
-}
-
-.card p {
-  margin: 0;
-  font-size: .92rem;
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-/* =========================================================
-   FOOTER (CENTRADO REAL, SIN CONFLICTOS)
-========================================================= */
+/* =========================
+   FOOTER
+========================= */
 footer {
-  width: 100%;
   border-top: 1px solid var(--border);
   padding: 2rem 1.5rem;
-
-  display: flex;
-  justify-content: center;
-}
-
-footer .footer-container {
-  width: min(1040px, 100%);
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  text-align: center;
-}
-
-footer .footer-nav {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: .5rem;
-  flex-wrap: wrap;
-
-  margin-bottom: .75rem;
-}
-
-footer .footer-nav a {
-  color: var(--accent);
   font-size: .85rem;
-  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-nav a {
+  color: var(--primary);
   text-decoration: none;
+  margin: 0 .5rem;
 }
 
-footer .footer-nav a:hover {
-  color: var(--accent-strong);
-  text-decoration: underline;
-}
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  .panel {
+    padding: 1.5rem;
+  }
 
-footer .footer-nav span {
-  color: var(--muted);
-}
-
-footer p {
-  margin: 0;
-  max-width: 900px;
-  font-size: .8rem;
-  line-height: 1.4;
-  color: var(--muted);
-  text-align: center;
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
