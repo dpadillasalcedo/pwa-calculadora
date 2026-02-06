@@ -1,3 +1,11 @@
+html,
+body {
+  background-color: #020617 !important;
+  color: #e5e7eb;
+  min-height: 100%;
+}
+
+
 /* =========================
    VARIABLES
 ========================= */
