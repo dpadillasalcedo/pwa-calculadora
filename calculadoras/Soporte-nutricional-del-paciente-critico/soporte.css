@@ -1,22 +1,23 @@
 /* =========================
-   VARIABLES · DARK CLÍNICO
+   VARIABLES
 ========================= */
-$bg-main: #020617;
-$bg-card: #0b1220;
-$bg-card-2: #0f172a;
+:root {
+  --bg-main: #020617;
+  --bg-card: #0b1220;
+  --bg-card-2: #0f172a;
 
-$text-main: #e5e7eb;
-$text-muted: #cbd5e1;
+  --text-main: #e5e7eb;
+  --text-muted: #cbd5e1;
 
-$border: #1e293b;
+  --border: #1e293b;
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
 
-$primary: #38bdf8;
-$primary-strong: #0ea5e9;
-
-$radius: 18px;
+  --radius: 18px;
+}
 
 /* =========================
-   RESET + BASE
+   RESET
 ========================= */
 *,
 *::before,
@@ -28,36 +29,30 @@ $radius: 18px;
 
 html,
 body {
-  background-color: $bg-main;
-  color: $text-main;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.6;
 }
 
 /* =========================
-   HEADERS
+   SITE HEADER
 ========================= */
-header {
+.site-header {
   text-align: center;
   padding: 3rem 1.5rem 2rem;
+}
 
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #f8fafc;
-    margin-bottom: 0.5rem;
-  }
+.site-header h1 {
+  font-size: 2.1rem;
+  color: #f8fafc;
+}
 
-  p {
-    color: $text-muted;
-    max-width: 720px;
-    margin: 0 auto;
-    font-size: 0.95rem;
-  }
+.site-header p {
+  color: var(--text-muted);
 }
 
 /* =========================
-   MAIN WRAPPER
+   MAIN WRAP
 ========================= */
 .wrap {
   max-width: 1100px;
@@ -66,65 +61,54 @@ header {
 }
 
 /* =========================
-   DIVIDER
+   PAGE HEADER
 ========================= */
-.divider {
-  height: 1px;
-  background: $border;
-  margin: 2.5rem 0;
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-header h2 {
+  font-size: 1.9rem;
+  color: var(--primary);
+}
+
+.page-header p {
+  color: var(--text-muted);
 }
 
 /* =========================
    CARD
 ========================= */
 .card {
-  background: linear-gradient(180deg, $bg-card, $bg-card-2);
-  border: 1px solid $border;
-  border-radius: $radius;
-  padding: 1.75rem;
-  margin-bottom: 2rem;
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
 
-  h2 {
-    color: $primary;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    color: $text-muted;
-    font-size: 0.9rem;
-  }
-
-  .small {
-    font-size: 0.8rem;
-    color: $text-muted;
-  }
+.card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
 }
 
 /* =========================
-   INPUT
+   INPUTS
 ========================= */
 label {
-  display: block;
   font-size: 0.85rem;
-  color: $text-muted;
-  margin-bottom: 0.5rem;
+  color: var(--text-muted);
 }
 
 input {
   width: 100%;
-  background: #020617;
-  border: 1px solid $border;
-  border-radius: 12px;
+  margin-top: 0.4rem;
   padding: 0.75rem;
-  color: $text-main;
-  font-size: 1rem;
-
-  &:focus {
-    outline: none;
-    border-color: $primary;
-    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
-  }
+  background: #020617;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-main);
 }
 
 /* =========================
@@ -133,55 +117,38 @@ input {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.75rem;
+  gap: 2rem;
 }
 
 /* =========================
-   RESULT BOX
+   RESULT
 ========================= */
 .result {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-
-  b {
-    font-size: 1.05rem;
-    color: #f8fafc;
-  }
+  font-size: 1.1rem;
 }
 
 /* =========================
-   TABLES
+   TABLE
 ========================= */
 .tabla-enterales {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   font-size: 0.85rem;
+}
 
-  thead {
-    background: #020617;
-  }
+.tabla-enterales th,
+.tabla-enterales td {
+  border: 1px solid var(--border);
+  padding: 0.6rem;
+}
 
-  th,
-  td {
-    border: 1px solid $border;
-    padding: 0.6rem 0.5rem;
-    text-align: center;
-  }
-
-  th {
-    color: $primary;
-    font-weight: 500;
-  }
-
-  td {
-    color: $text-main;
-  }
-
-  tbody tr:hover {
-    background: rgba(56, 189, 248, 0.05);
-  }
+.tabla-enterales th {
+  background: #020617;
+  color: var(--primary);
 }
 
 /* =========================
@@ -189,45 +156,39 @@ input {
 ========================= */
 .note {
   margin-top: 1.5rem;
-  padding: 1.25rem;
+  padding: 1rem;
+  border-left: 4px solid var(--primary);
   background: rgba(56, 189, 248, 0.08);
-  border-left: 4px solid $primary;
   border-radius: 12px;
+  color: var(--text-muted);
   font-size: 0.85rem;
-  color: $text-muted;
+}
 
-  b {
-    color: #f8fafc;
-  }
+/* =========================
+   DIVIDER
+========================= */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
 }
 
 /* =========================
    FOOTER
 ========================= */
-footer {
+.site-footer {
   text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
-  border-top: 1px solid $border;
-
-  p {
-    font-size: 0.8rem;
-    color: $text-muted;
-  }
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 1.5rem;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.6rem;
-  }
+.site-footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
 
-  .card {
-    padding: 1.4rem;
-  }
-
-  .tabla-enterales {
-    font-size: 0.75rem;
-  }
+.site-footer p {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
