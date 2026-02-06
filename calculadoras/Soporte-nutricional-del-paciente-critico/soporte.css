@@ -1,31 +1,5 @@
-html,
-body {
-  background-color: #020617 !important;
-  color: #e5e7eb;
-  min-height: 100%;
-}
-
-
 /* =========================
-   VARIABLES
-========================= */
-:root {
-  --bg-main: #020617;
-  --bg-card: #0b1220;
-  --bg-card-2: #0f172a;
-
-  --text-main: #e5e7eb;
-  --text-muted: #cbd5e1;
-
-  --border: #1e293b;
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
-
-  --radius: 18px;
-}
-
-/* =========================
-   RESET
+   RESET + ANTI BLANCO
 ========================= */
 *,
 *::before,
@@ -37,13 +11,27 @@ body {
 
 html,
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  background-color: #020617 !important;
+  color: #e5e7eb;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  min-height: 100%;
 }
 
 /* =========================
-   SITE HEADER
+   VARIABLES
+========================= */
+:root {
+  --bg-main: #020617;
+  --bg-card: #0b1220;
+  --bg-card-2: #0f172a;
+  --border: #1e293b;
+  --text: #e5e7eb;
+  --muted: #cbd5e1;
+  --primary: #38bdf8;
+}
+
+/* =========================
+   HEADER
 ========================= */
 .site-header {
   text-align: center;
@@ -51,16 +39,15 @@ body {
 }
 
 .site-header h1 {
-  font-size: 2.1rem;
   color: #f8fafc;
 }
 
 .site-header p {
-  color: var(--text-muted);
+  color: var(--muted);
 }
 
 /* =========================
-   MAIN WRAP
+   MAIN
 ========================= */
 .wrap {
   max-width: 1100px;
@@ -77,12 +64,7 @@ body {
 }
 
 .page-header h2 {
-  font-size: 1.9rem;
   color: var(--primary);
-}
-
-.page-header p {
-  color: var(--text-muted);
 }
 
 /* =========================
@@ -91,32 +73,9 @@ body {
 .card {
   background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 18px;
   padding: 2rem;
   margin-bottom: 2.5rem;
-}
-
-.card h3 {
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-}
-
-/* =========================
-   INPUTS
-========================= */
-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-input {
-  width: 100%;
-  margin-top: 0.4rem;
-  padding: 0.75rem;
-  background: #020617;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text-main);
 }
 
 /* =========================
@@ -126,6 +85,24 @@ input {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
+}
+
+/* =========================
+   INPUTS (ANTI BLANCO)
+========================= */
+label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+input {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.75rem;
+  background-color: #020617 !important;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
 /* =========================
@@ -139,8 +116,12 @@ input {
 }
 
 /* =========================
-   TABLE
+   TABLE (ANTI BLANCO)
 ========================= */
+table {
+  background-color: #020617 !important;
+}
+
 .tabla-enterales {
   width: 100%;
   border-collapse: collapse;
@@ -150,12 +131,12 @@ input {
 
 .tabla-enterales th,
 .tabla-enterales td {
+  background-color: #020617 !important;
   border: 1px solid var(--border);
   padding: 0.6rem;
 }
 
 .tabla-enterales th {
-  background: #020617;
   color: var(--primary);
 }
 
@@ -168,8 +149,7 @@ input {
   border-left: 4px solid var(--primary);
   background: rgba(56, 189, 248, 0.08);
   border-radius: 12px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 /* =========================
@@ -198,5 +178,5 @@ input {
 .site-footer p {
   margin-top: 0.75rem;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--muted);
 }
