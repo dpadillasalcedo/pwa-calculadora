@@ -11,7 +11,7 @@
   const RESET_EVENT = "calculator_reset";
   const RESULT_EVENT = "result_viewed";
 
-  // Evita duplicados
+  // Flags anti-duplicados (por sesión de página)
   let viewedSent = false;
   let startedSent = false;
   let completedSent = false;
@@ -26,11 +26,11 @@
   }
 
   function getCalculatorName() {
-    // 1) <meta name="calculator-name" content="..."> (opcional)
+    // 1) Meta explícita (recomendado)
     const meta = document.querySelector('meta[name="calculator-name"]');
     if (meta && meta.content) return meta.content.trim();
 
-    // 2) Path como fallback
+    // 2) Fallback: path
     const path = (location.pathname || "/")
       .replace(/\/$/, "")
       .split("/")
@@ -58,12 +58,13 @@
   }
 
   function isCalcButton(el) {
-    const text = normalizeText(el.textContent);
-    const aria = normalizeText(el.getAttribute("aria-label"));
-    const id = normalizeText(el.id);
-    const cls = normalizeText(el.className);
+    const haystack = `
+      ${normalizeText(el.textContent)}
+      ${normalizeText(el.getAttribute("aria-label"))}
+      ${normalizeText(el.id)}
+      ${normalizeText(el.className)}
+    `;
 
-    const haystack = `${text} ${aria} ${id} ${cls}`;
     return (
       haystack.includes("calcular") ||
       haystack.includes("calcula") ||
@@ -76,12 +77,13 @@
   }
 
   function isResetButton(el) {
-    const text = normalizeText(el.textContent);
-    const aria = normalizeText(el.getAttribute("aria-label"));
-    const id = normalizeText(el.id);
-    const cls = normalizeText(el.className);
+    const haystack = `
+      ${normalizeText(el.textContent)}
+      ${normalizeText(el.getAttribute("aria-label"))}
+      ${normalizeText(el.id)}
+      ${normalizeText(el.className)}
+    `;
 
-    const haystack = `${text} ${aria} ${id} ${cls}`;
     return (
       haystack.includes("reset") ||
       haystack.includes("limpiar") ||
@@ -92,31 +94,34 @@
   }
 
   // =========================
-  // 1) Viewed (cuando se ve contenido)
+  // 1) Viewed — SOLO cuando la página es visible
   // =========================
   function sendViewedOnce() {
     if (viewedSent) return;
+    if (document.visibilityState !== "visible") return;
+
     viewedSent = true;
     track(VIEW_EVENT);
   }
 
-  // Enviar cuando DOM está listo
-  document.addEventListener("DOMContentLoaded", () => {
-    sendViewedOnce();
-  });
+  document.addEventListener("DOMContentLoaded", sendViewedOnce);
+  document.addEventListener("visibilitychange", sendViewedOnce);
 
   // =========================
-  // 2) Started (primer input)
+  // 2) Started — primer input HUMANO y VISIBLE
   // =========================
   document.addEventListener(
     "input",
     (e) => {
+      if (startedSent) return;
+
       const el = e.target;
       if (!el) return;
 
+      // Solo inputs visibles (evita autocompletado, SW, hidden, etc.)
       if (
-        el.matches("input, select, textarea") &&
-        !startedSent
+        el.matches("input:not([type='hidden']), select, textarea") &&
+        el.offsetParent !== null
       ) {
         startedSent = true;
         track(START_EVENT, {
@@ -128,43 +133,40 @@
   );
 
   // =========================
-  // 3) Completed / Reset (click)
+  // 3) Completed / Reset — click explícito
   // =========================
   document.addEventListener(
     "click",
     (e) => {
-      const btn = e.target && e.target.closest("button, input[type='submit'], input[type='button'], a");
+      const btn = e.target && e.target.closest(
+        "button, input[type='submit'], input[type='button'], a"
+      );
       if (!btn) return;
 
       if (!completedSent && isCalcButton(btn)) {
         completedSent = true;
-        track(COMPLETE_EVENT, {
-          trigger: "click"
-        });
+        track(COMPLETE_EVENT, { trigger: "click" });
       }
 
       if (!resetSent && isResetButton(btn)) {
         resetSent = true;
-        track(RESET_EVENT, {
-          trigger: "click"
-        });
+        track(RESET_EVENT, { trigger: "click" });
       }
     },
     { passive: true }
   );
 
   // =========================
-  // 4) Completed (submit)
+  // 4) Completed — submit (fallback)
   // =========================
-  document.addEventListener("submit", (e) => {
+  document.addEventListener("submit", () => {
     if (completedSent) return;
     completedSent = true;
     track(COMPLETE_EVENT, { trigger: "submit" });
   });
 
   // =========================
-  // 5) Result viewed (heurístico)
-  // Busca IDs/clases típicas donde aparece un resultado
+  // 5) Result viewed — MutationObserver CONTROLADO
   // =========================
   const resultSelectors = [
     "#result",
@@ -176,13 +178,17 @@
   ];
 
   const obs = new MutationObserver(() => {
-    if (resultSent) return;
+    if (resultSent) {
+      obs.disconnect();
+      return;
+    }
 
     for (const sel of resultSelectors) {
       const node = document.querySelector(sel);
       if (node && normalizeText(node.textContent).length > 0) {
         resultSent = true;
         track(RESULT_EVENT, { selector: sel });
+        obs.disconnect(); // 🔥 clave para evitar ruido
         break;
       }
     }
@@ -190,9 +196,7 @@
 
   obs.observe(document.documentElement, {
     childList: true,
-    subtree: true,
-    characterData: true
+    subtree: true
   });
 
 })();
-
