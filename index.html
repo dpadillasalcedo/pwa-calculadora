@@ -39,12 +39,6 @@
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
 
   <!-- =========================
-       Performance hints
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-  <!-- =========================
        Canonical
   ========================== -->
   <link rel="canonical" href="https://criticalcaretools.com/" />
@@ -61,13 +55,18 @@
   <meta property="og:url" content="https://criticalcaretools.com/" />
 
   <!-- =========================
+       Performance hints
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- =========================
        CSS
   ========================== -->
   <link rel="stylesheet" href="/style.css" />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
   ========================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
@@ -77,11 +76,6 @@
 
     gtag('js', new Date());
 
-    /*
-      Consent Mode por defecto
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-    */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
       ad_storage: 'denied',
@@ -89,21 +83,29 @@
       ad_personalization: 'denied'
     });
 
-    /*
-      Configuración GA4 segura para PWA + Service Worker
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+
+  <!-- =========================
+       Google Ads
+  ========================== -->
+  <script async 
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
 </head>
 
-
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
  
 
 <body>
