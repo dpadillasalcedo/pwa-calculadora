@@ -1,8 +1,8 @@
-const CACHE_NAME = 'critical-care-tools-v3';
+const CACHE_NAME = 'critical-care-tools-v4';
 
 /*
-  Cache SOLO de assets estáticos seguros
-  (NO HTML, NO cálculos, NO datos clínicos)
+  Cache ONLY safe static assets
+  (NO HTML, NO clinical data, NO dynamic calculations)
 */
 const STATIC_ASSETS = [
   '/style.css',
@@ -11,15 +11,20 @@ const STATIC_ASSETS = [
   '/icons/icon-512.png'
 ];
 
-// Install
+// =========================
+// INSTALL
+// =========================
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(STATIC_ASSETS))
   );
   self.skipWaiting();
 });
 
-// Activate
+// =========================
+// ACTIVATE
+// =========================
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -33,26 +38,29 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch
+// =========================
+// FETCH
+// =========================
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 
-  // ❌ No interceptar navegación (HTML siempre desde red)
+  // ❌ Do NOT intercept HTML navigation
   if (event.request.mode === 'navigate') {
     return;
   }
 
-  // ❌ No tocar Analytics ni Google
+  // ❌ Do NOT touch Analytics, Ads or external Google services
   if (
     url.hostname.includes('google-analytics.com') ||
-    url.hostname.includes('googletagmanager.com')
+    url.hostname.includes('googletagmanager.com') ||
+    url.hostname.includes('googlesyndication.com')
   ) {
     return;
   }
 
-  // ✅ Cache-first SOLO para assets estáticos
+  // ✅ Cache-first strategy ONLY for static assets
   event.respondWith(
     caches.match(event.request).then(cached => {
       return cached || fetch(event.request);
