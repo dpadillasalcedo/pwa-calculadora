@@ -170,3 +170,22 @@ a:hover {
     font-size: 1.55rem;
   }
 }
+
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
+.language-switcher {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.language-switcher a {
+  color: var(--color-muted);
+  text-decoration: none;
+  margin-left: 0.4rem;
+}
+
+.language-switcher a:hover {
+  color: var(--color-primary);
+}
