@@ -1,4 +1,219 @@
 /* =========================
+   RESET LOCAL
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   VARIABLES · DARK CLÍNICO
+========================= */
+:root {
+  --bg-main: #020617;
+  --bg-card: #0b1220;
+  --bg-soft: #0f172a;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border: #1e293b;
+
+  --primary: #38bdf8;
+  --primary-strong: #0ea5e9;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER / BREADCRUMB
+========================= */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+}
+
+.breadcrumb-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.breadcrumb-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+h1 {
+  display: none; /* no se usa en esta vista */
+}
+
+h2 {
+  margin: 0 0 .5rem;
+  color: #f8fafc;
+}
+
+.note {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   PANEL
+========================= */
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* =========================
+   GRID DE CAMPOS
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: .9rem;
+  color: var(--text-muted);
+  gap: .35rem;
+}
+
+/* =========================
+   SELECTS
+========================= */
+select {
+  background: var(--bg-soft);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .45rem .55rem;
+  font-size: .9rem;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* =========================
+   ACCIONES
+========================= */
+.actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+
+button {
+  border-radius: 10px;
+  padding: .55rem 1.1rem;
+  font-size: .9rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+button.primary {
+  background: var(--primary);
+  color: #020617;
+  font-weight: 600;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+button.secondary:hover {
+  background: rgba(56, 189, 248, 0.12);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.result {
+  margin-top: .75rem;
+  font-weight: 600;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-nav a {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 .5rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  .panel {
+    padding: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================
    LANGUAGE SWITCHER
 ========================= */
 .language-switcher {
