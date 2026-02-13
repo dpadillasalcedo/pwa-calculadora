@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- =========================
+       Cookiebot (ALWAYS FIRST)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Basic Meta
+  ========================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Mechanical Ventilation | ICU Calculators | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Clinical tools for invasive mechanical ventilation in adults. Predicted Body Weight (PBW), PaCO₂ adjustment and Driving Pressure (ΔP). Educational ICU support."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/variablesen/ventilacion-mecanicaen/ventilacionen.html"
+  />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en"
+        href="https://criticalcaretools.com/en/variablesen/ventilacion-mecanicaen/ventilacionen.html" />
+  <link rel="alternate" hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion-html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mechanical Ventilation | ICU Calculators" />
+  <meta
+    property="og:description"
+    content="Clinical tools for mechanical ventilation management in adult ICU patients."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/en/variablesen/ventilacion-mecanicaen/ventilacionen.html"
+  />
+
+  <link
+    rel="stylesheet"
+    href="/en/variablesen/ventilacion-mecanicaen/ventilacionen.css?v=5"
+  />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<main class="app container">
+
+  <!-- LANGUAGE SWITCHER -->
+  <div class="language-switcher">
+    <a href="/en/calculators/clinical-variables/mechanical-ventilation/" class="active">EN</a> |
+    <a href="/es/calculadoras/variables-clinicas/ventilacion-mecanica/">ES</a>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="criticalcaretools.com">Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="/en/calculadorasen/variablesen/variablesen.html">
+      Clinical Variables
+    </a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <h1>Mechanical Ventilation</h1>
+    <p class="subtitle">
+      Educational tools for ventilator management. Always interpret in clinical context.
+    </p>
+  </header>
+
+  <!-- PBW -->
+  <section class="panel">
+
+    <h2>🫁 Predicted Body Weight (PBW)</h2>
+
+    <p class="note">
+      Calculation based on ARDSnet formula. Used to guide lung-protective ventilation.
+    </p>
+
+    <label for="height">Height (cm)</label>
+    <input type="number" id="height" min="80" max="250" />
+
+    <label for="sex">Sex</label>
+    <select id="sex">
+      <option value="">Select</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+
+    <button type="button" onclick="calcularPesoIdeal()">
+      Calculate PBW
+    </button>
+
+    <div id="resultadoPeso" class="result"></div>
+
+  </section>
+
+  <!-- PaCO2 Adjustment -->
+  <section class="panel">
+
+    <h2>🫁 PaCO₂ Adjustment</h2>
+
+    <p class="note">
+      Inverse relationship between PaCO₂ and minute ventilation.
+      Does not replace arterial blood gas analysis or clinical judgment.
+    </p>
+
+    <label for="pco2Act">Current PaCO₂ (mmHg)</label>
+    <input type="number" id="pco2Act" step="0.1" />
+
+    <label for="pco2Des">Target PaCO₂ (mmHg)</label>
+    <input type="number" id="pco2Des" step="0.1" />
+
+    <div class="grid-2">
+      <div>
+        <label for="fr_actual">Current RR (breaths/min)</label>
+        <input type="number" id="fr_actual" />
+      </div>
+      <div>
+        <label for="vt_actual">Current VT (mL)</label>
+        <input type="number" id="vt_actual" />
+      </div>
+    </div>
+
+    <label for="vmin_actual">Current Minute Ventilation (L/min)</label>
+    <input type="number" id="vmin_actual" step="0.1" />
+
+    <button type="button" onclick="ajustarPCO2()">
+      Calculate Adjustment
+    </button>
+
+    <div id="resultadoPCO2" class="result"></div>
+    <div id="resultadoPCO2Detalle" class="note"></div>
+
+  </section>
+
+  <!-- Driving Pressure -->
+  <section class="panel">
+
+    <h2>🫁 Driving Pressure (ΔP)</h2>
+
+    <p class="note">
+      <strong>Driving Pressure (ΔP)</strong> is calculated as:
+      <br />
+      <strong>ΔP = Plateau Pressure − PEEP</strong>
+      <br />
+      Associated with ventilator-induced lung injury risk.
+    </p>
+
+    <label for="pplat">Plateau Pressure (cmH₂O)</label>
+    <input type="number" id="pplat" step="0.1" />
+
+    <label for="peep">PEEP (cmH₂O)</label>
+    <input type="number" id="peep" step="0.1" />
+
+    <button type="button" onclick="calcularDeltaP()">
+      Calculate ΔP
+    </button>
+
+    <div id="resultadoDeltaP" class="result"></div>
+    <div id="interpretacionDeltaP" class="note"></div>
+
+  </section>
+
+<footer>
+
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/legalen/legalen.html">Legal Notice</a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+  </nav>
+
+  <p>
+    © 2026 Critical Care Tools · For educational and clinical support purposes only.
+    This platform does not replace professional medical judgment or institutional guidelines.
+  </p>
+
+</footer>
+
+<script
+  src="/en/variablesen/ventilacion-mecanicaen/ventilacionen.js.js?v=5"
+  defer
+></script>
+
+<script
+  src="/en/variablesen/ventilacion-mecanicaen/ventilacionen.js/driving-pressure.js?v=5"
+  defer
+></script>
+
+<script src="/en/variablesen/ventilacion-mecanicaen/ventilacionen.js"></script>
+
+</body>
+</html>
 
