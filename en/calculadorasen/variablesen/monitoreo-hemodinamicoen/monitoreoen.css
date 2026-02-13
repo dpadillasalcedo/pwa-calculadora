@@ -1,3 +1,212 @@
+:root {
+  --bg:#020617;
+  --card:#0b1220;
+  --border:#1e293b;
+  --primary:#38bdf8;
+  --text:#e5e7eb;
+  --muted:#cbd5e1;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui, sans-serif;
+}
+
+.container {
+  max-width:960px;
+  margin:auto;
+  padding:1.5rem;
+}
+
+/* =========================
+   BREADCRUMB (HEAD)
+========================= */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  margin-bottom: 1.25rem;
+  color: #f8fafc;
+}
+
+.breadcrumb a {
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* =========================
+   HEADER
+========================= */
+.app-header {
+  margin-bottom: 1.5rem;
+}
+
+.app-header h1 {
+  color:#f8fafc;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color:var(--muted);
+}
+
+/* =========================
+   PANELS
+========================= */
+.panel {
+  background:linear-gradient(180deg,var(--card),#0f172a);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:1.75rem;
+  margin-top:2rem;
+}
+
+h2 {
+  margin-top:0;
+}
+
+fieldset {
+  border:none;
+  margin:0 0 32px 0;
+  padding:0;
+}
+
+/* =========================
+   FORM
+========================= */
+label {
+  display:block;
+  margin-top:10px;
+  font-size:.85rem;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  background:#020617;
+  border:1px solid var(--border);
+  color:var(--text);
+  margin-top:6px;
+}
+
+button {
+  width:100%;
+  margin-top:14px;
+  padding:12px;
+  background:linear-gradient(180deg,var(--primary),#0ea5e9);
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.result {
+  margin-top: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: block;
+}
+
+.note {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #020617;
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: block;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+  color: #f8fafc; /* blanco */
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #f8fafc; /* blanco */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   OVERRIDES · NAV HEAD + FOOTER EN BLANCO
+   (sin modificar el resto del diseño)
+========================================================= */
+
+/* Breadcrumb (head) */
+.breadcrumb {
+  color: #f8fafc;
+}
+
+.breadcrumb a {
+  color: #f8fafc;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-strong);
+}
+
+/* Footer */
+.footer-nav {
+  color: #f8fafc;
+}
+
+.footer-nav a {
+  color: #f8fafc;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-strong);
+}
+
+.footer-copy {
+  color: #f8fafc;
+}
+
 /* =========================
    LANGUAGE SWITCHER
 ========================= */
