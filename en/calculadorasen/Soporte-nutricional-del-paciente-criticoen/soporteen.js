@@ -1,114 +1,108 @@
-/* =========================
-   CriticalCareTools – Soporte Nutricional
-========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const STRATEGIES = {
-  trofico: { kcalKg: 20, protKg: 0.8 },
-  full:    { kcalKg: 30, protKg: 2.0 },
-  hipo:    { kcalKg: 15, protKg: 2.0 }
-};
+  const weightInput = document.getElementById("pesoReal");
 
-const $ = id => document.getElementById(id);
+  const kcalTrofico = document.getElementById("kcalTrofico");
+  const protTrofico = document.getElementById("protTrofico");
 
-const round10 = v => Math.round(v / 10) * 10;
-const round1  = v => Math.round(v * 10) / 10;
-const round0  = v => Math.round(v);
+  const kcalFull = document.getElementById("kcalFull");
+  const protFull = document.getElementById("protFull");
 
-function validNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) && n > 0 ? n : null;
-}
+  const kcalHipo = document.getElementById("kcalHipo");
+  const protHipo = document.getElementById("protHipo");
 
-function calculate(weight, kcalKg, protKg) {
-  const kcal = weight * kcalKg;
-  const protein = weight * protKg;
-  const kcalFromProtein = protein * 4;
-  const kcalNonProtein = Math.max(0, kcal - kcalFromProtein);
+  weightInput.addEventListener("input", calculateAll);
 
-  return {
-    kcal: round10(kcal),
-    protein: round0(protein),
-    kcalProt: round10(kcalFromProtein),
-    kcalNoProt: round10(kcalNonProtein)
-  };
-}
+  function calculateAll() {
 
-/* =========================
-   Tablas enterales
-========================= */
-function clearEnteralTable(tableId) {
-  document
-    .querySelectorAll(`#${tableId} tbody tr`)
-    .forEach(row => {
-      row.querySelector(".vol").textContent     = "—";
-      row.querySelector(".kcal").textContent    = "—";
-      row.querySelector(".prot").textContent    = "—";
-      row.querySelector(".deficit").textContent = "—";
-      row.classList.remove("best-option");
-    });
-}
+    const weight = parseFloat(weightInput.value);
 
-function updateEnteralTable(tableId, targetKcal, targetProtein) {
-  if (!targetKcal || !targetProtein) return;
+    if (!weight || weight <= 0) {
+      resetAll();
+      return;
+    }
 
-  const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-  const calc = [];
+    // =========================
+    // CALORIC TARGETS
+    // =========================
 
-  rows.forEach(row => {
-    const kcalMl  = Number(row.dataset.kcalml);
-    const prot100 = Number(row.dataset.prot100);
-    if (!kcalMl || !prot100) return;
+    const trophicKcal = weight * 15;
+    const trophicProt = weight * 0.8;
 
-    const vol = targetKcal / kcalMl;
-    const protReal = vol * (prot100 / 100);
-    const deficit = Math.max(0, targetProtein - protReal);
+    const fullKcal = weight * 30;
+    const fullProt = weight * 2.0;
 
-    calc.push({ row, vol, protReal, deficit });
-  });
+    const hypoKcal = weight * 15;
+    const hypoProt = weight * 2.0;
 
-  calc.sort((a, b) => a.deficit - b.deficit);
+    kcalTrofico.textContent = trophicKcal.toFixed(0) + " kcal/day";
+    protTrofico.textContent = trophicProt.toFixed(1) + " g protein/day";
 
-  calc.forEach((c, i) => {
-    c.row.querySelector(".vol").textContent  = `${Math.round(c.vol)} ml`;
-    c.row.querySelector(".kcal").textContent = `${targetKcal} kcal`;
-    c.row.querySelector(".prot").textContent = `${Math.round(c.protReal)} g`;
-    c.row.querySelector(".deficit").textContent =
-      c.deficit > 0 ? `-${Math.round(c.deficit)} g` : "0 g";
+    kcalFull.textContent = fullKcal.toFixed(0) + " kcal/day";
+    protFull.textContent = fullProt.toFixed(1) + " g protein/day";
 
-    c.row.classList.toggle("best-option", i === 0);
-  });
-}
+    kcalHipo.textContent = hypoKcal.toFixed(0) + " kcal/day";
+    protHipo.textContent = hypoProt.toFixed(1) + " g protein/day";
 
-/* =========================
-   Main
-========================= */
-function runCalculation() {
-  const peso = validNumber($("pesoReal").value);
-  if (!peso) {
-    clearEnteralTable("tablaTrofico");
-    clearEnteralTable("tablaFull");
-    clearEnteralTable("tablaHipo");
-    return;
+    // =========================
+    // UPDATE TABLES
+    // =========================
+
+    updateTable("tablaTrofico", trophicKcal, trophicProt);
+    updateTable("tablaFull", fullKcal, fullProt);
+    updateTable("tablaHipo", hypoKcal, hypoProt);
   }
 
-  const trof = calculate(peso, STRATEGIES.trofico.kcalKg, STRATEGIES.trofico.protKg);
-  const full = calculate(peso, STRATEGIES.full.kcalKg, STRATEGIES.full.protKg);
-  const hipo = calculate(peso, STRATEGIES.hipo.kcalKg, STRATEGIES.hipo.protKg);
+  function updateTable(tableId, targetKcal, targetProt) {
 
-  $("kcalTrofico").textContent = `${trof.kcal} kcal/día`;
-  $("protTrofico").textContent = `${trof.protein} g/día`;
+    const table = document.getElementById(tableId);
+    const rows = table.querySelectorAll("tbody tr");
 
-  $("kcalFull").textContent = `${full.kcal} kcal/día`;
-  $("protFull").textContent = `${full.protein} g/día`;
+    rows.forEach(row => {
 
-  $("kcalHipo").textContent = `${hipo.kcal} kcal/día`;
-  $("protHipo").textContent = `${hipo.protein} g/día`;
+      const kcalPerMl = parseFloat(row.dataset.kcalml);
+      const protPer100 = parseFloat(row.dataset.prot100);
 
-  updateEnteralTable("tablaTrofico", trof.kcal, trof.protein);
-  updateEnteralTable("tablaFull", full.kcal, full.protein);
-  updateEnteralTable("tablaHipo", hipo.kcal, hipo.protein);
-}
+      if (!kcalPerMl || !protPer100) return;
 
-document.addEventListener("DOMContentLoaded", () => {
-  $("pesoReal").addEventListener("input", runCalculation);
+      // Volume needed (ml/day)
+      const volume = targetKcal / kcalPerMl;
+
+      // Protein delivered
+      const proteinDelivered = (volume / 100) * protPer100;
+
+      // Deficit
+      const deficit = targetProt - proteinDelivered;
+
+      row.querySelector(".vol").textContent =
+        volume.toFixed(0) + " ml/day";
+
+      row.querySelector(".kcal").textContent =
+        targetKcal.toFixed(0) + " kcal/day";
+
+      row.querySelector(".prot").textContent =
+        proteinDelivered.toFixed(1) + " g/day";
+
+      row.querySelector(".deficit").textContent =
+        deficit > 0
+          ? deficit.toFixed(1) + " g/day"
+          : "0 g/day";
+    });
+  }
+
+  function resetAll() {
+
+    const allResults = document.querySelectorAll(
+      "#kcalTrofico, #protTrofico, #kcalFull, #protFull, #kcalHipo, #protHipo"
+    );
+
+    allResults.forEach(el => el.textContent = "—");
+
+    const cells = document.querySelectorAll(
+      ".vol, .kcal, .prot, .deficit"
+    );
+
+    cells.forEach(cell => cell.textContent = "—");
+  }
+
 });
