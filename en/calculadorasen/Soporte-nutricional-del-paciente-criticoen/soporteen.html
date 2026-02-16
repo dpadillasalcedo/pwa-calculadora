@@ -1,1 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =========================
+       Cookiebot (ALWAYS FIRST)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Basic meta
+  ========================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Enteral Nutritional Support in Critically Ill Patients | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Clinical calculator for nutritional support in critically ill patients with automatic enteral nutrition suggestions based on ASPEN / ESPEN guidance."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/Soporte-nutricional-del-paciente-criticoen/soporteen.html"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./soporte.css" />
+
+  <!-- =========================
+     Google Analytics 4 (GA4)
+     Cookiebot-compatible
+  ========================== -->
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Initialize GA with Consent Mode
+    gtag('consent', 'default', {
+      'analytics_storage': 'granted'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', {
+      send_page_view: true
+    });
+  </script>
+
+  <script
+    type="text/plain"
+    data-cookieconsent="statistics"
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+     crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<main class="wrap">
+
+  <!-- Breadcrumb (EN) -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="criticalcaretools.com/en/indexen.html">Home</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h2>Enteral Nutritional Support in Critically Ill Patients</h2>
+    <p>
+      Clinical calculator based on
+      <strong>ASPEN / ESPEN</strong> guidance
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="card">
+    <label for="pesoReal">Actual body weight (kg)</label>
+    <input id="pesoReal" type="number" min="1" step="0.1" placeholder="e.g., 70">
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="grid">
+
+    <!-- TROPHIC -->
+    <article class="card">
+      <h2>Trophic feeding</h2>
+      <p class="small">15 kcal/kg · 0.8 g protein/kg</p>
+      <div class="result">
+        <b id="kcalTrofico">—</b>
+        <b id="protTrofico">—</b>
+      </div>
+    </article>
+
+    <!-- FULL -->
+    <article class="card">
+      <h2>Full feeding</h2>
+      <p class="small">30 kcal/kg · 2.0 g protein/kg</p>
+      <div class="result">
+        <b id="kcalFull">—</b>
+        <b id="protFull">—</b>
+      </div>
+    </article>
+
+    <!-- HYPO -->
+    <article class="card">
+      <h2>Hypocaloric / high-protein</h2>
+      <p class="small">15 kcal/kg · 2.0 g protein/kg</p>
+      <div class="result">
+        <b id="kcalHipo">—</b>
+        <b id="protHipo">—</b>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ================= ENTERAL TABLES ================= -->
+
+  <!-- TROPHIC -->
+  <section class="card">
+    <h2>Enteral suggestion – Trophic feeding</h2>
+    <table class="tabla-enterales" id="tablaTrofico">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Formula</th>
+          <th>kcal/ml</th>
+          <th>Total volume<br>(day)</th>
+          <th>Total kcal/day<br>(ml/day)</th>
+          <th>Protein<br>/day</th>
+          <th>Protein deficit<br>(g/day)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-kcalml="1.0" data-prot100="4.0">
+          <td>Yeviti</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="5.6">
+          <td>Energy</td>
+          <td>1.25</td>
+          <td>5.6</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="6.3">
+          <td>Intense</td>
+          <td>1.25</td>
+          <td>6.3</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.5" data-prot100="7.5">
+          <td>Protison</td>
+          <td>1.5</td>
+          <td>7.5</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FULL -->
+  <section class="card">
+    <h2>Enteral suggestion – Full feeding</h2>
+    <table class="tabla-enterales" id="tablaFull">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Formula</th>
+          <th>kcal/ml</th>
+          <th>Total volume<br>(day)</th>
+          <th>Total kcal/day<br>(ml/day)</th>
+          <th>Protein<br>/day</th>
+          <th>Protein deficit<br>(g/day)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-kcalml="1.0" data-prot100="4.0">
+          <td>Yeviti</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="5.6">
+          <td>Energy</td>
+          <td>1.25</td>
+          <td>5.6</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="6.3">
+          <td>Intense</td>
+          <td>1.25</td>
+          <td>6.3</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.5" data-prot100="7.5">
+          <td>Protison</td>
+          <td>1.5</td>
+          <td>7.5</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- HYPO -->
+  <section class="card">
+    <h2>Enteral suggestion – Hypocaloric / high-protein</h2>
+    <table class="tabla-enterales" id="tablaHipo">
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Formula</th>
+          <th>kcal/ml</th>
+          <th>Total volume<br>(day)</th>
+          <th>Total kcal/day<br>(ml/day)</th>
+          <th>Protein<br>/day</th>
+          <th>Protein deficit<br>(g/day)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-kcalml="1.0" data-prot100="4.0">
+          <td>Yeviti</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="5.6">
+          <td>Energy</td>
+          <td>1.25</td>
+          <td>5.6</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.25" data-prot100="6.3">
+          <td>Intense</td>
+          <td>1.25</td>
+          <td>6.3</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+
+        <tr data-kcalml="1.5" data-prot100="7.5">
+          <td>Protison</td>
+          <td>1.5</td>
+          <td>7.5</td>
+          <td class="vol">—</td>
+          <td class="kcal">—</td>
+          <td class="prot">—</td>
+          <td class="deficit">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:1.5rem;">
+      <b>Important clinical note</b><br><br>
+
+      • In patients with <b>burns &gt;15% total body surface area</b>,
+      protein requirements may be significantly higher,
+      even in the presence of <b>chronic kidney disease</b>.<br><br>
+
+      • In patients with <b>obesity (BMI &gt;30 kg/m²)</b>, consider using
+      <b>ideal body weight or adjusted body weight</b> for calorie targets,
+      while maintaining a <b>hypocaloric / high-protein</b> approach per
+      <b>ASPEN / ESPEN</b> guidance.<br><br>
+
+      • Enteral formula suggestions are <b>for guidance only</b> and do not
+      replace <b>clinical judgment</b>. Consider the need for
+      <b>modular protein supplementation</b> if a protein deficit persists.
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-nav">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a> ·
+    <a href="/en/legalen/legalen.html">Legal Notice</a> ·
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+  </nav>
+
+  <p>© 2026 Critical Care Tools · Educational use · Not a substitute for clinical judgment</p>
+</footer>
+
+<script src="/en/Soporte-nutricional-del-paciente-criticoen/soporteen.js"></script>
+
+</body>
+</html>
 
