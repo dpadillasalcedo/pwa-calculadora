@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- =========================
+       Cookiebot (ALWAYS FIRST)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Drug Dosing | ICU Calculators | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="ICU drug dosing calculator. Continuous infusion vancomycin dosing based on renal function. Educational clinical support tool."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html"
+  />
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="/en/calculadorasen/infusion-farmacosen/farmacosen.css"
+  />
+
+</head>
+
+<body>
+
+<main class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="criticalcaretools.com/en/indexen.html">Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="/en/calculadorasen/variables-clinicasen/variablesem.html">
+      Clinical Variables
+    </a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <h1>Drug Dosing</h1>
+    <p class="subtitle">
+      Educational calculators. Always interpret results within clinical context.
+    </p>
+  </header>
+
+  <!-- =========================
+       VANCOMYCIN BLOCK
+  ========================= -->
+  <section class="panel" aria-labelledby="vanco-title">
+
+    <h2 id="vanco-title">
+      CONTINUOUS INFUSION VANCOMYCIN DOSING CALCULATOR
+    </h2>
+
+    <p class="note">
+      Based on estimated renal function (MDRD) and target vancomycin concentration.
+      Educational use only. Does not replace therapeutic drug monitoring,
+      institutional guidelines, or clinical judgment.
+    </p>
+
+    <div class="grid-2">
+
+      <div class="field">
+        <label for="cr">Serum Creatinine (mg/dL)</label>
+        <input type="number" id="cr" step="0.01" min="0" placeholder="e.g. 1.2" />
+      </div>
+
+      <div class="field">
+        <label for="edad">Age (years)</label>
+        <input type="number" id="edad" step="1" min="0" placeholder="e.g. 65" />
+      </div>
+
+      <div class="field">
+        <label for="sexo">Sex</label>
+        <select id="sexo">
+          <option value="">Select</option>
+          <option value="v">Male</option>
+          <option value="m">Female</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="meta">Target Vancomycin Level (mg/L)</label>
+        <input type="number" id="meta" step="0.1" min="0" placeholder="e.g. 20" />
+      </div>
+
+      <div class="field">
+        <label for="peso">Actual Body Weight (kg)</label>
+        <input type="number" id="peso" step="0.1" min="0" placeholder="e.g. 70" />
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button type="button" id="btnCalcular">Calculate</button>
+      <button type="button" class="btn-secondary" id="btnLimpiar">Reset</button>
+    </div>
+
+    <div id="errores" class="callout hidden" role="alert"></div>
+
+    <div class="results">
+      <div id="res-egfr" class="resultado"></div>
+      <div id="res-cl" class="resultado"></div>
+      <div id="res-mant" class="resultado"></div>
+      <div id="res-carga" class="resultado"></div>
+      <div id="res-notas" class="note"></div>
+    </div>
+
+  </section>
+
+  <!-- =========================
+       ICU PHARMACOPEDIA CTA
+  ========================= -->
+  <section>
+    <nav class="cta-nav" aria-label="ICU Pharmacopoeia Access">
+      <div class="nav-links">
+        <a class="nav-link nav-primary"
+           href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html"
+           target="_blank" rel="noopener">
+          💊 ACCESS ICU PHARMACOPEDIA 💊
+        </a>
+      </div>
+    </nav>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+
+  <nav class="footer-nav">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a> ·
+    <a href="/en/legalen/legalen.html">Legal Notice</a> ·
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+  </nav>
+
+  <p>
+    © 2026 Critical Care Tools · Educational and clinical support use only.
+    Does not replace medical judgment or institutional guidelines.
+  </p>
+
+</footer>
+
+<script src="en/calculadorasen/infusion-farmacosen/farmacosen.html.js" defer></script>
+
+</body>
+</html>
 
