@@ -1,1 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Cookiebot -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ICU Calculators – SOFA-2 · APACHE II · SAPS II | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="ICU clinical calculators: SOFA-2, APACHE II and SAPS II. Educational tools for severity assessment in intensive care."
+  >
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#020617">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacion.html"
+  />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en"
+        href="https://criticalcaretools.com/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacion.html" />
+  <link rel="alternate" hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ICU Calculators – SOFA-2 · APACHE II · SAPS II" />
+  <meta
+    property="og:description"
+    content="Clinical ICU severity calculators: SOFA-2, APACHE II and SAPS II."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/en/calculators/scoring/icu-scores/"
+  />
+
+  <link rel="stylesheet" href="./en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.css">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
+
+</head>
+
+<body>
+
+<header>
+  <div class="language-switcher">
+    <a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacion.html" class="active">EN</a> |
+    <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html">ES</a>
+  </div>
+
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <a href="/en/" class="breadcrumb-link">Home</a>
+  </nav>
+</header>
+
+<main class="container">
+
+<h1>ICU Severity Scores</h1>
+
+<!-- ======================= SOFA-2 ======================= -->
+<section class="panel">
+<h2>SOFA-2</h2>
+<p class="note">Sequential Organ Failure Assessment</p>
+
+<div class="grid">
+
+<label>Neurological (GCS)
+<select class="sofa">
+<option value=""></option>
+<option value="0">GCS 15</option>
+<option value="1">GCS 13–14 / treated delirium</option>
+<option value="2">GCS 9–12</option>
+<option value="3">GCS 6–8</option>
+<option value="4">GCS 3–5</option>
+</select>
+</label>
+
+<label>Respiratory
+<select class="sofa">
+<option value=""></option>
+<option value="0">PaO₂/FiO₂ >300</option>
+<option value="1">≤300</option>
+<option value="2">≤225</option>
+<option value="3">≤150 + ventilatory support</option>
+<option value="4">≤75 + ventilatory support / ECMO</option>
+</select>
+</label>
+
+<label>Cardiovascular
+<select class="sofa">
+<option value=""></option>
+<option value="0">MAP ≥70, no vasopressors</option>
+<option value="1">MAP <70</option>
+<option value="2">Low-dose vasopressor (≤0.2 µg/kg/min)</option>
+<option value="3">Moderate-dose (0.2–0.4)</option>
+<option value="4">High-dose (>0.4) / mechanical support</option>
+</select>
+</label>
+
+<label>Hepatic (Bilirubin)
+<select class="sofa">
+<option value=""></option>
+<option value="0">≤1.2 mg/dL</option>
+<option value="1">≤3.0</option>
+<option value="2">≤6.0</option>
+<option value="3">≤12.0</option>
+<option value="4">>12</option>
+</select>
+</label>
+
+<label>Renal
+<select class="sofa">
+<option value=""></option>
+<option value="0">Creat ≤1.2</option>
+<option value="1">≤2.0 or urine <0.5 ml/kg/h (6–12h)</option>
+<option value="2">≤3.5 or urine <0.5 ml/kg/h ≥12h</option>
+<option value="3">>3.5 or urine <0.3 ml/kg/h ≥24h</option>
+<option value="4">Renal replacement therapy</option>
+</select>
+</label>
+
+<label>Coagulation (Platelets)
+<select class="sofa">
+<option value=""></option>
+<option value="0">>150,000</option>
+<option value="1">≤150,000</option>
+<option value="2">≤100,000</option>
+<option value="3">≤80,000</option>
+<option value="4">≤50,000</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+  <button type="button" class="primary" onclick="calcSOFA()">Calculate SOFA-2</button>
+  <button type="button" class="secondary" onclick="resetSOFA()">Reset</button>
+</div>
+
+<div id="sofa_result" class="result"></div>
+<div id="sofa_mortality" class="note"></div>
+
+</section>
+
+
+<!-- ====================== APACHE II ====================== -->
+<section class="panel">
+<h2>APACHE II</h2>
+<p class="note">12 physiologic variables + age + chronic health status</p>
+
+<div class="grid">
+
+<label>Temperature (°C)
+<select class="apache">
+<option value=""></option>
+<option value="0">36–38.4</option>
+<option value="1">34–35.9 / 38.5–38.9</option>
+<option value="2">32–33.9 / 39–40.9</option>
+<option value="3">30–31.9</option>
+<option value="4"><30 / ≥41</option>
+</select>
+</label>
+
+<label>Mean Arterial Pressure (mmHg)
+<select class="apache">
+<option value=""></option>
+<option value="0">70–109</option>
+<option value="2">50–69 / 110–129</option>
+<option value="3">130–159</option>
+<option value="4"><50 / ≥160</option>
+</select>
+</label>
+
+<label>Heart Rate
+<select class="apache">
+<option value=""></option>
+<option value="0">70–109</option>
+<option value="2">55–69 / 110–139</option>
+<option value="3">40–54 / 140–179</option>
+<option value="4"><40 / ≥180</option>
+</select>
+</label>
+
+<label>Respiratory Rate
+<select class="apache">
+<option value=""></option>
+<option value="0">12–24</option>
+<option value="1">10–11 / 25–34</option>
+<option value="2">6–9</option>
+<option value="3">35–49</option>
+<option value="4"><6 / ≥50</option>
+</select>
+</label>
+
+<label>Arterial pH
+<select class="apache">
+<option value=""></option>
+<option value="0">7.33–7.49</option>
+<option value="2">7.25–7.32 / 7.50–7.59</option>
+<option value="3">7.15–7.24 / 7.60–7.69</option>
+<option value="4"><7.15 / ≥7.70</option>
+</select>
+</label>
+
+<label>Age
+<select id="apache_age">
+<option value=""></option>
+<option value="0"><44</option>
+<option value="2">45–54</option>
+<option value="3">55–64</option>
+<option value="5">65–74</option>
+<option value="6">≥75</option>
+</select>
+</label>
+
+<label>Chronic Disease
+<select id="apache_chronic">
+<option value=""></option>
+<option value="0">No</option>
+<option value="2">Post-operative</option>
+<option value="5">Non-surgical</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+  <button class="primary" type="button" onclick="calcAPACHE()">Calculate APACHE II</button>
+  <button class="secondary" type="button" onclick="resetAPACHE()">Reset</button>
+</div>
+
+<div id="apache_result" class="result"></div>
+<div id="apache_mortality" class="note"></div>
+
+</section>
+
+
+<!-- ====================== SAPS II ====================== -->
+<section class="panel">
+<h2>SAPS II</h2>
+<p class="note">17 variables – logistic mortality model</p>
+
+<div class="grid">
+
+<label>Age
+<select class="saps">
+<option value=""></option>
+<option value="0"><40</option>
+<option value="7">40–59</option>
+<option value="12">60–69</option>
+<option value="15">70–74</option>
+<option value="16">75–79</option>
+<option value="18">≥80</option>
+</select>
+</label>
+
+<label>Heart Rate
+<select class="saps">
+<option value=""></option>
+<option value="0">70–119</option>
+<option value="2">55–69 / 120–159</option>
+<option value="4"><55 / ≥160</option>
+</select>
+</label>
+
+<label>Systolic Blood Pressure
+<select class="saps">
+<option value=""></option>
+<option value="0">100–199</option>
+<option value="5">70–99</option>
+<option value="13"><70 / ≥200</option>
+</select>
+</label>
+
+<label>Glasgow Coma Scale
+<select class="saps">
+<option value=""></option>
+<option value="0">15</option>
+<option value="5">13–14</option>
+<option value="10">10–12</option>
+<option value="15"><10</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+  <button type="button" class="primary" onclick="calcSAPS()">Calculate SAPS II</button>
+  <button type="button" class="secondary" onclick="resetSAPS()">Reset</button>
+</div>
+
+<div id="saps_result" class="result"></div>
+<div id="saps_mortality" class="note"></div>
+
+</section>
+
+</main>
+
+<footer>
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a>
+    <span>·</span>
+    <a href="/en/legalen/legalen.html">Legal Notice</a>
+    <span>·</span>
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+  </nav>
+
+  <p>
+    © 2026 Critical Care Tools · For educational and clinical support purposes only.
+    This platform does not replace professional medical judgment or institutional guidelines.
+  </p>
+</footer>
+
+<script src="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.js" defer></script>
+<script src="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.js"></script>
+
+</body>
+</html>
 
