@@ -1,1 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- =========================
+       Cookiebot (ALWAYS FIRST)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
+
+  <!-- =========================
+       Basic Meta
+  ========================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Acid–Base Status | ICU Calculators | Critical Care Tools</title>
+
+  <meta
+    name="description"
+    content="Acid–base and electrolyte assessment in critically ill patients: anion gap, delta–delta, and biochemical corrections. Educational ICU support tool."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html"
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Acid–Base | ICU Calculators" />
+  <meta
+    property="og:description"
+    content="Acid–base and electrolyte assessment in critically ill patients."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html"
+  />
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.css"
+  />
+
+</head>
+
+<body>
+
+<main class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="criticalcaretools.com/en/indexen.html">Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="/en/calculadorasen/variables-clinicasen/variablesem.html">
+      Clinical Variables
+    </a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <h1>Acid–Base and Electrolytes</h1>
+    <p class="subtitle">
+      Acid–base evaluation and biochemical corrections in critically ill patients.
+    </p>
+  </header>
+
+  <!-- =========================
+       ANION GAP
+  ========================== -->
+  <section id="anion-gap" class="panel">
+
+    <h2>🧪 Corrected Anion Gap</h2>
+
+    <label>Na⁺</label>
+    <input id="ab_na" type="number">
+
+    <label>K⁺</label>
+    <input id="ab_k" type="number">
+
+    <label>Cl⁻</label>
+    <input id="ab_cl" type="number">
+
+    <label>HCO₃⁻</label>
+    <input id="ab_hco3" type="number">
+
+    <label>Albumin (g/dL)</label>
+    <input id="ab_alb" type="number" step="0.1">
+
+    <button type="button" onclick="calcularAnionGapCorregido()">Calculate AG</button>
+    <div id="resultadoAnionGap" class="result"></div>
+
+  </section>
+
+  <hr />
+
+  <!-- =========================
+       DELTA / DELTA
+  ========================== -->
+  <section id="delta-delta" class="panel">
+
+    <h2>Δ/Δ (Delta–Delta)</h2>
+
+    <label>Anion Gap</label>
+    <input id="dd_ag" type="number">
+
+    <label>HCO₃⁻</label>
+    <input id="dd_hco3" type="number">
+
+    <button type="button" onclick="calcularDeltaGap()">Calculate Δ/Δ</button>
+    <div id="resultadoDeltaGap" class="result"></div>
+    <div id="interpretacionDeltaGap" class="note"></div>
+
+  </section>
+
+  <hr />
+
+  <!-- =========================
+       ELECTROLYTES
+  ========================== -->
+  <section id="electrolytes" class="panel">
+
+    <h2>🧂 Corrected Electrolytes</h2>
+
+    <h3>Corrected Sodium</h3>
+    <label>Measured Na⁺</label>
+    <input id="na_meas" type="number">
+
+    <label>Glucose</label>
+    <input id="glu" type="number">
+
+    <button type="button" onclick="calcularSodioCorregido()">Calculate Corrected Na</button>
+    <div id="resultadoNaCorregido" class="result"></div>
+
+    <h3>Corrected Calcium</h3>
+    <label>Measured Calcium</label>
+    <input id="ca_meas" type="number" step="0.1">
+
+    <label>Albumin</label>
+    <input id="alb_meas" type="number" step="0.1">
+
+    <button type="button" onclick="calcularCalcioCorregido()">Calculate Corrected Ca</button>
+    <div id="resultadoCaCorregido" class="result"></div>
+
+  </section>
+
+  <section class="table-wrapper">
+    <h2>Table 2: Expected Compensation in Acid–Base Disorders</h2>
+
+    <table class="acid-base-table">
+      <tbody>
+
+        <tr class="section">
+          <th colspan="2">Metabolic Acidosis</th>
+        </tr>
+        <tr class="content">
+          <td colspan="2">
+            For every ↓ <strong>[HCO₃⁻]</strong> of <strong>1 mEq/L</strong>
+            (from 25 mEq/L), <strong>pCO₂</strong> should ↓
+            <strong>0.85–1.2 mmHg</strong> (from 40 mmHg).
+          </td>
+        </tr>
+
+        <tr class="section">
+          <th colspan="2">Metabolic Alkalosis</th>
+        </tr>
+        <tr class="content">
+          <td colspan="2">
+            For every ↑ <strong>[HCO₃⁻]</strong> of <strong>1 mEq/L</strong>
+            (from 25 mEq/L), <strong>pCO₂</strong> should ↑
+            <strong>0.7 mmHg</strong> (from 40 mmHg).
+          </td>
+        </tr>
+
+        <tr class="section">
+          <th colspan="2">Respiratory Acidosis</th>
+        </tr>
+        <tr class="content">
+          <td colspan="2">
+            For every ↑ <strong>pCO₂</strong> of <strong>10 mmHg</strong>
+            (from 40 mmHg), <strong>[HCO₃⁻]</strong> ↑
+            <strong>1 mEq/L</strong> if acute,
+            or <strong>3 mEq/L</strong> if chronic.
+          </td>
+        </tr>
+
+        <tr class="section">
+          <th colspan="2">Respiratory Alkalosis</th>
+        </tr>
+        <tr class="content">
+          <td colspan="2">
+            For every ↓ <strong>pCO₂</strong> of <strong>10 mmHg</strong>
+            (from 40 mmHg), <strong>[HCO₃⁻]</strong> ↓
+            <strong>2–2.5 mEq/L</strong> if acute,
+            or <strong>5 mEq/L</strong> if chronic.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+
+  <nav class="footer-nav">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a> ·
+    <a href="/en/legalen/legalen.html">Legal Notice</a> ·
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+  </nav>
+
+  <p>
+    © 2026 Critical Care Tools · Educational and clinical support use only.
+    Does not replace medical judgment or institutional guidelines.
+  </p>
+
+</footer>
+
+<script src="en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.js"></script>
+<script src="en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html.js"></script>
+
+</body>
+</html>
 
