@@ -1,18 +1,265 @@
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+/* =========================================================
+   CRITICAL CARE TOOLS – DRUG DOSING (EN)
+   Continuous Infusion Vancomycin
+========================================================= */
+
+:root {
+  --bg-main: #020617;
+  --bg-panel: #0f172a;
+  --bg-input: #1e293b;
+  --accent: #22d3ee;
+  --accent-soft: #0891b2;
+  --text-main: #f1f5f9;
+  --text-soft: #94a3b8;
+  --danger: #ef4444;
+  --border: #1e293b;
+  --radius: 10px;
 }
 
-.language-switcher a {
-  color: var(--color-muted);
+/* ================================
+   BASE
+================================ */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ================================
+   BREADCRUMB
+================================ */
+
+.breadcrumb {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-soft);
+}
+
+.breadcrumb a {
+  color: var(--accent);
   text-decoration: none;
-  margin-left: 0.4rem;
 }
 
-.language-switcher a:hover {
-  color: var(--color-primary);
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.app-header {
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+/* ================================
+   PANEL
+================================ */
+
+.panel {
+  background-color: var(--bg-panel);
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+/* ================================
+   FORM GRID
+================================ */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================================
+   LABELS & INPUTS
+================================ */
+
+label {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-soft);
+}
+
+input,
+select {
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.15);
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+button#btnCalcular {
+  background-color: var(--accent);
+  color: #000;
+}
+
+button#btnCalcular:hover {
+  background-color: var(--accent-soft);
+}
+
+.btn-secondary {
+  background-color: #334155;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
+}
+
+/* ================================
+   RESULTS
+================================ */
+
+.results {
+  margin-top: 2rem;
+}
+
+.resultado {
+  margin-bottom: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #111827;
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+/* ================================
+   ERROR CALLOUT
+================================ */
+
+.callout {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-left: 4px solid var(--danger);
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ================================
+   CTA BUTTON
+================================ */
+
+.cta-nav {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.nav-primary {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  background-color: var(--accent);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.nav-primary:hover {
+  background-color: var(--accent-soft);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav {
+  margin-bottom: 0.7rem;
+}
+
+.footer-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 0.4rem;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
 }
