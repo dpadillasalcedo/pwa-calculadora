@@ -28,15 +28,16 @@ function hide(el) {
 
 function validarInputs({ cr, edad, sexo, meta, peso }) {
   const errs = [];
-  if (!Number.isFinite(cr) || cr <= 0) errs.push("Ingresar una creatinina válida (> 0).");
-  if (!Number.isFinite(edad) || edad <= 0) errs.push("Ingresar una edad válida (> 0).");
-  if (sexo !== "v" && sexo !== "m") errs.push("Seleccionar sexo (v/m).");
-  if (!Number.isFinite(meta) || meta <= 0) errs.push("Ingresar una meta de vancocinemia válida (> 0).");
-  if (!Number.isFinite(peso) || peso <= 0) errs.push("Ingresar un peso válido (> 0).");
+  if (!Number.isFinite(cr) || cr <= 0) errs.push("Enter valid creatinine (> 0).");
+  if (!Number.isFinite(edad) || edad <= 0) errs.push("Enter valid age (> 0).");
+  if (sexo !== "v" && sexo !== "m") errs.push("Select sex (Male/Female).");
+  if (!Number.isFinite(meta) || meta <= 0) errs.push("Enter valid target level (> 0).");
+  if (!Number.isFinite(peso) || peso <= 0) errs.push("Enter valid weight (> 0).");
   return errs;
 }
 
 function calcular() {
+
   const cr = parseFloat(document.getElementById("cr")?.value);
   const edad = parseFloat(document.getElementById("edad")?.value);
   const sexo = document.getElementById("sexo")?.value;
@@ -57,7 +58,7 @@ function calcular() {
 
   const errs = validarInputs({ cr, edad, sexo, meta, peso });
   if (errs.length) {
-    show(errores, `<strong>Revisar:</strong><br>${errs.map(e => `• ${e}`).join("<br>")}`);
+    show(errores, `<strong>Please review:</strong><br>${errs.map(e => `• ${e}`).join("<br>")}`);
     return;
   }
 
@@ -70,25 +71,34 @@ function calcular() {
   const cargaTeorica = peso * 25 / 1000;
   const cargaFinal = Math.min(cargaTeorica, 2);
 
-  if (resEgfr) resEgfr.innerHTML =
-    `eGFR estimado (MDRD): <strong>${round(egfr, 1)}</strong> mL/min/1.73m²`;
+  resEgfr.innerHTML =
+    `Estimated eGFR (MDRD): <strong>${round(egfr, 1)}</strong> mL/min/1.73m²`;
 
-  if (resCl) resCl.innerHTML =
-    `Clearance estimado de vancomicina: <strong>${round(clVanco, 2)}</strong> L/h`;
+  resCl.innerHTML =
+    `Estimated Vancomycin Clearance: <strong>${round(clVanco, 2)}</strong> L/h`;
 
-  if (resMant) resMant.innerHTML =
-    `Dosis de mantenimiento (infusión continua 24 h): <strong>${round(mantG24, 2)}</strong> g/24 h`;
+  resMant.innerHTML =
+    `Maintenance Dose (24h infusion): <strong>${round(mantG24, 2)}</strong> g/24 h`;
 
-  if (resCarga) resCarga.innerHTML =
-    `Dosis de carga (25 mg/kg): <strong>${round(cargaFinal, 2)}</strong> g`;
+  resCarga.innerHTML =
+    `Loading Dose (25 mg/kg): <strong>${round(cargaFinal, 2)}</strong> g`;
 
   const notas = [];
   if (cargaTeorica > 2) {
-    notas.push("Se aplicó tope de dosis de carga: <strong>máximo 2 g</strong>.");
+    notas.push("Loading dose capped at maximum <strong>2 g</strong>.");
   }
-  notas.push("Interpretar junto a niveles, función renal dinámica y situación clínica.");
+  notas.push("Interpret together with therapeutic drug monitoring and dynamic renal function.");
 
-  if (resNotas) resNotas.innerHTML = notas.join("<br>");
+  resNotas.innerHTML = notas.join("<br>");
+
+  // GA EVENT (no consent logic here)
+  if (typeof gtag === "function") {
+    gtag("event", "vancomycin_calculated", {
+      event_category: "pharmacology_module",
+      event_label: "continuous_infusion_vanco",
+      language: "en"
+    });
+  }
 }
 
 function limpiar() {
@@ -96,76 +106,20 @@ function limpiar() {
     const el = document.getElementById(id);
     if (el) el.value = "";
   });
+
   const sexo = document.getElementById("sexo");
   if (sexo) sexo.value = "";
 
   hide(document.getElementById("errores"));
+
   ["res-egfr","res-cl","res-mant","res-carga","res-notas"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = "";
   });
 }
 
-// =========================================================
-// GA4 + CONSENTIMIENTO (UE vs RESTO DEL MUNDO)
-// =========================================================
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){ dataLayer.push(arguments); }
-
-// Estado seguro por defecto (UE)
-gtag("consent", "default", {
-  analytics_storage: "denied",
-  ad_storage: "denied",
-  ad_user_data: "denied",
-  ad_personalization: "denied"
-});
-
-function activarGA() {
-  gtag("config", "G-WQREHQ56Q4", { anonymize_ip: true });
-}
-
-// Fuera de Europa → GA automático
-window.addEventListener("load", () => {
-  if (window.Cookiebot && Cookiebot.data?.region !== "EU") {
-    gtag("consent", "update", { analytics_storage: "granted" });
-    activarGA();
-  }
-});
-
-// Europa → GA solo con consentimiento explícito
-window.addEventListener("CookieConsentDeclaration", () => {
-  if (
-    window.Cookiebot &&
-    Cookiebot.data?.region === "EU" &&
-    Cookiebot.consents?.statistics
-  ) {
-    gtag("consent", "update", { analytics_storage: "granted" });
-    activarGA();
-  }
-});
-
-// =========================================================
-// INIT + CTA FARMACOTECA
-// =========================================================
-
+// INIT
 document.addEventListener("DOMContentLoaded", () => {
-
-  // Vancomicina
   document.getElementById("btnCalcular")?.addEventListener("click", calcular);
   document.getElementById("btnLimpiar")?.addEventListener("click", limpiar);
-
-  // CTA Farmacoteca (acceso libre + tracking)
-  const cta = document.querySelector(".btn-cta");
-  if (cta) {
-    cta.addEventListener("click", () => {
-      if (typeof gtag === "function") {
-        gtag("event", "click_farmacoteca", {
-          event_category: "cta",
-          event_label: "Farmacoteca UCI",
-          transport_type: "beacon"
-        });
-      }
-    });
-  }
 });
