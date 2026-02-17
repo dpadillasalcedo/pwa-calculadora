@@ -1,18 +1,245 @@
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
+/* =====================================================
+   ENTERAL NUTRITION SUPPORT – CRITICAL CARE TOOLS
+   ===================================================== */
+
+:root {
+  --bg: #020617;
+  --panel: #0f172a;
+  --card: #111827;
+  --border: #1f2937;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --radius: 10px;
+}
+
+/* ================= BASE ================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem 1rem 3rem;
+}
+
+/* ================= HEADER ================= */
+
+h1 {
+  font-size: 1.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ================= PANELS ================= */
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
   margin-bottom: 1rem;
 }
 
-.language-switcher a {
-  color: var(--color-muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
+/* ================= INPUT ================= */
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
 }
 
-.language-switcher a:hover {
-  color: var(--color-primary);
+input[type="number"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ================= RESULTS ================= */
+
+.result-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.result-card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.result-card strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--success);
+}
+
+.result-card span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ================= TABLES ================= */
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 0.7rem 0.8rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+th {
+  background: var(--card);
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Highlight deficit */
+.deficit {
+  font-weight: 600;
+}
+
+.deficit-warning {
+  color: var(--warning);
+}
+
+.deficit-danger {
+  color: var(--danger);
+}
+
+/* ================= BREADCRUMB ================= */
+
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+/* ================= LANGUAGE SWITCHER ================= */
+
+.language-switcher {
+  text-align: right;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.language-switcher a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.language-switcher a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ================= FOOTER ================= */
+
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.footer-nav {
+  margin-bottom: 0.8rem;
+}
+
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin: 0 0.4rem;
+  font-size: 0.85rem;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .wrap {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .result-block {
+    grid-template-columns: 1fr;
+  }
+
 }
