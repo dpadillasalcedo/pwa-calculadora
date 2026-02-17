@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <!-- =========================
        Cookiebot (ALWAYS FIRST)
   ========================== -->
@@ -13,52 +14,74 @@
   </script>
 
   <!-- =========================
-       Basic meta
+       Basic Meta
   ========================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Enteral Nutritional Support in Critically Ill Patients | Critical Care Tools</title>
+  <title>Enteral Nutritional Support | ICU Calculators | Critical Care Tools</title>
 
   <meta
     name="description"
-    content="Clinical calculator for nutritional support in critically ill patients with automatic enteral nutrition suggestions based on ASPEN / ESPEN guidance."
+    content="Enteral nutritional support calculator for critically ill patients. Energy and protein estimation based on ASPEN and ESPEN guidance."
   />
 
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- PWA -->
+  <!-- =========================
+       PWA
+  ========================== -->
   <link rel="manifest" href="/manifest.json" />
 
-  <!-- Canonical -->
+  <!-- =========================
+       Canonical (CORRECTED)
+  ========================== -->
   <link
     rel="canonical"
-    href="https://criticalcaretools.com/en/Soporte-nutricional-del-paciente-criticoen/soporteen.html"
+    href="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html"
   />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./soporte.css" />
+  <!-- =========================
+       Hreflang
+  ========================== -->
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
 
   <!-- =========================
-     Google Analytics 4 (GA4)
-     Cookiebot-compatible
+       Open Graph
   ========================== -->
-  <script type="text/plain" data-cookieconsent="statistics">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+  <meta property="og:title" content="Enteral Nutritional Support | ICU Calculators" />
+  <meta property="og:description"
+        content="Energy and protein estimation for critically ill patients based on international ICU guidelines." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url"
+        content="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html" />
 
-    // Initialize GA with Consent Mode
-    gtag('consent', 'default', {
-      'analytics_storage': 'granted'
-    });
+  <!-- =========================
+       CSS (ABSOLUTE PATH)
+  ========================== -->
+  <link
+    rel="stylesheet"
+    href="/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.css"
+  />
 
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      send_page_view: true
-    });
-  </script>
-
+  <!-- =========================
+       GA4 (Cookiebot compatible)
+  ========================== -->
   <script
     type="text/plain"
     data-cookieconsent="statistics"
@@ -66,19 +89,38 @@
     src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
 
 </head>
+
 
 <body>
 
 <main class="wrap">
 
+  
+
   <!-- Breadcrumb (EN) -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="criticalcaretools.com/en/indexen.html">Home</a>
-  </nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/en/indexen.html">Home</a>
+  <span aria-hidden="true">›</span>
+  <a href="/en/calculadorasen/variablesen/variablesen.html">
+    Clinical Variables
+  </a>
+  <span aria-hidden="true">›</span>
+  <span>Enteral Nutritional Support</span>
+</nav>
+
 
   <!-- PAGE HEADER -->
   <section class="page-header">
@@ -334,17 +376,32 @@
 </main>
 
 <footer class="site-footer">
-  <nav class="footer-nav">
-    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a> ·
-    <a href="/en/legalen/legalen.html">Legal Notice</a> ·
-    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">
+      Scientific References
+    </a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/legalen/legalen.html">
+      Legal Notice
+    </a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/privacidad-cookiesen/privacidaden.html">
+      Privacy & Cookies
+    </a>
   </nav>
 
-  <p>© 2026 Critical Care Tools · Educational use · Not a substitute for clinical judgment</p>
+  <p class="footer-copy">
+    © 2026 Critical Care Tools · For educational and clinical support purposes only.
+    This platform does not replace professional medical judgment or institutional guidelines.
+  </p>
+
 </footer>
 
-<script src="/en/Soporte-nutricional-del-paciente-criticoen/soporteen.js"></script>
+<script
+  src="/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.js"
+  defer>
+</script>
 
 </body>
 </html>
-
