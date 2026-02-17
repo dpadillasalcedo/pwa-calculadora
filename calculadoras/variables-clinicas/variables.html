@@ -2,101 +2,76 @@
 <html lang="es">
 <head>
 
-  <!-- =========================
-       Cookiebot (SIEMPRE PRIMERO)
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    type="text/javascript">
-  </script>
+<!-- Cookiebot -->
+<script
+  id="Cookiebot"
+  src="https://consent.cookiebot.com/uc.js"
+  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+  data-blockingmode="auto"
+  type="text/javascript">
+</script>
 
-  <!-- =========================
-       Meta básicos
-  ========================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Variables clínicas | Calculadoras UCI | Critical Care Tools</title>
+<title>Variables clínicas | Calculadoras UCI | Critical Care Tools</title>
 
-  <meta
-    name="description"
-    content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación."
-  />
+<meta name="description"
+      content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#020617" />
 
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
+<link rel="manifest" href="/manifest.json" />
 
-  <!-- =========================
-       Canonical (CORRECTO)
-  ========================== -->
-  <link rel="canonical"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+<!-- Canonical -->
+<link rel="canonical"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
-  <!-- =========================
-       Open Graph
-  ========================== -->
-  <meta property="og:title" content="Variables clínicas | Calculadoras UCI" />
-  <meta
-    property="og:description"
-    content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+<!-- Hreflang completo -->
+<link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
-  <!-- =========================
-       CSS
-  ========================== -->
-  <link rel="stylesheet"
-        href="/calculadoras/variables-clinicas/variables.css" />
+<link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html" />
 
-  <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
-  ========================== -->
+<link rel="alternate" hreflang="x-default"
+      href="https://criticalcaretools.com/" />
 
-  <!-- GA4 Library -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<!-- Open Graph -->
+<meta property="og:title" content="Variables clínicas | Calculadoras UCI" />
+<meta property="og:description"
+      content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
+<meta property="og:type" content="website" />
+<meta property="og:url"
+      content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+<link rel="stylesheet"
+      href="/calculadoras/variables-clinicas/variables.css" />
 
-    gtag('js', new Date());
+<!-- GA4 + Consent Mode consistente -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
 
-    /*
-      Consent Mode por defecto
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-    */
-    gtag('consent', 'default', {
-      analytics_storage: 'granted',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
 
-    /*
-      Configuración GA4 segura para PWA
-    */
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  </script>
+  gtag('js', new Date());
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  gtag('config', 'G-WQREHQ56Q4', {
+    anonymize_ip: true,
+    send_page_view: true
+  });
+</script>
 
 </head>
+
 
 
 <body>
@@ -109,10 +84,10 @@
     <main class="app container">
 
   <!-- LANGUAGE SWITCHER -->
-  <div class="language-switcher">
-    <a href="/en/calculadorasen/variablesen/variablesen.html">EN</a> |
-    <a href="/calculadoras/variables-clinicas/variables.html">ES</a>
-  </div>
+<div class="language-switcher">
+  <a href="/en/calculadorasen/variablesen/variablesen.html">EN</a> |
+  <a href="/calculadoras/variables-clinicas/variables.html" class="active">ES</a>
+</div>
 
       <!-- =========================
            BREADCRUMB
@@ -205,11 +180,21 @@
         No reemplaza el juicio médico ni las guías institucionales.
       </p>
     </footer>
+    </div>
 
-  </div>
+    <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+</script>
+
+ 
 
 </body>
 </html>
+
 
 
 
