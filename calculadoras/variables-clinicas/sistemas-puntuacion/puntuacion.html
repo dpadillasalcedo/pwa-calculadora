@@ -13,9 +13,7 @@
     type="text/javascript">
   </script>
 
-  <!-- =========================
-       Meta básicos
-  ========================== -->
+  <!-- Meta básicos -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,77 +27,64 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#020617">
 
-  <!-- =========================
-       PWA
-  ========================== -->
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
 
-  <!-- =========================
-       Canonical
-  ========================== -->
+  <!-- Canonical (CORREGIDO a la URL real ES) -->
   <link
     rel="canonical"
-    href="https://criticalcaretools.com/calculadoras/puntuacion/uci-scores/"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html"
   />
 
-    <!-- =========================
-       Open Graph
-  ========================== -->
+  <!-- Hreflang (COMPLETO) -->
+  <link rel="alternate" hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" />
+  <link rel="alternate" hreflang="en"
+        href="https://criticalcaretools.com/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html" />
+  <link rel="alternate" hreflang="x-default"
+        href="https://criticalcaretools.com/" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Calculadoras UCI – SOFA-2 · APACHE II · SAPS II" />
   <meta
     property="og:description"
     content="Calculadoras clínicas UCI: SOFA-2, APACHE II y SAPS II. Uso educativo y apoyo clínico para evaluación de gravedad."
   />
   <meta property="og:type" content="website" />
-  <meta
-    property="og:url"
-    content="https://criticalcaretools.com/calculadoras/puntuacion/uci-scores/"
-  />
+  <meta property="og:url"
+        content="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" />
 
-  <!-- =========================
-       CSS · Sistemas de puntuación
-  ========================== -->
-  <link rel="stylesheet" href="./puntuacion.css">
+  <!-- CSS (ruta absoluta) -->
+  <link rel="stylesheet" href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.css">
 
-
-  <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
-  ========================== -->
-
+  <!-- GA4 (Cookiebot-friendly: denied por defecto) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
-    gtag('js', new Date());
-
-    /*
-      Consent Mode por defecto
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-    */
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
 
-    /*
-      Configuración GA4 segura para PWA
-    */
+    gtag('js', new Date());
+
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
 </head>
+
 
   <body>
 
@@ -110,7 +95,23 @@
 </header>
 
 <main class="container">
-  <h1>-</h1>
+
+  <div class="language-switcher">
+  <a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html">EN</a> |
+  <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" class="active">ES</a>
+</div>
+
+  <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <a href="https://criticalcaretools.com/" class="breadcrumb-link">Inicio</a>
+  <span aria-hidden="true">›</span>
+  <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" class="breadcrumb-link">
+    Variables clínicas
+  </a>
+</nav>
+
+  
+<h1>Calculadoras UCI</h1>
+<p class="note">SOFA-2 · APACHE II · SAPS II</p>
 
 
 <!-- ======================= SOFA-2 ======================= -->
@@ -196,8 +197,6 @@
 <div id="sofa_breakdown" class="note" style="display:none;"></div>
 
 </section>
-
-</main>
 
 <script>
 
@@ -306,7 +305,7 @@ function resetSOFA(){
     </option>
     <option value="4">
       Severa — PaO₂ &lt; 55 mmHg (FiO₂ < 0.5)
-    </option>>
+    </option>
     <option value="0">
       Normal — Gradiente A–a &lt; 200 mmHg (FiO₂ ≥ 0.5)
     </option>
@@ -618,17 +617,13 @@ function resetSOFA(){
 
 <footer>
   <div class="footer-container">
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">
-        Bibliografía
-      </a>
-      <span aria-hidden="true">·</span>
-      <a href="https://criticalcaretools.com/legal/aviso-legal.html">
-        Aviso legal
-      </a>
-<span aria-hidden="true">·</span>
+<nav class="footer-nav" aria-label="Footer">
+  <a href="/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
+  <span aria-hidden="true">·</span>
+  <a href="/legal/aviso-legal.html">Aviso legal</a>
+  <span aria-hidden="true">·</span>
   <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
-    </nav>
+</nav>
 
     <p>
       © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
@@ -641,6 +636,15 @@ function resetSOFA(){
 
     <!-- Analítica clínica (GENÉRICA) -->
 <script src="/assets/js/analytics-clinical.js"></script>
+
+    <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+</script>
+
 
 </body>
 </html>
