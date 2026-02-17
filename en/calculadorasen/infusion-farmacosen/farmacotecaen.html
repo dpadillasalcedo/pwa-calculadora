@@ -98,7 +98,10 @@
 </nav>
 
 
-  <section class="card controls">
+ <!-- =========================
+       NAVIGATION CONTROLS
+========================== -->
+<section class="card controls">
   <div class="controls-grid">
 
     <div>
@@ -106,7 +109,7 @@
       <input
         id="q"
         type="search"
-        placeholder="e.g. Norepinephrine, Epinephrine…"
+        placeholder="e.g., Norepinephrine, Epinephrine…"
         autocomplete="off"
       />
     </div>
@@ -116,7 +119,7 @@
       <select id="grupo">
         <option value="all">All</option>
         <option value="vasopresores">Vasopressors</option>
-        <option value="inotropicos">Inodilators</option>
+        <option value="inotropicos">Inotropes</option>
         <option value="sedantes">Sedatives</option>
         <option value="analgesicos">Analgesics</option>
         <option value="relajantes">Neuromuscular Blockers</option>
@@ -133,18 +136,19 @@
   </div>
 
   <div class="hint">
-    Tip: search by name or filter by pharmacologic group.
+    Tip: search by drug name or filter by pharmacologic group.
   </div>
 </section>
 
-  <h2>Vasopressors</h2>
 
+   <h2>Vasopressors / Inotropes</h2>
+
+<!-- ================= NOREPINEPHRINE ================= -->
 <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
 <header class="drug-head">
 <h3>Norepinephrine</h3>
 <button class="btn toggle-sheet">View sheet</button>
 </header>
-
 <section class="drug-sheet hidden">
 <select class="dilucion">
 <option value="">Dilution</option>
@@ -152,20 +156,19 @@
 <option data-mcg-per-ml="80">8 mg in 100 ml D5W or NS</option>
 <option data-mcg-per-ml="80">20 mg in 250 ml D5W or NS</option>
 </select>
-
 <div>Concentration: <b class="concentracion">—</b></div>
-<input class="peso" placeholder="Weight kg">
-<input class="velocidad" placeholder="Rate ml/h">
+<input class="peso" placeholder="Weight (kg)">
+<input class="velocidad" placeholder="Rate (ml/h)">
 <div>Dose: <b class="resultado">—</b></div>
 </section>
 </article>
 
-  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+<!-- ================= EPINEPHRINE ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
 <header class="drug-head">
 <h3>Epinephrine</h3>
 <button class="btn toggle-sheet">View sheet</button>
 </header>
-
 <section class="drug-sheet hidden">
 <select class="dilucion">
 <option value="">Dilution</option>
@@ -173,41 +176,19 @@
 <option data-mcg-per-ml="32">8 mg in 250 ml D5W or NS</option>
 <option data-mcg-per-ml="10">1 mg in 100 ml D5W or NS</option>
 </select>
-
 <div>Concentration: <b class="concentracion">—</b></div>
-<input class="peso" placeholder="Weight kg">
-<input class="velocidad" placeholder="Rate ml/h">
+<input class="peso" placeholder="Weight (kg)">
+<input class="velocidad" placeholder="Rate (ml/h)">
 <div>Dose: <b class="resultado">—</b></div>
 </section>
 </article>
 
-  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
-<header class="drug-head">
-<h3>Epinephrine</h3>
-<button class="btn toggle-sheet">View sheet</button>
-</header>
-
-<section class="drug-sheet hidden">
-<select class="dilucion">
-<option value="">Dilution</option>
-<option data-mcg-per-ml="16">4 mg in 250 ml D5W or NS</option>
-<option data-mcg-per-ml="32">8 mg in 250 ml D5W or NS</option>
-<option data-mcg-per-ml="10">1 mg in 100 ml D5W or NS</option>
-</select>
-
-<div>Concentration: <b class="concentracion">—</b></div>
-<input class="peso" placeholder="Weight kg">
-<input class="velocidad" placeholder="Rate ml/h">
-<div>Dose: <b class="resultado">—</b></div>
-</section>
-</article>
-
-  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+<!-- ================= DOPAMINE ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
 <header class="drug-head">
 <h3>Dopamine</h3>
 <button class="btn toggle-sheet">View sheet</button>
 </header>
-
 <section class="drug-sheet hidden">
 <select class="dilucion">
 <option value="">Dilution</option>
@@ -215,19 +196,64 @@
 <option data-mcg-per-ml="800">200 mg in 250 ml D5W or NS</option>
 <option data-mcg-per-ml="1600">400 mg in 250 ml D5W or NS</option>
 </select>
-
 <div>Concentration: <b class="concentracion">—</b></div>
-<input class="peso" placeholder="Weight kg">
-<input class="velocidad" placeholder="Rate ml/h">
+<input class="peso" placeholder="Weight (kg)">
+<input class="velocidad" placeholder="Rate (ml/h)">
 <div>Dose: <b class="resultado">—</b></div>
 
 <div class="clinical-note">
-<b>Clinical note:</b> 1–3 mcg/kg/min (dopaminergic renal effect, no proven benefit), 3–10 mcg/kg/min (β1 inotropic effect ↑ CO, tachycardia risk), >10–20 mcg/kg/min (α1 vasopressor ↑ SVR/BP, higher arrhythmia & ischemia risk).
+<b>Clinical note:</b> 1–3 mcg/kg/min (dopaminergic renal effect, no proven clinical benefit), 
+3–10 mcg/kg/min (β1 inotropic effect with ↑ cardiac output and risk of tachycardia), 
+>10–20 mcg/kg/min (α1 vasopressor effect with ↑ SVR and MAP, higher risk of arrhythmias and ischemia).
+</div>
+</section>
+</article>
+
+<!-- ================= VASOPRESSIN ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="ui-min">
+<header class="drug-head">
+<h3>Vasopressin</h3>
+<button class="btn toggle-sheet">View sheet</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilution</option>
+<option data-ui-per-ml="0.4">20 units in 50 ml D5W or NS</option>
+<option data-ui-per-ml="0.4">40 units in 100 ml D5W or NS</option>
+</select>
+<div>Concentration: <b class="concentracion">—</b></div>
+<input class="velocidad" placeholder="Rate (ml/h)">
+<div>Dose: <b class="resultado">—</b></div>
+</section>
+</article>
+
+<!-- ================= METHYLENE BLUE ================= -->
+<article class="drug-card" data-group="vasopresores" data-calc="mg-kg-h">
+<header class="drug-head">
+<h3>Methylene Blue</h3>
+<button class="btn toggle-sheet">View sheet</button>
+</header>
+<section class="drug-sheet hidden">
+<select class="dilucion">
+<option value="">Dilution</option>
+<option data-mg-per-ml="0.5">50 mg in 100 ml D5W or NS</option>
+<option data-mg-per-ml="1">100 mg in 100 ml D5W or NS</option>
+<option data-mg-per-ml="0.4">100 mg in 250 ml D5W or NS</option>
+</select>
+<div>Concentration: <b class="concentracion">—</b></div>
+<input class="peso" placeholder="Weight (kg)">
+<input class="velocidad" placeholder="Rate (ml/h)">
+<div>Dose: <b class="resultado">—</b></div>
+
+<div class="hint">
+Tip: IV bolus over 20 minutes at 2 mg/kg, followed by 0.5 mg/kg/hr for up to 48 hours (refractory septic shock).
 </div>
 </section>
 </article>
 
   <h2>Vasodilators</h2>
+
+<!-- ================= NITROGLYCERIN ================= -->
 <article class="drug-card" data-group="vasodilatadores" data-calc="mcg-min">
 <header class="drug-head">
 <h3>Nitroglycerin</h3>
@@ -253,7 +279,7 @@
 </div>
 
 <div class="calc-block">
-<label>Rate (ml/hr)
+<label>Rate (ml/h)
 <input type="number" class="velocidad" step="0.1" min="0">
 </label>
 
@@ -264,15 +290,18 @@
 </div>
 
 <div class="clinical-note">
-<b>Clinical note:</b> Start 5–10 mcg/min. Titrate to BP and symptoms. Max dose: 200 mcg/min.
+<b>Clinical note:</b> Start at 5–10 mcg/min. Titrate according to blood pressure and symptoms. 
+Maximum dose: 200 mcg/min.
 </div>
 </section>
 </article>
 
-  <article class="drug-card" data-group="vasodilatadores" data-calc="mcg-kg-min">
+
+<!-- ================= SODIUM NITROPRUSSIDE ================= -->
+<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-kg-min">
 <header class="drug-head">
 <h3>Sodium Nitroprusside</h3>
-<p class="muted small">Arterial & venous vasodilator</p>
+<p class="muted small">Arterial and venous vasodilator</p>
 <button class="btn toggle-sheet">View sheet</button>
 </header>
 
@@ -309,12 +338,15 @@
 </div>
 
 <div class="clinical-note">
-<b>Clinical note:</b> 0.3–10 mcg/kg/min. Protect from light. Cyanide/thiocyanate toxicity risk.
+<b>Clinical note:</b> 0.3–10 mcg/kg/min. Protect from light. 
+Risk of cyanide and thiocyanate toxicity.
 </div>
 </section>
 </article>
 
-  <article class="drug-card" data-group="vasodilatadores" data-calc="mg-min">
+
+<!-- ================= LABETALOL ================= -->
+<article class="drug-card" data-group="vasodilatadores" data-calc="mg-min">
 <header class="drug-head">
 <h3>Labetalol</h3>
 <p class="muted small">α/β blocker</p>
@@ -350,259 +382,272 @@
 </div>
 
 <div class="clinical-note">
-<b>Clinical note:</b> Max dose: 2 mg/min. Monitor HR, BP, bronchospasm.
+<b>Clinical note:</b> Maximum dose: 2 mg/min. 
+Monitor heart rate, blood pressure, and bronchospasm.
 </div>
 </section>
 </article>
+
 
   <h2>Inodilators</h2>
+
+<!-- ================= DOBUTAMINE ================= -->
 <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-<header class="drug-head">
-<div>
-<h3>Dobutamine</h3>
-<p class="muted small">Inodilator</p>
-</div>
-<button type="button" class="btn toggle-sheet">View sheet</button>
-</header>
+  <header class="drug-head">
+    <div>
+      <h3>Dobutamine</h3>
+      <p class="muted small">Inodilator</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">View sheet</button>
+  </header>
 
-<section class="drug-sheet hidden">
-<div class="sheet-grid">
-<div><span>Presentation</span><b>250 mg / 20 ml</b></div>
+  <section class="drug-sheet hidden">
+    <div class="sheet-grid">
+      <div><span>Presentation</span><b>250 mg / 20 ml</b></div>
 
-<div>
-<span>Common dilution</span>
-<select class="dilucion">
-<option value="">Select</option>
-<option data-mcg-per-ml="2000">500 mg in 250 ml D5W or NS</option>
-</select>
-</div>
+      <div>
+        <span>Common dilution</span>
+        <select class="dilucion">
+          <option value="">Select</option>
+          <!-- 500,000 mcg / 250 ml = 2000 mcg/ml -->
+          <option data-mcg-per-ml="2000">500 mg in 250 ml D5W or NS</option>
+        </select>
+      </div>
 
-<div><span>Concentration</span><b class="concentracion">—</b></div>
-<div><span>Unit</span><b>mcg/kg/min</b></div>
-</div>
+      <div><span>Concentration</span><b class="concentracion">—</b></div>
+      <div><span>Unit</span><b>mcg/kg/min</b></div>
+    </div>
 
-<div class="calc-block">
-<h4>Dose calculation</h4>
-<div class="calc-grid">
-<label>Weight (kg)
-<input type="number" class="peso" step="0.1" min="0">
-</label>
+    <div class="calc-block">
+      <h4>Dose calculation</h4>
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
 
-<label>Rate (ml/h)
-<input type="number" class="velocidad" step="0.1" min="0">
-</label>
-
-<div class="calc-result">
-<span>Delivered dose</span>
-<b class="resultado">—</b>
-</div>
-</div>
-</div>
-
-<div class="clinical-note">
-<b>Clinical note:</b> 2–20 mcg/kg/min. Monitor HR and arrhythmias.
-</div>
-</section>
+    <div class="clinical-note">
+      <b>Clinical note:</b> 2–20 mcg/kg/min. Monitor heart rate and arrhythmias.
+    </div>
+  </section>
 </article>
 
-  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-<header class="drug-head">
-<div>
-<h3>Milrinone</h3>
-<p class="muted small">Inodilator (PDE-3 inhibitor)</p>
-</div>
-<button type="button" class="btn toggle-sheet">View sheet</button>
-</header>
 
-<section class="drug-sheet hidden">
-<div class="sheet-grid">
-<div><span>Presentation</span><b>10 mg / 10 ml</b></div>
+<!-- ================= MILRINONE ================= -->
+<article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+  <header class="drug-head">
+    <div>
+      <h3>Milrinone</h3>
+      <p class="muted small">Inodilator (PDE-3 inhibitor)</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">View sheet</button>
+  </header>
 
-<div>
-<span>Common dilution</span>
-<select class="dilucion">
-<option value="">Select</option>
-<option data-mcg-per-ml="100">10 mg in 100 ml D5W or NS</option>
-<option data-mcg-per-ml="80">20 mg in 250 ml D5W or NS</option>
-</select>
-</div>
+  <section class="drug-sheet hidden">
+    <div class="sheet-grid">
+      <div><span>Presentation</span><b>10 mg / 10 ml</b></div>
 
-<div><span>Concentration</span><b class="concentracion">—</b></div>
-<div><span>Unit</span><b>mcg/kg/min</b></div>
-</div>
+      <div>
+        <span>Common dilution</span>
+        <select class="dilucion">
+          <option value="">Select</option>
+          <!-- 10,000 mcg / 100 ml = 100 mcg/ml -->
+          <option data-mcg-per-ml="100">10 mg in 100 ml D5W or NS</option>
+          <!-- 20,000 mcg / 250 ml = 80 mcg/ml -->
+          <option data-mcg-per-ml="80">20 mg in 250 ml D5W or NS</option>
+        </select>
+      </div>
 
-<div class="calc-block">
-<h4>Dose calculation</h4>
-<div class="calc-grid">
-<label>Weight (kg)
-<input type="number" class="peso" step="0.1" min="0">
-</label>
+      <div><span>Concentration</span><b class="concentracion">—</b></div>
+      <div><span>Unit</span><b>mcg/kg/min</b></div>
+    </div>
 
-<label>Rate (ml/h)
-<input type="number" class="velocidad" step="0.1" min="0">
-</label>
+    <div class="calc-block">
+      <h4>Dose calculation</h4>
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
 
-<div class="calc-result">
-<span>Delivered dose</span>
-<b class="resultado">—</b>
-</div>
-</div>
-</div>
-
-<div class="clinical-note">
-<b>Clinical note:</b> 0.125–0.75 mcg/kg/min. Adjust in renal failure.
-</div>
-</section>
+    <div class="clinical-note">
+      <b>Clinical note:</b> 0.125–0.75 mcg/kg/min. Adjust dose in renal impairment.
+    </div>
+  </section>
 </article>
 
-  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-<header class="drug-head">
-<div>
-<h3>Levosimendan</h3>
-<p class="muted small">Calcium sensitizer inodilator</p>
-</div>
-<button type="button" class="btn toggle-sheet">View sheet</button>
-</header>
 
-<section class="drug-sheet hidden">
-<div class="sheet-grid">
-<div><span>Presentation</span><b>12.5 mg / 5 ml</b></div>
+<!-- ================= LEVOSIMENDAN ================= -->
+<article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+  <header class="drug-head">
+    <div>
+      <h3>Levosimendan</h3>
+      <p class="muted small">Calcium sensitizer inodilator</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">View sheet</button>
+  </header>
 
-<div>
-<span>Common dilution</span>
-<select class="dilucion">
-<option value="">Select</option>
-<option data-mcg-per-ml="50">12.5 mg in 250 ml D5W or NS</option>
-</select>
-</div>
+  <section class="drug-sheet hidden">
+    <div class="sheet-grid">
+      <div><span>Presentation</span><b>12.5 mg / 5 ml</b></div>
 
-<div><span>Concentration</span><b class="concentracion">—</b></div>
-<div><span>Unit</span><b>mcg/kg/min</b></div>
-</div>
+      <div>
+        <span>Common dilution</span>
+        <select class="dilucion">
+          <option value="">Select</option>
+          <!-- 12,500 mcg / 250 ml = 50 mcg/ml -->
+          <option data-mcg-per-ml="50">12.5 mg in 250 ml D5W or NS</option>
+        </select>
+      </div>
 
-<div class="calc-block">
-<h4>Dose calculation</h4>
-<div class="calc-grid">
-<label>Weight (kg)
-<input type="number" class="peso" step="0.1" min="0">
-</label>
+      <div><span>Concentration</span><b class="concentracion">—</b></div>
+      <div><span>Unit</span><b>mcg/kg/min</b></div>
+    </div>
 
-<label>Rate (ml/h)
-<input type="number" class="velocidad" step="0.1" min="0">
-</label>
+    <div class="calc-block">
+      <h4>Dose calculation</h4>
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
 
-<div class="calc-result">
-<span>Delivered dose</span>
-<b class="resultado">—</b>
-</div>
-</div>
-</div>
-
-<div class="clinical-note">
-<b>Clinical note:</b> 0.05–0.2 mcg/kg/min. Avoid bolus if hypotensive.
-</div>
-</section>
+    <div class="clinical-note">
+      <b>Clinical note:</b> Typical infusion range 0.05–0.2 mcg/kg/min. 
+      Avoid bolus in hypotensive patients.
+    </div>
+  </section>
 </article>
 
   <h2>Sedatives</h2>
+
+<!-- ================= PROPOFOL ================= -->
 <article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
-<header class="drug-head">
-<div>
-<h3>Propofol</h3>
-<p class="muted small">Hypnotic sedative</p>
-</div>
-<button type="button" class="btn toggle-sheet">View sheet</button>
-</header>
+  <header class="drug-head">
+    <div>
+      <h3>Propofol</h3>
+      <p class="muted small">Hypnotic sedative</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">View sheet</button>
+  </header>
 
-<section class="drug-sheet hidden">
-<div class="sheet-grid">
-<div><span>Presentation</span><b>20 mg / 1 ml (2%)</b></div>
+  <section class="drug-sheet hidden">
+    <div class="sheet-grid">
+      <div><span>Presentation</span><b>20 mg/ml (2%)</b></div>
 
-<div>
-<span>Common dilution</span>
-<select class="dilucion">
-<option value="">Select</option>
-<option data-mg-per-ml="20">Undiluted (2%)</option>
-<option data-mg-per-ml="4">200 mg in 50 ml</option>
-</select>
-</div>
+      <div>
+        <span>Common dilution</span>
+        <select class="dilucion">
+          <option value="">Select</option>
+          <option data-mg-per-ml="20">Undiluted (2%)</option>
+          <option data-mg-per-ml="4">200 mg in 50 ml</option>
+        </select>
+      </div>
 
-<div><span>Concentration</span><b class="concentracion">—</b></div>
-<div><span>Unit</span><b>mg/kg/h</b></div>
-</div>
+      <div><span>Concentration</span><b class="concentracion">—</b></div>
+      <div><span>Unit</span><b>mg/kg/h</b></div>
+    </div>
 
-<div class="calc-block">
-<div class="calc-grid">
-<label>Weight (kg)
-<input type="number" class="peso" step="0.1" min="0">
-</label>
+    <div class="calc-block">
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
 
-<label>Rate (ml/h)
-<input type="number" class="velocidad" step="0.1" min="0">
-</label>
-
-<div class="calc-result">
-<span>Delivered dose</span>
-<b class="resultado">—</b>
-</div>
-</div>
-</div>
-
-<div class="clinical-note">
-<b>Clinical note:</b> 0.5–5 mg/kg/h. Monitor hypotension, hypertriglyceridemia, PRIS.
-</div>
-</section>
+    <div class="clinical-note">
+      <b>Clinical note:</b> 0.5–5 mg/kg/h. 
+      Monitor for hypotension, hypertriglyceridemia, and PRIS (Propofol Infusion Syndrome).
+    </div>
+  </section>
 </article>
 
-  <article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
-<header class="drug-head">
-<div>
-<h3>Propofol</h3>
-<p class="muted small">Hypnotic sedative</p>
-</div>
-<button type="button" class="btn toggle-sheet">View sheet</button>
-</header>
 
-<section class="drug-sheet hidden">
-<div class="sheet-grid">
-<div><span>Presentation</span><b>20 mg / 1 ml (2%)</b></div>
+<!-- ================= KETAMINE ================= -->
+<article class="drug-card" data-group="sedantes" data-calc="mg-kg-hr">
+  <header class="drug-head">
+    <div>
+      <h3>Ketamine</h3>
+      <p class="muted small">Dissociative sedative</p>
+    </div>
+    <button type="button" class="btn toggle-sheet">View sheet</button>
+  </header>
 
-<div>
-<span>Common dilution</span>
-<select class="dilucion">
-<option value="">Select</option>
-<option data-mg-per-ml="20">Undiluted (2%)</option>
-<option data-mg-per-ml="4">200 mg in 50 ml</option>
-</select>
-</div>
+  <section class="drug-sheet hidden">
+    <div class="sheet-grid">
+      <div><span>Presentation</span><b>50 mg / 5 ml</b></div>
 
-<div><span>Concentration</span><b class="concentracion">—</b></div>
-<div><span>Unit</span><b>mg/kg/h</b></div>
-</div>
+      <div>
+        <span>Common dilution</span>
+        <select class="dilucion">
+          <option value="">Select</option>
+          <option data-mg-per-ml="1">
+            250 mg in 250 ml (D5W or NS)
+          </option>
+        </select>
+      </div>
 
-<div class="calc-block">
-<div class="calc-grid">
-<label>Weight (kg)
-<input type="number" class="peso" step="0.1" min="0">
-</label>
+      <div><span>Concentration</span><b class="concentracion">—</b></div>
+      <div><span>Unit</span><b>mg/kg/h</b></div>
+    </div>
 
-<label>Rate (ml/h)
-<input type="number" class="velocidad" step="0.1" min="0">
-</label>
+    <div class="calc-block">
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
+      </div>
+    </div>
 
-<div class="calc-result">
-<span>Delivered dose</span>
-<b class="resultado">—</b>
-</div>
-</div>
-</div>
-
-<div class="clinical-note">
-<b>Clinical note:</b> 0.5–5 mg/kg/h. Monitor hypotension, hypertriglyceridemia, PRIS.
-</div>
-</section>
+    <div class="clinical-note">
+      <b>Clinical note:</b> 
+      0.1–0.5 mg/kg/h (analgesia), 
+      0.5–2.5 mg/kg/h (sedation).
+    </div>
+  </section>
 </article>
 
+
+<!-- ================= DEXMEDETOMIDINE ================= -->
 <article class="drug-card" data-group="sedantes" data-calc="mcg-kg-hr">
   <header class="drug-head">
     <div>
@@ -620,59 +665,9 @@
         <span>Common dilution</span>
         <select class="dilucion">
           <option value="">Select</option>
-          <option data-mcg-per-ml="4">400 mcg in 100 ml (NS)</option>
-        </select>
-      </div>
-
-      <div><span>Concentration</span><b class="concentracion">—</b></div>
-      <div><span>Unit</span><b>mcg/kg/hr</b></div>
-    </div>
-
-    <div class="calc-block">
-      <div class="calc-grid">
-        <label>Weight (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>Rate (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Delivered dose</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Clinical note:</b> 0.2–1.5 mcg/kg/hr. Monitor bradycardia and hypotension.
-    </div>
-  </section>
-</article>
-
-  <h2>Analgesics</h2>
-
-  <article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-h">
-  <header class="drug-head">
-    <div>
-      <h3>Fentanyl</h3>
-      <p class="muted small">Opioid</p>
-    </div>
-    <button class="btn toggle-sheet">View sheet</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentation</span><b>500 mcg / 10 ml</b></div>
-
-      <div>
-        <span>Common dilution</span>
-        <select class="dilucion">
-          <option value="">Select</option>
-          <option data-mcg-per-ml="10">1000 mcg in 100 ml D5W or NS</option>
-          <option data-mcg-per-ml="3">750 mcg in 250 ml D5W or NS</option>
-          <option data-mcg-per-ml="2">500 mcg in 250 ml D5W or NS</option>
+          <option data-mcg-per-ml="4">
+            400 mcg in 100 ml (NS)
+          </option>
         </select>
       </div>
 
@@ -681,122 +676,232 @@
     </div>
 
     <div class="calc-block">
-      <label>Weight (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Rate (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Delivered dose</span>
-        <b class="resultado">—</b>
+      <div class="calc-grid">
+        <label>Weight (kg)
+          <input type="number" class="peso" step="0.1" min="0">
+        </label>
+        <label>Rate (ml/h)
+          <input type="number" class="velocidad" step="0.1" min="0">
+        </label>
+        <div class="calc-result">
+          <span>Delivered dose</span>
+          <b class="resultado">—</b>
+        </div>
       </div>
     </div>
 
     <div class="clinical-note">
-      <b>Clinical note:</b> 0.5–5 mcg/kg/h. Monitor respiratory depression and chest wall rigidity.
+      <b>Clinical note:</b> 0.2–1.5 mcg/kg/h. 
+      Monitor for bradycardia and hypotension.
     </div>
   </section>
 </article>
 
-  <article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Remifentanil</h3>
-      <p class="muted small">Ultra–short acting opioid</p>
-    </div>
-    <button class="btn toggle-sheet">View sheet</button>
-  </header>
+  <h2>Analgesics</h2>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentation</span><b>5 mg / vial</b></div>
+<!-- ================= FENTANYL ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-h">
+<header class="drug-head">
+  <div>
+    <h3>Fentanyl</h3>
+    <p class="muted small">Opioid</p>
+  </div>
+  <button class="btn toggle-sheet">View sheet</button>
+</header>
 
-      <div>
-        <span>Common dilution</span>
-        <select class="dilucion">
-          <option value="">Select</option>
-          <option data-mcg-per-ml="20">5 mg in 250 ml</option>
-          <option data-mcg-per-ml="50">5 mg in 100 ml</option>
-        </select>
-      </div>
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentation</span><b>500 mcg / 10 ml</b></div>
 
-      <div><span>Concentration</span><b class="concentracion">—</b></div>
-      <div><span>Unit</span><b>mcg/kg/min</b></div>
-    </div>
+  <div>
+    <span>Common dilution</span>
+    <select class="dilucion">
+      <option value="">Select</option>
+      <option data-mcg-per-ml="10">1000 mcg in 100 ml (D5W or NS)</option>
+      <option data-mcg-per-ml="3">750 mcg in 250 ml (D5W or NS)</option>
+      <option data-mcg-per-ml="2">500 mcg in 250 ml (D5W or NS)</option>
+    </select>
+  </div>
 
-    <div class="calc-block">
-      <label>Weight (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
+  <div><span>Concentration</span><b class="concentracion">—</b></div>
+  <div><span>Unit</span><b>mcg/kg/h</b></div>
+</div>
 
-      <label>Rate (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
+<div class="calc-block">
+  <label>Weight (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
 
-      <div class="calc-result">
-        <span>Delivered dose</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
+  <label>Rate (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
 
-    <div class="clinical-note">
-      <b>Clinical note:</b> 0.05–2 mcg/kg/min. Ultra–rapid onset and offset.
-    </div>
-  </section>
+  <div class="calc-result">
+    <span>Delivered dose</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
+
+<div class="clinical-note">
+  <b>Clinical note:</b> 0.5–5 mcg/kg/h. 
+  Monitor for respiratory depression and chest wall rigidity.
+</div>
+</section>
 </article>
 
-  <h2>Neuromuscular blockers</h2>
 
-  <article class="drug-card" data-group="relajantes" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Atracurium</h3>
-      <p class="muted small">Non-depolarizing NMB</p>
-    </div>
-    <button class="btn toggle-sheet">View sheet</button>
-  </header>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentation</span><b>50 mg / 5 ml</b></div>
+<!-- ================= MORPHINE ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mg-kg-h">
+<header class="drug-head">
+  <div>
+    <h3>Morphine</h3>
+    <p class="muted small">Opioid</p>
+  </div>
+  <button class="btn toggle-sheet">View sheet</button>
+</header>
 
-      <div>
-        <span>Common dilution</span>
-        <select class="dilucion">
-          <option value="">Select</option>
-          <option data-mcg-per-ml="500">
-            100,000 mcg in 200 ml (D5W / NS) — final total volume
-          </option>
-        </select>
-      </div>
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentation</span><b>10 mg / 1 ml</b></div>
 
-      <div><span>Concentration</span><b class="concentracion">—</b></div>
-      <div><span>Unit</span><b>mcg/kg/min</b></div>
-    </div>
+  <div>
+    <span>Common dilution</span>
+    <select class="dilucion">
+      <option value="">Select</option>
+      <option data-mg-per-ml="0.5">50 mg in 100 ml</option>
+      <option data-mg-per-ml="1">100 mg in 100 ml</option>
+    </select>
+  </div>
 
-    <div class="calc-block">
-      <label>Weight (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
+  <div><span>Concentration</span><b class="concentracion">—</b></div>
+  <div><span>Unit</span><b>mg/kg/h</b></div>
+</div>
 
-      <label>Rate (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
+<div class="calc-block">
+  <label>Weight (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
 
-      <div class="calc-result">
-        <span>Delivered dose</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
+  <label>Rate (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
 
-    <div class="clinical-note">
-      <b>Clinical note:</b> Dose range 2–20 mcg/kg/min.
-    </div>
-  </section>
+  <div class="calc-result">
+    <span>Delivered dose</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
+
+<div class="clinical-note">
+  <b>Clinical note:</b> Dose range 0.01–0.1 mg/kg/h. 
+  Use caution or avoid in renal failure due to active metabolite accumulation.
+</div>
+</section>
 </article>
+
+
+
+<!-- ================= REMIFENTANIL ================= -->
+<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-min">
+<header class="drug-head">
+  <div>
+    <h3>Remifentanil</h3>
+    <p class="muted small">Ultra–short acting opioid</p>
+  </div>
+  <button class="btn toggle-sheet">View sheet</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentation</span><b>5 mg / vial</b></div>
+
+  <div>
+    <span>Common dilution</span>
+    <select class="dilucion">
+      <option value="">Select</option>
+      <option data-mcg-per-ml="20">5 mg in 250 ml</option>
+      <option data-mcg-per-ml="50">5 mg in 100 ml</option>
+    </select>
+  </div>
+
+  <div><span>Concentration</span><b class="concentracion">—</b></div>
+  <div><span>Unit</span><b>mcg/kg/min</b></div>
+</div>
+
+<div class="calc-block">
+  <label>Weight (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
+
+  <label>Rate (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
+
+  <div class="calc-result">
+    <span>Delivered dose</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
+
+<div class="clinical-note">
+  <b>Clinical note:</b> 0.05–2 mcg/kg/min. 
+  Rapid onset and ultra–short context-sensitive half-life.
+</div>
+</section>
+</article>
+
+  <h2>Neuromuscular Blockers</h2>
+
+<!-- ================= ATRACURIUM ================= -->
+<article class="drug-card" data-group="relajantes" data-calc="mcg-kg-min">
+<header class="drug-head">
+  <div>
+    <h3>Atracurium</h3>
+    <p class="muted small">Non-depolarizing neuromuscular blocker</p>
+  </div>
+  <button class="btn toggle-sheet">View sheet</button>
+</header>
+
+<section class="drug-sheet hidden">
+<div class="sheet-grid">
+  <div><span>Presentation</span><b>50 mg / 5 ml</b></div>
+
+  <div>
+    <span>Common dilution</span>
+    <select class="dilucion">
+      <option value="">Select</option>
+      <option data-mcg-per-ml="500">
+        100,000 mcg in 200 ml (D5W or NS) — final total volume
+      </option>
+    </select>
+  </div>
+
+  <div><span>Concentration</span><b class="concentracion">—</b></div>
+  <div><span>Unit</span><b>mcg/kg/min</b></div>
+</div>
+
+<div class="calc-block">
+  <label>Weight (kg)
+    <input type="number" class="peso" step="0.1" min="0">
+  </label>
+
+  <label>Rate (ml/h)
+    <input type="number" class="velocidad" step="0.1" min="0">
+  </label>
+
+  <div class="calc-result">
+    <span>Delivered dose</span>
+    <b class="resultado">—</b>
+  </div>
+</div>
+
+<div class="clinical-note">
+  <b>Clinical note:</b> Continuous infusion range 2–20 mcg/kg/min.
+</div>
+</section>
+</article>
+
 
   </main>
 
@@ -815,13 +920,7 @@
   </p>
 </footer>
 
-<script
-  src="/en/calculadorasen/infusion-farmacosen/farmacotecaen.js"
-  defer
-></script>
-
-
-
+ 
   <script>
 document.addEventListener("click", e => {
   const btn = e.target.closest(".toggle-sheet");
