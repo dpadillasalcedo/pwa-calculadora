@@ -35,11 +35,30 @@
   <link rel="manifest" href="/manifest.json" />
 
   <!-- =========================
-       Canonical
+       Canonical (CORRECTO)
   ========================== -->
   <link
     rel="canonical"
     href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+  />
+
+  <!-- =========================
+       Hreflang (EN/ES)
+  ========================== -->
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
   />
 
   <!-- =========================
@@ -53,7 +72,7 @@
   <meta property="og:type" content="website" />
   <meta
     property="og:url"
-    content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/.html"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
   />
 
   <!-- =========================
@@ -66,23 +85,15 @@
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
+       + Consent Mode v2
   ========================== -->
-
-  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
 
-    /*
-      Consent Mode por defecto
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-    */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
       ad_storage: 'denied',
@@ -90,17 +101,18 @@
       ad_personalization: 'denied'
     });
 
-    /*
-      Configuración GA4 segura para PWA
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <!-- =========================
+       Google Ads
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous"></script>
 
 </head>
 
@@ -113,21 +125,24 @@
 <main class="app container">
 
   <!-- LANGUAGE SWITCHER -->
-  <div class="language-switcher">
-    <a href="/en/calculadorasen/ventilacion-mecanicaen/ventilacionen.html">EN</a> |
-    <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion-html">ES</a>
-  </div>
+<div class="language-switcher">
+  <a href="https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html">EN</a> |
+  <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" class="active">ES</a>
+</div>
+
+
 
   <!-- =========================
        BREADCRUMB
   ========================= -->
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
-      Variables clínicas
-    </a>
-  </nav>
+<nav class="breadcrumb" aria-label="Navegación">
+  <a href="https://criticalcaretools.com/">Inicio</a>
+  <span aria-hidden="true">›</span>
+  <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
+    Variables clínicas
+  </a>
+</nav>
+
 
   <!-- =========================
        HEADER
@@ -238,6 +253,8 @@
 
   </section>
 
+  </main>
+  
 <!-- =========================
      FOOTER
 ========================= -->
