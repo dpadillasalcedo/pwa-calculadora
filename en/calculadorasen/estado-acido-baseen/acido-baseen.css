@@ -1,322 +1,154 @@
-/* =========================
-   RESET + BASE
-========================= */
-*,
-*::before,
-*::after {
+/* ==========================================
+   Acid–Base Status - EN
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html,
+:root {
+  --bg: #020617;
+  --panel: #111c2f;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --border: #1e293b;
+  --radius: 12px;
+  --maxw: 1000px;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #020617;
-  color: #e5e7eb;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-/* =========================
-   CONTAINER
-========================= */
 .container {
-  max-width: 920px;
+  max-width: var(--maxw);
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 40px 20px 60px;
 }
 
-/* =========================
-   BREADCRUMB
-========================= */
 .breadcrumb {
-  font-size: 0.85rem;
-  margin-bottom: 1.25rem;
-  color: #94a3b8;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
 }
 
 .breadcrumb a {
-  color: #38bdf8;
+  color: var(--accent);
   text-decoration: none;
 }
 
-.breadcrumb span {
-  margin: 0 0.35rem;
-}
-
-/* =========================
-   HEADER
-========================= */
 .app-header {
-  margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  font-size: 1.6rem;
-  margin: 0 0 0.35rem;
-  color: #f8fafc;
+  margin-bottom: 30px;
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #cbd5f5;
+  color: var(--muted);
 }
 
-/* =========================
-   PANELS
-========================= */
 .panel {
-  background-color: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 25px;
+  margin-bottom: 30px;
 }
 
 .panel h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
-  color: #e0f2fe;
+  margin-bottom: 15px;
 }
 
-.panel h3 {
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  color: #bae6fd;
-}
-
-/* =========================
-   FORM ELEMENTS
-========================= */
 label {
   display: block;
-  margin-top: 0.9rem;
-  font-size: 0.85rem;
-  color: #cbd5e1;
+  margin-top: 12px;
+  font-size: 0.9rem;
 }
 
 input {
   width: 100%;
-  margin-top: 0.35rem;
-  padding: 0.5rem 0.6rem;
-  background-color: #020617;
-  border: 1px solid #334155;
-  border-radius: 0.45rem;
-  color: #f8fafc;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f172a;
+  color: white;
 }
 
 input:focus {
   outline: none;
-  border-color: #38bdf8;
+  border-color: var(--accent);
 }
 
-/* =========================
-   BUTTONS
-========================= */
 button {
-  margin-top: 1.25rem;
-  padding: 0.6rem 1rem;
-  background-color: #0284c7;
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
   border: none;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  font-weight: 500;
+  background: var(--accent);
+  color: white;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0369a1;
+  background: var(--accent-hover);
 }
 
-/* =========================
-   RESULTS & NOTES
-========================= */
 .result {
-  margin-top: 0.75rem;
-  font-weight: 600;
-  color: #a5f3fc;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.4);
 }
 
 .note {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #c7d2fe;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
-/* =========================
-   TABLE
-========================= */
 .table-wrapper {
-  margin-top: 3rem;
+  margin-top: 40px;
 }
 
 .acid-base-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 0.75rem;
-  overflow: hidden;
+  margin-top: 15px;
 }
 
 .acid-base-table th,
 .acid-base-table td {
-  padding: 0.9rem;
-  border-bottom: 1px solid #1e293b;
-  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  padding: 10px;
+  font-size: 0.9rem;
 }
 
 .acid-base-table .section th {
-  background-color: #020617;
-  color: #7dd3fc;
-  font-weight: 600;
-}
-
-.acid-base-table .content td {
-  color: #e5e7eb;
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  margin-top: 4rem;
-  padding: 2.5rem 1.25rem;
-  border-top: 1px solid #1e293b;
-  text-align: center;
-  background-color: #020617;
-}
-
-.footer-nav {
-  margin-bottom: 0.75rem;
+  background: #0f172a;
+  color: var(--accent);
 }
 
 .footer-nav a {
-  color: #38bdf8;
+  color: var(--accent);
   text-decoration: none;
-  font-size: 0.85rem;
+  margin: 0 8px;
 }
 
-.footer-nav span {
-  margin: 0 0.35rem;
-  color: #64748b;
+footer {
+  margin-top: 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
 }
 
-footer p {
-  font-size: 0.75rem;
-  color: #94a3b8;
-}
-
-/* =========================
-   TABLA ÁCIDO–BASE (MEJORADA)
-========================= */
-
-.table-wrapper {
-  margin-top: 3rem;
-}
-
-.table-wrapper h2 {
-  margin-bottom: 1rem;
-  font-size: 1.15rem;
-  color: #e0f2fe;
-}
-
-.acid-base-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background-color: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 0.75rem;
-  overflow: hidden;
-}
-
-/* Filas */
-.acid-base-table th,
-.acid-base-table td {
-  padding: 1rem 1.1rem;
-  font-size: 0.85rem;
-  line-height: 1.55;
-  vertical-align: top;
-}
-
-/* Secciones (títulos de trastorno) */
-.acid-base-table .section th {
-  background: linear-gradient(
-    90deg,
-    #020617 0%,
-    #020617 100%
-  );
-  color: #7dd3fc;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-bottom: 1px solid #1e293b;
-  letter-spacing: 0.02em;
-}
-
-/* Contenido */
-.acid-base-table .content td {
-  color: #e5e7eb;
-  background-color: #020617;
-  border-bottom: 1px solid #1e293b;
-}
-
-/* Resaltado sutil al hover (desktop) */
-@media (hover: hover) {
-  .acid-base-table .content:hover td {
-    background-color: #020617;
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 15px 50px;
   }
-}
-
-/* Negritas clínicas más visibles */
-.acid-base-table strong {
-  color: #bae6fd;
-  font-weight: 600;
-}
-
-/* Subíndices y superíndices más claros */
-.acid-base-table sub,
-.acid-base-table sup {
-  font-size: 0.7em;
-  color: #c7d2fe;
-}
-
-/* Última fila sin borde */
-.acid-base-table tr:last-child td {
-  border-bottom: none;
-}
-
-/* =========================
-   MOBILE OPTIMIZATION
-========================= */
-@media (max-width: 640px) {
-  .acid-base-table th,
-  .acid-base-table td {
-    padding: 0.85rem 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .acid-base-table .section th {
-    font-size: 0.85rem;
-  }
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
-  color: var(--color-muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
-}
-
-.language-switcher a:hover {
-  color: var(--color-primary);
 }
