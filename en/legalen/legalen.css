@@ -1,191 +1,136 @@
-/* =========================================================
-   ROOT · DARK THEME
-========================================================= */
-:root {
-  --bg: #020617;
-  --panel: #0b1220;
-  --border: #1e293b;
+/* ==========================================
+   Legal Notice - EN Styles
+   Critical Care Tools
+========================================== */
 
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   BASE
-========================================================= */
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.6;
+:root {
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --panel-bg: #111c2f;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #1e293b;
+  --radius: 10px;
+  --max-width: 1000px;
 }
 
 body {
-  padding-bottom: env(safe-area-inset-bottom);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
+/* Container */
 
-a:hover {
-  color: var(--primary-strong);
-}
-
-/* =========================================================
-   LAYOUT
-========================================================= */
 .container {
-  max-width: 960px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 40px 20px 60px;
 }
 
-.app {
-  padding-top: 0.5rem;
-}
+/* Language Switcher */
 
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb {
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
-  color: #f8fafc;
-}
-
-.breadcrumb a {
-  color: #f8fafc;
-  font-weight: 500;
-}
-
-.breadcrumb a:hover {
-  color: var(--primary-strong);
-}
-
-.breadcrumb span {
-  margin: 0 0.4rem;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-.app-header {
-  margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #f8fafc;
-}
-
-.subtitle {
-  margin-top: 0.5rem;
-  color: var(--muted);
-  max-width: 760px;
-}
-
-/* =========================================================
-   PANEL
-========================================================= */
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.75rem;
-}
-
-.panel h2 {
-  margin-top: 1.75rem;
-  font-size: 1.2rem;
-  color: #f8fafc;
-}
-
-.panel h2:first-child {
-  margin-top: 0;
-}
-
-.panel p {
-  margin-top: 0.5rem;
-  color: var(--text);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.site-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
-  background: var(--panel);
-}
-
-.footer-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.footer-nav {
-  font-size: 0.9rem;
-  color: #f8fafc;
-}
-
-.footer-nav a {
-  color: #f8fafc;
-  font-weight: 500;
-}
-
-.footer-nav a:hover {
-  color: var(--primary-strong);
-}
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: #f8fafc;
-  margin: 0;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 640px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .app-header h1 {
-    font-size: 1.55rem;
-  }
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
 .language-switcher {
   text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
 }
 
 .language-switcher a {
-  color: var(--color-muted);
+  color: var(--text-secondary);
   text-decoration: none;
-  margin-left: 0.4rem;
+  margin: 0 6px;
+  transition: 0.2s ease;
 }
 
 .language-switcher a:hover {
-  color: var(--color-primary);
+  color: var(--accent);
+}
+
+/* Breadcrumb */
+
+.breadcrumb {
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  margin: 0 6px;
+}
+
+/* Header */
+
+.app-header {
+  margin-bottom: 35px;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Panel */
+
+.panel {
+  background-color: var(--panel-bg);
+  padding: 35px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+}
+
+.panel h2 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.panel p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+/* Footer spacing consistency */
+
+footer {
+  margin-top: 50px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .container {
+    padding: 30px 15px 50px;
+  }
+
+  .panel {
+    padding: 25px;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+
 }
