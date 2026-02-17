@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const weightInput = document.getElementById("pesoReal");
+  const weightInput = document.getElementById("actualWeight");
 
-  const kcalTrofico = document.getElementById("kcalTrofico");
-  const protTrofico = document.getElementById("protTrofico");
+  const kcalTrophic = document.getElementById("kcalTrophic");
+  const protTrophic = document.getElementById("protTrophic");
 
   const kcalFull = document.getElementById("kcalFull");
   const protFull = document.getElementById("protFull");
 
-  const kcalHipo = document.getElementById("kcalHipo");
-  const protHipo = document.getElementById("protHipo");
+  const kcalHypo = document.getElementById("kcalHypo");
+  const protHypo = document.getElementById("protHypo");
 
   weightInput.addEventListener("input", calculateAll);
 
@@ -35,43 +35,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const hypoKcal = weight * 15;
     const hypoProt = weight * 2.0;
 
-    kcalTrofico.textContent = trophicKcal.toFixed(0) + " kcal/day";
-    protTrofico.textContent = trophicProt.toFixed(1) + " g protein/day";
+    kcalTrophic.textContent = trophicKcal.toFixed(0) + " kcal/day";
+    protTrophic.textContent = trophicProt.toFixed(1) + " g protein/day";
 
     kcalFull.textContent = fullKcal.toFixed(0) + " kcal/day";
     protFull.textContent = fullProt.toFixed(1) + " g protein/day";
 
-    kcalHipo.textContent = hypoKcal.toFixed(0) + " kcal/day";
-    protHipo.textContent = hypoProt.toFixed(1) + " g protein/day";
+    kcalHypo.textContent = hypoKcal.toFixed(0) + " kcal/day";
+    protHypo.textContent = hypoProt.toFixed(1) + " g protein/day";
 
     // =========================
     // UPDATE TABLES
     // =========================
 
-    updateTable("tablaTrofico", trophicKcal, trophicProt);
-    updateTable("tablaFull", fullKcal, fullProt);
-    updateTable("tablaHipo", hypoKcal, hypoProt);
+    updateTable("tableTrophic", trophicKcal, trophicProt);
+    updateTable("tableFull", fullKcal, fullProt);
+    updateTable("tableHypo", hypoKcal, hypoProt);
   }
 
   function updateTable(tableId, targetKcal, targetProt) {
 
     const table = document.getElementById(tableId);
+    if (!table) return;
+
     const rows = table.querySelectorAll("tbody tr");
 
     rows.forEach(row => {
 
       const kcalPerMl = parseFloat(row.dataset.kcalml);
-      const protPer100 = parseFloat(row.dataset.prot100);
+      const proteinPer100ml = parseFloat(row.dataset.prot100);
 
-      if (!kcalPerMl || !protPer100) return;
+      if (!kcalPerMl || !proteinPer100ml) return;
 
-      // Volume needed (ml/day)
+      // Required volume (ml/day)
       const volume = targetKcal / kcalPerMl;
 
       // Protein delivered
-      const proteinDelivered = (volume / 100) * protPer100;
+      const proteinDelivered = (volume / 100) * proteinPer100ml;
 
-      // Deficit
+      // Protein deficit
       const deficit = targetProt - proteinDelivered;
 
       row.querySelector(".vol").textContent =
@@ -92,17 +94,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function resetAll() {
 
-    const allResults = document.querySelectorAll(
-      "#kcalTrofico, #protTrofico, #kcalFull, #protFull, #kcalHipo, #protHipo"
+    const resultFields = document.querySelectorAll(
+      "#kcalTrophic, #protTrophic, #kcalFull, #protFull, #kcalHypo, #protHypo"
     );
 
-    allResults.forEach(el => el.textContent = "—");
+    resultFields.forEach(el => el.textContent = "—");
 
-    const cells = document.querySelectorAll(
+    const tableCells = document.querySelectorAll(
       ".vol, .kcal, .prot, .deficit"
     );
 
-    cells.forEach(cell => cell.textContent = "—");
+    tableCells.forEach(cell => cell.textContent = "—");
   }
 
 });
