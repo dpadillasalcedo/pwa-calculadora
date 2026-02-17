@@ -1,108 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <!-- =========================
        HOME
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/indexen.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default"
+      href="https://criticalcaretools.com/"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/indexen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/"/>
   </url>
 
   <!-- =========================
-       VARIABLES CLÍNICAS (HUB)
+       VARIABLES HUB
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"/>
   </url>
 
   <!-- =========================
-       NEUROLOGÍA CRÍTICA
+       NEUROCRITICAL CARE
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/neurologia-criticaen/neurologiaen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/neurologia-criticaen/neurologiaen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"/>
   </url>
 
   <!-- =========================
-       VENTILACIÓN MECÁNICA
+       MECHANICAL VENTILATION
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"/>
   </url>
 
   <!-- =========================
-       SISTEMAS DE PUNTUACIÓN
+       SCORING SYSTEMS
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html"/>
   </url>
 
   <!-- =========================
-       MONITOREO HEMODINÁMICO
+       HEMODYNAMIC MONITORING
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/monitoreo-hemodinamicoen/monitoreoen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/monitoreo-hemodinamicoen/monitoreoen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html"/>
   </url>
 
   <!-- =========================
-       ESTADO ÁCIDO–BASE
+       ACID-BASE
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html"/>
   </url>
 
   <!-- =========================
-       INFUSIÓN DE FÁRMACOS
+       DRUG DOSING
   ========================== -->
+
   <url>
     <loc>https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html"/>
   </url>
 
   <!-- =========================
-       SOPORTE NUTRICIONAL
+       ICU PHARMACOPOEIA
   ========================== -->
-  <url>
-    <loc>https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html</loc>
-    <lastmod>2026-01-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
 
-    <!-- =========================
-       FARMACOTECA UCI
-  ========================== -->
   <url>
     <loc>https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html</loc>
-    <lastmod>2026-02-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"/>
+  </url>
+
+  <!-- =========================
+       NUTRITIONAL SUPPORT
+  ========================== -->
+
+  <url>
+    <loc>https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html"/>
+  </url>
+
+  <url>
+    <loc>https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html"/>
   </url>
 
 </urlset>
-
-
-
-
