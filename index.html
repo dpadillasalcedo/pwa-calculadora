@@ -19,11 +19,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Critical Care Tools | Utilidades clínicas para Cuidados Intensivos</title>
+  <title>Critical Care Tools | Calculadoras clínicas para UCI</title>
 
   <meta
     name="description"
-    content="Critical Care Tools es una plataforma de calculadoras clínicas para cuidados intensivos. Variables clínicas, infusión de fármacos y soporte nutricional en UCI."
+    content="Plataforma de calculadoras clínicas para cuidados intensivos: variables clínicas, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos."
   />
 
   <meta name="robots" content="index, follow" />
@@ -44,12 +44,19 @@
   <link rel="canonical" href="https://criticalcaretools.com/" />
 
   <!-- =========================
+       Hreflang
+  ========================== -->
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/" />
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/indexen.html" />
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+
+  <!-- =========================
        Open Graph
   ========================== -->
-  <meta property="og:title" content="Critical Care Tools | Herramientas clínicas para UCI" />
+  <meta property="og:title" content="Critical Care Tools | Calculadoras clínicas para UCI" />
   <meta
     property="og:description"
-    content="Calculadoras clínicas y herramientas de apoyo para el manejo del paciente crítico en cuidados intensivos."
+    content="Herramientas clínicas para el manejo del paciente crítico en cuidados intensivos."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://criticalcaretools.com/" />
@@ -59,9 +66,6 @@
   ========================== -->
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/" />
-  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/" />
-
 
   <!-- =========================
        CSS
@@ -72,7 +76,6 @@
        Google Analytics GA4
   ========================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
@@ -102,23 +105,16 @@
 
 </head>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js');
-    });
-  }
-</script>
- 
 
 <body>
 
 <header>
 
-  <div class="language-switcher">
-    <a href="/en/indexen.html">EN</a> |
-    <a href="/index.html">ES</a>
-  </div>
+<div class="language-switcher">
+  <a href="https://criticalcaretools.com/" class="active">ES</a> |
+  <a href="https://criticalcaretools.com/en/indexen.html">EN</a>
+</div>
+
 
   <h1>Critical Care Tools</h1>
   <p>
@@ -185,6 +181,15 @@
   <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
   </div>
 </footer>
-
+  
+  
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+  
 </body>
 </html>
