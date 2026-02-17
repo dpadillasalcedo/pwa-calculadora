@@ -1,10 +1,6 @@
-<!doctype html>
-<html lang="en">
 <head>
 
-  <!-- =========================
-       Cookiebot (ALWAYS FIRST)
-  ========================== -->
+  <!-- Cookiebot (ALWAYS FIRST) -->
   <script
     id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
@@ -13,9 +9,6 @@
     type="text/javascript">
   </script>
 
-  <!-- =========================
-       Basic Meta
-  ========================== -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -25,16 +18,45 @@
     name="description"
     content="ICU drug infusion reference and dose calculator. Educational and clinical support tool."
   />
+
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#020617" />
 
-  <!-- PWA -->
   <link rel="manifest" href="/manifest.json" />
 
-  <!-- Canonical EN -->
+  <!-- Canonical -->
   <link
     rel="canonical"
     href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html"
+  />
+
+  <!-- Hreflang -->
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ICU Pharmacopoeia | Critical Care Tools" />
+  <meta
+    property="og:description"
+    content="ICU drug infusion reference and dosing guide."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html"
   />
 
   <!-- CSS -->
@@ -43,10 +65,37 @@
     href="/en/calculadorasen/infusion-farmacosen/farmacotecaen.css"
   />
 
+  <!-- GA4 (managed by Cookiebot) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
+  </script>
+
 </head>
+
 
 <body class="app-root">
 <main class="container">
+
+  <!-- Language Switcher -->
+<div class="language-switcher">
+  <a href="/en/calculadorasen/infusion-farmacosen/farmacotecaen.html" class="active">EN</a> |
+  <a href="/calculadoras/infusion-farmacos/farmacoteca.html">ES</a>
+</div>
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/en/indexen.html">Home</a>
+  <span aria-hidden="true">›</span>
+  <a href="/en/calculadorasen/infusion-farmacosen/farmacosen.html">
+    Drug Dosing
+  </a>
+  <span aria-hidden="true">›</span>
+  <span>ICU Pharmacopoeia</span>
+</nav>
 
 
   <section class="card controls">
@@ -766,7 +815,11 @@
   </p>
 </footer>
 
-<script src="farmacoteca.js"></script>
+<script
+  src="/en/calculadorasen/infusion-farmacosen/farmacotecaen.js"
+  defer
+></script>
+
 
 
   <script>
