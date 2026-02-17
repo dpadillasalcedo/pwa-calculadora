@@ -1,471 +1,144 @@
-/* =========================================================
-   ROOT · DARK THEME
-========================================================= */
-:root {
-  --bg: #020617;
-  --panel: #0b1220;
-  --card: #0f172a;
-  --border: #1e293b;
+/* ==========================================
+   Neurocritical Care - EN Styles
+========================================== */
 
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
-
-  --ok: #22c55e;
-  --warn: #f59e0b;
-  --bad: #ef4444;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   RESET / BASE
-========================================================= */
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
+:root {
+  --bg: #020617;
+  --panel: #111c2f;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --border: #1e293b;
+  --radius: 12px;
+  --maxw: 1000px;
 }
 
 body {
-  padding-bottom: env(safe-area-inset-bottom);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-a {
-  color: var(--primary);
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.language-switcher {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.language-switcher a {
+  color: var(--muted);
   text-decoration: none;
 }
-a:hover { color: var(--primary-strong); }
 
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
+.language-switcher a.active,
+.language-switcher a:hover {
+  color: var(--accent);
 }
 
-/* helpers */
-.hidden { display: none !important; }
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
-.app { padding-top: 0.5rem; }
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
 .breadcrumb {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
 }
-.breadcrumb span { margin: 0 0.4rem; }
 
-/* =========================================================
-   HEADER
-========================================================= */
-.app-header { margin-bottom: 2rem; }
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
 
-.app-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #f8fafc;
+.app-header {
+  margin-bottom: 30px;
 }
 
 .subtitle {
-  margin-top: 0.5rem;
   color: var(--muted);
-  max-width: 720px;
 }
 
-/* =========================================================
-   PANELS
-========================================================= */
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
+  border-radius: var(--radius);
+  padding: 25px;
+  margin-bottom: 30px;
 }
 
-.panel-head h2 {
-  margin: 0;
-  font-size: 1.3rem;
+.panel h2 {
+  margin-bottom: 10px;
 }
 
-.panel-head .note {
-  margin-top: 0.4rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   GRID
-========================================================= */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-/* =========================================================
-   CARDS
-========================================================= */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem;
-}
-
-.card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.05rem;
-}
-
-.hint {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0 0 0.75rem 0;
-}
-
-/* =========================================================
-   FORMS
-========================================================= */
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-}
-
-.field span {
-  font-size: 0.9rem;
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
 }
 
 select {
-  background: #020617;
-  color: var(--text);
-  border: 1px solid var(--border);
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
   border-radius: 8px;
-  padding: 0.5rem 0.55rem;
+  border: 1px solid var(--border);
+  background: #0f172a;
+  color: white;
 }
 
 select:focus {
+  border-color: var(--accent);
   outline: none;
-  border-color: var(--primary);
 }
 
-/* =========================================================
-   CALLOUTS / NOTE
-========================================================= */
-.callout {
-  margin-top: 1.25rem;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  background: #020617;
-  border: 1px dashed var(--border);
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-.note {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 0.75rem;
-}
-
-/* =========================================================
-   ACTIONS / BUTTONS
-========================================================= */
-.actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-  flex-wrap: wrap;
-}
-
-/* unifica: .btn y <button> se ven igual */
-button,
-.btn {
-  appearance: none;
-  background: var(--primary);
-  color: #020617;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  touch-action: manipulation;
-}
-
-button:hover,
-.btn:hover {
-  background: var(--primary-strong);
-}
-
-button:disabled,
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* secundario */
-.btn-secondary {
-  background: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-secondary:hover {
-  background: rgba(56, 189, 248, 0.1);
-}
-
-/* por si usás .primary en algún botón */
-.btn.primary,
-button.primary {
-  background: var(--primary);
-}
-
-/* =========================================================
-   RESULTADOS
-========================================================= */
-.resultado {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  font-weight: 700;
-  border: 1px solid var(--border);
-  background: rgba(2, 6, 23, 0.35);
-}
-
-.result-ok {
-  background: rgba(34, 197, 94, 0.12);
-  border-color: rgba(34, 197, 94, 0.35);
-  color: var(--ok);
-}
-
-.result-warn {
-  background: rgba(245, 158, 11, 0.12);
-  border-color: rgba(245, 158, 11, 0.35);
-  color: var(--warn);
-}
-
-.result-bad {
-  background: rgba(239, 68, 68, 0.12);
-  border-color: rgba(239, 68, 68, 0.35);
-  color: var(--bad);
-}
-
-/* =========================================================
-   NIHSS
-========================================================= */
-#nihss { margin-bottom: 3rem; }
-
-.nihss-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem 1.25rem;
-  margin-top: 0.75rem;
-}
-
-/* ojo: en tu HTML cada item es <label class="field"> dentro de .nihss-grid */
-.nihss-grid .field {
-  background: rgba(2, 6, 23, 0.6);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.75rem;
-  margin-top: 0; /* evita doble margen */
-}
-
-.nihss-grid .field span {
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.nihss-grid select {
-  margin-top: 0.35rem;
-  font-size: 0.9rem;
-}
-
-#nihss .actions {
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  padding-top: 1rem;
-}
-
-#resultadoNIHSS { margin-top: 1.25rem; }
-#interpretacionNIHSS {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* =========================================================
-   TABLAS
-========================================================= */
-.table-wrap {
-  overflow-x: auto;
-  margin-top: 1rem;
+.result {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.4);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(2, 6, 23, 0.4);
-  border-radius: 12px;
-  overflow: hidden;
-  font-size: 0.9rem;
-}
-
-table thead th {
-  background: rgba(15, 23, 42, 0.9);
-  color: #f8fafc;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  margin-top: 10px;
 }
 
 table th,
 table td {
-  padding: 0.7rem 0.9rem;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-  vertical-align: top;
-}
-
-table tbody tr:nth-child(even) {
-  background: rgba(15, 23, 42, 0.35);
-}
-
-table tbody tr:hover {
-  background: rgba(56, 189, 248, 0.05);
-}
-
-table th:first-child,
-table td:first-child {
-  width: 90px;
-  white-space: nowrap;
-  font-weight: 700;
-}
-
-/* =========================================================
-   ESCALAS CLÍNICAS · JERARQUÍA (TABLAS)
-========================================================= */
-#fisher .card { border-left: 4px solid var(--primary); }
-#fisher table td:first-child { color: var(--primary); }
-
-#hunt-hess .card { border-left: 4px solid var(--warn); }
-#hunt-hess table td:first-child { color: var(--warn); }
-
-#marshall .card { border-left: 4px solid var(--bad); }
-#marshall table td:first-child { color: var(--bad); }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 640px) {
-  .container { padding: 1rem; }
-
-  table { font-size: 0.85rem; }
-  table th, table td { padding: 0.55rem 0.6rem; }
-
-  .nihss-grid { grid-template-columns: 1fr; }
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.site-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
-  background: var(--panel);
-}
-
-.footer-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  text-align: center;
-}
-
-.footer-nav {
+  border: 1px solid var(--border);
+  padding: 8px;
   font-size: 0.9rem;
-  color: var(--muted);
 }
 
-.footer-nav span { margin: 0 0.4rem; }
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: var(--muted);
+table th {
+  background: #0f172a;
 }
 
-/* =========================================================
-   OVERRIDES · NAV HEAD + FOOTER EN BLANCO
-   (sin modificar el resto del diseño)
-========================================================= */
-
-/* Breadcrumb (head) */
-.breadcrumb {
-  color: #f8fafc;
-}
-
-.breadcrumb a {
-  color: #f8fafc;
-}
-
-.breadcrumb a:hover {
-  color: var(--primary-strong);
-}
-
-/* Footer */
-.footer-nav {
-  color: #f8fafc;
+footer {
+  margin-top: 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
 }
 
 .footer-nav a {
-  color: #f8fafc;
-}
-
-.footer-nav a:hover {
-  color: var(--primary-strong);
-}
-
-.footer-copy {
-  color: #f8fafc;
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
-  color: var(--color-muted);
+  color: var(--accent);
   text-decoration: none;
-  margin-left: 0.4rem;
+  margin: 0 8px;
 }
 
-.language-switcher a:hover {
-  color: var(--color-primary);
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 15px 50px;
+  }
 }
