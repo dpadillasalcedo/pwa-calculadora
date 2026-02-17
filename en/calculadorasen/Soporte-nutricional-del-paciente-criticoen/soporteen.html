@@ -136,56 +136,59 @@
 
 
   <!-- PAGE HEADER -->
-  <section class="page-header">
-    <h2>Enteral Nutritional Support in Critically Ill Patients</h2>
-    <p>
-      Clinical calculator based on
-      <strong>ASPEN / ESPEN</strong> guidance
-    </p>
-  </section>
+<section class="page-header">
+  <h2>Enteral Nutritional Support in Critically Ill Patients</h2>
+  <p>
+    Clinical calculator based on
+    <strong>ASPEN / ESPEN</strong> guidelines
+  </p>
+</section>
+
 
   <div class="divider"></div>
 
-  <section class="card">
-    <label for="pesoReal">Actual body weight (kg)</label>
-    <input id="pesoReal" type="number" min="1" step="0.1" placeholder="e.g., 70">
-  </section>
+ <section class="card">
+  <label for="actualWeight">Actual body weight (kg)</label>
+  <input id="actualWeight" type="number" min="1" step="0.1" placeholder="e.g., 70">
+</section>
+
 
   <div class="divider"></div>
 
   <section class="grid">
 
-    <!-- TROPHIC -->
-    <article class="card">
-      <h2>Trophic feeding</h2>
-      <p class="small">15 kcal/kg · 0.8 g protein/kg</p>
-      <div class="result">
-        <b id="kcalTrofico">—</b>
-        <b id="protTrofico">—</b>
-      </div>
-    </article>
+  <!-- TROPHIC -->
+  <article class="card">
+    <h2>Trophic feeding</h2>
+    <p class="small">15 kcal/kg · 0.8 g protein/kg</p>
+    <div class="result">
+      <b id="kcalTrophic">—</b>
+      <b id="protTrophic">—</b>
+    </div>
+  </article>
 
-    <!-- FULL -->
-    <article class="card">
-      <h2>Full feeding</h2>
-      <p class="small">30 kcal/kg · 2.0 g protein/kg</p>
-      <div class="result">
-        <b id="kcalFull">—</b>
-        <b id="protFull">—</b>
-      </div>
-    </article>
+  <!-- FULL -->
+  <article class="card">
+    <h2>Full feeding</h2>
+    <p class="small">30 kcal/kg · 2.0 g protein/kg</p>
+    <div class="result">
+      <b id="kcalFull">—</b>
+      <b id="protFull">—</b>
+    </div>
+  </article>
 
-    <!-- HYPO -->
-    <article class="card">
-      <h2>Hypocaloric / high-protein</h2>
-      <p class="small">15 kcal/kg · 2.0 g protein/kg</p>
-      <div class="result">
-        <b id="kcalHipo">—</b>
-        <b id="protHipo">—</b>
-      </div>
-    </article>
+  <!-- HYPO -->
+  <article class="card">
+    <h2>Hypocaloric / high-protein</h2>
+    <p class="small">15 kcal/kg · 2.0 g protein/kg</p>
+    <div class="result">
+      <b id="kcalHypo">—</b>
+      <b id="protHypo">—</b>
+    </div>
+  </article>
 
-  </section>
+</section>
+
 
   <div class="divider"></div>
 
@@ -195,17 +198,17 @@
   <section class="card">
     <h2>Enteral suggestion – Trophic feeding</h2>
     <table class="tabla-enterales" id="tablaTrofico">
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Formula</th>
-          <th>kcal/ml</th>
-          <th>Total volume<br>(day)</th>
-          <th>Total kcal/day<br>(ml/day)</th>
-          <th>Protein<br>/day</th>
-          <th>Protein deficit<br>(g/day)</th>
-        </tr>
-      </thead>
+<thead>
+  <tr>
+    <th>Brand</th>
+    <th>Formula</th>
+    <th>kcal/ml</th>
+    <th>Total volume<br>(ml/day)</th>
+    <th>Total kcal/day</th>
+    <th>Protein<br>(g/day)</th>
+    <th>Protein deficit<br>(g/day)</th>
+  </tr>
+</thead>
       <tbody>
         <tr data-kcalml="1.0" data-prot100="4.0">
           <td>Yeviti</td>
@@ -254,17 +257,17 @@
   <section class="card">
     <h2>Enteral suggestion – Full feeding</h2>
     <table class="tabla-enterales" id="tablaFull">
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Formula</th>
-          <th>kcal/ml</th>
-          <th>Total volume<br>(day)</th>
-          <th>Total kcal/day<br>(ml/day)</th>
-          <th>Protein<br>/day</th>
-          <th>Protein deficit<br>(g/day)</th>
-        </tr>
-      </thead>
+<thead>
+  <tr>
+    <th>Brand</th>
+    <th>Formula</th>
+    <th>kcal/ml</th>
+    <th>Total volume<br>(ml/day)</th>
+    <th>Total kcal/day</th>
+    <th>Protein<br>(g/day)</th>
+    <th>Protein deficit<br>(g/day)</th>
+  </tr>
+</thead>
       <tbody>
         <tr data-kcalml="1.0" data-prot100="4.0">
           <td>Yeviti</td>
@@ -313,17 +316,17 @@
   <section class="card">
     <h2>Enteral suggestion – Hypocaloric / high-protein</h2>
     <table class="tabla-enterales" id="tablaHipo">
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Formula</th>
-          <th>kcal/ml</th>
-          <th>Total volume<br>(day)</th>
-          <th>Total kcal/day<br>(ml/day)</th>
-          <th>Protein<br>/day</th>
-          <th>Protein deficit<br>(g/day)</th>
-        </tr>
-      </thead>
+<thead>
+  <tr>
+    <th>Brand</th>
+    <th>Formula</th>
+    <th>kcal/ml</th>
+    <th>Total volume<br>(ml/day)</th>
+    <th>Total kcal/day</th>
+    <th>Protein<br>(g/day)</th>
+    <th>Protein deficit<br>(g/day)</th>
+  </tr>
+</thead>
       <tbody>
         <tr data-kcalml="1.0" data-prot100="4.0">
           <td>Yeviti</td>
@@ -367,22 +370,23 @@
       </tbody>
     </table>
 
-    <div class="note" style="margin-top:1.5rem;">
-      <b>Important clinical note</b><br><br>
+   <div class="note" style="margin-top:1.5rem;">
+  <b>Important clinical note</b><br><br>
 
-      • In patients with <b>burns &gt;15% total body surface area</b>,
-      protein requirements may be significantly higher,
-      even in the presence of <b>chronic kidney disease</b>.<br><br>
+  • In patients with <b>burns >15% total body surface area (TBSA)</b>,
+  protein requirements may be significantly increased,
+  even in the presence of <b>chronic kidney disease</b>.<br><br>
 
-      • In patients with <b>obesity (BMI &gt;30 kg/m²)</b>, consider using
-      <b>ideal body weight or adjusted body weight</b> for calorie targets,
-      while maintaining a <b>hypocaloric / high-protein</b> approach per
-      <b>ASPEN / ESPEN</b> guidance.<br><br>
+  • In patients with <b>obesity (BMI >30 kg/m²)</b>, consider using
+  <b>ideal body weight or adjusted body weight</b> for calorie estimation,
+  while maintaining a <b>hypocaloric / high-protein</b> strategy
+  according to <b>ASPEN / ESPEN</b> guidelines.<br><br>
 
-      • Enteral formula suggestions are <b>for guidance only</b> and do not
-      replace <b>clinical judgment</b>. Consider the need for
-      <b>modular protein supplementation</b> if a protein deficit persists.
-    </div>
+  • Enteral formula suggestions are <b>for guidance only</b> and do not
+  replace <b>clinical judgment</b>. Consider
+  <b>modular protein supplementation</b> if a protein deficit persists.
+</div>
+
 
   </section>
 
