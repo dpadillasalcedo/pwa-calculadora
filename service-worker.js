@@ -1,24 +1,9 @@
-const CACHE_NAME = 'critical-care-tools-v4';
-
-/*
-  Cache ONLY safe static assets
-  (NO HTML, NO clinical data, NO dynamic calculations)
-*/
-const STATIC_ASSETS = [
-  '/style.css',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
-];
+const CACHE_NAME = 'critical-care-tools-v5';
 
 // =========================
 // INSTALL
 // =========================
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(STATIC_ASSETS))
-  );
   self.skipWaiting();
 });
 
@@ -42,28 +27,44 @@ self.addEventListener('activate', event => {
 // FETCH
 // =========================
 self.addEventListener('fetch', event => {
+
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 
-  // ❌ Do NOT intercept HTML navigation
-  if (event.request.mode === 'navigate') {
-    return;
-  }
+  // ❌ No intercept HTML navigation
+  if (event.request.mode === 'navigate') return;
 
-  // ❌ Do NOT touch Analytics, Ads or external Google services
+  // ❌ Ignore Google services
   if (
     url.hostname.includes('google-analytics.com') ||
     url.hostname.includes('googletagmanager.com') ||
     url.hostname.includes('googlesyndication.com')
+  ) return;
+
+  // ✅ Only cache local static assets (CSS, JS, images, icons)
+  if (
+    url.origin === location.origin &&
+    (
+      url.pathname.endsWith('.css') ||
+      url.pathname.endsWith('.js') ||
+      url.pathname.endsWith('.png') ||
+      url.pathname.endsWith('.jpg') ||
+      url.pathname.endsWith('.svg') ||
+      url.pathname.endsWith('.webp')
+    )
   ) {
-    return;
+
+    event.respondWith(
+      caches.open(CACHE_NAME).then(cache =>
+        cache.match(event.request).then(cached => {
+          return cached || fetch(event.request).then(response => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        })
+      )
+    );
   }
 
-  // ✅ Cache-first strategy ONLY for static assets
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request);
-    })
-  );
 });
