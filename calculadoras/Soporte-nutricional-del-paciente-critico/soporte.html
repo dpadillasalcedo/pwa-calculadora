@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <!-- =========================
        Cookiebot (SIEMPRE PRIMERO)
   ========================== -->
@@ -13,71 +14,127 @@
   </script>
 
   <!-- =========================
-       Meta básicos
+       META BÁSICOS
   ========================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Soporte nutricional enteral en el paciente crítico | Critical Care Tools</title>
+  <title>Soporte nutricional enteral en UCI | Critical Care Tools</title>
 
-  <meta
-    name="description"
-    content="Calculadora de soporte nutricional en el paciente crítico con sugerencia automática de nutrición enteral basada en guías ASPEN / ESPEN."
-  />
+  <meta name="description"
+        content="Calculadora de soporte nutricional enteral en el paciente crítico con estimación calórica y proteica basada en recomendaciones ASPEN y ESPEN. Uso educativo en UCI.">
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="robots"
+        content="index, follow, max-snippet:-1, max-image-preview:large">
 
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.json" />
-
-  <!-- Canonical -->
-  <link
-    rel="canonical"
-    href="https://criticalcaretools.com/Soporte-nutricional-del-paciente-critico/soporte.html"
-  />
-
-  <!-- CSS -->
-<link
-  rel="stylesheet"
-  href="./soporte.css"
-/>
+  <meta name="theme-color" content="#020617">
 
   <!-- =========================
-     Google Analytics 4 (GA4)
-     Compatible con Cookiebot
-========================== -->
-<script type="text/plain" data-cookieconsent="statistics">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+       CANONICAL
+  ========================== -->
+  <link rel="canonical"
+        href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html">
 
-  // Inicializa GA con Consent Mode
-  gtag('consent', 'default', {
-    'analytics_storage': 'granted'
-  });
+  <!-- =========================
+       HREFLANG (ES / EN)
+  ========================== -->
+  <link rel="alternate"
+        hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html">
 
-  gtag('js', new Date());
-  gtag('config', 'G-WQREHQ56Q4', {
-    send_page_view: true
-  });
-</script>
+  <link rel="alternate"
+        hreflang="en"
+        href="https://criticalcaretools.com/en/Soporte-nutricional-del-paciente-criticoen/soporteen.html">
 
-<script
-  type="text/plain"
-  data-cookieconsent="statistics"
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
-</script>
+  <link rel="alternate"
+        hreflang="x-default"
+        href="https://criticalcaretools.com/">
 
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+  <meta property="og:title"
+        content="Soporte nutricional enteral en UCI">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
-  
+  <meta property="og:description"
+        content="Calculadora nutricional basada en guías ASPEN / ESPEN para el paciente crítico.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:url"
+        content="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html">
+
+  <meta property="og:image"
+        content="https://criticalcaretools.com/assets/og-default.jpg">
+
+  <!-- =========================
+       PERFORMANCE
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- =========================
+       CSS
+  ========================== -->
+  <link rel="stylesheet" href="./soporte.css">
+
+  <!-- =========================
+       GOOGLE ANALYTICS GA4
+       + CONSENT MODE v2 (UNIFICADO)
+  ========================== -->
+  <script async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
+  </script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true,
+      transport_type: 'beacon'
+    });
+  </script>
+
+  <!-- =========================
+       GOOGLE ADS
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
+
 </head>
+
 
 <body>
 
 <main class="wrap">
+
+  <div class="language-switcher">
+  <a href="https://criticalcaretools.com/en/Soporte-nutricional-del-paciente-criticoen/soporteen.html">EN</a> |
+  <a href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" class="active">ES</a>
+</div>
+
 
   <!-- PAGE HEADER -->
   <section class="page-header">
