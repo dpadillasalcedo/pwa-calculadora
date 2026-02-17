@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const weightInput = document.getElementById("pesoReal");
+  const weightInput = document.getElementById("actualWeight");
 
-  const kcalTrophic = document.getElementById("kcalTrofico");
-  const protTrophic = document.getElementById("protTrofico");
+  const kcalTrophic = document.getElementById("kcalTrophic");
+  const protTrophic = document.getElementById("protTrophic");
 
   const kcalFull = document.getElementById("kcalFull");
   const protFull = document.getElementById("protFull");
 
-  const kcalHypo = document.getElementById("kcalHipo");
-  const protHypo = document.getElementById("protHipo");
+  const kcalHypo = document.getElementById("kcalHypo");
+  const protHypo = document.getElementById("protHypo");
+
+  if (!weightInput) return; // safety
 
   weightInput.addEventListener("input", calculateAll);
 
@@ -21,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
       resetAll();
       return;
     }
+
+    // =========================
+    // CALORIC TARGETS
+    // =========================
 
     const trophicKcal = weight * 15;
     const trophicProt = weight * 0.8;
@@ -40,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
     kcalHypo.textContent = hypoKcal.toFixed(0) + " kcal/day";
     protHypo.textContent = hypoProt.toFixed(1) + " g/day";
 
-    updateTable("tablaTrofico", trophicKcal, trophicProt);
+    updateTable("tablaTrophic", trophicKcal, trophicProt);
     updateTable("tablaFull", fullKcal, fullProt);
-    updateTable("tablaHipo", hypoKcal, hypoProt);
+    updateTable("tablaHypo", hypoKcal, hypoProt);
   }
 
   function updateTable(tableId, targetKcal, targetProt) {
@@ -82,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetAll() {
 
     const resultFields = document.querySelectorAll(
-      "#kcalTrofico, #protTrofico, #kcalFull, #protFull, #kcalHipo, #protHipo"
+      "#kcalTrophic, #protTrophic, #kcalFull, #protFull, #kcalHypo, #protHypo"
     );
 
     resultFields.forEach(el => el.textContent = "—");
