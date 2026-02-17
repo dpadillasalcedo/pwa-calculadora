@@ -1,264 +1,181 @@
-/* =========================================================
-   RESET + FIX GLOBAL (ANTI BLANCO)
-========================================================= */
-*,
-*::before,
-*::after {
+/* ==========================================
+   Clinical Variables Hub - EN Styles
+   Critical Care Tools
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background-color: #020617;
-  overscroll-behavior: none;
-}
-
-/* Fondo fijo para evitar flashes blancos */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: #020617;
-  z-index: -1;
-}
-
-/* =========================================================
-   VARIABLES
-========================================================= */
 :root {
-  --bg: #020617;
-  --bg-soft: #0b1220;
-  --card: #0f172a;
-  --border: #1e293b;
-
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
-  --accent-soft: rgba(56,189,248,.18);
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --card-bg: #111c2f;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #1e293b;
+  --radius: 12px;
+  --max-width: 1100px;
 }
 
-/* =========================================================
-   ROOT WRAPPER
-========================================================= */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Container */
+
 .app-root {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-
-  background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
-    var(--bg);
-
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.55;
-}
-
-/* =========================================================
-   MAIN
-========================================================= */
-main {
-  flex: 1;
-  max-width: 1040px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 40px 20px 60px;
 }
 
-/* =========================================================
-   LINKS
-========================================================= */
-a {
+/* Language Switcher */
+
+.language-switcher {
+  text-align: right;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.language-switcher a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+.language-switcher a:hover {
+  color: var(--accent);
+}
+
+/* Breadcrumb */
+
+.breadcrumb {
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumb a {
   color: var(--accent);
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--accent-strong);
-}
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: .35rem;
-  font-size: .85rem;
-  margin-bottom: 1.75rem;
-  color: #f8fafc;
-}
-
-.breadcrumb a {
-  color: #f8fafc;
-}
-
 .breadcrumb span {
-  color: var(--muted);
+  margin: 0 6px;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* Header */
+
 header {
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
 }
 
 header h1 {
-  margin: 0 0 .5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: #f8fafc;
+  font-size: 1.9rem;
+  margin-bottom: 12px;
 }
 
 .subtitle {
-  margin: 0;
-  max-width: 780px;
-  color: var(--muted);
-  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 800px;
 }
 
-/* =========================================================
-   MENU GRID
-========================================================= */
+/* Menu Grid */
+
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.75rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
+
+/* Cards */
 
 .menu a {
-  display: flex;
+  text-decoration: none;
+  color: inherit;
 }
 
-/* =========================================================
-   CARD
-========================================================= */
 .card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  padding: 1.75rem 1.5rem 2.25rem;
-  background: linear-gradient(
-    180deg,
-    rgba(15,23,42,.95),
-    rgba(11,18,32,.95)
-  );
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  box-shadow: 0 12px 28px rgba(2,6,23,.65);
-
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    border-color .18s ease;
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  transition: 0.3s ease;
+  height: 100%;
 }
 
-.menu a:hover .card {
-  transform: translateY(-4px);
+.card:hover {
+  transform: translateY(-5px);
   border-color: var(--accent);
-  box-shadow:
-    0 18px 35px rgba(2,6,23,.85),
-    0 0 0 3px var(--accent-soft);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* =========================================================
-   CARD CONTENT
-========================================================= */
 .icon {
-  font-size: 2.1rem;
-  margin-bottom: .75rem;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
 }
 
 .card h3 {
-  margin: .1rem 0 .5rem;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
   color: var(--accent);
 }
 
 .card p {
-  margin: 0;
-  font-size: .92rem;
-  color: var(--muted);
-  line-height: 1.45;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
 }
 
-/* =========================================================
-   FOOTER (SIN CONTENEDOR INTERNO)
-========================================================= */
+/* Footer */
+
 footer {
-  background-color: var(--bg-soft);
-  border-top: 1px solid var(--border);
-  padding: 2.25rem 1.25rem;
+  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 25px;
   text-align: center;
-  color: #f8fafc;
-  font-size: .85rem;
 }
 
-/* NAV FOOTER */
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: .5rem;
-  margin-bottom: .75rem;
+.footer-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 0.9rem;
 }
 
-.footer-nav a,
 .footer-nav span {
-  color: #f8fafc;
-  font-size: .85rem;
+  margin: 0 5px;
+  color: var(--text-secondary);
 }
 
-.footer-nav a:hover {
-  color: var(--accent-strong);
-}
-
-/* TEXTO LEGAL */
 footer p {
-  margin: 0 auto;
-  max-width: 900px;
-  line-height: 1.4;
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 600px) {
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .app-root {
+    padding: 30px 15px 50px;
+  }
+
   header h1 {
     font-size: 1.6rem;
   }
 
-  .menu {
-    gap: 1.25rem;
+  .card {
+    padding: 25px;
   }
-}
 
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
-  color: var(--color-muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
-}
-
-.language-switcher a:hover {
-  color: var(--color-primary);
 }
