@@ -903,7 +903,7 @@ Monitor heart rate, blood pressure, and bronchospasm.
 </article>
 
 
-  </main>
+</main>
 
 <footer class="site-footer">
   <nav class="footer-nav">
@@ -920,14 +920,16 @@ Monitor heart rate, blood pressure, and bronchospasm.
   </p>
 </footer>
 
- 
-  <script>
+
+<!-- ================= JS ÚNICO ================= -->
+<script>
 document.addEventListener("click", e => {
   const btn = e.target.closest(".toggle-sheet");
   if (!btn) return;
 
   const card = btn.closest(".drug-card");
-  const sheet = card.querySelector(".drug-sheet");
+  const sheet = card?.querySelector(".drug-sheet");
+  if (!sheet) return;
 
   sheet.classList.toggle("hidden");
   btn.textContent = sheet.classList.contains("hidden")
@@ -946,110 +948,86 @@ document.addEventListener("change", e => {
 });
 
 function calc(card) {
+
   const type = card.dataset.calc;
   const dil = card.querySelector(".dilucion")?.selectedOptions[0];
-  if (!dil) return;
+  if (!type || !dil) return;
 
   const vel = parseFloat(card.querySelector(".velocidad")?.value);
   const peso = parseFloat(card.querySelector(".peso")?.value);
 
-  let conc, res, unit = "";
-
   const outConc = card.querySelector(".concentracion");
   const outRes = card.querySelector(".resultado");
-
   if (!outRes) return;
 
-  // ================= mcg/kg/min =================
-  if (type === "mcg-kg-min") {
-    conc = +dil.dataset.mcgPerMl;
-    unit = "mcg/kg/min";
-    outConc.textContent = conc + " mcg/ml";
+  let conc = 0;
+  let res;
+  let unit = "";
 
+  /* ================= mcg/kg/min ================= */
+  if (type === "mcg-kg-min") {
+    conc = +dil.dataset.mcgPerMl || 0;
+    unit = "mcg/kg/min";
     if (vel > 0 && peso > 0) {
       res = (vel * conc) / (peso * 60);
     }
   }
 
-  // ================= mcg/min =================
-  if (type === "mcg-min") {
-    conc = +dil.dataset.mcgPerMl;
+  /* ================= mcg/min ================= */
+  else if (type === "mcg-min") {
+    conc = +dil.dataset.mcgPerMl || 0;
     unit = "mcg/min";
-    outConc.textContent = conc + " mcg/ml";
-
     if (vel > 0) {
       res = (vel * conc) / 60;
     }
   }
 
-  // ================= mcg/kg/h =================
-  if (type === "mcg-kg-h") {
-    conc = +dil.dataset.mcgPerMl;
+  /* ================= mcg/kg/h ================= */
+  else if (type === "mcg-kg-h" || type === "mcg-kg-hr") {
+    conc = +dil.dataset.mcgPerMl || 0;
     unit = "mcg/kg/h";
-    outConc.textContent = conc + " mcg/ml";
-
     if (vel > 0 && peso > 0) {
       res = (vel * conc) / peso;
     }
   }
 
-  // ================= mcg/kg/hr =================
-  if (type === "mcg-kg-hr") {
-    conc = +dil.dataset.mcgPerMl;
-    unit = "mcg/kg/hr";
-    outConc.textContent = conc + " mcg/ml";
-
-    if (vel > 0 && peso > 0) {
-      res = (vel * conc) / peso;
-    }
-  }
-
-  // ================= mg/kg/h =================
-  if (type === "mg-kg-h") {
-    conc = +dil.dataset.mgPerMl;
+  /* ================= mg/kg/h ================= */
+  else if (type === "mg-kg-h" || type === "mg-kg-hr") {
+    conc = +dil.dataset.mgPerMl || 0;
     unit = "mg/kg/h";
-    outConc.textContent = conc + " mg/ml";
-
     if (vel > 0 && peso > 0) {
       res = (vel * conc) / peso;
     }
   }
 
-  // ================= mg/kg/hr =================
-  if (type === "mg-kg-hr") {
-    conc = +dil.dataset.mgPerMl;
-    unit = "mg/kg/hr";
-    outConc.textContent = conc + " mg/ml";
-
-    if (vel > 0 && peso > 0) {
-      res = (vel * conc) / peso;
-    }
-  }
-
-  // ================= mg/min =================
-  if (type === "mg-min") {
-    conc = +dil.dataset.mgPerMl;
+  /* ================= mg/min ================= */
+  else if (type === "mg-min") {
+    conc = +dil.dataset.mgPerMl || 0;
     unit = "mg/min";
-    outConc.textContent = conc + " mg/ml";
-
     if (vel > 0) {
       res = (vel * conc) / 60;
     }
   }
 
-  // ================= IU/min =================
-  if (type === "ui-min") {
-    conc = +dil.dataset.uiPerMl;
+  /* ================= IU/min ================= */
+  else if (type === "ui-min") {
+    conc = +dil.dataset.uiPerMl || 0;
     unit = "IU/min";
-    outConc.textContent = conc + " IU/ml";
-
     if (vel > 0) {
       res = (vel * conc) / 60;
     }
   }
 
-  // ================= Output =================
-  if (res && isFinite(res)) {
+  /* ===== Mostrar concentración ===== */
+  if (outConc) {
+    let label = "mcg/ml";
+    if (dil.dataset.mgPerMl) label = "mg/ml";
+    if (dil.dataset.uiPerMl) label = "IU/ml";
+    outConc.textContent = conc + " " + label;
+  }
+
+  /* ===== Mostrar resultado ===== */
+  if (res !== undefined && isFinite(res)) {
     outRes.textContent = res.toFixed(2) + " " + unit;
   } else {
     outRes.textContent = "—";
@@ -1058,7 +1036,7 @@ function calc(card) {
 </script>
 
 
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const qInput = document.getElementById("q");
@@ -1068,10 +1046,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const headers = document.querySelectorAll("main h2");
 
   function filterDrugs() {
+
     const text = qInput.value.toLowerCase().trim();
     const group = grupoSelect.value;
 
     cards.forEach(card => {
+
       const name = card.querySelector("h3")?.textContent.toLowerCase() || "";
       const cardGroup = card.dataset.group;
 
@@ -1082,12 +1062,14 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.display = visible ? "" : "none";
     });
 
-    // Hide section titles with no visible results
+    /* Ocultar títulos sin resultados */
     headers.forEach(h2 => {
+
       let hasVisible = false;
       let el = h2.nextElementSibling;
 
       while (el && !el.matches("h2")) {
+
         if (
           el.classList.contains("drug-card") &&
           el.style.display !== "none"
@@ -1095,6 +1077,7 @@ document.addEventListener("DOMContentLoaded", () => {
           hasVisible = true;
           break;
         }
+
         el = el.nextElementSibling;
       }
 
@@ -1116,4 +1099,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
