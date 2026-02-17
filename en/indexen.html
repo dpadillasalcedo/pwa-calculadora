@@ -2,60 +2,93 @@
 <html lang="en">
 <head>
 
-<script
-  id="Cookiebot"
-  src="https://consent.cookiebot.com/uc.js"
-  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-  data-blockingmode="auto"
-  type="text/javascript">
-</script>
+  <!-- =========================
+       Cookiebot (ALWAYS FIRST)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- =========================
+       Basic Meta
+  ========================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Critical Care Tools | Clinical Calculators for Intensive Care</title>
+  <title>Critical Care Tools | Clinical Calculators for Intensive Care</title>
 
-<meta name="description"
-      content="Critical Care Tools is a clinical calculator platform for intensive care medicine. Respiratory variables, vasopressor infusion, and nutritional support tools for ICU professionals.">
+  <meta name="description"
+        content="Evidence-based clinical calculators for intensive care: mechanical ventilation, hemodynamic monitoring, severity scores, drug infusion and nutritional support tools.">
 
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#020617">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#020617">
 
-<link rel="canonical" href="https://criticalcaretools.com/en/">
+  <!-- =========================
+       Canonical
+  ========================== -->
+  <link rel="canonical" href="https://criticalcaretools.com/en/indexen.html">
 
-<link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/">
-<link rel="alternate" hreflang="es" href="https://criticalcaretools.com/">
-<link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/">
+  <!-- =========================
+       Hreflang
+  ========================== -->
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/indexen.html">
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/">
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/">
 
-<meta property="og:title" content="Critical Care Tools | Clinical ICU Calculators">
-<meta property="og:description"
-      content="Evidence-based clinical calculators and decision-support tools for ICU management.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://criticalcaretools.com/en/">
+  <!-- =========================
+       Open Graph
+  ========================== -->
+  <meta property="og:title" content="Critical Care Tools | Clinical ICU Calculators">
+  <meta property="og:description"
+        content="Clinical decision-support calculators for ICU professionals.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://criticalcaretools.com/en/indexen.html">
 
-<link rel="stylesheet" href="/en/en.css">
+  <!-- =========================
+       CSS
+  ========================== -->
+  <link rel="stylesheet" href="/en/en.css">
 
-<script async
-        src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"
-        data-cookieconsent="statistics">
-</script>
+  <!-- =========================
+       Google Analytics GA4
+  ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
-<script data-cookieconsent="statistics">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
-</script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
 
 </head>
+
 
 <body>
 
 <header>
+  
   <div class="language-switcher">
-    <a href="/en/">EN</a> |
-    <a href="https://criticalcaretools.com/">ES</a>
-  </div>
+  <a href="https://criticalcaretools.com/en/indexen.html" class="active">EN</a> |
+  <a href="https://criticalcaretools.com/">ES</a>
+</div>
+
   <h1>Critical Care Tools</h1>
 </header>
 
@@ -107,10 +140,17 @@
   </div>
 </footer>
 
-<script>
+
+  <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js');
+      navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+          console.log('Service Worker registered:', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('Service Worker registration failed:', error);
+        });
     });
   }
 </script>
