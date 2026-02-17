@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // CALORIC TARGETS
     // =========================
 
-    const trophicKcal = weight * 15;
+    const trophicKcal = weight * 20;
     const trophicProt = weight * 0.8;
 
     const fullKcal = weight * 30;
