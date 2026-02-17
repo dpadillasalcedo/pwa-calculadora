@@ -132,11 +132,11 @@
   ========================== -->
 
   <url>
-    <loc>https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html</loc>
+    <loc>https://criticalcaretools.com/calculadoras/estado-acido-base/acido-base.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en"
-      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html"/>
+      href="https://criticalcaretools.com/en/calculadorasen/estado-acido-baseen/acido-baseen.html"/>
   </url>
 
   <url>
@@ -208,3 +208,4 @@
   </url>
 
 </urlset>
+
