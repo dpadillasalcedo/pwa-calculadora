@@ -14,47 +14,98 @@
   </script>
 
   <!-- =========================
-       Meta básicos
+       META BÁSICOS
   ========================== -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Farmacoteca UCI | Critical Care Tools</title>
+  <title>Farmacoteca UCI | Dosis e Infusiones | Critical Care Tools</title>
 
-  <meta
-    name="description"
-    content="Farmacoteca de uso en terapia intensiva. Uso educativo y de apoyo clínico."
-  />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="description"
+        content="Farmacoteca UCI con referencia de infusiones y concentraciones de uso en terapia intensiva. Herramienta educativa y de apoyo clínico.">
+
+  <meta name="robots"
+        content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <meta name="theme-color" content="#020617">
 
   <!-- =========================
-       PWA (UNIFICADO)
+       CANONICAL
   ========================== -->
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="canonical"
+        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html">
 
   <!-- =========================
-       Canonical
+       HREFLANG MULTI-IDIOMA
   ========================== -->
-  <link
-    rel="canonical"
-    href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
-  />
+  <link rel="alternate"
+        hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html">
+
+  <link rel="alternate"
+        hreflang="en"
+        href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html">
+
+  <link rel="alternate"
+        hreflang="x-default"
+        href="https://criticalcaretools.com/">
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+  <meta property="og:title"
+        content="Farmacoteca UCI | Dosis e Infusiones">
+
+  <meta property="og:description"
+        content="Referencia rápida de infusiones, diluciones y concentraciones utilizadas en cuidados intensivos.">
+
+  <meta property="og:type" content="website">
+
+  <meta property="og:url"
+        content="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html">
+
+  <meta property="og:image"
+        content="https://criticalcaretools.com/assets/og-default.jpg">
+
+  <!-- =========================
+       TWITTER CARD
+  ========================== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Farmacoteca UCI | Critical Care Tools">
+  <meta name="twitter:description"
+        content="Referencia educativa de infusiones en terapia intensiva.">
+  <meta name="twitter:image"
+        content="https://criticalcaretools.com/assets/og-default.jpg">
+
+  <!-- =========================
+       PERFORMANCE
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- =========================
        CSS
   ========================== -->
-  <link
-    rel="stylesheet"
-    href="/calculadoras/infusion-farmacos/farmacoteca.css"
-  />
+  <link rel="stylesheet"
+        href="/calculadoras/infusion-farmacos/farmacoteca.css">
 
   <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2 (ÚNICO EN TODO EL SITIO)
+       GOOGLE ANALYTICS GA4
+       + CONSENT MODE v2
   ========================== -->
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
+  </script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -62,12 +113,6 @@
 
     gtag('js', new Date());
 
-    /*
-      Consent Mode por defecto:
-      - Fuera de UE: analytics granted
-      - UE: Cookiebot ajusta automáticamente
-      - GA funciona cookieless hasta aceptar
-    */
     gtag('consent', 'default', {
       analytics_storage: 'granted',
       ad_storage: 'denied',
@@ -75,24 +120,34 @@
       ad_personalization: 'denied'
     });
 
-    /*
-      Configuración GA4 segura para PWA
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
-      send_page_view: true
+      send_page_view: true,
+      transport_type: 'beacon'
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <!-- =========================
+       GOOGLE ADS
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
 </head>
+
 
 
 <body class="app-root">
 
 <main class="container">
+
+  <div class="language-switcher">
+  <a href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html">EN</a> |
+  <a href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html" class="active">ES</a>
+</div>
+
 
   <!-- =========================
        CONTROLES DE NAVEGACIÓN
