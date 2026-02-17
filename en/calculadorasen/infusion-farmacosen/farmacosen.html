@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
 
-  <!-- =========================
-       Cookiebot (ALWAYS FIRST)
-  ========================== -->
+  <!-- Cookiebot -->
   <script
     id="Cookiebot"
     src="https://consent.cookiebot.com/uc.js"
@@ -13,34 +11,60 @@
     type="text/javascript">
   </script>
 
-  <!-- Basic Meta -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Drug Dosing | ICU Calculators | Critical Care Tools</title>
 
-  <meta
-    name="description"
-    content="ICU drug dosing calculator. Continuous infusion vancomycin dosing based on renal function. Educational clinical support tool."
-  />
+  <meta name="description"
+        content="ICU drug dosing calculator. Continuous infusion vancomycin dosing based on renal function. Educational clinical support tool.">
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#020617">
 
-  <!-- PWA -->
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Canonical -->
-  <link
-    rel="canonical"
-    href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html"
-  />
+  <link rel="canonical"
+        href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en"
+        href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html">
+  <link rel="alternate" hreflang="es"
+        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
+  <link rel="alternate" hreflang="x-default"
+        href="https://criticalcaretools.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title"
+        content="Drug Dosing | ICU Calculators">
+  <meta property="og:description"
+        content="Continuous infusion vancomycin dosing calculator for ICU.">
+  <meta property="og:type" content="website">
+  <meta property="og:url"
+        content="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacosen.html">
 
   <!-- CSS -->
-  <link
-    rel="stylesheet"
-    href="/en/calculadorasen/infusion-farmacosen/farmacosen.css"
-  />
+  <link rel="stylesheet"
+        href="/en/calculadorasen/infusion-farmacosen/farmacosen.css">
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- GA4 compatible with Cookiebot -->
+  <script async
+    src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"
+    data-cookieconsent="statistics">
+  </script>
+
+  <script data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
+  </script>
 
 </head>
 
@@ -48,14 +72,19 @@
 
 <main class="container">
 
+  <div class="language-switcher">
+  <a href="/en/calculadorasen/infusion-farmacosen/farmacosen.html" class="active">EN</a> |
+  <a href="/calculadoras/infusion-farmacos/farmacos.html">ES</a>
+</div>
+
+
   <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="criticalcaretools.com/en/indexen.html">Home</a>
-    <span aria-hidden="true">›</span>
-    <a href="/en/calculadorasen/variables-clinicasen/variablesem.html">
-      Clinical Variables
-    </a>
-  </nav>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/en/indexen.html">Home</a>
+  <span aria-hidden="true">›</span>
+  <span>Drug Dosing</span>
+</nav>
+
 
   <!-- HEADER -->
   <header class="app-header">
@@ -163,7 +192,7 @@
 
 </footer>
 
-<script src="en/calculadorasen/infusion-farmacosen/farmacosen.html.js" defer></script>
+<script src="/en/calculadorasen/infusion-farmacosen/farmacosen.js" defer></script>
 
 </body>
 </html>
