@@ -1,19 +1,20 @@
 /* =========================================================
-   CRITICAL CARE TOOLS – DRUG DOSING (EN)
+   CRITICAL CARE TOOLS – DRUG DOSING (PRO VERSION)
    Continuous Infusion Vancomycin
 ========================================================= */
 
 :root {
   --bg-main: #020617;
-  --bg-panel: #0f172a;
-  --bg-input: #1e293b;
+  --bg-panel: #0b1220;
+  --bg-input: #111827;
   --accent: #22d3ee;
   --accent-soft: #0891b2;
-  --text-main: #f1f5f9;
+  --text-main: #f8fafc;
   --text-soft: #94a3b8;
   --danger: #ef4444;
   --border: #1e293b;
-  --radius: 10px;
+  --radius: 14px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 /* ================================
@@ -22,16 +23,16 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: var(--bg-main);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg, #020617 0%, #0b1220 100%);
   color: var(--text-main);
   line-height: 1.6;
 }
 
 .container {
-  max-width: 950px;
+  max-width: 980px;
   margin: auto;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
 }
 
 /* ================================
@@ -39,18 +40,19 @@ body {
 ================================ */
 
 .breadcrumb {
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.8rem;
   color: var(--text-soft);
 }
 
 .breadcrumb a {
   color: var(--accent);
   text-decoration: none;
+  transition: 0.2s ease;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 /* ================================
@@ -58,12 +60,13 @@ body {
 ================================ */
 
 .app-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .app-header h1 {
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
+  margin-bottom: 0.4rem;
+  font-size: 2.1rem;
+  font-weight: 600;
 }
 
 .subtitle {
@@ -77,17 +80,25 @@ body {
 
 .panel {
   background-color: var(--bg-panel);
-  padding: 1.8rem;
+  padding: 2rem;
   border-radius: var(--radius);
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
   border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: 0.2s ease;
+}
+
+.panel:hover {
+  border-color: #334155;
 }
 
 .panel h2 {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--accent);
+  letter-spacing: 0.3px;
 }
 
 /* ================================
@@ -96,9 +107,9 @@ body {
 
 .grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.3rem;
+  margin-bottom: 1.6rem;
 }
 
 .field {
@@ -111,15 +122,16 @@ body {
 ================================ */
 
 label {
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.35rem;
   color: var(--text-soft);
+  letter-spacing: 0.3px;
 }
 
 input,
 select {
-  padding: 0.55rem 0.7rem;
-  border-radius: 6px;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
   border: 1px solid var(--border);
   background-color: var(--bg-input);
   color: var(--text-main);
@@ -131,7 +143,7 @@ input:focus,
 select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.15);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
 }
 
 /* ================================
@@ -139,29 +151,30 @@ select:focus {
 ================================ */
 
 .actions {
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
 button {
-  padding: 0.65rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
   border: none;
   font-size: 0.9rem;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 
 button#btnCalcular {
-  background-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: #000;
 }
 
 button#btnCalcular:hover {
-  background-color: var(--accent-soft);
+  transform: translateY(-1px);
+  opacity: 0.95;
 }
 
 .btn-secondary {
@@ -178,22 +191,28 @@ button#btnCalcular:hover {
 ================================ */
 
 .results {
-  margin-top: 2rem;
+  margin-top: 2.2rem;
 }
 
 .resultado {
-  margin-bottom: 0.7rem;
-  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.8rem;
+  padding: 0.9rem 1rem;
   background-color: #111827;
   border-left: 4px solid var(--accent);
-  border-radius: 6px;
+  border-radius: 10px;
   font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.resultado strong {
+  color: var(--accent);
 }
 
 .note {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   font-size: 0.85rem;
   color: var(--text-soft);
+  line-height: 1.5;
 }
 
 /* ================================
@@ -201,11 +220,11 @@ button#btnCalcular:hover {
 ================================ */
 
 .callout {
-  background-color: rgba(239, 68, 68, 0.15);
+  background-color: rgba(239, 68, 68, 0.12);
   border-left: 4px solid var(--danger);
-  padding: 0.8rem;
-  border-radius: 6px;
-  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1.2rem;
   font-size: 0.9rem;
 }
 
@@ -218,15 +237,15 @@ button#btnCalcular:hover {
 ================================ */
 
 .cta-nav {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
 .nav-primary {
   display: inline-block;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  background-color: var(--accent);
+  padding: 0.85rem 1.6rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   color: #000;
   font-weight: 600;
   text-decoration: none;
@@ -234,7 +253,8 @@ button#btnCalcular:hover {
 }
 
 .nav-primary:hover {
-  background-color: var(--accent-soft);
+  transform: translateY(-2px);
+  opacity: 0.95;
 }
 
 /* ================================
@@ -242,24 +262,26 @@ button#btnCalcular:hover {
 ================================ */
 
 footer {
-  margin-top: 3rem;
-  padding: 2rem 1rem;
+  margin-top: 3.5rem;
+  padding: 2.2rem 1rem;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-soft);
   border-top: 1px solid var(--border);
+  background-color: #0b1220;
 }
 
 .footer-nav {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
 }
 
 .footer-nav a {
   color: var(--accent);
   text-decoration: none;
   margin: 0 0.4rem;
+  transition: 0.2s ease;
 }
 
 .footer-nav a:hover {
-  text-decoration: underline;
+  opacity: 0.8;
 }
