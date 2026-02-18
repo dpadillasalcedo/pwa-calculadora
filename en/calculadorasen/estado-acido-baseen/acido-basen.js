@@ -1,122 +1,129 @@
-(function () {
-  const getNum = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return NaN;
-    const v = parseFloat(el.value);
-    return Number.isFinite(v) ? v : NaN;
-  };
+/* ==========================================
+   ACID–BASE EN – ICU CALCULATOR
+   Compatible with inline onclick
+========================================== */
 
-  const setHTML = (id, html) => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = html;
-  };
+function getNumber(id) {
+  const el = document.getElementById(id);
+  if (!el) return NaN;
+  const value = parseFloat(el.value);
+  return isNaN(value) ? NaN : value;
+}
 
-  const fmt = (n, d = 2) => (Number.isFinite(n) ? n.toFixed(d) : "—");
+/* =========================
+   1) CORRECTED ANION GAP
+========================= */
+function calcularAnionGapCorregido() {
 
-  // =========================
-  // 1) Corrected Anion Gap
-  // AG = Na + K - Cl - HCO3
-  // AGcorr = AG + 2.5*(4 - Alb[g/dL])
-  // =========================
-  window.calcularAnionGapCorregido = function () {
-    const na = getNum("ab_na");
-    const k = getNum("ab_k");
-    const cl = getNum("ab_cl");
-    const hco3 = getNum("ab_hco3");
-    const alb = getNum("ab_alb");
+  const na = getNumber("ab_na");
+  const k = getNumber("ab_k");
+  const cl = getNumber("ab_cl");
+  const hco3 = getNumber("ab_hco3");
+  const alb = getNumber("ab_alb");
 
-    if (![na, k, cl, hco3, alb].every(Number.isFinite)) {
-      setHTML("resultadoAnionGap", "Please complete all fields with valid numbers.");
-      return;
-    }
+  if ([na,k,cl,hco3,alb].some(isNaN)) {
+    document.getElementById("resultadoAnionGap").innerHTML =
+      "Please complete all fields.";
+    return;
+  }
 
-    const ag = (na + k) - (cl + hco3);
-    const agCorr = ag + 2.5 * (4 - alb);
+  const ag = (na + k) - (cl + hco3);
+  const agCorr = ag + 2.5 * (4 - alb);
 
-    setHTML(
-      "resultadoAnionGap",
-      `<strong>AG:</strong> ${fmt(ag, 1)} mEq/L<br>
-       <strong>Corrected AG:</strong> ${fmt(agCorr, 1)} mEq/L`
-    );
-  };
+  document.getElementById("resultadoAnionGap").innerHTML =
+    "<strong>AG:</strong> " + ag.toFixed(1) + " mEq/L<br>" +
+    "<strong>Corrected AG:</strong> " + agCorr.toFixed(1) + " mEq/L";
+}
 
-  // =========================
-  // 2) Delta/Delta
-  // ΔAG = AG - 12
-  // ΔHCO3 = 24 - HCO3
-  // Ratio = ΔAG / ΔHCO3
-  // =========================
-  window.calcularDeltaGap = function () {
-    const ag = getNum("dd_ag");
-    const hco3 = getNum("dd_hco3");
 
-    if (![ag, hco3].every(Number.isFinite)) {
-      setHTML("resultadoDeltaGap", "Please enter valid numbers.");
-      setHTML("interpretacionDeltaGap", "");
-      return;
-    }
+/* =========================
+   2) DELTA / DELTA
+========================= */
+function calcularDeltaGap() {
 
-    const dAG = ag - 12;
-    const dHCO3 = 24 - hco3;
+  const ag = getNumber("dd_ag");
+  const hco3 = getNumber("dd_hco3");
 
-    if (dHCO3 === 0) {
-      setHTML("resultadoDeltaGap", "<strong>Δ/Δ:</strong> —");
-      setHTML("interpretacionDeltaGap", "ΔHCO₃ is zero (cannot divide).");
-      return;
-    }
+  if ([ag,hco3].some(isNaN)) {
+    document.getElementById("resultadoDeltaGap").innerHTML =
+      "Please enter valid numbers.";
+    document.getElementById("interpretacionDeltaGap").innerHTML = "";
+    return;
+  }
 
-    const ratio = dAG / dHCO3;
+  const deltaAG = ag - 12;
+  const deltaHCO3 = 24 - hco3;
 
-    let interp = "";
-    if (ratio < 0.4) interp = "Suggests pure non–anion gap metabolic acidosis (NAGMA).";
-    else if (ratio < 0.8) interp = "Suggests mixed HAGMA + NAGMA.";
-    else if (ratio <= 2.0) interp = "Consistent with high anion gap metabolic acidosis (HAGMA).";
-    else interp = "Suggests concurrent metabolic alkalosis or chronic respiratory acidosis.";
+  if (deltaHCO3 === 0) {
+    document.getElementById("resultadoDeltaGap").innerHTML =
+      "Cannot divide by zero.";
+    return;
+  }
 
-    setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${fmt(ratio, 2)}`);
-    setHTML("interpretacionDeltaGap", interp);
-  };
+  const ratio = deltaAG / deltaHCO3;
 
-  // =========================
-  // 3) Corrected Sodium (Hyperglycemia)
-  // Na_corr = Na + 1.6*((Glucose - 100)/100) for Glu > 100
-  // =========================
-  window.calcularSodioCorregido = function () {
-    const na = getNum("na_meas");
-    const glu = getNum("glu");
+  let interpretation = "";
 
-    if (![na, glu].every(Number.isFinite)) {
-      setHTML("resultadoNaCorregido", "Please enter valid numbers.");
-      return;
-    }
+  if (ratio < 0.4)
+    interpretation = "Suggests pure non–anion gap metabolic acidosis.";
+  else if (ratio < 0.8)
+    interpretation = "Suggests mixed HAGMA + NAGMA.";
+  else if (ratio <= 2)
+    interpretation = "Consistent with high anion gap metabolic acidosis.";
+  else
+    interpretation = "Suggests concurrent metabolic alkalosis or chronic respiratory acidosis.";
 
-    const factor = glu > 100 ? 1.6 * ((glu - 100) / 100) : 0;
-    const naCorr = na + factor;
+  document.getElementById("resultadoDeltaGap").innerHTML =
+    "<strong>Δ/Δ:</strong> " + ratio.toFixed(2);
 
-    setHTML(
-      "resultadoNaCorregido",
-      `<strong>Corrected Na⁺:</strong> ${fmt(naCorr, 1)} mEq/L`
-    );
-  };
+  document.getElementById("interpretacionDeltaGap").innerHTML =
+    interpretation;
+}
 
-  // =========================
-  // 4) Corrected Calcium (Albumin)
-  // Ca_corr = Ca + 0.8*(4 - Alb)
-  // =========================
-  window.calcularCalcioCorregido = function () {
-    const ca = getNum("ca_meas");
-    const alb = getNum("alb_meas");
 
-    if (![ca, alb].every(Number.isFinite)) {
-      setHTML("resultadoCaCorregido", "Please enter valid numbers.");
-      return;
-    }
+/* =========================
+   3) CORRECTED SODIUM
+========================= */
+function calcularSodioCorregido() {
 
-    const caCorr = ca + 0.8 * (4 - alb);
+  const na = getNumber("na_meas");
+  const glu = getNumber("glu");
 
-    setHTML(
-      "resultadoCaCorregido",
-      `<strong>Corrected Ca:</strong> ${fmt(caCorr, 2)}`
-    );
-  };
-})();
+  if ([na,glu].some(isNaN)) {
+    document.getElementById("resultadoNaCorregido").innerHTML =
+      "Please enter valid numbers.";
+    return;
+  }
+
+  let correction = 0;
+
+  if (glu > 100) {
+    correction = 1.6 * ((glu - 100) / 100);
+  }
+
+  const naCorr = na + correction;
+
+  document.getElementById("resultadoNaCorregido").innerHTML =
+    "<strong>Corrected Na⁺:</strong> " + naCorr.toFixed(1) + " mEq/L";
+}
+
+
+/* =========================
+   4) CORRECTED CALCIUM
+========================= */
+function calcularCalcioCorregido() {
+
+  const ca = getNumber("ca_meas");
+  const alb = getNumber("alb_meas");
+
+  if ([ca,alb].some(isNaN)) {
+    document.getElementById("resultadoCaCorregido").innerHTML =
+      "Please enter valid numbers.";
+    return;
+  }
+
+  const caCorr = ca + 0.8 * (4 - alb);
+
+  document.getElementById("resultadoCaCorregido").innerHTML =
+    "<strong>Corrected Ca:</strong> " + caCorr.toFixed(2);
+}
