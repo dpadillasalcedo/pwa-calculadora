@@ -8,17 +8,17 @@
 }
 
 /* =========================
-   VARIABLES · DARK CLÍNICO
+   VARIABLES · DARK CLÍNICO AZUL
 ========================= */
 :root {
-  --bg-main: #020617;
-  --bg-card: #0b1220;
-  --bg-soft: #0f172a;
+  --bg-main: #0b1c2d;      /* Azul noche clínico */
+  --bg-card: #102235;      /* Panel ligeramente más claro */
+  --bg-soft: #13283d;      /* Inputs / selects */
 
   --text-main: #e5e7eb;
   --text-muted: #94a3b8;
 
-  --border: #1e293b;
+  --border: #1f3347;
 
   --primary: #38bdf8;
   --primary-strong: #0ea5e9;
@@ -72,7 +72,7 @@ header {
    TÍTULOS
 ========================= */
 h1 {
-  display: none; /* no se usa en esta vista */
+  display: none;
 }
 
 h2 {
@@ -131,7 +131,7 @@ select {
 select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(56,189,248,.15);
+  box-shadow: 0 0 0 3px rgba(56,189,248,.18);
 }
 
 /* =========================
