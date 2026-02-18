@@ -1,152 +1,125 @@
 /* ==========================================
-   Mechanical Ventilation - EN Script
-   Critical Care Tools
+   MECHANICAL VENTILATION – ICU CALCULATOR
+   Critical Care Tools EN
 ========================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+function getNumber(id) {
+  const el = document.getElementById(id);
+  if (!el) return NaN;
+  const val = parseFloat(el.value);
+  return isNaN(val) ? NaN : val;
+}
 
-  const currentPath = window.location.pathname;
+/* =========================================================
+   1) PREDICTED BODY WEIGHT (PBW)
+   ARDSnet Formula
+========================================================= */
 
-  /* ==========================================
-     1️⃣ PBW CALCULATION (ARDSnet)
-  ========================================== */
+function calcularPesoIdeal() {
 
-  const pbwBtn = document.querySelector("button[onclick='calcularPesoIdeal()']");
-  const heightInput = document.getElementById("height");
-  const sexSelect = document.getElementById("sex");
-  const pbwResult = document.getElementById("resultadoPeso");
+  const height = getNumber("height");
+  const sex = document.getElementById("sex").value;
 
-  if (pbwBtn) {
-    pbwBtn.onclick = function () {
-
-      const height = parseFloat(heightInput.value);
-      const sex = sexSelect.value;
-
-      if (!height || !sex) {
-        pbwResult.innerHTML = "Please enter height and sex.";
-        return;
-      }
-
-      let pbw;
-
-      if (sex === "male") {
-        pbw = 50 + 0.91 * (height - 152.4);
-      } else {
-        pbw = 45.5 + 0.91 * (height - 152.4);
-      }
-
-      pbwResult.innerHTML =
-        `<strong>Predicted Body Weight:</strong> ${pbw.toFixed(1)} kg`;
-
-      sendGA("pbw_calculated");
-    };
+  if (!height || !sex) {
+    document.getElementById("resultadoPeso").innerHTML =
+      "Please enter height and select sex.";
+    return;
   }
 
-  /* ==========================================
-     2️⃣ PaCO2 ADJUSTMENT
-  ========================================== */
+  let pbw;
 
-  const pco2Btn = document.querySelector("button[onclick='ajustarPCO2()']");
-  const resultadoPCO2 = document.getElementById("resultadoPCO2");
-  const resultadoPCO2Detalle = document.getElementById("resultadoPCO2Detalle");
-
-  if (pco2Btn) {
-    pco2Btn.onclick = function () {
-
-      const pco2Act = parseFloat(document.getElementById("pco2Act").value);
-      const pco2Des = parseFloat(document.getElementById("pco2Des").value);
-      const vminActual = parseFloat(document.getElementById("vmin_actual").value);
-
-      if (!pco2Act || !pco2Des || !vminActual) {
-        resultadoPCO2.innerHTML = "Please complete required fields.";
-        return;
-      }
-
-      const newVmin = (pco2Act * vminActual) / pco2Des;
-
-      resultadoPCO2.innerHTML =
-        `<strong>New Estimated Minute Ventilation:</strong> ${newVmin.toFixed(2)} L/min`;
-
-      resultadoPCO2Detalle.innerHTML =
-        "Clinical adjustment should consider patient tolerance and acid-base status.";
-
-      sendGA("paco2_adjustment_calculated");
-    };
+  if (sex === "male") {
+    pbw = 50 + 0.91 * (height - 152.4);
+  } else {
+    pbw = 45.5 + 0.91 * (height - 152.4);
   }
 
-  /* ==========================================
-     3️⃣ Driving Pressure
-  ========================================== */
+  const vt6 = pbw * 6;
+  const vt7 = pbw * 7;
+  const vt8 = pbw * 8;
 
-  const deltaBtn = document.querySelector("button[onclick='calcularDeltaP()']");
-  const resultadoDeltaP = document.getElementById("resultadoDeltaP");
-  const interpretacionDeltaP = document.getElementById("interpretacionDeltaP");
+  document.getElementById("resultadoPeso").innerHTML =
+    "<strong>Predicted Body Weight:</strong> " + pbw.toFixed(1) + " kg<br><br>" +
+    "<strong>Tidal Volume Targets:</strong><br>" +
+    "6 mL/kg → <strong>" + vt6.toFixed(0) + " mL</strong><br>" +
+    "7 mL/kg → <strong>" + vt7.toFixed(0) + " mL</strong><br>" +
+    "8 mL/kg → <strong>" + vt8.toFixed(0) + " mL</strong>";
+}
 
-  if (deltaBtn) {
-    deltaBtn.onclick = function () {
 
-      const pplat = parseFloat(document.getElementById("pplat").value);
-      const peep = parseFloat(document.getElementById("peep").value);
+/* =========================================================
+   2) PaCO2 ADJUSTMENT
+   PaCO2 ∝ 1 / Minute Ventilation
+========================================================= */
 
-      if (!pplat || !peep) {
-        resultadoDeltaP.innerHTML = "Please complete required fields.";
-        return;
-      }
+function ajustarPCO2() {
 
-      const deltaP = pplat - peep;
+  const pco2Act = getNumber("pco2Act");
+  const pco2Des = getNumber("pco2Des");
+  const fr = getNumber("fr_actual");
+  const vt = getNumber("vt_actual");
+  const vminActual = getNumber("vmin_actual");
 
-      resultadoDeltaP.innerHTML =
-        `<strong>Driving Pressure (ΔP):</strong> ${deltaP.toFixed(1)} cmH₂O`;
-
-      if (deltaP > 15) {
-        interpretacionDeltaP.innerHTML =
-          "ΔP > 15 cmH₂O is associated with increased risk of lung injury.";
-      } else {
-        interpretacionDeltaP.innerHTML =
-          "ΔP ≤ 15 cmH₂O is generally considered lung-protective.";
-      }
-
-      sendGA("driving_pressure_calculated");
-    };
+  if ([pco2Act, pco2Des, fr, vt, vminActual].some(isNaN)) {
+    document.getElementById("resultadoPCO2").innerHTML =
+      "Please complete all fields.";
+    document.getElementById("resultadoPCO2Detalle").innerHTML = "";
+    return;
   }
 
-  /* ==========================================
-     4️⃣ Scroll Depth Tracking
-  ========================================== */
+  // Fórmula: Vmin objetivo = Vmin actual × (PaCO2 actual / PaCO2 deseado)
+  const vminObjetivo = vminActual * (pco2Act / pco2Des);
 
-  let scrollMarks = [25, 50, 75, 100];
-  let triggered = [];
+  // Propuesta 1: mantener VT y ajustar FR
+  const frNueva = (vminObjetivo * 1000) / vt;
 
-  window.addEventListener("scroll", function () {
+  // Propuesta 2: mantener FR y ajustar VT
+  const vtNuevo = (vminObjetivo * 1000) / fr;
 
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (docHeight <= 0) return;
+  document.getElementById("resultadoPCO2").innerHTML =
+    "<strong>Target Minute Ventilation:</strong> " +
+    vminObjetivo.toFixed(2) + " L/min";
 
-    const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+  document.getElementById("resultadoPCO2Detalle").innerHTML =
+    "<strong>If VT unchanged:</strong><br>" +
+    "New RR ≈ <strong>" + frNueva.toFixed(0) + " breaths/min</strong><br><br>" +
+    "<strong>If RR unchanged:</strong><br>" +
+    "New VT ≈ <strong>" + vtNuevo.toFixed(0) + " mL</strong>";
+}
 
-    scrollMarks.forEach(mark => {
-      if (scrollPercent >= mark && !triggered.includes(mark)) {
-        triggered.push(mark);
-        sendGA("ventilation_scroll_" + mark);
-      }
-    });
 
-  });
+/* =========================================================
+   3) DRIVING PRESSURE
+   ΔP = Plateau - PEEP
+========================================================= */
 
-  /* ==========================================
-     Helper GA function
-  ========================================== */
+function calcularDeltaP() {
 
-  function sendGA(eventName) {
-    if (typeof gtag === "function") {
-      gtag("event", eventName, {
-        event_category: "ventilation_module",
-        page_path: currentPath,
-        language: "en"
-      });
-    }
+  const pplat = getNumber("pplat");
+  const peep = getNumber("peep");
+
+  if ([pplat, peep].some(isNaN)) {
+    document.getElementById("resultadoDeltaP").innerHTML =
+      "Please enter valid pressures.";
+    document.getElementById("interpretacionDeltaP").innerHTML = "";
+    return;
   }
 
-});
+  const deltaP = pplat - peep;
 
+  let interpretation = "";
+
+  if (deltaP <= 13) {
+    interpretation = "Acceptable driving pressure.";
+  } else if (deltaP <= 15) {
+    interpretation = "Borderline high. Consider optimization.";
+  } else {
+    interpretation = "High driving pressure. Associated with worse outcomes.";
+  }
+
+  document.getElementById("resultadoDeltaP").innerHTML =
+    "<strong>ΔP:</strong> " + deltaP.toFixed(1) + " cmH₂O";
+
+  document.getElementById("interpretacionDeltaP").innerHTML =
+    interpretation;
+}
