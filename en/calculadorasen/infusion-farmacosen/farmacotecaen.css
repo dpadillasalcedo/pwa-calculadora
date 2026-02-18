@@ -1,22 +1,22 @@
 /* =========================================================
    CRITICAL CARE TOOLS – ICU PHARMACOPOEIA
-   Professional Clinical UI
+   Light Clinical Blue Version
 ========================================================= */
 
 :root {
-  --bg-main: #020617;
-  --bg-card: #0f172a;
-  --bg-soft: #111827;
-  --bg-input: #1e293b;
+  --bg-main: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F1F5F9;
+  --bg-input: #FFFFFF;
 
-  --accent: #22d3ee;
-  --accent-soft: #0891b2;
+  --accent: #38BDF8;          /* Azul celeste */
+  --accent-soft: #0EA5E9;     /* Azul celeste fuerte */
 
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
 
-  --border: #1e293b;
-  --danger: #ef4444;
+  --border: #E2E8F0;
+  --danger: #DC2626;
 
   --radius: 12px;
 }
@@ -59,14 +59,15 @@ body {
   transition: 0.2s ease;
 }
 
-.language-switcher a.active {
+.language-switcher a.active,
+.language-switcher a[aria-current="page"] {
   background: var(--accent);
-  color: #000;
+  color: #fff;
   font-weight: 600;
 }
 
 .language-switcher a:hover {
-  background: rgba(34, 211, 238, 0.15);
+  background: rgba(56,189,248,0.15);
 }
 
 /* ================= BREADCRUMB ================= */
@@ -78,7 +79,7 @@ body {
 }
 
 .breadcrumb a {
-  color: var(--accent);
+  color: var(--accent-soft);
   text-decoration: none;
 }
 
@@ -126,7 +127,7 @@ body {
 .controls select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.15);
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
 }
 
 .controls-actions {
@@ -145,12 +146,12 @@ body {
 }
 
 .btn.secondary {
-  background: #334155;
+  background: #E2E8F0;
   color: var(--text-main);
 }
 
 .btn.secondary:hover {
-  background: #475569;
+  background: #CBD5E1;
 }
 
 /* ================= SECTION TITLES ================= */
@@ -160,7 +161,7 @@ h2 {
   font-size: 1.3rem;
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.5rem;
-  color: var(--accent);
+  color: var(--accent-soft);
 }
 
 /* ================= DRUG CARD ================= */
@@ -202,7 +203,7 @@ h2 {
 
 .toggle-sheet {
   background: var(--accent);
-  color: #000;
+  color: #fff;
 }
 
 .toggle-sheet:hover {
@@ -269,7 +270,7 @@ h2 {
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: var(--bg-input);
+  background: #fff;
   color: var(--text-main);
 }
 
@@ -286,7 +287,7 @@ h2 {
 
 .calc-result b {
   font-size: 1rem;
-  color: var(--accent);
+  color: var(--accent-soft);
 }
 
 /* ================= CLINICAL NOTE ================= */
@@ -295,9 +296,9 @@ h2 {
   margin-top: 1rem;
   font-size: 0.8rem;
   color: var(--text-muted);
-  background: rgba(34, 211, 238, 0.05);
+  background: #E0F2FE;
   padding: 0.8rem;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--accent-soft);
   border-radius: 6px;
 }
 
@@ -310,6 +311,7 @@ h2 {
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-muted);
+  background: #FFFFFF;
 }
 
 .footer-nav {
@@ -317,7 +319,7 @@ h2 {
 }
 
 .footer-nav a {
-  color: var(--accent);
+  color: var(--accent-soft);
   text-decoration: none;
   margin: 0 0.4rem;
 }
