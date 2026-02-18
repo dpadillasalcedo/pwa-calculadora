@@ -1,5 +1,6 @@
 /* ==========================================
    Neurocritical Care - EN Styles
+   Light Blue Clinical Theme
 ========================================== */
 
 * {
@@ -9,13 +10,14 @@
 }
 
 :root {
-  --bg: #020617;
-  --panel: #111c2f;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --text: #f8fafc;
-  --muted: #cbd5e1;
-  --border: #1e293b;
+  --bg: #f4f9ff;
+  --panel: #ffffff;
+  --panel-soft: #eaf4ff;
+  --accent: #3aa0ff;
+  --accent-hover: #1f7fd6;
+  --text: #1e293b;
+  --muted: #5b6b7f;
+  --border: #cfe5ff;
   --radius: 12px;
   --maxw: 1000px;
 }
@@ -27,11 +29,15 @@ body {
   line-height: 1.6;
 }
 
+/* Layout */
+
 .container {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 40px 20px 60px;
 }
+
+/* Language Switcher */
 
 .language-switcher {
   text-align: right;
@@ -41,22 +47,29 @@ body {
 .language-switcher a {
   color: var(--muted);
   text-decoration: none;
+  margin-left: 6px;
 }
 
 .language-switcher a.active,
 .language-switcher a:hover {
   color: var(--accent);
+  font-weight: 600;
 }
+
+/* Breadcrumb */
 
 .breadcrumb {
   margin-bottom: 20px;
   font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .breadcrumb a {
   color: var(--accent);
   text-decoration: none;
 }
+
+/* Header */
 
 .app-header {
   margin-bottom: 30px;
@@ -66,46 +79,60 @@ body {
   color: var(--muted);
 }
 
+/* Panels */
+
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 25px;
   margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(58, 160, 255, 0.08);
 }
 
 .panel h2 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: var(--accent);
 }
+
+/* Forms */
 
 label {
   display: block;
   margin-bottom: 12px;
   font-size: 0.95rem;
+  color: var(--text);
 }
 
 select {
   width: 100%;
-  margin-top: 5px;
-  padding: 8px;
+  margin-top: 6px;
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #0f172a;
-  color: white;
+  background: var(--panel-soft);
+  color: var(--text);
+  transition: 0.2s ease;
 }
 
 select:focus {
   border-color: var(--accent);
   outline: none;
+  background: #ffffff;
 }
+
+/* Result Box */
 
 .result {
   margin-top: 15px;
-  padding: 12px;
+  padding: 14px;
   border-radius: 8px;
-  background: rgba(37, 99, 235, 0.15);
-  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: #e3f2ff;
+  border: 1px solid var(--accent);
+  font-weight: 500;
 }
+
+/* Tables */
 
 table {
   width: 100%;
@@ -116,26 +143,39 @@ table {
 table th,
 table td {
   border: 1px solid var(--border);
-  padding: 8px;
+  padding: 10px;
   font-size: 0.9rem;
+  text-align: left;
 }
 
 table th {
-  background: #0f172a;
+  background: var(--panel-soft);
+  color: var(--accent);
+  font-weight: 600;
 }
+
+/* Footer */
 
 footer {
   margin-top: 40px;
   text-align: center;
   border-top: 1px solid var(--border);
   padding-top: 20px;
+  color: var(--muted);
 }
 
 .footer-nav a {
   color: var(--accent);
   text-decoration: none;
   margin: 0 8px;
+  font-weight: 500;
 }
+
+.footer-nav a:hover {
+  color: var(--accent-hover);
+}
+
+/* Responsive */
 
 @media (max-width: 768px) {
   .container {
