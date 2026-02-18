@@ -1,6 +1,9 @@
 /* ==========================================
-   Mechanical Ventilation - EN Styles
+   Mechanical Ventilation - EN
+   Full Celeste Clinical UI
 ========================================== */
+
+/* ================= RESET ================= */
 
 * {
   margin: 0;
@@ -8,135 +11,205 @@
   box-sizing: border-box;
 }
 
+/* ================= VARIABLES ================= */
+
 :root {
-  --bg-primary: #020617;
-  --panel-bg: #111c2f;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --border-color: #1e293b;
-  --radius: 12px;
+  --bg-primary: #F0F9FF;          /* Fondo celeste claro */
+  --bg-secondary: #E0F2FE;        /* Fondo suave */
+  --panel-bg: #FFFFFF;            /* Panel blanco */
+  --accent: #38BDF8;              /* Celeste principal */
+  --accent-strong: #0EA5E9;       /* Celeste más intenso */
+  --text-primary: #0F172A;        /* Texto principal */
+  --text-secondary: #475569;      /* Texto secundario */
+  --border-color: #BAE6FD;        /* Bordes celestes suaves */
+  --radius: 14px;
   --max-width: 900px;
 }
 
+/* ================= BODY ================= */
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: var(--bg-primary);
+  background: linear-gradient(
+    180deg,
+    #F0F9FF 0%,
+    #E0F2FE 100%
+  );
   color: var(--text-primary);
   line-height: 1.6;
 }
 
+/* ================= CONTAINER ================= */
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 40px 20px 60px;
+  padding: 50px 20px 70px;
 }
+
+/* ================= LANGUAGE SWITCHER ================= */
 
 .language-switcher {
   text-align: right;
   margin-bottom: 20px;
+  font-size: 0.85rem;
 }
 
 .language-switcher a {
-  color: var(--text-secondary);
+  color: var(--accent-strong);
   text-decoration: none;
+  margin-left: .6rem;
 }
 
 .language-switcher a:hover {
-  color: var(--accent);
+  font-weight: 600;
 }
+
+/* ================= BREADCRUMB ================= */
 
 .breadcrumb {
   margin-bottom: 25px;
   font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
 .breadcrumb a {
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
 }
 
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ================= HEADER ================= */
+
 header {
-  margin-bottom: 35px;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  color: var(--accent-strong);
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .subtitle {
   color: var(--text-secondary);
 }
 
+/* ================= PANEL ================= */
+
 .panel {
   background-color: var(--panel-bg);
-  padding: 30px;
+  padding: 35px;
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+  box-shadow: 0 10px 20px rgba(14,165,233,.08);
 }
 
 .panel h2 {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  color: var(--accent-strong);
 }
+
+/* ================= FORM ================= */
 
 label {
   display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
+  margin-top: 18px;
+  margin-bottom: 6px;
   font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
-input, select {
+input,
+select {
   width: 100%;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
-  background-color: #0f172a;
-  color: white;
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+  transition: 0.2s ease;
 }
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(56,189,248,.25);
+}
+
+/* ================= BUTTON ================= */
 
 button {
-  margin-top: 15px;
-  padding: 10px 18px;
-  border-radius: 6px;
+  margin-top: 18px;
+  padding: 12px 22px;
+  border-radius: 8px;
   border: none;
   background-color: var(--accent);
   color: white;
   cursor: pointer;
+  font-weight: 500;
   transition: 0.2s ease;
 }
 
 button:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--accent-strong);
 }
+
+/* ================= RESULT ================= */
 
 .result {
-  margin-top: 15px;
+  margin-top: 18px;
   font-weight: 500;
+  background: #E0F2FE;
+  border: 1px solid rgba(14,165,233,.4);
+  padding: 12px;
+  border-radius: 8px;
 }
 
+/* ================= NOTE ================= */
+
 .note {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
+/* ================= GRID ================= */
+
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 18px;
 }
 
+/* ================= FOOTER ================= */
+
 footer {
-  margin-top: 50px;
+  margin-top: 60px;
   text-align: center;
   border-top: 1px solid var(--border-color);
-  padding-top: 20px;
+  padding-top: 25px;
+  background-color: var(--bg-secondary);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
 .footer-nav a {
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
   margin: 0 10px;
 }
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 768px) {
 
