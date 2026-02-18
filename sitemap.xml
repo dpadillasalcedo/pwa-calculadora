@@ -56,7 +56,7 @@
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en"
-      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/neurologia-criticaen/neurologiaen.html"/>
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html"/>
   </url>
 
   <url>
@@ -116,7 +116,7 @@
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en"
-      href="https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/monitoreo-hemodinamicoen/monitoreoen.html"/>
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html"/>
   </url>
 
   <url>
@@ -208,4 +208,5 @@
   </url>
 
 </urlset>
+
 
