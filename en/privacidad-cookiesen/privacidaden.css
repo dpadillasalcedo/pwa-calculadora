@@ -1,6 +1,6 @@
 /* ==========================================
    Privacy & Cookies - EN Styles
-   Critical Care Tools
+   Critical Care Tools (Light Clinical Blue)
 ========================================== */
 
 /* ========== RESET ========== */
@@ -14,15 +14,15 @@
 /* ========== ROOT VARIABLES ========== */
 
 :root {
-  --bg-primary: #020617;
-  --bg-secondary: #0f172a;
-  --panel-bg: #111c2f;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --border-color: #1e293b;
-  --radius: 10px;
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --panel-bg: #FFFFFF;
+  --accent: #38BDF8;          /* Azul celeste */
+  --accent-hover: #0EA5E9;    /* Azul celeste fuerte */
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --border-color: #E2E8F0;
+  --radius: 14px;
   --max-width: 1100px;
 }
 
@@ -61,7 +61,7 @@ body {
 
 .language-switcher a.active,
 .language-switcher a:hover {
-  color: var(--accent);
+  color: var(--accent-hover);
   font-weight: 500;
 }
 
@@ -74,8 +74,12 @@ body {
 }
 
 .breadcrumb a {
-  color: var(--accent);
+  color: var(--accent-hover);
   text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
 .breadcrumb span {
@@ -90,6 +94,7 @@ body {
   border-radius: var(--radius);
   margin-bottom: 40px;
   border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.05);
 }
 
 .hero h1 {
@@ -108,8 +113,9 @@ body {
 
 .badge {
   background-color: var(--accent);
+  color: white;
   padding: 4px 8px;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 0.8rem;
   margin-right: 8px;
 }
@@ -124,7 +130,7 @@ body {
 
 .btn {
   padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
   border: none;
@@ -164,7 +170,7 @@ body {
 }
 
 .toc a {
-  color: var(--accent);
+  color: var(--accent-hover);
   text-decoration: none;
   font-size: 0.9rem;
 }
@@ -198,7 +204,7 @@ body {
   margin-top: 15px;
   margin-bottom: 6px;
   font-size: 0.95rem;
-  color: var(--accent);
+  color: var(--accent-hover);
 }
 
 .panel p,
@@ -214,11 +220,11 @@ body {
 /* ========== CALLOUT BOX ========== */
 
 .callout {
-  background-color: #1a2a44;
+  background-color: #E0F2FE;
   padding: 15px;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--accent-hover);
   margin: 15px 0;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 /* ========== GRID (COOKIES TYPES) ========== */
@@ -239,7 +245,7 @@ body {
 
 .card h4 {
   margin-bottom: 8px;
-  color: var(--accent);
+  color: var(--accent-hover);
 }
 
 /* ========== FOOTER ========== */
@@ -260,7 +266,7 @@ body {
 }
 
 .footer-links a {
-  color: var(--accent);
+  color: var(--accent-hover);
   text-decoration: none;
   margin-left: 15px;
 }
