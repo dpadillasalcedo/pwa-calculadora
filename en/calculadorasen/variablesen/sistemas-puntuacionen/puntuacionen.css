@@ -1,22 +1,30 @@
 /* ==========================================
-   ICU Severity Scores - EN Styles
+   ICU Severity Scores - EN
    SOFA-2 · APACHE II · SAPS II
+   Celeste Professional Version
 ========================================== */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root{
-  --bg: #020617;
-  --panel: #111c2f;
-  --panel2:#0f172a;
-  --text: #f8fafc;
-  --muted:#cbd5e1;
-  --border:#1e293b;
-  --accent:#2563eb;
-  --accent2:#1d4ed8;
-  --radius: 12px;
+  --bg: #f0f9ff;
+  --panel: #ffffff;
+  --panel-soft:#e0f2fe;
+
+  --text: #0f172a;
+  --muted:#475569;
+
+  --border:#bae6fd;
+
+  --accent:#38bdf8;
+  --accent-strong:#0ea5e9;
+  --accent-soft:rgba(56,189,248,.15);
+
+  --radius: 14px;
   --maxw: 1100px;
 }
+
+/* ================= BASE ================= */
 
 body{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -26,16 +34,18 @@ body{
   -webkit-font-smoothing: antialiased;
 }
 
+/* ================= HEADER ================= */
+
 header{
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 24px 20px 0;
+  padding: 30px 20px 0;
 }
 
 .language-switcher{
   text-align: right;
   font-size: .92rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .language-switcher a{
@@ -46,20 +56,24 @@ header{
 
 .language-switcher a.active,
 .language-switcher a:hover{
-  color: var(--accent);
+  color: var(--accent-strong);
   font-weight: 600;
 }
 
+/* ================= BREADCRUMB ================= */
+
 .breadcrumb-nav{
-  margin: 6px 0 10px;
+  margin: 6px 0 14px;
   font-size: .92rem;
   color: var(--muted);
 }
 
 .breadcrumb-nav a{
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
 }
+
+/* ================= CONTAINER ================= */
 
 .container{
   max-width: var(--maxw);
@@ -68,71 +82,90 @@ header{
 }
 
 h1{
-  font-size: 1.9rem;
-  margin: 10px 0 22px;
+  font-size: 2rem;
+  margin: 12px 0 28px;
+  font-weight: 700;
+  color: var(--accent-strong);
 }
+
+/* ================= PANEL ================= */
 
 .panel{
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 26px;
-  margin-bottom: 22px;
+  padding: 30px;
+  margin-bottom: 26px;
+  box-shadow: 0 6px 20px rgba(56,189,248,.08);
 }
 
 .panel h2{
-  font-size: 1.35rem;
-  margin-bottom: 6px;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: var(--accent-strong);
 }
 
 .note{
   color: var(--muted);
   font-size: .93rem;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
+
+/* ================= GRID ================= */
 
 .grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px;
-  margin-top: 10px;
+  gap: 16px;
+  margin-top: 12px;
 }
+
+/* ================= SELECT BOXES ================= */
 
 label{
   display: block;
-  background: var(--panel2);
+  background: var(--panel-soft);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 14px;
   color: var(--muted);
   font-size: .92rem;
+  transition: .2s ease;
+}
+
+label:hover{
+  border-color: var(--accent);
 }
 
 select{
   width: 100%;
   margin-top: 8px;
-  padding: 10px 10px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  background: #0b1222;
+  background: white;
   color: var(--text);
   outline: none;
+  transition: .2s ease;
 }
 
 select:focus{
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
+
+/* ================= BUTTONS ================= */
 
 .actions{
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 button{
-  padding: 10px 16px;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   cursor: pointer;
   font-weight: 600;
@@ -140,44 +173,57 @@ button{
 }
 
 button.primary{
-  background: var(--accent);
-  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border: none;
   color: white;
 }
 
 button.primary:hover{
-  background: var(--accent2);
-  border-color: var(--accent2);
+  transform: translateY(-1px);
+  opacity: .95;
 }
 
 button.secondary{
-  background: transparent;
-  color: var(--text);
+  background: white;
+  color: var(--accent-strong);
 }
 
 button.secondary:hover{
   border-color: var(--accent);
 }
 
+/* ================= RESULTS ================= */
+
 .result{
-  margin-top: 14px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: rgba(37,99,235,0.10);
-  border: 1px solid rgba(37,99,235,0.35);
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
   font-size: 1rem;
+  font-weight: 500;
 }
+
+.result strong{
+  color: var(--accent-strong);
+}
+
+.note strong{
+  color: var(--accent-strong);
+}
+
+/* ================= FOOTER ================= */
 
 footer{
   max-width: var(--maxw);
-  margin: 30px auto 0;
-  padding: 22px 20px;
+  margin: 40px auto 0;
+  padding: 26px 20px;
   border-top: 1px solid var(--border);
   text-align: center;
 }
 
 .footer-nav a{
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
   margin: 0 10px;
   font-size: .92rem;
@@ -188,12 +234,14 @@ footer{
 }
 
 footer p{
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--muted);
   font-size: .85rem;
 }
 
+/* ================= RESPONSIVE ================= */
+
 @media (max-width: 768px){
-  h1{ font-size: 1.55rem; }
-  .panel{ padding: 20px; }
+  h1{ font-size: 1.6rem; }
+  .panel{ padding: 22px; }
 }
