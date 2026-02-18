@@ -121,6 +121,78 @@ select:focus {
   background: #ffffff;
 }
 
+/* ================= BUTTONS ================= */
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* PRIMARY – Calculate NIHSS */
+
+button.primary {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-hover)
+  );
+  color: white;
+
+  box-shadow:
+    0 4px 12px rgba(58, 160, 255, 0.25),
+    0 0 0 1px rgba(255,255,255,0.2) inset;
+}
+
+/* Hover */
+button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 20px rgba(58, 160, 255, 0.35),
+    0 0 0 1px rgba(255,255,255,0.3) inset;
+}
+
+/* Active (click) */
+button.primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 3px 8px rgba(58, 160, 255, 0.25);
+}
+
+/* Secondary – Reset */
+
+button.secondary {
+  background: #ffffff;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+button.secondary:hover {
+  background: var(--panel-soft);
+  border-color: var(--accent-hover);
+  color: var(--accent-hover);
+}
+
+/* Focus accessibility */
+button:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(58, 160, 255, 0.3);
+}
+
+                              
 /* Result Box */
 
 .result {
