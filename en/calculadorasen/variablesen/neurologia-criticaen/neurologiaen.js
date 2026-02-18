@@ -40,79 +40,130 @@ document.getElementById("resultadoCAMICU").innerHTML="";
 }
 
 
-/* ================= NIHSS ================= */
+/* =========================
+   NIHSS CALCULATION
+========================= */
 
-function calcNIHSS(){
+document.getElementById("nihss_calc").addEventListener("click", calcNIHSS);
+document.getElementById("nihss_reset").addEventListener("click", resetNIHSS);
 
-let total = 0;
-let valid = true;
+function calcNIHSS() {
 
-/* Sum all NIHSS items */
-document.querySelectorAll(".nihss").forEach(el=>{
-if(el.value === "") valid = false;
-else total += parseInt(el.value);
-});
+  const ids = [
+    "n_1a","n_1b","n_1c","n_2","n_3","n_4",
+    "n_5a","n_5b","n_6a","n_6b",
+    "n_7","n_8","n_9","n_10","n_11"
+  ];
 
-if(!valid){
-document.getElementById("nihss_result").innerHTML =
-"Please complete all NIHSS items.";
-document.getElementById("nihss_interpretation").innerHTML = "";
-return;
+  let total = 0;
+  let incomplete = false;
+
+  let values = {};
+
+  ids.forEach(id => {
+    const val = document.getElementById(id).value;
+
+    if (val === "") {
+      incomplete = true;
+    } else {
+      const num = parseInt(val);
+      total += num;
+      values[id] = num;
+    }
+  });
+
+  if (incomplete) {
+    document.getElementById("resultadoNIHSS").innerHTML =
+      "⚠️ Complete todos los ítems antes de calcular.";
+    document.getElementById("interpretacionNIHSS").innerHTML = "";
+    return;
+  }
+
+  /* ========================
+     SEVERITY CLASSIFICATION
+  ======================== */
+
+  let severity = "";
+
+  if (total === 0) severity = "Sin síntomas de ACV";
+  else if (total <= 4) severity = "ACV leve";
+  else if (total <= 15) severity = "ACV moderado";
+  else if (total <= 20) severity = "ACV moderado-severo";
+  else severity = "ACV severo";
+
+  /* ========================
+     DISABLING SYMPTOMS
+  ======================== */
+
+  let disabling = false;
+  let reasons = [];
+
+  // Hemianopsia significativa
+  if (values["n_3"] >= 2) {
+    disabling = true;
+    reasons.push("hemianopsia");
+  }
+
+  // Afasia
+  if (values["n_9"] >= 1) {
+    disabling = true;
+    reasons.push("afasia");
+  }
+
+  // Neglect
+  if (values["n_11"] >= 1) {
+    disabling = true;
+    reasons.push("neglect");
+  }
+
+  // Motor contra gravedad (≥2)
+  if (
+    values["n_5a"] >= 2 ||
+    values["n_5b"] >= 2 ||
+    values["n_6a"] >= 2 ||
+    values["n_6b"] >= 2
+  ) {
+    disabling = true;
+    reasons.push("déficit motor contra gravedad");
+  }
+
+  /* ========================
+     OUTPUT
+  ======================== */
+
+  document.getElementById("resultadoNIHSS").innerHTML =
+    "Puntaje total NIHSS: <strong>" + total + "</strong>";
+
+  let interpretation =
+    "Clasificación: <strong>" + severity + "</strong><br><br>";
+
+  if (disabling) {
+    interpretation +=
+      "⚠️ <strong>ACV discapacitante</strong> por presencia de: " +
+      reasons.join(", ") + ".";
+  } else {
+    interpretation +=
+      "✅ No presenta criterios de ACV discapacitante.";
+  }
+
+  document.getElementById("interpretacionNIHSS").innerHTML = interpretation;
 }
 
-/* Detect disabling symptoms */
+/* =========================
+   RESET
+========================= */
 
-let disabling = false;
+function resetNIHSS() {
+  const ids = [
+    "n_1a","n_1b","n_1c","n_2","n_3","n_4",
+    "n_5a","n_5b","n_6a","n_6b",
+    "n_7","n_8","n_9","n_10","n_11"
+  ];
 
-/* Hemianopsia */
-const hemianopsia = document.getElementById("n_visual")?.value;
+  ids.forEach(id => {
+    document.getElementById(id).value = "";
+  });
 
-/* Aphasia */
-const aphasia = document.getElementById("n_language")?.value;
-
-/* Neglect */
-const neglect = document.getElementById("n_neglect")?.value;
-
-/* Motor deficit against gravity (arm or leg ≥2) */
-const motorArm = document.getElementById("n_motor_arm")?.value;
-const motorLeg = document.getElementById("n_motor_leg")?.value;
-
-if(
-(parseInt(hemianopsia) > 0) ||
-(parseInt(aphasia) > 0) ||
-(parseInt(neglect) > 0) ||
-(parseInt(motorArm) >= 2) ||
-(parseInt(motorLeg) >= 2)
-){
-disabling = true;
-}
-
-/* Severity classification */
-
-let severity = "";
-
-if(total === 0) severity = "No stroke symptoms";
-else if(total <= 4) severity = "Minor stroke";
-else if(total <= 15) severity = "Moderate stroke";
-else if(total <= 20) severity = "Moderate to severe stroke";
-else severity = "Severe stroke";
-
-/* Output */
-
-document.getElementById("nihss_result").innerHTML =
-"Total NIHSS Score: <strong>" + total + "</strong>";
-
-let disabilityText = disabling
-? "Disabling symptoms present."
-: "No disabling symptoms detected.";
-
-document.getElementById("nihss_interpretation").innerHTML =
-"Severity classification: <strong>" + severity + "</strong><br>" +
-disabilityText;
-}
-
-function resetNIHSS(){
-document.querySelectorAll(".nihss").forEach(el=>el.value="");
-document.getElementById("nihss_result").innerHTML="";
-document.getElementById("nihss_interpretation").innerHTML="";
+  document.getElementById("resultadoNIHSS").innerHTML = "";
+  document.getElementById("interpretacionNIHSS").innerHTML = "";
 }
