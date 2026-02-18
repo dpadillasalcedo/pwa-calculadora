@@ -180,84 +180,188 @@
 </section>
 
 
-<!-- ====================== APACHE II ====================== -->
+<!-- ===================== APACHE II ===================== -->
 <section class="panel">
+
 <h2>APACHE II</h2>
-<p class="note">12 physiologic variables + age + chronic health status</p>
+<p class="note">12 physiological variables + age + chronic health status</p>
 
 <div class="grid">
 
-<label>Temperature (°C)
-<select class="apache">
-<option value=""></option>
-<option value="0">36–38.4</option>
-<option value="1">34–35.9 / 38.5–38.9</option>
-<option value="2">32–33.9 / 39–40.9</option>
-<option value="3">30–31.9</option>
-<option value="4"><30 / ≥41</option>
-</select>
-</label>
+  <label>Temperature (°C)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">36–38.4</option>
+      <option value="1">34–35.9 / 38.5–38.9</option>
+      <option value="2">32–33.9 / 39–40.9</option>
+      <option value="3">30–31.9</option>
+      <option value="4">&lt;30 / ≥41</option>
+    </select>
+  </label>
 
-<label>Mean Arterial Pressure (mmHg)
-<select class="apache">
-<option value=""></option>
-<option value="0">70–109</option>
-<option value="2">50–69 / 110–129</option>
-<option value="3">130–159</option>
-<option value="4"><50 / ≥160</option>
-</select>
-</label>
+  <label>Mean Arterial Pressure (mmHg)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">70–109</option>
+      <option value="2">50–69 / 110–129</option>
+      <option value="3">130–159</option>
+      <option value="4">&lt;50 / ≥160</option>
+    </select>
+  </label>
 
-<label>Heart Rate
-<select class="apache">
-<option value=""></option>
-<option value="0">70–109</option>
-<option value="2">55–69 / 110–139</option>
-<option value="3">40–54 / 140–179</option>
-<option value="4"><40 / ≥180</option>
-</select>
-</label>
+  <label>Heart Rate (beats/min)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">70–109</option>
+      <option value="2">55–69 / 110–139</option>
+      <option value="3">40–54 / 140–179</option>
+      <option value="4">&lt;40 / ≥180</option>
+    </select>
+  </label>
 
-<label>Respiratory Rate
-<select class="apache">
-<option value=""></option>
-<option value="0">12–24</option>
-<option value="1">10–11 / 25–34</option>
-<option value="2">6–9</option>
-<option value="3">35–49</option>
-<option value="4"><6 / ≥50</option>
-</select>
-</label>
+  <label>Respiratory Rate (breaths/min)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">12–24</option>
+      <option value="1">10–11 / 25–34</option>
+      <option value="2">6–9</option>
+      <option value="3">35–49</option>
+      <option value="4">&lt;6 / ≥50</option>
+    </select>
+  </label>
 
-<label>Arterial pH
-<select class="apache">
-<option value=""></option>
-<option value="0">7.33–7.49</option>
-<option value="2">7.25–7.32 / 7.50–7.59</option>
-<option value="3">7.15–7.24 / 7.60–7.69</option>
-<option value="4"><7.15 / ≥7.70</option>
-</select>
-</label>
+  <label for="oxygenation">
+    Oxygenation (PaO₂ / A–a Gradient)
+    <select id="oxygenation" class="apache">
+      <option value="" selected></option>
 
-<label>Age
-<select id="apache_age">
-<option value=""></option>
-<option value="0"><44</option>
-<option value="2">45–54</option>
-<option value="3">55–64</option>
-<option value="5">65–74</option>
-<option value="6">≥75</option>
-</select>
-</label>
+      <!-- FiO2 < 0.5 -->
+      <option value="0">
+        Normal — PaO₂ ≥ 70 mmHg (FiO₂ &lt; 0.5)
+      </option>
+      <option value="1">
+        Mild — PaO₂ 61–70 mmHg (FiO₂ &lt; 0.5)
+      </option>
+      <option value="3">
+        Moderate — PaO₂ 55–60 mmHg (FiO₂ &lt; 0.5)
+      </option>
+      <option value="4">
+        Severe — PaO₂ &lt; 55 mmHg (FiO₂ &lt; 0.5)
+      </option>
 
-<label>Chronic Disease
-<select id="apache_chronic">
-<option value=""></option>
-<option value="0">No</option>
-<option value="2">Post-operative</option>
-<option value="5">Non-surgical</option>
-</select>
-</label>
+      <!-- FiO2 ≥ 0.5 -->
+      <option value="0">
+        Normal — A–a Gradient &lt; 200 mmHg (FiO₂ ≥ 0.5)
+      </option>
+      <option value="2">
+        Moderate — A–a Gradient 200–349 mmHg (FiO₂ ≥ 0.5)
+      </option>
+      <option value="3">
+        Severe — A–a Gradient 350–499 mmHg (FiO₂ ≥ 0.5)
+      </option>
+      <option value="4">
+        Very Severe — A–a Gradient ≥ 500 mmHg (FiO₂ ≥ 0.5)
+      </option>
+    </select>
+  </label>
+
+  <label>Arterial pH
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">7.33–7.49</option>
+      <option value="2">7.25–7.32 / 7.50–7.59</option>
+      <option value="3">7.15–7.24 / 7.60–7.69</option>
+      <option value="4">&lt;7.15 / ≥7.70</option>
+    </select>
+  </label>
+
+  <label>Sodium (mmol/L)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">130–149</option>
+      <option value="1">150–154</option>
+      <option value="2">120–129 / 155–159</option>
+      <option value="3">160–179</option>
+      <option value="4">&lt;120 / ≥180</option>
+    </select>
+  </label>
+
+  <label>Potassium (mmol/L)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">3.5–5.4</option>
+      <option value="1">3.0–3.4 / 5.5–5.9</option>
+      <option value="2">2.5–2.9 / 6.0–6.9</option>
+      <option value="4">&lt;2.5 / ≥7.0</option>
+    </select>
+  </label>
+
+  <label>Creatinine (mg/dL)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">&lt;1.5</option>
+      <option value="2">1.5–1.9</option>
+      <option value="3">2.0–3.4</option>
+      <option value="4">≥3.5</option>
+    </select>
+  </label>
+
+  <label>Hematocrit (%)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">30–45</option>
+      <option value="2">20–29.9 / 46–49.9</option>
+      <option value="3">50–59.9</option>
+      <option value="4">&lt;20 / ≥60</option>
+    </select>
+  </label>
+
+  <label>White Blood Cell Count (×10³/µL)
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">3–14.9</option>
+      <option value="1">15–19.9</option>
+      <option value="2">1–2.9 / ≥20</option>
+      <option value="4">&lt;1</option>
+    </select>
+  </label>
+
+  <label>Glasgow Coma Scale
+    <select class="apache">
+      <option value="" selected></option>
+      <option value="0">15</option>
+      <option value="1">13–14</option>
+      <option value="2">10–12</option>
+      <option value="3">6–9</option>
+      <option value="4">&lt;6</option>
+    </select>
+  </label>
+
+</div>
+
+<hr style="margin:1.5rem 0;border-color:var(--border)">
+
+<div class="grid">
+
+  <label>Age
+    <select id="apache_age">
+      <option value="" selected></option>
+      <option value="0">&lt;44</option>
+      <option value="2">45–54</option>
+      <option value="3">55–64</option>
+      <option value="5">65–74</option>
+      <option value="6">≥75</option>
+    </select>
+  </label>
+
+  <label>Chronic Health Condition
+    <select id="apache_chronic">
+      <option value="" selected></option>
+      <option value="0">No</option>
+      <option value="2">Postoperative (Elective Surgery)</option>
+      <option value="5">Non-operative or Emergency Surgery</option>
+    </select>
+  </label>
 
 </div>
 
@@ -270,6 +374,7 @@
 <div id="apache_mortality" class="note"></div>
 
 </section>
+
 
 
 <!-- ====================== SAPS II ====================== -->
