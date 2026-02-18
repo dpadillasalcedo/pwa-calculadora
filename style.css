@@ -1,39 +1,32 @@
 /* =========================
-   RESET
+   VARIABLES GLOBALES
 ========================= */
-*,
-*::before,
-*::after {
+:root {
+  --color-primary: #0EA5E9;          /* Azul celeste principal */
+  --color-primary-dark: #0284C7;     /* Hover / interacción */
+  --color-background: #F8FAFC;       /* Fondo general */
+  --color-surface: #FFFFFF;          /* Tarjetas / bloques */
+  --color-text: #0F172A;             /* Texto principal */
+  --color-muted: #64748B;            /* Texto secundario */
+  --color-border: #E2E8F0;           /* Bordes suaves */
+}
+
+/* =========================
+   RESET BASE
+========================= */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* =========================
-   VARIABLES (DARK · CLÍNICO)
-========================= */
-:root {
-  --bg-main: #020617;
-  --bg-card: #0b1220;
-  --bg-card-2: #0f172a;
-
-  --color-text: #e5e7eb;
-  --color-muted: #cbd5e1;
-  --color-border: #1e293b;
-
-  --color-primary: #38bdf8;
-  --color-primary-strong: #0ea5e9;
-  --color-primary-soft: rgba(56, 189, 248, 0.15);
-}
-
-/* =========================
-   BODY
-========================= */
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background-color: var(--bg-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, sans-serif;
+  background-color: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* =========================
@@ -41,112 +34,105 @@ body {
 ========================= */
 header {
   text-align: center;
-  padding: 3.5rem 1.5rem 2.5rem;
-  margin-bottom: 3rem;
+  padding: 3rem 1.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    #E0F2FE 0%,
+    #F8FAFC 100%
+  );
+  border-bottom: 1px solid var(--color-border);
 }
 
 header h1 {
   font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: #f8fafc;
-}
-
-header p {
-  font-size: 1rem;
-  color: var(--color-muted);
-  max-width: 760px;
-  margin: 0 auto;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
 }
 
 /* =========================
-   MAIN
+   INTRO
 ========================= */
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+.intro {
+  max-width: 700px;
+  margin: 2rem auto 3rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 1rem;
 }
 
 /* =========================
-   MENÚ PRINCIPAL
+   MENU GRID
 ========================= */
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  align-items: stretch; /* 👈 clave para igualar alturas */
+  padding: 0 1.5rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* =========================
-   CARD / BOTÓN
+   TARJETAS
 ========================= */
 .menu a {
-  height: 100%;                 /* 👈 misma altura */
-  display: flex;                /* 👈 layout interno */
+  display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
-  padding: 2.2rem 2rem 2.2rem;
-  border-radius: 18px;
+  background-color: var(--color-surface);
+  padding: 1.8rem;
+  border-radius: 14px;
   border: 1px solid var(--color-border);
+
   text-decoration: none;
   color: var(--color-text);
 
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .menu a:hover {
-  transform: translateY(-4px);
   border-color: var(--color-primary);
-  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.6);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.12);
+  transform: translateY(-4px);
 }
 
 /* =========================
-   TÍTULO CARD
+   TITULO TARJETA
 ========================= */
-.menu h2 {
-  font-size: 1.35rem;
+.menu a h2 {
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--color-primary);
+  margin-bottom: 0.8rem;
 }
 
 /* =========================
-   TEXTO CARD
+   DESCRIPCIÓN
 ========================= */
-.menu p {
+.menu a p {
   font-size: 0.95rem;
   color: var(--color-muted);
+  margin-bottom: 1.5rem;
 
-  /* Limita el texto para que no rompa alturas */
   display: -webkit-box;
-  -webkit-line-clamp: 3;      /* ajustable */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 /* =========================
-   CTA (alineado abajo)
+   CTA INFERIOR
 ========================= */
 .menu a::after {
   content: "Ingresar →";
-  margin-top: auto;           /* 👈 empuja al fondo */
-  align-self: flex-end;
-  padding-top: 1.4rem;
-
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-primary);
 
   opacity: 0;
   transform: translateY(6px);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .menu a:hover::after {
@@ -163,34 +149,7 @@ footer {
   font-size: 0.85rem;
   color: var(--color-muted);
   border-top: 1px solid var(--color-border);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-
-  header {
-    margin-bottom: 2rem;
-  }
-
-  .menu {
-    gap: 1.5rem;
-  }
-}
-
-/* =========================
-   UTILIDADES
-========================= */
-.centered {
-  text-align: center;
-}
-
-.intro {
-  margin-bottom: 3.5rem;
+  background-color: var(--color-surface);
 }
 
 /* =========================
@@ -200,15 +159,29 @@ footer {
   text-align: right;
   font-size: 0.85rem;
   margin-bottom: 1rem;
+  padding: 0 1.5rem;
 }
 
 .language-switcher a {
   color: var(--color-muted);
   text-decoration: none;
-  margin-left: 0.4rem;
+  margin-left: 0.5rem;
+  transition: color 0.2s ease;
 }
 
 .language-switcher a:hover {
   color: var(--color-primary);
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.7rem;
+  }
+
+  .menu {
+    gap: 1.5rem;
+  }
+}
