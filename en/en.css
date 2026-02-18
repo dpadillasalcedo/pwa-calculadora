@@ -1,9 +1,27 @@
 /* ==========================================
-   Critical Care Tools - EN Styles
-   Version 1.0
+   Critical Care Tools - EN Light Blue Theme
+   Clinical Consistent Version
 ========================================== */
 
-/* ========== RESET ========== */
+/* =========================
+   VARIABLES GLOBALES
+========================= */
+
+:root {
+  --color-primary: #0EA5E9;        /* Azul celeste institucional */
+  --color-primary-dark: #0284C7;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #0F172A;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
+  --max-width: 1100px;
+  --radius: 14px;
+}
+
+/* =========================
+   RESET
+========================= */
 
 * {
   margin: 0;
@@ -11,110 +29,127 @@
   box-sizing: border-box;
 }
 
-/* ========== ROOT VARIABLES ========== */
-
-:root {
-  --bg-primary: #020617;
-  --bg-secondary: #0f172a;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --border-color: #1e293b;
-  --max-width: 1100px;
-  --radius: 10px;
-}
-
-/* ========== BODY ========== */
+/* =========================
+   BODY
+========================= */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-               Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ========== HEADER ========== */
+/* =========================
+   HEADER
+========================= */
 
 header {
-  background-color: var(--bg-secondary);
-  padding: 20px;
-  border-bottom: 1px solid var(--border-color);
   text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    #E0F2FE 0%,
+    #F8FAFC 100%
+  );
+  border-bottom: 1px solid var(--color-border);
 }
 
 header h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.4px;
+  color: var(--color-text);
 }
+
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
 
 .language-switcher {
   text-align: right;
-  font-size: 0.9rem;
-  margin-bottom: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
 }
 
 .language-switcher a {
-  color: var(--text-secondary);
+  color: var(--color-muted);
   text-decoration: none;
-  margin: 0 5px;
+  margin-left: 0.5rem;
   transition: 0.2s ease;
 }
 
 .language-switcher a:hover {
-  color: var(--accent);
+  color: var(--color-primary);
 }
 
-/* ========== MAIN CONTAINER ========== */
+.language-switcher a.active,
+.language-switcher a[aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 2rem 1.5rem 3rem;
 }
 
-/* ========== INTRO SECTION ========== */
+/* =========================
+   INTRO
+========================= */
 
 .intro {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .intro h2 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 500;
 }
 
 .intro p {
-  color: var(--text-secondary);
-  max-width: 750px;
-  margin: 0 auto;
+  color: var(--color-muted);
 }
 
-/* ========== MENU SECTION ========== */
+/* =========================
+   MENU GRID
+========================= */
 
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .menu article {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 25px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1.8rem;
   border-radius: var(--radius);
-  transition: 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .menu article:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.12);
   transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .menu a {
@@ -124,64 +159,78 @@ header h1 {
 }
 
 .menu h2 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
+  font-size: 1.15rem;
   font-weight: 600;
-  color: var(--accent);
+  margin-bottom: 0.8rem;
+  color: var(--color-text);
 }
 
 .menu p {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--color-muted);
+  margin-bottom: 1.2rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* ========== FOOTER ========== */
+/* =========================
+   CTA (EN)
+========================= */
+
+.menu a::after {
+  content: "Enter →";
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu article:hover a::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-  background-color: var(--bg-secondary);
-  padding: 30px 20px;
   text-align: center;
-  border-top: 1px solid var(--border-color);
-  margin-top: 60px;
-}
-
-footer p {
+  padding: 2rem 1.5rem;
   font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-bottom: 10px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  margin-top: 4rem;
 }
 
-.footer-links a {
-  color: var(--accent);
+footer a {
+  color: var(--color-primary);
   text-decoration: none;
-  font-size: 0.85rem;
 }
 
-.footer-links a:hover {
+footer a:hover {
   text-decoration: underline;
 }
 
-/* ========== ACTIVE LINK (JS) ========== */
+/* =========================
+   RESPONSIVE
+========================= */
 
-.active-link {
-  font-weight: bold;
-  color: var(--accent) !important;
-}
-
-/* ========== RESPONSIVE ========== */
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
   header h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
-  .intro h2 {
-    font-size: 1.3rem;
-  }
-
-  .container {
-    padding: 30px 15px;
+  .menu {
+    gap: 1.5rem;
   }
 
 }
