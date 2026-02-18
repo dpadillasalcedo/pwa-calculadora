@@ -11,19 +11,20 @@
    VARIABLES UNIFICADAS
 ========================= */
 :root {
-  --color-bg-main: #020617;
-  --color-bg-card: #0B1220;
-  --color-bg-soft: #0F172A;
+  /* 🔵 FONDO AZUL CELESTE CLARO */
+  --color-bg-main: #E0F2FE;        /* azul celeste muy claro */
+  --color-bg-card: #FFFFFF;        /* tarjetas blancas */
+  --color-bg-soft: #F0F9FF;        /* azul muy suave */
 
-  --color-text-main: #E2E8F0;
-  --color-text-muted: #94A3B8;
+  --color-text-main: #0F172A;      /* texto oscuro */
+  --color-text-muted: #475569;     /* gris azulado */
 
-  --color-border: #1E293B;
+  --color-border: #CBD5E1;
 
-  --color-primary: #38BDF8;
-  --color-primary-strong: #0EA5E9;
+  --color-primary: #0EA5E9;        /* azul principal */
+  --color-primary-strong: #0284C7; /* azul más intenso */
 
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 10px 25px rgba(2, 132, 199, 0.08);
 }
 
 /* =========================
@@ -44,8 +45,7 @@ body {
 .header {
   border-bottom: 1px solid var(--color-border);
   padding: 1.25rem 1.5rem;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(6px);
+  background: #F0F9FF;
 }
 
 .breadcrumb-nav {
@@ -134,7 +134,7 @@ body {
 
 .btn.primary {
   background: var(--color-primary);
-  color: #020617;
+  color: white;
   font-weight: 600;
 }
 
@@ -150,7 +150,7 @@ body {
 }
 
 .btn.secondary:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(14, 165, 233, 0.08);
 }
 
 /* =========================
@@ -207,7 +207,7 @@ body {
    CALLOUT
 ========================= */
 .callout {
-  background: rgba(56, 189, 248, 0.08);
+  background: rgba(14, 165, 233, 0.08);
   border-left: 4px solid var(--color-primary);
   padding: 1rem 1.25rem;
   border-radius: 10px;
