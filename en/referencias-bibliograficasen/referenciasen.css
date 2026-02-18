@@ -1,11 +1,11 @@
 :root {
-  --bg: #020617;
-  --panel: #0b1220;
-  --border: #1e293b;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
+  --bg: #F8FAFC;              /* Fondo claro clínico */
+  --panel: #FFFFFF;           /* Panel blanco */
+  --border: #E2E8F0;          /* Bordes suaves */
+  --text: #0F172A;            /* Texto principal */
+  --muted: #64748B;           /* Texto secundario */
+  --primary: #38BDF8;         /* Azul celeste */
+  --primary-strong: #0EA5E9;  /* Azul celeste fuerte */
 }
 
 * { box-sizing: border-box; }
@@ -18,31 +18,44 @@ html, body {
   line-height: 1.6;
 }
 
+/* =========================
+   LAYOUT
+========================= */
+
 .container {
   max-width: 960px;
   margin: auto;
   padding: 1.5rem;
 }
 
+/* =========================
+   BREADCRUMB
+========================= */
+
 .breadcrumb {
   font-size: 0.85rem;
-  color: #f8fafc;
+  color: var(--muted);
   margin-bottom: 1.5rem;
 }
 
 .breadcrumb a {
-  color: #f8fafc;
+  color: var(--text);
   font-weight: 500;
+  text-decoration: none;
 }
 
 .breadcrumb a:hover {
   color: var(--primary-strong);
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .app-header h1 {
   margin: 0;
   font-size: 1.8rem;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .subtitle {
@@ -50,21 +63,30 @@ html, body {
   margin-top: 0.5rem;
 }
 
+/* =========================
+   PANEL
+========================= */
+
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.05);
 }
 
 .panel h2 {
-  color: #f8fafc;
+  color: var(--text);
   margin-top: 1.5rem;
 }
 
 .panel h2:first-child {
   margin-top: 0;
 }
+
+/* =========================
+   LISTS
+========================= */
 
 ol {
   margin-top: 0.5rem;
@@ -75,34 +97,37 @@ ol li {
   margin-bottom: 0.7rem;
 }
 
+/* =========================
+   FOOTER
+========================= */
+
 .site-footer {
   border-top: 1px solid var(--border);
   margin-top: 3rem;
   padding: 2rem 1rem;
   text-align: center;
-}
-
-.footer-nav {
-  color: #f8fafc;
+  background: var(--panel);
 }
 
 .footer-nav a {
-  color: #f8fafc;
+  color: var(--primary-strong);
   font-weight: 500;
+  text-decoration: none;
 }
 
 .footer-nav a:hover {
-  color: var(--primary-strong);
+  text-decoration: underline;
 }
 
 .footer-copy {
   font-size: 0.8rem;
-  color: #f8fafc;
+  color: var(--muted);
 }
 
 /* =========================
    LANGUAGE SWITCHER
 ========================= */
+
 .language-switcher {
   text-align: right;
   font-size: 0.85rem;
@@ -110,30 +135,18 @@ ol li {
 }
 
 .language-switcher a {
-  color: var(--color-muted);
+  color: var(--muted);
   text-decoration: none;
   margin-left: 0.4rem;
+  transition: color 0.2s ease;
 }
 
 .language-switcher a:hover {
-  color: var(--color-primary);
+  color: var(--primary);
 }
 
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
-  color: var(--color-muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
-}
-
-.language-switcher a:hover {
-  color: var(--color-primary);
+.language-switcher a.active,
+.language-switcher a[aria-current="page"] {
+  color: var(--primary-strong);
+  font-weight: 600;
 }
