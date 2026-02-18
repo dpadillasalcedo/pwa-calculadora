@@ -144,54 +144,147 @@
   <hr />
 
   <!-- ================= NIHSS ================= -->
-  <section id="nihss" class="panel">
-    <h2>🧠 NIHSS · Stroke Scale</h2>
-    <p class="note">
-      Complete all items and press <strong>Calculate NIHSS</strong>.
-    </p>
+<section class="panel">
+<h2>🧠 NIHSS · Stroke Scale</h2>
 
-    <label>1a. Level of Consciousness
-      <select id="n_1a">
-        <option value="">Select…</option>
-        <option value="0">0 = Alert</option>
-        <option value="1">1 = Drowsy</option>
-        <option value="2">2 = Stupor</option>
-        <option value="3">3 = Coma</option>
-      </select>
-    </label>
+<div class="grid">
 
-    <!-- (Structure preserved; rest of NIHSS items follow same pattern as original) -->
+<label>1a. Level of Consciousness
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+</label>
 
-  </section>
+<label>1b. LOC Questions
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
 
-  <hr />
+<label>1c. LOC Commands
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
 
-  <!-- ================= Fisher ================= -->
-  <section class="panel">
-    <h2>🧠 Fisher Scale · Subarachnoid Hemorrhage</h2>
-    <table>
-      <tr><th>Grade</th><th>Description</th></tr>
-      <tr><td>1</td><td>No blood detected.</td></tr>
-      <tr><td>2</td><td>Diffuse blood < 1 mm.</td></tr>
-      <tr><td>3</td><td>Clot ≥ 1 mm.</td></tr>
-      <tr><td>4</td><td>IVH or ICH present.</td></tr>
-    </table>
-  </section>
+<label>2. Best Gaze
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
 
-  <hr />
+<label>3. Visual Fields
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+</label>
 
-  <!-- ================= Hunt & Hess ================= -->
-  <section class="panel">
-    <h2>🧠 Hunt & Hess · SAH</h2>
-    <table>
-      <tr><th>Grade</th><th>Description</th></tr>
-      <tr><td>I</td><td>Asymptomatic.</td></tr>
-      <tr><td>II</td><td>Moderate headache.</td></tr>
-      <tr><td>III</td><td>Confusion or mild deficit.</td></tr>
-      <tr><td>IV</td><td>Stupor.</td></tr>
-      <tr><td>V</td><td>Deep coma.</td></tr>
-    </table>
-  </section>
+<label>4. Facial Palsy
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+</label>
+
+<label>5. Motor Arm (R)
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+</label>
+
+<label>6. Motor Arm (L)
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+</label>
+
+<label>7. Limb Ataxia
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
+
+<label>8. Sensory
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
+
+<label>9. Best Language
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+</label>
+
+<label>10. Dysarthria
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
+
+<label>11. Extinction/Inattention
+<select class="nihss">
+<option value=""></option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+<button class="primary" onclick="calcNIHSS()">Calculate NIHSS</button>
+<button class="secondary" onclick="resetNIHSS()">Reset</button>
+</div>
+
+<div id="nihss_result" class="result"></div>
+<div id="nihss_interpretation" class="note"></div>
+
+</section>
 
   <hr />
 
