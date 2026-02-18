@@ -379,15 +379,17 @@
 
 <!-- ====================== SAPS II ====================== -->
 <section class="panel">
+
 <h2>SAPS II</h2>
-<p class="note">17 variables – logistic mortality model</p>
+<p class="note">17 variables – logistic mortality prediction model</p>
 
 <div class="grid">
 
+<!-- 1 Age -->
 <label>Age
 <select class="saps">
-<option value=""></option>
-<option value="0"><40</option>
+<option value="" selected></option>
+<option value="0">&lt;40</option>
 <option value="7">40–59</option>
 <option value="12">60–69</option>
 <option value="15">70–74</option>
@@ -396,31 +398,155 @@
 </select>
 </label>
 
-<label>Heart Rate
+<!-- 2 Heart Rate -->
+<label>Heart Rate (beats/min)
 <select class="saps">
-<option value=""></option>
+<option value="" selected></option>
 <option value="0">70–119</option>
 <option value="2">55–69 / 120–159</option>
-<option value="4"><55 / ≥160</option>
+<option value="4">&lt;55 / ≥160</option>
 </select>
 </label>
 
-<label>Systolic Blood Pressure
+<!-- 3 Systolic BP -->
+<label>Systolic Blood Pressure (mmHg)
 <select class="saps">
-<option value=""></option>
+<option value="" selected></option>
 <option value="0">100–199</option>
 <option value="5">70–99</option>
-<option value="13"><70 / ≥200</option>
+<option value="13">&lt;70 / ≥200</option>
 </select>
 </label>
 
+<!-- 4 Temperature -->
+<label>Temperature (°C)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥39</option>
+<option value="3">38–38.9</option>
+<option value="6">&lt;38</option>
+</select>
+</label>
+
+<!-- 5 Glasgow -->
 <label>Glasgow Coma Scale
 <select class="saps">
-<option value=""></option>
+<option value="" selected></option>
 <option value="0">15</option>
 <option value="5">13–14</option>
 <option value="10">10–12</option>
-<option value="15"><10</option>
+<option value="15">&lt;10</option>
+</select>
+</label>
+
+<!-- 6 Oxygenation -->
+<label>Oxygenation (PaO₂/FiO₂)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥200</option>
+<option value="9">&lt;200</option>
+</select>
+</label>
+
+<!-- 7 Urea -->
+<label>Urea (mg/dL)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;10</option>
+<option value="6">10–29</option>
+<option value="10">30–59</option>
+<option value="15">≥60</option>
+</select>
+</label>
+
+<!-- 8 Sodium -->
+<label>Sodium (mmol/L)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">125–144</option>
+<option value="5">&lt;125 / ≥145</option>
+</select>
+</label>
+
+<!-- 9 Potassium -->
+<label>Potassium (mmol/L)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–4.9</option>
+<option value="3">&lt;3 / ≥5</option>
+</select>
+</label>
+
+<!-- 10 Bicarbonate -->
+<label>Serum Bicarbonate (mmol/L)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥20</option>
+<option value="6">&lt;20</option>
+</select>
+</label>
+
+<!-- 11 Bilirubin -->
+<label>Total Bilirubin (mg/dL)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;4</option>
+<option value="4">4–5.9</option>
+<option value="9">≥6</option>
+</select>
+</label>
+
+<!-- 12 WBC -->
+<label>White Blood Cell Count (×10³/µL)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–20</option>
+<option value="3">&lt;3 / ≥20</option>
+</select>
+</label>
+
+<!-- 13 Urine Output -->
+<label>Urine Output (24h)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥1 L</option>
+<option value="11">&lt;1 L</option>
+</select>
+</label>
+
+<!-- 14 Admission Type -->
+<label>Type of Admission
+<select class="saps">
+<option value="" selected></option>
+<option value="0">Scheduled (Elective)</option>
+<option value="6">Emergency</option>
+</select>
+</label>
+
+<!-- 15 Surgery -->
+<label>Recent Surgery
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="8">Yes</option>
+</select>
+</label>
+
+<!-- 16 AIDS -->
+<label>AIDS
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="17">Yes</option>
+</select>
+</label>
+
+<!-- 17 Hematologic Malignancy -->
+<label>Hematologic Malignancy
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="10">Yes</option>
 </select>
 </label>
 
@@ -435,6 +561,7 @@
 <div id="saps_mortality" class="note"></div>
 
 </section>
+
 
 </main>
 
