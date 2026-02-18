@@ -1,6 +1,7 @@
 /* ==========================================
    Hemodynamic Monitoring - EN
-   Professional ICU Theme
+   Light Blue Clinical Theme
+   No Dark Background
 ========================================== */
 
 * {
@@ -10,15 +11,18 @@
 }
 
 :root {
-  --bg: #020617;
-  --panel: #0f172a;
-  --panel-soft: #111c2f;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-soft: rgba(59,130,246,.15);
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: #1e293b;
+  --bg: #f4f9ff;           /* Fondo general celeste muy claro */
+  --panel: #ffffff;        /* Panel blanco limpio */
+  --panel-soft: #eaf4ff;   /* Celeste suave */
+  
+  --accent: #38bdf8;       /* Celeste principal */
+  --accent-strong: #0ea5e9; /* Celeste más fuerte */
+  --accent-soft: rgba(56,189,248,.15);
+
+  --text: #1e293b;
+  --muted: #5b6b7f;
+  --border: #cfe5ff;
+
   --radius: 14px;
   --maxw: 1000px;
 }
@@ -27,10 +31,9 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(circle at top left, #0b1220, var(--bg));
+  background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
 }
 
 /* ================= LAYOUT ================= */
@@ -55,7 +58,7 @@ body {
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  color: var(--accent-strong);
 }
 
 /* ================= HEADER ================= */
@@ -72,23 +75,18 @@ body {
 /* ================= PANELS ================= */
 
 .panel {
-  background: linear-gradient(
-    180deg,
-    rgba(17,28,47,.95),
-    rgba(15,23,42,.95)
-  );
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px;
   margin-bottom: 35px;
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.35),
-    0 0 0 1px rgba(255,255,255,.02) inset;
+  box-shadow: 0 6px 18px rgba(56,189,248,.08);
   transition: .25s ease;
 }
 
 .panel:hover {
   border-color: var(--accent);
+  box-shadow: 0 8px 22px rgba(56,189,248,.15);
 }
 
 .panel h2 {
@@ -120,7 +118,7 @@ label {
   display: block;
   margin-top: 14px;
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--text);
 }
 
 input {
@@ -129,8 +127,8 @@ input {
   margin-top: 6px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #0b1220;
-  color: white;
+  background: var(--panel-soft);
+  color: var(--text);
   font-size: 0.95rem;
   transition: .2s ease;
 }
@@ -138,20 +136,21 @@ input {
 input:focus {
   outline: none;
   border-color: var(--accent);
+  background: #ffffff;
   box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
-/* ================= BUTTONS ================= */
+/* ================= BUTTON ================= */
 
 button {
   margin-top: 18px;
-  padding: 12px 20px;
+  padding: 12px 22px;
   border-radius: 10px;
   border: none;
   background: linear-gradient(
     135deg,
     var(--accent),
-    var(--accent-hover)
+    var(--accent-strong)
   );
   color: white;
   font-weight: 600;
@@ -159,14 +158,12 @@ button {
   letter-spacing: .3px;
   cursor: pointer;
   transition: .25s ease;
-  box-shadow:
-    0 4px 14px rgba(59,130,246,.35);
+  box-shadow: 0 4px 14px rgba(56,189,248,.25);
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 8px 20px rgba(59,130,246,.45);
+  box-shadow: 0 8px 20px rgba(56,189,248,.35);
 }
 
 button:active {
@@ -179,15 +176,15 @@ button:active {
   margin-top: 18px;
   padding: 16px;
   border-radius: 12px;
-  background: rgba(59,130,246,.12);
-  border: 1px solid rgba(59,130,246,.35);
+  background: #e3f2ff;
+  border: 1px solid var(--accent);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
 }
 
 .result strong {
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .note {
@@ -219,16 +216,18 @@ footer {
   padding-top: 25px;
   color: var(--muted);
   font-size: 0.85rem;
+  background: #ffffff;
 }
 
 .footer-nav a {
   color: var(--accent);
   text-decoration: none;
   margin: 0 10px;
+  font-weight: 500;
 }
 
 .footer-nav a:hover {
-  text-decoration: underline;
+  color: var(--accent-strong);
 }
 
 /* ================= RESPONSIVE ================= */
