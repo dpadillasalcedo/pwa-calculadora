@@ -1,5 +1,5 @@
 /* =========================
-   RESET + ANTI BLANCO
+   RESET GLOBAL
 ========================= */
 *,
 *::before,
@@ -9,25 +9,40 @@
   padding: 0;
 }
 
-html,
-body {
-  background-color: #020617 !important;
-  color: #e5e7eb;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  min-height: 100%;
+/* =========================
+   VARIABLES · PALETA CELESTE PROFESIONAL
+========================= */
+:root {
+
+  /* Fondo general */
+  --bg-main: #e0f2fe;          /* Azul celeste suave */
+  
+  /* Cards */
+  --bg-card: #bae6fd;          /* Celeste más oscuro */
+  --bg-card-2: #7dd3fc;        /* Profundidad sutil */
+
+  /* Bordes */
+  --border: #93c5fd;
+
+  /* Texto */
+  --text: #0f172a;             /* Azul oscuro elegante */
+  --muted: #475569;            /* Gris azulado */
+
+  /* Primario */
+  --primary: #0284c7;          /* Azul profesional */
+  --primary-strong: #0369a1;   /* Hover */
 }
 
 /* =========================
-   VARIABLES
+   BODY
 ========================= */
-:root {
-  --bg-main: #020617;
-  --bg-card: #0b1220;
-  --bg-card-2: #0f172a;
-  --border: #1e293b;
-  --text: #e5e7eb;
-  --muted: #cbd5e1;
-  --primary: #38bdf8;
+html,
+body {
+  background-color: var(--bg-main);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  min-height: 100%;
+  line-height: 1.6;
 }
 
 /* =========================
@@ -39,15 +54,17 @@ body {
 }
 
 .site-header h1 {
-  color: #f8fafc;
+  font-size: 2.2rem;
+  color: var(--primary-strong);
 }
 
 .site-header p {
+  margin-top: 0.5rem;
   color: var(--muted);
 }
 
 /* =========================
-   MAIN
+   MAIN WRAP
 ========================= */
 .wrap {
   max-width: 1100px;
@@ -65,17 +82,23 @@ body {
 
 .page-header h2 {
   color: var(--primary);
+  font-size: 1.6rem;
 }
 
 /* =========================
    CARD
 ========================= */
 .card {
-  background: linear-gradient(180deg, var(--bg-card), var(--bg-card-2));
+  background: linear-gradient(
+    180deg,
+    var(--bg-card),
+    var(--bg-card-2)
+  );
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 2rem;
   margin-bottom: 2.5rem;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
 }
 
 /* =========================
@@ -88,21 +111,33 @@ body {
 }
 
 /* =========================
-   INPUTS (ANTI BLANCO)
+   LABELS
 ========================= */
 label {
   color: var(--muted);
   font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
 }
 
+/* =========================
+   INPUTS
+========================= */
 input {
   width: 100%;
   margin-top: 0.4rem;
   padding: 0.75rem;
-  background-color: #020617 !important;
+  background-color: #f0f9ff;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
 }
 
 /* =========================
@@ -113,31 +148,32 @@ input {
   justify-content: space-between;
   margin-top: 1rem;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* =========================
-   TABLE (ANTI BLANCO)
+   TABLE
 ========================= */
-table {
-  background-color: #020617 !important;
-}
-
 .tabla-enterales {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
   font-size: 0.85rem;
+  background-color: #f0f9ff;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .tabla-enterales th,
 .tabla-enterales td {
-  background-color: #020617 !important;
   border: 1px solid var(--border);
   padding: 0.6rem;
+  text-align: center;
 }
 
 .tabla-enterales th {
-  color: var(--primary);
+  background-color: var(--primary);
+  color: white;
 }
 
 /* =========================
@@ -147,7 +183,7 @@ table {
   margin-top: 1.5rem;
   padding: 1rem;
   border-left: 4px solid var(--primary);
-  background: rgba(56, 189, 248, 0.08);
+  background: rgba(2, 132, 199, 0.08);
   border-radius: 12px;
   color: var(--muted);
 }
@@ -168,25 +204,8 @@ table {
   text-align: center;
   border-top: 1px solid var(--border);
   padding: 2.5rem 1.5rem;
-}
-
-.site-footer a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.site-footer p {
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.site-footer {
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  padding: 2.5rem 1.5rem;
   margin-top: 4rem;
-  background-color: #020617;
+  background-color: #dbeafe;
 }
 
 .site-footer .footer-nav {
@@ -194,7 +213,7 @@ table {
 }
 
 .site-footer a {
-  color: #38bdf8;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
 }
@@ -205,5 +224,5 @@ table {
 
 .site-footer p {
   font-size: 0.8rem;
-  color: #cbd5e1;
+  color: var(--muted);
 }
