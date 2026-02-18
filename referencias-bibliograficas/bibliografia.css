@@ -2,14 +2,14 @@
    VARIABLES GLOBALES
 ========================= */
 :root {
-  --color-bg: #020617;              /* Fondo principal */
-  --color-panel: #0B1220;           /* Tarjetas */
-  --color-border: #1E293B;          /* Bordes */
-  --color-text: #E2E8F0;            /* Texto principal */
-  --color-muted: #94A3B8;           /* Texto secundario */
+  --color-bg: #E0F2FE;              /* 🔵 Fondo azul celeste claro */
+  --color-panel: #FFFFFF;           /* Tarjetas blancas */
+  --color-border: #CBD5E1;          /* Bordes suaves */
+  --color-text: #0F172A;            /* Texto principal oscuro */
+  --color-muted: #475569;           /* Texto secundario */
 
-  --color-primary: #38BDF8;         /* Azul celeste moderno */
-  --color-primary-strong: #0EA5E9;  /* Hover / activo */
+  --color-primary: #0EA5E9;         /* Azul moderno */
+  --color-primary-strong: #0284C7;  /* Hover / activo */
 }
 
 /* =========================
@@ -80,7 +80,7 @@ html, body {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 1.75rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.08); /* sombra azul suave */
 }
 
 .panel h2 {
