@@ -11,35 +11,27 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-color: #020617;
+  background-color: #eaf6fd;
   overscroll-behavior: none;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: #020617;
-  z-index: -1;
-}
-
 /* =========================================================
-   VARIABLES (DARK CLÍNICO)
+   VARIABLES (CLARO PROFESIONAL AZUL)
 ========================================================= */
 :root {
-  --bg: #020617;
-  --bg-soft: #0b1220;
-  --card: #0f172a;
-  --border: #1e293b;
+  --bg: #eaf6fd;
+  --bg-soft: #f4faff;
+  --card: #d8eefb;
+  --border: #b9dced;
 
-  --text: #e5e7eb;
-  --muted: #94a3b8;
+  --text: #0f172a;
+  --muted: #475569;
 
   --accent: #38bdf8;
   --accent-strong: #0ea5e9;
-  --accent-soft: rgba(56, 189, 248, 0.18);
+  --accent-soft: rgba(56,189,248,.18);
 
-  --shadow: 0 12px 28px rgba(2, 6, 23, 0.65);
+  --shadow: 0 10px 30px rgba(14,165,233,.08);
 }
 
 /* =========================================================
@@ -51,8 +43,8 @@ body::before {
   flex-direction: column;
 
   background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.12), transparent 55%),
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.20), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.15), transparent 55%),
     var(--bg);
 
   color: var(--text);
@@ -71,7 +63,7 @@ body::before {
 }
 
 /* =========================================================
-   TIPOGRAFÍA / HELPERS
+   TIPOGRAFÍA
 ========================================================= */
 h1, h2, h3, h4 {
   margin: 0;
@@ -82,10 +74,6 @@ h2 {
   margin: 2rem 0 1rem;
 }
 
-.small {
-  font-size: 0.9rem;
-}
-
 .muted {
   color: var(--muted);
 }
@@ -94,12 +82,12 @@ h2 {
    LINKS
 ========================================================= */
 a {
-  color: var(--accent);
+  color: var(--accent-strong);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--accent-strong);
+  color: var(--accent);
 }
 
 /* =========================================================
@@ -108,11 +96,11 @@ a:hover {
 .card {
   background: linear-gradient(
     180deg,
-    rgba(15,23,42,.96),
-    rgba(11,18,32,.96)
+    #dff3fd,
+    #d2ebfa
   );
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 1.5rem;
   box-shadow: var(--shadow);
 }
@@ -150,8 +138,8 @@ select {
   padding: 0.7rem 0.8rem;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(2,6,23,.6);
-  color: #f8fafc;
+  background: #ffffff;
+  color: var(--text);
   outline: none;
   transition: border-color .15s ease, box-shadow .15s ease;
 }
@@ -160,27 +148,6 @@ input:focus,
 select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.controls-actions {
-  display: flex;
-  justify-content: flex-start;
-}
-
-@media (min-width: 860px) {
-  .controls-actions {
-    justify-content: flex-end;
-  }
-}
-
-.hint {
-  margin-top: 0.9rem;
-  padding: 0.85rem 1rem;
-  border-radius: 14px;
-  background: rgba(56,189,248,.08);
-  border: 1px dashed rgba(56,189,248,.35);
-  color: var(--muted);
-  font-size: 0.9rem;
 }
 
 /* =========================================================
@@ -201,31 +168,32 @@ select:focus {
 }
 
 .btn.secondary {
-  background: rgba(148,163,184,.15);
-  color: #f8fafc;
-  border: 1px solid rgba(148,163,184,.25);
+  background: #ffffff;
+  color: var(--accent-strong);
+  border: 1px solid var(--accent);
 }
 
 .btn.secondary:hover {
-  background: rgba(148,163,184,.22);
+  background: rgba(56,189,248,.10);
 }
 
 .btn.toggle-sheet {
-  background: var(--accent);
-  color: #02101f;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  color: #001018;
 }
 
 .btn.toggle-sheet:hover {
-  background: var(--accent-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(14,165,233,.25);
 }
 
 /* =========================================================
    DRUG CARD
 ========================================================= */
 .drug-card {
-  background: rgba(2,6,23,.45);
-  border: 1px solid rgba(148,163,184,.18);
-  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
   padding: 1.1rem 1.15rem;
   margin-bottom: 1rem;
   transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
@@ -233,8 +201,8 @@ select:focus {
 
 .drug-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(56,189,248,.45);
-  box-shadow: 0 14px 30px rgba(2,6,23,.7);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(14,165,233,.12);
 }
 
 .drug-head {
@@ -244,57 +212,24 @@ select:focus {
   gap: 1rem;
 }
 
-.drug-card h3 {
-  font-size: 1.05rem;
-  color: #f8fafc;
-}
-
 /* =========================================================
    FICHA CLÍNICA
 ========================================================= */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .drug-sheet {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(148,163,184,.18);
-}
-
-.sheet-grid {
+  border-top: 1px solid var(--border);
   display: grid;
   gap: 0.75rem;
-  margin-bottom: 1.1rem;
-}
-
-@media (min-width: 700px) {
-  .sheet-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.sheet-grid div {
-  background: rgba(2,6,23,.55);
-  border: 1px solid rgba(148,163,184,.16);
-  border-radius: 14px;
-  padding: 0.75rem 0.85rem;
-}
-
-.sheet-grid span {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 0.2rem;
 }
 
 /* =========================================================
-   BLOQUE DE CÁLCULO (antes dose-*)
+   BLOQUE CÁLCULO
 ========================================================= */
-.calc-block {
-  margin-top: 0.75rem;
-}
-
 .calc-grid {
   display: grid;
   gap: 0.75rem;
@@ -314,7 +249,7 @@ select:focus {
 
 .calc-result b {
   font-size: 1rem;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 /* =========================================================
@@ -324,9 +259,9 @@ select:focus {
   margin-top: 1rem;
   padding: 0.85rem 1rem;
   border-radius: 14px;
-  background: rgba(56,189,248,.08);
+  background: rgba(56,189,248,.10);
   border: 1px dashed rgba(56,189,248,.35);
-  color: #e5e7eb;
+  color: var(--text);
   font-size: 0.9rem;
 }
 
@@ -336,8 +271,8 @@ select:focus {
 footer {
   text-align: center;
   padding: 2rem 1.25rem;
-  border-top: 1px solid rgba(148,163,184,.18);
-  color: #f8fafc;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
 }
 
 .footer-nav {
@@ -348,34 +283,24 @@ footer {
 }
 
 .footer-nav a {
-  color: #f8fafc;
+  color: var(--accent-strong);
   font-weight: 600;
 }
 
 .footer-nav a:hover {
-  color: var(--accent-strong);
-}
-
-footer p {
-  max-width: 950px;
-  margin: 0 auto;
-  color: rgba(248,250,252,.85);
-  font-size: 0.9rem;
-  line-height: 1.45;
+  color: var(--accent);
 }
 
 /* =========================================================
-   SECCIONES DE FARMACOS (H2)
+   SECCIONES H2
 ========================================================= */
 main h2 {
   margin: 3rem 0 1.25rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(148,163,184,.18);
+  border-top: 1px solid var(--border);
   font-size: 1.25rem;
-  color: #f8fafc;
 }
 
-/* Primera sección no debe tener línea arriba */
 main h2:first-of-type {
   margin-top: 2rem;
   padding-top: 0;
@@ -393,80 +318,8 @@ main h2::before {
 }
 
 /* =========================================================
-   NORMALIZAR VASOPRESORES (HTML LEGACY)
+   LANGUAGE SWITCHER FIX
 ========================================================= */
-
-/* Inputs sueltos dentro de drug-sheet */
-.drug-sheet > input,
-.drug-sheet > select,
-.drug-sheet > div {
-  margin-bottom: 0.75rem;
-}
-
-/* Agrupar visualmente dilución + concentración */
-.drug-sheet > select.dilucion,
-.drug-sheet > div:has(.concentracion) {
-  background: rgba(2,6,23,.55);
-  border: 1px solid rgba(148,163,184,.16);
-  border-radius: 14px;
-  padding: 0.75rem 0.85rem;
-}
-
-/* Inputs de peso y velocidad como grid */
-.drug-sheet > input.peso,
-.drug-sheet > input.velocidad {
-  background: rgba(2,6,23,.55);
-  border: 1px solid rgba(148,163,184,.16);
-  border-radius: 14px;
-  padding: 0.7rem 0.8rem;
-}
-
-/* Resultado */
-.drug-sheet > div:has(.resultado) {
-  background: rgba(2,6,23,.55);
-  border: 1px solid rgba(148,163,184,.16);
-  border-radius: 14px;
-  padding: 0.75rem 0.85rem;
-}
-
-/* Alinear todo como bloque de cálculo */
-.drug-sheet {
-  display: grid;
-  gap: 0.75rem;
-}
-
-/* Tip clínico consistente */
-.drug-sheet .hint {
-  margin-top: 0.75rem;
-}
-
-/* Forzar ocultamiento de fichas */
-.hidden {
-  display: none !important;
-}
-
-/* =========================================================
-   FIX TEXTO INPUTS VASOPRESORES
-========================================================= */
-
-/* Inputs sueltos dentro de fichas (vasopresores legacy) */
-.drug-sheet input {
-  color: #f8fafc;
-}
-
-/* Placeholder visible */
-.drug-sheet input::placeholder {
-  color: rgba(248, 250, 252, 0.6);
-}
-
-/* Select también por consistencia */
-.drug-sheet select {
-  color: #f8fafc;
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
 .language-switcher {
   text-align: right;
   font-size: 0.85rem;
@@ -474,11 +327,12 @@ main h2::before {
 }
 
 .language-switcher a {
-  color: var(--color-muted);
+  color: var(--muted);
   text-decoration: none;
   margin-left: 0.4rem;
+  transition: color .2s ease;
 }
 
 .language-switcher a:hover {
-  color: var(--color-primary);
+  color: var(--accent-strong);
 }
