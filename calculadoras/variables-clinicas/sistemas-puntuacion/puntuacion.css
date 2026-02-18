@@ -8,17 +8,17 @@
 }
 
 /* =========================
-   VARIABLES · DARK CLÍNICO AZUL
+   VARIABLES · CLARO PROFESIONAL
 ========================= */
 :root {
-  --bg-main: #0b1c2d;      /* Azul noche clínico */
-  --bg-card: #102235;      /* Panel ligeramente más claro */
-  --bg-soft: #13283d;      /* Inputs / selects */
+  --bg-main: #e6f4fb;      /* Fondo azul celeste claro */
+  --bg-card: #cfe9f8;      /* Card azul celeste más intenso */
+  --bg-soft: #f4f9fd;      /* Inputs blancos suaves */
 
-  --text-main: #e5e7eb;
-  --text-muted: #94a3b8;
+  --text-main: #0f172a;    /* Texto oscuro profesional */
+  --text-muted: #475569;
 
-  --border: #1f3347;
+  --border: #b6d4e6;
 
   --primary: #38bdf8;
   --primary-strong: #0ea5e9;
@@ -29,7 +29,7 @@
 ========================= */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: system-ui, -apple-system, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
   line-height: 1.6;
@@ -41,6 +41,7 @@ body {
 header {
   border-bottom: 1px solid var(--border);
   padding: 1rem 1.5rem;
+  background: transparent;
 }
 
 .breadcrumb-nav {
@@ -49,14 +50,15 @@ header {
 }
 
 .breadcrumb-link {
-  color: var(--primary);
+  color: var(--primary-strong);
   text-decoration: none;
   font-size: .9rem;
+  font-weight: 500;
   transition: color .2s ease;
 }
 
 .breadcrumb-link:hover {
-  color: var(--primary-strong);
+  color: var(--primary);
 }
 
 /* =========================
@@ -87,14 +89,15 @@ h2 {
 }
 
 /* =========================
-   PANEL
+   PANEL / CARDS
 ========================= */
 .panel {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 2rem;
   margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(14,165,233,.08);
 }
 
 /* =========================
@@ -119,11 +122,11 @@ label {
    SELECTS
 ========================= */
 select {
-  background: var(--bg-soft);
+  background: #ffffff;
   color: var(--text-main);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: .45rem .55rem;
+  border-radius: 12px;
+  padding: .5rem .65rem;
   font-size: .9rem;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
@@ -145,8 +148,8 @@ select:focus {
 }
 
 button {
-  border-radius: 10px;
-  padding: .55rem 1.1rem;
+  border-radius: 12px;
+  padding: .6rem 1.2rem;
   font-size: .9rem;
   cursor: pointer;
   border: 1px solid transparent;
@@ -154,20 +157,20 @@ button {
 }
 
 button.primary {
-  background: var(--primary);
-  color: var(--bg-main);
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+  color: #001018;
   font-weight: 600;
 }
 
 button.primary:hover {
-  background: var(--primary-strong);
   transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 button.secondary {
   background: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
+  color: var(--primary-strong);
+  border-color: var(--primary-strong);
 }
 
 button.secondary:hover {
@@ -208,14 +211,15 @@ footer {
 }
 
 .footer-nav a {
-  color: var(--primary);
+  color: var(--primary-strong);
   text-decoration: none;
   margin: 0 .5rem;
   transition: color .2s ease;
+  font-weight: 500;
 }
 
 .footer-nav a:hover {
-  color: var(--primary-strong);
+  color: var(--primary);
 }
 
 /* =========================
@@ -249,5 +253,5 @@ footer {
 }
 
 .language-switcher a:hover {
-  color: var(--primary);
+  color: var(--primary-strong);
 }
