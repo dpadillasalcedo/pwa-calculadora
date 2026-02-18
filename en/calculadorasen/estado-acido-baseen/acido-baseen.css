@@ -1,5 +1,6 @@
 /* ==========================================
    Acid–Base Status - EN
+   Light Clinical Blue Version
 ========================================== */
 
 * {
@@ -9,13 +10,13 @@
 }
 
 :root {
-  --bg: #020617;
-  --panel: #111c2f;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --text: #f8fafc;
-  --muted: #cbd5e1;
-  --border: #1e293b;
+  --bg: #F8FAFC;
+  --panel: #FFFFFF;
+  --accent: #38BDF8;          /* Azul celeste */
+  --accent-hover: #0EA5E9;    /* Azul celeste fuerte */
+  --text: #0F172A;
+  --muted: #64748B;
+  --border: #E2E8F0;
   --radius: 12px;
   --maxw: 1000px;
 }
@@ -33,15 +34,24 @@ body {
   padding: 40px 20px 60px;
 }
 
+/* ================= BREADCRUMB ================= */
+
 .breadcrumb {
   margin-bottom: 20px;
   font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .breadcrumb a {
-  color: var(--accent);
+  color: var(--accent-hover);
   text-decoration: none;
 }
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ================= HEADER ================= */
 
 .app-header {
   margin-bottom: 30px;
@@ -51,22 +61,28 @@ body {
   color: var(--muted);
 }
 
+/* ================= PANEL ================= */
+
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 25px;
   margin-bottom: 30px;
+  box-shadow: 0 6px 20px rgba(14,165,233,0.05);
 }
 
 .panel h2 {
   margin-bottom: 15px;
 }
 
+/* ================= FORM ================= */
+
 label {
   display: block;
   margin-top: 12px;
   font-size: 0.9rem;
+  color: var(--muted);
 }
 
 input {
@@ -75,14 +91,17 @@ input {
   margin-top: 5px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #0f172a;
-  color: white;
+  background: #FFFFFF;
+  color: var(--text);
 }
 
 input:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
 }
+
+/* ================= BUTTON ================= */
 
 button {
   margin-top: 15px;
@@ -92,18 +111,23 @@ button {
   background: var(--accent);
   color: white;
   cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
 }
 
 button:hover {
   background: var(--accent-hover);
 }
 
+/* ================= RESULT ================= */
+
 .result {
   margin-top: 15px;
   padding: 12px;
   border-radius: 8px;
-  background: rgba(37, 99, 235, 0.15);
-  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: #E0F2FE;
+  border: 1px solid rgba(14,165,233,0.4);
+  font-size: 0.95rem;
 }
 
 .note {
@@ -111,6 +135,8 @@ button:hover {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* ================= TABLE ================= */
 
 .table-wrapper {
   margin-top: 40px;
@@ -130,14 +156,20 @@ button:hover {
 }
 
 .acid-base-table .section th {
-  background: #0f172a;
-  color: var(--accent);
+  background: #F1F5F9;
+  color: var(--accent-hover);
 }
 
+/* ================= FOOTER ================= */
+
 .footer-nav a {
-  color: var(--accent);
+  color: var(--accent-hover);
   text-decoration: none;
   margin: 0 8px;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
 }
 
 footer {
@@ -145,7 +177,10 @@ footer {
   text-align: center;
   border-top: 1px solid var(--border);
   padding-top: 20px;
+  color: var(--muted);
 }
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 768px) {
   .container {
