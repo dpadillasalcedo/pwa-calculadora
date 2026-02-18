@@ -52,6 +52,11 @@ header {
   color: var(--primary);
   text-decoration: none;
   font-size: .9rem;
+  transition: color .2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary-strong);
 }
 
 /* =========================
@@ -72,7 +77,7 @@ h1 {
 
 h2 {
   margin: 0 0 .5rem;
-  color: #f8fafc;
+  color: var(--text-main);
 }
 
 .note {
@@ -120,11 +125,13 @@ select {
   border-radius: 10px;
   padding: .45rem .55rem;
   font-size: .9rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
 }
 
 select:focus {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(56,189,248,.15);
 }
 
 /* =========================
@@ -143,12 +150,18 @@ button {
   font-size: .9rem;
   cursor: pointer;
   border: 1px solid transparent;
+  transition: all .15s ease;
 }
 
 button.primary {
   background: var(--primary);
-  color: #020617;
+  color: var(--bg-main);
   font-weight: 600;
+}
+
+button.primary:hover {
+  background: var(--primary-strong);
+  transform: translateY(-1px);
 }
 
 button.secondary {
@@ -158,7 +171,7 @@ button.secondary {
 }
 
 button.secondary:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(56,189,248,.12);
 }
 
 /* =========================
@@ -167,6 +180,7 @@ button.secondary:hover {
 .result {
   margin-top: .75rem;
   font-weight: 600;
+  color: var(--text-main);
 }
 
 /* =========================
@@ -197,6 +211,11 @@ footer {
   color: var(--primary);
   text-decoration: none;
   margin: 0 .5rem;
+  transition: color .2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-strong);
 }
 
 /* =========================
@@ -223,11 +242,12 @@ footer {
 }
 
 .language-switcher a {
-  color: var(--color-muted);
+  color: var(--text-muted);
   text-decoration: none;
   margin-left: 0.4rem;
+  transition: color .2s ease;
 }
 
 .language-switcher a:hover {
-  color: var(--color-primary);
+  color: var(--primary);
 }
