@@ -11,8 +11,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #020617;
-  color: #e5e7eb;
+  background-color: #e0f2fe; /* azul celeste claro */
+  color: #0f172a; /* texto oscuro para contraste */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
@@ -33,11 +33,11 @@ body {
 .breadcrumb {
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
-  color: #94a3b8;
+  color: #475569;
 }
 
 .breadcrumb a {
-  color: #38bdf8;
+  color: #0284c7;
   text-decoration: none;
 }
 
@@ -55,20 +55,20 @@ body {
 .app-header h1 {
   font-size: 1.6rem;
   margin: 0 0 0.35rem;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .subtitle {
   font-size: 0.95rem;
-  color: #cbd5f5;
+  color: #475569;
 }
 
 /* =========================
    PANELS
 ========================= */
 .panel {
-  background-color: #020617;
-  border: 1px solid #1e293b;
+  background-color: #ffffff; /* panel blanco sobre fondo celeste */
+  border: 1px solid #cbd5e1;
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin-bottom: 2rem;
@@ -77,13 +77,13 @@ body {
 .panel h2 {
   margin-top: 0;
   font-size: 1.2rem;
-  color: #e0f2fe;
+  color: #0369a1;
 }
 
 .panel h3 {
   margin-top: 1.5rem;
   font-size: 1rem;
-  color: #bae6fd;
+  color: #0284c7;
 }
 
 /* =========================
@@ -93,22 +93,22 @@ label {
   display: block;
   margin-top: 0.9rem;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #334155;
 }
 
 input {
   width: 100%;
   margin-top: 0.35rem;
   padding: 0.5rem 0.6rem;
-  background-color: #020617;
-  border: 1px solid #334155;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
   border-radius: 0.45rem;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 input:focus {
   outline: none;
-  border-color: #38bdf8;
+  border-color: #0284c7;
 }
 
 /* =========================
@@ -135,13 +135,13 @@ button:hover {
 .result {
   margin-top: 0.75rem;
   font-weight: 600;
-  color: #a5f3fc;
+  color: #0369a1;
 }
 
 .note {
   margin-top: 0.5rem;
   font-size: 0.85rem;
-  color: #c7d2fe;
+  color: #334155;
 }
 
 /* =========================
@@ -153,28 +153,60 @@ button:hover {
 
 .acid-base-table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: #020617;
-  border: 1px solid #1e293b;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
   border-radius: 0.75rem;
   overflow: hidden;
 }
 
 .acid-base-table th,
 .acid-base-table td {
-  padding: 0.9rem;
-  border-bottom: 1px solid #1e293b;
+  padding: 1rem 1.1rem;
   font-size: 0.85rem;
+  line-height: 1.55;
+  vertical-align: top;
+  border-bottom: 1px solid #e2e8f0;
 }
 
+/* Secciones */
 .acid-base-table .section th {
-  background-color: #020617;
-  color: #7dd3fc;
+  background-color: #f0f9ff;
+  color: #0369a1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Contenido */
+.acid-base-table .content td {
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+/* Hover */
+@media (hover: hover) {
+  .acid-base-table .content:hover td {
+    background-color: #f8fafc;
+  }
+}
+
+/* Negritas */
+.acid-base-table strong {
+  color: #0284c7;
   font-weight: 600;
 }
 
-.acid-base-table .content td {
-  color: #e5e7eb;
+/* Sub y sup */
+.acid-base-table sub,
+.acid-base-table sup {
+  font-size: 0.7em;
+  color: #475569;
+}
+
+.acid-base-table tr:last-child td {
+  border-bottom: none;
 }
 
 /* =========================
@@ -183,9 +215,9 @@ button:hover {
 footer {
   margin-top: 4rem;
   padding: 2.5rem 1.25rem;
-  border-top: 1px solid #1e293b;
+  border-top: 1px solid #cbd5e1;
   text-align: center;
-  background-color: #020617;
+  background-color: #e0f2fe;
 }
 
 .footer-nav {
@@ -193,7 +225,7 @@ footer {
 }
 
 .footer-nav a {
-  color: #38bdf8;
+  color: #0284c7;
   text-decoration: none;
   font-size: 0.85rem;
 }
@@ -205,86 +237,7 @@ footer {
 
 footer p {
   font-size: 0.75rem;
-  color: #94a3b8;
-}
-
-/* =========================
-   TABLA ÁCIDO–BASE (MEJORADA)
-========================= */
-
-.table-wrapper {
-  margin-top: 3rem;
-}
-
-.table-wrapper h2 {
-  margin-bottom: 1rem;
-  font-size: 1.15rem;
-  color: #e0f2fe;
-}
-
-.acid-base-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background-color: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 0.75rem;
-  overflow: hidden;
-}
-
-/* Filas */
-.acid-base-table th,
-.acid-base-table td {
-  padding: 1rem 1.1rem;
-  font-size: 0.85rem;
-  line-height: 1.55;
-  vertical-align: top;
-}
-
-/* Secciones (títulos de trastorno) */
-.acid-base-table .section th {
-  background: linear-gradient(
-    90deg,
-    #020617 0%,
-    #020617 100%
-  );
-  color: #7dd3fc;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-bottom: 1px solid #1e293b;
-  letter-spacing: 0.02em;
-}
-
-/* Contenido */
-.acid-base-table .content td {
-  color: #e5e7eb;
-  background-color: #020617;
-  border-bottom: 1px solid #1e293b;
-}
-
-/* Resaltado sutil al hover (desktop) */
-@media (hover: hover) {
-  .acid-base-table .content:hover td {
-    background-color: #020617;
-  }
-}
-
-/* Negritas clínicas más visibles */
-.acid-base-table strong {
-  color: #bae6fd;
-  font-weight: 600;
-}
-
-/* Subíndices y superíndices más claros */
-.acid-base-table sub,
-.acid-base-table sup {
-  font-size: 0.7em;
-  color: #c7d2fe;
-}
-
-/* Última fila sin borde */
-.acid-base-table tr:last-child td {
-  border-bottom: none;
+  color: #475569;
 }
 
 /* =========================
@@ -312,11 +265,11 @@ footer p {
 }
 
 .language-switcher a {
-  color: var(--color-muted);
+  color: #475569;
   text-decoration: none;
   margin-left: 0.4rem;
 }
 
 .language-switcher a:hover {
-  color: var(--color-primary);
+  color: #0284c7;
 }
