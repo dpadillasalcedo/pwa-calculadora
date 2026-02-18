@@ -14,31 +14,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.calcularGCEco = function () {
 
-    const d = parseFloat(document.getElementById("eco_dtsvi").value);
-    const vti = parseFloat(document.getElementById("eco_vti").value);
-    const hr = parseFloat(document.getElementById("eco_fc").value);
+  const d = parseFloat(document.getElementById("eco_dtsvi").value);
+  const vti = parseFloat(document.getElementById("eco_vti").value);
+  const hr = parseFloat(document.getElementById("eco_fc").value);
 
-    if (!d || !vti || !hr) return;
+  if (!d || !vti || !hr) return;
 
-    const area = Math.PI * Math.pow(d / 2, 2);
-    const strokeVolume = area * vti; // mL
-    const cardiacOutput = (strokeVolume * hr) / 1000; // L/min
+  const area = Math.PI * Math.pow(d / 2, 2);
+  const strokeVolume = area * vti; // mL
+  const cardiacOutput = (strokeVolume * hr) / 1000; // L/min
 
-    const result = document.getElementById("resultadoGCEco");
-    const interp = document.getElementById("interpretacionGCEco");
+  const result = document.getElementById("resultadoGCEco");
+  const interp = document.getElementById("interpretacionGCEco");
 
-    result.innerHTML =
-      `<strong>Cardiac Output:</strong> ${cardiacOutput.toFixed(2)} L/min`;
+  // 🔹 15% increase threshold
+  const increase15 = cardiacOutput * 0.15;
+  const targetCO = cardiacOutput * 1.15;
 
-    if (cardiacOutput < 4)
-      interp.innerHTML = "Low cardiac output.";
-    else if (cardiacOutput <= 8)
-      interp.innerHTML = "Normal range.";
-    else
-      interp.innerHTML = "High cardiac output.";
+  result.innerHTML =
+    `<strong>Cardiac Output:</strong> ${cardiacOutput.toFixed(2)} L/min
+     <br><strong>+15% Increase:</strong> ${increase15.toFixed(2)} L/min
+     <br><strong>Fluid Responsiveness Threshold:</strong> ${targetCO.toFixed(2)} L/min`;
 
-    sendGA("eco_cardiac_output");
-  };
+  if (cardiacOutput < 4)
+    interp.innerHTML = "Low cardiac output.";
+  else if (cardiacOutput <= 8)
+    interp.innerHTML = "Normal range.";
+  else
+    interp.innerHTML = "High cardiac output.";
+
+  interp.innerHTML +=
+    `<br><br><em>A ≥15% increase in cardiac output after fluid challenge suggests fluid responsiveness.</em>`;
+
+  sendGA("eco_cardiac_output");
+};
+
 
   /* ==========================================
      2️⃣ Fractional Shortening
