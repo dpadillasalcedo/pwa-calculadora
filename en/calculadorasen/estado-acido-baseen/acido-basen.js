@@ -1,135 +1,122 @@
-/* ==========================================
-   Acid–Base Status - EN
-   Critical Care Tools
-========================================== */
+(function () {
+  const getNum = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return NaN;
+    const v = parseFloat(el.value);
+    return Number.isFinite(v) ? v : NaN;
+  };
 
-document.addEventListener("DOMContentLoaded", function () {
+  const setHTML = (id, html) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  };
 
-  const currentPath = window.location.pathname;
+  const fmt = (n, d = 2) => (Number.isFinite(n) ? n.toFixed(d) : "—");
 
-  /* ==========================================
-     1️⃣ Corrected Anion Gap
-     AG = Na + K − Cl − HCO3
-     AGcorr = AG + 2.5 × (4 − albumin)
-  ========================================== */
-
+  // =========================
+  // 1) Corrected Anion Gap
+  // AG = Na + K - Cl - HCO3
+  // AGcorr = AG + 2.5*(4 - Alb[g/dL])
+  // =========================
   window.calcularAnionGapCorregido = function () {
+    const na = getNum("ab_na");
+    const k = getNum("ab_k");
+    const cl = getNum("ab_cl");
+    const hco3 = getNum("ab_hco3");
+    const alb = getNum("ab_alb");
 
-    const na = parseFloat(document.getElementById("ab_na").value);
-    const k = parseFloat(document.getElementById("ab_k").value) || 0;
-    const cl = parseFloat(document.getElementById("ab_cl").value);
-    const hco3 = parseFloat(document.getElementById("ab_hco3").value);
-    const alb = parseFloat(document.getElementById("ab_alb").value) || 4;
+    if (![na, k, cl, hco3, alb].every(Number.isFinite)) {
+      setHTML("resultadoAnionGap", "Please complete all fields with valid numbers.");
+      return;
+    }
 
-    if (!na || !cl || !hco3) return;
+    const ag = (na + k) - (cl + hco3);
+    const agCorr = ag + 2.5 * (4 - alb);
 
-    const ag = na + k - cl - hco3;
-    const agCorr = ag + (2.5 * (4 - alb));
-
-    const result = document.getElementById("resultadoAnionGap");
-
-    result.innerHTML =
-      `<strong>Anion Gap:</strong> ${ag.toFixed(1)} mEq/L` +
-      `<br><strong>Corrected AG:</strong> ${agCorr.toFixed(1)} mEq/L`;
-
-    if (agCorr > 12)
-      result.innerHTML += `<br><span class="note">Elevated anion gap metabolic acidosis likely.</span>`;
-    else
-      result.innerHTML += `<br><span class="note">Normal anion gap.</span>`;
-
-    sendGA("anion_gap_calculated");
+    setHTML(
+      "resultadoAnionGap",
+      `<strong>AG:</strong> ${fmt(ag, 1)} mEq/L<br>
+       <strong>Corrected AG:</strong> ${fmt(agCorr, 1)} mEq/L`
+    );
   };
 
-  /* ==========================================
-     2️⃣ Delta / Delta
-     ΔAG / ΔHCO3
-  ========================================== */
-
+  // =========================
+  // 2) Delta/Delta
+  // ΔAG = AG - 12
+  // ΔHCO3 = 24 - HCO3
+  // Ratio = ΔAG / ΔHCO3
+  // =========================
   window.calcularDeltaGap = function () {
+    const ag = getNum("dd_ag");
+    const hco3 = getNum("dd_hco3");
 
-    const ag = parseFloat(document.getElementById("dd_ag").value);
-    const hco3 = parseFloat(document.getElementById("dd_hco3").value);
+    if (![ag, hco3].every(Number.isFinite)) {
+      setHTML("resultadoDeltaGap", "Please enter valid numbers.");
+      setHTML("interpretacionDeltaGap", "");
+      return;
+    }
 
-    if (!ag || !hco3) return;
+    const dAG = ag - 12;
+    const dHCO3 = 24 - hco3;
 
-    const deltaAG = ag - 12;
-    const deltaHCO3 = 24 - hco3;
+    if (dHCO3 === 0) {
+      setHTML("resultadoDeltaGap", "<strong>Δ/Δ:</strong> —");
+      setHTML("interpretacionDeltaGap", "ΔHCO₃ is zero (cannot divide).");
+      return;
+    }
 
-    const ratio = deltaAG / deltaHCO3;
+    const ratio = dAG / dHCO3;
 
-    const result = document.getElementById("resultadoDeltaGap");
-    const interp = document.getElementById("interpretacionDeltaGap");
+    let interp = "";
+    if (ratio < 0.4) interp = "Suggests pure non–anion gap metabolic acidosis (NAGMA).";
+    else if (ratio < 0.8) interp = "Suggests mixed HAGMA + NAGMA.";
+    else if (ratio <= 2.0) interp = "Consistent with high anion gap metabolic acidosis (HAGMA).";
+    else interp = "Suggests concurrent metabolic alkalosis or chronic respiratory acidosis.";
 
-    result.innerHTML =
-      `<strong>Δ/Δ Ratio:</strong> ${ratio.toFixed(2)}`;
-
-    if (ratio < 0.8)
-      interp.innerHTML = "Suggests mixed normal AG metabolic acidosis.";
-    else if (ratio <= 2)
-      interp.innerHTML = "Pure high AG metabolic acidosis.";
-    else
-      interp.innerHTML = "Suggests concomitant metabolic alkalosis.";
-
-    sendGA("delta_gap_calculated");
+    setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${fmt(ratio, 2)}`);
+    setHTML("interpretacionDeltaGap", interp);
   };
 
-  /* ==========================================
-     3️⃣ Corrected Sodium
-     Na corr = Na + 1.6 × ((glucose − 100)/100)
-  ========================================== */
-
+  // =========================
+  // 3) Corrected Sodium (Hyperglycemia)
+  // Na_corr = Na + 1.6*((Glucose - 100)/100) for Glu > 100
+  // =========================
   window.calcularSodioCorregido = function () {
+    const na = getNum("na_meas");
+    const glu = getNum("glu");
 
-    const na = parseFloat(document.getElementById("na_meas").value);
-    const glu = parseFloat(document.getElementById("glu").value);
+    if (![na, glu].every(Number.isFinite)) {
+      setHTML("resultadoNaCorregido", "Please enter valid numbers.");
+      return;
+    }
 
-    if (!na || !glu) return;
+    const factor = glu > 100 ? 1.6 * ((glu - 100) / 100) : 0;
+    const naCorr = na + factor;
 
-    const naCorr = na + 1.6 * ((glu - 100) / 100);
-
-    const result = document.getElementById("resultadoNaCorregido");
-
-    result.innerHTML =
-      `<strong>Corrected Sodium:</strong> ${naCorr.toFixed(1)} mEq/L`;
-
-    sendGA("corrected_sodium_calculated");
+    setHTML(
+      "resultadoNaCorregido",
+      `<strong>Corrected Na⁺:</strong> ${fmt(naCorr, 1)} mEq/L`
+    );
   };
 
-  /* ==========================================
-     4️⃣ Corrected Calcium
-     Ca corr = Ca + 0.8 × (4 − albumin)
-  ========================================== */
-
+  // =========================
+  // 4) Corrected Calcium (Albumin)
+  // Ca_corr = Ca + 0.8*(4 - Alb)
+  // =========================
   window.calcularCalcioCorregido = function () {
+    const ca = getNum("ca_meas");
+    const alb = getNum("alb_meas");
 
-    const ca = parseFloat(document.getElementById("ca_meas").value);
-    const alb = parseFloat(document.getElementById("alb_meas").value);
-
-    if (!ca || !alb) return;
+    if (![ca, alb].every(Number.isFinite)) {
+      setHTML("resultadoCaCorregido", "Please enter valid numbers.");
+      return;
+    }
 
     const caCorr = ca + 0.8 * (4 - alb);
 
-    const result = document.getElementById("resultadoCaCorregido");
-
-    result.innerHTML =
-      `<strong>Corrected Calcium:</strong> ${caCorr.toFixed(2)} mg/dL`;
-
-    sendGA("corrected_calcium_calculated");
+    setHTML(
+      "resultadoCaCorregido",
+      `<strong>Corrected Ca:</strong> ${fmt(caCorr, 2)}`
+    );
   };
-
-  /* ==========================================
-     GA helper
-  ========================================== */
-
-  function sendGA(eventName) {
-    if (typeof gtag === "function") {
-      gtag("event", eventName, {
-        event_category: "acid_base_module",
-        page_path: currentPath,
-        language: "en"
-      });
-    }
-  }
-
-});
-
+})();
