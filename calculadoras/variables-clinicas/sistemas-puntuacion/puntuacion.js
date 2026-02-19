@@ -133,3 +133,28 @@ function resetSAPS(){
   document.getElementById('saps_result').textContent = '';
   document.getElementById('saps_mortality').textContent = '';
 }
+
+
+/* =========================
+   SOFA-1 (CLÁSICO)
+========================= */
+
+function calcSOFA1(){
+  const total = sumBySelector('.sofa1');
+
+  document.getElementById('sofa1_result').textContent =
+    `SOFA-1 total: ${total}`;
+
+  document.getElementById('sofa1_mortality').textContent =
+    total <= 1  ? 'Mortalidad estimada <10%' :
+    total <= 5  ? 'Mortalidad estimada 10–20%' :
+    total <= 9  ? 'Mortalidad estimada 20–40%' :
+    total <= 12 ? 'Mortalidad estimada 40–50%' :
+                  'Mortalidad estimada >50–90%';
+}
+
+function resetSOFA1(){
+  resetBySelector('.sofa1');
+  document.getElementById('sofa1_result').textContent = '';
+  document.getElementById('sofa1_mortality').textContent = '';
+}
