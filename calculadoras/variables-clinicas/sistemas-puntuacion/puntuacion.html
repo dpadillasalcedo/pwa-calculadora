@@ -106,6 +106,91 @@
 <h1>Calculadoras UCI</h1>
 <p class="note">SOFA-2 · APACHE II · SAPS II</p>
 
+  <!-- ======================= SOFA-1 ======================= -->
+<section class="panel">
+<h2>SOFA-1</h2>
+<p class="note">Sequential Organ Failure Assessment (versión clásica original)</p>
+
+<div class="grid">
+
+<label>Respiratorio (PaO₂/FiO₂)
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">≥400</option>
+<option value="1">&lt;400</option>
+<option value="2">&lt;300</option>
+<option value="3">&lt;200 + ventilación</option>
+<option value="4">&lt;100 + ventilación</option>
+</select>
+</label>
+
+<label>Coagulación (Plaquetas x10³)
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">≥150</option>
+<option value="1">&lt;150</option>
+<option value="2">&lt;100</option>
+<option value="3">&lt;50</option>
+<option value="4">&lt;20</option>
+</select>
+</label>
+
+<label>Hepático (Bilirrubina mg/dL)
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">&lt;1.2</option>
+<option value="1">1.2–1.9</option>
+<option value="2">2.0–5.9</option>
+<option value="3">6.0–11.9</option>
+<option value="4">≥12</option>
+</select>
+</label>
+
+<label>Cardiovascular
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">PAM ≥70</option>
+<option value="1">PAM &lt;70</option>
+<option value="2">Dopamina ≤5 o dobutamina</option>
+<option value="3">Dopamina 5–15 o NE ≤0.1</option>
+<option value="4">Dopamina &gt;15 o NE &gt;0.1</option>
+</select>
+</label>
+
+<label>Neurológico (GCS)
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">15</option>
+<option value="1">13–14</option>
+<option value="2">10–12</option>
+<option value="3">6–9</option>
+<option value="4">&lt;6</option>
+</select>
+</label>
+
+<label>Renal
+<select class="sofa1">
+<option value="" selected></option>
+<option value="0">&lt;1.2</option>
+<option value="1">1.2–1.9</option>
+<option value="2">2.0–3.4</option>
+<option value="3">3.5–4.9 o &lt;500 ml/d</option>
+<option value="4">≥5.0 o &lt;200 ml/d</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+  <button type="button" class="primary" onclick="calcSOFA1()">Calcular SOFA-1</button>
+  <button type="button" class="secondary" onclick="resetSOFA1()">Reiniciar</button>
+</div>
+
+<div id="sofa1_result" class="result"></div>
+<div id="sofa1_mortality" class="note"></div>
+
+</section>
+
 
 <!-- ======================= SOFA-2 ======================= -->
 <section class="panel">
