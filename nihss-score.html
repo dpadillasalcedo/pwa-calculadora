@@ -69,157 +69,209 @@
 
   <h2>Calculadora NIHSS</h2>
 
-  <!-- 1 -->
-  <fieldset>
-    <legend><h3>1. Nivel de conciencia</h3></legend>
 
-    <label for="nihss_1a">1a. Estado de alerta</label>
-    <select id="nihss_1a">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Alerta</option>
-      <option value="1">1 · Somnoliento</option>
-      <option value="2">2 · Estuporoso</option>
-      <option value="3">3 · Coma</option>
-    </select>
+  <!-- =========================
+       NIHSS
+  ========================= -->
+  <section id="nihss" class="panel">
+    <div class="panel-head">
+      <h2>🧠 NIHSS · Stroke Scale</h2>
+      <p class="note">
+        Completar los ítems y presionar <strong>Calcular NIHSS</strong>.
+      </p>
+    </div>
 
-    <label for="nihss_1b">1b. Preguntas (edad y mes)</label>
-    <select id="nihss_1b">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Ambas correctas</option>
-      <option value="1">1 · Una correcta</option>
-      <option value="2">2 · Ninguna correcta</option>
-    </select>
+    <div class="card">
+      <div class="nihss-grid">
 
-    <label for="nihss_1c">1c. Órdenes simples</label>
-    <select id="nihss_1c">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Ambas correctas</option>
-      <option value="1">1 · Una correcta</option>
-      <option value="2">2 · Ninguna correcta</option>
-    </select>
-  </fieldset>
+        <!-- 1a -->
+        <label class="field">
+          <span>1a. Nivel de conciencia</span>
+          <select id="n_1a">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Alerta</option>
+            <option value="1">1 = Somnoliento</option>
+            <option value="2">2 = Estupor</option>
+            <option value="3">3 = Coma</option>
+          </select>
+        </label>
 
-  <!-- 2–4 -->
-  <fieldset>
-    <legend><h3>2–4. Función visual y facial</h3></legend>
+        <!-- 1b -->
+        <label class="field">
+          <span>1b. Preguntas LOC</span>
+          <select id="n_1b">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Ambas correctas</option>
+            <option value="1">1 = Una correcta</option>
+            <option value="2">2 = Ninguna correcta</option>
+          </select>
+        </label>
 
-    <label for="nihss_2">2. Mirada</label>
-    <select id="nihss_2">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Paresia parcial</option>
-      <option value="2">2 · Desviación forzada</option>
-    </select>
+        <!-- 1c -->
+        <label class="field">
+          <span>1c. Órdenes LOC</span>
+          <select id="n_1c">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Ambas correctas</option>
+            <option value="1">1 = Una correcta</option>
+            <option value="2">2 = Ninguna correcta</option>
+          </select>
+        </label>
 
-    <label for="nihss_3">3. Campos visuales</label>
-    <select id="nihss_3">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Hemianopsia parcial</option>
-      <option value="2">2 · Hemianopsia completa</option>
-      <option value="3">3 · Ceguera bilateral</option>
-    </select>
+        <!-- 2 -->
+        <label class="field">
+          <span>2. Mirada</span>
+          <select id="n_2">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Parálisis parcial</option>
+            <option value="2">2 = Desviación forzada</option>
+          </select>
+        </label>
 
-    <label for="nihss_4">4. Parálisis facial</label>
-    <select id="nihss_4">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Paresia leve</option>
-      <option value="2">2 · Paresia parcial</option>
-      <option value="3">3 · Parálisis completa</option>
-    </select>
-  </fieldset>
+        <!-- 3 -->
+        <label class="field">
+          <span>3. Campos visuales</span>
+          <select id="n_3">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Hemianopsia parcial</option>
+            <option value="2">2 = Hemianopsia homónima completa</option>
+            <option value="3">3 = Ceguera bilateral</option>
+          </select>
+        </label>
 
-  <!-- 5–11 -->
-  <fieldset>
-    <legend><h3>5–11. Función motora, lenguaje y atención</h3></legend>
+        <!-- 4 -->
+        <label class="field">
+          <span>4. Parálisis facial</span>
+          <select id="n_4">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Leve</option>
+            <option value="2">2 = Parcial</option>
+            <option value="3">3 = Completa</option>
+          </select>
+        </label>
 
-    <label for="nihss_motor">Fuerza motora (peor lado)</label>
-    <select id="nihss_motor">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Caída leve</option>
-      <option value="2">2 · No mantiene posición</option>
-      <option value="3">3 · Movimiento mínimo</option>
-      <option value="4">4 · Sin movimiento</option>
-    </select>
+        <!-- 5a -->
+        <label class="field">
+          <span>5a. Motor brazo izquierdo</span>
+          <select id="n_5a">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Sin caída</option>
+            <option value="1">1 = Caída leve</option>
+            <option value="2">2 = Contra gravedad</option>
+            <option value="3">3 = Sin esfuerzo contra gravedad</option>
+            <option value="4">4 = Sin movimiento</option>
+          </select>
+        </label>
 
-    <label for="nihss_ataxia">Ataxia</label>
-    <select id="nihss_ataxia">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Ausente</option>
-      <option value="1">1 · Un miembro</option>
-      <option value="2">2 · Dos miembros</option>
-    </select>
+        <!-- 5b -->
+        <label class="field">
+          <span>5b. Motor brazo derecho</span>
+          <select id="n_5b">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Sin caída</option>
+            <option value="1">1 = Caída leve</option>
+            <option value="2">2 = Contra gravedad</option>
+            <option value="3">3 = Sin esfuerzo contra gravedad</option>
+            <option value="4">4 = Sin movimiento</option>
+          </select>
+        </label>
 
-    <label for="nihss_sens">Sensibilidad</label>
-    <select id="nihss_sens">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Hipoestesia</option>
-      <option value="2">2 · Anestesia</option>
-    </select>
+        <!-- 6a -->
+        <label class="field">
+          <span>6a. Motor pierna izquierda</span>
+          <select id="n_6a">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Sin caída</option>
+            <option value="1">1 = Caída leve</option>
+            <option value="2">2 = Contra gravedad</option>
+            <option value="3">3 = Sin esfuerzo contra gravedad</option>
+            <option value="4">4 = Sin movimiento</option>
+          </select>
+        </label>
 
-    <label for="nihss_lang">Lenguaje</label>
-    <select id="nihss_lang">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Afasia leve</option>
-      <option value="2">2 · Afasia severa</option>
-      <option value="3">3 · Afasia global</option>
-    </select>
+        <!-- 6b -->
+        <label class="field">
+          <span>6b. Motor pierna derecha</span>
+          <select id="n_6b">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Sin caída</option>
+            <option value="1">1 = Caída leve</option>
+            <option value="2">2 = Contra gravedad</option>
+            <option value="3">3 = Sin esfuerzo contra gravedad</option>
+            <option value="4">4 = Sin movimiento</option>
+          </select>
+        </label>
 
-    <label for="nihss_dys">Disartria</label>
-    <select id="nihss_dys">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Normal</option>
-      <option value="1">1 · Leve–moderada</option>
-      <option value="2">2 · Severa</option>
-    </select>
+        <!-- 7 -->
+        <label class="field">
+          <span>7. Ataxia</span>
+          <select id="n_7">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = No</option>
+            <option value="1">1 = Un miembro</option>
+            <option value="2">2 = Dos miembros</option>
+          </select>
+        </label>
 
-    <label for="nihss_neglect">Negligencia</label>
-    <select id="nihss_neglect">
-      <option value="">Seleccione</option>
-      <option value="0">0 · Ausente</option>
-      <option value="1">1 · Parcial</option>
-      <option value="2">2 · Severa</option>
-    </select>
-  </fieldset>
+        <!-- 8 -->
+        <label class="field">
+          <span>8. Sensibilidad</span>
+          <select id="n_8">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Pérdida leve/moderada</option>
+            <option value="2">2 = Pérdida severa</option>
+          </select>
+        </label>
 
-  <button type="button" data-action="calcular-nihss">
-    Calcular NIHSS
-  </button>
+        <!-- 9 -->
+        <label class="field">
+          <span>9. Lenguaje (afasia)</span>
+          <select id="n_9">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Afasia leve/moderada</option>
+            <option value="2">2 = Afasia severa</option>
+            <option value="3">3 = Afasia global</option>
+          </select>
+        </label>
 
-  <div
-    id="resultadoNIHSS"
-    role="status"
-    aria-live="polite"
-    style="margin-top:12px;font-weight:600">
-  </div>
+        <!-- 10 -->
+        <label class="field">
+          <span>10. Disartria</span>
+          <select id="n_10">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = Normal</option>
+            <option value="1">1 = Leve/moderada</option>
+            <option value="2">2 = Severa</option>
+          </select>
+        </label>
 
-  <div
-    id="interpretacionNIHSS"
-    class="note"
-    style="margin-top:6px">
-  </div>
+        <!-- 11 -->
+        <label class="field">
+          <span>11. Inatención / Neglect</span>
+          <select id="n_11">
+            <option value="">Seleccionar…</option>
+            <option value="0">0 = No</option>
+            <option value="1">1 = Leve</option>
+            <option value="2">2 = Severo</option>
+          </select>
+        </label>
 
-  <div class="ad-slot ad-result"></div>
+      </div>
 
-</section>
+      <div class="actions">
+        <button type="button" class="btn primary" id="nihss_calc">Calcular NIHSS</button>
+        <button type="button" class="btn-secondary" id="nihss_reset">Reiniciar NIHSS</button>
+      </div>
 
-<section class="panel">
-
-  <h2>Interpretación clínica</h2>
-
-  <ul class="note">
-    <li><strong>0:</strong> Sin déficit neurológico</li>
-    <li><strong>1–4:</strong> ACV leve</li>
-    <li><strong>5–15:</strong> ACV moderado</li>
-    <li><strong>16–20:</strong> ACV moderado–severo</li>
-    <li><strong>&gt;20:</strong> ACV severo</li>
-  </ul>
-
-</section>
+      <div id="resultadoNIHSS" class="resultado" aria-live="polite"></div>
+      <div id="interpretacionNIHSS" class="note" aria-live="polite"></div>
+    </div>
+  </section>
 
 </main>
 
@@ -227,3 +279,4 @@
 
 </body>
 </html>
+
