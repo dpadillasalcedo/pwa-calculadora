@@ -1,43 +1,101 @@
 /* ================= CAM-ICU ================= */
 
-function calcCAM(){
+document.addEventListener("DOMContentLoaded", function () {
 
-const s1 = parseInt(document.getElementById("cam_step1").value);
-const s2 = parseInt(document.getElementById("cam_step2").value);
-const s3 = parseInt(document.getElementById("cam_step3").value);
-const s4 = parseInt(document.getElementById("cam_step4").value);
+  const step1 = document.getElementById("cam_step1");
+  const step2 = document.getElementById("cam_step2");
+  const step3 = document.getElementById("cam_step3");
+  const step4 = document.getElementById("cam_step4");
 
-const resultBox = document.getElementById("resultadoCAMICU");
+  const step2Container = document.getElementById("cam_step2_container");
+  const step3Container = document.getElementById("cam_step3_container");
+  const step4Container = document.getElementById("cam_step4_container");
 
-if(isNaN(s1) || isNaN(s2) || isNaN(s3) || isNaN(s4)){
-resultBox.innerHTML = "Please complete all CAM-ICU steps.";
-return;
-}
+  const resultBox = document.getElementById("resultadoCAMICU");
 
-let result = "";
-let detail = "";
+  /* ========= STEP 1 ========= */
+  step1.addEventListener("change", function () {
 
-if(s1 === 0){
-result = "CAM-ICU NEGATIVE";
-detail = "Step 1 negative → Delirium ruled out.";
-}
-else if(s1 === 1 && s2 === 1 && (s3 === 1 || s4 === 1)){
-result = "CAM-ICU POSITIVE";
-detail = "Criteria met: 1 + 2 + (3 or 4). Delirium present.";
-}
-else{
-result = "CAM-ICU NEGATIVE";
-detail = "Criteria not fully met.";
-}
+    resetBelowStep1();
 
-resultBox.innerHTML =
-"<strong>" + result + "</strong><br>" + detail;
-}
+    if (this.value === "1") {
+      step2Container.style.display = "block";
+    }
 
-function resetCAM(){
-document.querySelectorAll("#camicu select").forEach(el=>el.value="");
-document.getElementById("resultadoCAMICU").innerHTML="";
-}
+    if (this.value === "0") {
+      resultBox.innerHTML =
+        "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Step 1 negative → Delirium ruled out.";
+    }
+
+  });
+
+  /* ========= STEP 2 ========= */
+  step2.addEventListener("change", function () {
+
+    resetBelowStep2();
+
+    if (this.value === "1") {
+      step3Container.style.display = "block";
+      step4Container.style.display = "block";
+    }
+
+    if (this.value === "0") {
+      resultBox.innerHTML =
+        "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Step 2 negative → Delirium ruled out.";
+    }
+
+  });
+
+  /* ========= STEP 3 & 4 AUTO EVALUATION ========= */
+  step3.addEventListener("change", evaluate);
+  step4.addEventListener("change", evaluate);
+
+  function evaluate() {
+
+    const s1 = parseInt(step1.value);
+    const s2 = parseInt(step2.value);
+    const s3 = parseInt(step3.value);
+    const s4 = parseInt(step4.value);
+
+    if (isNaN(s3) || isNaN(s4)) return;
+
+    if (s1 === 1 && s2 === 1 && (s3 === 1 || s4 === 1)) {
+      resultBox.innerHTML =
+        "<strong style='color:#ef4444'>CAM-ICU POSITIVE</strong><br>Criteria met: 1 + 2 + (3 or 4). Delirium present.";
+    } else {
+      resultBox.innerHTML =
+        "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Criteria not fully met.";
+    }
+
+  }
+
+  /* ========= RESETS ========= */
+
+  function resetBelowStep1() {
+
+    step2Container.style.display = "none";
+    step3Container.style.display = "none";
+    step4Container.style.display = "none";
+
+    step2.value = "";
+    step3.value = "";
+    step4.value = "";
+
+    resultBox.innerHTML = "";
+  }
+
+  function resetBelowStep2() {
+
+    step3Container.style.display = "none";
+    step4Container.style.display = "none";
+
+    step3.value = "";
+    step4.value = "";
+
+    resultBox.innerHTML = "";
+  }
+
+});
 
 
 /* =========================
