@@ -96,50 +96,65 @@
     </p>
   </header>
 
-  <!-- ================= CAM-ICU ================= -->
-  <section id="camicu" class="panel">
-    <h2>🧠 CAM-ICU · Delirium</h2>
-    <p class="note">
-      CAM-ICU is <strong>positive</strong> if:
-      <strong>Step 1 + Step 2</strong> and <strong>(Step 3 or Step 4)</strong>.
-      <br />
-      If <strong>Step 1 is negative</strong>, delirium is ruled out.
-    </p>
+ <!-- ================= CAM-ICU ================= -->
+<section id="camicu" class="panel">
+  <h2>🧠 CAM-ICU · Delirium</h2>
 
+  <p class="note">
+    CAM-ICU is <strong>positive</strong> if:
+    <strong>Step 1 + Step 2</strong> and <strong>(Step 3 or Step 4)</strong>.
+    <br />
+    If <strong>Step 1 is negative</strong>, delirium is ruled out.
+  </p>
+
+  <!-- STEP 1 -->
+  <div id="cam_step1_container">
     <label>Step 1 · Acute onset or fluctuating course
-      <select id="cam_step1">
+      <select id="cam_step1" onchange="handleStep1()">
         <option value="">Select…</option>
         <option value="1">Yes</option>
         <option value="0">No</option>
       </select>
     </label>
+  </div>
 
+  <!-- STEP 2 -->
+  <div id="cam_step2_container" style="display:none;">
     <label>Step 2 · Inattention
-      <select id="cam_step2">
+      <select id="cam_step2" onchange="handleStep2()">
         <option value="">Select…</option>
         <option value="1">Yes</option>
         <option value="0">No</option>
       </select>
     </label>
+  </div>
 
+  <!-- STEP 3 -->
+  <div id="cam_step3_container" style="display:none;">
     <label>Step 3 · Altered level of consciousness (RASS ≠ 0)
-      <select id="cam_step3">
+      <select id="cam_step3" onchange="autoEvaluate()">
         <option value="">Select…</option>
         <option value="1">Yes</option>
         <option value="0">No</option>
       </select>
     </label>
+  </div>
 
+  <!-- STEP 4 -->
+  <div id="cam_step4_container" style="display:none;">
     <label>Step 4 · Disorganized thinking
-      <select id="cam_step4">
+      <select id="cam_step4" onchange="autoEvaluate()">
         <option value="">Select…</option>
         <option value="1">Yes</option>
         <option value="0">No</option>
       </select>
     </label>
+  </div>
 
-    <div id="resultadoCAMICU" class="result"></div>
-  </section>
+  <div id="resultadoCAMICU" class="result"></div>
+
+</section>
+
 
   <hr />
 
