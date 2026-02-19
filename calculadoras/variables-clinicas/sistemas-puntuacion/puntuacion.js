@@ -140,21 +140,60 @@ function resetSAPS(){
 ========================= */
 
 function calcSOFA1(){
-  const total = sumBySelector('.sofa1');
+  const selects = document.querySelectorAll('.sofa1');
+  let total = 0;
+  let breakdown = [];
 
-  document.getElementById('sofa1_result').textContent =
-    `SOFA-1 total: ${total}`;
+  selects.forEach(select => {
+    const value = Number(select.value);
+    if (isNaN(value) || value === 0) return;
 
-  document.getElementById('sofa1_mortality').textContent =
+    const label = select.closest("label").childNodes[0].textContent.trim();
+
+    total += value;
+
+    breakdown.push({
+      system: label,
+      points: value
+    });
+  });
+
+  const result = document.getElementById('sofa1_result');
+  const mortality = document.getElementById('sofa1_mortality');
+  const detail = document.getElementById('sofa1_breakdown');
+
+  // Total
+  result.innerHTML = `<b>SOFA-1 total:</b> ${total} puntos`;
+
+  // Mortalidad
+  mortality.textContent =
     total <= 1  ? 'Mortalidad estimada <10%' :
     total <= 5  ? 'Mortalidad estimada 10–20%' :
     total <= 9  ? 'Mortalidad estimada 20–40%' :
     total <= 12 ? 'Mortalidad estimada 40–50%' :
                   'Mortalidad estimada >50–90%';
+
+  // Desglose
+  if (breakdown.length > 0) {
+    let html = "<b>Desglose por sistemas comprometidos:</b><ul>";
+    breakdown.forEach(item => {
+      html += `<li>${item.system}: ${item.points} punto${item.points > 1 ? "s" : ""}</li>`;
+    });
+    html += "</ul>";
+
+    detail.innerHTML = html;
+    detail.style.display = "block";
+  } else {
+    detail.style.display = "none";
+  }
 }
 
 function resetSOFA1(){
   resetBySelector('.sofa1');
+
   document.getElementById('sofa1_result').textContent = '';
   document.getElementById('sofa1_mortality').textContent = '';
+
+  const detail = document.getElementById('sofa1_breakdown');
+  if (detail) detail.style.display = 'none';
 }
