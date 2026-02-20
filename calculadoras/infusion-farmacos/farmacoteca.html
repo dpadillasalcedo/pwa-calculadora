@@ -20,10 +20,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Farmacoteca UCI | Dosis e Infusiones | Critical Care Tools</title>
+  <title>Farmacoteca UCI | Dosis · Diluciones · Infusiones | Critical Care Tools</title>
 
   <meta name="description"
-        content="Farmacoteca UCI con referencia de infusiones y concentraciones de uso en terapia intensiva. Herramienta educativa y de apoyo clínico.">
+        content="Farmacoteca UCI con referencia rápida de dosis, diluciones e infusiones utilizadas en cuidados intensivos. Herramienta educativa y apoyo clínico.">
 
   <meta name="robots"
         content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -37,7 +37,7 @@
         href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html">
 
   <!-- =========================
-       HREFLANG MULTI-IDIOMA
+       HREFLANG
   ========================== -->
   <link rel="alternate"
         hreflang="es"
@@ -55,29 +55,29 @@
        OPEN GRAPH
   ========================== -->
   <meta property="og:title"
-        content="Farmacoteca UCI | Dosis e Infusiones">
+        content="Farmacoteca UCI | Dosis · Diluciones · Infusiones">
 
   <meta property="og:description"
-        content="Referencia rápida de infusiones, diluciones y concentraciones utilizadas en cuidados intensivos.">
+        content="Referencia rápida de dosis, diluciones y concentraciones utilizadas en terapia intensiva.">
 
   <meta property="og:type" content="website">
-
   <meta property="og:url"
         content="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html">
-
   <meta property="og:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-farmacoteca.jpg">
+  <meta property="og:site_name" content="Critical Care Tools">
+  <meta property="og:locale" content="es_ES">
 
   <!-- =========================
        TWITTER CARD
   ========================== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title"
-        content="Farmacoteca UCI | Critical Care Tools">
+        content="Farmacoteca UCI | Dosis e Infusiones">
   <meta name="twitter:description"
-        content="Referencia educativa de infusiones en terapia intensiva.">
+        content="Referencia educativa de infusiones y concentraciones en cuidados intensivos.">
   <meta name="twitter:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-farmacoteca.jpg">
 
   <!-- =========================
        PERFORMANCE
@@ -97,7 +97,7 @@
        CSS
   ========================== -->
   <link rel="stylesheet"
-        href="/calculadoras/infusion-farmacos/farmacoteca.css">
+        href="/calculadoras/infusion-farmacos/farmacoteca.css?v=2">
 
   <!-- =========================
        GOOGLE ANALYTICS GA4
@@ -111,9 +111,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+
     gtag('js', new Date());
 
-     gtag('config', 'G-WQREHQ56Q4', {
+    gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true,
       transport_type: 'beacon'
@@ -128,6 +134,9 @@
     crossorigin="anonymous">
   </script>
 
+  <!-- =========================
+       STRUCTURED DATA
+  ========================== -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -137,23 +146,12 @@
       "@id": "https://criticalcaretools.com/#organization",
       "name": "Critical Care Tools",
       "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
       "logo": "https://criticalcaretools.com/assets/logo.png"
     },
     {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
+      "@type": "MedicalWebApplication",
+      "@id": "https://criticalcaretools.com/#farmacoteca",
+      "name": "ICU Drug Infusion Reference",
       "applicationCategory": "MedicalApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript",
@@ -164,15 +162,15 @@
       "about": [
         {
           "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
+          "name": "Drug dosing in intensive care"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
+          "name": "Continuous infusion preparation"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
+          "name": "Vasoactive drug concentrations"
         }
       ],
       "publisher": {
@@ -181,7 +179,7 @@
     }
   ]
 }
-</script>
+  </script>
 
 </head>
 
