@@ -305,3 +305,25 @@ table tbody tr:hover {
 .language-switcher a:hover {
   color: var(--primary);
 }
+
+/* =========================================================
+   RESULTADO GLASGOW
+========================================================= */
+
+.resultado {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.resultado.ok {
+  color: var(--ok);
+}
+
+.resultado.warn {
+  color: var(--warn);
+}
+
+.resultado.bad {
+  color: var(--bad);
+}
