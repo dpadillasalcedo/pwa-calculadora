@@ -11,11 +11,12 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #e0f2fe; /* azul celeste claro */
-  color: #0f172a; /* texto oscuro para contraste */
+  background-color: #e0f2fe;
+  color: #0f172a;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* =========================
@@ -24,7 +25,7 @@ body {
 .container {
   max-width: 920px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 2rem 1.25rem 3.5rem;
 }
 
 /* =========================
@@ -32,30 +33,32 @@ body {
 ========================= */
 .breadcrumb {
   font-size: 0.85rem;
-  margin-bottom: 1.25rem;
-  color: #475569;
+  margin-bottom: 1.5rem;
+  color: #64748b;
 }
 
 .breadcrumb a {
   color: #0284c7;
   text-decoration: none;
+  font-weight: 500;
 }
 
-.breadcrumb span {
-  margin: 0 0.35rem;
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
 /* =========================
    HEADER
 ========================= */
 .app-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .app-header h1 {
-  font-size: 1.6rem;
-  margin: 0 0 0.35rem;
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem;
   color: #0f172a;
+  font-weight: 600;
 }
 
 .subtitle {
@@ -67,16 +70,22 @@ body {
    PANELS
 ========================= */
 .panel {
-  background-color: #ffffff; /* panel blanco sobre fondo celeste */
+  background-color: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  border-radius: 0.9rem;
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.panel:hover {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
 }
 
 .panel h2 {
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: #0369a1;
 }
 
@@ -84,6 +93,7 @@ body {
   margin-top: 1.5rem;
   font-size: 1rem;
   color: #0284c7;
+  font-weight: 600;
 }
 
 /* =========================
@@ -91,64 +101,76 @@ body {
 ========================= */
 label {
   display: block;
-  margin-top: 0.9rem;
+  margin-top: 1rem;
   font-size: 0.85rem;
+  font-weight: 500;
   color: #334155;
 }
 
 input {
   width: 100%;
-  margin-top: 0.35rem;
-  padding: 0.5rem 0.6rem;
+  margin-top: 0.4rem;
+  padding: 0.6rem 0.75rem;
   background-color: #f8fafc;
   border: 1px solid #cbd5e1;
-  border-radius: 0.45rem;
+  border-radius: 0.5rem;
   color: #0f172a;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus {
   outline: none;
   border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
 /* =========================
    BUTTONS
 ========================= */
 button {
-  margin-top: 1.25rem;
-  padding: 0.6rem 1rem;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.2rem;
   background-color: #0284c7;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
   background-color: #0369a1;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 /* =========================
    RESULTS & NOTES
 ========================= */
 .result {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   font-weight: 600;
+  font-size: 0.95rem;
   color: #0369a1;
 }
 
 .note {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   font-size: 0.85rem;
-  color: #334155;
+  color: #475569;
 }
 
 /* =========================
    TABLE
 ========================= */
 .table-wrapper {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
 
 .acid-base-table {
@@ -157,15 +179,16 @@ button:hover {
   border-spacing: 0;
   background-color: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
+  border-radius: 0.9rem;
   overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
 .acid-base-table th,
 .acid-base-table td {
   padding: 1rem 1.1rem;
-  font-size: 0.85rem;
-  line-height: 1.55;
+  font-size: 0.88rem;
+  line-height: 1.6;
   vertical-align: top;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -174,14 +197,13 @@ button:hover {
 .acid-base-table .section th {
   background-color: #f0f9ff;
   color: #0369a1;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
 /* Contenido */
 .acid-base-table .content td {
-  color: #0f172a;
   background-color: #ffffff;
 }
 
@@ -192,13 +214,11 @@ button:hover {
   }
 }
 
-/* Negritas */
 .acid-base-table strong {
   color: #0284c7;
   font-weight: 600;
 }
 
-/* Sub y sup */
 .acid-base-table sub,
 .acid-base-table sup {
   font-size: 0.7em;
@@ -213,26 +233,26 @@ button:hover {
    FOOTER
 ========================= */
 footer {
-  margin-top: 4rem;
-  padding: 2.5rem 1.25rem;
+  margin-top: 4.5rem;
+  padding: 3rem 1.25rem;
   border-top: 1px solid #cbd5e1;
   text-align: center;
   background-color: #e0f2fe;
 }
 
 .footer-nav {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .footer-nav a {
   color: #0284c7;
   text-decoration: none;
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.footer-nav span {
-  margin: 0 0.35rem;
-  color: #64748b;
+.footer-nav a:hover {
+  text-decoration: underline;
 }
 
 footer p {
@@ -244,6 +264,10 @@ footer p {
    MOBILE OPTIMIZATION
 ========================= */
 @media (max-width: 640px) {
+  .container {
+    padding: 1.5rem 1rem 3rem;
+  }
+
   .acid-base-table th,
   .acid-base-table td {
     padding: 0.85rem 0.75rem;
@@ -261,13 +285,14 @@ footer p {
 .language-switcher {
   text-align: right;
   font-size: 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .language-switcher a {
-  color: #475569;
+  color: #64748b;
   text-decoration: none;
   margin-left: 0.4rem;
+  font-weight: 500;
 }
 
 .language-switcher a:hover {
