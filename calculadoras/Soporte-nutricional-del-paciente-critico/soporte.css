@@ -5,66 +5,77 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
 }
 
 /* =========================
-   VARIABLES · PALETA CELESTE PROFESIONAL
+   VARIABLES · PALETA MÉDICA PREMIUM
 ========================= */
 :root {
 
-  /* Fondo general */
-  --bg-main: #e0f2fe;          /* Azul celeste suave */
-  
+  /* Fondo */
+  --bg-main: #e6f4fb;
+  --bg-gradient: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+
   /* Cards */
-  --bg-card: #bae6fd;          /* Celeste más oscuro */
-  --bg-card-2: #7dd3fc;        /* Profundidad sutil */
+  --card-bg: #ffffff;
+  --card-soft: #f0f9ff;
 
   /* Bordes */
-  --border: #93c5fd;
+  --border: #c7e3f7;
+  --border-strong: #93c5fd;
 
   /* Texto */
-  --text: #0f172a;             /* Azul oscuro elegante */
-  --muted: #475569;            /* Gris azulado */
+  --text-main: #0f172a;
+  --text-muted: #475569;
 
   /* Primario */
-  --primary: #0284c7;          /* Azul profesional */
-  --primary-strong: #0369a1;   /* Hover */
+  --primary: #0284c7;
+  --primary-strong: #0369a1;
+
+  /* Sombras */
+  --shadow-soft: 0 8px 24px rgba(2, 132, 199, 0.08);
+  --shadow-hover: 0 14px 34px rgba(2, 132, 199, 0.15);
 }
 
 /* =========================
    BODY
 ========================= */
-html,
 body {
-  background-color: var(--bg-main);
-  color: var(--text);
+  background: var(--bg-gradient);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  min-height: 100%;
+  color: var(--text-main);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* =========================
-   HEADER
+   HEADER PRINCIPAL
 ========================= */
 .site-header {
   text-align: center;
-  padding: 3rem 1.5rem 2rem;
+  padding: 3.5rem 1.5rem 2rem;
 }
 
 .site-header h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
+  font-weight: 700;
   color: var(--primary-strong);
+  letter-spacing: -0.5px;
 }
 
 .site-header p {
-  margin-top: 0.5rem;
-  color: var(--muted);
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 1rem;
 }
 
 /* =========================
-   MAIN WRAP
+   CONTENEDOR
 ========================= */
 .wrap {
   max-width: 1100px;
@@ -81,24 +92,27 @@ body {
 }
 
 .page-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
   color: var(--primary);
-  font-size: 1.6rem;
 }
 
 /* =========================
-   CARD
+   CARD PREMIUM
 ========================= */
 .card {
-  background: linear-gradient(
-    180deg,
-    var(--bg-card),
-    var(--bg-card-2)
-  );
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2.25rem;
+  margin-bottom: 2.75rem;
   border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 2rem;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* =========================
@@ -114,78 +128,91 @@ body {
    LABELS
 ========================= */
 label {
-  color: var(--muted);
   font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
   display: flex;
   flex-direction: column;
 }
 
 /* =========================
-   INPUTS
+   INPUTS PREMIUM
 ========================= */
 input {
   width: 100%;
-  margin-top: 0.4rem;
-  padding: 0.75rem;
-  background-color: #f0f9ff;
-  color: var(--text);
+  margin-top: 0.5rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  background-color: var(--card-soft);
+  font-size: 0.95rem;
   transition: all 0.2s ease;
 }
 
 input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
 }
 
 /* =========================
-   RESULT
+   RESULTADOS
 ========================= */
 .result {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 1.1rem;
+  margin-top: 1.2rem;
+  padding: 1rem 1.25rem;
+  background: var(--card-soft);
+  border-radius: 14px;
+  font-size: 1.15rem;
   font-weight: 600;
+  border: 1px solid var(--border);
 }
 
 /* =========================
-   TABLE
+   TABLA PROFESIONAL
 ========================= */
 .tabla-enterales {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   font-size: 0.85rem;
-  background-color: #f0f9ff;
-  border-radius: 12px;
+  background-color: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 .tabla-enterales th,
 .tabla-enterales td {
-  border: 1px solid var(--border);
-  padding: 0.6rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
   text-align: center;
 }
 
 .tabla-enterales th {
-  background-color: var(--primary);
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
   color: white;
+  font-weight: 600;
+}
+
+.tabla-enterales tr:last-child td {
+  border-bottom: none;
 }
 
 /* =========================
-   NOTE
+   NOTE CLÍNICA
 ========================= */
 .note {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-left: 4px solid var(--primary);
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  border-radius: 16px;
   background: rgba(2, 132, 199, 0.08);
-  border-radius: 12px;
-  color: var(--muted);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 /* =========================
@@ -194,35 +221,55 @@ input:focus {
 .divider {
   height: 1px;
   background: var(--border);
-  margin: 3rem 0;
+  margin: 3.5rem 0;
 }
 
 /* =========================
-   FOOTER
+   FOOTER PREMIUM
 ========================= */
 .site-footer {
   text-align: center;
-  border-top: 1px solid var(--border);
-  padding: 2.5rem 1.5rem;
-  margin-top: 4rem;
-  background-color: #dbeafe;
+  padding: 3rem 1.5rem;
+  margin-top: 5rem;
+  background: #dbeafe;
+  border-top: 1px solid var(--border-strong);
 }
 
 .site-footer .footer-nav {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .site-footer a {
-  color: var(--primary);
+  color: var(--primary-strong);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
 .site-footer a:hover {
-  text-decoration: underline;
+  color: var(--primary);
 }
 
 .site-footer p {
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 640px) {
+
+  .site-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
+
+  .result {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
