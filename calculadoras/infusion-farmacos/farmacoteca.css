@@ -3,9 +3,7 @@
 ========================================================= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -16,46 +14,58 @@ html, body {
 }
 
 /* =========================================================
-   VARIABLES (CLARO PROFESIONAL AZUL)
+   VARIABLES (PREMIUM CLÍNICO)
 ========================================================= */
-:root {
+:root{
   --bg: #eaf6fd;
-  --bg-soft: #f4faff;
+  --bg-soft: #f6fbff;
+  --panel: rgba(255,255,255,.72);
+  --panel-solid: #ffffff;
+
   --card: #d8eefb;
   --border: #b9dced;
+  --border-soft: rgba(185,220,237,.65);
 
   --text: #0f172a;
   --muted: #475569;
 
   --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
+  --accent-strong: #0284c7;
   --accent-soft: rgba(56,189,248,.18);
 
-  --shadow: 0 10px 30px rgba(14,165,233,.08);
+  --shadow-sm: 0 6px 18px rgba(2,132,199,.08);
+  --shadow: 0 14px 40px rgba(2,132,199,.12);
+  --shadow-hover: 0 18px 52px rgba(2,132,199,.18);
+
+  --radius: 20px;
+  --radius-md: 14px;
 }
 
 /* =========================================================
    APP ROOT
 ========================================================= */
-.app-root {
+.app-root{
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 
   background:
-    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.20), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(14,165,233,.15), transparent 55%),
+    radial-gradient(900px 450px at 10% -10%, rgba(56,189,248,.22), transparent 60%),
+    radial-gradient(700px 350px at 90% 10%, rgba(2,132,199,.16), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0)),
     var(--bg);
 
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* =========================================================
    LAYOUT
 ========================================================= */
-.container {
+.container{
   flex: 1;
   width: min(1100px, 100%);
   margin: 0 auto;
@@ -65,274 +75,334 @@ html, body {
 /* =========================================================
    TIPOGRAFÍA
 ========================================================= */
-h1, h2, h3, h4 {
+h1,h2,h3,h4{
   margin: 0;
   letter-spacing: -0.02em;
 }
 
-h2 {
-  margin: 2rem 0 1rem;
+h2{
+  margin: 2.2rem 0 1rem;
+  font-size: 1.28rem;
 }
 
-.muted {
-  color: var(--muted);
-}
+.muted{ color: var(--muted); }
 
 /* =========================================================
    LINKS
 ========================================================= */
-a {
+a{
   color: var(--accent-strong);
   text-decoration: none;
+  transition: color .2s ease, opacity .2s ease;
 }
-
-a:hover {
-  color: var(--accent);
-}
+a:hover{ color: var(--accent); }
 
 /* =========================================================
-   CARD
+   LANGUAGE SWITCHER (PRO)
 ========================================================= */
-.card {
-  background: linear-gradient(
-    180deg,
-    #dff3fd,
-    #d2ebfa
-  );
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 1.5rem;
+.language-switcher{
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.language-switcher a{
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 0.4rem;
+  font-weight: 650;
+}
+.language-switcher a:hover{ color: var(--accent-strong); }
+.language-switcher .active{ color: var(--text); font-weight: 800; }
+
+/* =========================================================
+   BREADCRUMB (SI LO USÁS EN ESTA PÁGINA)
+========================================================= */
+.breadcrumb{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem .8rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  font-size: .84rem;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.breadcrumb a{ font-weight: 700; }
+.breadcrumb span{ opacity: .55; }
+
+/* =========================================================
+   CARD / PANEL
+========================================================= */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.62));
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.55rem;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 /* =========================================================
    CONTROLES
 ========================================================= */
-.controls {
-  margin-bottom: 1.5rem;
-}
+.controls{ margin-bottom: 1.5rem; }
 
-.controls-grid {
+.controls-grid{
   display: grid;
   gap: 1rem;
   align-items: end;
 }
 
-@media (min-width: 860px) {
-  .controls-grid {
-    grid-template-columns: 2fr 1fr auto;
-  }
+@media (min-width: 860px){
+  .controls-grid{ grid-template-columns: 2fr 1fr auto; }
 }
 
-label {
+label{
   display: block;
   font-size: 0.8rem;
   color: var(--muted);
   margin-bottom: 0.35rem;
+  font-weight: 650;
 }
 
+/* =========================================================
+   INPUTS / SELECTS (PREMIUM)
+========================================================= */
 input[type="search"],
 input[type="number"],
-select {
+select{
   width: 100%;
-  padding: 0.7rem 0.8rem;
+  padding: 0.75rem 0.85rem;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #ffffff;
+  background: var(--panel-solid);
   color: var(--text);
   outline: none;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 
+input::placeholder{ color: rgba(71,85,105,.7); }
+
 input:focus,
-select:focus {
+select:focus{
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible{
+  outline: 3px solid rgba(56,189,248,.45);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
 /* =========================================================
-   BOTONES
+   BOTONES (PRODUCT)
 ========================================================= */
-.btn {
-  border: none;
+.btn{
+  border: 1px solid transparent;
   border-radius: 14px;
-  padding: 0.75rem 1.05rem;
-  font-weight: 650;
+  padding: 0.78rem 1.08rem;
+  font-weight: 800;
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
   white-space: nowrap;
 }
 
-.btn:active {
-  transform: translateY(1px);
-}
+.btn:active{ transform: translateY(1px); }
 
-.btn.secondary {
-  background: #ffffff;
+.btn.secondary{
+  background: rgba(255,255,255,.85);
   color: var(--accent-strong);
-  border: 1px solid var(--accent);
+  border-color: rgba(56,189,248,.55);
 }
 
-.btn.secondary:hover {
+.btn.secondary:hover{
   background: rgba(56,189,248,.10);
+  box-shadow: 0 10px 22px rgba(2,132,199,.12);
+  transform: translateY(-1px);
 }
 
-.btn.toggle-sheet {
+.btn.toggle-sheet{
   background: linear-gradient(180deg, var(--accent), var(--accent-strong));
   color: #001018;
+  border-color: rgba(2,132,199,.25);
+  box-shadow: 0 10px 22px rgba(2,132,199,.18);
 }
 
-.btn.toggle-sheet:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(14,165,233,.25);
+.btn.toggle-sheet:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(2,132,199,.26);
 }
 
 /* =========================================================
-   DRUG CARD
+   DRUG CARD (MÁS PRO)
 ========================================================= */
-.drug-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 1.1rem 1.15rem;
+.drug-card{
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.2rem;
   margin-bottom: 1rem;
-  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
-.drug-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 28px rgba(14,165,233,.12);
+.drug-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(56,189,248,.65);
+  box-shadow: var(--shadow-hover);
+  background: rgba(255,255,255,.96);
 }
 
-.drug-head {
+.drug-head{
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
 
+.drug-head strong{
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+}
+
 /* =========================================================
    FICHA CLÍNICA
 ========================================================= */
-.hidden {
-  display: none !important;
-}
+.hidden{ display: none !important; }
 
-.drug-sheet {
+.drug-sheet{
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 /* =========================================================
    BLOQUE CÁLCULO
 ========================================================= */
-.calc-grid {
+.calc-grid{
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
-@media (min-width: 860px) {
-  .calc-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+@media (min-width: 860px){
+  .calc-grid{ grid-template-columns: repeat(3, 1fr); }
 }
 
-.calc-result span {
+.calc-result{
+  padding: .85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: rgba(234,246,253,.65);
+}
+
+.calc-result span{
   display: block;
   font-size: 0.75rem;
   color: var(--muted);
+  font-weight: 650;
 }
 
-.calc-result b {
-  font-size: 1rem;
+.calc-result b{
+  font-size: 1.02rem;
   color: var(--text);
 }
 
 /* =========================================================
    NOTA CLÍNICA
 ========================================================= */
-.clinical-note {
+.clinical-note{
   margin-top: 1rem;
-  padding: 0.85rem 1rem;
-  border-radius: 14px;
+  padding: 0.95rem 1.05rem;
+  border-radius: 16px;
   background: rgba(56,189,248,.10);
-  border: 1px dashed rgba(56,189,248,.35);
+  border: 1px dashed rgba(56,189,248,.40);
   color: var(--text);
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-  text-align: center;
-  padding: 2rem 1.25rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-}
-
-.footer-nav {
-  display: inline-flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.75rem;
-}
-
-.footer-nav a {
-  color: var(--accent-strong);
-  font-weight: 600;
-}
-
-.footer-nav a:hover {
-  color: var(--accent);
+  font-size: 0.92rem;
 }
 
 /* =========================================================
    SECCIONES H2
 ========================================================= */
-main h2 {
+main h2{
   margin: 3rem 0 1.25rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
-  font-size: 1.25rem;
+  border-top: 1px solid var(--border-soft);
 }
 
-main h2:first-of-type {
+main h2:first-of-type{
   margin-top: 2rem;
   padding-top: 0;
   border-top: none;
 }
 
-main h2::before {
+main h2::before{
   content: "";
   display: block;
-  width: 48px;
+  width: 52px;
   height: 3px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
   border-radius: 2px;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.65rem;
 }
 
 /* =========================================================
-   LANGUAGE SWITCHER FIX
+   FOOTER (CENTRADO + INSTITUCIONAL)
 ========================================================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
+footer{
+  text-align: center;
+  padding: 2.2rem 1.25rem;
+  border-top: 1px solid var(--border-soft);
   color: var(--muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
-  transition: color .2s ease;
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(10px);
 }
 
-.language-switcher a:hover {
+.footer-nav{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  padding: .55rem .85rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: rgba(255,255,255,.65);
+}
+
+.footer-nav a{
   color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.footer-nav a:hover{ color: var(--accent); }
+
+footer p{
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   RESPONSIVE FINO
+========================================================= */
+@media (max-width: 520px){
+  .container{ padding: 1.75rem 1rem 3rem; }
+  .card{ padding: 1.2rem; }
+  .drug-head{ align-items: flex-start; }
+  .btn{ width: 100%; }
 }
