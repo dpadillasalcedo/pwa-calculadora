@@ -2,31 +2,66 @@
    VARIABLES GLOBALES
 ========================= */
 :root {
-  --color-primary: #0EA5E9;          /* Azul celeste principal */
-  --color-primary-dark: #0284C7;     /* Hover / interacción */
-  --color-background: #F8FAFC;       /* Fondo general */
-  --color-surface: #FFFFFF;          /* Tarjetas / bloques */
-  --color-text: #0F172A;             /* Texto principal */
-  --color-muted: #64748B;            /* Texto secundario */
-  --color-border: #E2E8F0;           /* Bordes suaves */
+  --color-primary: #0EA5E9;
+  --color-primary-dark: #0284C7;
+
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+
+  --color-text: #0F172A;
+  --color-muted: #64748B;
+
+  --color-border: #E2E8F0;
+
+  --shadow-soft:
+    0 4px 8px rgba(15,23,42,.05),
+    0 14px 28px rgba(15,23,42,.08);
+
+  --radius: 14px;
+}
+
+/* =========================
+   DARK MODE (AUTO)
+========================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0F172A;
+    --color-surface: #111827;
+    --color-text: #E6EDF7;
+    --color-muted: #94A3B8;
+    --color-border: #1F2937;
+
+    --shadow-soft:
+      0 8px 20px rgba(0,0,0,.35),
+      0 18px 40px rgba(0,0,0,.45);
+  }
 }
 
 /* =========================
    RESET BASE
 ========================= */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                Roboto, Oxygen, Ubuntu, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus accesible */
+:focus-visible {
+  outline: 3px solid rgba(14,165,233,.55);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
 /* =========================
@@ -34,7 +69,7 @@ body {
 ========================= */
 header {
   text-align: center;
-  padding: 3rem 1.5rem 2rem;
+  padding: 3rem 1.5rem 2.25rem;
   background: linear-gradient(
     135deg,
     #E0F2FE 0%,
@@ -44,9 +79,8 @@ header {
 }
 
 header h1 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: var(--color-text);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 700;
   letter-spacing: -0.5px;
 }
 
@@ -68,7 +102,7 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  padding: 0 1.5rem 3rem;
+  padding: 0 1.5rem 3.5rem;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -77,25 +111,37 @@ header h1 {
    TARJETAS
 ========================= */
 .menu a {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   background-color: var(--color-surface);
-  padding: 1.8rem;
-  border-radius: 14px;
+  padding: 1.9rem;
+  border-radius: var(--radius);
   border: 1px solid var(--color-border);
 
   text-decoration: none;
   color: var(--color-text);
 
-  transition: all 0.25s ease;
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .menu a:hover {
   border-color: var(--color-primary);
-  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.12);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 40px rgba(14,165,233,.15),
+    0 0 0 3px rgba(14,165,233,.12);
+}
+
+.menu a:active {
+  transform: translateY(-2px);
 }
 
 /* =========================
@@ -104,7 +150,7 @@ header h1 {
 .menu a h2 {
   font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.9rem;
 }
 
 /* =========================
@@ -113,7 +159,7 @@ header h1 {
 .menu a p {
   font-size: 0.95rem;
   color: var(--color-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -127,7 +173,7 @@ header h1 {
 .menu a::after {
   content: "Ingresar →";
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-primary);
 
   opacity: 0;
@@ -145,7 +191,7 @@ header h1 {
 ========================= */
 footer {
   text-align: center;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   font-size: 0.85rem;
   color: var(--color-muted);
   border-top: 1px solid var(--color-border);
@@ -169,8 +215,19 @@ footer {
   transition: color 0.2s ease;
 }
 
-.language-switcher a:hover {
+.language-switcher a:hover,
+.language-switcher a.active {
   color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* =========================
+   MOTION SAFETY
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
 
 /* =========================
