@@ -197,3 +197,101 @@ function resetSOFA1(){
   const detail = document.getElementById('sofa1_breakdown');
   if (detail) detail.style.display = 'none';
 }
+
+// ==========================
+// PESI
+// ==========================
+
+let pesiTotal = 0;
+let pesiClase = "";
+
+document.getElementById("pesi_calc").addEventListener("click", () => {
+
+  const age = parseInt(document.getElementById("pesi_age").value) || 0;
+
+  const fields = [
+    "pesi_male","pesi_cancer","pesi_chf","pesi_copd",
+    "pesi_hr","pesi_sbp","pesi_rr","pesi_temp",
+    "pesi_mental","pesi_sat"
+  ];
+
+  let sum = age;
+
+  fields.forEach(id=>{
+    sum += parseInt(document.getElementById(id).value);
+  });
+
+  pesiTotal = sum;
+
+  let clase = "";
+  let riesgo = "";
+
+  if (sum <= 65) {
+    clase = "I";
+    riesgo = "Muy bajo riesgo (0–1.6%)";
+  } else if (sum <= 85) {
+    clase = "II";
+    riesgo = "Bajo riesgo (1.7–3.5%)";
+  } else if (sum <= 105) {
+    clase = "III";
+    riesgo = "Riesgo intermedio (3.2–7.1%)";
+  } else if (sum <= 125) {
+    clase = "IV";
+    riesgo = "Riesgo alto (4–11.4%)";
+  } else {
+    clase = "V";
+    riesgo = "Riesgo muy alto (10–24.5%)";
+  }
+
+  pesiClase = clase;
+
+  document.getElementById("resultadoPESI").textContent =
+    `PESI: ${sum} puntos (Clase ${clase})`;
+
+  document.getElementById("interpretacionPESI").textContent = riesgo;
+});
+
+document.getElementById("pesi_reset").addEventListener("click", ()=>{
+  document.querySelectorAll("#tep-risk select, #tep-risk input")
+    .forEach(el => el.value = el.tagName === "INPUT" ? "" : "0");
+  document.getElementById("resultadoPESI").textContent = "";
+  document.getElementById("interpretacionPESI").textContent = "";
+  document.getElementById("resultadoTEP").textContent = "";
+  document.getElementById("interpretacionTEP").textContent = "";
+});
+
+// ==========================
+// CLASIFICACIÓN GLOBAL TEP
+// ==========================
+
+document.getElementById("tep_calc").addEventListener("click", ()=>{
+
+  const hemo = document.getElementById("tep_hemo").value;
+  const vd = document.getElementById("tep_vd").value;
+  const trop = document.getElementById("tep_trop").value;
+
+  let riesgo = "";
+  let interpretacion = "";
+
+  if (hemo === "1") {
+    riesgo = "Riesgo ALTO";
+    interpretacion = "Indicación de reperfusión urgente.";
+  }
+  else if ((pesiClase === "III" || pesiClase === "IV" || pesiClase === "V") 
+           && vd === "1" && trop === "1") {
+    riesgo = "Riesgo INTERMEDIO ALTO";
+    interpretacion = "Vigilancia estrecha. Riesgo de deterioro.";
+  }
+  else if ((pesiClase === "III" || pesiClase === "IV" || pesiClase === "V")
+           && (vd === "1" || trop === "1")) {
+    riesgo = "Riesgo INTERMEDIO BAJO";
+    interpretacion = "Un solo marcador positivo.";
+  }
+  else {
+    riesgo = "Riesgo BAJO";
+    interpretacion = "Mortalidad precoz baja.";
+  }
+
+  document.getElementById("resultadoTEP").textContent = riesgo;
+  document.getElementById("interpretacionTEP").textContent = interpretacion;
+});
