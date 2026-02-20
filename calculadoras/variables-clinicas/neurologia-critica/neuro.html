@@ -19,11 +19,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Neurología crítica | Calculadoras UCI | Critical Care Tools</title>
+  <title>Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS | Critical Care Tools</title>
 
   <meta
     name="description"
-    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt & Hess, Fisher y Marshall Score. Uso educativo en cuidados intensivos."
+    content="Evaluación neurológica del paciente crítico: Glasgow Coma Scale, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score. Herramientas educativas para UCI."
   />
 
   <meta name="robots" content="index, follow" />
@@ -39,57 +39,92 @@
   ========================== -->
   <link
     rel="canonical"
-    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
+  />
+
+  <!-- =========================
+       Hreflang
+  ========================== -->
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
   />
 
   <!-- =========================
        Open Graph
   ========================== -->
-  <meta property="og:title" content="Neurología crítica | Calculadoras UCI" />
+  <meta property="og:title" content="Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS" />
   <meta
     property="og:description"
-    content="Evaluación neurológica del paciente crítico: CAM-ICU, NIHSS, Hunt & Hess, Fisher y Marshall Score."
+    content="Evaluación neurológica del paciente crítico: Glasgow, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score."
   />
   <meta property="og:type" content="website" />
   <meta
     property="og:url"
-    content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
   />
+  <meta
+    property="og:image"
+    content="https://criticalcaretools.com/assets/og-neuro.jpg"
+  />
+  <meta property="og:site_name" content="Critical Care Tools" />
+  <meta property="og:locale" content="es_ES" />
 
   <!-- =========================
        CSS
   ========================== -->
   <link
     rel="stylesheet"
-    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=7"
+    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=8"
   />
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
+       + Consent Mode v2
   ========================== -->
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+
     gtag('js', new Date());
 
-    /*
-      Configuración GA4 segura para PWA
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <!-- =========================
+       Google Ads
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
-<script type="application/ld+json">
+  <!-- =========================
+       Structured Data (Schema.org)
+  ========================== -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -98,7 +133,6 @@
       "@id": "https://criticalcaretools.com/#organization",
       "name": "Critical Care Tools",
       "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
       "logo": "https://criticalcaretools.com/assets/logo.png"
     },
     {
@@ -125,15 +159,15 @@
       "about": [
         {
           "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
           "name": "Neurological assessment scales"
+        },
+        {
+          "@type": "MedicalEntity",
+          "name": "Delirium assessment in ICU"
+        },
+        {
+          "@type": "MedicalEntity",
+          "name": "Stroke severity scoring systems"
         }
       ],
       "publisher": {
@@ -142,7 +176,7 @@
     }
   ]
 }
-</script>
+  </script>
 
 </head>
 
