@@ -255,3 +255,107 @@ footer {
 .language-switcher a:hover {
   color: var(--primary-strong);
 }
+
+/* =========================================================
+   INPUT NUMBER (PESI Edad)
+========================================================= */
+input[type="number"] {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.55rem;
+  font-size: 0.95rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14,165,233,.15);
+}
+
+/* =========================================================
+   RESULTADOS GENERALES
+========================================================= */
+.resultado {
+  margin-top: 0.9rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.3px;
+}
+
+/* =========================================================
+   COLORES POR RIESGO
+========================================================= */
+.resultado.ok {
+  color: var(--ok);
+}
+
+.resultado.warn {
+  color: var(--warn);
+}
+
+.resultado.bad {
+  color: var(--bad);
+}
+
+/* =========================================================
+   INTERPRETACIÓN CLÍNICA
+========================================================= */
+.note {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* =========================================================
+   PESI CARD SEPARATION
+========================================================= */
+#tep-risk .card + .card {
+  margin-top: 1.5rem;
+}
+
+/* =========================================================
+   TÍTULOS INTERNOS MÁS CLÍNICOS
+========================================================= */
+#tep-risk h3 {
+  color: var(--primary-strong);
+}
+
+/* =========================================================
+   BOTONES ESPACIADO
+========================================================= */
+#tep-risk .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* =========================================================
+   HOVER SUAVE EN CARDS
+========================================================= */
+#tep-risk .card {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+#tep-risk .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08);
+}
+
+/* =========================================================
+   RESPONSIVE MEJORA
+========================================================= */
+@media (max-width: 640px) {
+
+  .resultado {
+    font-size: 1.05rem;
+  }
+
+  #tep-risk .actions {
+    flex-direction: column;
+  }
+
+}
