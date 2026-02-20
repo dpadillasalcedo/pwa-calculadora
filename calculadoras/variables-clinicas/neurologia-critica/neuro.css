@@ -1,6 +1,6 @@
 /* =========================================================
    ENTERPRISE MEDICAL UI — NEUROCRITICAL CARE
-   Critical Care Tools
+   Light Mode Only
 ========================================================= */
 
 /* -------------------------
@@ -24,38 +24,35 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background: #f3f7fb; /* fondo claro fijo */
+  color: #0f172a;
+  line-height: 1.6;
 }
 
 /* -------------------------
-   TOKENS
+   TOKENS (FORZADO LIGHT)
 ------------------------- */
 :root{
 
-  /* Backgrounds */
   --bg: #f3f7fb;
   --surface: #ffffff;
   --surface-2: #f8fbff;
   --surface-3: #eef6ff;
 
-  /* Text */
   --text: #0f172a;
   --muted: #64748b;
   --muted-2: #94a3b8;
 
-  /* Borders */
   --border: #e2e8f0;
   --border-2: #dbe7f1;
 
-  /* Brand */
   --primary: #0ea5e9;
   --primary-strong: #0284c7;
 
-  /* Status */
   --ok: #16a34a;
   --warn: #d97706;
   --bad: #dc2626;
 
-  /* Shadows (realistic) */
   --shadow-soft:
     0 1px 2px rgba(15,23,42,.05),
     0 8px 20px rgba(15,23,42,.06);
@@ -64,43 +61,11 @@ body {
     0 2px 4px rgba(15,23,42,.05),
     0 20px 50px rgba(15,23,42,.12);
 
-  /* Radius */
   --r-lg: 22px;
   --r-md: 14px;
   --r-sm: 10px;
 
-  /* Layout */
   --max: 1100px;
-}
-
-/* -------------------------
-   DARK MODE (AUTO)
-------------------------- */
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg: #0f172a;
-    --surface: #111827;
-    --surface-2: #1f2937;
-    --surface-3: #1e293b;
-
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --muted-2: #64748b;
-
-    --border: #1f2937;
-    --border-2: #334155;
-  }
-}
-
-/* -------------------------
-   BODY BACKGROUND
-------------------------- */
-body{
-  background:
-    radial-gradient(1200px 500px at 50% 0%, rgba(14,165,233,.10), transparent 55%),
-    linear-gradient(180deg, var(--bg), var(--bg));
-  color: var(--text);
-  line-height: 1.6;
 }
 
 /* -------------------------
@@ -136,66 +101,6 @@ h1,h2,h3{
 }
 
 /* -------------------------
-   LANGUAGE SWITCHER
-------------------------- */
-.language-switcher{
-  display: flex;
-  justify-content: flex-end;
-  gap: .6rem;
-  font-size: .85rem;
-  color: var(--muted);
-  margin-bottom: 1.25rem;
-}
-
-.language-switcher a{
-  text-decoration: none;
-  color: var(--muted);
-  padding: .35rem .65rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-}
-
-.language-switcher a:hover{
-  background: var(--surface-2);
-  border-color: var(--border-2);
-}
-
-.language-switcher a.active{
-  background: rgba(14,165,233,.12);
-  border-color: rgba(14,165,233,.25);
-  color: var(--primary-strong);
-  font-weight: 700;
-}
-
-/* -------------------------
-   BREADCRUMB
-------------------------- */
-.breadcrumb{
-  display: flex;
-  justify-content: center;
-  gap: .55rem;
-  flex-wrap: wrap;
-  margin: 0 auto 1.75rem;
-}
-
-.breadcrumb a{
-  text-decoration: none;
-  color: var(--primary-strong);
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  padding: .42rem .78rem;
-  border-radius: 999px;
-  font-size: .9rem;
-  font-weight: 600;
-}
-
-.breadcrumb a:hover{
-  background: rgba(14,165,233,.12);
-  border-color: rgba(14,165,233,.25);
-  transform: translateY(-1px);
-}
-
-/* -------------------------
    PANELS
 ------------------------- */
 .panel{
@@ -205,18 +110,6 @@ h1,h2,h3{
   border-radius: var(--r-lg);
   padding: 2.15rem;
   box-shadow: var(--shadow-soft);
-}
-
-.panel::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.45),
-    transparent 40%
-  );
-  pointer-events: none;
 }
 
 .panel:hover{
@@ -261,7 +154,7 @@ input[type="number"]{
   border-radius: var(--r-sm);
   padding: .6rem .75rem;
   font-size: .95rem;
-  color: var(--text);
+  color: #000;
 }
 
 select:focus,
@@ -327,32 +220,20 @@ input[type="number"]:focus{
 .resultado.bad{ color: var(--bad); }
 
 /* -------------------------
-   CALLOUT
-------------------------- */
-.callout{
-  margin-top: 1rem;
-  padding: .9rem 1rem;
-  border-radius: var(--r-md);
-  background: rgba(14,165,233,.10);
-  border: 1px solid rgba(14,165,233,.22);
-  font-weight: 650;
-}
-
-/* -------------------------
-   TABLES
+   TABLES (LETRAS NEGRAS)
 ------------------------- */
 table{
   width: 100%;
   border-collapse: collapse;
   border-radius: var(--r-md);
   border: 1px solid var(--border-2);
-  background: #fff;
+  background: #ffffff;
 }
 
 thead th{
   text-align: left;
   font-size: .9rem;
-  color: var(--muted);
+  color: #334155;
   background: var(--surface-3);
   padding: .85rem .9rem;
   border-bottom: 1px solid var(--border-2);
@@ -362,6 +243,7 @@ tbody td{
   padding: .85rem .9rem;
   border-bottom: 1px solid var(--border-2);
   font-size: .95rem;
+  color: #000; /* 🔥 texto completamente negro */
 }
 
 tbody tr:hover td{
@@ -376,31 +258,6 @@ tbody tr:hover td{
   padding: 2.75rem 1.25rem;
   text-align: center;
   color: var(--muted);
-}
-
-.footer-nav{
-  display: flex;
-  justify-content: center;
-  gap: .8rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-.footer-nav a{
-  text-decoration: none;
-  color: var(--primary-strong);
-  font-weight: 700;
-  padding: .35rem .6rem;
-  border-radius: 999px;
-}
-
-.footer-nav a:hover{
-  background: rgba(14,165,233,.10);
-}
-
-.footer-copy{
-  font-size: .88rem;
-  opacity: .85;
 }
 
 /* -------------------------
