@@ -191,6 +191,81 @@
     </p>
   </header>
 
+  <hr />
+
+<!-- =========================
+     GLASGOW COMA SCALE
+========================= -->
+<section id="glasgow" class="panel">
+  <div class="panel-head">
+    <h2>🧠 Glasgow Coma Scale (GCS)</h2>
+    <p class="note">
+      Evaluación del nivel de conciencia mediante apertura ocular, respuesta verbal y respuesta motora.
+    </p>
+  </div>
+
+  <div class="grid-2">
+
+    <!-- Ocular -->
+    <div class="card">
+      <h3>Apertura ocular (E)</h3>
+      <label class="field">
+        <span>Seleccionar respuesta</span>
+        <select id="gcs_eye">
+          <option value="">Seleccionar…</option>
+          <option value="4">4 = Espontánea</option>
+          <option value="3">3 = A la voz</option>
+          <option value="2">2 = Al dolor</option>
+          <option value="1">1 = Ninguna</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Verbal -->
+    <div class="card">
+      <h3>Respuesta verbal (V)</h3>
+      <label class="field">
+        <span>Seleccionar respuesta</span>
+        <select id="gcs_verbal">
+          <option value="">Seleccionar…</option>
+          <option value="5">5 = Orientado</option>
+          <option value="4">4 = Confuso</option>
+          <option value="3">3 = Palabras inapropiadas</option>
+          <option value="2">2 = Sonidos incomprensibles</option>
+          <option value="1">1 = Ninguna</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Motora -->
+    <div class="card">
+      <h3>Respuesta motora (M)</h3>
+      <label class="field">
+        <span>Seleccionar respuesta</span>
+        <select id="gcs_motor">
+          <option value="">Seleccionar…</option>
+          <option value="6">6 = Obedece órdenes</option>
+          <option value="5">5 = Localiza dolor</option>
+          <option value="4">4 = Retira ante dolor</option>
+          <option value="3">3 = Flexión anormal</option>
+          <option value="2">2 = Extensión</option>
+          <option value="1">1 = Ninguna</option>
+        </select>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="actions" style="margin-top:1.25rem;">
+    <button type="button" class="btn" id="gcs_calc">Calcular Glasgow</button>
+    <button type="button" class="btn-secondary" id="gcs_reset">Reiniciar</button>
+  </div>
+
+  <div id="resultadoGCS" class="resultado" aria-live="polite" style="margin-top:1rem;"></div>
+  <div id="interpretacionGCS" class="note" aria-live="polite"></div>
+
+</section>
+
   <!-- =========================
        CAM-ICU · PASO A PASO
   ========================= -->
