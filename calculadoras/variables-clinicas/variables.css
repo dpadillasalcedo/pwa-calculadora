@@ -13,44 +13,28 @@ body {
   padding: 0;
   min-height: 100%;
   overscroll-behavior: none;
-}
-
-img,
-svg {
-  max-width: 100%;
-  display: block;
-}
-
-/* Fondo fijo anti flash */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: #e0f2fe;
-  z-index: -1;
+  background-color: #f8fafc;
 }
 
 /* =========================================================
-   VARIABLES · SKY SYSTEM (LIGHT ONLY)
+   VARIABLES · LIGHT CLEAN SYSTEM
 ========================================================= */
 :root {
-  --color-bg: #e0f2fe;
-  --color-bg-soft: #f0f9ff;
+  --color-bg: #f8fafc;
+  --color-bg-soft: #ffffff;
   --color-card: #ffffff;
-  --color-border: #cbd5e1;
+  --color-border: #e2e8f0;
 
-  --color-text: #0f172a;
-  --color-muted: #475569;
+  --color-text: #1e293b;
+  --color-muted: #64748b;
 
-  --color-accent: #0284c7;
-  --color-accent-strong: #0369a1;
-  --color-accent-soft: rgba(2,132,199,.18);
+  --color-accent: #0ea5e9;
+  --color-accent-strong: #0284c7;
+  --color-accent-soft: rgba(14,165,233,.15);
 
-  --shadow-soft:
-    0 4px 8px rgba(15,23,42,.06),
-    0 14px 30px rgba(15,23,42,.10);
+  --shadow-soft: 0 4px 12px rgba(0,0,0,.05);
 
-  --radius-card: 18px;
+  --radius-card: 16px;
 }
 
 /* =========================================================
@@ -61,10 +45,7 @@ body::before {
   display: flex;
   flex-direction: column;
 
-  background:
-    radial-gradient(900px 450px at 10% -10%, rgba(2,132,199,.18), transparent 60%),
-    radial-gradient(700px 350px at 90% 10%, rgba(56,189,248,.18), transparent 55%),
-    var(--color-bg);
+  background: var(--color-bg);
 
   color: var(--color-text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -87,9 +68,9 @@ main {
    ACCESSIBLE FOCUS
 ========================================================= */
 :focus-visible {
-  outline: 3px solid rgba(2,132,199,.55);
+  outline: 3px solid rgba(14,165,233,.45);
   outline-offset: 2px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* =========================================================
@@ -171,10 +152,9 @@ header h1 {
   flex-direction: column;
 
   padding: 1.75rem 1.5rem 2.25rem;
-  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
-
   box-shadow: var(--shadow-soft);
 
   transition:
@@ -184,11 +164,9 @@ header h1 {
 }
 
 .menu a:hover .card {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--color-accent);
-  box-shadow:
-    0 20px 40px rgba(15,23,42,.15),
-    0 0 0 3px var(--color-accent-soft);
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
 }
 
 .menu a:active .card {
