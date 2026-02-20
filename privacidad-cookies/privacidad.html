@@ -38,19 +38,21 @@
   <link rel="canonical" href="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
 
   <!-- =========================
+       Hreflang
+  ========================== -->
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/privacidad-cookiesen/privacidaden.html" />
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+
+  <!-- =========================
        Open Graph
   ========================== -->
   <meta property="og:title" content="Privacidad y Cookies | Critical Care Tools" />
-  <meta
-    property="og:description"
-    content="Política de Privacidad y Política de Cookies de Critical Care Tools."
-  />
+  <meta property="og:description" content="Política de Privacidad y Política de Cookies de Critical Care Tools." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/privacidad/" />
-
-<link rel="alternate" hreflang="es" href="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
-<link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/privacidad-cookiesen/privacidaden.html" />
-<link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+  <meta property="og:url" content="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
 
   <!-- =========================
        CSS
@@ -59,7 +61,7 @@
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
+       + Consent Mode v2
   ========================== -->
 
   <!-- GA4 Library -->
@@ -71,73 +73,25 @@
 
     gtag('js', new Date());
 
-    /*
-      Configuración GA4 segura para PWA
-    */
+    /* Consent Mode v2 - default denied */
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      },
-      "inLanguage": ["es", "en"]
-    },
-    {
-      "@type": "MedicalWebApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "url": "https://criticalcaretools.com/",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
-      },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
-        }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    }
-  ]
-}
-    
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
 </head>
 
@@ -153,18 +107,18 @@
       <a href="/privacidad-cookies/privacidad.html">ES</a>
     </div>
 
-  <!-- =========================
-       HEADER / BREADCRUMB
-  ========================== -->
-  <header class="header">
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-      <a class="breadcrumb-link" href="/">Inicio</a>
-      <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current" aria-current="page">
-        Privacidad y Cookies
-      </span>
-    </nav>
-  </header>
+    <!-- =========================
+         HEADER / BREADCRUMB
+    ========================== -->
+    <header class="header">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a class="breadcrumb-link" href="/">Inicio</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current" aria-current="page">
+          Privacidad y Cookies
+        </span>
+      </nav>
+    </header>
 
     <!-- =========================
          HERO
@@ -173,73 +127,43 @@
       <h1>Privacidad y Cookies</h1>
 
       <p class="subtitle">
-        Esta página describe cómo se gestiona la información de navegación, el uso de cookies
-        y el consentimiento en <strong>Critical Care Tools</strong>.
+        Esta página describe cómo se gestiona la información de navegación,
+        el uso de cookies y el consentimiento en
+        <strong>Critical Care Tools</strong>.
       </p>
 
       <div class="meta">
         <span class="badge">Última actualización:</span>
-        <time id="last-updated" datetime="2026-01-26">
-          26 ene 2026
-        </time>
+        <time datetime="2026-01-26">26 ene 2026</time>
       </div>
 
       <div class="actions">
-        <button
-          class="btn primary"
-          id="btn-cookie-settings"
-          type="button">
+        <button class="btn primary" id="btn-cookie-settings" type="button">
           Configurar cookies
         </button>
       </div>
 
       <p class="note">
-        Uso educativo: las calculadoras y contenidos no sustituyen el juicio clínico
-        ni las guías institucionales.
+        Uso educativo: las calculadoras y contenidos no sustituyen
+        el juicio clínico ni las guías institucionales.
       </p>
     </section>
 
     <!-- =========================
-         TOC
+         CONTENIDO
     ========================== -->
-    <aside class="toc" aria-label="Tabla de contenidos">
-      <h2>Contenido</h2>
-      <ul>
-        <li><a href="#privacidad">Política de Privacidad</a></li>
-        <li><a href="#cookies">Política de Cookies</a></li>
-        <li><a href="#contacto">Contacto y solicitudes</a></li>
-        <li><a href="#cambios">Cambios en las políticas</a></li>
-      </ul>
-    </aside>
 
-    <!-- =========================
-         POLÍTICA DE PRIVACIDAD
-    ========================== -->
+    <!-- Política de Privacidad -->
     <section class="panel" id="privacidad">
       <h2>Política de Privacidad</h2>
 
       <h3>1. Información general</h3>
       <p>
-        Critical Care Tools es una plataforma de <strong>uso educativo</strong> que ofrece
-        calculadoras clínicas orientadas a profesionales de la salud.
-      </p>
-      <p>
-        Esta Política de Privacidad describe cómo se recopila, utiliza y protege la información
-        de los usuarios que acceden a <strong>https://criticalcaretools.com</strong>.
+        Critical Care Tools es una plataforma de uso educativo
+        orientada a profesionales de la salud.
       </p>
 
-      <h3>2. Responsable del tratamiento</h3>
-      <ul>
-        <li><strong>Sitio web:</strong> Critical Care Tools</li>
-        <li><strong>Dominio:</strong> https://criticalcaretools.com</li>
-        <li><strong>Finalidad:</strong> educativa, informativa y de apoyo clínico</li>
-      </ul>
-
-      <h3>3. Datos que se recopilan</h3>
-      <p>
-        El sitio no solicita ni almacena datos personales identificables.
-      </p>
-
+      <h3>2. Datos recopilados</h3>
       <ul>
         <li>Información técnica del navegador y dispositivo</li>
         <li>Páginas visitadas y tiempo de navegación</li>
@@ -247,108 +171,34 @@
         <li>Eventos de uso</li>
       </ul>
 
-      <h3>4. Finalidades del tratamiento</h3>
+      <h3>3. Finalidad</h3>
       <ul>
         <li>Mejorar la experiencia del usuario</li>
         <li>Detectar errores técnicos</li>
         <li>Medición y publicidad (si corresponde)</li>
       </ul>
 
-      <h3>5. Servicios de terceros</h3>
-      <div class="callout">
-        <p>
-          Los servicios de terceros se activan solo tras el consentimiento del usuario.
-        </p>
-      </div>
-
-      <h4>Google Analytics (GA4)</h4>
+      <h3>4. Servicios de terceros</h3>
       <p>
-        Se utiliza para analizar el uso del sitio según el consentimiento configurado.
-      </p>
-
-      <h4>Google AdSense</h4>
-      <p>
-        Puede mostrar anuncios personalizados o no, según consentimiento.
-      </p>
-
-      <h3>6. Base legal</h3>
-      <ul>
-        <li>Consentimiento del usuario</li>
-        <li>Interés legítimo para cookies necesarias</li>
-      </ul>
-
-      <h3>7. Conservación de datos</h3>
-      <p>
-        Los datos se conservan según la configuración de cada proveedor.
-      </p>
-
-      <h3>8. Derechos del usuario</h3>
-      <p>
-        El usuario puede retirar su consentimiento en cualquier momento.
+        Google Analytics y Google AdSense se activan únicamente
+        tras el consentimiento del usuario.
       </p>
     </section>
 
-    <!-- =========================
-         POLÍTICA DE COOKIES
-    ========================== -->
+    <!-- Política de Cookies -->
     <section class="panel" id="cookies">
       <h2>Política de Cookies</h2>
 
-      <h3>¿Qué son las cookies?</h3>
       <p>
-        Las cookies son pequeños archivos que se almacenan en el dispositivo del usuario.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h4>Necesarias</h4>
-          <p>No requieren consentimiento.</p>
-        </div>
-        <div class="card">
-          <h4>Estadísticas</h4>
-          <p>Medición del uso del sitio.</p>
-        </div>
-        <div class="card">
-          <h4>Marketing</h4>
-          <p>Publicidad y medición.</p>
-        </div>
-      </div>
-
-      <h3>Gestión del consentimiento</h3>
-      <p>
-        Este sitio utiliza <strong>Cookiebot</strong>.
+        Este sitio utiliza cookies necesarias, estadísticas y de marketing,
+        gestionadas mediante Cookiebot.
       </p>
     </section>
 
-    <!-- =========================
-         CONTACTO
-    ========================== -->
-    <section class="panel" id="contacto">
-      <h2>Contacto y solicitudes</h2>
-      <div class="callout">
-        <p>
-          <strong>Contacto:</strong>
-          <span class="muted">dpadillasalcedo@gmail.com</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- =========================
-         CAMBIOS
-    ========================== -->
-    <section class="panel" id="cambios">
-      <h2>Cambios en las políticas</h2>
-      <p>
-        Estas políticas pueden actualizarse periódicamente.
-      </p>
-    </section>
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-inner">
-        <span>© <span id="year"></span> Critical Care Tools</span>
+        <span>© 2026 Critical Care Tools</span>
 
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="/legal/aviso-legal.html">Aviso legal</a>
@@ -356,9 +206,10 @@
         </nav>
       </div>
     </footer>
+
   </main>
 
-  <script src="./privacidad.js?v=1"></script>
+  <script src="/privacidad-cookies/privacidad.js?v=1"></script>
+
 </body>
 </html>
-
