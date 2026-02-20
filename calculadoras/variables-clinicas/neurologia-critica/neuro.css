@@ -1,329 +1,491 @@
 /* =========================================================
-   ROOT · LIGHT CLÍNICO AZUL
+   PREMIUM MEDICAL UI — NEUROLOGÍA CRÍTICA
+   Critical Care Tools
 ========================================================= */
-:root {
-  --bg: #E0F2FE;          /* azul celeste claro */
-  --panel: #FFFFFF;
-  --card: #F0F9FF;
-  --border: #CBD5E1;
 
-  --text: #0F172A;
-  --muted: #475569;
+/* -------------------------
+   RESET
+------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-  --primary: #0EA5E9;
-  --primary-strong: #0284C7;
+html, body { height: 100%; }
 
+img, svg { max-width: 100%; display: block; }
+
+/* -------------------------
+   TOKENS / VARIABLES
+------------------------- */
+:root{
+  /* Backgrounds */
+  --bg: #f3f7fb;
+  --surface: #ffffff;
+  --surface-2: #f8fbff;
+  --surface-3: #eef6ff;
+
+  /* Text */
+  --text: #0f172a;
+  --muted: #64748b;
+  --muted-2: #94a3b8;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-2: #dbe7f1;
+
+  /* Brand */
+  --primary: #0ea5e9;
+  --primary-strong: #0284c7;
+
+  /* Status */
   --ok: #16a34a;
   --warn: #d97706;
   --bad: #dc2626;
+
+  /* Shadows */
+  --shadow-soft: 0 6px 18px rgba(15, 23, 42, .06);
+  --shadow-elev: 0 16px 44px rgba(15, 23, 42, .10);
+
+  /* Radius */
+  --r-lg: 22px;
+  --r-md: 14px;
+  --r-sm: 10px;
+
+  /* Spacing */
+  --max: 1100px;
 }
 
-/* =========================================================
-   RESET / BASE
-========================================================= */
-* { box-sizing: border-box; }
-
-html, body {
+/* -------------------------
+   BODY
+------------------------- */
+body{
   margin: 0;
-  background: var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 500px at 50% 0%, rgba(14,165,233,.10), transparent 55%),
+              linear-gradient(180deg, var(--bg), var(--bg));
   color: var(--text);
-  font-family: system-ui, -apple-system, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-body {
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color .2s ease;
-}
-
-a:hover { color: var(--primary-strong); }
-
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
-}
-
-.hidden { display: none !important; }
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-.container {
-  max-width: 960px;
+/* -------------------------
+   MAIN WRAPPER
+------------------------- */
+.app.container{
+  max-width: var(--max);
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 2.75rem 1.25rem 3.75rem;
 }
 
-.app { padding-top: 0.5rem; }
-
-/* =========================================================
-   BREADCRUMB
-========================================================= */
-.breadcrumb {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 1.5rem;
-}
-
-.breadcrumb span { margin: 0 0.4rem; }
-
-.breadcrumb a {
-  color: var(--text);
-}
-
-.breadcrumb a:hover {
-  color: var(--primary-strong);
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-.app-header { margin-bottom: 2rem; }
-
-.app-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: var(--text);
-}
-
-.subtitle {
-  margin-top: 0.5rem;
-  color: var(--muted);
-  max-width: 720px;
-}
-
-/* =========================================================
-   PANELS
-========================================================= */
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.06);
-}
-
-.panel-head h2 {
-  margin: 0;
-  font-size: 1.3rem;
-  color: var(--text);
-}
-
-.panel-head .note {
-  margin-top: 0.4rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   GRID
-========================================================= */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-/* =========================================================
-   CARDS
-========================================================= */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem;
-}
-
-.card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.05rem;
-}
-
-.hint {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0 0 0.75rem 0;
-}
-
-/* =========================================================
-   FORMS
-========================================================= */
-.field {
+/* -------------------------
+   LANGUAGE SWITCHER
+------------------------- */
+.language-switcher{
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .6rem;
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
 }
 
-.field span {
-  font-size: 0.9rem;
-}
-
-select {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.5rem 0.55rem;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14,165,233,.15);
-}
-
-/* =========================================================
-   CALLOUT
-========================================================= */
-.callout {
-  margin-top: 1.25rem;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  background: var(--card);
-  border: 1px dashed var(--border);
-  font-size: 0.9rem;
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-button,
-.btn {
-  appearance: none;
-  background: var(--primary);
-  color: #ffffff;
-  border: 1px solid transparent;
+.language-switcher a{
+  text-decoration: none;
+  color: var(--muted);
+  padding: .35rem .65rem;
   border-radius: 999px;
-  padding: 0.5rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .15s ease;
+  border: 1px solid transparent;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
 
-button:hover,
-.btn:hover {
-  background: var(--primary-strong);
+.language-switcher a:hover{
+  color: var(--primary-strong);
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+
+.language-switcher a.active,
+.language-switcher a[aria-current="page"]{
+  color: var(--primary-strong);
+  background: rgba(14,165,233,.10);
+  border-color: rgba(14,165,233,.22);
+  font-weight: 700;
+}
+
+/* -------------------------
+   BREADCRUMB (CENTRADO PREMIUM)
+------------------------- */
+.breadcrumb{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .55rem;
+  flex-wrap: wrap;
+  margin: 0 auto 1.75rem;
+  padding: .25rem 0;
+}
+
+.breadcrumb a{
+  text-decoration: none;
+  color: var(--primary-strong);
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  padding: .42rem .78rem;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.breadcrumb a:hover{
+  background: rgba(14,165,233,.12);
+  border-color: rgba(14,165,233,.25);
   transform: translateY(-1px);
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
+.breadcrumb span{
+  color: var(--muted-2);
+  font-weight: 700;
 }
 
-.btn-secondary:hover {
-  background: rgba(14,165,233,0.08);
+/* -------------------------
+   HEADER
+------------------------- */
+.app-header{
+  text-align: center;
+  margin: 0 auto 2rem;
 }
 
-/* =========================================================
-   TABLES
-========================================================= */
-.table-wrap {
-  overflow-x: auto;
+.app-header h1{
+  margin: 0 0 .55rem;
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+}
+
+.subtitle{
+  margin: 0 auto;
+  max-width: 820px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Global HR */
+hr{
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.25rem 0;
+  opacity: .9;
+}
+
+/* -------------------------
+   TYPOGRAPHY HELPERS
+------------------------- */
+.note{
+  color: var(--muted);
+  font-size: .92rem;
+  margin: .6rem 0 0;
+}
+
+.hint{
+  color: var(--muted);
+  font-size: .9rem;
+  margin: .6rem 0 1rem;
+}
+
+/* -------------------------
+   PANELS
+------------------------- */
+.panel{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 2.15rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.panel:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elev);
+}
+
+.panel-head{
+  margin-bottom: 1.25rem;
+}
+
+.panel-head h2{
+  margin: 0 0 .4rem;
+  font-size: 1.28rem;
+  letter-spacing: -0.2px;
+}
+
+/* -------------------------
+   GRIDS
+------------------------- */
+.grid-2{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem;
+}
+
+/* NIHSS grid */
+.nihss-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+/* -------------------------
+   CARDS (subcontenedores)
+------------------------- */
+.card{
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+  padding: 1.25rem;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(14,165,233,.25);
+  box-shadow: 0 10px 28px rgba(2,132,199,.08);
+}
+
+.card h3{
+  margin: 0 0 .75rem;
+  font-size: 1.02rem;
+  color: var(--primary-strong);
+  letter-spacing: -0.15px;
+}
+
+/* -------------------------
+   FIELDS / INPUTS
+------------------------- */
+.field{
+  display: grid;
+  gap: .45rem;
+}
+
+.field span{
+  color: var(--muted);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+select,
+input[type="number"]{
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  padding: .6rem .75rem;
+  font-size: .95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+select:focus,
+input[type="number"]:focus{
+  border-color: rgba(14,165,233,.65);
+  box-shadow: 0 0 0 3px rgba(14,165,233,.18);
+  background: var(--surface-3);
+}
+
+/* -------------------------
+   BUTTONS
+------------------------- */
+.actions{
+  display: flex;
+  justify-content: flex-start;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: 1.15rem;
+}
+
+.btn,
+.btn-secondary{
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: .65rem 1.15rem;
+  font-size: .92rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.btn{
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(2,132,199,.18);
+}
+
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(2,132,199,.22);
+}
+
+.btn:active{
+  transform: translateY(0);
+}
+
+.btn-secondary{
+  background: #fff;
+  color: var(--primary-strong);
+  border-color: rgba(2,132,199,.35);
+}
+
+.btn-secondary:hover{
+  background: rgba(14,165,233,.10);
+  border-color: rgba(2,132,199,.45);
+  transform: translateY(-1px);
+}
+
+/* If you use "btn primary" in some places */
+.btn.primary{
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+  color: #fff;
+}
+
+/* -------------------------
+   RESULTADOS
+------------------------- */
+.resultado{
   margin-top: 1rem;
+  font-weight: 900;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
 }
 
-table {
+.resultado.ok{ color: var(--ok); }
+.resultado.warn{ color: var(--warn); }
+.resultado.bad{ color: var(--bad); }
+
+/* -------------------------
+   CALLOUTS / ALERTS
+------------------------- */
+.callout{
+  margin: 1.1rem 0 0;
+  padding: .9rem 1rem;
+  border-radius: var(--r-md);
+  background: rgba(14,165,233,.10);
+  border: 1px solid rgba(14,165,233,.22);
+  color: var(--text);
+  font-weight: 650;
+}
+
+.hidden{ display: none !important; }
+
+/* -------------------------
+   TABLES (Fisher / Hunt-Hess / Marshall)
+------------------------- */
+table{
   width: 100%;
   border-collapse: collapse;
-  background: var(--panel);
-  border-radius: 12px;
   overflow: hidden;
-  font-size: 0.9rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-2);
+  background: #fff;
 }
 
-table thead th {
-  background: var(--card);
-  color: var(--text);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-table th,
-table td {
-  padding: 0.7rem 0.9rem;
-  border-bottom: 1px solid var(--border);
+thead th{
   text-align: left;
-}
-
-table tbody tr:nth-child(even) {
-  background: rgba(2,132,199,0.03);
-}
-
-table tbody tr:hover {
-  background: rgba(14,165,233,0.08);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.site-footer {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
-  background: var(--panel);
-}
-
-.footer-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.footer-nav,
-.footer-copy {
+  font-size: .9rem;
   color: var(--muted);
+  background: var(--surface-3);
+  padding: .85rem .9rem;
+  border-bottom: 1px solid var(--border-2);
 }
 
-/* =========================================================
-   LANGUAGE SWITCHER
-========================================================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
+tbody td{
+  padding: .85rem .9rem;
+  border-bottom: 1px solid var(--border-2);
+  font-size: .95rem;
+  color: var(--text);
+}
+
+tbody tr:last-child td{ border-bottom: none; }
+
+tbody tr:hover td{
+  background: rgba(14,165,233,.06);
+}
+
+/* -------------------------
+   FOOTER (CENTRADO PREMIUM)
+------------------------- */
+.site-footer{
+  border-top: 1px solid var(--border);
+  padding: 2.75rem 1.25rem;
+  text-align: center;
+  color: var(--muted);
+  background: transparent;
+}
+
+.footer-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.footer-nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
-.language-switcher a {
-  color: var(--muted);
+.footer-nav a{
   text-decoration: none;
-  margin-left: 0.4rem;
-  transition: color .2s ease;
+  color: var(--primary-strong);
+  font-weight: 700;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }
 
-.language-switcher a:hover {
+.footer-nav a:hover{
+  background: rgba(14,165,233,.10);
+  border-color: rgba(14,165,233,.22);
   color: var(--primary);
 }
 
-/* =========================================================
-   RESULTADO GLASGOW
-========================================================= */
-
-.resultado {
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
+.footer-copy{
+  margin: 0;
+  opacity: .85;
+  font-size: .88rem;
 }
 
-.resultado.ok {
-  color: var(--ok);
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+@media (max-width: 900px){
+  .grid-2{ grid-template-columns: 1fr; }
 }
 
-.resultado.warn {
-  color: var(--warn);
-}
+@media (max-width: 640px){
+  .app.container{
+    padding: 2.25rem 1rem 3.25rem;
+  }
 
-.resultado.bad {
-  color: var(--bad);
+  .actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn,
+  .btn-secondary{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .breadcrumb a{
+    font-size: .88rem;
+  }
 }
