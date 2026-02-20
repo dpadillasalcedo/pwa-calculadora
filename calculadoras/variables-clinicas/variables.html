@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
 
-<!-- Cookiebot -->
+<!-- =========================
+     Cookiebot
+========================== -->
 <script
   id="Cookiebot"
   src="https://consent.cookiebot.com/uc.js"
@@ -28,7 +30,7 @@
 <link rel="canonical"
       href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
-<!-- Hreflang completo -->
+<!-- Hreflang -->
 <link rel="alternate" hreflang="es"
       href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
 
@@ -39,199 +41,135 @@
       href="https://criticalcaretools.com/" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Variables clínicas | Calculadoras UCI" />
+<meta property="og:title" content="Variables clínicas | Calculadoras UCI | Critical Care Tools" />
 <meta property="og:description"
       content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
 <meta property="og:type" content="website" />
 <meta property="og:url"
       content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:locale:alternate" content="en_US" />
 
 <link rel="stylesheet"
       href="/calculadoras/variables-clinicas/variables.css" />
 
-<!-- GA4 + Consent Mode consistente -->
+<!-- =========================
+     GA4 + Consent Mode v2
+========================== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
 
-gtag('js', new Date());
-  
+  gtag('js', new Date());
+
+  /* Consent Mode v2 - default denied */
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
   gtag('config', 'G-WQREHQ56Q4', {
     anonymize_ip: true,
     send_page_view: true
   });
 </script>
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      },
-      "inLanguage": ["es", "en"]
-    },
-    {
-      "@type": "MedicalWebApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "url": "https://criticalcaretools.com/",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
-      },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
-        }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    }
-  ]
-}
-</script>
-
 </head>
-
-
 
 <body>
 
-  <!-- =========================
-       ROOT WRAPPER (CLAVE)
-  ========================= -->
-  <div class="app-root">
+<div class="app-root">
 
-    <main class="app container">
+<main class="app container">
 
-  <!-- LANGUAGE SWITCHER -->
+<!-- LANGUAGE SWITCHER -->
 <div class="language-switcher">
   <a href="/en/calculadorasen/variablesen/variablesen.html">EN</a> |
   <a href="/calculadoras/variables-clinicas/variables.html" class="active">ES</a>
 </div>
 
-      <!-- =========================
-           BREADCRUMB
-      ========================= -->
-      <nav class="breadcrumb" aria-label="Navegación">
-        <a href="/">Inicio</a>
-        <span>›</span>
-      </nav>
-
-      <header>
-        <h1>Variables clínicas</h1>
-        <p class="subtitle">
-          Seleccione un módulo de evaluación clínica para el paciente crítico.
-          Cada sección contiene herramientas validadas para la toma de decisiones en terapia intensiva.
-        </p>
-      </header>
-
-      <section class="menu">
-
-        <!-- Neurología -->
-        <a href="/calculadoras/variables-clinicas/neurologia-critica/neuro.html">
-          <div class="card">
-            <div class="icon">🧠</div>
-            <h3>Neurología crítica</h3>
-            <p>
-              CAM-ICU, NIHSS, Hunt &amp; Hess, Marshall score y evaluación neurológica del paciente crítico.
-            </p>
-          </div>
-        </a>
-
-        <!-- Ventilación -->
-        <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html">
-          <div class="card">
-            <div class="icon">🫁</div>
-            <h3>Ventilación mecánica</h3>
-            <p>
-              Modos ventilatorios, driving pressure, compliance y estrategias de protección pulmonar.
-            </p>
-          </div>
-        </a>
-
-        <!-- Hemodinamia -->
-        <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
-          <div class="card">
-            <div class="icon">🩺</div>
-            <h3>Monitoreo hemodinámico</h3>
-            <p>
-              Gasto cardíaco, presión arterial media, perfusión tisular y microcirculación.
-            </p>
-          </div>
-        </a>
-
-        <!-- Ácido–Base -->
-        <a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
-          <div class="card">
-            <div class="icon">🩸</div>
-            <h3>Ácido–base y medio interno</h3>
-            <p>
-              Gases arteriales, anión gap, trastornos ácido–base y electrolitos.
-            </p>
-          </div>
-        </a>
-
-        <!-- Scores -->
-        <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html">
-          <div class="card">
-            <div class="icon">📈</div>
-            <h3>Sistemas de puntuación</h3>
-            <p>
-              APACHE, SOFA, SAPS, NEWS y scores pronósticos del paciente crítico.
-            </p>
-          </div>
-        </a>
-
-      </section>
-
-    </main>
-
-    <footer>
-<nav class="footer-nav" aria-label="Footer">
-  <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
-  <span aria-hidden="true">·</span>
-  <a href="https://criticalcaretools.com/legal/aviso-legal.html">Aviso legal</a>
- <span aria-hidden="true">·</span>
-  <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Navegación">
+  <a href="/">Inicio</a>
+  <span aria-hidden="true">›</span>
+  <span aria-current="page">Variables clínicas</span>
 </nav>
 
-      <p>
-        © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-        No reemplaza el juicio médico ni las guías institucionales.
-      </p>
-    </footer>
-    </div>
+<header>
+  <h1>Variables clínicas</h1>
+  <p class="subtitle">
+    Seleccione un módulo de evaluación clínica para el paciente crítico.
+    Cada sección contiene herramientas validadas para la toma de decisiones en terapia intensiva.
+  </p>
+</header>
 
-    <script>
+<section class="menu">
+
+  <a href="/calculadoras/variables-clinicas/neurologia-critica/neuro.html">
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3>Neurología crítica</h3>
+      <p>CAM-ICU, NIHSS, Hunt &amp; Hess, Marshall score y evaluación neurológica.</p>
+    </div>
+  </a>
+
+  <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html">
+    <div class="card">
+      <div class="icon">🫁</div>
+      <h3>Ventilación mecánica</h3>
+      <p>Driving pressure, compliance y estrategias de protección pulmonar.</p>
+    </div>
+  </a>
+
+  <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
+    <div class="card">
+      <div class="icon">🩺</div>
+      <h3>Monitoreo hemodinámico</h3>
+      <p>Gasto cardíaco, PAM, perfusión tisular y microcirculación.</p>
+    </div>
+  </a>
+
+  <a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
+    <div class="card">
+      <div class="icon">🩸</div>
+      <h3>Ácido–base y medio interno</h3>
+      <p>Gases arteriales, anión gap y trastornos ácido–base.</p>
+    </div>
+  </a>
+
+  <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html">
+    <div class="card">
+      <div class="icon">📈</div>
+      <h3>Sistemas de puntuación</h3>
+      <p>APACHE, SOFA, SAPS, NEWS y scores pronósticos.</p>
+    </div>
+  </a>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer">
+    <a href="/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
+    <span aria-hidden="true">·</span>
+    <a href="/legal/aviso-legal.html">Aviso legal</a>
+    <span aria-hidden="true">·</span>
+    <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+  </nav>
+
+  <p>
+    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+    No reemplaza el juicio médico ni las guías institucionales.
+  </p>
+</footer>
+
+</div>
+
+<script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/sw.js');
@@ -239,25 +177,5 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
- 
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
