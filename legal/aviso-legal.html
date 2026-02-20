@@ -35,18 +35,24 @@
   <link rel="manifest" href="/manifest.json" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/aviso-legal/" />
+  <link rel="canonical" href="https://criticalcaretools.com/legal/aviso-legal.html" />
+
+  <!-- =========================
+       Hreflang
+  ========================== -->
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/legal/aviso-legal.html" />
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/legalen/legalen.html" />
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
 
   <!-- =========================
        Open Graph
   ========================== -->
   <meta property="og:title" content="Aviso legal | Critical Care Tools" />
-  <meta
-    property="og:description"
-    content="Aviso legal y condiciones de uso de Critical Care Tools. Uso educativo y limitaciones de responsabilidad."
-  />
+  <meta property="og:description" content="Aviso legal y condiciones de uso de Critical Care Tools." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/aviso-legal/" />
+  <meta property="og:url" content="https://criticalcaretools.com/legal/aviso-legal.html" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
 
   <!-- =========================
        CSS
@@ -55,10 +61,9 @@
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
+       + Consent Mode v2
   ========================== -->
 
-  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script>
@@ -67,100 +72,46 @@
 
     gtag('js', new Date());
 
+    /* Consent Mode v2 - default denied */
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
 
-    /*
-      Configuración GA4 segura para PWA
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      },
-      "inLanguage": ["es", "en"]
-    },
-    {
-      "@type": "MedicalWebApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "url": "https://criticalcaretools.com/",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
-      },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
-        }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    }
-  ]
-}
-</script>
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
 </head>
-
-
-
 
 <body>
 
 <main class="app container">
 
+  <!-- LANGUAGE SWITCHER -->
   <div class="language-switcher">
     <a href="/en/legalen/legalen.html">EN</a> |
     <a href="/legal/aviso-legal.html">ES</a>
   </div>
 
-  <!-- =========================
-       BREADCRUMB
-  ========================= -->
+  <!-- BREADCRUMB -->
   <nav class="breadcrumb" aria-label="Navegación">
-    <a href="https://criticalcaretools.com/">Inicio</a>
+    <a href="/">Inicio</a>
     <span aria-hidden="true">›</span>
+    <span aria-current="page">Aviso legal</span>
   </nav>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <!-- HEADER -->
   <header class="app-header">
     <h1>Aviso legal</h1>
     <p class="subtitle">
@@ -168,63 +119,54 @@
     </p>
   </header>
 
-  <!-- =========================
-       CONTENIDO LEGAL
-  ========================= -->
+  <!-- CONTENIDO -->
   <section class="panel">
 
     <h2>Uso de la plataforma</h2>
     <p>
       Critical Care Tools es una plataforma de <strong>uso educativo y de apoyo clínico</strong>.
-      Las calculadoras y contenidos disponibles no sustituyen el juicio médico,
-      las guías clínicas vigentes ni la evaluación individual del paciente.
+      Las calculadoras y contenidos no sustituyen el juicio médico ni las guías clínicas vigentes.
     </p>
 
     <h2>Limitación de responsabilidad</h2>
     <p>
-      El uso de la información proporcionada es responsabilidad exclusiva del profesional.
-      Critical Care Tools no asume responsabilidad por decisiones clínicas,
-      diagnósticos o tratamientos derivados del uso de esta plataforma.
+      El uso de la información es responsabilidad exclusiva del profesional.
+      No se asume responsabilidad por decisiones clínicas derivadas del uso de esta plataforma.
     </p>
 
     <h2>Exactitud de la información</h2>
     <p>
-      Los contenidos se basan en bibliografía médica reconocida y fórmulas ampliamente aceptadas,
+      Los contenidos se basan en bibliografía médica reconocida,
       pero pueden no reflejar actualizaciones recientes o particularidades locales.
-      Se recomienda contrastar siempre con fuentes oficiales y guías institucionales.
     </p>
 
     <h2>Propiedad intelectual</h2>
     <p>
-      El diseño, código, textos y estructura de esta plataforma son propiedad de
-      Critical Care Tools. No está permitida su reproducción total o parcial sin
-      autorización expresa, salvo para uso personal y educativo.
+      El diseño, código y estructura son propiedad de Critical Care Tools.
+      No está permitida su reproducción sin autorización expresa.
     </p>
 
     <h2>Modificaciones</h2>
     <p>
-      Critical Care Tools se reserva el derecho de modificar, actualizar o eliminar
-      contenidos sin previo aviso.
+      Se reserva el derecho de modificar o actualizar contenidos sin previo aviso.
     </p>
 
     <h2>Contacto</h2>
     <p>
-      Para consultas legales o aclaraciones, podés contactarnos a través del sitio web.
+      Para consultas legales podés contactarnos a través del sitio web.
     </p>
 
   </section>
 
 </main>
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
     <nav class="footer-nav" aria-label="Footer">
       <a href="/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
       <span aria-hidden="true">·</span>
-  <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+      <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
     </nav>
 
     <p class="footer-copy">
@@ -234,8 +176,7 @@
   </div>
 </footer>
 
-<!-- JS -->
-<script src="./aviso-legal.js" defer></script>
+<script src="/legal/aviso-legal.js" defer></script>
 
 </body>
 </html>
