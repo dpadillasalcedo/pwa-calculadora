@@ -322,3 +322,63 @@ function evaluarCAMICU() {
     console.error("❌ Error crítico en neuro.js:", err);
   }
 })();
+
+// ==========================
+// GLASGOW COMA SCALE
+// ==========================
+
+const gcsEye = document.getElementById("gcs_eye");
+const gcsVerbal = document.getElementById("gcs_verbal");
+const gcsMotor = document.getElementById("gcs_motor");
+const gcsCalc = document.getElementById("gcs_calc");
+const gcsReset = document.getElementById("gcs_reset");
+
+const resultadoGCS = document.getElementById("resultadoGCS");
+const interpretacionGCS = document.getElementById("interpretacionGCS");
+
+if (gcsCalc) {
+  gcsCalc.addEventListener("click", () => {
+
+    const eye = parseInt(gcsEye.value);
+    const verbal = parseInt(gcsVerbal.value);
+    const motor = parseInt(gcsMotor.value);
+
+    if (isNaN(eye) || isNaN(verbal) || isNaN(motor)) {
+      resultadoGCS.textContent = "Completar todas las variables.";
+      interpretacionGCS.textContent = "";
+      return;
+    }
+
+    const total = eye + verbal + motor;
+
+    resultadoGCS.textContent = `Glasgow total: ${total} (E${eye} V${verbal} M${motor})`;
+
+    let interpretacion = "";
+    let clase = "";
+
+    if (total >= 13) {
+      interpretacion = "Lesión leve.";
+      clase = "ok";
+    } else if (total >= 9) {
+      interpretacion = "Lesión moderada.";
+      clase = "warn";
+    } else {
+      interpretacion = "Lesión grave. Considerar protección de vía aérea.";
+      clase = "bad";
+    }
+
+    interpretacionGCS.textContent = interpretacion;
+    resultadoGCS.className = `resultado ${clase}`;
+  });
+}
+
+if (gcsReset) {
+  gcsReset.addEventListener("click", () => {
+    gcsEye.value = "";
+    gcsVerbal.value = "";
+    gcsMotor.value = "";
+    resultadoGCS.textContent = "";
+    interpretacionGCS.textContent = "";
+    resultadoGCS.className = "resultado";
+  });
+}
