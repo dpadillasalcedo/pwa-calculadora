@@ -1,108 +1,166 @@
-/* =========================
-   RESET LOCAL
-========================= */
+/* =========================================================
+   RESET
+========================================================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* =========================
-   VARIABLES · CLARO PROFESIONAL
-========================= */
+/* =========================================================
+   VARIABLES · PREMIUM MEDICAL
+========================================================= */
 :root {
-  --bg-main: #e6f4fb;      /* Fondo azul celeste claro */
-  --bg-card: #cfe9f8;      /* Card azul celeste más intenso */
-  --bg-soft: #f4f9fd;      /* Inputs blancos suaves */
 
-  --text-main: #0f172a;    /* Texto oscuro profesional */
-  --text-muted: #475569;
+  /* Fondos */
+  --bg-main: #f3f7fb;
+  --bg-panel: #ffffff;
+  --bg-soft: #f8fbff;
 
-  --border: #b6d4e6;
+  /* Texto */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
 
-  --primary: #38bdf8;
-  --primary-strong: #0ea5e9;
+  /* Bordes */
+  --border-light: #e2e8f0;
+  --border-soft: #dbe7f1;
+
+  /* Brand */
+  --primary: #0ea5e9;
+  --primary-strong: #0284c7;
+
+  /* Estados clínicos */
+  --ok: #16a34a;
+  --warn: #d97706;
+  --bad: #dc2626;
+
+  /* Sombras */
+  --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.05);
+  --shadow-elevated: 0 14px 40px rgba(15, 23, 42, 0.08);
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
 }
 
-/* =========================
+/* =========================================================
    BODY
-========================= */
+========================================================= */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background-color: var(--bg-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg-main);
   color: var(--text-main);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* =========================
-   HEADER / BREADCRUMB
-========================= */
-header {
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem;
-  background: transparent;
-}
-
-.breadcrumb-nav {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.breadcrumb-link {
-  color: var(--primary-strong);
-  text-decoration: none;
-  font-size: .9rem;
-  font-weight: 500;
-  transition: color .2s ease;
-}
-
-.breadcrumb-link:hover {
-  color: var(--primary);
-}
-
-/* =========================
+/* =========================================================
    CONTAINER
-========================= */
+========================================================= */
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 3rem 1.5rem 4rem;
 }
 
-/* =========================
-   TÍTULOS
-========================= */
+/* =========================================================
+   LANGUAGE SWITCHER
+========================================================= */
+.language-switcher {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.language-switcher a {
+  text-decoration: none;
+  color: var(--text-muted);
+  margin-left: .5rem;
+  transition: color .2s ease;
+}
+
+.language-switcher a:hover,
+.language-switcher a.active {
+  color: var(--primary-strong);
+  font-weight: 600;
+}
+
+/* =========================================================
+   BREADCRUMB · PREMIUM CAPSULE
+========================================================= */
+.breadcrumb-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  font-size: .9rem;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-nav a {
+  text-decoration: none;
+  padding: .4rem .8rem;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--primary-strong);
+  border: 1px solid var(--border-soft);
+  transition: all .2s ease;
+}
+
+.breadcrumb-nav a:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.breadcrumb-nav span {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   TITULOS
+========================================================= */
 h1 {
-  display: none;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: .3rem;
+  letter-spacing: -0.5px;
 }
 
 h2 {
-  margin: 0 0 .5rem;
-  color: var(--text-main);
+  margin: 0 0 .6rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .note {
-  font-size: .85rem;
+  font-size: .9rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
-/* =========================
-   PANEL / CARDS
-========================= */
+/* =========================================================
+   PANEL
+========================================================= */
 .panel {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2rem;
+  background: var(--bg-panel);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
   margin-bottom: 3rem;
-  box-shadow: 0 10px 30px rgba(14,165,233,.08);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-light);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-/* =========================
-   GRID DE CAMPOS
-========================= */
+.panel:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -113,94 +171,105 @@ h2 {
 label {
   display: flex;
   flex-direction: column;
+  gap: .4rem;
   font-size: .9rem;
   color: var(--text-muted);
-  gap: .35rem;
 }
 
-/* =========================
-   SELECTS
-========================= */
-select {
-  background: #ffffff;
+/* =========================================================
+   SELECT & INPUT
+========================================================= */
+select,
+input[type="number"] {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: .55rem .7rem;
+  font-size: .95rem;
   color: var(--text-main);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: .5rem .65rem;
-  font-size: .9rem;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
 
-select:focus {
+select:focus,
+input[type="number"]:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(56,189,248,.18);
+  box-shadow: 0 0 0 3px rgba(14,165,233,.15);
 }
 
-/* =========================
-   ACCIONES
-========================= */
+/* =========================================================
+   BUTTONS
+========================================================= */
 .actions {
   display: flex;
   gap: .75rem;
   flex-wrap: wrap;
-  margin-top: .5rem;
+  margin-top: 1rem;
 }
 
 button {
-  border-radius: 12px;
-  padding: .6rem 1.2rem;
+  border-radius: var(--radius-md);
+  padding: .6rem 1.4rem;
   font-size: .9rem;
+  font-weight: 600;
   cursor: pointer;
-  border: 1px solid transparent;
   transition: all .15s ease;
+  border: 1px solid transparent;
 }
 
 button.primary {
   background: linear-gradient(180deg, var(--primary), var(--primary-strong));
-  color: #001018;
-  font-weight: 600;
+  color: white;
 }
 
 button.primary:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(2,132,199,.25);
 }
 
 button.secondary {
   background: transparent;
+  border: 1px solid var(--primary-strong);
   color: var(--primary-strong);
-  border-color: var(--primary-strong);
 }
 
 button.secondary:hover {
-  background: rgba(56,189,248,.12);
+  background: var(--primary-strong);
+  color: white;
 }
 
-/* =========================
+/* =========================================================
    RESULTADOS
-========================= */
-.result {
-  margin-top: .75rem;
-  font-weight: 600;
-  color: var(--text-main);
+========================================================= */
+.result,
+.resultado {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: .3px;
 }
 
-/* =========================
+.resultado.ok { color: var(--ok); }
+.resultado.warn { color: var(--warn); }
+.resultado.bad { color: var(--bad); }
+
+/* =========================================================
    DIVIDER
-========================= */
+========================================================= */
 .divider {
   border: none;
-  border-top: 1px solid var(--border);
-  margin: 3rem 0;
+  border-top: 1px solid var(--border-light);
+  margin: 4rem 0;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* =========================================================
+   FOOTER · PREMIUM CENTERED
+========================================================= */
 footer {
-  border-top: 1px solid var(--border);
-  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border-light);
+  padding: 3rem 1rem;
+  text-align: center;
+  background: transparent;
   font-size: .85rem;
   color: var(--text-muted);
 }
@@ -210,152 +279,54 @@ footer {
   margin: 0 auto;
 }
 
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
 .footer-nav a {
-  color: var(--primary-strong);
   text-decoration: none;
-  margin: 0 .5rem;
-  transition: color .2s ease;
+  color: var(--primary-strong);
   font-weight: 500;
+  transition: color .2s ease;
 }
 
 .footer-nav a:hover {
   color: var(--primary);
 }
 
-/* =========================
+footer p {
+  margin: 0;
+  opacity: .75;
+}
+
+/* =========================================================
    RESPONSIVE
-========================= */
-@media (max-width: 600px) {
+========================================================= */
+@media (max-width: 640px) {
+
+  .container {
+    padding: 2rem 1.2rem 3rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
   .panel {
-    padding: 1.5rem;
+    padding: 1.75rem;
   }
 
   .actions {
     flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.language-switcher a {
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-left: 0.4rem;
-  transition: color .2s ease;
-}
-
-.language-switcher a:hover {
-  color: var(--primary-strong);
-}
-
-/* =========================================================
-   INPUT NUMBER (PESI Edad)
-========================================================= */
-input[type="number"] {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.5rem 0.55rem;
-  font-size: 0.95rem;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-
-input[type="number"]:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14,165,233,.15);
-}
-
-/* =========================================================
-   RESULTADOS GENERALES
-========================================================= */
-.resultado {
-  margin-top: 0.9rem;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.3px;
-}
-
-/* =========================================================
-   COLORES POR RIESGO
-========================================================= */
-.resultado.ok {
-  color: var(--ok);
-}
-
-.resultado.warn {
-  color: var(--warn);
-}
-
-.resultado.bad {
-  color: var(--bad);
-}
-
-/* =========================================================
-   INTERPRETACIÓN CLÍNICA
-========================================================= */
-.note {
-  margin-top: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-  max-width: 680px;
-}
-
-/* =========================================================
-   PESI CARD SEPARATION
-========================================================= */
-#tep-risk .card + .card {
-  margin-top: 1.5rem;
-}
-
-/* =========================================================
-   TÍTULOS INTERNOS MÁS CLÍNICOS
-========================================================= */
-#tep-risk h3 {
-  color: var(--primary-strong);
-}
-
-/* =========================================================
-   BOTONES ESPACIADO
-========================================================= */
-#tep-risk .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-/* =========================================================
-   HOVER SUAVE EN CARDS
-========================================================= */
-#tep-risk .card {
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-#tep-risk .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08);
-}
-
-/* =========================================================
-   RESPONSIVE MEJORA
-========================================================= */
-@media (max-width: 640px) {
-
-  .resultado {
-    font-size: 1.05rem;
+    align-items: stretch;
   }
 
-  #tep-risk .actions {
-    flex-direction: column;
+  button {
+    width: 100%;
   }
 
 }
