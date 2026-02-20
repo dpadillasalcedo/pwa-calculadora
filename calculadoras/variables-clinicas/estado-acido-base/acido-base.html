@@ -20,10 +20,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Estado Ácido–Base | Calculadoras UCI | Critical Care Tools</title>
+  <title>Estado Ácido–Base UCI | Anion Gap · Delta–Delta · Electrolitos | Critical Care Tools</title>
 
   <meta name="description"
-        content="Evaluación ácido–base y electrolitos en el paciente crítico: anion gap, delta–delta y correcciones bioquímicas. Uso educativo en UCI.">
+        content="Evaluación ácido–base y electrolitos en UCI: cálculo de anion gap, delta–delta y correcciones bioquímicas en el paciente crítico. Uso educativo.">
 
   <meta name="robots"
         content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -34,14 +34,14 @@
        CANONICAL
   ========================== -->
   <link rel="canonical"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/">
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
 
   <!-- =========================
-       HREFLANG MULTI-IDIOMA
+       HREFLANG
   ========================== -->
   <link rel="alternate"
         hreflang="es"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/">
+        href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
 
   <link rel="alternate"
         hreflang="en"
@@ -55,28 +55,32 @@
        OPEN GRAPH
   ========================== -->
   <meta property="og:title"
-        content="Estado Ácido–Base | Calculadoras UCI">
+        content="Estado Ácido–Base UCI | Anion Gap · Delta–Delta · Electrolitos">
 
   <meta property="og:description"
-        content="Evaluación ácido–base y electrolitos en el paciente crítico: anion gap, delta–delta y correcciones bioquímicas.">
+        content="Herramientas clínicas para análisis ácido–base y evaluación de electrolitos en cuidados intensivos.">
 
   <meta property="og:type" content="website">
+
   <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/">
+        content="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
 
   <meta property="og:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-acidobase.jpg">
+
+  <meta property="og:site_name" content="Critical Care Tools">
+  <meta property="og:locale" content="es_ES">
 
   <!-- =========================
        TWITTER CARD
   ========================== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title"
-        content="Estado Ácido–Base | Calculadoras UCI">
+        content="Estado Ácido–Base UCI | Anion Gap · Delta–Delta">
   <meta name="twitter:description"
         content="Evaluación ácido–base y electrolitos en el paciente crítico.">
   <meta name="twitter:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-acidobase.jpg">
 
   <!-- =========================
        PERFORMANCE
@@ -96,7 +100,7 @@
        CSS
   ========================== -->
   <link rel="stylesheet"
-        href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.css">
+        href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.css?v=2">
 
   <!-- =========================
        GOOGLE ANALYTICS GA4
@@ -109,6 +113,12 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
+
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('js', new Date());
 
@@ -127,6 +137,9 @@
     crossorigin="anonymous">
   </script>
 
+  <!-- =========================
+       STRUCTURED DATA
+  ========================== -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -136,7 +149,6 @@
       "@id": "https://criticalcaretools.com/#organization",
       "name": "Critical Care Tools",
       "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
       "logo": "https://criticalcaretools.com/assets/logo.png"
     },
     {
@@ -163,15 +175,15 @@
       "about": [
         {
           "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
+          "name": "Acid-base disorders in intensive care"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
+          "name": "Anion gap calculation"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
+          "name": "Electrolyte imbalance assessment"
         }
       ],
       "publisher": {
@@ -180,10 +192,9 @@
     }
   ]
 }
-</script>
+  </script>
 
 </head>
-
 
 
 <body>
