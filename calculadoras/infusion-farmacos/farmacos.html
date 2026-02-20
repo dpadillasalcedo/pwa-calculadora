@@ -20,10 +20,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Infusión de Fármacos UCI | Vancomicina | Critical Care Tools</title>
+  <title>Infusión de Vancomicina UCI | Dosis Continua | Critical Care Tools</title>
 
   <meta name="description"
-        content="Cálculo de dosis de vancomicina en infusión continua en UCI. Estimación por función renal y meta de vancocinemia. Uso educativo y apoyo clínico.">
+        content="Cálculo de dosis de vancomicina en infusión continua en UCI. Ajuste según función renal, aclaramiento estimado y meta de vancocinemia. Uso educativo.">
 
   <meta name="robots"
         content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -34,14 +34,14 @@
        CANONICAL
   ========================== -->
   <link rel="canonical"
-        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/">
+        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
 
   <!-- =========================
-       HREFLANG MULTI-IDIOMA
+       HREFLANG
   ========================== -->
   <link rel="alternate"
         hreflang="es"
-        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/">
+        href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
 
   <link rel="alternate"
         hreflang="en"
@@ -55,28 +55,32 @@
        OPEN GRAPH
   ========================== -->
   <meta property="og:title"
-        content="Infusión de Fármacos UCI | Vancomicina">
+        content="Infusión de Vancomicina UCI | Dosis Continua">
 
   <meta property="og:description"
-        content="Cálculo de dosis de vancomicina en infusión continua en UCI. Estimación por función renal y meta terapéutica.">
+        content="Herramienta clínica para cálculo de dosis de vancomicina en infusión continua en cuidados intensivos.">
 
   <meta property="og:type" content="website">
+
   <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/infusion-farmacos/">
+        content="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
 
   <meta property="og:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-vancomicina.jpg">
+
+  <meta property="og:site_name" content="Critical Care Tools">
+  <meta property="og:locale" content="es_ES">
 
   <!-- =========================
        TWITTER CARD
   ========================== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title"
-        content="Infusión de Fármacos UCI | Vancomicina">
+        content="Infusión de Vancomicina UCI | Dosis Continua">
   <meta name="twitter:description"
-        content="Cálculo de dosis de vancomicina en UCI. Uso educativo.">
+        content="Cálculo de dosis de vancomicina en infusión continua en UCI. Uso educativo.">
   <meta name="twitter:image"
-        content="https://criticalcaretools.com/assets/og-default.jpg">
+        content="https://criticalcaretools.com/assets/og-vancomicina.jpg">
 
   <!-- =========================
        PERFORMANCE
@@ -96,7 +100,7 @@
        CSS
   ========================== -->
   <link rel="stylesheet"
-        href="/calculadoras/infusion-farmacos/farmacos.css">
+        href="/calculadoras/infusion-farmacos/farmacos.css?v=2">
 
   <!-- =========================
        GOOGLE ANALYTICS GA4
@@ -109,6 +113,12 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
+
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
 
     gtag('js', new Date());
 
@@ -127,6 +137,9 @@
     crossorigin="anonymous">
   </script>
 
+  <!-- =========================
+       STRUCTURED DATA
+  ========================== -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -136,23 +149,12 @@
       "@id": "https://criticalcaretools.com/#organization",
       "name": "Critical Care Tools",
       "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
       "logo": "https://criticalcaretools.com/assets/logo.png"
     },
     {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
+      "@type": "MedicalWebApplication",
+      "@id": "https://criticalcaretools.com/#vancomicina-app",
+      "name": "Vancomycin Continuous Infusion Calculator",
       "applicationCategory": "MedicalApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript",
@@ -162,16 +164,16 @@
       },
       "about": [
         {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
+          "@type": "Drug",
+          "name": "Vancomycin"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
+          "name": "Continuous infusion dosing"
         },
         {
           "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
+          "name": "Renal function adjustment"
         }
       ],
       "publisher": {
@@ -180,11 +182,9 @@
     }
   ]
 }
-</script>
+  </script>
 
 </head>
-
-
 <body>
 
 <main class="app container">
