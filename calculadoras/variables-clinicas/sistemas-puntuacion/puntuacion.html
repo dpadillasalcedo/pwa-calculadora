@@ -744,6 +744,165 @@ function resetSOFA(){
 <div id="saps_mortality" class="note"></div>
 </section>
 
+
+  <hr />
+
+<section id="tep-risk" class="panel">
+  <div class="panel-head">
+    <h2>🫁 Estratificación de riesgo en TEP</h2>
+    <p class="note">
+      Incluye desarrollo completo del índice PESI y clasificación dinámica de riesgo.
+    </p>
+  </div>
+
+    <hr />
+  
+  <!-- =========================
+       PESI SCORE
+  ========================= -->
+  <div class="card">
+    <h3>📊 Índice PESI (Pulmonary Embolism Severity Index)</h3>
+
+    <div class="grid-2">
+
+      <label class="field">
+        <span>Edad (años)</span>
+        <input type="number" id="pesi_age" min="0" />
+      </label>
+
+      <label class="field">
+        <span>Sexo masculino</span>
+        <select id="pesi_male">
+          <option value="0">No</option>
+          <option value="10">Sí (+10)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Cáncer</span>
+        <select id="pesi_cancer">
+          <option value="0">No</option>
+          <option value="30">Sí (+30)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Insuficiencia cardíaca crónica</span>
+        <select id="pesi_chf">
+          <option value="0">No</option>
+          <option value="10">Sí (+10)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Enfermedad pulmonar crónica</span>
+        <select id="pesi_copd">
+          <option value="0">No</option>
+          <option value="10">Sí (+10)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Frecuencia cardíaca ≥110</span>
+        <select id="pesi_hr">
+          <option value="0">No</option>
+          <option value="20">Sí (+20)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>PA sistólica &lt;100 mmHg</span>
+        <select id="pesi_sbp">
+          <option value="0">No</option>
+          <option value="30">Sí (+30)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Frecuencia respiratoria ≥30</span>
+        <select id="pesi_rr">
+          <option value="0">No</option>
+          <option value="20">Sí (+20)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Temperatura &lt;36°C</span>
+        <select id="pesi_temp">
+          <option value="0">No</option>
+          <option value="20">Sí (+20)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Estado mental alterado</span>
+        <select id="pesi_mental">
+          <option value="0">No</option>
+          <option value="60">Sí (+60)</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>SatO₂ &lt;90%</span>
+        <select id="pesi_sat">
+          <option value="0">No</option>
+          <option value="20">Sí (+20)</option>
+        </select>
+      </label>
+
+    </div>
+
+    <div class="actions" style="margin-top:1rem;">
+      <button type="button" class="btn" id="pesi_calc">Calcular PESI</button>
+      <button type="button" class="btn-secondary" id="pesi_reset">Reiniciar</button>
+    </div>
+
+    <div id="resultadoPESI" class="resultado"></div>
+    <div id="interpretacionPESI" class="note"></div>
+  </div>
+
+  <!-- =========================
+       ESTRATIFICACIÓN GLOBAL TEP
+  ========================= -->
+  <div class="card" style="margin-top:1.5rem;">
+    <h3>📌 Clasificación global de riesgo TEP</h3>
+
+    <div class="grid-2">
+      <label class="field">
+        <span>Inestabilidad hemodinámica</span>
+        <select id="tep_hemo">
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Disfunción VD</span>
+        <select id="tep_vd">
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Troponinas elevadas</span>
+        <select id="tep_trop">
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions" style="margin-top:1rem;">
+      <button type="button" class="btn" id="tep_calc">Clasificar riesgo</button>
+    </div>
+
+    <div id="resultadoTEP" class="resultado"></div>
+    <div id="interpretacionTEP" class="note"></div>
+  </div>
+
+</section>
+
 </main>
 
   <hr class="divider">
