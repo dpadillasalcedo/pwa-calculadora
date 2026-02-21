@@ -14,6 +14,30 @@
   </script>
 
   <!-- =========================
+       Google Consent Mode v2 (ANTES de gtag.js)
+  ========================== -->
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+  </script>
+
+  <!-- =========================
        Meta básicos
   ========================== -->
   <meta charset="UTF-8" />
@@ -35,7 +59,7 @@
   <link rel="manifest" href="/manifest.json" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/bibliografia/" />
+  <link rel="canonical" href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html" />
 
   <!-- =========================
        Open Graph
@@ -46,7 +70,7 @@
     content="Bibliografía y referencias científicas utilizadas en las calculadoras clínicas de Critical Care Tools."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/bibliografia/" />
+  <meta property="og:url" content="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html" />
 
   <!-- =========================
        CSS
@@ -55,30 +79,28 @@
 
   <!-- =========================
        Google Analytics GA4
-       + Consent Mode v2 (ROBUSTO)
   ========================== -->
-
-  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
     gtag('js', new Date());
 
-    /*
-      Configuración GA4 segura para PWA
-    */
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-     crossorigin="anonymous"></script>
+  <!-- =========================
+       Google Ads
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
 
+  <!-- =========================
+       Structured Data
+  ========================== -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -113,20 +135,6 @@
         "@type": "MedicalAudience",
         "audienceType": "MedicalProfessional"
       },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
-        }
-      ],
       "publisher": {
         "@id": "https://criticalcaretools.com/#organization"
       }
@@ -135,12 +143,14 @@
 }
 </script>
 
-<link rel="alternate" hreflang="es" href="https://criticalcaretools.com/bibliografia/" />
-<link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/referencias-bibliograficasen/referenciasen.html" />
-<link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+  <!-- =========================
+       Hreflang
+  ========================== -->
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html" />
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/referencias-bibliograficasen/referenciasen.html" />
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
 
 </head>
-
 
 <body>
 
