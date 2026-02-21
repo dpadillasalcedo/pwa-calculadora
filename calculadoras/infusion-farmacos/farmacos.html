@@ -42,11 +42,9 @@
   <link rel="alternate"
         hreflang="es"
         href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
-
   <link rel="alternate"
         hreflang="en"
-        href="https://criticalcaretools.com/en/calculadorasen/infusion-drugsen/farmacos-en.html">
-
+        href="https://criticalcaretools.com/en/calculadorasen/infusion-farnacosen/farmacosen.html">
   <link rel="alternate"
         hreflang="x-default"
         href="https://criticalcaretools.com/">
@@ -56,18 +54,13 @@
   ========================== -->
   <meta property="og:title"
         content="Infusión de Vancomicina UCI | Dosis Continua">
-
   <meta property="og:description"
         content="Herramienta clínica para cálculo de dosis de vancomicina en infusión continua en cuidados intensivos.">
-
   <meta property="og:type" content="website">
-
   <meta property="og:url"
         content="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html">
-
   <meta property="og:image"
         content="https://criticalcaretools.com/assets/og-vancomicina.jpg">
-
   <meta property="og:site_name" content="Critical Care Tools">
   <meta property="og:locale" content="es_ES">
 
@@ -103,25 +96,28 @@
         href="/calculadoras/infusion-farmacos/farmacos.css?v=2">
 
   <!-- =========================
-       GOOGLE ANALYTICS GA4
-       + CONSENT MODE v2
+       GOOGLE ANALYTICS GA4 + CONSENT MODE V2 ROBUSTO
   ========================== -->
-  <script async
-          src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
-  </script>
-
-  <script>
+  <script data-cookieconsent="ignore">
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
       wait_for_update: 500
     });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+  </script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script>
     gtag('js', new Date());
-
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true,
@@ -185,6 +181,9 @@
   </script>
 
 </head>
+
+
+
 <body>
 
 <main class="app container">
