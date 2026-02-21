@@ -5,36 +5,19 @@
   --color-primary: #0EA5E9;
   --color-primary-dark: #0284C7;
 
-  --color-background: #F8FAFC;
+  --color-background: #F4F7FB;
   --color-surface: #FFFFFF;
 
   --color-text: #0F172A;
   --color-muted: #64748B;
 
-  --color-border: #E2E8F0;
+  --color-border: #E5EAF1;
 
   --shadow-soft:
-    0 4px 8px rgba(15,23,42,.05),
-    0 14px 28px rgba(15,23,42,.08);
+    0 6px 18px rgba(15, 23, 42, .06),
+    0 18px 38px rgba(15, 23, 42, .04);
 
-  --radius: 14px;
-}
-
-/* =========================
-   DARK MODE (AUTO)
-========================= */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0F172A;
-    --color-surface: #111827;
-    --color-text: #E6EDF7;
-    --color-muted: #94A3B8;
-    --color-border: #1F2937;
-
-    --shadow-soft:
-      0 8px 20px rgba(0,0,0,.35),
-      0 18px 40px rgba(0,0,0,.45);
-  }
+  --radius: 16px;
 }
 
 /* =========================
@@ -59,8 +42,8 @@ body {
 
 /* Focus accesible */
 :focus-visible {
-  outline: 3px solid rgba(14,165,233,.55);
-  outline-offset: 2px;
+  outline: 3px solid rgba(14,165,233,.45);
+  outline-offset: 3px;
   border-radius: 8px;
 }
 
@@ -69,27 +52,28 @@ body {
 ========================= */
 header {
   text-align: center;
-  padding: 3rem 1.5rem 2.25rem;
+  padding: 3rem 1.5rem 2.5rem;
   background: linear-gradient(
     135deg,
-    #E0F2FE 0%,
-    #F8FAFC 100%
+    #EAF6FF 0%,
+    #F8FBFF 60%,
+    #FFFFFF 100%
   );
   border-bottom: 1px solid var(--color-border);
 }
 
 header h1 {
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
 }
 
 /* =========================
    INTRO
 ========================= */
 .intro {
-  max-width: 700px;
-  margin: 2rem auto 3rem;
+  max-width: 720px;
+  margin: 2.5rem auto 3.5rem;
   text-align: center;
   color: var(--color-muted);
   font-size: 1rem;
@@ -101,8 +85,8 @@ header h1 {
 .menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  padding: 0 1.5rem 3.5rem;
+  gap: 2.2rem;
+  padding: 0 1.5rem 4rem;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -117,7 +101,7 @@ header h1 {
   justify-content: space-between;
 
   background-color: var(--color-surface);
-  padding: 1.9rem;
+  padding: 2rem;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
 
@@ -134,10 +118,10 @@ header h1 {
 
 .menu a:hover {
   border-color: var(--color-primary);
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   box-shadow:
-    0 20px 40px rgba(14,165,233,.15),
-    0 0 0 3px rgba(14,165,233,.12);
+    0 25px 45px rgba(14,165,233,.12),
+    0 0 0 3px rgba(14,165,233,.10);
 }
 
 .menu a:active {
@@ -148,9 +132,9 @@ header h1 {
    TITULO TARJETA
 ========================= */
 .menu a h2 {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 600;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 /* =========================
@@ -159,7 +143,7 @@ header h1 {
 .menu a p {
   font-size: 0.95rem;
   color: var(--color-muted);
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.7rem;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -191,7 +175,7 @@ header h1 {
 ========================= */
 footer {
   text-align: center;
-  padding: 2.5rem 1.5rem;
+  padding: 2.8rem 1.5rem;
   font-size: 0.85rem;
   color: var(--color-muted);
   border-top: 1px solid var(--color-border);
@@ -204,14 +188,14 @@ footer {
 .language-switcher {
   text-align: right;
   font-size: 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   padding: 0 1.5rem;
 }
 
 .language-switcher a {
   color: var(--color-muted);
   text-decoration: none;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
   transition: color 0.2s ease;
 }
 
@@ -239,6 +223,6 @@ footer {
   }
 
   .menu {
-    gap: 1.5rem;
+    gap: 1.6rem;
   }
 }
