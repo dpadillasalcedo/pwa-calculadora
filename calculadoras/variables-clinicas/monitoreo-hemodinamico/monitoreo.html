@@ -1,144 +1,121 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<head lang="es">
 
-  <!-- =========================
-       Cookiebot (SIEMPRE PRIMERO)
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    type="text/javascript">
-  </script>
+<!-- =========================
+     Cookiebot (SIEMPRE PRIMERO)
+========================== -->
+<script
+  id="Cookiebot"
+  src="https://consent.cookiebot.com/uc.js"
+  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+  data-blockingmode="auto"
+  type="text/javascript">
+</script>
 
-  <!-- =========================
-       META BÁSICOS
-  ========================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- =========================
+     Google Consent Mode v2 (ANTES de GA4)
+========================== -->
+<script data-cookieconsent="ignore">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
 
-  <title>Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂ | Critical Care Tools</title>
+  gtag("consent", "default", {
+    ad_personalization: "denied",
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "denied",
+    personalization_storage: "denied",
+    security_storage: "granted",
+    wait_for_update: 500
+  });
 
-  <meta name="description"
-        content="Monitoreo hemodinámico en UCI: cálculo de gasto cardíaco por VTI, fracción de acortamiento, VO₂, extracción tisular y resistencia vascular sistémica (RVS). Uso educativo." />
+  gtag("set", "ads_data_redaction", true);
+  gtag("set", "url_passthrough", false);
+</script>
 
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-  <meta name="theme-color" content="#020617" />
+<!-- =========================
+     META BÁSICOS
+========================== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂ | Critical Care Tools</title>
+<meta name="description" content="Monitoreo hemodinámico en UCI: cálculo de gasto cardíaco por VTI, fracción de acortamiento, VO₂, extracción tisular y resistencia vascular sistémica (RVS). Uso educativo.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#020617">
 
-  <!-- =========================
-       CANONICAL
-  ========================== -->
-  <link rel="canonical"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html" />
+<!-- =========================
+     CANONICAL
+========================== -->
+<link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
 
-  <!-- =========================
-       HREFLANG
-  ========================== -->
-  <link rel="alternate"
-        hreflang="es"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html" />
+<!-- =========================
+     HREFLANG
+========================== -->
+<link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
+<link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
+<link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/">
 
-  <link rel="alternate"
-        hreflang="en"
-        href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html" />
+<!-- =========================
+     OPEN GRAPH
+========================== -->
+<meta property="og:title" content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂">
+<meta property="og:description" content="Herramientas clínicas para evaluación de gasto cardíaco, perfusión tisular y resistencia vascular sistémica en cuidados intensivos.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
+<meta property="og:image" content="https://criticalcaretools.com/assets/og-hemodinamia.jpg">
+<meta property="og:site_name" content="Critical Care Tools">
+<meta property="og:locale" content="es_ES">
 
-  <link rel="alternate"
-        hreflang="x-default"
-        href="https://criticalcaretools.com/" />
+<!-- =========================
+     TWITTER CARD
+========================== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂">
+<meta name="twitter:description" content="Evaluación integrada de función cardíaca, oxigenación y perfusión tisular en UCI.">
+<meta name="twitter:image" content="https://criticalcaretools.com/assets/og-hemodinamia.jpg">
 
-  <!-- =========================
-       OPEN GRAPH
-  ========================== -->
-  <meta property="og:title"
-        content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂" />
+<!-- =========================
+     PERFORMANCE
+========================== -->
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-  <meta property="og:description"
-        content="Herramientas clínicas para evaluación de gasto cardíaco, perfusión tisular y resistencia vascular sistémica en cuidados intensivos." />
+<!-- =========================
+     PWA
+========================== -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <meta property="og:type" content="website" />
+<!-- =========================
+     CSS
+========================== -->
+<link rel="stylesheet" href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=2">
 
-  <meta property="og:url"
-        content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html" />
+<!-- =========================
+     Google Analytics GA4
+========================== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-WQREHQ56Q4', {
+    anonymize_ip: true,
+    send_page_view: true,
+    transport_type: 'beacon'
+  });
+</script>
 
-  <meta property="og:image"
-        content="https://criticalcaretools.com/assets/og-hemodinamia.jpg" />
+<!-- =========================
+     Google Ads
+========================== -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906" crossorigin="anonymous"></script>
 
-  <meta property="og:site_name" content="Critical Care Tools" />
-  <meta property="og:locale" content="es_ES" />
-
-  <!-- =========================
-       TWITTER CARD
-  ========================== -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title"
-        content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂" />
-  <meta name="twitter:description"
-        content="Evaluación integrada de función cardíaca, oxigenación y perfusión tisular en UCI." />
-  <meta name="twitter:image"
-        content="https://criticalcaretools.com/assets/og-hemodinamia.jpg" />
-
-  <!-- =========================
-       PERFORMANCE
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <!-- =========================
-       CSS
-  ========================== -->
-  <link rel="stylesheet"
-        href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=2" />
-
-  <!-- =========================
-       GOOGLE ANALYTICS GA4
-       + CONSENT MODE v2
-  ========================== -->
-  <script async
-          src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
-  </script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      wait_for_update: 500
-    });
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true,
-      transport_type: 'beacon'
-    });
-  </script>
-
-  <!-- =========================
-       GOOGLE ADS
-  ========================== -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-    crossorigin="anonymous">
-  </script>
-
-  <!-- =========================
-       STRUCTURED DATA
-  ========================== -->
-  <script type="application/ld+json">
+<!-- =========================
+     Structured Data JSON-LD
+========================== -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -190,10 +167,9 @@
     }
   ]
 }
-  </script>
+</script>
 
 </head>
-
 
 
 
