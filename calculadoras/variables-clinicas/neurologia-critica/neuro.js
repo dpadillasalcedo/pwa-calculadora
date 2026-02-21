@@ -38,174 +38,160 @@
 
 
 /* =========================================================
-   CAM-ICU (FUNCIONAL Y SECUENCIAL)
-   Regla: positivo si (1 + 2) y (3 o 4)
+   CAM-ICU · PASO A PASO FUNCIONAL
+   Regla: (1 + 2) y (3 o 4)
 ========================================================= */
 
 function resetCAMICU() {
-  ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach((id) => {
-    const el = $(id);
+
+  ["cam_step1","cam_step2","cam_step3","cam_step4"].forEach(id => {
+    const el = document.getElementById(id);
     if (el) el.value = "";
   });
 
-  $("cam_step2")?.closest(".card")?.classList.add("hidden");
-  $("cam_steps34")?.classList.add("hidden");
-  $("cam_step4")?.closest(".card")?.classList.add("hidden");
-  $("cam_wait")?.classList.add("hidden");
+  document.getElementById("card_step2")?.classList.add("hidden");
+  document.getElementById("cam_steps34")?.classList.add("hidden");
+  document.getElementById("cam_wait")?.classList.add("hidden");
 
-  setResultBox("resultadoCAMICU");
-  setHTML("interpretacionCAMICU");
+  document.getElementById("resultadoCAMICU").innerHTML = "";
+  document.getElementById("interpretacionCAMICU").innerHTML = "";
 }
+
 
 function evaluarCAMICU() {
 
-  const s1 = getSelectInt("cam_step1");
-  const s2 = getSelectInt("cam_step2");
-  const s3 = getSelectInt("cam_step3");
-  const s4 = getSelectInt("cam_step4");
+  const s1 = document.getElementById("cam_step1")?.value;
+  const s2 = document.getElementById("cam_step2")?.value;
+  const s3 = document.getElementById("cam_step3")?.value;
+  const s4 = document.getElementById("cam_step4")?.value;
 
-  setResultBox("resultadoCAMICU");
-  setHTML("interpretacionCAMICU");
+  const card2 = document.getElementById("card_step2");
+  const steps34 = document.getElementById("cam_steps34");
+  const wait = document.getElementById("cam_wait");
+  const resultado = document.getElementById("resultadoCAMICU");
+  const interpretacion = document.getElementById("interpretacionCAMICU");
+
+  resultado.innerHTML = "";
+  interpretacion.innerHTML = "";
 
   /* =========================
      PASO 1
   ========================= */
 
-  if (s1 === null) {
-    $("cam_step2")?.closest(".card")?.classList.add("hidden");
-    $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.add("hidden");
+  if (!s1) {
+    card2?.classList.add("hidden");
+    steps34?.classList.add("hidden");
+    wait?.classList.add("hidden");
     return;
   }
 
-  if (s1 === 0) {
+  if (s1 === "0") {
 
-    // Reset siguientes pasos
-    $("cam_step2").value = "";
-    $("cam_step3").value = "";
-    $("cam_step4").value = "";
+    card2?.classList.add("hidden");
+    steps34?.classList.add("hidden");
+    wait?.classList.add("hidden");
 
-    $("cam_step2")?.closest(".card")?.classList.add("hidden");
-    $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.add("hidden");
+    resultado.innerHTML = "<strong>CAM-ICU:</strong> Negativo.";
+    resultado.className = "resultado result-ok";
 
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Negativo.",
-      "result-ok"
-    );
-
-    setHTML(
-      "interpretacionCAMICU",
-      "Paso 1 negativo (sin inicio agudo ni curso fluctuante). Delirium descartado."
-    );
+    interpretacion.innerHTML =
+      "Paso 1 negativo (sin inicio agudo o curso fluctuante). Delirium descartado.";
 
     return;
   }
 
   /* =========================
-     PASO 2 (solo si Paso 1 = Sí)
+     PASO 2
   ========================= */
 
-  $("cam_step2")?.closest(".card")?.classList.remove("hidden");
+  card2?.classList.remove("hidden");
 
-  if (s2 === null) {
-    $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.remove("hidden");
+  if (!s2) {
+    steps34?.classList.add("hidden");
+    wait?.classList.remove("hidden");
     return;
   }
 
-  if (s2 === 0) {
+  wait?.classList.add("hidden");
 
-    $("cam_step3").value = "";
-    $("cam_step4").value = "";
+  if (s2 === "0") {
 
-    $("cam_steps34")?.classList.add("hidden");
-    $("cam_wait")?.classList.add("hidden");
+    steps34?.classList.add("hidden");
 
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Negativo.",
-      "result-ok"
-    );
+    resultado.innerHTML = "<strong>CAM-ICU:</strong> Negativo.";
+    resultado.className = "resultado result-ok";
 
-    setHTML(
-      "interpretacionCAMICU",
-      "Paso 2 negativo (sin inatención). Delirium descartado."
-    );
+    interpretacion.innerHTML =
+      "Paso 2 negativo (sin inatención). Delirium descartado.";
 
     return;
   }
 
   /* =========================
-     PASO 3 (solo si 1 + 2 = Sí)
+     PASO 3
   ========================= */
 
-  $("cam_steps34")?.classList.remove("hidden");
-  $("cam_step4")?.closest(".card")?.classList.add("hidden");
-  $("cam_wait")?.classList.add("hidden");
+  steps34?.classList.remove("hidden");
 
-  if (s3 === null) return;
+  if (!s3) return;
 
-  /* =========================
-     PASO 3 POSITIVO → FIN
-  ========================= */
+  if (s3 === "1") {
 
-  if (s3 === 1) {
+    resultado.innerHTML = "<strong>CAM-ICU:</strong> Positivo.";
+    resultado.className = "resultado result-bad";
 
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Positivo.",
-      "result-bad"
-    );
-
-    setHTML(
-      "interpretacionCAMICU",
-      "Paso 3 positivo (RASS distinto de 0)."
-    );
+    interpretacion.innerHTML =
+      "Paso 3 positivo (RASS distinto de 0).";
 
     return;
   }
 
   /* =========================
-     PASO 4 (solo si Paso 3 = No)
+     PASO 4
   ========================= */
 
-  $("cam_step4")?.closest(".card")?.classList.remove("hidden");
+  if (!s4) return;
 
-  if (s4 === null) return;
+  if (s4 === "1") {
 
-  if (s4 === 1) {
+    resultado.innerHTML = "<strong>CAM-ICU:</strong> Positivo.";
+    resultado.className = "resultado result-bad";
 
-    setResultBox(
-      "resultadoCAMICU",
-      "<strong>CAM-ICU:</strong> Positivo.",
-      "result-bad"
-    );
-
-    setHTML(
-      "interpretacionCAMICU",
-      "Paso 4 positivo (pensamiento desorganizado)."
-    );
+    interpretacion.innerHTML =
+      "Paso 4 positivo (pensamiento desorganizado).";
 
     return;
   }
 
   /* =========================
-     PASO 3 y 4 negativos
+     PASO 3 y 4 NEGATIVOS
   ========================= */
 
-  setResultBox(
-    "resultadoCAMICU",
-    "<strong>CAM-ICU:</strong> Negativo.",
-    "result-ok"
-  );
+  resultado.innerHTML = "<strong>CAM-ICU:</strong> Negativo.";
+  resultado.className = "resultado result-ok";
 
-  setHTML(
-    "interpretacionCAMICU",
-    "Paso 3 y Paso 4 negativos (RASS = 0 y sin pensamiento desorganizado)."
-  );
+  interpretacion.innerHTML =
+    "Paso 3 y Paso 4 negativos (RASS = 0 y sin pensamiento desorganizado).";
 }
+
+
+/* =========================================================
+   LISTENERS
+========================================================= */
+
+document.getElementById("camicu")?.addEventListener("change", (e) => {
+  if (e.target.tagName === "SELECT" && e.target.id.startsWith("cam_step")) {
+    evaluarCAMICU();
+  }
+});
+
+document.getElementById("cam_reset")?.addEventListener("click", resetCAMICU);
+
+
+/* Inicializar estado */
+resetCAMICU();
+
+    
 
     /* =========================================================
        NIHSS
