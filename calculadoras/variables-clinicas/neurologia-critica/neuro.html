@@ -2,129 +2,103 @@
 <html lang="es">
 <head>
 
-  <!-- =========================
-       Cookiebot (SIEMPRE PRIMERO)
-  ========================== -->
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    type="text/javascript">
-  </script>
+<!-- =========================
+     Cookiebot (SIEMPRE PRIMERO)
+========================== -->
+<script
+  id="Cookiebot"
+  src="https://consent.cookiebot.com/uc.js"
+  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+  data-blockingmode="auto"
+  type="text/javascript">
+</script>
 
-  <!-- =========================
-       Meta básicos
-  ========================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- =========================
+     Google Consent Mode v2 (ANTES de gtag.js)
+========================== -->
+<script data-cookieconsent="ignore">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
 
-  <title>Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS | Critical Care Tools</title>
+  gtag("consent", "default", {
+    ad_personalization: "denied",
+    ad_storage: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "denied",
+    personalization_storage: "denied",
+    security_storage: "granted",
+    wait_for_update: 500
+  });
 
-  <meta
-    name="description"
-    content="Evaluación neurológica del paciente crítico: Glasgow Coma Scale, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score. Herramientas educativas para UCI."
-  />
+  gtag("set", "ads_data_redaction", true);
+  gtag("set", "url_passthrough", false);
+</script>
 
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#020617" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
+<title>Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS | Critical Care Tools</title>
 
-  <!-- =========================
-       Canonical
-  ========================== -->
-  <link
-    rel="canonical"
-    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
-  />
+<meta name="description"
+      content="Evaluación neurológica del paciente crítico: Glasgow Coma Scale, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score. Herramientas educativas para UCI.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#020617">
 
-  <!-- =========================
-       Hreflang
-  ========================== -->
-  <link
-    rel="alternate"
-    hreflang="es"
-    href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
-  />
-  <link
-    rel="alternate"
-    hreflang="en"
-    href="https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html"
-  />
-  <link
-    rel="alternate"
-    hreflang="x-default"
-    href="https://criticalcaretools.com/"
-  />
+<link rel="manifest" href="/manifest.json">
 
-  <!-- =========================
-       Open Graph
-  ========================== -->
-  <meta property="og:title" content="Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS" />
-  <meta
-    property="og:description"
-    content="Evaluación neurológica del paciente crítico: Glasgow, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score."
-  />
-  <meta property="og:type" content="website" />
-  <meta
-    property="og:url"
-    content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html"
-  />
-  <meta
-    property="og:image"
-    content="https://criticalcaretools.com/assets/og-neuro.jpg"
-  />
-  <meta property="og:site_name" content="Critical Care Tools" />
-  <meta property="og:locale" content="es_ES" />
+<!-- Canonical -->
+<link rel="canonical"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html" />
 
-  <!-- =========================
-       CSS
-  ========================== -->
-  <link
-    rel="stylesheet"
-    href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=8"
-  />
+<!-- Hreflang -->
+<link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html" />
+<link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html" />
+<link rel="alternate" hreflang="x-default"
+      href="https://criticalcaretools.com/" />
 
-  <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2
-  ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<!-- Open Graph -->
+<meta property="og:title" content="Neurología crítica UCI | Glasgow · CAM-ICU · NIHSS" />
+<meta property="og:description"
+      content="Evaluación neurológica del paciente crítico: Glasgow, CAM-ICU, NIHSS, Fisher, Hunt & Hess y Marshall Score." />
+<meta property="og:type" content="website" />
+<meta property="og:url"
+      content="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html" />
+<meta property="og:image"
+      content="https://criticalcaretools.com/assets/og-neuro.jpg" />
+<meta property="og:site_name" content="Critical Care Tools" />
+<meta property="og:locale" content="es_ES" />
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
+<!-- CSS -->
+<link rel="stylesheet"
+      href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=8" />
 
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      wait_for_update: 500
-    });
+<!-- =========================
+     Google Analytics GA4
+========================== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<script>
+  gtag('js', new Date());
 
-    gtag('js', new Date());
+  gtag('config', 'G-WQREHQ56Q4', {
+    anonymize_ip: true,
+    send_page_view: true
+  });
+</script>
 
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  </script>
+<!-- =========================
+     Google AdSense
+========================== -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+crossorigin="anonymous"></script>
 
-  <!-- =========================
-       Google Ads
-  ========================== -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-    crossorigin="anonymous">
-  </script>
-
-  <!-- =========================
-       Structured Data (Schema.org)
-  ========================== -->
-  <script type="application/ld+json">
+<!-- =========================
+     Structured Data JSON-LD
+========================== -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -176,7 +150,7 @@
     }
   ]
 }
-  </script>
+</script>
 
 </head>
 
