@@ -5,19 +5,19 @@
   --color-primary: #0EA5E9;
   --color-primary-dark: #0284C7;
 
-  --color-background: #F4F7FB;
+  --color-background: #F8FAFC;       /* Más claro */
   --color-surface: #FFFFFF;
 
-  --color-text: #0F172A;
-  --color-muted: #64748B;
+  --color-text: #1E293B;             /* Gris elegante, no negro */
+  --color-muted: #94A3B8;            /* Más suave */
 
-  --color-border: #E5EAF1;
+  --color-border: #EEF2F7;           /* Borde más fino visualmente */
 
   --shadow-soft:
-    0 6px 18px rgba(15, 23, 42, .06),
-    0 18px 38px rgba(15, 23, 42, .04);
+    0 4px 12px rgba(15, 23, 42, .04),
+    0 10px 24px rgba(15, 23, 42, .03);
 
-  --radius: 16px;
+  --radius: 18px;
 }
 
 /* =========================
@@ -42,9 +42,9 @@ body {
 
 /* Focus accesible */
 :focus-visible {
-  outline: 3px solid rgba(14,165,233,.45);
+  outline: 3px solid rgba(14,165,233,.35);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* =========================
@@ -53,19 +53,14 @@ body {
 header {
   text-align: center;
   padding: 3rem 1.5rem 2.5rem;
-  background: linear-gradient(
-    135deg,
-    #EAF6FF 0%,
-    #F8FBFF 60%,
-    #FFFFFF 100%
-  );
+  background: #FFFFFF;  /* Eliminado degradado oscuro */
   border-bottom: 1px solid var(--color-border);
 }
 
 header h1 {
   font-size: clamp(1.8rem, 3vw, 2.3rem);
   font-weight: 700;
-  letter-spacing: -0.6px;
+  letter-spacing: -0.5px;
 }
 
 /* =========================
@@ -85,7 +80,7 @@ header h1 {
 .menu {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2.2rem;
+  gap: 2.4rem;
   padding: 0 1.5rem 4rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -101,7 +96,7 @@ header h1 {
   justify-content: space-between;
 
   background-color: var(--color-surface);
-  padding: 2rem;
+  padding: 2.2rem;
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
 
@@ -117,11 +112,10 @@ header h1 {
 }
 
 .menu a:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-6px);
+  border-color: #DCEAF5;
+  transform: translateY(-4px);
   box-shadow:
-    0 25px 45px rgba(14,165,233,.12),
-    0 0 0 3px rgba(14,165,233,.10);
+    0 12px 28px rgba(14,165,233,.08);
 }
 
 .menu a:active {
@@ -132,7 +126,7 @@ header h1 {
    TITULO TARJETA
 ========================= */
 .menu a h2 {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -179,7 +173,7 @@ footer {
   font-size: 0.85rem;
   color: var(--color-muted);
   border-top: 1px solid var(--color-border);
-  background-color: var(--color-surface);
+  background-color: #FFFFFF;
 }
 
 /* =========================
