@@ -42,11 +42,9 @@
   <link rel="alternate"
         hreflang="es"
         href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
-
   <link rel="alternate"
         hreflang="en"
         href="https://criticalcaretools.com/en/calculadorasen/estado-acido-baseen/acido-baseen.html">
-
   <link rel="alternate"
         hreflang="x-default"
         href="https://criticalcaretools.com/">
@@ -56,18 +54,13 @@
   ========================== -->
   <meta property="og:title"
         content="Estado Ácido–Base UCI | Anion Gap · Delta–Delta · Electrolitos">
-
   <meta property="og:description"
         content="Herramientas clínicas para análisis ácido–base y evaluación de electrolitos en cuidados intensivos.">
-
   <meta property="og:type" content="website">
-
   <meta property="og:url"
         content="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
-
   <meta property="og:image"
         content="https://criticalcaretools.com/assets/og-acidobase.jpg">
-
   <meta property="og:site_name" content="Critical Care Tools">
   <meta property="og:locale" content="es_ES">
 
@@ -104,24 +97,28 @@
 
   <!-- =========================
        GOOGLE ANALYTICS GA4
-       + CONSENT MODE v2
+       + CONSENT MODE v2 ROBUSTO
   ========================== -->
-  <script async
-          src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4">
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500,
+    });
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
   </script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      wait_for_update: 500
-    });
-
     gtag('js', new Date());
-
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true,
@@ -141,57 +138,57 @@
        STRUCTURED DATA
   ========================== -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://criticalcaretools.com/#organization",
+        "name": "Critical Care Tools",
+        "url": "https://criticalcaretools.com/",
+        "logo": "https://criticalcaretools.com/assets/logo.png"
       },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Acid-base disorders in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Anion gap calculation"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Electrolyte imbalance assessment"
+      {
+        "@type": "WebSite",
+        "@id": "https://criticalcaretools.com/#website",
+        "url": "https://criticalcaretools.com/",
+        "name": "Critical Care Tools",
+        "inLanguage": ["es", "en"],
+        "publisher": {
+          "@id": "https://criticalcaretools.com/#organization"
         }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://criticalcaretools.com/#app",
+        "name": "Critical Care Tools Clinical Calculators",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "audience": {
+          "@type": "MedicalAudience",
+          "audienceType": "MedicalProfessional"
+        },
+        "about": [
+          {
+            "@type": "MedicalEntity",
+            "name": "Acid-base disorders in intensive care"
+          },
+          {
+            "@type": "MedicalEntity",
+            "name": "Anion gap calculation"
+          },
+          {
+            "@type": "MedicalEntity",
+            "name": "Electrolyte imbalance assessment"
+          }
+        ],
+        "publisher": {
+          "@id": "https://criticalcaretools.com/#organization"
+        }
       }
-    }
-  ]
-}
+    ]
+  }
   </script>
 
 </head>
