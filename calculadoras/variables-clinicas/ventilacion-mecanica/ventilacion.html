@@ -2,13 +2,39 @@
 <html lang="es">
 <head>
 
-<!-- Cookiebot -->
+<!-- =========================
+     Cookiebot (SIEMPRE PRIMERO)
+========================== -->
 <script
   id="Cookiebot"
   src="https://consent.cookiebot.com/uc.js"
   data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
   data-blockingmode="auto"
   type="text/javascript">
+</script>
+
+<!-- =========================
+     Google Consent Mode v2 (ANTES de gtag.js)
+========================== -->
+<script data-cookieconsent="ignore">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag("consent", "default", {
+    ad_personalization: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "denied",
+    personalization_storage: "denied",
+    security_storage: "granted",
+    wait_for_update: 500,
+  });
+
+  gtag("set", "ads_data_redaction", true);
+  gtag("set", "url_passthrough", false);
 </script>
 
 <meta charset="UTF-8" />
@@ -49,31 +75,26 @@
 <link rel="stylesheet"
       href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=5" />
 
-<!-- GA4 + Consent Mode v2 -->
+<!-- =========================
+     Google Analytics GA4
+========================== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
 
-gtag('js', new Date());
-
-gtag('consent', 'default', {
-  ad_storage: 'denied',
-  analytics_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied'
-});
-
-gtag('config', 'G-WQREHQ56Q4', {
-  anonymize_ip: true,
-  send_page_view: true
-});
+  gtag('config', 'G-WQREHQ56Q4', {
+    anonymize_ip: true,
+    send_page_view: true
+  });
 </script>
 
-<!-- Google AdSense -->
+<!-- =========================
+     Google AdSense
+========================== -->
 <script async
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous">
+</script>
 
 </head>
 
