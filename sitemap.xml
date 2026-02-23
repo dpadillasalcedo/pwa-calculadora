@@ -60,7 +60,7 @@
   </url>
 
   <url>
-    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/neurologia-criticaen/neurologiaen.html</loc>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="es"
@@ -120,7 +120,7 @@
   </url>
 
   <url>
-    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/monitoreo-hemodinamicoen/monitoreoen.html</loc>
+    <loc>https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="es"
@@ -140,7 +140,7 @@
   </url>
 
   <url>
-    <loc>https://criticalcaretools.com/en/calculadorasen/variables-clinicasen/estado-acido-baseen/acido-baseen.html</loc>
+    <loc>https://criticalcaretools.com/en/calculadorasen/estado-acido-baseen/acido-baseen.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="es"
@@ -208,5 +208,6 @@
   </url>
 
 </urlset>
+
 
 
