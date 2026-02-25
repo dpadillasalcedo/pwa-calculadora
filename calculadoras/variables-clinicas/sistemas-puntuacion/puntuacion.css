@@ -280,3 +280,23 @@ footer {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+
+/* Bloque SEO desplegable */
+.seo-panel details {
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+}
+
+.seo-panel summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.seo-panel h2,
+.seo-panel h3 {
+  margin-top: 1rem;
+}
