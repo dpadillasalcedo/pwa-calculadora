@@ -14,7 +14,7 @@
 </script>
 
 <!-- =========================
-     Google Consent Mode v2 (ANTES de gtag.js)
+     Google Consent Mode v2
 ========================== -->
 <script data-cookieconsent="ignore">
   window.dataLayer = window.dataLayer || [];
@@ -40,10 +40,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Ventilación mecánica | Calculadoras UCI | Critical Care Tools</title>
+<!-- =========================
+     SEO TITLE OPTIMIZADO
+========================== -->
+<title>Calculadora de Ventilación Mecánica | PBW, Driving Pressure y Ajuste PCO₂ UCI</title>
 
+<!-- =========================
+     META DESCRIPTION OPTIMIZADA
+========================== -->
 <meta name="description"
-      content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. PBW, ajuste de PCO₂ y Driving Pressure (ΔP). Uso educativo en cuidados intensivos." />
+      content="Calculadora de ventilación mecánica invasiva para UCI. Calcula PBW (peso ideal), Driving Pressure (ΔP) y ajustes de PCO₂. Herramienta clínica gratuita de apoyo en cuidados intensivos." />
 
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#020617" />
@@ -63,9 +69,9 @@
       href="https://criticalcaretools.com/" />
 
 <!-- Open Graph -->
-<meta property="og:title" content="Ventilación mecánica | Calculadoras UCI | Critical Care Tools" />
+<meta property="og:title" content="Calculadora de Ventilación Mecánica UCI | PBW y Driving Pressure" />
 <meta property="og:description"
-      content="Herramientas de apoyo para ventilación mecánica invasiva en adultos. PBW, ajuste de PCO₂ y Driving Pressure (ΔP)." />
+      content="Calcula PBW, Driving Pressure (ΔP) y ajuste de PCO₂ en ventilación mecánica invasiva. Herramienta para profesionales en cuidados intensivos." />
 <meta property="og:type" content="website" />
 <meta property="og:url"
       content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" />
@@ -74,6 +80,69 @@
 
 <link rel="stylesheet"
       href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=5" />
+
+<!-- =========================
+     SCHEMA MEDICAL
+========================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Calculadora de Ventilación Mecánica UCI",
+  "description": "Herramientas para cálculo de PBW, Driving Pressure y ajuste de PCO2 en ventilación mecánica invasiva.",
+  "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html",
+  "inLanguage": "es",
+  "about": {
+    "@type": "MedicalProcedure",
+    "name": "Ventilación mecánica invasiva"
+  },
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "HealthcareProfessional"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com"
+  }
+}
+</script>
+
+<!-- =========================
+     SCHEMA FAQ
+========================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es el peso corporal ideal (PBW) en ventilación mecánica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El PBW se utiliza para calcular el volumen tidal adecuado en ventilación mecánica protectora, especialmente en pacientes con síndrome de distrés respiratorio agudo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la Driving Pressure (ΔP)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Driving Pressure es la diferencia entre la presión plateau y la PEEP. Se asocia con el riesgo de lesión pulmonar inducida por ventilación."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Estos cálculos reemplazan el criterio clínico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Son herramientas de apoyo y deben interpretarse dentro del contexto clínico individual del paciente."
+      }
+    }
+  ]
+}
+</script>
 
 <!-- =========================
      Google Analytics GA4
@@ -97,7 +166,7 @@
 </script>
 
 </head>
-
+     
 <body>
 
 <main class="app container">
