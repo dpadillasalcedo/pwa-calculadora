@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<head lang="es">
-</head>
+<html lang="es">
+<head>
 
 <!-- =========================
      Cookiebot (SIEMPRE PRIMERO)
@@ -14,7 +14,7 @@
 </script>
 
 <!-- =========================
-     Google Consent Mode v2 (ANTES de GA4)
+     Google Consent Mode v2
 ========================== -->
 <script data-cookieconsent="ignore">
   window.dataLayer = window.dataLayer || [];
@@ -34,70 +34,75 @@
   gtag("set", "url_passthrough", false);
 </script>
 
-<!-- =========================
-     META BÁSICOS
-========================== -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂ | Critical Care Tools</title>
-<meta name="description" content="Monitoreo hemodinámico en UCI: cálculo de gasto cardíaco por VTI, fracción de acortamiento, VO₂, extracción tisular y resistencia vascular sistémica (RVS). Uso educativo.">
+
+<!-- SEO TITLE OPTIMIZADO -->
+<title>Calculadoras Hemodinámicas UCI | Gasto Cardíaco, RVS e Índice Cardíaco</title>
+
+<!-- META DESCRIPTION OPTIMIZADA -->
+<meta name="description"
+      content="Calculadoras de monitoreo hemodinámico en UCI: gasto cardíaco, índice cardíaco, resistencia vascular sistémica (RVS), VO₂ y extracción tisular. Herramienta clínica gratuita para cuidados intensivos.">
+
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="theme-color" content="#020617">
 
-<!-- =========================
-     CANONICAL
-========================== -->
-<link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
+<!-- CANONICAL -->
+<link rel="canonical"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
 
-<!-- =========================
-     HREFLANG
-========================== -->
-<link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
-<link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
-<link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/">
+<!-- HREFLANG -->
+<link rel="alternate" hreflang="es"
+      href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
+<link rel="alternate" hreflang="en"
+      href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
+<link rel="alternate" hreflang="x-default"
+      href="https://criticalcaretools.com/">
 
-<!-- =========================
-     OPEN GRAPH
-========================== -->
-<meta property="og:title" content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂">
-<meta property="og:description" content="Herramientas clínicas para evaluación de gasto cardíaco, perfusión tisular y resistencia vascular sistémica en cuidados intensivos.">
+<!-- OPEN GRAPH OPTIMIZADO -->
+<meta property="og:title"
+      content="Calculadoras Hemodinámicas UCI | Gasto Cardíaco y RVS">
+<meta property="og:description"
+      content="Evalúa gasto cardíaco, índice cardíaco y resistencia vascular sistémica en UCI. Herramientas clínicas para paciente crítico.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
-<meta property="og:image" content="https://criticalcaretools.com/assets/og-hemodinamia.jpg">
+<meta property="og:url"
+      content="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
 <meta property="og:site_name" content="Critical Care Tools">
 <meta property="og:locale" content="es_ES">
 
-<!-- =========================
-     TWITTER CARD
-========================== -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Monitoreo hemodinámico UCI | Gasto cardíaco · RVS · VO₂">
-<meta name="twitter:description" content="Evaluación integrada de función cardíaca, oxigenación y perfusión tisular en UCI.">
-<meta name="twitter:image" content="https://criticalcaretools.com/assets/og-hemodinamia.jpg">
+<!-- CSS -->
+<link rel="stylesheet"
+      href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=2">
 
 <!-- =========================
-     PERFORMANCE
+     SCHEMA MÉDICO ESPECÍFICO
 ========================== -->
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Calculadoras de Monitoreo Hemodinámico UCI",
+  "description": "Herramientas para cálculo de gasto cardíaco, índice cardíaco y resistencia vascular sistémica en pacientes críticos.",
+  "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html",
+  "inLanguage": "es",
+  "about": {
+    "@type": "MedicalProcedure",
+    "name": "Monitoreo hemodinámico en cuidados intensivos"
+  },
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "HealthcareProfessional"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com"
+  }
+}
+</script>
 
-<!-- =========================
-     PWA
-========================== -->
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<!-- =========================
-     CSS
-========================== -->
-<link rel="stylesheet" href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.css?v=2">
-
-<!-- =========================
-     Google Analytics GA4
-========================== -->
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 <script>
   gtag('js', new Date());
@@ -108,66 +113,10 @@
   });
 </script>
 
-<!-- =========================
-     Google Ads
-========================== -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906" crossorigin="anonymous"></script>
-
-<!-- =========================
-     Structured Data JSON-LD
-========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
-      },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Hemodynamic monitoring in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Cardiac output calculation"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Systemic vascular resistance"
-        }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    }
-  ]
-}
+<!-- ADS -->
+<script async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+  crossorigin="anonymous">
 </script>
 
 </head>
