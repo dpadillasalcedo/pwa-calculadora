@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <!-- =========================
        Cookiebot (SIEMPRE PRIMERO)
   ========================== -->
@@ -19,8 +20,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Soporte nutricional enteral en UCI | Calculadora | Critical Care Tools</title>
-  <meta name="description" content="Calculadora de soporte nutricional enteral en el paciente crítico: estimación calórica y proteica basada en recomendaciones ASPEN y ESPEN. Uso educativo en UCI." />
+  <!-- SEO TITLE OPTIMIZADO -->
+  <title>Calculadora Soporte Nutricional UCI | Requerimientos Calóricos y Proteicos</title>
+
+  <!-- META DESCRIPTION OPTIMIZADA -->
+  <meta name="description"
+        content="Calculadora de soporte nutricional en UCI. Estima requerimientos calóricos y proteicos del paciente crítico según recomendaciones ASPEN y ESPEN. Herramienta clínica gratuita de apoyo en cuidados intensivos.">
+
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="theme-color" content="#020617" />
 
@@ -37,23 +43,14 @@
   <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
 
   <!-- =========================
-       OPEN GRAPH
+       OPEN GRAPH OPTIMIZADO
   ========================== -->
-  <meta property="og:title" content="Soporte nutricional enteral en UCI | Critical Care Tools" />
-  <meta property="og:description" content="Calculadora nutricional basada en guías ASPEN/ESPEN para el paciente crítico." />
+  <meta property="og:title" content="Calculadora Soporte Nutricional UCI | Requerimientos Calóricos y Proteicos" />
+  <meta property="og:description" content="Estimación calórica y proteica en paciente crítico según guías ASPEN y ESPEN. Herramienta clínica para UCI." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" />
-  <meta property="og:image" content="https://criticalcaretools.com/assets/og-nutricion.jpg" />
   <meta property="og:site_name" content="Critical Care Tools" />
   <meta property="og:locale" content="es_ES" />
-
-  <!-- =========================
-       TWITTER CARD
-  ========================== -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Soporte nutricional enteral en UCI | Critical Care Tools" />
-  <meta name="twitter:description" content="Estimación calórica y proteica en UCI basada en recomendaciones ASPEN/ESPEN (uso educativo)." />
-  <meta name="twitter:image" content="https://criticalcaretools.com/assets/og-nutricion.jpg" />
 
   <!-- =========================
        PERFORMANCE
@@ -75,8 +72,7 @@
   <link rel="stylesheet" href="/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.css?v=1" />
 
   <!-- =========================
-       GOOGLE ANALYTICS GA4
-       + CONSENT MODE v2 ROBUSTO
+       CONSENT MODE v2
   ========================== -->
   <script data-cookieconsent="ignore">
     window.dataLayer = window.dataLayer || [];
@@ -96,6 +92,8 @@
     gtag("set", "ads_data_redaction", true);
     gtag("set", "url_passthrough", false);
   </script>
+
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     gtag('js', new Date());
@@ -106,62 +104,39 @@
     });
   </script>
 
-  <!-- =========================
-       GOOGLE ADS
-  ========================== -->
+  <!-- ADS -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906" crossorigin="anonymous"></script>
 
   <!-- =========================
-       STRUCTURED DATA
+       SCHEMA MÉDICO ESPECÍFICO
   ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://criticalcaretools.com/#organization",
-        "name": "Critical Care Tools",
-        "url": "https://criticalcaretools.com/",
-        "logo": "https://criticalcaretools.com/assets/logo.png"
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://criticalcaretools.com/#website",
-        "url": "https://criticalcaretools.com/",
-        "name": "Critical Care Tools",
-        "inLanguage": ["es", "en"],
-        "publisher": { "@id": "https://criticalcaretools.com/#organization" }
-      },
-      {
-        "@type": "MedicalWebApplication",
-        "@id": "https://criticalcaretools.com/#nutricion-enteral",
-        "name": "Soporte nutricional enteral en UCI",
-        "url": "https://criticalcaretools.com/calculadoras/soporte-nutricional-del-paciente-critico/soporte.html",
-        "applicationCategory": "MedicalApplication",
-        "operatingSystem": "All",
-        "browserRequirements": "Requires JavaScript",
-        "audience": {
-          "@type": "MedicalAudience",
-          "audienceType": "MedicalProfessional"
-        },
-        "about": [
-          { "@type": "MedicalEntity", "name": "Critical care nutrition" },
-          { "@type": "MedicalEntity", "name": "Enteral nutrition" },
-          { "@type": "MedicalEntity", "name": "Protein and calorie estimation in ICU" }
-        ],
-        "publisher": { "@id": "https://criticalcaretools.com/#organization" }
-      }
-    ]
+    "@type": "MedicalWebPage",
+    "name": "Calculadora de Soporte Nutricional en UCI",
+    "description": "Herramienta clínica para estimación de requerimientos calóricos y proteicos en el paciente crítico según guías internacionales.",
+    "url": "https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html",
+    "inLanguage": "es",
+    "about": {
+      "@type": "MedicalTherapy",
+      "name": "Soporte nutricional en cuidados intensivos"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "HealthcareProfessional"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com"
+    }
   }
   </script>
+
 </head>
 
-  
-<body>
-
-
-<body>
+ <body>
 
 <main class="wrap">
 
