@@ -14,13 +14,11 @@
 </script>
 
 <!-- =========================
-     Google Consent Mode v2 (ANTES de gtag.js)
+     Google Consent Mode v2
 ========================== -->
 <script data-cookieconsent="ignore">
   window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
+  function gtag() { dataLayer.push(arguments); }
 
   gtag("consent", "default", {
     ad_personalization: "denied",
@@ -30,7 +28,7 @@
     functionality_storage: "denied",
     personalization_storage: "denied",
     security_storage: "granted",
-    wait_for_update: 500,
+    wait_for_update: 500
   });
 
   gtag("set", "ads_data_redaction", true);
@@ -40,10 +38,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Variables clínicas | Calculadoras UCI | Critical Care Tools</title>
+<!-- SEO TITLE OPTIMIZADO -->
+<title>Calculadoras de Variables Clínicas UCI | Neurología, Ventilación y Hemodinamia</title>
 
+<!-- META DESCRIPTION OPTIMIZADA -->
 <meta name="description"
-      content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
+      content="Plataforma de calculadoras de variables clínicas en UCI: neurología crítica, ventilación mecánica, monitoreo hemodinámico, ácido-base y sistemas de puntuación. Herramientas clínicas gratuitas para cuidados intensivos." />
 
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#020617" />
@@ -64,10 +64,11 @@
 <link rel="alternate" hreflang="x-default"
       href="https://criticalcaretools.com/" />
 
-<!-- Open Graph -->
-<meta property="og:title" content="Variables clínicas | Calculadoras UCI | Critical Care Tools" />
+<!-- Open Graph OPTIMIZADO -->
+<meta property="og:title"
+      content="Calculadoras de Variables Clínicas UCI | Critical Care Tools" />
 <meta property="og:description"
-      content="Calculadoras clínicas para terapia intensiva: neurología crítica, ventilación mecánica, hemodinamia, ácido-base y sistemas de puntuación." />
+      content="Herramientas clínicas para evaluación de variables críticas en cuidados intensivos." />
 <meta property="og:type" content="website" />
 <meta property="og:url"
       content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
@@ -78,12 +79,34 @@
       href="/calculadoras/variables-clinicas/variables.css" />
 
 <!-- =========================
-     Google Analytics GA4
+     SCHEMA MÉDICO HUB
+========================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Calculadoras de Variables Clínicas UCI",
+  "description": "Hub de herramientas clínicas para evaluación de variables críticas en medicina intensiva.",
+  "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html",
+  "inLanguage": "es",
+  "about": {
+    "@type": "MedicalSpecialty",
+    "name": "Medicina intensiva"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com"
+  }
+}
+</script>
+
+<!-- =========================
+     GA4
 ========================== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 <script>
   gtag('js', new Date());
-
   gtag('config', 'G-WQREHQ56Q4', {
     anonymize_ip: true,
     send_page_view: true
@@ -91,6 +114,8 @@
 </script>
 
 </head>
+
+     
 
 <body>
 
@@ -192,4 +217,5 @@ if ('serviceWorker' in navigator) {
 
 </body>
 </html>
+
 
