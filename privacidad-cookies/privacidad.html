@@ -14,46 +14,129 @@
   </script>
 
   <!-- =========================
-       Meta básicos
+       Google Consent Mode v2
+       (ANTES de gtag.js)
+  ========================== -->
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500
+    });
+
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+  </script>
+
+  <!-- =========================
+       META BÁSICOS
   ========================== -->
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-adsense-account" content="ca-pub-2985318585101906">
+  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
   <title>Privacidad y Cookies | Critical Care Tools</title>
 
   <meta
     name="description"
-    content="Política de Privacidad y Política de Cookies de Critical Care Tools. Información sobre tratamiento de datos, cookies, consentimiento y servicios de terceros."
+    content="Política de Privacidad y Política de Cookies de Critical Care Tools. Información sobre tratamiento de datos, consentimiento, cookies y servicios de terceros."
   />
 
-  <meta name="robots" content="index, follow" />
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  />
+  <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#020617" />
+
+  <!-- =========================
+       CANONICAL
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/privacidad-cookies/privacidad.html"
+  />
+
+  <!-- =========================
+       HREFLANG
+  ========================== -->
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/privacidad-cookies/privacidad.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/privacidad-cookiesen/privacidaden.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
+
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="Critical Care Tools" />
+  <meta property="og:title" content="Privacidad y Cookies | Critical Care Tools" />
+  <meta
+    property="og:description"
+    content="Política de Privacidad y Política de Cookies de Critical Care Tools. Información sobre tratamiento de datos, consentimiento, cookies y servicios de terceros."
+  />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/privacidad-cookies/privacidad.html"
+  />
+
+  <!-- Opcional: activar solo si la imagen existe realmente -->
+  <!--
+  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/privacidad-es.jpg" />
+  <meta property="og:image:alt" content="Privacidad y Cookies de Critical Care Tools" />
+  -->
+
+  <!-- =========================
+       TWITTER CARDS
+  ========================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacidad y Cookies | Critical Care Tools" />
+  <meta
+    name="twitter:description"
+    content="Política de Privacidad y Política de Cookies de Critical Care Tools. Información sobre tratamiento de datos, consentimiento, cookies y servicios de terceros."
+  />
+
+  <!-- Opcional: activar solo si la imagen existe realmente -->
+  <!--
+  <meta name="twitter:image" content="https://criticalcaretools.com/assets/img/og/privacidad-es.jpg" />
+  -->
+
+  <!-- =========================
+       PERFORMANCE
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preconnect" href="https://consent.cookiebot.com" />
+  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <!-- =========================
        PWA
   ========================== -->
   <link rel="manifest" href="/manifest.json" />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
-
-  <!-- =========================
-       Hreflang
-  ========================== -->
-  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
-  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/privacidad-cookiesen/privacidaden.html" />
-  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
-
-  <!-- =========================
-       Open Graph
-  ========================== -->
-  <meta property="og:title" content="Privacidad y Cookies | Critical Care Tools" />
-  <meta property="og:description" content="Política de Privacidad y Política de Cookies de Critical Care Tools." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://criticalcaretools.com/privacidad-cookies/privacidad.html" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:locale:alternate" content="en_US" />
 
   <!-- =========================
        CSS
@@ -61,26 +144,11 @@
   <link rel="stylesheet" href="/privacidad-cookies/privacidad.css?v=1" />
 
   <!-- =========================
-       Google Analytics GA4
-       + Consent Mode v2
+       GOOGLE ANALYTICS GA4
   ========================== -->
-
-  <!-- GA4 Library -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-
+  <script data-cookieconsent="ignore">
     gtag('js', new Date());
-
-    /* Consent Mode v2 - default denied */
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
 
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
@@ -88,10 +156,68 @@
     });
   </script>
 
-  <!-- Google AdSense -->
-  <script async
+  <!-- =========================
+       GOOGLE ADS
+  ========================== -->
+  <script
+    async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
     crossorigin="anonymous">
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: BREADCRUMB
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://criticalcaretools.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacidad y Cookies",
+        "item": "https://criticalcaretools.com/privacidad-cookies/privacidad.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: WEBPAGE
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacidad y Cookies | Critical Care Tools",
+    "url": "https://criticalcaretools.com/privacidad-cookies/privacidad.html",
+    "inLanguage": "es",
+    "description": "Política de Privacidad y Política de Cookies de Critical Care Tools. Información sobre tratamiento de datos, consentimiento, cookies y servicios de terceros.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    }
+  }
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: ORGANIZATION
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com/"
+  }
   </script>
 
 </head>
