@@ -2,117 +2,246 @@
 <html lang="es">
 <head>
 
-<!-- =========================
-     Cookiebot (SIEMPRE PRIMERO)
-========================== -->
-<script
-  id="Cookiebot"
-  src="https://consent.cookiebot.com/uc.js"
-  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-  data-blockingmode="auto"
-  type="text/javascript">
-</script>
+  <!-- =========================
+       Cookiebot (SIEMPRE PRIMERO)
+  ========================== -->
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
 
-<!-- =========================
-     Google Consent Mode v2
-========================== -->
-<script data-cookieconsent="ignore">
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
+  <!-- =========================
+       Google Consent Mode v2
+  ========================== -->
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
 
-  gtag("consent", "default", {
-    ad_personalization: "denied",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    analytics_storage: "denied",
-    functionality_storage: "denied",
-    personalization_storage: "denied",
-    security_storage: "granted",
-    wait_for_update: 500
-  });
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500
+    });
 
-  gtag("set", "ads_data_redaction", true);
-  gtag("set", "url_passthrough", false);
-</script>
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+  </script>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- =========================
+       META BÁSICOS
+  ========================== -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
-<!-- SEO TITLE OPTIMIZADO -->
-<title>Calculadoras de Variables Clínicas UCI | Neurología, Ventilación y Hemodinamia</title>
+  <title>Calculadoras de Variables Clínicas UCI | Neurología, Ventilación y Hemodinamia</title>
 
-<!-- META DESCRIPTION OPTIMIZADA -->
-<meta name="description"
-      content="Plataforma de calculadoras de variables clínicas en UCI: neurología crítica, ventilación mecánica, monitoreo hemodinámico, ácido-base y sistemas de puntuación. Herramientas clínicas gratuitas para cuidados intensivos." />
+  <meta
+    name="description"
+    content="Plataforma de calculadoras de variables clínicas en UCI: neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación. Herramientas clínicas gratuitas para cuidados intensivos."
+  />
 
-<meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#020617" />
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  />
+  <meta name="author" content="Critical Care Tools" />
+  <meta name="theme-color" content="#020617" />
 
-<link rel="manifest" href="/manifest.json" />
+  <!-- =========================
+       CANONICAL
+  ========================== -->
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"
+  />
 
-<!-- Canonical -->
-<link rel="canonical"
-      href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+  <!-- =========================
+       HREFLANG
+  ========================== -->
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
 
-<!-- Hreflang -->
-<link rel="alternate" hreflang="es"
-      href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+  <!-- =========================
+       OPEN GRAPH
+  ========================== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="Critical Care Tools" />
+  <meta
+    property="og:title"
+    content="Calculadoras de Variables Clínicas UCI | Neurología, Ventilación y Hemodinamia"
+  />
+  <meta
+    property="og:description"
+    content="Hub de herramientas clínicas para neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación en UCI."
+  />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"
+  />
 
-<link rel="alternate" hreflang="en"
-      href="https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html" />
+  <!-- Opcional: activar solo si la imagen existe realmente -->
+  <!--
+  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/variables-clinicas-es.jpg" />
+  <meta property="og:image:alt" content="Variables clínicas UCI en Critical Care Tools" />
+  -->
 
-<link rel="alternate" hreflang="x-default"
-      href="https://criticalcaretools.com/" />
+  <!-- =========================
+       TWITTER CARDS
+  ========================== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta
+    name="twitter:title"
+    content="Calculadoras de Variables Clínicas UCI | Neurología, Ventilación y Hemodinamia"
+  />
+  <meta
+    name="twitter:description"
+    content="Hub de herramientas clínicas para neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación en UCI."
+  />
 
-<!-- Open Graph OPTIMIZADO -->
-<meta property="og:title"
-      content="Calculadoras de Variables Clínicas UCI | Critical Care Tools" />
-<meta property="og:description"
-      content="Herramientas clínicas para evaluación de variables críticas en cuidados intensivos." />
-<meta property="og:type" content="website" />
-<meta property="og:url"
-      content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
-<meta property="og:locale" content="es_ES" />
-<meta property="og:locale:alternate" content="en_US" />
-     <meta name="google-adsense-account" content="ca-pub-2985318585101906">
+  <!-- Opcional: activar solo si la imagen existe realmente -->
+  <!--
+  <meta name="twitter:image" content="https://criticalcaretools.com/assets/img/og/variables-clinicas-es.jpg" />
+  -->
 
-<link rel="stylesheet"
-      href="/calculadoras/variables-clinicas/variables.css" />
+  <!-- =========================
+       PERFORMANCE
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preconnect" href="https://consent.cookiebot.com" />
+  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
-<!-- =========================
-     SCHEMA MÉDICO HUB
-========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Calculadoras de Variables Clínicas UCI",
-  "description": "Hub de herramientas clínicas para evaluación de variables críticas en medicina intensiva.",
-  "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html",
-  "inLanguage": "es",
-  "about": {
-    "@type": "MedicalSpecialty",
-    "name": "Medicina intensiva"
-  },
-  "publisher": {
+  <!-- =========================
+       PWA
+  ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- =========================
+       CSS
+  ========================== -->
+  <link rel="stylesheet" href="/calculadoras/variables-clinicas/variables.css" />
+
+  <!-- =========================
+       GOOGLE ANALYTICS GA4
+  ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script data-cookieconsent="ignore">
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: BREADCRUMB
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://criticalcaretools.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Variables clínicas",
+        "item": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: MEDICAL WEB PAGE
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Calculadoras de Variables Clínicas UCI",
+    "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html",
+    "inLanguage": "es",
+    "description": "Hub de herramientas clínicas para neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación en medicina intensiva.",
+    "about": {
+      "@type": "MedicalSpecialty",
+      "name": "CriticalCare"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    }
+  }
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: COLLECTION PAGE
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Variables clínicas",
+    "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html",
+    "inLanguage": "es",
+    "description": "Página de acceso a módulos de evaluación clínica para el paciente crítico.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    }
+  }
+  </script>
+
+  <!-- =========================
+       STRUCTURED DATA: ORGANIZATION
+  ========================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com"
+    "url": "https://criticalcaretools.com/"
   }
-}
-</script>
-
-<!-- =========================
-     GA4
-========================== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-<script>
-  gtag('js', new Date());
-  gtag('config', 'G-WQREHQ56Q4', {
-    anonymize_ip: true,
-    send_page_view: true
-  });
-</script>
+  </script>
 
 </head>
 
