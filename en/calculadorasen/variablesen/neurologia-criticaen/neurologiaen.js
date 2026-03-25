@@ -1,215 +1,328 @@
-/* ================= CAM-ICU ================= */
+(() => {
+  "use strict";
 
-/* ===== STEP 1 ===== */
-function handleStep1() {
+  try {
+    console.log("✅ neurologiaen.js loaded successfully");
 
-  const s1 = document.getElementById("cam_step1").value;
-  const resultBox = document.getElementById("resultadoCAMICU");
+    const $ = (id) => document.getElementById(id);
 
-  resetBelowStep1();
+    const setHTML = (id, html = "") => {
+      const el = $(id);
+      if (el) el.innerHTML = html;
+    };
 
-  if (s1 === "1") {
-    document.getElementById("cam_step2_container").style.display = "block";
-  }
+    const getSelectInt = (id) => {
+      const el = $(id);
+      if (!el || el.value === "") return null;
+      const n = Number(el.value);
+      return Number.isFinite(n) ? n : null;
+    };
 
-  if (s1 === "0") {
-    resultBox.innerHTML =
-      "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Step 1 negative → Delirium ruled out.";
-  }
-}
+    const safeMax = (a, b) => {
+      if (a === null && b === null) return 0;
+      if (a === null) return b;
+      if (b === null) return a;
+      return Math.max(a, b);
+    };
 
-/* ===== STEP 2 ===== */
-function handleStep2() {
+    const setResultBox = (id, html = "", kind = null) => {
+      const el = $(id);
+      if (!el) return;
+      el.classList.remove("result-ok", "result-bad", "result-warn", "ok", "warn", "bad");
+      if (kind) el.classList.add(kind);
+      el.innerHTML = html;
+    };
 
-  const s2 = document.getElementById("cam_step2").value;
-  const resultBox = document.getElementById("resultadoCAMICU");
+    /* =========================================================
+       CAM-ICU · STEPWISE LOGIC
+       Rule: (1 + 2) and (3 or 4)
+    ========================================================= */
 
-  resetBelowStep2();
+    function resetCAMICU() {
+      ["cam_step1", "cam_step2", "cam_step3", "cam_step4"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
 
-  if (s2 === "1") {
-    document.getElementById("cam_step3_container").style.display = "block";
-    document.getElementById("cam_step4_container").style.display = "block";
-  }
+      document.getElementById("card_step2")?.classList.add("hidden");
+      document.getElementById("cam_steps34")?.classList.add("hidden");
+      document.getElementById("cam_wait")?.classList.add("hidden");
 
-  if (s2 === "0") {
-    resultBox.innerHTML =
-      "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Step 2 negative → Delirium ruled out.";
-  }
-}
-
-/* ===== AUTO EVALUATION STEP 3 & 4 ===== */
-function autoEvaluate() {
-
-  const s1 = parseInt(document.getElementById("cam_step1").value);
-  const s2 = parseInt(document.getElementById("cam_step2").value);
-  const s3 = parseInt(document.getElementById("cam_step3").value);
-  const s4 = parseInt(document.getElementById("cam_step4").value);
-
-  const resultBox = document.getElementById("resultadoCAMICU");
-
-  if (isNaN(s3) || isNaN(s4)) return;
-
-  if (s1 === 1 && s2 === 1 && (s3 === 1 || s4 === 1)) {
-    resultBox.innerHTML =
-      "<strong style='color:#ef4444'>CAM-ICU POSITIVE</strong><br>Criteria met: 1 + 2 + (3 or 4). Delirium present.";
-  } else {
-    resultBox.innerHTML =
-      "<strong style='color:#10b981'>CAM-ICU NEGATIVE</strong><br>Criteria not fully met.";
-  }
-}
-
-/* ===== RESETS ===== */
-
-function resetBelowStep1() {
-
-  document.getElementById("cam_step2_container").style.display = "none";
-  document.getElementById("cam_step3_container").style.display = "none";
-  document.getElementById("cam_step4_container").style.display = "none";
-
-  document.getElementById("cam_step2").value = "";
-  document.getElementById("cam_step3").value = "";
-  document.getElementById("cam_step4").value = "";
-
-  document.getElementById("resultadoCAMICU").innerHTML = "";
-}
-
-function resetBelowStep2() {
-
-  document.getElementById("cam_step3_container").style.display = "none";
-  document.getElementById("cam_step4_container").style.display = "none";
-
-  document.getElementById("cam_step3").value = "";
-  document.getElementById("cam_step4").value = "";
-
-  document.getElementById("resultadoCAMICU").innerHTML = "";
-}
-
-
-
-/* =========================
-   NIHSS CALCULATION
-========================= */
-
-document.getElementById("nihss_calc").addEventListener("click", calcNIHSS);
-document.getElementById("nihss_reset").addEventListener("click", resetNIHSS);
-
-function calcNIHSS() {
-
-  const ids = [
-    "n_1a","n_1b","n_1c","n_2","n_3","n_4",
-    "n_5a","n_5b","n_6a","n_6b",
-    "n_7","n_8","n_9","n_10","n_11"
-  ];
-
-  let total = 0;
-  let incomplete = false;
-
-  let values = {};
-
-  ids.forEach(id => {
-    const val = document.getElementById(id).value;
-
-    if (val === "") {
-      incomplete = true;
-    } else {
-      const num = parseInt(val);
-      total += num;
-      values[id] = num;
+      document.getElementById("resultadoCAMICU").innerHTML = "";
+      document.getElementById("interpretacionCAMICU").innerHTML = "";
+      document.getElementById("resultadoCAMICU").className = "resultado";
     }
-  });
 
-  if (incomplete) {
-    document.getElementById("resultadoNIHSS").innerHTML =
-      "⚠️ Complete todos los ítems antes de calcular.";
-    document.getElementById("interpretacionNIHSS").innerHTML = "";
-    return;
+    function evaluarCAMICU() {
+      const s1 = document.getElementById("cam_step1")?.value;
+      const s2 = document.getElementById("cam_step2")?.value;
+      const s3 = document.getElementById("cam_step3")?.value;
+      const s4 = document.getElementById("cam_step4")?.value;
+
+      const card2 = document.getElementById("card_step2");
+      const steps34 = document.getElementById("cam_steps34");
+      const wait = document.getElementById("cam_wait");
+      const resultado = document.getElementById("resultadoCAMICU");
+      const interpretacion = document.getElementById("interpretacionCAMICU");
+
+      resultado.innerHTML = "";
+      interpretacion.innerHTML = "";
+      resultado.className = "resultado";
+
+      if (!s1) {
+        card2?.classList.add("hidden");
+        steps34?.classList.add("hidden");
+        wait?.classList.add("hidden");
+        return;
+      }
+
+      if (s1 === "0") {
+        card2?.classList.add("hidden");
+        steps34?.classList.add("hidden");
+        wait?.classList.add("hidden");
+
+        resultado.innerHTML = "<strong>CAM-ICU:</strong> Negative.";
+        resultado.className = "resultado result-ok";
+
+        interpretacion.innerHTML =
+          "Step 1 is negative (no acute onset or fluctuating course). Delirium excluded.";
+
+        return;
+      }
+
+      card2?.classList.remove("hidden");
+
+      if (!s2) {
+        steps34?.classList.add("hidden");
+        wait?.classList.remove("hidden");
+        return;
+      }
+
+      wait?.classList.add("hidden");
+
+      if (s2 === "0") {
+        steps34?.classList.add("hidden");
+
+        resultado.innerHTML = "<strong>CAM-ICU:</strong> Negative.";
+        resultado.className = "resultado result-ok";
+
+        interpretacion.innerHTML =
+          "Step 2 is negative (no inattention). Delirium excluded.";
+
+        return;
+      }
+
+      steps34?.classList.remove("hidden");
+
+      if (!s3) return;
+
+      if (s3 === "1") {
+        resultado.innerHTML = "<strong>CAM-ICU:</strong> Positive.";
+        resultado.className = "resultado result-bad";
+
+        interpretacion.innerHTML =
+          "Step 3 is positive (RASS different from 0).";
+
+        return;
+      }
+
+      if (!s4) return;
+
+      if (s4 === "1") {
+        resultado.innerHTML = "<strong>CAM-ICU:</strong> Positive.";
+        resultado.className = "resultado result-bad";
+
+        interpretacion.innerHTML =
+          "Step 4 is positive (disorganized thinking).";
+
+        return;
+      }
+
+      resultado.innerHTML = "<strong>CAM-ICU:</strong> Negative.";
+      resultado.className = "resultado result-ok";
+
+      interpretacion.innerHTML =
+        "Step 3 and Step 4 are negative (RASS = 0 and no disorganized thinking).";
+    }
+
+    document.getElementById("camicu")?.addEventListener("change", (e) => {
+      if (e.target.tagName === "SELECT" && e.target.id.startsWith("cam_step")) {
+        evaluarCAMICU();
+      }
+    });
+
+    document.getElementById("cam_reset")?.addEventListener("click", resetCAMICU);
+
+    /* =========================================================
+       NIHSS
+    ========================================================= */
+
+    function resetNIHSS() {
+      [
+        "n_1a","n_1b","n_1c","n_2","n_3","n_4",
+        "n_5a","n_5b","n_6a","n_6b",
+        "n_7","n_8","n_9","n_10","n_11"
+      ].forEach((id) => {
+        const el = $(id);
+        if (el) el.value = "";
+      });
+
+      setResultBox("resultadoNIHSS");
+      setHTML("interpretacionNIHSS");
+    }
+
+    function calcularNIHSS() {
+      let total = 0;
+
+      document.querySelectorAll('#nihss select[id^="n_"]').forEach((sel) => {
+        const v = Number(sel.value);
+        if (Number.isFinite(v)) total += v;
+      });
+
+      const hemianopia = getSelectInt("n_3") === 2;
+      const neglect = (getSelectInt("n_11") ?? 0) >= 1;
+      const aphasia = (getSelectInt("n_9") ?? 0) >= 1;
+
+      const motorArm = safeMax(getSelectInt("n_5a"), getSelectInt("n_5b"));
+      const motorLeg = safeMax(getSelectInt("n_6a"), getSelectInt("n_6b"));
+      const motorAgainstGravityDeficit = motorArm >= 2 || motorLeg >= 2;
+
+      const disabling =
+        hemianopia || neglect || aphasia || motorAgainstGravityDeficit;
+
+      let classification = "Severe stroke";
+      let cssClass = "result-bad";
+
+      if (total <= 4) {
+        classification = disabling
+          ? "Minor stroke with disabling symptoms"
+          : "Minor stroke";
+        cssClass = disabling ? "result-warn" : "result-ok";
+      } else if (total <= 15) {
+        classification = "Moderate stroke";
+        cssClass = "result-warn";
+      }
+
+      setResultBox(
+        "resultadoNIHSS",
+        `<strong>NIHSS:</strong> ${total} · ${classification}`,
+        cssClass
+      );
+
+      const findings = [];
+      if (hemianopia) findings.push("Homonymous hemianopia");
+      if (neglect) findings.push("Neglect");
+      if (aphasia) findings.push("Aphasia");
+      if (motorAgainstGravityDeficit) findings.push("Motor deficit against gravity");
+
+      setHTML(
+        "interpretacionNIHSS",
+        findings.length
+          ? `<strong>Disabling symptoms:</strong> ${findings.join(", ")}.`
+          : ""
+      );
+    }
+
+    /* =========================================================
+       GLASGOW COMA SCALE
+    ========================================================= */
+
+    function initGlasgow() {
+      const gcsEye = document.getElementById("gcs_eye");
+      const gcsVerbal = document.getElementById("gcs_verbal");
+      const gcsMotor = document.getElementById("gcs_motor");
+      const gcsCalc = document.getElementById("gcs_calc");
+      const gcsReset = document.getElementById("gcs_reset");
+
+      const resultadoGCS = document.getElementById("resultadoGCS");
+      const interpretacionGCS = document.getElementById("interpretacionGCS");
+
+      if (gcsCalc) {
+        gcsCalc.addEventListener("click", () => {
+          const eye = parseInt(gcsEye.value, 10);
+          const verbal = parseInt(gcsVerbal.value, 10);
+          const motor = parseInt(gcsMotor.value, 10);
+
+          if (isNaN(eye) || isNaN(verbal) || isNaN(motor)) {
+            resultadoGCS.textContent = "Please complete all variables.";
+            interpretacionGCS.textContent = "";
+            resultadoGCS.className = "resultado result-warn";
+            return;
+          }
+
+          const total = eye + verbal + motor;
+
+          resultadoGCS.textContent = `Total Glasgow: ${total} (E${eye} V${verbal} M${motor})`;
+
+          let interpretation = "";
+          let cssClass = "";
+
+          if (total >= 13) {
+            interpretation = "Mild injury.";
+            cssClass = "result-ok";
+          } else if (total >= 9) {
+            interpretation = "Moderate injury.";
+            cssClass = "result-warn";
+          } else {
+            interpretation = "Severe injury. Consider airway protection.";
+            cssClass = "result-bad";
+          }
+
+          interpretacionGCS.textContent = interpretation;
+          resultadoGCS.className = `resultado ${cssClass}`;
+        });
+      }
+
+      if (gcsReset) {
+        gcsReset.addEventListener("click", () => {
+          gcsEye.value = "";
+          gcsVerbal.value = "";
+          gcsMotor.value = "";
+          resultadoGCS.textContent = "";
+          interpretacionGCS.textContent = "";
+          resultadoGCS.className = "resultado";
+        });
+      }
+    }
+
+    /* =========================================================
+       INIT
+    ========================================================= */
+
+    function init() {
+      const camSection = $("camicu");
+      if (camSection) {
+        camSection.addEventListener("change", (e) => {
+          const t = e.target;
+          if (t && t.tagName === "SELECT" && t.id.startsWith("cam_step")) {
+            evaluarCAMICU();
+          }
+        });
+      }
+
+      $("cam_reset")?.addEventListener("click", resetCAMICU);
+      $("nihss_reset")?.addEventListener("click", resetNIHSS);
+      $("nihss_calc")?.addEventListener("click", calcularNIHSS);
+
+      window.evaluarCAMICU = evaluarCAMICU;
+      window.resetCAMICU = resetCAMICU;
+      window.calcularNIHSS = calcularNIHSS;
+      window.resetNIHSS = resetNIHSS;
+
+      resetCAMICU();
+      resetNIHSS();
+      initGlasgow();
+
+      console.log("✅ neurologiaen.js initialized");
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+      init();
+    }
+
+  } catch (err) {
+    console.error("❌ Critical error in neurologiaen.js:", err);
   }
-
-  /* ========================
-     SEVERITY CLASSIFICATION
-  ======================== */
-
-  let severity = "";
-
-  if (total === 0) severity = "Sin síntomas de ACV";
-  else if (total <= 4) severity = "ACV leve";
-  else if (total <= 15) severity = "ACV moderado";
-  else if (total <= 20) severity = "ACV moderado-severo";
-  else severity = "ACV severo";
-
-  /* ========================
-     DISABLING SYMPTOMS
-  ======================== */
-
-  let disabling = false;
-  let reasons = [];
-
-  // Hemianopsia significativa
-  if (values["n_3"] >= 2) {
-    disabling = true;
-    reasons.push("hemianopsia");
-  }
-
-  // Afasia
-  if (values["n_9"] >= 1) {
-    disabling = true;
-    reasons.push("afasia");
-  }
-
-  // Neglect
-  if (values["n_11"] >= 1) {
-    disabling = true;
-    reasons.push("neglect");
-  }
-
-  // Motor contra gravedad (≥2)
-  if (
-    values["n_5a"] >= 2 ||
-    values["n_5b"] >= 2 ||
-    values["n_6a"] >= 2 ||
-    values["n_6b"] >= 2
-  ) {
-    disabling = true;
-    reasons.push("déficit motor contra gravedad");
-  }
-
-  /* ========================
-     OUTPUT
-  ======================== */
-
-  document.getElementById("resultadoNIHSS").innerHTML =
-    "Puntaje total NIHSS: <strong>" + total + "</strong>";
-
-  let interpretation =
-    "Clasificación: <strong>" + severity + "</strong><br><br>";
-
-  if (disabling) {
-    interpretation +=
-      "⚠️ <strong>ACV discapacitante</strong> por presencia de: " +
-      reasons.join(", ") + ".";
-  } else {
-    interpretation +=
-      "✅ No presenta criterios de ACV discapacitante.";
-  }
-
-  document.getElementById("interpretacionNIHSS").innerHTML = interpretation;
-}
-
-/* =========================
-   RESET
-========================= */
-
-function resetNIHSS() {
-  const ids = [
-    "n_1a","n_1b","n_1c","n_2","n_3","n_4",
-    "n_5a","n_5b","n_6a","n_6b",
-    "n_7","n_8","n_9","n_10","n_11"
-  ];
-
-  ids.forEach(id => {
-    document.getElementById(id).value = "";
-  });
-
-  document.getElementById("resultadoNIHSS").innerHTML = "";
-  document.getElementById("interpretacionNIHSS").innerHTML = "";
-}
+})();
