@@ -1,281 +1,272 @@
-/* =========================================================
-   RESET GLOBAL
-========================================================= */
+/* =========================
+   RESET
+========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
 body {
   margin: 0;
-  padding: 0;
-  min-height: 100%;
-  overscroll-behavior: none;
-  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #0f172a;
+  background: #f8fafc;
 }
 
-/* =========================================================
-   VARIABLES · LIGHT CLEAN SYSTEM
-========================================================= */
+/* =========================
+   VARIABLES
+========================= */
 :root {
-  --color-bg: #f8fafc;
-  --color-bg-soft: #ffffff;
-  --color-card: #ffffff;
-  --color-border: #e2e8f0;
+  --primary: #020617;
+  --primary-soft: #0f172a;
+  --accent: #1e293b;
 
-  --color-text: #1e293b;
-  --color-muted: #64748b;
+  --text-soft: #475569;
+  --muted: #64748b;
 
-  --color-accent: #0ea5e9;
-  --color-accent-strong: #0284c7;
-  --color-accent-soft: rgba(14,165,233,.15);
+  --surface: #ffffff;
+  --border: #e2e8f0;
 
-  --shadow-soft: 0 4px 12px rgba(0,0,0,.05);
+  --radius: 16px;
+  --radius-lg: 24px;
 
-  --radius-card: 16px;
+  --shadow-sm: 0 6px 20px rgba(2, 6, 23, 0.05);
+  --shadow-md: 0 16px 40px rgba(2, 6, 23, 0.08);
+
+  --container: 1100px;
 }
 
-/* =========================================================
-   ROOT WRAPPER
-========================================================= */
-.app-root {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-
-  background: var(--color-bg);
-
-  color: var(--color-text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+/* =========================
+   LAYOUT
+========================= */
+.container {
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
 }
 
-/* =========================================================
-   MAIN
-========================================================= */
-main {
-  flex: 1;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 2.75rem 1.25rem 4rem;
+.app {
+  padding: 1.2rem 0 2.5rem;
 }
 
-/* =========================================================
-   ACCESSIBLE FOCUS
-========================================================= */
-:focus-visible {
-  outline: 3px solid rgba(14,165,233,.45);
-  outline-offset: 2px;
-  border-radius: 8px;
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
+.language-switcher {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
 }
 
-/* =========================================================
-   LINKS
-========================================================= */
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color .2s ease;
+.language-switcher a {
+  color: var(--muted);
 }
 
-a:hover {
-  color: var(--color-accent-strong);
+.language-switcher a.active {
+  color: var(--primary);
+  font-weight: 600;
 }
 
-/* =========================================================
+/* =========================
    BREADCRUMB
-========================================================= */
+========================= */
 .breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  font-size: .85rem;
-  margin-bottom: 1.75rem;
-  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
 }
 
 .breadcrumb a {
-  color: var(--color-text);
-  font-weight: 500;
+  color: var(--text-soft);
 }
 
-.breadcrumb span {
-  color: var(--color-muted);
+.breadcrumb a:hover {
+  color: var(--primary);
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+.breadcrumb span:last-child {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* =========================
+   HEADER (HERO)
+========================= */
 header {
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 2rem;
 }
 
 header h1 {
-  margin: 0 0 .5rem;
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 0.6rem;
 }
 
 .subtitle {
-  margin: 0;
-  max-width: 780px;
-  color: var(--color-muted);
-  font-size: 1rem;
+  max-width: 700px;
+  color: var(--text-soft);
+  font-size: 1.05rem;
 }
 
-/* =========================================================
-   MENU GRID
-========================================================= */
+/* =========================
+   GRID MENU
+========================= */
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.75rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  margin-bottom: 3rem;
 }
 
 .menu a {
-  display: flex;
+  text-decoration: none;
 }
 
-/* =========================================================
+/* =========================
    CARD
-========================================================= */
+========================= */
 .card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-  padding: 1.75rem 1.5rem 2.25rem;
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-soft);
-
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    border-color .18s ease;
+/* línea lateral tipo SaaS */
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #020617, #334155);
 }
 
 .menu a:hover .card {
-  transform: translateY(-3px);
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
 }
 
-.menu a:active .card {
-  transform: translateY(-1px);
-}
-
-/* =========================================================
-   CARD CONTENT
-========================================================= */
+/* =========================
+   ICON
+========================= */
 .icon {
-  font-size: 2.1rem;
-  margin-bottom: .75rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
 }
 
+/* =========================
+   CARD TEXT
+========================= */
 .card h3 {
-  margin: .1rem 0 .5rem;
-  font-size: 1.15rem;
-  color: var(--color-accent);
-  font-weight: 600;
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
 }
 
 .card p {
   margin: 0;
-  font-size: .92rem;
-  color: var(--color-muted);
-  line-height: 1.45;
+  color: var(--text-soft);
+  font-size: 0.95rem;
 }
 
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-  background-color: var(--color-bg-soft);
-  border-top: 1px solid var(--color-border);
-  padding: 2.25rem 1.25rem;
-  text-align: center;
-  font-size: .85rem;
+/* =========================
+   SEO CONTENT
+========================= */
+.seo-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
 }
 
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: .6rem;
-  margin-bottom: .85rem;
-  flex-wrap: wrap;
-}
-
-.footer-nav a {
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.footer-nav a:hover {
-  color: var(--color-accent-strong);
-}
-
-footer p {
-  margin: 0 auto;
-  max-width: 900px;
-  line-height: 1.45;
-  color: var(--color-muted);
-}
-
-/* =========================================================
-   LANGUAGE SWITCHER
-========================================================= */
-.language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
+.seo-content h2 {
+  font-size: 1.4rem;
   margin-bottom: 1rem;
 }
 
-.language-switcher a {
-  color: var(--color-muted);
-  margin-left: 0.4rem;
+.seo-content h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.05rem;
 }
 
-.language-switcher a:hover {
-  color: var(--color-accent);
+.seo-content p {
+  color: var(--text-soft);
 }
 
-/* =========================================================
-   MOTION SAFETY
-========================================================= */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
-
-  .menu a:hover .card {
-    transform: none;
-  }
+/* =========================
+   ABOUT MINI
+========================= */
+.about-mini {
+  background: #f1f5f9;
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  margin-bottom: 2rem;
 }
 
-/* =========================================================
+.about-mini h3 {
+  margin-top: 0;
+}
+
+.about-mini p {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer-nav {
+  margin-bottom: 0.6rem;
+}
+
+.footer-nav a {
+  color: var(--primary-soft);
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+}
+
+/* =========================
    RESPONSIVE
-========================================================= */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.6rem;
-  }
-
+========================= */
+@media (max-width: 1024px) {
   .menu {
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media (max-width: 640px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
 
-.hidden {
-  display: none !important;
+  .card {
+    padding: 1.3rem;
+  }
+
+  .seo-content {
+    padding: 1.4rem;
+  }
 }
