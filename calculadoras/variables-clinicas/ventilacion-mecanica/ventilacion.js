@@ -169,26 +169,22 @@ function calcularDeltaP() {
   document.getElementById("interpretacionDeltaP").innerHTML = interpretacion;
 }
 
+
+
 function calcularComponenteResistivo() {
   const ppico = parseFloat(document.getElementById("ppico").value);
   const pplat = parseFloat(document.getElementById("pplat_res").value);
-  const flujo = parseFloat(document.getElementById("flujo_insp").value);
+  const flujoMin = parseFloat(document.getElementById("flujo_insp").value);
 
   const resultado = document.getElementById("resultadoResistivo");
   const interpretacion = document.getElementById("interpretacionResistivo");
 
-  // Limpiar salida previa
   resultado.innerHTML = "";
   interpretacion.textContent = "";
 
-  // Validaciones básicas
+  // Validaciones
   if (isNaN(ppico) || isNaN(pplat)) {
     resultado.textContent = "⚠️ Completá Presión pico y Presión plateau.";
-    return;
-  }
-
-  if (ppico <= 0 || pplat <= 0) {
-    resultado.textContent = "⚠️ Los valores deben ser mayores que 0.";
     return;
   }
 
@@ -206,38 +202,42 @@ function calcularComponenteResistivo() {
 
   let textoInterpretacion = "";
 
-  // Interpretación del componente resistivo sola: orientativa, no rígida
+  // Interpretación básica (no rígida)
   if (componenteResistivo <= 5) {
     textoInterpretacion =
-      "Componente resistivo bajo o dentro de rango esperado.";
+      "Componente resistivo dentro de rango esperado.";
   } else if (componenteResistivo <= 10) {
     textoInterpretacion =
-      "Componente resistivo discretamente aumentado. Interpretar según el flujo inspiratorio y el contexto clínico.";
+      "Componente resistivo discretamente aumentado. Interpretar según flujo.";
   } else {
     textoInterpretacion =
-      "Componente resistivo elevado. Puede sugerir aumento de resistencia de la vía aérea, pero debe interpretarse junto con el flujo inspiratorio y, de ser posible, con la resistencia calculada (Raw).";
+      "Componente resistivo elevado. Puede sugerir aumento de resistencia o flujo alto.";
   }
 
-  // Si hay flujo válido, calcular Raw
-  if (!isNaN(flujo) && flujo > 0) {
-    const raw = componenteResistivo / flujo;
+  // Si hay flujo → convertir y calcular Raw
+  if (!isNaN(flujoMin) && flujoMin > 0) {
+    const flujoSeg = flujoMin / 60; // 🔥 conversión automática
+    const raw = componenteResistivo / flujoSeg;
 
-    textoResultado += `<br>Resistencia de la vía aérea (Raw): <b>${raw.toFixed(1)} cmH₂O/L/s</b>`;
+    textoResultado += `
+      <br>Flujo: <b>${flujoMin.toFixed(1)} L/min</b> (${flujoSeg.toFixed(2)} L/s)
+      <br>Resistencia (Raw): <b>${raw.toFixed(1)} cmH₂O/L/s</b>
+    `;
 
-    // Interpretación más útil clínicamente
+    // Interpretación basada en evidencia (Raw)
     if (raw < 10) {
       textoInterpretacion +=
-        " La resistencia de la vía aérea está dentro de un rango habitualmente esperado.";
+        " Resistencia de la vía aérea dentro de rango esperado.";
     } else if (raw <= 15) {
       textoInterpretacion +=
-        " La resistencia de la vía aérea está moderadamente aumentada.";
+        " Resistencia moderadamente aumentada.";
     } else {
       textoInterpretacion +=
-        " La resistencia de la vía aérea está elevada, lo que sugiere obstrucción significativa, secreciones, broncoespasmo, acodamiento del tubo o flujo elevado.";
+        " Resistencia elevada, sugerente de obstrucción significativa (broncoespasmo, secreciones, tubo acodado).";
     }
   } else {
     textoInterpretacion +=
-      " Para una interpretación más precisa, ingresá también el flujo inspiratorio y calculá Raw.";
+      " Ingresá el flujo en L/min para calcular la resistencia (Raw).";
   }
 
   resultado.innerHTML = textoResultado;
