@@ -5,9 +5,12 @@ console.log("hemodinamicoen.js loaded successfully");
 ========================= */
 function getNum(id) {
   const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
+  if (!el) return null;
 
-  const value = Number(el.value);
+  const raw = String(el.value ?? "").trim();
+  if (raw === "") return null;
+
+  const value = Number(raw);
   return Number.isFinite(value) ? value : null;
 }
 
@@ -26,10 +29,13 @@ function setResultState(id, state = "") {
   if (!el) return;
 
   el.classList.remove("result-ok", "result-warn", "result-bad");
+  if (state) el.classList.add(state);
+}
 
-  if (state) {
-    el.classList.add(state);
-  }
+function showError(resultId, noteId, message) {
+  setHTML(resultId, message);
+  if (noteId) setHTML(noteId, "");
+  setResultState(resultId, "result-warn");
 }
 
 /* =========================
@@ -63,23 +69,17 @@ function calculateEchoCO() {
   const hr = getNum("eco_fc");
 
   if ([d, vti, hr].includes(null)) {
-    setHTML("resultadoGCEco", "Please complete all variables.");
-    setHTML("interpretacionGCEco", "");
-    setResultState("resultadoGCEco", "result-warn");
+    showError("resultadoGCEco", "interpretacionGCEco", "Please complete all variables.");
     return;
   }
 
   if (d <= 0 || vti <= 0 || hr <= 0) {
-    setHTML("resultadoGCEco", "Values must be greater than 0.");
-    setHTML("interpretacionGCEco", "");
-    setResultState("resultadoGCEco", "result-warn");
+    showError("resultadoGCEco", "interpretacionGCEco", "Values must be greater than 0.");
     return;
   }
 
-  const co = ((Math.PI * Math.pow(d / 2, 2)) * vti * hr) / 1000;
+  const co = ((Math.PI * (d / 2) ** 2) * vti * hr) / 1000;
   const co15 = co * 1.15;
-
-  const normalRange = "Normal range: 4–6 L/min";
 
   let interpretation = "";
   let resultClass = "";
@@ -106,9 +106,9 @@ function calculateEchoCO() {
   setHTML(
     "interpretacionGCEco",
     `
-    ${interpretation} (${normalRange})<br>
-    A patient may be considered a <strong>fluid responder</strong> if cardiac output increases by at least <strong>15%</strong>,
-    reaching <strong>${co15.toFixed(2)} L/min</strong>.
+    ${interpretation} (Normal range: 4–6 L/min).<br>
+    A patient may be considered a <strong>fluid responder</strong> if cardiac output increases by at least
+    <strong>15%</strong>, reaching <strong>${co15.toFixed(2)} L/min</strong>.
     `
   );
 
@@ -123,23 +123,21 @@ function calculateFS() {
   const ds = getNum("fa_dsvi");
 
   if (dd === null || ds === null) {
-    setHTML("resultadoFA", "Please complete all variables.");
-    setHTML("interpretacionFA", "");
-    setResultState("resultadoFA", "result-warn");
+    showError("resultadoFA", "interpretacionFA", "Please complete all variables.");
     return;
   }
 
   if (dd <= 0 || ds < 0) {
-    setHTML("resultadoFA", "Values must be valid and greater than 0.");
-    setHTML("interpretacionFA", "");
-    setResultState("resultadoFA", "result-warn");
+    showError("resultadoFA", "interpretacionFA", "Values must be valid and greater than 0.");
     return;
   }
 
   if (ds >= dd) {
-    setHTML("resultadoFA", "End-systolic diameter must be lower than end-diastolic diameter.");
-    setHTML("interpretacionFA", "");
-    setResultState("resultadoFA", "result-warn");
+    showError(
+      "resultadoFA",
+      "interpretacionFA",
+      "End-systolic diameter must be lower than end-diastolic diameter."
+    );
     return;
   }
 
@@ -176,8 +174,7 @@ function calculateOxygenation() {
   const pvo2 = getNum("oxi_pvo2");
 
   if ([co, hb, sao2, pao2, svo2, pvo2].includes(null)) {
-    setHTML("resultadoOxigenacionDetalle", "Please complete all variables.");
-    setResultState("resultadoOxigenacionDetalle", "result-warn");
+    showError("resultadoOxigenacionDetalle", null, "Please complete all variables.");
     return;
   }
 
@@ -189,20 +186,19 @@ function calculateOxygenation() {
     pao2 < 0 ||
     pvo2 < 0
   ) {
-    setHTML(
+    showError(
       "resultadoOxigenacionDetalle",
+      null,
       "Enter valid values. Saturations must be between 0 and 100."
     );
-    setResultState("resultadoOxigenacionDetalle", "result-warn");
     return;
   }
 
   const CaO2 = hb * 1.34 * (sao2 / 100) + pao2 * 0.003;
   const CvO2 = hb * 1.34 * (svo2 / 100) + pvo2 * 0.003;
-
   const DO2 = co * CaO2 * 10;
   const VO2 = co * (CaO2 - CvO2) * 10;
-  const ERO2 = (VO2 / DO2) * 100;
+  const ERO2 = DO2 > 0 ? (VO2 / DO2) * 100 : 0;
 
   let interpDO2 = "";
   let interpVO2 = "";
@@ -261,16 +257,12 @@ function calculateSVR() {
   const co = getNum("rvs_gc");
 
   if (map === null || co === null) {
-    setHTML("resultadoRVS", "Please complete MAP and cardiac output.");
-    setHTML("interpretacionRVS", "");
-    setResultState("resultadoRVS", "result-warn");
+    showError("resultadoRVS", "interpretacionRVS", "Please complete MAP and cardiac output.");
     return;
   }
 
   if (map <= 0 || co <= 0 || cvp < 0) {
-    setHTML("resultadoRVS", "Values must be valid and greater than 0.");
-    setHTML("interpretacionRVS", "");
-    setResultState("resultadoRVS", "result-warn");
+    showError("resultadoRVS", "interpretacionRVS", "Values must be valid and greater than 0.");
     return;
   }
 
@@ -294,13 +286,12 @@ function calculateSVR() {
     "resultadoRVS",
     `<strong>SVR:</strong> ${svr.toFixed(0)} dyn·s·cm⁻⁵ (800–1200)`
   );
-
   setHTML("interpretacionRVS", interpretation);
   setResultState("resultadoRVS", resultClass);
 }
 
 /* =========================
-   OPTIONAL RESET FUNCTION
+   OPTIONAL RESET
 ========================= */
 function resetHemodynamicCalculators() {
   const ids = [
@@ -334,10 +325,16 @@ function resetHemodynamicCalculators() {
 }
 
 /* =========================
-   GLOBAL EXPORTS
+   COMPATIBILITY ALIASES
 ========================= */
 window.calculateEchoCO = calculateEchoCO;
 window.calculateFS = calculateFS;
 window.calculateOxygenation = calculateOxygenation;
 window.calculateSVR = calculateSVR;
+
+window.calcularGCEco = calculateEchoCO;
+window.calcularFA = calculateFS;
+window.calcularOxigenacion = calculateOxygenation;
+window.calcularRVS = calculateSVR;
+
 window.resetHemodynamicCalculators = resetHemodynamicCalculators;
