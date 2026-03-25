@@ -11,279 +11,315 @@
     type="text/javascript">
   </script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Hemodynamic Monitoring | ICU Calculators | Critical Care Tools</title>
 
-  <meta name="description"
-        content="Hemodynamic monitoring and tissue oxygenation assessment in ICU. Clinical support tools for evaluation of the critically ill patient.">
+  <meta
+    name="description"
+    content="Hemodynamic monitoring calculators for ICU: echocardiographic cardiac output, fractional shortening, oxygen delivery and systemic vascular resistance."
+  />
 
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#020617">
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#f8fafc" />
+  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/manifest.json" />
 
   <!-- Canonical -->
-  <link rel="canonical"
-        href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.html"
+  />
 
   <!-- Hreflang -->
-  <link rel="alternate" hreflang="en"
-        href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
-  <link rel="alternate" hreflang="es"
-        href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
-  <link rel="alternate" hreflang="x-default"
-        href="https://criticalcaretools.com/">
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/monitoreo-hemodinamico/hemodinamico.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
 
   <!-- Open Graph -->
-  <meta property="og:title"
-        content="Hemodynamic Monitoring | ICU Calculators">
-  <meta property="og:description"
-        content="Hemodynamic monitoring and tissue oxygenation tools for critically ill patients.">
-  <meta property="og:type" content="website">
-  <meta property="og:url"
-        content="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html">
+  <meta property="og:title" content="Hemodynamic Monitoring | ICU Calculators" />
+  <meta
+    property="og:description"
+    content="Clinical tools for hemodynamic assessment in critically ill patients."
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.html"
+  />
 
-  <meta name="google-adsense-account" content="ca-pub-2985318585101906">
+  <link
+    rel="stylesheet"
+    href="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.css?v=1"
+  />
 
-  <!-- CSS -->
-  <link rel="stylesheet"
-        href="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.css">
-
-  <!-- Performance -->
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-  <!-- GA4 compatible with Cookiebot -->
-  <script async
-    src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"
-    data-cookieconsent="statistics">
-  </script>
-
-  <script data-cookieconsent="statistics">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', { anonymize_ip: true });
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
   </script>
 
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
-      },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
-        }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    }
-  ]
-}
-</script>
-
 </head>
-
 <body>
 
-<main class="container">
+<main class="app container">
 
   <div class="language-switcher">
-  <a href="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html" class="active">EN</a> |
-  <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">ES</a>
-</div>
+    <a
+      href="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.html"
+      class="active"
+    >
+      EN
+    </a>
+    <span class="separator">|</span>
+    <a
+      href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/hemodinamico.html"
+    >
+      ES
+    </a>
+  </div>
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/en/indexen.html">Home</a>
+    <span aria-hidden="true">›</span>
+    <a href="/en/calculadorasen/variablesen/variablesen.html">Clinical Variables</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Hemodynamic Monitoring</span>
+  </nav>
 
-  <!-- Breadcrumb -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="/en/indexen.html">Home</a>
-  <span aria-hidden="true">›</span>
-  <a href="/en/calculadorasen/variablesen/variablesen.html">
-    Clinical Variables
-  </a>
-  <span aria-hidden="true">›</span>
-  <span>Hemodynamic Monitoring</span>
-</nav>
-
-
-  <!-- =========================
-       HEADER
-  ========================== -->
   <header class="app-header">
     <h1>Hemodynamic Monitoring</h1>
+    <p class="seo-intro">
+      Practical calculators for bedside hemodynamic assessment in critically ill patients.
+    </p>
     <p class="subtitle">
-      Integrated assessment of cardiac function, oxygen delivery and tissue perfusion.
+      Educational and clinical support tools. Always interpret results within the full clinical context.
     </p>
   </header>
 
-  <!-- =========================
-       ECHOCARDIOGRAPHY
-  ========================== -->
-  <section id="echo" class="panel">
-    <h2>🫀 Echocardiography</h2>
+  <section class="panel">
+    <h2>Cardiac Output by Echocardiography (VTI)</h2>
+
+    <p class="note">
+      Cardiac output estimation using LVOT diameter, LVOT VTI and heart rate.
+    </p>
 
     <fieldset>
-      <legend>Cardiac Output by LVOT VTI</legend>
+      <legend>Required variables</legend>
 
       <div class="grid-3">
         <div>
-          <label>LVOT Diameter (cm)</label>
-          <input type="number" id="eco_dtsvi" step="0.1">
+          <label for="eco_dtsvi">LVOT diameter (cm)</label>
+          <input type="number" id="eco_dtsvi" step="0.1" min="0" />
         </div>
+
         <div>
-          <label>LVOT VTI (cm)</label>
-          <input type="number" id="eco_vti" step="0.1">
+          <label for="eco_vti">LVOT VTI (cm)</label>
+          <input type="number" id="eco_vti" step="0.1" min="0" />
         </div>
+
         <div>
-          <label>Heart Rate (bpm)</label>
-          <input type="number" id="eco_fc">
+          <label for="eco_fc">Heart rate (bpm)</label>
+          <input type="number" id="eco_fc" step="1" min="0" />
         </div>
       </div>
 
-      <button type="button" onclick="calcularGCEco()">Calculate CO</button>
+      <button type="button" onclick="calculateEchoCO()">Calculate CO</button>
+
       <div id="resultadoGCEco" class="result"></div>
       <div id="interpretacionGCEco" class="note"></div>
     </fieldset>
+  </section>
+
+  <section class="panel">
+    <h2>Fractional Shortening (FS)</h2>
+
+    <p class="note">
+      Simplified echocardiographic estimate of left ventricular systolic function.
+    </p>
 
     <fieldset>
-      <legend>Fractional Shortening</legend>
+      <legend>Required variables</legend>
 
       <div class="grid-2">
         <div>
-          <label>LVEDD (cm)</label>
-          <input type="number" id="fa_ddvi" step="0.1">
+          <label for="fa_ddvi">LV end-diastolic diameter (mm or cm, same unit)</label>
+          <input type="number" id="fa_ddvi" step="0.1" min="0" />
         </div>
+
         <div>
-          <label>LVESD (cm)</label>
-          <input type="number" id="fa_dsvi" step="0.1">
+          <label for="fa_dsvi">LV end-systolic diameter (same unit)</label>
+          <input type="number" id="fa_dsvi" step="0.1" min="0" />
         </div>
       </div>
 
-      <button type="button" onclick="calcularFA()">Calculate FS</button>
+      <button type="button" onclick="calculateFS()">Calculate FS</button>
+
       <div id="resultadoFA" class="result"></div>
       <div id="interpretacionFA" class="note"></div>
     </fieldset>
   </section>
 
-  <hr />
+  <section class="panel">
+    <h2>Oxygen Delivery and Consumption</h2>
 
-  <!-- =========================
-       OXYGENATION
-  ========================== -->
-  <section id="oxygenation" class="panel">
-    <h2>🩸 Oxygen Delivery and Consumption</h2>
-
-    <fieldset>
-      <label>Cardiac Output (L/min)</label>
-      <input type="number" id="oxi_gc" step="0.1">
-      <label>Hemoglobin (g/dL)</label>
-      <input type="number" id="oxi_hb" step="0.1">
-    </fieldset>
+    <p class="note">
+      Calculates DO₂, VO₂ and oxygen extraction ratio from cardiac output, hemoglobin,
+      arterial oxygenation and venous oxygenation.
+    </p>
 
     <fieldset>
-      <label>SaO₂ (%)</label>
-      <input type="number" id="oxi_sao2">
-      <label>PaO₂ (mmHg)</label>
-      <input type="number" id="oxi_pao2">
-    </fieldset>
+      <legend>Required variables</legend>
 
-    <fieldset>
-      <label>SvO₂ (%)</label>
-      <input type="number" id="oxi_svo2">
-      <label>PvO₂ (mmHg)</label>
-      <input type="number" id="oxi_pvo2">
-    </fieldset>
+      <div class="grid-3">
+        <div>
+          <label for="oxi_gc">Cardiac output (L/min)</label>
+          <input type="number" id="oxi_gc" step="0.1" min="0" />
+        </div>
 
-    <button type="button" onclick="calcularOxigenacion()">Calculate Oxygenation</button>
-    <div id="resultadoOxigenacionDetalle" class="note"></div>
+        <div>
+          <label for="oxi_hb">Hemoglobin (g/dL)</label>
+          <input type="number" id="oxi_hb" step="0.1" min="0" />
+        </div>
+
+        <div>
+          <label for="oxi_sao2">Arterial oxygen saturation SaO₂ (%)</label>
+          <input type="number" id="oxi_sao2" step="0.1" min="0" max="100" />
+        </div>
+
+        <div>
+          <label for="oxi_pao2">Arterial oxygen pressure PaO₂ (mmHg)</label>
+          <input type="number" id="oxi_pao2" step="0.1" min="0" />
+        </div>
+
+        <div>
+          <label for="oxi_svo2">Venous oxygen saturation SvO₂ (%)</label>
+          <input type="number" id="oxi_svo2" step="0.1" min="0" max="100" />
+        </div>
+
+        <div>
+          <label for="oxi_pvo2">Venous oxygen pressure PvO₂ (mmHg)</label>
+          <input type="number" id="oxi_pvo2" step="0.1" min="0" />
+        </div>
+      </div>
+
+      <button type="button" onclick="calculateOxygenation()">Calculate oxygenation</button>
+
+      <div id="resultadoOxigenacionDetalle" class="result"></div>
+    </fieldset>
   </section>
 
-  <hr />
+  <section class="panel">
+    <h2>Pressures and Systemic Vascular Resistance (SVR)</h2>
 
-  <!-- =========================
-       SVR
-  ========================== -->
-  <section id="svr" class="panel">
-    <h2>🫀 Pressures and Systemic Vascular Resistance</h2>
+    <p class="note">
+      Systemic vascular resistance estimated from mean arterial pressure, central venous pressure and cardiac output.
+    </p>
 
-    <label>MAP (mmHg)</label>
-    <input type="number" id="rvs_tam">
+    <fieldset>
+      <legend>Required variables</legend>
 
-    <label>CVP (mmHg)</label>
-    <input type="number" id="rvs_pvc">
+      <div class="grid-3">
+        <div>
+          <label for="rvs_tam">Mean arterial pressure MAP (mmHg)</label>
+          <input type="number" id="rvs_tam" step="0.1" min="0" />
+        </div>
 
-    <label>Cardiac Output (L/min)</label>
-    <input type="number" id="rvs_gc">
+        <div>
+          <label for="rvs_pvc">Central venous pressure CVP (mmHg)</label>
+          <input type="number" id="rvs_pvc" step="0.1" min="0" />
+        </div>
 
-    <button type="button" onclick="calcularRVS()">Calculate SVR</button>
-    <div id="resultadoRVS" class="result"></div>
-    <div id="interpretacionRVS" class="note"></div>
+        <div>
+          <label for="rvs_gc">Cardiac output (L/min)</label>
+          <input type="number" id="rvs_gc" step="0.1" min="0" />
+        </div>
+      </div>
+
+      <button type="button" onclick="calculateSVR()">Calculate SVR</button>
+
+      <div id="resultadoRVS" class="result"></div>
+      <div id="interpretacionRVS" class="note"></div>
+    </fieldset>
+  </section>
+
+  <section class="panel seo-panel">
+    <h2>Clinical basis of hemodynamic monitoring in the ICU</h2>
+
+    <p>
+      Hemodynamic monitoring is essential in critically ill patients to assess tissue perfusion,
+      cardiac function and vascular tone. These tools support bedside interpretation of cardiovascular status.
+    </p>
+
+    <h3>Cardiac output by echocardiography</h3>
+    <p>
+      Estimation of cardiac output from LVOT diameter, velocity-time integral and heart rate provides a non-invasive
+      approach to assess circulatory performance and response to therapy.
+    </p>
+
+    <h3>Fractional shortening</h3>
+    <p>
+      Fractional shortening is a simplified index of left ventricular systolic performance and may help identify
+      depressed, preserved or hyperdynamic function in the appropriate context.
+    </p>
+
+    <h3>Oxygen delivery and extraction</h3>
+    <p>
+      DO₂, VO₂ and oxygen extraction ratio provide complementary information on the balance between oxygen transport
+      and tissue demand, especially in shock states or severe hypoxemia.
+    </p>
+
+    <h3>Systemic vascular resistance</h3>
+    <p>
+      SVR helps characterize distributive, cardiogenic or vasoconstrictive hemodynamic patterns and may support
+      therapeutic decisions regarding fluids, vasopressors and inotropes.
+    </p>
+
+    <h3>Clinical warning</h3>
+    <p>
+      These tools are intended for educational and clinical support purposes only. They do not replace medical
+      judgment, ultrasound expertise, invasive monitoring when indicated, or institutional protocols.
+    </p>
   </section>
 
 </main>
 
-<!-- =========================
-     FOOTER
-========================== -->
-<footer>
-
-  <nav class="footer-nav">
-    <a href="/en/referencias-bibliograficasen/referenciasen.html">Scientific References</a> ·
-    <a href="/en/legalen/legalen.html">Legal Notice</a> ·
-    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy & Cookies</a>
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="/en/referencias-bibliograficasen/referenciasen.html">References</a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/legalen/legalen.html">Legal Notice</a>
+    <span aria-hidden="true">·</span>
+    <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy &amp; Cookies</a>
   </nav>
 
   <p>
-    © 2026 Critical Care Tools · Educational and clinical support use only.
+    © 2026 Critical Care Tools · Educational and clinical support use.
     Does not replace medical judgment or institutional guidelines.
   </p>
-
 </footer>
 
-<script src="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.js" defer></script>
-
+<script src="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/hemodinamicoen.js?v=1" defer></script>
 
 </body>
 </html>
-
