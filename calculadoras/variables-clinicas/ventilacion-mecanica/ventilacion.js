@@ -122,47 +122,51 @@ function ajustarPCO2() {
   setHTML("resultadoPCO2Detalle", detalle);
 }
 
-/* =========================================================
-   DRIVING PRESSURE (ΔP = Pplat − PEEP)
-========================================================= */
 function calcularDeltaP() {
-  const pplat = numVal("pplat");
-  const peep = numVal("peep");
+  const pplat = parseFloat(document.getElementById("pplat").value);
+  const peep = parseFloat(document.getElementById("peep").value);
+  const vt = parseFloat(document.getElementById("vt").value);
 
-  if (pplat === null || peep === null) {
-    setHTML("resultadoDeltaP", "Ingrese Pplat y PEEP.");
-    setHTML("interpretacionDeltaP", "");
-    return;
-  }
-
-  if (pplat <= peep) {
-    setHTML("resultadoDeltaP", "Valores no válidos: Pplat debe ser mayor que PEEP.");
-    setHTML("interpretacionDeltaP", "");
+  if (isNaN(pplat) || isNaN(peep) || isNaN(vt)) {
+    document.getElementById("resultadoDeltaP").innerHTML = "⚠️ Completa todos los campos";
+    document.getElementById("interpretacionDeltaP").innerHTML = "";
     return;
   }
 
   const deltaP = pplat - peep;
 
-  let interpretacion = "";
-  if (deltaP <= 12) {
-    interpretacion = "ΔP <strong>baja</strong>. Perfil ventilatorio más protector.";
-  } else if (deltaP <= 15) {
-    interpretacion = "ΔP <strong>intermedia</strong>. Vigilar tendencia y mecánica pulmonar.";
-  } else {
-    interpretacion =
-      "<strong>ΔP elevada</strong>. Se asocia a mayor riesgo de lesión pulmonar.<br><br>" +
-      "<strong>Sugerencias:</strong><ul>" +
-      "<li>Reducir VT (ideal 6 ml/kg PBW).</li>" +
-      "<li>Revisar compliance y estrategia de PEEP.</li>" +
-      "<li>Considerar pronación / reclutamiento según caso.</li>" +
-      "</ul>";
+  if (deltaP <= 0) {
+    document.getElementById("resultadoDeltaP").innerHTML = "⚠️ ΔP inválida";
+    document.getElementById("interpretacionDeltaP").innerHTML = "";
+    return;
   }
 
-  setHTML(
-    "resultadoDeltaP",
-    `<strong>Driving Pressure (ΔP):</strong> ${deltaP.toFixed(1)} cmH₂O`
-  );
-  setHTML("interpretacionDeltaP", interpretacion);
+  const compliance = vt / deltaP;
+
+  document.getElementById("resultadoDeltaP").innerHTML = `
+    ΔP: <b>${deltaP.toFixed(1)} cmH₂O</b><br>
+    Compliance: <b>${compliance.toFixed(1)} ml/cmH₂O</b>
+  `;
+
+  let interpretacion = "";
+
+  // interpretación ΔP
+  if (deltaP <= 15) {
+    interpretacion += "ΔP dentro de rango protector. ";
+  } else {
+    interpretacion += "ΔP elevada → mayor riesgo de lesión pulmonar. ";
+  }
+
+  // interpretación compliance
+  if (compliance > 50) {
+    interpretacion += "Complacencia conservada.";
+  } else if (compliance >= 30) {
+    interpretacion += "Complacencia moderadamente reducida.";
+  } else {
+    interpretacion += "Complacencia severamente disminuida (SDRA probable).";
+  }
+
+  document.getElementById("interpretacionDeltaP").innerHTML = interpretacion;
 }
 
 /* =========================================================
