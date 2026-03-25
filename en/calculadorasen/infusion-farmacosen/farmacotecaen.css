@@ -1,185 +1,148 @@
-/* =========================================================
-   CRITICAL CARE TOOLS – ICU PHARMACOPOEIA
-   Light Clinical Blue Version
-========================================================= */
-
-:root {
-  --bg-main: #F8FAFC;
-  --bg-card: #FFFFFF;
-  --bg-soft: #F1F5F9;
-  --bg-input: #FFFFFF;
-
-  --accent: #38BDF8;          /* Azul celeste */
-  --accent-soft: #0EA5E9;     /* Azul celeste fuerte */
-
-  --text-main: #0F172A;
-  --text-muted: #64748B;
-
-  --border: #E2E8F0;
-  --danger: #DC2626;
-
-  --radius: 12px;
-}
-
-/* ================= BASE ================= */
-
-* {
+/* =========================
+   RESET
+========================= */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body {
+body,
+h1,
+h2,
+h3,
+p {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f8fafc, #eef4f8);
+  color: #0f172a;
   line-height: 1.6;
 }
 
+/* =========================
+   LAYOUT
+========================= */
 .container {
-  max-width: 1100px;
+  width: min(100% - 2rem, 1150px);
   margin: auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem 0 3rem;
 }
 
-/* ================= LANGUAGE SWITCHER ================= */
-
+/* =========================
+   LANGUAGE
+========================= */
 .language-switcher {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   margin-bottom: 1rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .language-switcher a {
-  color: var(--text-muted);
-  text-decoration: none;
-  margin-left: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  transition: 0.2s ease;
-}
-
-.language-switcher a.active,
-.language-switcher a[aria-current="page"] {
-  background: var(--accent);
-  color: #fff;
+  color: #64748b;
   font-weight: 600;
 }
 
-.language-switcher a:hover {
-  background: rgba(56,189,248,0.15);
+.language-switcher a.active {
+  color: #0f4c81;
 }
 
-/* ================= BREADCRUMB ================= */
-
+/* =========================
+   BREADCRUMB
+========================= */
 .breadcrumb {
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  margin-bottom: 2rem;
-  color: var(--text-muted);
 }
 
 .breadcrumb a {
-  color: var(--accent-soft);
-  text-decoration: none;
+  color: #0f4c81;
+  font-weight: 600;
 }
 
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-/* ================= CONTROLS ================= */
-
+/* =========================
+   FILTER PANEL
+========================= */
 .controls {
-  background: var(--bg-card);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
   margin-bottom: 2rem;
 }
 
 .controls-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 2fr 1fr auto;
   gap: 1rem;
-  align-items: end;
-}
-
-.controls label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 0.3rem;
-  display: block;
 }
 
 .controls input,
 .controls select {
   width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-input);
-  color: var(--text-main);
-  font-size: 0.9rem;
-  transition: 0.2s ease;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
 }
 
 .controls input:focus,
 .controls select:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(56,189,248,0.2);
+  border-color: #0f4c81;
+  box-shadow: 0 0 0 3px rgba(15,76,129,0.15);
 }
 
 .controls-actions {
   display: flex;
-  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .btn {
-  padding: 0.55rem 1rem;
-  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
   border: none;
-  font-size: 0.85rem;
-  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .btn.secondary {
-  background: #E2E8F0;
-  color: var(--text-main);
+  background: #e2e8f0;
 }
 
-.btn.secondary:hover {
-  background: #CBD5E1;
+.hint {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
-/* ================= SECTION TITLES ================= */
-
+/* =========================
+   CATEGORY TITLE
+========================= */
 h2 {
-  margin: 2.5rem 0 1rem;
-  font-size: 1.3rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.5rem;
-  color: var(--accent-soft);
+  margin: 2rem 0 1rem;
+  font-size: 1.4rem;
 }
 
-/* ================= DRUG CARD ================= */
-
+/* =========================
+   DRUG CARD
+========================= */
 .drug-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
   padding: 1.2rem;
-  margin-bottom: 1.2rem;
-  transition: 0.2s ease;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  transition: 0.25s;
 }
 
 .drug-card:hover {
-  border-color: var(--accent-soft);
   transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
 }
 
+/* =========================
+   HEADER CARD
+========================= */
 .drug-head {
   display: flex;
   justify-content: space-between;
@@ -187,171 +150,133 @@ h2 {
 }
 
 .drug-head h3 {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-.muted {
-  color: var(--text-muted);
+  font-size: 1.1rem;
 }
 
 .small {
   font-size: 0.8rem;
+  color: #64748b;
 }
 
-/* ================= TOGGLE BUTTON ================= */
-
+/* =========================
+   BUTTON
+========================= */
 .toggle-sheet {
-  background: var(--accent);
-  color: #fff;
+  background: #0f4c81;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
 }
 
 .toggle-sheet:hover {
-  background: var(--accent-soft);
+  background: #0b3b63;
 }
 
-/* ================= DRUG SHEET ================= */
-
+/* =========================
+   SHEET
+========================= */
 .drug-sheet {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  animation: fadeIn 0.2s ease;
+  border-top: 1px solid #e2e8f0;
 }
 
 .hidden {
   display: none;
 }
 
-/* ================= SHEET GRID ================= */
-
+/* =========================
+   GRID INFO
+========================= */
 .sheet-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.8rem;
   margin-bottom: 1rem;
 }
 
-.sheet-grid span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: block;
-}
-
-.sheet-grid b {
-  font-size: 0.9rem;
-}
-
-/* ================= CALC BLOCK ================= */
-
-.calc-block {
-  background: var(--bg-soft);
-  padding: 1rem;
+.sheet-grid div {
+  background: #f8fafc;
+  padding: 0.7rem;
   border-radius: 10px;
-  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   CALCULATOR
+========================= */
+.calc-block {
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 12px;
 }
 
 .calc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  align-items: end;
-}
-
-.calc-block label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
 }
 
 .calc-block input {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text-main);
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
 }
 
 .calc-result {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: #e0f2fe;
+  border-radius: 10px;
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: bold;
 }
 
-.calc-result span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.calc-result b {
-  font-size: 1rem;
-  color: var(--accent-soft);
-}
-
-/* ================= CLINICAL NOTE ================= */
-
+/* =========================
+   CLINICAL NOTE
+========================= */
 .clinical-note {
   margin-top: 1rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: #E0F2FE;
-  padding: 0.8rem;
-  border-left: 3px solid var(--accent-soft);
-  border-radius: 6px;
-}
-
-/* ================= FOOTER ================= */
-
-.site-footer {
-  margin-top: 4rem;
-  padding: 2rem 1rem;
-  border-top: 1px solid var(--border);
-  text-align: center;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  padding: 0.9rem;
+  border-radius: 10px;
   font-size: 0.85rem;
-  color: var(--text-muted);
-  background: #FFFFFF;
 }
 
-.footer-nav {
-  margin-bottom: 0.7rem;
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  margin-top: 3rem;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  padding: 1.5rem;
 }
 
 .footer-nav a {
-  color: var(--accent-soft);
-  text-decoration: none;
-  margin: 0 0.4rem;
+  color: #0f4c81;
+  font-weight: 600;
 }
 
-.footer-nav a:hover {
-  text-decoration: underline;
+.footer-copy {
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
-/* ================= ANIMATION ================= */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1.5rem 1rem;
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .sheet-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .drug-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  .calc-grid {
+    grid-template-columns: 1fr;
   }
 
   .controls-grid {
