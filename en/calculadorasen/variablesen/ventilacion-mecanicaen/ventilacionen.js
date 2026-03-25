@@ -1,125 +1,239 @@
-/* ==========================================
-   MECHANICAL VENTILATION – ICU CALCULATOR
-   Critical Care Tools EN
-========================================== */
+console.log("ventilationen.js loaded successfully");
 
-function getNumber(id) {
+/* =========================================================
+   HELPERS
+========================================================= */
+function setHTML(id, html) {
   const el = document.getElementById(id);
-  if (!el) return NaN;
-  const val = parseFloat(el.value);
-  return isNaN(val) ? NaN : val;
+  if (el) el.innerHTML = html;
+}
+
+function numVal(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
+  return Number.isFinite(v) ? v : null;
 }
 
 /* =========================================================
-   1) PREDICTED BODY WEIGHT (PBW)
-   ARDSnet Formula
+   INIT
 ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  setHTML("resultadoPeso", "");
+  setHTML("resultadoPCO2", "");
+  setHTML("resultadoPCO2Detalle", "");
+  setHTML("resultadoDeltaP", "");
+  setHTML("interpretacionDeltaP", "");
+});
 
-function calcularPesoIdeal() {
+/* =========================================================
+   PBW (ARDSnet)
+========================================================= */
+function calculatePBW() {
+  const height = numVal("height");
+  const sex = document.getElementById("sex")?.value;
 
-  const height = getNumber("height");
-  const sex = document.getElementById("sex").value;
-
-  if (!height || !sex) {
-    document.getElementById("resultadoPeso").innerHTML =
-      "Please enter height and select sex.";
+  if (height === null || height < 80 || height > 250) {
+    setHTML("resultadoPeso", "Enter a valid height (80–250 cm).");
     return;
   }
 
-  let pbw;
-
-  if (sex === "male") {
-    pbw = 50 + 0.91 * (height - 152.4);
-  } else {
-    pbw = 45.5 + 0.91 * (height - 152.4);
+  if (!sex) {
+    setHTML("resultadoPeso", "Select sex.");
+    return;
   }
+
+  const base = sex === "male" ? 50 : 45.5;
+  const pbw = base + 0.91 * (height - 152.4);
 
   const vt6 = pbw * 6;
   const vt7 = pbw * 7;
   const vt8 = pbw * 8;
 
-  document.getElementById("resultadoPeso").innerHTML =
-    "<strong>Predicted Body Weight:</strong> " + pbw.toFixed(1) + " kg<br><br>" +
-    "<strong>Tidal Volume Targets:</strong><br>" +
-    "6 mL/kg → <strong>" + vt6.toFixed(0) + " mL</strong><br>" +
-    "7 mL/kg → <strong>" + vt7.toFixed(0) + " mL</strong><br>" +
-    "8 mL/kg → <strong>" + vt8.toFixed(0) + " mL</strong>";
+  setHTML(
+    "resultadoPeso",
+    `<strong>PBW:</strong> ${pbw.toFixed(1)} kg<br>
+     <strong>Protective VT:</strong><br>
+     • 6 mL/kg → <strong>${vt6.toFixed(0)} mL</strong><br>
+     • 7 mL/kg → <strong>${vt7.toFixed(0)} mL</strong><br>
+     • 8 mL/kg → <strong>${vt8.toFixed(0)} mL</strong>`
+  );
 }
 
-
 /* =========================================================
-   2) PaCO2 ADJUSTMENT
-   PaCO2 ∝ 1 / Minute Ventilation
+   PCO2 ADJUSTMENT
 ========================================================= */
+function adjustPCO2() {
+  const pco2Current = numVal("pco2Current");
+  const pco2Target = numVal("pco2Target");
 
-function ajustarPCO2() {
-
-  const pco2Act = getNumber("pco2Act");
-  const pco2Des = getNumber("pco2Des");
-  const fr = getNumber("fr_actual");
-  const vt = getNumber("vt_actual");
-  const vminActual = getNumber("vmin_actual");
-
-  if ([pco2Act, pco2Des, fr, vt, vminActual].some(isNaN)) {
-    document.getElementById("resultadoPCO2").innerHTML =
-      "Please complete all fields.";
-    document.getElementById("resultadoPCO2Detalle").innerHTML = "";
+  if (pco2Current === null || pco2Target === null || pco2Current <= 0 || pco2Target <= 0) {
+    setHTML("resultadoPCO2", "Enter current and target PCO₂ values (> 0).");
+    setHTML("resultadoPCO2Detalle", "");
     return;
   }
 
-  // Fórmula: Vmin objetivo = Vmin actual × (PaCO2 actual / PaCO2 deseado)
-  const vminObjetivo = vminActual * (pco2Act / pco2Des);
+  let minuteVentCurrent = numVal("minuteVentCurrent");
+  const rr = numVal("rrCurrent");
+  const vt = numVal("vtCurrent");
 
-  // Propuesta 1: mantener VT y ajustar FR
-  const frNueva = (vminObjetivo * 1000) / vt;
+  if ((minuteVentCurrent === null || minuteVentCurrent <= 0) && rr && vt) {
+    minuteVentCurrent = (rr * vt) / 1000;
+  }
 
-  // Propuesta 2: mantener FR y ajustar VT
-  const vtNuevo = (vminObjetivo * 1000) / fr;
+  if (minuteVentCurrent === null || minuteVentCurrent <= 0) {
+    setHTML("resultadoPCO2", "Enter minute ventilation or RR + VT.");
+    setHTML("resultadoPCO2Detalle", "");
+    return;
+  }
 
-  document.getElementById("resultadoPCO2").innerHTML =
-    "<strong>Target Minute Ventilation:</strong> " +
-    vminObjetivo.toFixed(2) + " L/min";
+  const ratio = pco2Current / pco2Target;
+  const minuteVentTarget = minuteVentCurrent * ratio;
 
-  document.getElementById("resultadoPCO2Detalle").innerHTML =
-    "<strong>If VT unchanged:</strong><br>" +
-    "New RR ≈ <strong>" + frNueva.toFixed(0) + " breaths/min</strong><br><br>" +
-    "<strong>If RR unchanged:</strong><br>" +
-    "New VT ≈ <strong>" + vtNuevo.toFixed(0) + " mL</strong>";
+  setHTML(
+    "resultadoPCO2",
+    `<strong>Target minute ventilation:</strong> ${minuteVentTarget.toFixed(2)} L/min`
+  );
+
+  let detail = `<strong>Applied ratio:</strong> ${ratio.toFixed(2)}×<br>
+                <strong>Current minute ventilation:</strong> ${minuteVentCurrent.toFixed(2)} L/min<br>
+                <strong>Target minute ventilation:</strong> ${minuteVentTarget.toFixed(2)} L/min<br>`;
+
+  if (rr !== null && rr > 0) {
+    const rrTarget = rr * ratio;
+    detail += `• <strong>Suggested RR</strong> (if VT is kept constant): ${rrTarget.toFixed(0)} breaths/min<br>`;
+    detail += `• <strong>Increase in RR</strong>: ${(rrTarget - rr).toFixed(0)} breaths/min<br>`;
+  }
+
+  if (vt !== null && vt > 0) {
+    const vtMax = vt * ratio;
+    detail += `• <strong>Estimated maximum VT</strong> (if RR is kept constant): ${vtMax.toFixed(0)} mL<br>`;
+    detail += `• <strong>Increase in VT</strong>: ${(vtMax - vt).toFixed(0)} mL<br>`;
+  }
+
+  detail += `<em>Note: adjust while prioritizing lung safety (protective VT, plateau pressure, ΔP, etc.).</em>`;
+
+  setHTML("resultadoPCO2Detalle", detail);
 }
 
+function calculateDeltaP() {
+  const pplat = parseFloat(document.getElementById("pplat").value);
+  const peep = parseFloat(document.getElementById("peep").value);
+  const vt = parseFloat(document.getElementById("vt").value);
 
-/* =========================================================
-   3) DRIVING PRESSURE
-   ΔP = Plateau - PEEP
-========================================================= */
-
-function calcularDeltaP() {
-
-  const pplat = getNumber("pplat");
-  const peep = getNumber("peep");
-
-  if ([pplat, peep].some(isNaN)) {
-    document.getElementById("resultadoDeltaP").innerHTML =
-      "Please enter valid pressures.";
+  if (isNaN(pplat) || isNaN(peep) || isNaN(vt)) {
+    document.getElementById("resultadoDeltaP").innerHTML = "⚠️ Complete all fields";
     document.getElementById("interpretacionDeltaP").innerHTML = "";
     return;
   }
 
   const deltaP = pplat - peep;
 
-  let interpretation = "";
-
-  if (deltaP <= 13) {
-    interpretation = "Acceptable driving pressure.";
-  } else if (deltaP <= 15) {
-    interpretation = "Borderline high. Consider optimization.";
-  } else {
-    interpretation = "High driving pressure. Associated with worse outcomes.";
+  if (deltaP <= 0) {
+    document.getElementById("resultadoDeltaP").innerHTML = "⚠️ Invalid ΔP";
+    document.getElementById("interpretacionDeltaP").innerHTML = "";
+    return;
   }
 
-  document.getElementById("resultadoDeltaP").innerHTML =
-    "<strong>ΔP:</strong> " + deltaP.toFixed(1) + " cmH₂O";
+  const compliance = vt / deltaP;
 
-  document.getElementById("interpretacionDeltaP").innerHTML =
-    interpretation;
+  document.getElementById("resultadoDeltaP").innerHTML = `
+    ΔP: <b>${deltaP.toFixed(1)} cmH₂O</b><br>
+    Compliance: <b>${compliance.toFixed(1)} mL/cmH₂O</b>
+  `;
+
+  let interpretation = "";
+
+  if (deltaP <= 15) {
+    interpretation += "ΔP within protective range. ";
+  } else {
+    interpretation += "Elevated ΔP → increased risk of lung injury. ";
+  }
+
+  if (compliance > 50) {
+    interpretation += "Preserved compliance.";
+  } else if (compliance >= 30) {
+    interpretation += "Moderately reduced compliance.";
+  } else {
+    interpretation += "Severely reduced compliance (possible ARDS).";
+  }
+
+  document.getElementById("interpretacionDeltaP").innerHTML = interpretation;
 }
+
+function calculateResistiveComponent() {
+  const ppeak = parseFloat(document.getElementById("ppico").value);
+  const pplat = parseFloat(document.getElementById("pplat_res").value);
+  const flowMin = parseFloat(document.getElementById("flujo_insp").value);
+
+  const result = document.getElementById("resultadoResistivo");
+  const interpretation = document.getElementById("interpretacionResistivo");
+
+  result.innerHTML = "";
+  interpretation.textContent = "";
+
+  if (isNaN(ppeak) || isNaN(pplat)) {
+    result.textContent = "⚠️ Complete Peak Pressure and Plateau Pressure.";
+    return;
+  }
+
+  if (ppeak < pplat) {
+    result.textContent =
+      "⚠️ Peak pressure cannot be lower than plateau pressure.";
+    return;
+  }
+
+  const resistiveComponent = ppeak - pplat;
+
+  let resultText = `
+    Resistive component: <b>${resistiveComponent.toFixed(1)} cmH₂O</b>
+  `;
+
+  let interpretationText = "";
+
+  if (resistiveComponent <= 5) {
+    interpretationText =
+      "Resistive component within expected range.";
+  } else if (resistiveComponent <= 10) {
+    interpretationText =
+      "Mildly increased resistive component. Interpret according to flow.";
+  } else {
+    interpretationText =
+      "Elevated resistive component. May suggest increased resistance or high flow.";
+  }
+
+  if (!isNaN(flowMin) && flowMin > 0) {
+    const flowSec = flowMin / 60;
+    const raw = resistiveComponent / flowSec;
+
+    resultText += `
+      <br>Flow: <b>${flowMin.toFixed(1)} L/min</b> (${flowSec.toFixed(2)} L/s)
+      <br>Airway resistance (Raw): <b>${raw.toFixed(1)} cmH₂O/L/s</b>
+    `;
+
+    if (raw < 10) {
+      interpretationText +=
+        " Airway resistance within expected range.";
+    } else if (raw <= 15) {
+      interpretationText +=
+        " Moderately increased airway resistance.";
+    } else {
+      interpretationText +=
+        " Elevated airway resistance, suggesting significant obstruction (bronchospasm, secretions, or kinked tube).";
+    }
+  } else {
+    interpretationText +=
+      " Enter inspiratory flow in L/min to calculate airway resistance (Raw).";
+  }
+
+  result.innerHTML = resultText;
+  interpretation.textContent = interpretationText;
+}
+
+/* =========================================================
+   EXPOSE GLOBAL
+========================================================= */
+window.calculatePBW = calculatePBW;
+window.adjustPCO2 = adjustPCO2;
+window.calculateDeltaP = calculateDeltaP;
+window.calculateResistiveComponent = calculateResistiveComponent;
