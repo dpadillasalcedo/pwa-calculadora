@@ -1,302 +1,294 @@
-/* =========================================================
+/* =========================
    RESET
-========================================================= */
+========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-img,
-svg {
-  max-width: 100%;
-  display: block;
-}
-
-/* =========================================================
-   VARIABLES · PREMIUM MEDICAL (LIGHT ONLY)
-========================================================= */
-:root {
-  /* Fondos */
-  --bg-main: #f3f7fb;
-  --bg-panel: #ffffff;
-  --bg-soft: #f8fbff;
-
-  /* Texto */
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-
-  /* Bordes */
-  --border-light: #e2e8f0;
-  --border-soft: #dbe7f1;
-
-  /* Brand */
-  --primary: #0ea5e9;
-  --primary-strong: #0284c7;
-
-  /* Estados clínicos */
-  --ok: #16a34a;
-  --warn: #d97706;
-  --bad: #dc2626;
-
-  /* Sombras */
-  --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.05);
-  --shadow-elevated: 0 14px 40px rgba(15, 23, 42, 0.08);
-
-  /* Radius */
-  --radius-lg: 22px;
-  --radius-md: 14px;
-  --radius-sm: 10px;
-}
-
-/* =========================================================
-   BODY
-========================================================= */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
-    sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-/* =========================================================
-   LINKS + FOCUS (WCAG)
-========================================================= */
-a {
-  color: inherit;
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --primary: #020617;
+  --primary-soft: #0f172a;
+
+  --text-soft: #475569;
+  --muted: #64748b;
+
+  --surface: #ffffff;
+  --border: #e2e8f0;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --shadow-sm: 0 6px 20px rgba(2, 6, 23, 0.05);
+  --shadow-md: 0 14px 40px rgba(2, 6, 23, 0.08);
+
+  --container: 920px;
 }
 
-:focus-visible {
-  outline: 3px solid rgba(14, 165, 233, 0.55);
-  outline-offset: 2px;
-  border-radius: 10px;
-}
-
-/* =========================================================
-   CONTAINER
-========================================================= */
+/* =========================
+   LAYOUT
+========================= */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 4rem;
+  width: min(100% - 2rem, var(--container));
+  margin-inline: auto;
+  padding: 1.2rem 0 2.5rem;
 }
 
-/* =========================================================
+/* =========================
    LANGUAGE SWITCHER
-========================================================= */
+========================= */
 .language-switcher {
-  text-align: right;
-  font-size: 0.85rem;
-  margin-bottom: 1.2rem;
-  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
 }
 
 .language-switcher a {
-  text-decoration: none;
-  color: var(--text-muted);
-  margin-left: 0.5rem;
-  transition: color 0.2s ease;
+  color: var(--muted);
 }
 
-.language-switcher a:hover,
-.language-switcher a.active,
-.language-switcher a[aria-current="page"] {
-  color: var(--primary-strong);
+.language-switcher a.active {
+  color: var(--primary);
   font-weight: 600;
 }
 
-/* =========================================================
+/* =========================
    BREADCRUMB
-========================================================= */
+========================= */
 .breadcrumb-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
   font-size: 0.9rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
+  color: var(--muted);
 }
 
 .breadcrumb-nav a {
-  text-decoration: none;
-  padding: 0.42rem 0.82rem;
-  border-radius: 999px;
-  background: var(--bg-soft);
-  color: var(--primary-strong);
-  border: 1px solid var(--border-soft);
-  transition: background 0.2s ease, border-color 0.2s ease;
+  color: var(--text-soft);
 }
 
 .breadcrumb-nav a:hover {
-  background: rgba(14, 165, 233, 0.12);
-  border-color: rgba(14, 165, 233, 0.25);
+  color: var(--primary);
 }
 
-.breadcrumb-nav span {
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   TITULOS
-========================================================= */
+/* =========================
+   TITLE
+========================= */
 h1 {
-  text-align: center;
-  font-size: 2rem;
-  margin: 0 0 0.3rem;
-  letter-spacing: -0.5px;
-}
-
-h2 {
-  margin: 0 0 0.6rem;
-  font-size: 1.25rem;
-  font-weight: 650;
+  font-size: clamp(2rem, 4vw, 2.4rem);
+  margin-bottom: 0.3rem;
 }
 
 .note {
   font-size: 0.9rem;
-  color: var(--text-muted);
-  margin: 0 0 1rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
 }
 
-/* =========================================================
+/* =========================
    PANEL
-========================================================= */
+========================= */
 .panel {
-  background: var(--bg-panel);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 2.25rem;
-  margin-bottom: 3rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-light);
-  transition: box-shadow 0.2s ease;
+  padding: 1.6rem;
+  margin-bottom: 1.6rem;
+  box-shadow: var(--shadow-sm);
 }
 
-.panel:hover {
-  box-shadow: var(--shadow-elevated);
+/* =========================
+   SECTION TITLES
+========================= */
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
 }
 
-/* =========================================================
-   GRID
-========================================================= */
+/* =========================
+   GRID FORM
+========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+/* =========================
+   FIELDS
+========================= */
 label {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
   font-size: 0.9rem;
-  color: var(--text-muted);
+  font-weight: 500;
 }
 
-/* =========================================================
-   INPUTS
-========================================================= */
 select,
-input[type="number"],
-input[type="text"] {
-  background: var(--bg-soft);
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem 0.75rem;
-  font-size: 0.95rem;
-  color: var(--text-main);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+input {
+  margin-top: 0.3rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  background: white;
 }
 
 select:focus,
 input:focus {
   outline: none;
-  border-color: rgba(14, 165, 233, 0.65);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
 }
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+/* =========================
+   ACTIONS
+========================= */
 .actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
   margin-top: 1rem;
+  display: flex;
+  gap: 0.6rem;
 }
 
 button {
-  border-radius: var(--radius-md);
-  padding: 0.65rem 1.4rem;
-  font-size: 0.92rem;
-  font-weight: 650;
-  cursor: pointer;
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 999px;
   border: none;
-}
-
-button.primary {
-  background: var(--primary-strong);
-  color: #fff;
-}
-
-button.primary:hover {
-  background: var(--primary);
-}
-
-button.secondary {
-  background: transparent;
-  border: 1px solid var(--primary-strong);
-  color: var(--primary-strong);
-}
-
-button.secondary:hover {
-  background: rgba(14, 165, 233, 0.1);
-}
-
-/* =========================================================
-   RESULTADOS
-========================================================= */
-.resultado.ok { color: var(--ok); }
-.resultado.warn { color: var(--warn); }
-.resultado.bad { color: var(--bad); }
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-  border-top: 1px solid var(--border-light);
-  padding: 3rem 1rem;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-
-/* Bloque SEO desplegable */
-.seo-panel details {
-  margin-top: 2rem;
-  padding: 1rem 1.2rem;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.03);
-}
-
-.seo-panel summary {
+  font-size: 0.9rem;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
+  transition: 0.25s ease;
 }
 
-.seo-panel h2,
-.seo-panel h3 {
+/* PRIMARY */
+button.primary,
+button.btn {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+/* SECONDARY */
+button.secondary,
+button.btn-secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* HOVER */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+.result,
+.resultado {
   margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: 10px;
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+.divider {
+  margin: 2rem auto;
+  width: min(100% - 2rem, var(--container));
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* =========================
+   CARDS INTERNAS (TEP)
+========================= */
+.card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+}
+
+/* =========================
+   SEO PANEL
+========================= */
+.seo-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.seo-panel h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.seo-panel h3 {
+  margin-top: 1.4rem;
+  font-size: 1.05rem;
+}
+
+.seo-panel p {
+  color: var(--text-soft);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 1.6rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer-nav {
+  margin-bottom: 0.5rem;
+}
+
+.footer-nav a {
+  color: var(--primary-soft);
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .grid,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 1.3rem;
+  }
 }
