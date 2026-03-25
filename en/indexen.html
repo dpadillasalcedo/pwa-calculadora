@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <!-- =========================
        Cookiebot (ALWAYS FIRST)
   ========================== -->
@@ -18,14 +17,17 @@
   ========================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Critical Care Tools | Clinical Calculators for Intensive Care</title>
 
-  <meta name="description"
-        content="Evidence-based clinical calculators for intensive care: mechanical ventilation, hemodynamic monitoring, severity scores, drug infusion and nutritional support tools.">
-
+  <meta
+    name="description"
+    content="Evidence-based clinical calculators for intensive care: mechanical ventilation, hemodynamic monitoring, severity scores, drug infusion and nutritional support tools."
+  >
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#020617">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="author" content="Critical Care Tools">
 
   <!-- =========================
        Canonical
@@ -43,11 +45,34 @@
        Open Graph
   ========================== -->
   <meta property="og:title" content="Critical Care Tools | Clinical ICU Calculators">
-  <meta property="og:description"
-        content="Clinical decision-support calculators for ICU professionals.">
+  <meta
+    property="og:description"
+    content="Clinical decision-support calculators for ICU professionals."
+  >
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://criticalcaretools.com/en/indexen.html">
+  <meta property="og:site_name" content="Critical Care Tools">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://criticalcaretools.com/assets/logo.png">
+
+  <!-- =========================
+       Twitter Card
+  ========================== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Critical Care Tools | Clinical ICU Calculators">
+  <meta
+    name="twitter:description"
+    content="Clinical decision-support calculators for ICU professionals."
+  >
+  <meta name="twitter:image" content="https://criticalcaretools.com/assets/logo.png">
+
   <meta name="google-adsense-account" content="ca-pub-2985318585101906">
+
+  <!-- =========================
+       Performance
+  ========================== -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://consent.cookiebot.com">
 
   <!-- =========================
        CSS
@@ -58,151 +83,175 @@
        Google Analytics GA4
   ========================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
 
     gtag('js', new Date());
-
     gtag('config', 'G-WQREHQ56Q4', {
       anonymize_ip: true,
       send_page_view: true
     });
   </script>
 
+  <!-- =========================
+       Structured Data
+  ========================== -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://criticalcaretools.com/#organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/",
-      "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
-      "logo": "https://criticalcaretools.com/assets/logo.png"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://criticalcaretools.com/#website",
-      "url": "https://criticalcaretools.com/",
-      "name": "Critical Care Tools",
-      "inLanguage": ["es", "en"],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://criticalcaretools.com/#app",
-      "name": "Critical Care Tools Clinical Calculators",
-      "applicationCategory": "MedicalApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "audience": {
-        "@type": "MedicalAudience",
-        "audienceType": "MedicalProfessional"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://criticalcaretools.com/#organization",
+        "name": "Critical Care Tools",
+        "url": "https://criticalcaretools.com/",
+        "description": "Educational platform providing clinical scoring calculators and decision-support tools for intensive care medicine.",
+        "logo": "https://criticalcaretools.com/assets/logo.png"
       },
-      "about": [
-        {
-          "@type": "MedicalEntity",
-          "name": "Clinical scoring systems in intensive care"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Severity of illness scores"
-        },
-        {
-          "@type": "MedicalEntity",
-          "name": "Neurological assessment scales"
+      {
+        "@type": "WebSite",
+        "@id": "https://criticalcaretools.com/#website",
+        "url": "https://criticalcaretools.com/",
+        "name": "Critical Care Tools",
+        "inLanguage": ["es", "en"],
+        "publisher": {
+          "@id": "https://criticalcaretools.com/#organization"
         }
-      ],
-      "publisher": {
-        "@id": "https://criticalcaretools.com/#organization"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://criticalcaretools.com/#app",
+        "name": "Critical Care Tools Clinical Calculators",
+        "applicationCategory": "MedicalApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "audience": {
+          "@type": "MedicalAudience",
+          "audienceType": "MedicalProfessional"
+        },
+        "about": [
+          {
+            "@type": "MedicalEntity",
+            "name": "Clinical scoring systems in intensive care"
+          },
+          {
+            "@type": "MedicalEntity",
+            "name": "Severity of illness scores"
+          },
+          {
+            "@type": "MedicalEntity",
+            "name": "Neurological assessment scales"
+          }
+        ],
+        "publisher": {
+          "@id": "https://criticalcaretools.com/#organization"
+        }
       }
-    }
-  ]
-}
-</script>
-
+    ]
+  }
+  </script>
 </head>
 
-
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<header>
-  
-  <div class="language-switcher">
-  <a href="https://criticalcaretools.com/en/indexen.html" class="active">EN</a> |
-  <a href="https://criticalcaretools.com/">ES</a>
-</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <nav class="language-switcher" aria-label="Language selector">
+        <a href="https://criticalcaretools.com/en/indexen.html" class="active" aria-current="page">EN</a>
+        <span>|</span>
+        <a href="https://criticalcaretools.com/">ES</a>
+      </nav>
 
-  <h1>Critical Care Tools</h1>
-</header>
+      <div class="hero">
+        <p class="eyebrow">Evidence-based ICU decision support</p>
+        <h1>Critical Care Tools</h1>
+        <p class="hero-text">
+          Clinical calculators designed to support intensive care practice with
+          structured, physiology-based tools for everyday bedside decision-making.
+        </p>
+      </div>
+    </div>
+  </header>
 
-<main class="container">
+  <main id="main-content" class="container">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="section-heading">
+        <h2 id="intro-title">Clinical calculators for intensive care professionals</h2>
+        <p>
+          Explore practical tools for respiratory assessment, drug infusion,
+          nutritional support, and bedside physiological evaluation in critically ill patients.
+        </p>
+      </div>
+    </section>
 
-<section class="intro">
-  <h2>Evidence-based clinical support using physiological parameters</h2>
-  <p>
-    Critical Care Tools integrates evidence-based clinical calculators designed 
-    to support decision-making in intensive care medicine.
-  </p>
-</section>
+    <section class="menu" aria-labelledby="tools-title">
+      <div class="section-heading">
+        <h2 id="tools-title">Available tools</h2>
+        <p>
+          Access specialized calculators organized by major ICU care domains.
+        </p>
+      </div>
 
-<section class="menu">
+      <div class="card-grid">
+        <article class="tool-card">
+          <a href="/en/calculadorasen/variablesen/variablesen.html">
+            <h3>Clinical Variables</h3>
+            <p>
+              Assessment of oxygenation, ventilation, perfusion, and oxygen delivery.
+            </p>
+            <span class="card-link">Explore section</span>
+          </a>
+        </article>
 
-  <article>
-    <a href="/en/calculadorasen/variablesen/variablesen.html">
-      <h2>Clinical Variables</h2>
-      <p>Assessment of oxygenation, ventilation, perfusion and oxygen delivery.</p>
-    </a>
-  </article>
+        <article class="tool-card">
+          <a href="/en/calculadorasen/infusion-farmacosen/farmacosen.html">
+            <h3>Drug Infusion Calculators</h3>
+            <p>
+              Accurate dosing support and vasoactive infusion tools for safer medication management.
+            </p>
+            <span class="card-link">Explore section</span>
+          </a>
+        </article>
 
-  <article>
-    <a href="/en/calculadorasen/infusion-farmacosen/farmacosen.html">
-      <h2>Drug Infusion Calculators</h2>
-      <p>Accurate dosing and safe vasoactive infusion tools.</p>
-    </a>
-  </article>
+        <article class="tool-card">
+          <a href="/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html">
+            <h3>Nutritional Support</h3>
+            <p>
+              Estimation of energy and protein requirements in critically ill patients.
+            </p>
+            <span class="card-link">Explore section</span>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
 
-  <article>
-    <a href="/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html">
-      <h2>Nutritional Support</h2>
-      <p>Energy and protein requirement evaluation in ICU patients.</p>
-    </a>
-  </article>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 Critical Care Tools · For educational purposes only.</p>
 
-</section>
-
-</main>
-
-<footer>
-  <p>
-    © 2026 Critical Care Tools · For educational purposes only.
-  </p>
-  <div class="footer-links">
-    <a href="/en/privacidad-cookiesen/privacidaden.html">
-      Privacy & Cookies Policy
-    </a>
-  </div>
-</footer>
-
+      <div class="footer-links">
+        <a href="/en/referencias-bibliograficasen/referenciasen.html">References</a>
+        <a href="/en/legalen/legalen.html">Legal Notice</a>
+        <a href="/en/privacidad-cookiesen/privacidaden.html">Privacy &amp; Cookies Policy</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function(registration) {
-          console.log('Service Worker registered:', registration.scope);
-        })
-        .catch(function(error) {
-          console.log('Service Worker registration failed:', error);
-        });
-    });
-  }
-</script>
-
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function (registration) {
+            console.log('Service Worker registered:', registration.scope);
+          })
+          .catch(function (error) {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
