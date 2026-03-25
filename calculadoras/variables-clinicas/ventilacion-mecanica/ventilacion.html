@@ -265,35 +265,36 @@
 
   </section>
 
-  <!-- =========================
-       DRIVING PRESSURE
-  ========================= -->
-  <section class="panel">
+ <!-- =========================
+     DRIVING PRESSURE + COMPLIANCE
+========================= -->
+<section class="panel">
 
-    <h2>🫁 Driving Pressure (ΔP)</h2>
+  <h2>🫁 Driving Pressure (ΔP) y Complacencia Pulmonar</h2>
 
-    <p class="note">
-      La <strong>Driving Pressure (ΔP)</strong> se calcula como:
-      <br />
-      <strong>ΔP = Presión Plateau − PEEP</strong>
-      <br />
-      Predictor de estrés pulmonar y lesión asociada a ventilación.
-    </p>
+  <p class="note">
+    <strong>ΔP = Pplat − PEEP</strong><br>
+    <strong>Compliance (Crs) = Vt / ΔP</strong><br>
+    Evaluación del estrés pulmonar y la mecánica respiratoria.
+  </p>
 
-    <label for="pplat">Presión Plateau (cmH₂O)</label>
-    <input type="number" id="pplat" step="0.1" />
+  <label for="pplat">Presión Plateau (cmH₂O)</label>
+  <input type="number" id="pplat" step="0.1" />
 
-    <label for="peep">PEEP (cmH₂O)</label>
-    <input type="number" id="peep" step="0.1" />
+  <label for="peep">PEEP (cmH₂O)</label>
+  <input type="number" id="peep" step="0.1" />
 
-    <button type="button" onclick="calcularDeltaP()">
-      Calcular ΔP
-    </button>
+  <label for="vt">Volumen corriente (ml)</label>
+  <input type="number" id="vt" step="1" />
 
-    <div id="resultadoDeltaP" class="result"></div>
-    <div id="interpretacionDeltaP" class="note"></div>
+  <button type="button" onclick="calcularDeltaP()">
+    Calcular
+  </button>
 
-  </section>
+  <div id="resultadoDeltaP" class="result"></div>
+  <div id="interpretacionDeltaP" class="note"></div>
+
+</section>
 
  </main>
 
