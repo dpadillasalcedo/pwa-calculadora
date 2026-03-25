@@ -301,11 +301,11 @@
 ========================= -->
 <section class="panel">
 
+<section class="panel">
   <h2>🫁 Componente resistivo</h2>
 
   <p class="note">
     <strong>Componente resistivo = Presión pico − Presión plateau</strong><br>
-    Estima la porción de presión asociada a la resistencia de la vía aérea.<br>
     Si ingresás el flujo inspiratorio, también se calcula la
     <strong>resistencia de la vía aérea (Raw)</strong>.
   </p>
@@ -313,12 +313,10 @@
   <label for="ppico">Presión pico (cmH₂O)</label>
   <input type="number" id="ppico" step="0.1" />
 
-  <label for="pplat_res">Presión Plateau (cmH₂O)</label>
+  <label for="pplat_res">Presión plateau (cmH₂O)</label>
   <input type="number" id="pplat_res" step="0.1" />
 
-  <label for="flujo_insp">
-    Flujo inspiratorio (L/seg) <span class="note">(opcional)</span>
-  </label>
+  <label for="flujo_insp">Flujo inspiratorio (L/seg) — opcional</label>
   <input type="number" id="flujo_insp" step="0.01" />
 
   <button type="button" onclick="calcularComponenteResistivo()">
@@ -327,7 +325,6 @@
 
   <div id="resultadoResistivo" class="result"></div>
   <div id="interpretacionResistivo" class="note"></div>
-
 </section>
 
  </main>
