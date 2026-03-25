@@ -1,7 +1,14 @@
+console.log("hemodinamicoen.js loaded successfully");
+
+/* =========================
+   HELPERS
+========================= */
 function getNum(id) {
   const el = document.getElementById(id);
   if (!el || el.value === "") return null;
-  return Number(el.value);
+
+  const value = Number(el.value);
+  return Number.isFinite(value) ? value : null;
 }
 
 function setHTML(id, html) {
@@ -9,27 +16,84 @@ function setHTML(id, html) {
   if (el) el.innerHTML = html;
 }
 
+function clearHTML(id) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = "";
+}
+
+function setResultState(id, state = "") {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  el.classList.remove("result-ok", "result-warn", "result-bad");
+
+  if (state) {
+    el.classList.add(state);
+  }
+}
+
 /* =========================
-   ECHO CARDIAC OUTPUT
+   INITIAL CLEANUP
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  [
+    "resultadoGCEco",
+    "interpretacionGCEco",
+    "resultadoFA",
+    "interpretacionFA",
+    "resultadoOxigenacionDetalle",
+    "resultadoRVS",
+    "interpretacionRVS"
+  ].forEach(clearHTML);
+
+  [
+    "resultadoGCEco",
+    "resultadoFA",
+    "resultadoOxigenacionDetalle",
+    "resultadoRVS"
+  ].forEach((id) => setResultState(id, ""));
+});
+
+/* =========================
+   CARDIAC OUTPUT BY ECHO
 ========================= */
 function calculateEchoCO() {
   const d = getNum("eco_dtsvi");
   const vti = getNum("eco_vti");
   const hr = getNum("eco_fc");
 
-  if ([d, vti, hr].includes(null)) return;
+  if ([d, vti, hr].includes(null)) {
+    setHTML("resultadoGCEco", "Please complete all variables.");
+    setHTML("interpretacionGCEco", "");
+    setResultState("resultadoGCEco", "result-warn");
+    return;
+  }
 
-  const co = ((Math.PI * (d / 2) ** 2) * vti * hr) / 1000;
+  if (d <= 0 || vti <= 0 || hr <= 0) {
+    setHTML("resultadoGCEco", "Values must be greater than 0.");
+    setHTML("interpretacionGCEco", "");
+    setResultState("resultadoGCEco", "result-warn");
+    return;
+  }
+
+  const co = ((Math.PI * Math.pow(d / 2, 2)) * vti * hr) / 1000;
   const co15 = co * 1.15;
 
-  const normal = "Normal range: 4–6 L/min";
+  const normalRange = "Normal range: 4–6 L/min";
 
-  const interp =
-    co < 4
-      ? "Low cardiac output"
-      : co <= 6
-        ? "Normal cardiac output"
-        : "Hyperdynamic state";
+  let interpretation = "";
+  let resultClass = "";
+
+  if (co < 4) {
+    interpretation = "Low cardiac output.";
+    resultClass = "result-bad";
+  } else if (co <= 6) {
+    interpretation = "Normal cardiac output.";
+    resultClass = "result-ok";
+  } else {
+    interpretation = "Hyperdynamic state.";
+    resultClass = "result-warn";
+  }
 
   setHTML(
     "resultadoGCEco",
@@ -42,11 +106,13 @@ function calculateEchoCO() {
   setHTML(
     "interpretacionGCEco",
     `
-    ${interp} (${normal}).<br>
-    The patient is considered a <strong>responder</strong> if cardiac output reaches or exceeds
-    <strong>${co15.toFixed(2)} L/min</strong>.
+    ${interpretation} (${normalRange})<br>
+    A patient may be considered a <strong>fluid responder</strong> if cardiac output increases by at least <strong>15%</strong>,
+    reaching <strong>${co15.toFixed(2)} L/min</strong>.
     `
   );
+
+  setResultState("resultadoGCEco", resultClass);
 }
 
 /* =========================
@@ -56,23 +122,50 @@ function calculateFS() {
   const dd = getNum("fa_ddvi");
   const ds = getNum("fa_dsvi");
 
-  if (dd === null || ds === null || ds >= dd) return;
+  if (dd === null || ds === null) {
+    setHTML("resultadoFA", "Please complete all variables.");
+    setHTML("interpretacionFA", "");
+    setResultState("resultadoFA", "result-warn");
+    return;
+  }
+
+  if (dd <= 0 || ds < 0) {
+    setHTML("resultadoFA", "Values must be valid and greater than 0.");
+    setHTML("interpretacionFA", "");
+    setResultState("resultadoFA", "result-warn");
+    return;
+  }
+
+  if (ds >= dd) {
+    setHTML("resultadoFA", "End-systolic diameter must be lower than end-diastolic diameter.");
+    setHTML("interpretacionFA", "");
+    setResultState("resultadoFA", "result-warn");
+    return;
+  }
 
   const fs = ((dd - ds) / dd) * 100;
 
-  const interp =
-    fs < 28
-      ? "Depressed systolic function"
-      : fs <= 45
-        ? "Preserved systolic function"
-        : "Hyperdynamic state";
+  let interpretation = "";
+  let resultClass = "";
+
+  if (fs < 28) {
+    interpretation = "Depressed systolic function.";
+    resultClass = "result-bad";
+  } else if (fs <= 45) {
+    interpretation = "Preserved systolic function.";
+    resultClass = "result-ok";
+  } else {
+    interpretation = "Hyperdynamic state.";
+    resultClass = "result-warn";
+  }
 
   setHTML("resultadoFA", `<strong>FS:</strong> ${fs.toFixed(1)} %`);
-  setHTML("interpretacionFA", `${interp} (Normal: 28–45%)`);
+  setHTML("interpretacionFA", `${interpretation} (Normal: 28–45%)`);
+  setResultState("resultadoFA", resultClass);
 }
 
 /* =========================
-   OXYGENATION
+   OXYGEN DELIVERY / CONSUMPTION
 ========================= */
 function calculateOxygenation() {
   const co = getNum("oxi_gc");
@@ -82,7 +175,27 @@ function calculateOxygenation() {
   const svo2 = getNum("oxi_svo2");
   const pvo2 = getNum("oxi_pvo2");
 
-  if ([co, hb, sao2, pao2, svo2, pvo2].includes(null)) return;
+  if ([co, hb, sao2, pao2, svo2, pvo2].includes(null)) {
+    setHTML("resultadoOxigenacionDetalle", "Please complete all variables.");
+    setResultState("resultadoOxigenacionDetalle", "result-warn");
+    return;
+  }
+
+  if (
+    co <= 0 ||
+    hb <= 0 ||
+    sao2 < 0 || sao2 > 100 ||
+    svo2 < 0 || svo2 > 100 ||
+    pao2 < 0 ||
+    pvo2 < 0
+  ) {
+    setHTML(
+      "resultadoOxigenacionDetalle",
+      "Enter valid values. Saturations must be between 0 and 100."
+    );
+    setResultState("resultadoOxigenacionDetalle", "result-warn");
+    return;
+  }
 
   const CaO2 = hb * 1.34 * (sao2 / 100) + pao2 * 0.003;
   const CvO2 = hb * 1.34 * (svo2 / 100) + pvo2 * 0.003;
@@ -91,59 +204,140 @@ function calculateOxygenation() {
   const VO2 = co * (CaO2 - CvO2) * 10;
   const ERO2 = (VO2 / DO2) * 100;
 
-  const interpDO2 =
-    DO2 < 900
-      ? "Inadequate oxygen delivery."
-      : "Adequate oxygen delivery.";
+  let interpDO2 = "";
+  let interpVO2 = "";
+  let interpERO2 = "";
+  let resultClass = "";
 
-  const interpERO2 =
-    ERO2 < 25
-      ? "Low extraction."
-      : ERO2 <= 30
-        ? "Adequate extraction."
-        : "Increased extraction.";
+  if (DO2 < 900) {
+    interpDO2 = "Inadequate oxygen delivery.";
+    resultClass = "result-bad";
+  } else if (DO2 <= 1100) {
+    interpDO2 = "Adequate oxygen delivery.";
+    resultClass = "result-ok";
+  } else {
+    interpDO2 = "High oxygen delivery.";
+    resultClass = "result-warn";
+  }
+
+  if (VO2 < 200) {
+    interpVO2 = "Low oxygen consumption.";
+  } else if (VO2 <= 250) {
+    interpVO2 = "Expected oxygen consumption.";
+  } else {
+    interpVO2 = "High oxygen consumption.";
+  }
+
+  if (ERO2 < 25) {
+    interpERO2 = "Low extraction.";
+  } else if (ERO2 <= 30) {
+    interpERO2 = "Adequate extraction.";
+  } else {
+    interpERO2 = "Increased extraction.";
+  }
 
   setHTML(
     "resultadoOxigenacionDetalle",
-    `<ul>
+    `
+    <ul>
+      <li><strong>CaO₂:</strong> ${CaO2.toFixed(2)} mL/dL</li>
+      <li><strong>CvO₂:</strong> ${CvO2.toFixed(2)} mL/dL</li>
       <li><strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min (900–1100) → ${interpDO2}</li>
-      <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min (200–250)</li>
+      <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min (200–250) → ${interpVO2}</li>
       <li><strong>ERO₂:</strong> ${ERO2.toFixed(1)} % (25–30) → ${interpERO2}</li>
-    </ul>`
+    </ul>
+    `
   );
+
+  setResultState("resultadoOxigenacionDetalle", resultClass);
 }
 
 /* =========================
-   SVR
+   SYSTEMIC VASCULAR RESISTANCE
 ========================= */
 function calculateSVR() {
   const map = getNum("rvs_tam");
   const cvp = getNum("rvs_pvc") || 0;
   const co = getNum("rvs_gc");
 
-  if (map === null || co === null) return;
+  if (map === null || co === null) {
+    setHTML("resultadoRVS", "Please complete MAP and cardiac output.");
+    setHTML("interpretacionRVS", "");
+    setResultState("resultadoRVS", "result-warn");
+    return;
+  }
+
+  if (map <= 0 || co <= 0 || cvp < 0) {
+    setHTML("resultadoRVS", "Values must be valid and greater than 0.");
+    setHTML("interpretacionRVS", "");
+    setResultState("resultadoRVS", "result-warn");
+    return;
+  }
 
   const svr = ((map - cvp) / co) * 80;
 
-  const interp =
-    svr < 800
-      ? "Low vascular resistance"
-      : svr <= 1200
-        ? "Normal vascular resistance"
-        : "Elevated vascular resistance";
+  let interpretation = "";
+  let resultClass = "";
+
+  if (svr < 800) {
+    interpretation = "Low vascular resistance.";
+    resultClass = "result-bad";
+  } else if (svr <= 1200) {
+    interpretation = "Normal vascular resistance.";
+    resultClass = "result-ok";
+  } else {
+    interpretation = "Elevated vascular resistance.";
+    resultClass = "result-warn";
+  }
 
   setHTML(
     "resultadoRVS",
     `<strong>SVR:</strong> ${svr.toFixed(0)} dyn·s·cm⁻⁵ (800–1200)`
   );
 
-  setHTML("interpretacionRVS", interp);
+  setHTML("interpretacionRVS", interpretation);
+  setResultState("resultadoRVS", resultClass);
 }
 
 /* =========================
-   OPTIONAL GLOBAL ALIASES
+   OPTIONAL RESET FUNCTION
+========================= */
+function resetHemodynamicCalculators() {
+  const ids = [
+    "eco_dtsvi", "eco_vti", "eco_fc",
+    "fa_ddvi", "fa_dsvi",
+    "oxi_gc", "oxi_hb", "oxi_sao2", "oxi_pao2", "oxi_svo2", "oxi_pvo2",
+    "rvs_tam", "rvs_pvc", "rvs_gc"
+  ];
+
+  ids.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+
+  [
+    "resultadoGCEco",
+    "interpretacionGCEco",
+    "resultadoFA",
+    "interpretacionFA",
+    "resultadoOxigenacionDetalle",
+    "resultadoRVS",
+    "interpretacionRVS"
+  ].forEach(clearHTML);
+
+  [
+    "resultadoGCEco",
+    "resultadoFA",
+    "resultadoOxigenacionDetalle",
+    "resultadoRVS"
+  ].forEach((id) => setResultState(id, ""));
+}
+
+/* =========================
+   GLOBAL EXPORTS
 ========================= */
 window.calculateEchoCO = calculateEchoCO;
 window.calculateFS = calculateFS;
 window.calculateOxygenation = calculateOxygenation;
 window.calculateSVR = calculateSVR;
+window.resetHemodynamicCalculators = resetHemodynamicCalculators;
