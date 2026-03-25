@@ -1,171 +1,149 @@
-/* ==========================================
-   Hemodynamic Monitoring - EN
-   Critical Care Tools
-========================================== */
+function getNum(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+  return Number(el.value);
+}
 
-document.addEventListener("DOMContentLoaded", function () {
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
 
-  const currentPath = window.location.pathname;
+/* =========================
+   ECHO CARDIAC OUTPUT
+========================= */
+function calculateEchoCO() {
+  const d = getNum("eco_dtsvi");
+  const vti = getNum("eco_vti");
+  const hr = getNum("eco_fc");
 
-  /* ==========================================
-     1️⃣ Cardiac Output (LVOT VTI)
-     CO = HR × (π × (D/2)² × VTI)
-  ========================================== */
+  if ([d, vti, hr].includes(null)) return;
 
-  window.calcularGCEco = function () {
+  const co = ((Math.PI * (d / 2) ** 2) * vti * hr) / 1000;
+  const co15 = co * 1.15;
 
-  const d = parseFloat(document.getElementById("eco_dtsvi").value);
-  const vti = parseFloat(document.getElementById("eco_vti").value);
-  const hr = parseFloat(document.getElementById("eco_fc").value);
+  const normal = "Normal range: 4–6 L/min";
 
-  if (!d || !vti || !hr) return;
+  const interp =
+    co < 4
+      ? "Low cardiac output"
+      : co <= 6
+        ? "Normal cardiac output"
+        : "Hyperdynamic state";
 
-  const area = Math.PI * Math.pow(d / 2, 2);
-  const strokeVolume = area * vti; // mL
-  const cardiacOutput = (strokeVolume * hr) / 1000; // L/min
+  setHTML(
+    "resultadoGCEco",
+    `
+    <strong>CO:</strong> ${co.toFixed(2)} L/min<br>
+    <strong>CO +15% (fluid responder threshold):</strong> ${co15.toFixed(2)} L/min
+    `
+  );
 
-  const result = document.getElementById("resultadoGCEco");
-  const interp = document.getElementById("interpretacionGCEco");
+  setHTML(
+    "interpretacionGCEco",
+    `
+    ${interp} (${normal}).<br>
+    The patient is considered a <strong>responder</strong> if cardiac output reaches or exceeds
+    <strong>${co15.toFixed(2)} L/min</strong>.
+    `
+  );
+}
 
-  // 🔹 15% increase threshold
-  const increase15 = cardiacOutput * 0.15;
-  const targetCO = cardiacOutput * 1.15;
+/* =========================
+   FRACTIONAL SHORTENING
+========================= */
+function calculateFS() {
+  const dd = getNum("fa_ddvi");
+  const ds = getNum("fa_dsvi");
 
-  result.innerHTML =
-    `<strong>Cardiac Output:</strong> ${cardiacOutput.toFixed(2)} L/min
-     <br><strong>+15% Increase:</strong> ${increase15.toFixed(2)} L/min
-     <br><strong>Fluid Responsiveness Threshold:</strong> ${targetCO.toFixed(2)} L/min`;
+  if (dd === null || ds === null || ds >= dd) return;
 
-  if (cardiacOutput < 4)
-    interp.innerHTML = "Low cardiac output.";
-  else if (cardiacOutput <= 8)
-    interp.innerHTML = "Normal range.";
-  else
-    interp.innerHTML = "High cardiac output.";
+  const fs = ((dd - ds) / dd) * 100;
 
-  interp.innerHTML +=
-    `<br><br><em>A ≥15% increase in cardiac output after fluid challenge suggests fluid responsiveness.</em>`;
+  const interp =
+    fs < 28
+      ? "Depressed systolic function"
+      : fs <= 45
+        ? "Preserved systolic function"
+        : "Hyperdynamic state";
 
-  sendGA("eco_cardiac_output");
-};
+  setHTML("resultadoFA", `<strong>FS:</strong> ${fs.toFixed(1)} %`);
+  setHTML("interpretacionFA", `${interp} (Normal: 28–45%)`);
+}
 
+/* =========================
+   OXYGENATION
+========================= */
+function calculateOxygenation() {
+  const co = getNum("oxi_gc");
+  const hb = getNum("oxi_hb");
+  const sao2 = getNum("oxi_sao2");
+  const pao2 = getNum("oxi_pao2");
+  const svo2 = getNum("oxi_svo2");
+  const pvo2 = getNum("oxi_pvo2");
 
-  /* ==========================================
-     2️⃣ Fractional Shortening
-     FS = (LVEDD − LVESD) / LVEDD × 100
-  ========================================== */
+  if ([co, hb, sao2, pao2, svo2, pvo2].includes(null)) return;
 
-  window.calcularFA = function () {
+  const CaO2 = hb * 1.34 * (sao2 / 100) + pao2 * 0.003;
+  const CvO2 = hb * 1.34 * (svo2 / 100) + pvo2 * 0.003;
 
-    const dd = parseFloat(document.getElementById("fa_ddvi").value);
-    const ds = parseFloat(document.getElementById("fa_dsvi").value);
+  const DO2 = co * CaO2 * 10;
+  const VO2 = co * (CaO2 - CvO2) * 10;
+  const ERO2 = (VO2 / DO2) * 100;
 
-    if (!dd || !ds) return;
+  const interpDO2 =
+    DO2 < 900
+      ? "Inadequate oxygen delivery."
+      : "Adequate oxygen delivery.";
 
-    const fs = ((dd - ds) / dd) * 100;
+  const interpERO2 =
+    ERO2 < 25
+      ? "Low extraction."
+      : ERO2 <= 30
+        ? "Adequate extraction."
+        : "Increased extraction.";
 
-    const result = document.getElementById("resultadoFA");
-    const interp = document.getElementById("interpretacionFA");
+  setHTML(
+    "resultadoOxigenacionDetalle",
+    `<ul>
+      <li><strong>DO₂:</strong> ${DO2.toFixed(0)} mL/min (900–1100) → ${interpDO2}</li>
+      <li><strong>VO₂:</strong> ${VO2.toFixed(0)} mL/min (200–250)</li>
+      <li><strong>ERO₂:</strong> ${ERO2.toFixed(1)} % (25–30) → ${interpERO2}</li>
+    </ul>`
+  );
+}
 
-    result.innerHTML =
-      `<strong>Fractional Shortening:</strong> ${fs.toFixed(1)} %`;
+/* =========================
+   SVR
+========================= */
+function calculateSVR() {
+  const map = getNum("rvs_tam");
+  const cvp = getNum("rvs_pvc") || 0;
+  const co = getNum("rvs_gc");
 
-    if (fs < 25)
-      interp.innerHTML = "Reduced systolic function.";
-    else if (fs <= 45)
-      interp.innerHTML = "Normal systolic function.";
-    else
-      interp.innerHTML = "Hyperdynamic pattern.";
+  if (map === null || co === null) return;
 
-    sendGA("eco_fractional_shortening");
-  };
+  const svr = ((map - cvp) / co) * 80;
 
-  /* ==========================================
-     3️⃣ Oxygenation
-     DO2 = CO × (Hb × 1.34 × SaO2 + 0.003 × PaO2)
-  ========================================== */
+  const interp =
+    svr < 800
+      ? "Low vascular resistance"
+      : svr <= 1200
+        ? "Normal vascular resistance"
+        : "Elevated vascular resistance";
 
-  window.calcularOxigenacion = function () {
+  setHTML(
+    "resultadoRVS",
+    `<strong>SVR:</strong> ${svr.toFixed(0)} dyn·s·cm⁻⁵ (800–1200)`
+  );
 
-    const co = parseFloat(document.getElementById("oxi_gc").value);
-    const hb = parseFloat(document.getElementById("oxi_hb").value);
-    const sao2 = parseFloat(document.getElementById("oxi_sao2").value) / 100;
-    const pao2 = parseFloat(document.getElementById("oxi_pao2").value);
-    const svo2 = parseFloat(document.getElementById("oxi_svo2").value) / 100;
-    const pvo2 = parseFloat(document.getElementById("oxi_pvo2").value);
+  setHTML("interpretacionRVS", interp);
+}
 
-    if (!co || !hb || !sao2 || !pao2) return;
-
-    const cao2 = hb * 1.34 * sao2 + (0.003 * pao2);
-    const do2 = co * cao2 * 10;
-
-    let vo2 = null;
-    let extraction = null;
-
-    if (svo2 && pvo2) {
-      const cvo2 = hb * 1.34 * svo2 + (0.003 * pvo2);
-      vo2 = co * (cao2 - cvo2) * 10;
-      extraction = ((cao2 - cvo2) / cao2) * 100;
-    }
-
-    const result = document.getElementById("resultadoOxigenacionDetalle");
-
-    result.innerHTML =
-      `<strong>DO₂:</strong> ${do2.toFixed(0)} mL/min`;
-
-    if (vo2) {
-      result.innerHTML +=
-        `<br><strong>VO₂:</strong> ${vo2.toFixed(0)} mL/min`;
-      result.innerHTML +=
-        `<br><strong>Extraction:</strong> ${extraction.toFixed(1)} %`;
-    }
-
-    sendGA("oxygenation_calculated");
-  };
-
-  /* ==========================================
-     4️⃣ SVR
-     SVR = ((MAP − CVP) / CO) × 80
-  ========================================== */
-
-  window.calcularRVS = function () {
-
-    const map = parseFloat(document.getElementById("rvs_tam").value);
-    const cvp = parseFloat(document.getElementById("rvs_pvc").value);
-    const co = parseFloat(document.getElementById("rvs_gc").value);
-
-    if (!map || !cvp || !co) return;
-
-    const svr = ((map - cvp) / co) * 80;
-
-    const result = document.getElementById("resultadoRVS");
-    const interp = document.getElementById("interpretacionRVS");
-
-    result.innerHTML =
-      `<strong>SVR:</strong> ${svr.toFixed(0)} dyn·s·cm⁻⁵`;
-
-    if (svr < 800)
-      interp.innerHTML = "Low SVR (vasodilation).";
-    else if (svr <= 1200)
-      interp.innerHTML = "Normal range.";
-    else
-      interp.innerHTML = "High SVR (vasoconstriction).";
-
-    sendGA("svr_calculated");
-  };
-
-  /* ==========================================
-     GA helper
-  ========================================== */
-
-  function sendGA(eventName) {
-    if (typeof gtag === "function") {
-      gtag("event", eventName, {
-        event_category: "hemodynamic_module",
-        page_path: currentPath,
-        language: "en"
-      });
-    }
-  }
-
-});
+/* =========================
+   OPTIONAL GLOBAL ALIASES
+========================= */
+window.calculateEchoCO = calculateEchoCO;
+window.calculateFS = calculateFS;
+window.calculateOxygenation = calculateOxygenation;
+window.calculateSVR = calculateSVR;
