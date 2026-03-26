@@ -1,8 +1,17 @@
+console.log("acid-base EN JS loaded");
+
+/* =========================
+   HELPERS
+========================= */
 function getNum(id) {
   const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  const v = Number(el.value);
-  return Number.isFinite(v) ? v : null;
+  if (!el) return null;
+
+  const val = el.value.trim();
+  if (val === "") return null;
+
+  const num = Number(val);
+  return Number.isFinite(num) ? num : null;
 }
 
 function setHTML(id, html) {
@@ -20,8 +29,8 @@ function calculateCorrectedAnionGap() {
   const hco3 = getNum("ab_hco3");
   let alb = getNum("ab_alb");
 
-  if ([na, k, cl, hco3].some(v => v === null)) {
-    setHTML("resultadoAnionGap", "Complete all values");
+  if ([na, k, cl, hco3].includes(null)) {
+    setHTML("resultadoAnionGap", "⚠️ Complete all values");
     return;
   }
 
@@ -30,10 +39,16 @@ function calculateCorrectedAnionGap() {
   const ag = (na + k) - (cl + hco3);
   const agCorr = ag + 2.5 * (4 - alb);
 
+  let interp = "";
+  if (agCorr < 12) interp = "Normal";
+  else if (agCorr <= 16) interp = "Mild elevation";
+  else interp = "High anion gap";
+
   setHTML(
     "resultadoAnionGap",
-    `<strong>AG:</strong> ${ag.toFixed(1)}<br>
-     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)}`
+    `<strong>AG:</strong> ${ag.toFixed(1)} mEq/L<br>
+     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)} mEq/L<br>
+     <strong>Interpretation:</strong> ${interp}`
   );
 }
 
@@ -45,15 +60,25 @@ function calculateDeltaGap() {
   const hco3 = getNum("dd_hco3");
 
   if (ag === null || hco3 === null) {
-    setHTML("resultadoDeltaGap", "Complete values");
+    setHTML("resultadoDeltaGap", "⚠️ Complete values");
+    return;
+  }
+
+  if (hco3 >= 24) {
+    setHTML("resultadoDeltaGap", "Not interpretable");
     return;
   }
 
   const delta = (ag - 12) / (24 - hco3);
 
+  let interp = "";
+  if (delta < 1) interp = "Additional metabolic acidosis";
+  else if (delta <= 2) interp = "Pure AG metabolic acidosis";
+  else interp = "Associated metabolic alkalosis";
+
   setHTML(
     "resultadoDeltaGap",
-    `<strong>Δ/Δ:</strong> ${delta.toFixed(2)}`
+    `<strong>Δ/Δ:</strong> ${delta.toFixed(2)}<br>${interp}`
   );
 }
 
@@ -65,7 +90,7 @@ function calculateCorrectedSodium() {
   const glu = getNum("glu");
 
   if (na === null || glu === null) {
-    setHTML("resultadoNaCorregido", "Complete values");
+    setHTML("resultadoNaCorregido", "⚠️ Complete values");
     return;
   }
 
@@ -73,7 +98,7 @@ function calculateCorrectedSodium() {
 
   setHTML(
     "resultadoNaCorregido",
-    `<strong>Corrected Na:</strong> ${nac.toFixed(1)}`
+    `<strong>Corrected Na:</strong> ${nac.toFixed(1)} mEq/L`
   );
 }
 
@@ -85,7 +110,7 @@ function calculateCorrectedCalcium() {
   let alb = getNum("alb_meas");
 
   if (ca === null) {
-    setHTML("resultadoCaCorregido", "Complete calcium");
+    setHTML("resultadoCaCorregido", "⚠️ Complete calcium");
     return;
   }
 
@@ -95,12 +120,12 @@ function calculateCorrectedCalcium() {
 
   setHTML(
     "resultadoCaCorregido",
-    `<strong>Corrected Ca:</strong> ${cac.toFixed(2)}`
+    `<strong>Corrected Ca:</strong> ${cac.toFixed(2)} mg/dL`
   );
 }
 
 /* =========================
-   EXPORT
+   EXPORT (CRÍTICO)
 ========================= */
 window.calculateCorrectedAnionGap = calculateCorrectedAnionGap;
 window.calculateDeltaGap = calculateDeltaGap;
