@@ -6,11 +6,13 @@
 function sumSelects(className) {
   let total = 0;
   const elements = document.querySelectorAll("." + className);
+
   elements.forEach(el => {
     if (el.value !== "") {
-      total += parseInt(el.value);
+      total += parseInt(el.value, 10);
     }
   });
+
   return total;
 }
 
@@ -19,7 +21,6 @@ function sumSelects(className) {
 ===================================================== */
 
 function calcSOFA() {
-
   const systems = [
     "Neurologic",
     "Respiratory",
@@ -35,7 +36,7 @@ function calcSOFA() {
   let breakdown = "";
 
   selects.forEach((el, index) => {
-    const value = el.value === "" ? 0 : parseInt(el.value);
+    const value = el.value === "" ? 0 : parseInt(el.value, 10);
     total += value;
     breakdown += `<strong>${systems[index]}:</strong> ${value} points<br>`;
   });
@@ -65,19 +66,17 @@ function resetSOFA() {
 ===================================================== */
 
 function calcAPACHE() {
-
   let score = sumSelects("apache");
 
   const age = document.getElementById("apache_age").value;
   const chronic = document.getElementById("apache_chronic").value;
 
-  if (age !== "") score += parseInt(age);
-  if (chronic !== "") score += parseInt(chronic);
+  if (age !== "") score += parseInt(age, 10);
+  if (chronic !== "") score += parseInt(chronic, 10);
 
   document.getElementById("apache_result").innerHTML =
     `<strong>Total APACHE II Score: ${score}</strong>`;
 
-  /* Approximate hospital mortality estimation */
   let mortality;
 
   if (score < 10) mortality = "~5% hospital mortality";
@@ -102,17 +101,13 @@ function resetAPACHE() {
 
 /* =====================================================
    SAPS II
-   Official logistic equation
 ===================================================== */
 
 function calcSAPS() {
-
-  let score = sumSelects("saps");
+  const score = sumSelects("saps");
 
   document.getElementById("saps_result").innerHTML =
     `<strong>Total SAPS II Score: ${score}</strong>`;
-
-  /* Logistic regression equation (original SAPS II model) */
 
   const logit =
     -7.7631 +
@@ -120,19 +115,19 @@ function calcSAPS() {
     (0.9971 * Math.log(score + 1));
 
   const mortality = Math.exp(logit) / (1 + Math.exp(logit));
-
   const mortalityPercent = (mortality * 100).toFixed(1);
 
   let interpretation;
 
-  if (mortalityPercent < 10)
+  if (mortalityPercent < 10) {
     interpretation = "Low predicted mortality";
-  else if (mortalityPercent < 30)
+  } else if (mortalityPercent < 30) {
     interpretation = "Moderate predicted mortality";
-  else if (mortalityPercent < 60)
+  } else if (mortalityPercent < 60) {
     interpretation = "High predicted mortality";
-  else
+  } else {
     interpretation = "Very high predicted mortality";
+  }
 
   document.getElementById("saps_mortality").innerHTML =
     `Predicted hospital mortality: <strong>${mortalityPercent}%</strong><br>
@@ -144,3 +139,13 @@ function resetSAPS() {
   document.getElementById("saps_result").innerHTML = "";
   document.getElementById("saps_mortality").innerHTML = "";
 }
+
+/* =====================================================
+   EXPORTS
+===================================================== */
+window.calcSOFA = calcSOFA;
+window.resetSOFA = resetSOFA;
+window.calcAPACHE = calcAPACHE;
+window.resetAPACHE = resetAPACHE;
+window.calcSAPS = calcSAPS;
+window.resetSAPS = resetSAPS;
