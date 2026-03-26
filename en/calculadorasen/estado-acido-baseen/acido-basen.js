@@ -1,10 +1,16 @@
+console.log("acido-baseen.js loaded successfully");
+
 /* =========================
    HELPERS
 ========================= */
 function getNum(id) {
   const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-  const v = Number(el.value);
+  if (!el) return null;
+
+  const raw = String(el.value ?? "").trim();
+  if (raw === "") return null;
+
+  const v = Number(raw);
   return Number.isFinite(v) ? v : null;
 }
 
@@ -18,6 +24,30 @@ function setText(id, txt) {
   if (el) el.textContent = txt;
 }
 
+function clearBox(id) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = "";
+}
+
+/* =========================
+   INITIAL CLEANUP
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  [
+    "resultadoAnionGap",
+    "resultadoDeltaGap",
+    "interpretacionDeltaGap",
+    "resultadoNaCorregido",
+    "resultadoCaCorregido"
+  ].forEach(clearBox);
+
+  document.querySelectorAll(".content").forEach((row) => {
+    row.addEventListener("click", () => {
+      row.classList.toggle("active");
+    });
+  });
+});
+
 /* =========================
    CORRECTED ANION GAP
 ========================= */
@@ -28,8 +58,8 @@ function calculateCorrectedAnionGap() {
   const hco3 = getNum("ab_hco3");
   let alb = getNum("ab_alb");
 
-  if ([na, k, cl, hco3].some(v => v === null)) {
-    setText("resultadoAnionGap", "Complete all values");
+  if ([na, k, cl, hco3].some((v) => v === null)) {
+    setText("resultadoAnionGap", "Complete all values.");
     return;
   }
 
@@ -38,10 +68,20 @@ function calculateCorrectedAnionGap() {
   const ag = (na + k) - (cl + hco3);
   const agCorr = ag + 2.5 * (4 - alb);
 
+  let interpretation = "";
+  if (agCorr < 12) {
+    interpretation = "Normal or low corrected anion gap.";
+  } else if (agCorr <= 16) {
+    interpretation = "Mildly elevated corrected anion gap.";
+  } else {
+    interpretation = "Elevated corrected anion gap.";
+  }
+
   setHTML(
     "resultadoAnionGap",
     `<strong>AG:</strong> ${ag.toFixed(1)} mEq/L<br>
-     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)} mEq/L`
+     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)} mEq/L<br>
+     <strong>Interpretation:</strong> ${interpretation}`
   );
 }
 
@@ -84,17 +124,17 @@ function calculateDeltaGap() {
     return;
   }
 
-  let interp =
-    deltaDelta < 1
-      ? "Suggests an associated additional metabolic acidosis. Evaluate hyperchloremia or other causes."
-      : deltaDelta <= 2
-        ? "Pure high anion gap metabolic acidosis."
-        : "Suggests associated metabolic alkalosis.";
+  let interp = "";
+  if (deltaDelta < 1) {
+    interp =
+      "Suggests an additional metabolic acidosis. Evaluate hyperchloremia or other causes.";
+  } else if (deltaDelta <= 2) {
+    interp = "Pure high anion gap metabolic acidosis.";
+  } else {
+    interp = "Suggests associated metabolic alkalosis.";
+  }
 
-  setHTML(
-    "resultadoDeltaGap",
-    `<strong>Δ/Δ:</strong> ${deltaDelta.toFixed(2)}`
-  );
+  setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${deltaDelta.toFixed(2)}`);
   setText("interpretacionDeltaGap", interp);
 }
 
@@ -106,7 +146,12 @@ function calculateCorrectedSodium() {
   const glu = getNum("glu");
 
   if (na === null || glu === null) {
-    setText("resultadoNaCorregido", "Complete Na and glucose");
+    setText("resultadoNaCorregido", "Complete sodium and glucose values.");
+    return;
+  }
+
+  if (glu < 0) {
+    setText("resultadoNaCorregido", "Glucose must be a valid value.");
     return;
   }
 
@@ -126,7 +171,7 @@ function calculateCorrectedCalcium() {
   let alb = getNum("alb_meas");
 
   if (ca === null) {
-    setText("resultadoCaCorregido", "Complete calcium value");
+    setText("resultadoCaCorregido", "Complete calcium value.");
     return;
   }
 
@@ -141,6 +186,25 @@ function calculateCorrectedCalcium() {
 }
 
 /* =========================
+   SPANISH ALIASES
+========================= */
+function calcularAnionGapCorregido() {
+  calculateCorrectedAnionGap();
+}
+
+function calcularDeltaGap() {
+  calculateDeltaGap();
+}
+
+function calcularSodioCorregido() {
+  calculateCorrectedSodium();
+}
+
+function calcularCalcioCorregido() {
+  calculateCorrectedCalcium();
+}
+
+/* =========================
    EXPOSE FUNCTIONS
 ========================= */
 window.calculateCorrectedAnionGap = calculateCorrectedAnionGap;
@@ -148,15 +212,7 @@ window.calculateDeltaGap = calculateDeltaGap;
 window.calculateCorrectedSodium = calculateCorrectedSodium;
 window.calculateCorrectedCalcium = calculateCorrectedCalcium;
 
-/* Backward compatibility */
-window.calcularAnionGapCorregido = calculateCorrectedAnionGap;
-window.calcularDeltaGap = calculateDeltaGap;
-window.calcularSodioCorregido = calculateCorrectedSodium;
-window.calcularCalcioCorregido = calculateCorrectedCalcium;
-
-/* Accordion rows if used */
-document.querySelectorAll('.content').forEach(row => {
-  row.addEventListener('click', () => {
-    row.classList.toggle('active');
-  });
-});
+window.calcularAnionGapCorregido = calcularAnionGapCorregido;
+window.calcularDeltaGap = calcularDeltaGap;
+window.calcularSodioCorregido = calcularSodioCorregido;
+window.calcularCalcioCorregido = calcularCalcioCorregido;
