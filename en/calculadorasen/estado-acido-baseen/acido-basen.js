@@ -1,16 +1,7 @@
-console.log("acido-baseen.js loaded successfully");
-
-/* =========================
-   HELPERS
-========================= */
 function getNum(id) {
   const el = document.getElementById(id);
-  if (!el) return null;
-
-  const raw = String(el.value ?? "").trim();
-  if (raw === "") return null;
-
-  const v = Number(raw);
+  if (!el || el.value === "") return null;
+  const v = Number(el.value);
   return Number.isFinite(v) ? v : null;
 }
 
@@ -19,37 +10,8 @@ function setHTML(id, html) {
   if (el) el.innerHTML = html;
 }
 
-function setText(id, txt) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = txt;
-}
-
-function clearBox(id) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = "";
-}
-
 /* =========================
-   INITIAL CLEANUP
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  [
-    "resultadoAnionGap",
-    "resultadoDeltaGap",
-    "interpretacionDeltaGap",
-    "resultadoNaCorregido",
-    "resultadoCaCorregido"
-  ].forEach(clearBox);
-
-  document.querySelectorAll(".content").forEach((row) => {
-    row.addEventListener("click", () => {
-      row.classList.toggle("active");
-    });
-  });
-});
-
-/* =========================
-   CORRECTED ANION GAP
+   ANION GAP
 ========================= */
 function calculateCorrectedAnionGap() {
   const na = getNum("ab_na");
@@ -58,100 +20,52 @@ function calculateCorrectedAnionGap() {
   const hco3 = getNum("ab_hco3");
   let alb = getNum("ab_alb");
 
-  if ([na, k, cl, hco3].some((v) => v === null)) {
-    setText("resultadoAnionGap", "Complete all values.");
+  if ([na, k, cl, hco3].some(v => v === null)) {
+    setHTML("resultadoAnionGap", "Complete all values");
     return;
   }
 
-  if (!Number.isFinite(alb) || alb <= 0) alb = 4;
+  if (!alb || alb <= 0) alb = 4;
 
   const ag = (na + k) - (cl + hco3);
   const agCorr = ag + 2.5 * (4 - alb);
 
-  let interpretation = "";
-  if (agCorr < 12) {
-    interpretation = "Normal or low corrected anion gap.";
-  } else if (agCorr <= 16) {
-    interpretation = "Mildly elevated corrected anion gap.";
-  } else {
-    interpretation = "Elevated corrected anion gap.";
-  }
-
   setHTML(
     "resultadoAnionGap",
-    `<strong>AG:</strong> ${ag.toFixed(1)} mEq/L<br>
-     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)} mEq/L<br>
-     <strong>Interpretation:</strong> ${interpretation}`
+    `<strong>AG:</strong> ${ag.toFixed(1)}<br>
+     <strong>Corrected AG:</strong> ${agCorr.toFixed(1)}`
   );
 }
 
 /* =========================
-   DELTA / DELTA
+   DELTA GAP
 ========================= */
 function calculateDeltaGap() {
   const ag = getNum("dd_ag");
   const hco3 = getNum("dd_hco3");
 
-  const AG_NORMAL = 12;
-  const HCO3_NORMAL = 24;
-
   if (ag === null || hco3 === null) {
-    setText("resultadoDeltaGap", "—");
-    setText("interpretacionDeltaGap", "Complete Anion Gap and HCO₃.");
+    setHTML("resultadoDeltaGap", "Complete values");
     return;
   }
 
-  if (ag <= 0 || hco3 <= 0) {
-    setText("resultadoDeltaGap", "Not interpretable");
-    setText("interpretacionDeltaGap", "Non-physiologic values.");
-    return;
-  }
+  const delta = (ag - 12) / (24 - hco3);
 
-  const deltaAG = ag - AG_NORMAL;
-  const deltaHCO3 = HCO3_NORMAL - hco3;
-
-  if (deltaHCO3 <= 0) {
-    setText("resultadoDeltaGap", "Not interpretable");
-    setText("interpretacionDeltaGap", "HCO₃ is not decreased.");
-    return;
-  }
-
-  const deltaDelta = deltaAG / deltaHCO3;
-
-  if (!Number.isFinite(deltaDelta)) {
-    setText("resultadoDeltaGap", "—");
-    setText("interpretacionDeltaGap", "Could not be calculated.");
-    return;
-  }
-
-  let interp = "";
-  if (deltaDelta < 1) {
-    interp =
-      "Suggests an additional metabolic acidosis. Evaluate hyperchloremia or other causes.";
-  } else if (deltaDelta <= 2) {
-    interp = "Pure high anion gap metabolic acidosis.";
-  } else {
-    interp = "Suggests associated metabolic alkalosis.";
-  }
-
-  setHTML("resultadoDeltaGap", `<strong>Δ/Δ:</strong> ${deltaDelta.toFixed(2)}`);
-  setText("interpretacionDeltaGap", interp);
+  setHTML(
+    "resultadoDeltaGap",
+    `<strong>Δ/Δ:</strong> ${delta.toFixed(2)}`
+  );
 }
 
 /* =========================
-   CORRECTED SODIUM
+   SODIUM
 ========================= */
 function calculateCorrectedSodium() {
   const na = getNum("na_meas");
   const glu = getNum("glu");
 
   if (na === null || glu === null) {
-    setText("resultadoNaCorregido", "Complete sodium and glucose values.");
-    return;
-  }
-
-  if (glu < 0) {
-    setText("resultadoNaCorregido", "Glucose must be a valid value.");
+    setHTML("resultadoNaCorregido", "Complete values");
     return;
   }
 
@@ -159,60 +73,36 @@ function calculateCorrectedSodium() {
 
   setHTML(
     "resultadoNaCorregido",
-    `<strong>Corrected Na:</strong> ${nac.toFixed(1)} mEq/L`
+    `<strong>Corrected Na:</strong> ${nac.toFixed(1)}`
   );
 }
 
 /* =========================
-   CORRECTED CALCIUM
+   CALCIUM
 ========================= */
 function calculateCorrectedCalcium() {
   const ca = getNum("ca_meas");
   let alb = getNum("alb_meas");
 
   if (ca === null) {
-    setText("resultadoCaCorregido", "Complete calcium value.");
+    setHTML("resultadoCaCorregido", "Complete calcium");
     return;
   }
 
-  if (!Number.isFinite(alb) || alb <= 0) alb = 4;
+  if (!alb || alb <= 0) alb = 4;
 
   const cac = ca + 0.8 * (4 - alb);
 
   setHTML(
     "resultadoCaCorregido",
-    `<strong>Corrected Ca:</strong> ${cac.toFixed(2)} mg/dL`
+    `<strong>Corrected Ca:</strong> ${cac.toFixed(2)}`
   );
 }
 
 /* =========================
-   SPANISH ALIASES
-========================= */
-function calcularAnionGapCorregido() {
-  calculateCorrectedAnionGap();
-}
-
-function calcularDeltaGap() {
-  calculateDeltaGap();
-}
-
-function calcularSodioCorregido() {
-  calculateCorrectedSodium();
-}
-
-function calcularCalcioCorregido() {
-  calculateCorrectedCalcium();
-}
-
-/* =========================
-   EXPOSE FUNCTIONS
+   EXPORT
 ========================= */
 window.calculateCorrectedAnionGap = calculateCorrectedAnionGap;
 window.calculateDeltaGap = calculateDeltaGap;
 window.calculateCorrectedSodium = calculateCorrectedSodium;
 window.calculateCorrectedCalcium = calculateCorrectedCalcium;
-
-window.calcularAnionGapCorregido = calcularAnionGapCorregido;
-window.calcularDeltaGap = calcularDeltaGap;
-window.calcularSodioCorregido = calcularSodioCorregido;
-window.calcularCalcioCorregido = calcularCalcioCorregido;
