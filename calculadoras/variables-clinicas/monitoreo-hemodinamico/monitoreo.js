@@ -132,3 +132,78 @@ function calcularRVS() {
   );
   setHTML("interpretacionRVS", interp);
 }
+
+function calcular() {
+
+  let ppv = parseFloat(document.getElementById("ppv").value);
+  let svv = parseFloat(document.getElementById("svv").value);
+  let map = parseFloat(document.getElementById("map").value);
+  let vaso = parseFloat(document.getElementById("vaso").value);
+
+  if (isNaN(ppv) || isNaN(svv)) {
+    alert("Completar PPV y SVV");
+    return;
+  }
+
+  let eadyn = ppv / svv;
+
+  let html = `
+    <div class="result">
+      Eadyn: ${eadyn.toFixed(2)}
+    </div>
+  `;
+
+  // Interpretación
+  if (eadyn > 1) {
+    html += `
+      <div class="result good">
+        ✔ Buen acoplamiento ventrículo-arterial <br>
+        → El volumen probablemente aumente la presión arterial <br>
+        → Considerar descenso de vasopresor
+      </div>
+    `;
+  } 
+  else if (eadyn >= 0.8 && eadyn <= 1) {
+    html += `
+      <div class="result warn">
+        ⚠ Zona gris <br>
+        → Respuesta incierta <br>
+        → Integrar con clínica (lactato, eco, perfusión)
+      </div>
+    `;
+  } 
+  else {
+    html += `
+      <div class="result bad">
+        ✖ Desacople ventrículo-arterial <br>
+        → El volumen NO aumentará presión <br>
+        → Mantener o aumentar vasopresor
+      </div>
+    `;
+  }
+
+  // Destete
+  if (!isNaN(map) && !isNaN(vaso)) {
+    if (map >= 65 && eadyn > 0.9 && vaso < 0.1) {
+      html += `
+        <div class="result good">
+          🟢 Candidato a destete de vasopresor
+        </div>
+      `;
+    } else {
+      html += `
+        <div class="result warn">
+          🟡 No óptimo para destete aún
+        </div>
+      `;
+    }
+  }
+
+  html += `
+    <div class="note">
+      Eadyn = PPV / SVV. Válido en VM controlada, ritmo sinusal y sin esfuerzo respiratorio.
+    </div>
+  `;
+
+  document.getElementById("resultado").innerHTML = html;
+}
