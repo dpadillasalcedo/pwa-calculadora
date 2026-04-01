@@ -414,6 +414,41 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
     <div id="interpretacionRVS" class="note" aria-live="polite"></div>
   </section>
 
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <title>Eadyn y Destete de Vasopresores</title>
+
+  <h1>Eadyn, fluidos y Destete de Vasopresores</h1>
+  <p class="subtitle">Evaluación del acoplamiento ventrículo-arterial</p>
+
+  <div class="panel">
+
+    <label>PPV (%)</label>
+    <input type="number" id="ppv" placeholder="Ej: 12">
+
+    <label>SVV (%)</label>
+    <input type="number" id="svv" placeholder="Ej: 10">
+
+    <label>PAM (mmHg)</label>
+    <input type="number" id="map" placeholder="Ej: 65">
+
+    <label>Dosis vasopresor (mcg/kg/min)</label>
+    <input type="number" step="0.01" id="vaso" placeholder="Ej: 0.1">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+
+  </div>
+
+</div>
+  
+
      <!-- =========================
      FUNDAMENTO CLÍNICO HEMODINAMIA
 ========================== -->
@@ -488,6 +523,7 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
   </p>
 
 </section>
+
 
 </main>
 
