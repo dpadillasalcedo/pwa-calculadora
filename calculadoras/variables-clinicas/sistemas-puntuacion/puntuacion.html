@@ -1033,20 +1033,26 @@ function resetSOFA(){
   <!-- =========================
        TEP AHA/ACC 2026
   ========================= -->
-   <section id="tep-risk-aha-acc-2026" class="panel">
+ <section id="tep-risk-aha-acc-2026" class="panel">
+
   <div class="panel-head">
-    <h2>🫁 Estadificación del TEP agudo · AHA/ACC 2026</h2>
+    <h2>🫁 Estratificación de riesgo en TEP · AHA/ACC 2026</h2>
     <p class="note">
-      Clasificación inicial por categorías clínicas AHA/ACC 2026 con sugerencias de manejo orientadas por clase de recomendación.
+      Clasificación clínica inicial del tromboembolismo pulmonar basada en severidad clínica, biomarcadores, función del ventrículo derecho y compromiso hemodinámico.
     </p>
   </div>
 
   <hr />
 
+  <!-- =========================
+       CLASIFICACIÓN CLÍNICA
+  ========================== -->
   <div class="card">
-    <h3>📌 Clasificación clínica inicial</h3>
+    <h3>📊 Clasificación clínica inicial</h3>
 
     <div class="grid-2">
+
+      <!-- Presentación -->
       <label class="field">
         <span>Presentación clínica</span>
         <select id="pe_presentation">
@@ -1056,120 +1062,158 @@ function resetSOFA(){
         </select>
       </label>
 
+      <!-- Severidad -->
       <label class="field">
-        <span>HESTIA / PESI / sPESI de bajo riesgo</span>
-        <select id="pe_low_score">
+        <span>Severidad clínica (PESI / sPESI)</span>
+        <select id="pe_severity">
           <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
+          <option value="low">Bajo riesgo (PESI ≤85 o sPESI = 0)</option>
+          <option value="high">Alto riesgo (PESI ≥85 o sPESI ≥1)</option>
         </select>
       </label>
 
+      <!-- Subgrupo B -->
       <label class="field">
-        <span>Severidad clínica elevada</span>
-        <select id="pe_high_score">
+        <span>Tipo de TEP (si bajo riesgo)</span>
+        <select id="pe_b_type">
           <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
+          <option value="B1">Subsegmentario</option>
+          <option value="B2">Segmentario / no subsegmentario</option>
         </select>
       </label>
 
+      <!-- Biomarcadores -->
       <label class="field">
-        <span>Biomarcador cardíaco elevado</span>
+        <span>Biomarcadores cardíacos</span>
         <select id="pe_biomarker">
           <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
+          <option value="0">Normales</option>
+          <option value="1">Elevados</option>
         </select>
       </label>
 
+      <!-- VD -->
       <label class="field">
-        <span>Lactato elevado</span>
-        <select id="pe_lactate">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Disfunción / dilatación de VD (TC o eco)</span>
+        <span>Disfunción del ventrículo derecho</span>
         <select id="pe_rv">
           <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
+          <option value="0">Normal</option>
+          <option value="1">Alterado</option>
         </select>
       </label>
 
+      <!-- Modificador respiratorio -->
       <label class="field">
-        <span>Falla cardiopulmonar incipiente</span>
-        <select id="pe_incipient_failure">
+        <span>Modificador respiratorio</span>
+        <select id="pe_resp">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí (SatO₂ <90%, FR ≥30 o requiere O₂)</option>
+        </select>
+      </label>
+
+      <!-- Oxígeno alto -->
+      <label class="field">
+        <span>Oxígeno >6 L/min o VNI</span>
+        <select id="pe_high_o2">
           <option value="">Seleccione</option>
           <option value="0">No</option>
           <option value="1">Sí</option>
         </select>
       </label>
 
+      <!-- Hipotensión transitoria -->
       <label class="field">
-        <span>Shock normotenso</span>
-        <select id="pe_normotensive_shock">
+        <span>Hipotensión transitoria</span>
+        <select id="pe_transient_hypotension">
           <option value="">Seleccione</option>
           <option value="0">No</option>
           <option value="1">Sí</option>
         </select>
       </label>
 
+      <!-- Shock normotensivo -->
       <label class="field">
-        <span>Falla cardiopulmonar establecida</span>
-        <select id="pe_cardiopulmonary_failure">
+        <span>Shock normotensivo (lactato >2 mmol/L)</span>
+        <select id="pe_normo_shock">
           <option value="">Seleccione</option>
           <option value="0">No</option>
           <option value="1">Sí</option>
         </select>
       </label>
 
+      <!-- Shock cardiogénico -->
       <label class="field">
-        <span>Colapso refractario / paro / soporte extracorpóreo potencial</span>
-        <select id="pe_refractory_collapse">
+        <span>Shock cardiogénico persistente</span>
+        <select id="pe_cardiogenic_shock">
           <option value="">Seleccione</option>
           <option value="0">No</option>
           <option value="1">Sí</option>
         </select>
       </label>
+
+      <!-- Refractario -->
+      <label class="field">
+        <span>Shock refractario o paro cardíaco</span>
+        <select id="pe_refractory">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
     </div>
 
+    <!-- BOTONES -->
     <div class="actions" style="margin-top:1rem;">
-      <button type="button" class="btn" id="pe2026_calc">Clasificar TEP 2026</button>
-      <button type="button" class="btn-secondary" id="pe2026_reset">Reiniciar</button>
+      <button type="button" class="btn" id="pe2026_calc">
+        Clasificar TEP
+      </button>
+      <button type="button" class="btn-secondary" id="pe2026_reset">
+        Reiniciar
+      </button>
     </div>
 
+    <!-- RESULTADOS -->
     <div id="pe2026_result" class="resultado"></div>
     <div id="pe2026_summary" class="note"></div>
+
     <div id="pe2026_logic" class="note" style="display:none;"></div>
+
   </div>
 
+  <!-- =========================
+       MANEJO
+  ========================== -->
   <div class="card" style="margin-top:1.5rem;">
-    <h3>🩺 Manejo inicial sugerido por categoría</h3>
+    <h3>🩺 Manejo inicial sugerido</h3>
     <div id="pe2026_management" class="note"></div>
   </div>
 
+  <!-- =========================
+       LEYENDA
+  ========================== -->
   <div class="card" style="margin-top:1.5rem;">
-    <h3>📚 Leyenda COR</h3>
+    <h3>📚 Clase de recomendación (COR)</h3>
     <div class="note">
-      <p><strong>COR 1:</strong> recomendado / indicado.</p>
+      <p><strong>COR 1:</strong> recomendado / estándar de manejo.</p>
       <p><strong>COR 2a:</strong> razonable considerar.</p>
       <p><strong>COR 2b:</strong> puede considerarse en casos seleccionados.</p>
     </div>
   </div>
 
+  <!-- =========================
+       DISCLAIMER
+  ========================== -->
   <div class="card" style="margin-top:1.5rem;">
-    <h3>⚠️ Nota de interpretación</h3>
+    <h3>⚠️ Interpretación clínica</h3>
     <div class="note">
-      Esta herramienta resume la figura de evaluación inicial y manejo por categorías clínicas AHA/ACC 2026.
-      Debe interpretarse junto con la valoración clínica integral, ecocardiografía/TC, biomarcadores, lactato,
-      sangrado y disponibilidad de terapias de reperfusión.
+      Esta herramienta resume la clasificación AHA/ACC 2026 para TEP agudo.
+      No reemplaza la valoración clínica integral ni las decisiones individualizadas.
+      Considerar riesgo de sangrado, disponibilidad de terapias de reperfusión y contexto clínico.
     </div>
   </div>
+
 </section>
    
    
