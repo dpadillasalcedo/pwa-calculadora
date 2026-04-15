@@ -519,11 +519,16 @@ function classifyPE2026() {
   logic.innerHTML = `<b>Lógica aplicada:</b><ul>${logicSteps.map(step => `<li>${step}</li>`).join("")}</ul>`;
   logic.style.display = "block";
 
-  management.innerHTML = `
-    <ul>
-      ${cat.management.map(item => `<li><strong>${item.cor}:</strong> ${item.text}</li>`).join("")}
-    </ul>
-  `;
+management.innerHTML = `
+  <ul>
+    ${cat.management.map(item => `
+      <li>
+        <span class="cor-badge ${item.cor.toLowerCase().replace(" ", "-")}">${item.cor}</span>
+        ${item.text}
+      </li>
+    `).join("")}
+  </ul>
+`;
 }
 
 function resetPE2026() {
