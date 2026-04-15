@@ -300,120 +300,6 @@ document.getElementById("tep_calc").addEventListener("click", ()=>{
    TEP AHA/ACC 2026
 ========================================================= */
 
-const pe2026Categories = {
-  A: {
-    title: "Categoría A",
-    subtitle: "Subclínico",
-    summary: "TEP subclínico / incidental.",
-    management: [
-      { cor: "COR 1", text: "Iniciar DOAC." },
-      { cor: "COR 1", text: "Usar HESTIA, PESI y/o sPESI para evaluar riesgo a corto plazo." },
-      { cor: "COR 2a", text: "Usar una herramienta de decisión para identificar elegibilidad para manejo ambulatorio." }
-    ]
-  },
-  B: {
-    title: "Categoría B",
-    subtitle: "Sintomático, puntaje clínico bajo",
-    summary: "TEP sintomático con bajo riesgo clínico inicial.",
-    management: [
-      { cor: "COR 1", text: "Iniciar DOAC." },
-      { cor: "COR 1", text: "Usar HESTIA, PESI y/o sPESI para evaluar riesgo a corto plazo." },
-      { cor: "COR 2a", text: "Usar una herramienta de decisión para identificar elegibilidad para manejo ambulatorio." }
-    ]
-  },
-  C1: {
-    title: "Categoría C1",
-    subtitle: "Sintomático, severidad clínica elevada",
-    summary: "Mayor severidad clínica, sin datos acumulativos suficientes para C2/C3.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir al menos 1 biomarcador cardíaco." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 2a", text: "Usar un puntaje validado para identificar pacientes de mayor riesgo." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." }
-    ]
-  },
-  C2: {
-    title: "Categoría C2",
-    subtitle: "Sintomático, severidad clínica elevada",
-    summary: "Severidad clínica elevada con un marcador adicional de riesgo (biomarcador, lactato o VD).",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir al menos 1 biomarcador cardíaco." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 2a", text: "Usar un puntaje validado para identificar pacientes de mayor riesgo." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." }
-    ]
-  },
-  C3: {
-    title: "Categoría C3",
-    subtitle: "Sintomático, severidad clínica elevada",
-    summary: "Severidad clínica elevada con múltiples marcadores de riesgo.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir al menos 1 biomarcador cardíaco." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 2a", text: "Usar un puntaje validado para identificar pacientes de mayor riesgo." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." }
-    ]
-  },
-  D1: {
-    title: "Categoría D1",
-    subtitle: "Falla cardiopulmonar incipiente",
-    summary: "Compromiso hemodinámico o respiratorio inicial sin criterios de D2/E.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." },
-      { cor: "COR 2b", text: "Considerar trombólisis sistémica (si el riesgo de sangrado es aceptable), trombólisis dirigida por catéter o trombectomía mecánica en casos apropiados." }
-    ]
-  },
-  D2: {
-    title: "Categoría D2",
-    subtitle: "Falla cardiopulmonar incipiente",
-    summary: "Falla incipiente con shock normotenso o mayor riesgo de deterioro.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 2a", text: "Evaluar shock normotenso." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." },
-      { cor: "COR 1", text: "Iniciar vasopresor y/o inotrópico si está indicado." },
-      { cor: "COR 2b", text: "Considerar trombólisis sistémica (si el riesgo de sangrado es aceptable), trombólisis dirigida por catéter o trombectomía mecánica en casos apropiados." }
-    ]
-  },
-  E1: {
-    title: "Categoría E1",
-    subtitle: "Falla cardiopulmonar",
-    summary: "Falla cardiopulmonar establecida.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Evaluar tamaño y función del VD con TC y/o ecocardiograma." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." },
-      { cor: "COR 1", text: "Iniciar vasopresor y/o inotrópico si está indicado." },
-      { cor: "COR 2a", text: "Considerar trombólisis sistémica (si el riesgo de sangrado es aceptable), trombólisis dirigida por catéter, trombectomía mecánica o embolectomía quirúrgica." }
-    ]
-  },
-  E2: {
-    title: "Categoría E2",
-    subtitle: "Falla cardiopulmonar",
-    summary: "Falla cardiopulmonar muy grave / refractaria.",
-    management: [
-      { cor: "COR 1", text: "Iniciar LMWH o UFH." },
-      { cor: "COR 1", text: "Medir lactato." },
-      { cor: "COR 1", text: "Valoración multidisciplinaria tipo PERT para guiar el manejo." },
-      { cor: "COR 1", text: "Iniciar vasopresor y/o inotrópico si está indicado." },
-      { cor: "COR 2a", text: "Considerar VA-ECMO." },
-      { cor: "COR 2a", text: "Considerar trombólisis sistémica si el riesgo de sangrado es aceptable." }
-    ]
-  }
-};
-
 function getPe2026Value(id) {
   const el = document.getElementById(id);
   return el ? el.value : "";
@@ -423,27 +309,206 @@ function yesNoToBool(value) {
   return value === "1";
 }
 
+const pe2026Categories = {
+  A: {
+    title: "Categoría A",
+    subtitle: "Subclínico",
+    summary: "TEP incidental o subclínico, sin síntomas.",
+    management: [
+      { cor: "COR 1", text: "Iniciar anticoagulación con DOAC si no hay contraindicaciones." },
+      { cor: "COR 1", text: "Usar HESTIA, PESI y/o sPESI para evaluar riesgo a corto plazo." },
+      { cor: "COR 2a", text: "Usar herramienta de decisión para identificar elegibilidad para manejo ambulatorio." }
+    ]
+  },
+
+  B1: {
+    title: "Categoría B1",
+    subtitle: "Sintomático de bajo riesgo · Subsegmentario",
+    summary: "TEP sintomático de bajo riesgo con compromiso subsegmentario.",
+    management: [
+      { cor: "COR 1", text: "Iniciar anticoagulación con DOAC si no hay contraindicaciones." },
+      { cor: "COR 1", text: "Usar HESTIA, PESI y/o sPESI para evaluar riesgo a corto plazo." },
+      { cor: "COR 2a", text: "Usar herramienta de decisión para identificar elegibilidad para manejo ambulatorio." }
+    ]
+  },
+
+  B2: {
+    title: "Categoría B2",
+    subtitle: "Sintomático de bajo riesgo · Segmentario / no subsegmentario",
+    summary: "TEP sintomático de bajo riesgo con localización segmentaria o no subsegmentaria.",
+    management: [
+      { cor: "COR 1", text: "Iniciar anticoagulación con DOAC si no hay contraindicaciones." },
+      { cor: "COR 1", text: "Usar HESTIA, PESI y/o sPESI para evaluar riesgo a corto plazo." },
+      { cor: "COR 2a", text: "Usar herramienta de decisión para identificar elegibilidad para manejo ambulatorio." }
+    ]
+  },
+
+  C1: {
+    title: "Categoría C1",
+    subtitle: "Sintomático · Alto riesgo por score · VD normal + biomarcadores normales",
+    summary: "TEP sintomático con PESI/sPESI de alto riesgo, sin disfunción del VD ni biomarcadores elevados.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir al menos un biomarcador cardíaco." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma." },
+      { cor: "COR 2a", text: "Usar un score validado para identificar pacientes de mayor riesgo." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." }
+    ]
+  },
+
+  C2: {
+    title: "Categoría C2",
+    subtitle: "Sintomático · Alto riesgo por score · VD alterado o biomarcadores elevados",
+    summary: "TEP sintomático con PESI/sPESI de alto riesgo, con disfunción del VD o elevación de biomarcadores.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir al menos un biomarcador cardíaco." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma." },
+      { cor: "COR 2a", text: "Usar un score validado para identificar pacientes de mayor riesgo." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." }
+    ]
+  },
+
+  C3: {
+    title: "Categoría C3",
+    subtitle: "Sintomático · Alto riesgo por score · VD alterado + biomarcadores + modificador respiratorio",
+    summary: "TEP sintomático con PESI/sPESI de alto riesgo, con disfunción del VD, biomarcadores elevados y compromiso respiratorio.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir al menos un biomarcador cardíaco." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma." },
+      { cor: "COR 2a", text: "Usar un score validado para identificar pacientes de mayor riesgo." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." }
+    ]
+  },
+
+  D1: {
+    title: "Categoría D1",
+    subtitle: "Falla cardiopulmonar incipiente · Hipotensión transitoria",
+    summary: "TEP con falla cardiopulmonar incipiente e hipotensión transitoria.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." },
+      { cor: "COR 1", text: "Administrar soporte ventilatorio no invasivo o suplementación alta de oxígeno si está indicado clínicamente." },
+      { cor: "COR 2b", text: "Considerar trombólisis sistémica si el riesgo de sangrado es aceptable, o trombólisis dirigida por catéter / trombectomía mecánica en casos apropiados." }
+    ]
+  },
+
+  D2: {
+    title: "Categoría D2",
+    subtitle: "Falla cardiopulmonar incipiente · Shock normotensivo",
+    summary: "TEP con signos de hipoperfusión y shock normotensivo, usualmente con lactato >2 mmol/L.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma." },
+      { cor: "COR 2a", text: "Evaluar y reconocer shock normotensivo." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." },
+      { cor: "COR 1", text: "Iniciar vasopresores y/o inotrópicos si están indicados." },
+      { cor: "COR 1", text: "Administrar soporte ventilatorio no invasivo o suplementación alta de oxígeno si está indicado clínicamente." },
+      { cor: "COR 2b", text: "Considerar trombólisis sistémica si el riesgo de sangrado es aceptable, o trombólisis dirigida por catéter / trombectomía mecánica en casos apropiados." }
+    ]
+  },
+
+  E1: {
+    title: "Categoría E1",
+    subtitle: "Falla cardiopulmonar · Hipotensión persistente / shock cardiogénico",
+    summary: "TEP con falla cardiopulmonar establecida, hipotensión persistente o shock cardiogénico.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Evaluar tamaño y función del ventrículo derecho mediante TC y/o ecocardiograma cuando sea factible." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." },
+      { cor: "COR 1", text: "Iniciar vasopresores y/o inotrópicos si están indicados." },
+      { cor: "COR 2a", text: "Considerar trombólisis sistémica si el riesgo de sangrado es aceptable, trombólisis dirigida por catéter, trombectomía mecánica o embolectomía quirúrgica." }
+    ]
+  },
+
+  E2: {
+    title: "Categoría E2",
+    subtitle: "Falla cardiopulmonar · Shock cardiogénico refractario o paro cardíaco",
+    summary: "TEP de muy alto riesgo con shock refractario o paro cardíaco; puede coexistir falla respiratoria hipoxémica o ventilatoria.",
+    management: [
+      { cor: "COR 1", text: "Iniciar LMWH o UFH según contexto clínico y necesidad potencial de procedimientos." },
+      { cor: "COR 1", text: "Medir lactato." },
+      { cor: "COR 1", text: "Realizar valoración multidisciplinaria tipo PERT para guiar el manejo clínico." },
+      { cor: "COR 1", text: "Iniciar vasopresores y/o inotrópicos si están indicados." },
+      { cor: "COR 2a", text: "Considerar VA-ECMO como soporte en escenarios apropiados." },
+      { cor: "COR 2a", text: "Considerar trombólisis sistémica si el riesgo de sangrado es aceptable." }
+    ]
+  }
+};
+
+function renderPE2026(category, logicSteps) {
+  const result = document.getElementById("pe2026_result");
+  const summary = document.getElementById("pe2026_summary");
+  const logic = document.getElementById("pe2026_logic");
+  const management = document.getElementById("pe2026_management");
+
+  const cat = pe2026Categories[category];
+
+  if (!cat) {
+    result.innerHTML = "<b>No fue posible clasificar.</b>";
+    summary.textContent = "Revise los datos ingresados.";
+    logic.innerHTML = "";
+    logic.style.display = "none";
+    management.innerHTML = "";
+    return;
+  }
+
+  result.innerHTML = `<b>${cat.title}</b> · ${cat.subtitle}`;
+  summary.textContent = cat.summary;
+
+  logic.innerHTML = `
+    <b>Lógica aplicada:</b>
+    <ul>
+      ${logicSteps.map(step => `<li>${step}</li>`).join("")}
+    </ul>
+  `;
+  logic.style.display = "block";
+
+  management.innerHTML = `
+    <ul>
+      ${cat.management.map(item => `
+        <li>
+          <span class="cor-badge ${item.cor.toLowerCase().replace(" ", "-")}">${item.cor}</span>
+          ${item.text}
+        </li>
+      `).join("")}
+    </ul>
+  `;
+}
+
 function classifyPE2026() {
   const presentation = getPe2026Value("pe_presentation");
-  const lowScore = yesNoToBool(getPe2026Value("pe_low_score"));
-  const highScore = yesNoToBool(getPe2026Value("pe_high_score"));
+  const severity = getPe2026Value("pe_severity");
+  const bType = getPe2026Value("pe_b_type");
+
   const biomarker = yesNoToBool(getPe2026Value("pe_biomarker"));
-  const lactate = yesNoToBool(getPe2026Value("pe_lactate"));
   const rv = yesNoToBool(getPe2026Value("pe_rv"));
-  const incipientFailure = yesNoToBool(getPe2026Value("pe_incipient_failure"));
-  const normotensiveShock = yesNoToBool(getPe2026Value("pe_normotensive_shock"));
-  const cardiopulmonaryFailure = yesNoToBool(getPe2026Value("pe_cardiopulmonary_failure"));
-  const refractoryCollapse = yesNoToBool(getPe2026Value("pe_refractory_collapse"));
+  const resp = yesNoToBool(getPe2026Value("pe_resp"));
+  const highO2 = yesNoToBool(getPe2026Value("pe_high_o2"));
+
+  const transientHypo = yesNoToBool(getPe2026Value("pe_transient_hypotension"));
+  const normoShock = yesNoToBool(getPe2026Value("pe_normo_shock"));
+
+  const cardioShock = yesNoToBool(getPe2026Value("pe_cardiogenic_shock"));
+  const refractory = yesNoToBool(getPe2026Value("pe_refractory"));
 
   const result = document.getElementById("pe2026_result");
   const summary = document.getElementById("pe2026_summary");
   const logic = document.getElementById("pe2026_logic");
   const management = document.getElementById("pe2026_management");
 
-  // Validación mínima
   if (!presentation) {
     result.innerHTML = "<b>Debe seleccionar la presentación clínica.</b>";
     summary.textContent = "";
+    logic.innerHTML = "";
     logic.style.display = "none";
     management.innerHTML = "";
     return;
@@ -452,97 +517,110 @@ function classifyPE2026() {
   let category = "";
   let logicSteps = [];
 
-  // E2
-  if (cardiopulmonaryFailure && refractoryCollapse) {
+  /* =========================
+     CATEGORÍAS E
+  ========================= */
+  if (refractory) {
     category = "E2";
-    logicSteps.push("Falla cardiopulmonar establecida + colapso refractario / escenario extracorpóreo potencial → E2.");
-  }
-  // E1
-  else if (cardiopulmonaryFailure) {
+    logicSteps.push("Shock cardiogénico refractario o paro cardíaco → E2.");
+    if (resp || highO2) {
+      logicSteps.push("Puede coexistir insuficiencia respiratoria hipoxémica o falla ventilatoria.");
+    }
+  } else if (cardioShock) {
     category = "E1";
-    logicSteps.push("Falla cardiopulmonar establecida sin criterio de E2 → E1.");
-  }
-  // D2
-  else if (incipientFailure && normotensiveShock) {
-    category = "D2";
-    logicSteps.push("Falla cardiopulmonar incipiente + shock normotenso → D2.");
-  }
-  // D1
-  else if (incipientFailure) {
-    category = "D1";
-    logicSteps.push("Falla cardiopulmonar incipiente sin shock normotenso → D1.");
-  }
-  // A
-  else if (presentation === "subclinical") {
-    category = "A";
-    logicSteps.push("Presentación subclínica / incidental → A.");
-  }
-  // B
-  else if (presentation === "symptomatic" && lowScore && !highScore) {
-    category = "B";
-    logicSteps.push("TEP sintomático con puntaje clínico bajo → B.");
-  }
-  // C1-C3
-  else if (presentation === "symptomatic" && highScore) {
-    const riskMarkers = [biomarker, lactate, rv].filter(Boolean).length;
-
-    if (riskMarkers === 0) {
-      category = "C1";
-      logicSteps.push("Sintomático con severidad clínica elevada y sin biomarcador/lactato/VD positivos → C1.");
-    } else if (riskMarkers === 1) {
-      category = "C2";
-      logicSteps.push("Sintomático con severidad clínica elevada y 1 marcador adicional de riesgo → C2.");
-    } else {
-      category = "C3";
-      logicSteps.push("Sintomático con severidad clínica elevada y ≥2 marcadores adicionales de riesgo → C3.");
+    logicSteps.push("Hipotensión persistente o shock cardiogénico → E1.");
+    if (resp || highO2) {
+      logicSteps.push("Puede coexistir insuficiencia respiratoria hipoxémica o falla ventilatoria.");
     }
   }
-  // fallback sintomático sin datos completos
-  else if (presentation === "symptomatic") {
-    category = "B";
-    logicSteps.push("TEP sintomático sin datos suficientes para categoría mayor; se asigna B como clasificación conservadora.");
+
+  /* =========================
+     CATEGORÍAS D
+  ========================= */
+  else if (normoShock) {
+    category = "D2";
+    logicSteps.push("Shock normotensivo con signos de hipoperfusión, típicamente lactato >2 mmol/L → D2.");
+    if (highO2) {
+      logicSteps.push("Requerimiento de oxígeno >6 L/min o soporte ventilatorio no invasivo presente.");
+    }
+  } else if (transientHypo) {
+    category = "D1";
+    logicSteps.push("Hipotensión transitoria → D1.");
+    if (highO2) {
+      logicSteps.push("Requerimiento de oxígeno >6 L/min o soporte ventilatorio no invasivo presente.");
+    }
   }
 
-  if (!category || !pe2026Categories[category]) {
-    result.innerHTML = "<b>No fue posible clasificar.</b>";
-    summary.textContent = "Revise los campos ingresados.";
+  /* =========================
+     CATEGORÍA A
+  ========================= */
+  else if (presentation === "subclinical") {
+    category = "A";
+    logicSteps.push("TEP subclínico / incidental → Categoría A.");
+  }
+
+  /* =========================
+     CATEGORÍAS B
+  ========================= */
+  else if (presentation === "symptomatic" && severity === "low") {
+    if (bType === "B1") {
+      category = "B1";
+      logicSteps.push("TEP sintomático de bajo riesgo por PESI/sPESI.");
+      logicSteps.push("Localización subsegmentaria → B1.");
+    } else {
+      category = "B2";
+      logicSteps.push("TEP sintomático de bajo riesgo por PESI/sPESI.");
+      logicSteps.push("Localización segmentaria o no subsegmentaria → B2.");
+    }
+  }
+
+  /* =========================
+     CATEGORÍAS C
+  ========================= */
+  else if (presentation === "symptomatic" && severity === "high") {
+    if (!rv && !biomarker) {
+      category = "C1";
+      logicSteps.push("TEP sintomático con alto riesgo por PESI/sPESI.");
+      logicSteps.push("Ventrículo derecho normal y biomarcadores normales → C1.");
+    } else if (rv && biomarker && resp) {
+      category = "C3";
+      logicSteps.push("TEP sintomático con alto riesgo por PESI/sPESI.");
+      logicSteps.push("Disfunción del VD + biomarcadores elevados + modificador respiratorio → C3.");
+    } else if (rv || biomarker) {
+      category = "C2";
+      logicSteps.push("TEP sintomático con alto riesgo por PESI/sPESI.");
+      logicSteps.push("Disfunción del VD o elevación de biomarcadores → C2.");
+      if (resp) {
+        logicSteps.push("Hay modificador respiratorio, pero sin cumplir simultáneamente criterios completos de C3.");
+      }
+    }
+  }
+
+  if (!category) {
+    result.innerHTML = "<b>No fue posible clasificar el TEP.</b>";
+    summary.textContent = "Revise la combinación de variables ingresadas.";
+    logic.innerHTML = "";
     logic.style.display = "none";
     management.innerHTML = "";
     return;
   }
 
-  const cat = pe2026Categories[category];
-
-  result.innerHTML = `<b>${cat.title}</b> · ${cat.subtitle}`;
-  summary.textContent = cat.summary;
-
-  logic.innerHTML = `<b>Lógica aplicada:</b><ul>${logicSteps.map(step => `<li>${step}</li>`).join("")}</ul>`;
-  logic.style.display = "block";
-
-management.innerHTML = `
-  <ul>
-    ${cat.management.map(item => `
-      <li>
-        <span class="cor-badge ${item.cor.toLowerCase().replace(" ", "-")}">${item.cor}</span>
-        ${item.text}
-      </li>
-    `).join("")}
-  </ul>
-`;
+  renderPE2026(category, logicSteps);
 }
 
 function resetPE2026() {
   const ids = [
     "pe_presentation",
-    "pe_low_score",
-    "pe_high_score",
+    "pe_severity",
+    "pe_b_type",
     "pe_biomarker",
-    "pe_lactate",
     "pe_rv",
-    "pe_incipient_failure",
-    "pe_normotensive_shock",
-    "pe_cardiopulmonary_failure",
-    "pe_refractory_collapse"
+    "pe_resp",
+    "pe_high_o2",
+    "pe_transient_hypotension",
+    "pe_normo_shock",
+    "pe_cardiogenic_shock",
+    "pe_refractory"
   ];
 
   ids.forEach(id => {
