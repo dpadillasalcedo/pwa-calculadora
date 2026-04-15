@@ -1030,6 +1030,149 @@ function resetSOFA(){
 
 </section>
 
+  <!-- =========================
+       TEP AHA/ACC 2026
+  ========================= -->
+   <section id="tep-risk-aha-acc-2026" class="panel">
+  <div class="panel-head">
+    <h2>🫁 Estadificación del TEP agudo · AHA/ACC 2026</h2>
+    <p class="note">
+      Clasificación inicial por categorías clínicas AHA/ACC 2026 con sugerencias de manejo orientadas por clase de recomendación.
+    </p>
+  </div>
+
+  <hr />
+
+  <div class="card">
+    <h3>📌 Clasificación clínica inicial</h3>
+
+    <div class="grid-2">
+      <label class="field">
+        <span>Presentación clínica</span>
+        <select id="pe_presentation">
+          <option value="">Seleccione</option>
+          <option value="subclinical">Subclínico / incidental</option>
+          <option value="symptomatic">Sintomático</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>HESTIA / PESI / sPESI de bajo riesgo</span>
+        <select id="pe_low_score">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Severidad clínica elevada</span>
+        <select id="pe_high_score">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Biomarcador cardíaco elevado</span>
+        <select id="pe_biomarker">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Lactato elevado</span>
+        <select id="pe_lactate">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Disfunción / dilatación de VD (TC o eco)</span>
+        <select id="pe_rv">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Falla cardiopulmonar incipiente</span>
+        <select id="pe_incipient_failure">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Shock normotenso</span>
+        <select id="pe_normotensive_shock">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Falla cardiopulmonar establecida</span>
+        <select id="pe_cardiopulmonary_failure">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Colapso refractario / paro / soporte extracorpóreo potencial</span>
+        <select id="pe_refractory_collapse">
+          <option value="">Seleccione</option>
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions" style="margin-top:1rem;">
+      <button type="button" class="btn" id="pe2026_calc">Clasificar TEP 2026</button>
+      <button type="button" class="btn-secondary" id="pe2026_reset">Reiniciar</button>
+    </div>
+
+    <div id="pe2026_result" class="resultado"></div>
+    <div id="pe2026_summary" class="note"></div>
+    <div id="pe2026_logic" class="note" style="display:none;"></div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h3>🩺 Manejo inicial sugerido por categoría</h3>
+    <div id="pe2026_management" class="note"></div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h3>📚 Leyenda COR</h3>
+    <div class="note">
+      <p><strong>COR 1:</strong> recomendado / indicado.</p>
+      <p><strong>COR 2a:</strong> razonable considerar.</p>
+      <p><strong>COR 2b:</strong> puede considerarse en casos seleccionados.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h3>⚠️ Nota de interpretación</h3>
+    <div class="note">
+      Esta herramienta resume la figura de evaluación inicial y manejo por categorías clínicas AHA/ACC 2026.
+      Debe interpretarse junto con la valoración clínica integral, ecocardiografía/TC, biomarcadores, lactato,
+      sangrado y disponibilidad de terapias de reperfusión.
+    </div>
+  </div>
+</section>
+   
+   
       <!-- =========================
      FUNDAMENTO CLÍNICO ESCALAS UCI
 ========================== -->
