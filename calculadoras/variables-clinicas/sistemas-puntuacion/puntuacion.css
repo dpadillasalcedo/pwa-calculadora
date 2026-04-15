@@ -292,3 +292,138 @@ footer {
     padding: 1.3rem;
   }
 }
+
+/* =========================
+   TEP AHA/ACC 2026
+========================= */
+
+#tep-risk-aha-acc-2026 .panel-head {
+  margin-bottom: 0.5rem;
+}
+
+#tep-risk-aha-acc-2026 h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.02rem;
+  color: var(--primary);
+}
+
+#tep-risk-aha-acc-2026 .field span {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+#tep-risk-aha-acc-2026 .card + .card {
+  margin-top: 1.25rem;
+}
+
+#pe2026_result {
+  border-left: 4px solid #0f172a;
+  background: #eef2ff;
+}
+
+#pe2026_summary {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+#pe2026_logic {
+  margin-top: 1rem;
+  padding: 1rem 1rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text-soft);
+}
+
+#pe2026_logic ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+}
+
+#pe2026_logic li {
+  margin-bottom: 0.45rem;
+}
+
+#pe2026_management {
+  margin-top: 0.25rem;
+}
+
+#pe2026_management ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+#pe2026_management li {
+  margin-bottom: 0.7rem;
+  color: var(--text-soft);
+}
+
+#pe2026_management strong {
+  color: var(--primary);
+}
+
+/* =========================
+   BADGES COR
+========================= */
+
+.cor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-right: 0.45rem;
+  white-space: nowrap;
+}
+
+.cor-1 {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.cor-2a {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.cor-2b {
+  background: #fed7aa;
+  color: #9a3412;
+  border: 1px solid #fdba74;
+}
+
+/* =========================
+   BLOQUE LEYENDA
+========================= */
+
+#tep-risk-aha-acc-2026 .card p {
+  margin: 0.45rem 0;
+}
+
+/* =========================
+   RESPONSIVE EXTRA TEP
+========================= */
+
+@media (max-width: 768px) {
+  #tep-risk-aha-acc-2026 .actions {
+    flex-direction: column;
+  }
+
+  #tep-risk-aha-acc-2026 button {
+    width: 100%;
+  }
+
+  #pe2026_logic,
+  #pe2026_management {
+    font-size: 0.92rem;
+  }
+}
