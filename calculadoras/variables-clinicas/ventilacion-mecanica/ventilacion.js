@@ -250,3 +250,25 @@ function calcularComponenteResistivo() {
 window.calcularPesoIdeal = calcularPesoIdeal;
 window.ajustarPCO2 = ajustarPCO2;
 window.calcularDeltaP = calcularDeltaP;
+
+/* =========================
+   TOGGLE P0.1 Y POCC
+========================= */
+function toggleTablasDriveRespiratorio() {
+  const box = document.getElementById("contenidoTablasDriveRespiratorio");
+  const btn = document.querySelector("#tablas-drive-respiratorio .toggle-btn");
+
+  if (!box || !btn) return;
+
+  box.classList.toggle("active");
+
+  const abierto = box.classList.contains("active");
+
+  btn.textContent = abierto
+    ? "Ocultar tablas P0.1 y POCC"
+    : "Mostrar tablas P0.1 y POCC";
+
+  btn.setAttribute("aria-expanded", abierto ? "true" : "false");
+}
+
+window.toggleTablasDriveRespiratorio = toggleTablasDriveRespiratorio;
