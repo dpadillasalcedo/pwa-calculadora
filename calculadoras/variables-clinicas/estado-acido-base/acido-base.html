@@ -441,6 +441,179 @@
 
 
   <!-- =========================
+     ALGORITMO ALCALOSIS METABÓLICA
+========================== -->
+<section id="algoritmo-alcalosis" class="panel">
+
+  <button
+    type="button"
+    class="toggle-btn"
+    onclick="toggleAlgoritmoAlcalosis()"
+    aria-expanded="false"
+    aria-controls="contenidoAlgoritmoAlcalosis">
+    Mostrar algoritmo de alcalosis metabólica
+  </button>
+
+  <div
+    id="contenidoAlgoritmoAlcalosis"
+    class="collapsible-box">
+
+    <h2>Algoritmo de alcalosis metabólica</h2>
+
+    <h3>1. Confirmar alcalosis metabólica</h3>
+    <p>
+      Sospechar alcalosis metabólica cuando existe pH elevado, habitualmente
+      mayor de 7.45, asociado a bicarbonato elevado.
+    </p>
+
+    <p>
+      Evaluar si la compensación respiratoria es adecuada. En alcalosis
+      metabólica, la PaCO₂ debe aumentar aproximadamente 0.7 mmHg por cada
+      aumento de 1 mEq/L de HCO₃⁻.
+    </p>
+
+    <h3>2. Identificar los mecanismos fisiopatológicos</h3>
+    <ul>
+      <li>Pérdida de hidrogeniones, especialmente por vómitos o sonda nasogástrica.</li>
+      <li>Contracción de volumen con aumento de reabsorción proximal de bicarbonato.</li>
+      <li>Hipokalemia, que perpetúa la alcalosis metabólica.</li>
+      <li>Exceso mineralocorticoide con aumento de secreción distal de H⁺ y K⁺.</li>
+      <li>Administración exógena de bicarbonato o citrato.</li>
+    </ul>
+
+    <h3>3. Medir cloro urinario</h3>
+    <p>
+      El cloro urinario permite clasificar la alcalosis metabólica en sensible
+      o resistente a cloro.
+    </p>
+
+    <h3>Cloro urinario &lt;20 mEq/L</h3>
+    <p>
+      Sugiere alcalosis metabólica sensible a cloro o salino-responsiva.
+    </p>
+
+    <p><strong>Mecanismo:</strong></p>
+    <ul>
+      <li>Pérdida de HCl.</li>
+      <li>Depleción de volumen.</li>
+      <li>Activación del sistema renina–angiotensina–aldosterona.</li>
+      <li>Aumento de reabsorción renal de bicarbonato.</li>
+    </ul>
+
+    <p><strong>Etiologías frecuentes:</strong></p>
+    <ul>
+      <li>Vómitos.</li>
+      <li>Aspiración por sonda nasogástrica.</li>
+      <li>Diuréticos suspendidos o uso remoto.</li>
+      <li>Alcalosis post-hipercapnia.</li>
+      <li>Depleción de volumen con cloropenia.</li>
+    </ul>
+
+    <p><strong>Tratamiento orientativo:</strong></p>
+    <ul>
+      <li>Suero fisiológico 0.9%.</li>
+      <li>Reposición de KCl.</li>
+      <li>Corrección de la causa desencadenante.</li>
+    </ul>
+
+    <h3>Cloro urinario &gt;20 mEq/L</h3>
+    <p>
+      Sugiere alcalosis metabólica resistente a cloro.
+    </p>
+
+    <p><strong>Mecanismo:</strong></p>
+    <ul>
+      <li>Pérdida renal persistente de H⁺ y K⁺.</li>
+      <li>Aumento de entrega distal de sodio.</li>
+      <li>Exceso mineralocorticoide.</li>
+    </ul>
+
+    <h3>4. Si hay hipertensión arterial</h3>
+    <p>
+      Pensar en exceso mineralocorticoide.
+    </p>
+
+    <p><strong>Etiologías probables:</strong></p>
+    <ul>
+      <li>Hiperaldosteronismo primario.</li>
+      <li>Hiperaldosteronismo secundario.</li>
+      <li>Síndrome de Cushing.</li>
+      <li>Uso de corticoides con efecto mineralocorticoide.</li>
+      <li>Síndrome de Liddle.</li>
+      <li>Ingesta de regaliz.</li>
+    </ul>
+
+    <table class="acid-base-table">
+      <tbody>
+        <tr class="section">
+          <th>Renina</th>
+          <th>Aldosterona</th>
+          <th>Orientación diagnóstica</th>
+        </tr>
+        <tr>
+          <td>Baja</td>
+          <td>Alta</td>
+          <td>Hiperaldosteronismo primario</td>
+        </tr>
+        <tr>
+          <td>Alta</td>
+          <td>Alta</td>
+          <td>Hiperaldosteronismo secundario</td>
+        </tr>
+        <tr>
+          <td>Baja</td>
+          <td>Baja</td>
+          <td>Liddle, regaliz o exceso mineralocorticoide no aldosterónico</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5. Si no hay hipertensión arterial</h3>
+    <p>
+      Pensar en pérdidas renales de sal o uso de diuréticos.
+    </p>
+
+    <p><strong>Etiologías probables:</strong></p>
+    <ul>
+      <li>Diuréticos activos.</li>
+      <li>Síndrome de Bartter.</li>
+      <li>Síndrome de Gitelman.</li>
+      <li>Hipomagnesemia severa.</li>
+    </ul>
+
+    <p><strong>Claves diferenciales:</strong></p>
+    <ul>
+      <li>Bartter: hipercalciuria, simula uso de furosemida.</li>
+      <li>Gitelman: hipomagnesemia e hipocalciuria, simula uso de tiazidas.</li>
+    </ul>
+
+    <h3>6. Evaluar potasio</h3>
+    <p>
+      La hipokalemia perpetúa la alcalosis metabólica porque aumenta la secreción
+      renal de H⁺, aumenta la amoniogénesis y favorece la reabsorción proximal
+      de bicarbonato.
+    </p>
+
+    <p>
+      La reposición de potasio, preferentemente como KCl, es una parte central
+      del tratamiento.
+    </p>
+
+    <h3>7. Alcalosis metabólica severa</h3>
+    <p>
+      Un pH mayor o igual a 7.55 puede asociarse con arritmias, hipocalcemia
+      iónica, vasoconstricción cerebral, convulsiones y mayor riesgo clínico.
+    </p>
+
+    <p>
+      En casos refractarios puede considerarse acetazolamida, HCl intravenoso
+      en situaciones excepcionales o diálisis según el contexto clínico.
+    </p>
+
+  </div>
+</section>
+
+  <!-- =========================
      FUNDAMENTO CLÍNICO ÁCIDO-BASE
 ========================== -->
 <section class="panel seo-panel">
