@@ -332,6 +332,125 @@
  </main>
 
      <!-- =========================
+     P0.1 Y POCC EN VENTILACIÓN MECÁNICA
+========================== -->
+<section id="tablas-drive-respiratorio" class="panel">
+
+  <button
+    type="button"
+    class="toggle-btn"
+    onclick="toggleTablasDriveRespiratorio()"
+    aria-expanded="false"
+    aria-controls="contenidoTablasDriveRespiratorio">
+    Mostrar tablas P0.1 y POCC
+  </button>
+
+  <div
+    id="contenidoTablasDriveRespiratorio"
+    class="collapsible-box">
+
+    <h2>P0.1 y POCC en ventilación mecánica</h2>
+
+    <p>
+      La P0.1 y la POCC son herramientas útiles para estimar el drive respiratorio
+      y el esfuerzo inspiratorio durante la ventilación mecánica asistida.
+    </p>
+
+    <h3>P0.1</h3>
+    <p>
+      La P0.1 corresponde a la presión generada durante los primeros 100 ms
+      de una oclusión inspiratoria. Refleja principalmente el impulso respiratorio
+      central.
+    </p>
+
+    <table class="acid-base-table">
+      <tbody>
+        <tr class="section">
+          <th>P0.1</th>
+          <th>Interpretación</th>
+        </tr>
+        <tr>
+          <td>&lt;1 cmH₂O</td>
+          <td>Drive bajo / posible sobreasistencia.</td>
+        </tr>
+        <tr>
+          <td>1–3.5 cmH₂O</td>
+          <td>Rango generalmente adecuado.</td>
+        </tr>
+        <tr>
+          <td>&gt;3.5–4 cmH₂O</td>
+          <td>Drive respiratorio alto.</td>
+        </tr>
+        <tr>
+          <td>&gt;6 cmH₂O</td>
+          <td>Drive muy alto / riesgo de esfuerzo lesivo.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>POCC</h3>
+    <p>
+      La POCC es la presión generada durante una oclusión espiratoria. Se usa
+      como estimador indirecto del esfuerzo inspiratorio y de la presión muscular.
+    </p>
+
+    <table class="acid-base-table">
+      <tbody>
+        <tr class="section">
+          <th>POCC</th>
+          <th>Interpretación</th>
+        </tr>
+        <tr>
+          <td>0 a −5 cmH₂O</td>
+          <td>Esfuerzo bajo.</td>
+        </tr>
+        <tr>
+          <td>−5 a −10 cmH₂O</td>
+          <td>Esfuerzo moderado.</td>
+        </tr>
+        <tr>
+          <td>&lt;−10 a −15 cmH₂O</td>
+          <td>Esfuerzo alto.</td>
+        </tr>
+        <tr>
+          <td>&lt;−15 cmH₂O</td>
+          <td>Esfuerzo excesivo / riesgo de P-SILI.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Interpretación conjunta</h3>
+
+    <table class="acid-base-table">
+      <tbody>
+        <tr class="section">
+          <th>Patrón</th>
+          <th>Interpretación clínica</th>
+        </tr>
+        <tr>
+          <td>P0.1 baja + POCC poco negativa</td>
+          <td>Bajo drive respiratorio / posible sobreasistencia.</td>
+        </tr>
+        <tr>
+          <td>P0.1 normal + POCC moderada</td>
+          <td>Esfuerzo probablemente adecuado.</td>
+        </tr>
+        <tr>
+          <td>P0.1 alta + POCC muy negativa</td>
+          <td>Drive alto con esfuerzo elevado. Riesgo de P-SILI, asincronías o fatiga.</td>
+        </tr>
+        <tr>
+          <td>P0.1 alta + POCC poco negativa</td>
+          <td>Drive alto con bajo esfuerzo mecánico. Evaluar debilidad muscular, hiperinsuflación, asincronías o medición.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
+     
+
+     <!-- =========================
      FUNDAMENTO CLÍNICO
 ========================== -->
 <section class="panel seo-panel">
