@@ -416,3 +416,147 @@ footer {
     padding: 0.55rem;
   }
 }
+
+/* =========================
+   COLLAPSIBLE HIPONATREMIA HIPOTÓNICA
+========================= */
+#contenidoAlgoritmoHiponatremiaHipotonica.collapsible-box {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica.collapsible-box.active {
+  max-height: 12000px;
+  opacity: 1;
+  margin-top: 1.2rem;
+}
+
+/* =========================
+   BOTÓN DESPLEGABLE
+========================= */
+#algoritmo-hiponatremia-hipotonica .toggle-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+#algoritmo-hiponatremia-hipotonica .toggle-btn:hover {
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+#contenidoAlgoritmoHiponatremiaHipotonica {
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica p {
+  margin: 0.7rem 0;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica ul {
+  margin: 0.7rem 0 1rem 1.2rem;
+  padding: 0;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica li {
+  margin-bottom: 0.45rem;
+}
+
+/* =========================
+   TABLA INTERNA
+========================= */
+#contenidoAlgoritmoHiponatremiaHipotonica .acid-base-table {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica th,
+#contenidoAlgoritmoHiponatremiaHipotonica td {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica th {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#contenidoAlgoritmoHiponatremiaHipotonica td {
+  color: var(--text-soft);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  #algoritmo-hiponatremia-hipotonica .toggle-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  #contenidoAlgoritmoHiponatremiaHipotonica h2 {
+    font-size: 1.2rem;
+  }
+
+  #contenidoAlgoritmoHiponatremiaHipotonica h3 {
+    font-size: 0.95rem;
+  }
+
+  #contenidoAlgoritmoHiponatremiaHipotonica table {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #contenidoAlgoritmoHiponatremiaHipotonica th,
+  #contenidoAlgoritmoHiponatremiaHipotonica td {
+    padding: 0.55rem;
+  }
+}
