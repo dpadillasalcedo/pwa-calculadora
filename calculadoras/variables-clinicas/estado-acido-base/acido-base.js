@@ -154,3 +154,21 @@ document.querySelectorAll('.content').forEach(row => {
     row.classList.toggle('active');
   });
 });
+
+function toggleAlgoritmoAlcalosis() {
+  const box = document.getElementById("contenidoAlgoritmoAlcalosis");
+  const btn = document.querySelector("#algoritmo-alcalosis .toggle-btn");
+
+  if (!box || !btn) return;
+
+  box.classList.toggle("active");
+
+  const abierto = box.classList.contains("active");
+  btn.textContent = abierto
+    ? "Ocultar algoritmo de alcalosis metabólica"
+    : "Mostrar algoritmo de alcalosis metabólica";
+
+  btn.setAttribute("aria-expanded", abierto ? "true" : "false");
+}
+
+window.toggleAlgoritmoAlcalosis = toggleAlgoritmoAlcalosis;
