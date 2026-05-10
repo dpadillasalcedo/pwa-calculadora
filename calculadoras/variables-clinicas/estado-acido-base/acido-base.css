@@ -275,3 +275,144 @@ footer {
     font-size: 0.85rem;
   }
 }
+
+/* =========================
+   COLLAPSIBLE ALGORITMO
+========================= */
+.collapsible-box {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    padding-top 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+.collapsible-box.active {
+  max-height: 10000px;
+  opacity: 1;
+  margin-top: 1.2rem;
+}
+
+/* =========================
+   TOGGLE BUTTON
+========================= */
+.toggle-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.toggle-btn:hover {
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   CONTENIDO ALGORITMO
+========================= */
+#contenidoAlgoritmoAlcalosis {
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+#contenidoAlgoritmoAlcalosis h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+#contenidoAlgoritmoAlcalosis h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+#contenidoAlgoritmoAlcalosis p {
+  margin: 0.7rem 0;
+}
+
+#contenidoAlgoritmoAlcalosis ul {
+  margin: 0.7rem 0 1rem 1.2rem;
+  padding: 0;
+}
+
+#contenidoAlgoritmoAlcalosis li {
+  margin-bottom: 0.45rem;
+}
+
+/* =========================
+   TABLAS INTERNAS
+========================= */
+#contenidoAlgoritmoAlcalosis .acid-base-table {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#contenidoAlgoritmoAlcalosis table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#contenidoAlgoritmoAlcalosis th,
+#contenidoAlgoritmoAlcalosis td {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+#contenidoAlgoritmoAlcalosis th {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#contenidoAlgoritmoAlcalosis td {
+  color: var(--text-soft);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .toggle-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  #contenidoAlgoritmoAlcalosis h2 {
+    font-size: 1.2rem;
+  }
+
+  #contenidoAlgoritmoAlcalosis h3 {
+    font-size: 0.95rem;
+  }
+
+  #contenidoAlgoritmoAlcalosis table {
+    font-size: 0.82rem;
+  }
+
+  #contenidoAlgoritmoAlcalosis th,
+  #contenidoAlgoritmoAlcalosis td {
+    padding: 0.55rem;
+  }
+}
