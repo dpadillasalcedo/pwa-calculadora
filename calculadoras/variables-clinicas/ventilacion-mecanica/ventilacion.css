@@ -279,3 +279,108 @@ button:hover {
     padding: 1.4rem;
   }
 }
+
+/* =========================
+   COLLAPSIBLE P0.1 Y POCC
+========================= */
+#contenidoTablasDriveRespiratorio.collapsible-box {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+#contenidoTablasDriveRespiratorio.collapsible-box.active {
+  max-height: 8000px;
+  opacity: 1;
+  margin-top: 1.2rem;
+}
+
+/* =========================
+   CONTENIDO P0.1 Y POCC
+========================= */
+#contenidoTablasDriveRespiratorio {
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+#contenidoTablasDriveRespiratorio h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+#contenidoTablasDriveRespiratorio h3 {
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+#contenidoTablasDriveRespiratorio p {
+  margin: 0.7rem 0;
+}
+
+/* =========================
+   TABLAS P0.1 Y POCC
+========================= */
+#contenidoTablasDriveRespiratorio .acid-base-table {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#contenidoTablasDriveRespiratorio table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#contenidoTablasDriveRespiratorio th,
+#contenidoTablasDriveRespiratorio td {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+#contenidoTablasDriveRespiratorio th {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#contenidoTablasDriveRespiratorio td {
+  color: var(--text-soft);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  #contenidoTablasDriveRespiratorio h2 {
+    font-size: 1.2rem;
+  }
+
+  #contenidoTablasDriveRespiratorio h3 {
+    font-size: 0.95rem;
+  }
+
+  #contenidoTablasDriveRespiratorio table {
+    font-size: 0.82rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #contenidoTablasDriveRespiratorio th,
+  #contenidoTablasDriveRespiratorio td {
+    padding: 0.55rem;
+  }
+}
