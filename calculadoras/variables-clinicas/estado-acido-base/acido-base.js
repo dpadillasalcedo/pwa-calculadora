@@ -172,3 +172,25 @@ function toggleAlgoritmoAlcalosis() {
 }
 
 window.toggleAlgoritmoAlcalosis = toggleAlgoritmoAlcalosis;
+
+/* =========================
+   TOGGLE HIPONATREMIA HIPOTÓNICA
+========================= */
+function toggleAlgoritmoHiponatremiaHipotonica() {
+  const box = document.getElementById("contenidoAlgoritmoHiponatremiaHipotonica");
+  const btn = document.querySelector("#algoritmo-hiponatremia-hipotonica .toggle-btn");
+
+  if (!box || !btn) return;
+
+  box.classList.toggle("active");
+
+  const abierto = box.classList.contains("active");
+
+  btn.textContent = abierto
+    ? "Ocultar algoritmo de hiponatremia hipotónica"
+    : "Mostrar algoritmo de hiponatremia hipotónica";
+
+  btn.setAttribute("aria-expanded", abierto ? "true" : "false");
+}
+
+window.toggleAlgoritmoHiponatremiaHipotonica = toggleAlgoritmoHiponatremiaHipotonica;
