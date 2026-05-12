@@ -28,6 +28,9 @@ body {
 
   --surface: #ffffff;
   --border: #e2e8f0;
+  --success-soft: #ecfdf5;
+  --success-border: #86efac;
+  --success-text: #166534;
 
   --radius: 14px;
   --radius-lg: 22px;
@@ -101,6 +104,14 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
+.card + .card {
+  margin-top: 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
 /* =========================
    INPUT
 ========================= */
@@ -113,10 +124,12 @@ label {
 
 input {
   width: 100%;
-  padding: 0.65rem;
+  padding: 0.7rem 0.75rem;
   border-radius: 10px;
   border: 1px solid var(--border);
   font-size: 0.95rem;
+  color: var(--primary);
+  background: #ffffff;
 }
 
 input:focus {
@@ -130,22 +143,27 @@ input:focus {
 ========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.grid .card {
+  margin-top: 0;
 }
 
 /* =========================
    RESULTADOS
 ========================= */
 .result {
-  margin-top: 0.6rem;
+  margin-top: 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
 .result b {
-  font-size: 1rem;
+  font-size: 1.05rem;
+  color: var(--primary);
 }
 
 /* =========================
@@ -154,6 +172,7 @@ input:focus {
 .small {
   font-size: 0.85rem;
   color: var(--muted);
+  margin-bottom: 0;
 }
 
 .note {
@@ -175,18 +194,47 @@ input:focus {
 
 .tabla-enterales th,
 .tabla-enterales td {
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
+  vertical-align: middle;
 }
 
 .tabla-enterales th {
   background: #f1f5f9;
-  font-weight: 600;
+  color: var(--primary);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .tabla-enterales td {
   color: var(--text-soft);
+}
+
+.tabla-enterales tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-enterales tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Mejor opción según menor déficit proteico */
+.tabla-enterales tr.best-option {
+  background: var(--success-soft);
+}
+
+.tabla-enterales tr.best-option td {
+  color: var(--success-text);
+  font-weight: 600;
+  border-bottom-color: var(--success-border);
+}
+
+.tabla-enterales tr.best-option td:first-child::after {
+  content: " · mejor opción";
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--success-text);
 }
 
 /* =========================
@@ -241,6 +289,33 @@ input:focus {
   }
 
   .tabla-enterales {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
     font-size: 0.8rem;
+  }
+
+  .tabla-enterales th,
+  .tabla-enterales td {
+    padding: 0.55rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .wrap {
+    width: min(100% - 1rem, var(--container));
+  }
+
+  .page-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+
+  .result b {
+    font-size: 1rem;
   }
 }
