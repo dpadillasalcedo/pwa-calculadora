@@ -169,3 +169,104 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("restriccionVolumen").addEventListener("change", runCalculation);
 });
+
+/* =========================
+   REQUERIMIENTO CALÓRICO DIARIO
+========================= */
+
+function calculateIndirectCalorimetry() {
+  const vo2 = validNumber($("vo2IC").value);
+  const vco2 = validNumber($("vco2IC").value);
+
+  if (!vo2 || !vco2) {
+    $("kcalIC").textContent = "—";
+    return;
+  }
+
+  const kcalDay = ((3.941 * vo2) + (1.106 * vco2)) * 1440;
+
+  $("kcalIC").textContent =
+    `${round10(kcalDay)} kcal/día`;
+}
+
+function oxygenContent(hb, saturation, po2) {
+  return (1.34 * hb * saturation) + (0.0031 * po2);
+}
+
+function calculateFick() {
+  const gc = validNumber($("gcFick").value);
+  const hb = validNumber($("hbFick").value);
+  const sao2 = validNumber($("sao2Fick").value);
+  const svo2 = validNumber($("svo2Fick").value);
+  const pao2 = validNumber($("pao2Fick").value);
+  const pvo2 = validNumber($("pvo2Fick").value);
+  const rq = validNumber($("rqFick").value) || 0.85;
+
+  if (!gc || !hb || !sao2 || !svo2 || !pao2 || !pvo2) {
+    $("vo2FickResult").textContent = "—";
+    $("kcalFick").textContent = "—";
+    return;
+  }
+
+  const caO2 = oxygenContent(hb, sao2 / 100, pao2);
+  const cvO2 = oxygenContent(hb, svo2 / 100, pvo2);
+
+  const vo2MlMin = gc * (caO2 - cvO2) * 10;
+  const vo2LMin = vo2MlMin / 1000;
+  const vco2LMin = vo2LMin * rq;
+
+  const kcalDay =
+    ((3.941 * vo2LMin) + (1.106 * vco2LMin)) * 1440;
+
+  $("vo2FickResult").textContent =
+    `VO₂ estimado: ${round0(vo2MlMin)} ml/min`;
+
+  $("kcalFick").textContent =
+    `${round10(kcalDay)} kcal/día`;
+}
+
+function calculatePredictiveCalories() {
+  const peso = validNumber($("pesoPredictivo").value);
+
+  if (!peso) {
+    $("kcal20").textContent = "—";
+    $("kcal25").textContent = "—";
+    $("kcal30").textContent = "—";
+    return;
+  }
+
+  $("kcal20").textContent =
+    `20 kcal/kg: ${round10(peso * 20)} kcal/día`;
+
+  $("kcal25").textContent =
+    `25 kcal/kg: ${round10(peso * 25)} kcal/día`;
+
+  $("kcal30").textContent =
+    `30 kcal/kg: ${round10(peso * 30)} kcal/día`;
+}
+
+function runCalorieRequirementCalculation() {
+  calculateIndirectCalorimetry();
+  calculateFick();
+  calculatePredictiveCalories();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  [
+    "vo2IC",
+    "vco2IC",
+    "gcFick",
+    "hbFick",
+    "sao2Fick",
+    "svo2Fick",
+    "pao2Fick",
+    "pvo2Fick",
+    "rqFick",
+    "pesoPredictivo"
+  ].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener("input", runCalorieRequirementCalculation);
+    }
+  });
+});
