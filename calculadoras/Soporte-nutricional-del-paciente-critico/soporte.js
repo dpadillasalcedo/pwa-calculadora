@@ -18,7 +18,6 @@ function validNumber(v) {
 }
 
 function calculate(weight, kcalKg, protKg) {
-
   const kcal = weight * kcalKg;
   const protein = weight * protKg;
 
@@ -33,43 +32,33 @@ function calculate(weight, kcalKg, protKg) {
 ========================= */
 
 function clearEnteralTable(tableId) {
-
   document
     .querySelectorAll(`#${tableId} tbody tr`)
     .forEach(row => {
-
-      row.querySelector(".vol").textContent      = "—";
-      row.querySelector(".kcal").textContent     = "—";
-      row.querySelector(".prot").textContent     = "—";
-      row.querySelector(".deficit").textContent  = "—";
+      row.querySelector(".vol").textContent = "—";
+      row.querySelector(".kcal").textContent = "—";
+      row.querySelector(".prot").textContent = "—";
+      row.querySelector(".deficit").textContent = "—";
 
       row.classList.remove("best-option");
     });
 }
 
 function updateEnteralTable(tableId, targetKcal, targetProtein) {
-
   if (!targetKcal || !targetProtein) return;
 
   const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-
   const calc = [];
 
   rows.forEach(row => {
-
-    const kcalMl  = Number(row.dataset.kcalml);
+    const kcalMl = Number(row.dataset.kcalml);
     const prot100 = Number(row.dataset.prot100);
 
     if (!kcalMl || !prot100) return;
 
     const vol = targetKcal / kcalMl;
-
-    const protIdeal = vol * (prot100 / 100);
-
-    const deficit = Math.max(
-      0,
-      targetProtein - protReal
-    );
+    const protReal = vol * (prot100 / 100);
+    const deficit = Math.max(0, targetProtein - protReal);
 
     calc.push({
       row,
@@ -82,7 +71,6 @@ function updateEnteralTable(tableId, targetKcal, targetProtein) {
   calc.sort((a, b) => a.deficit - b.deficit);
 
   calc.forEach((c, i) => {
-
     c.row.querySelector(".vol").textContent =
       `${Math.round(c.vol)} ml`;
 
@@ -97,10 +85,7 @@ function updateEnteralTable(tableId, targetKcal, targetProtein) {
         ? `-${Math.round(c.deficit)} g`
         : "0 g";
 
-    c.row.classList.toggle(
-      "best-option",
-      i === 0
-    );
+    c.row.classList.toggle("best-option", i === 0);
   });
 }
 
@@ -109,13 +94,9 @@ function updateEnteralTable(tableId, targetKcal, targetProtein) {
 ========================= */
 
 function runCalculation() {
+  const pesoIdeal = validNumber($("pesoIdeal").value);
 
-  const peso = validNumber(
-    $("pesoReal").value
-  );
-
-  if (!peso) {
-
+  if (!pesoIdeal) {
     $("kcalTrofico").textContent = "—";
     $("protTrofico").textContent = "—";
 
@@ -129,13 +110,13 @@ function runCalculation() {
   }
 
   const trof = calculate(
-    peso,
+    pesoIdeal,
     STRATEGIES.trofico.kcalKg,
     STRATEGIES.trofico.protKg
   );
 
   const hipo = calculate(
-    peso,
+    pesoIdeal,
     STRATEGIES.hipo.kcalKg,
     STRATEGIES.hipo.protKg
   );
@@ -152,31 +133,14 @@ function runCalculation() {
   $("protHipo").textContent =
     `${hipo.protein} g/día`;
 
-  updateEnteralTable(
-    "tablaTrofico",
-    trof.kcal,
-    trof.protein
-  );
-
-  updateEnteralTable(
-    "tablaHipo",
-    hipo.kcal,
-    hipo.protein
-  );
+  updateEnteralTable("tablaTrofico", trof.kcal, trof.protein);
+  updateEnteralTable("tablaHipo", hipo.kcal, hipo.protein);
 }
 
 /* =========================
    EVENTS
 ========================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    $("pesoReal")
-      .addEventListener(
-        "input",
-        runCalculation
-      );
-  }
-);
+document.addEventListener("DOMContentLoaded", () => {
+  $("pesoIdeal").addEventListener("input", runCalculation);
+});
