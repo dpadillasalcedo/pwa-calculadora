@@ -247,10 +247,102 @@
 
 <div class="divider"></div>
 
+
 <!-- =========================
-     INPUT
+     REQUERIMIENTO CALÓRICO DIARIO
 ========================= -->
 
+<section class="card calorie-section">
+
+  <h2>Requerimiento calórico diario</h2>
+
+  <p class="small">
+    Estimación por calorimetría indirecta, método de Fick o ecuaciones predictivas.
+  </p>
+
+  <div class="method-grid">
+
+    <!-- CALORIMETRÍA INDIRECTA -->
+    <article class="method-card">
+      <h3>Calorimetría indirecta</h3>
+      <p class="formula">
+        EE = [(3.941 × VO₂) + (1.106 × VCO₂)] × 1440
+      </p>
+
+      <label for="vo2IC">VO₂ (L/min)</label>
+      <input id="vo2IC" type="number" min="0" step="0.01" placeholder="Ej: 0.25">
+
+      <label for="vco2IC">VCO₂ (L/min)</label>
+      <input id="vco2IC" type="number" min="0" step="0.01" placeholder="Ej: 0.20">
+
+      <div class="result-box">
+        <b id="kcalIC">—</b>
+      </div>
+    </article>
+
+    <!-- MÉTODO DE FICK -->
+    <article class="method-card">
+      <h3>Método de Fick</h3>
+      <p class="formula">
+        VO₂ = GC × (CaO₂ − CvO₂) × 10
+      </p>
+
+      <label for="gcFick">Gasto cardíaco (L/min)</label>
+      <input id="gcFick" type="number" min="0" step="0.1" placeholder="Ej: 5">
+
+      <label for="hbFick">Hemoglobina (g/dL)</label>
+      <input id="hbFick" type="number" min="0" step="0.1" placeholder="Ej: 10">
+
+      <label for="sao2Fick">SaO₂ (%)</label>
+      <input id="sao2Fick" type="number" min="0" max="100" step="1" placeholder="Ej: 96">
+
+      <label for="svo2Fick">SvO₂ (%)</label>
+      <input id="svo2Fick" type="number" min="0" max="100" step="1" placeholder="Ej: 70">
+
+      <label for="pao2Fick">PaO₂ (mmHg)</label>
+      <input id="pao2Fick" type="number" min="0" step="1" placeholder="Ej: 90">
+
+      <label for="pvo2Fick">PvO₂ (mmHg)</label>
+      <input id="pvo2Fick" type="number" min="0" step="1" placeholder="Ej: 40">
+
+      <label for="rqFick">RQ estimado</label>
+      <input id="rqFick" type="number" min="0.7" max="1.0" step="0.01" value="0.85">
+
+      <div class="result-box">
+        <b id="vo2FickResult">—</b>
+        <b id="kcalFick">—</b>
+      </div>
+    </article>
+
+    <!-- ECUACIONES PREDICTIVAS -->
+    <article class="method-card">
+      <h3>Ecuaciones predictivas</h3>
+      <p class="formula">
+        20, 25 y 30 kcal/kg/día
+      </p>
+
+      <label for="pesoPredictivo">Peso para cálculo (kg)</label>
+      <input id="pesoPredictivo" type="number" min="1" step="0.1" placeholder="Ej: 70">
+
+      <div class="result-box">
+        <b id="kcal20">—</b>
+        <b id="kcal25">—</b>
+        <b id="kcal30">—</b>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="note">
+    <b>Interpretación clínica:</b><br>
+    La calorimetría indirecta es el método preferido cuando está disponible. 
+    El método de Fick puede estimar VO₂ si se dispone de gasto cardíaco y gases arteriales/venosos.
+    Las ecuaciones predictivas son orientativas y deben individualizarse según fase clínica, tolerancia y riesgo de sobrealimentación.
+  </div>
+
+</section>
+
+  
 <!-- =========================
      INPUTS
 ========================= -->
