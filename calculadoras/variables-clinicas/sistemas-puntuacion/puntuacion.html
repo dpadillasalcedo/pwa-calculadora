@@ -501,6 +501,65 @@ function resetSOFA(){
 }
 </script>
 
+<!-- =========================
+     CLIF-SOFA / ACLF
+========================== -->
+<section id="clif-sofa-aclf" class="panel">
+
+  <h2>CLIF-SOFA y clasificación ACLF</h2>
+
+  <p class="note">
+    Calculadora educativa basada en disfunción hepática, renal, cerebral,
+    coagulación, circulación y respiración.
+  </p>
+
+  <label>Bilirrubina total (mg/dL)</label>
+  <input id="clif_bili" type="number" step="0.1" placeholder="Ej: 12">
+
+  <label>Creatinina (mg/dL)</label>
+  <input id="clif_creat" type="number" step="0.1" placeholder="Ej: 2.1">
+
+  <label>¿Terapia de reemplazo renal?</label>
+  <select id="clif_rrt">
+    <option value="no">No</option>
+    <option value="si">Sí</option>
+  </select>
+
+  <label>Encefalopatía hepática</label>
+  <select id="clif_he">
+    <option value="0">Grado 0</option>
+    <option value="1">Grado I</option>
+    <option value="2">Grado II</option>
+    <option value="3">Grado III</option>
+    <option value="4">Grado IV</option>
+  </select>
+
+  <label>INR</label>
+  <input id="clif_inr" type="number" step="0.1" placeholder="Ej: 2.5">
+
+  <label>Presión arterial media - PAM (mmHg)</label>
+  <input id="clif_map" type="number" step="1" placeholder="Ej: 68">
+
+  <label>Vasopresores</label>
+  <select id="clif_vaso">
+    <option value="no">No</option>
+    <option value="si">Sí</option>
+  </select>
+
+  <label>PaO₂/FiO₂</label>
+  <input id="clif_pafi" type="number" step="1" placeholder="Ej: 220">
+
+  <label>SpO₂/FiO₂ si no hay PaO₂/FiO₂</label>
+  <input id="clif_spofi" type="number" step="1" placeholder="Ej: 280">
+
+  <button type="button" onclick="calcularClifSofaAclf()">
+    Calcular CLIF-SOFA / ACLF
+  </button>
+
+  <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
+  <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
+
+</section>
 
 <!-- ===================== APACHE II ===================== -->
 <section class="panel">
