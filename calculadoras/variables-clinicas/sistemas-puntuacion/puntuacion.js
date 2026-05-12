@@ -656,27 +656,32 @@ document.addEventListener("DOMContentLoaded", function () {
 function calcularClifSofaAclf() {
   const bili = getNum("clif_bili");
   const creat = getNum("clif_creat");
-  const he = getNum("clif_he");
   const inr = getNum("clif_inr");
   const map = getNum("clif_map");
   const pafi = getNum("clif_pafi");
   const spofi = getNum("clif_spofi");
 
-  const rrt = document.getElementById("clif_rrt")?.value || "no";
-  const vaso = document.getElementById("clif_vaso")?.value || "no";
+  const heEl = document.getElementById("clif_he");
+  const rrtEl = document.getElementById("clif_rrt");
+  const vasoEl = document.getElementById("clif_vaso");
+
+  const he = heEl ? Number(heEl.value) : null;
+  const rrt = rrtEl ? rrtEl.value : "no";
+  const vaso = vasoEl ? vasoEl.value : "no";
 
   if (
     bili === null ||
     creat === null ||
-    he === null ||
     inr === null ||
-    map === null
+    map === null ||
+    he === null ||
+    !Number.isFinite(he)
   ) {
-    setText(
+    setHTML(
       "resultadoClifSofa",
       "Complete bilirrubina, creatinina, encefalopatía, INR y PAM."
     );
-    setText("interpretacionClifSofa", "");
+    setHTML("interpretacionClifSofa", "");
     return;
   }
 
@@ -711,13 +716,7 @@ function calcularClifSofaAclf() {
   else if (creat >= 1.5) disfunciones.push("Disfunción renal");
 
   /* CEREBRO */
-  let brainScore = 0;
-  if (he === 0) brainScore = 0;
-  else if (he === 1) brainScore = 1;
-  else if (he === 2) brainScore = 2;
-  else if (he === 3) brainScore = 3;
-  else if (he === 4) brainScore = 4;
-
+  let brainScore = he;
   score += brainScore;
 
   if (he >= 3) fallas.push("Cerebral");
@@ -752,7 +751,8 @@ function calcularClifSofaAclf() {
   let respDato = "No ingresado";
 
   if (pafi !== null) {
-    respDato = `PaO₂/FiO₂ ${pafi}`;
+    respDato = "PaO₂/FiO₂ " + pafi;
+
     if (pafi > 400) respScore = 0;
     else if (pafi > 300) respScore = 1;
     else if (pafi > 200) respScore = 2;
@@ -761,8 +761,10 @@ function calcularClifSofaAclf() {
 
     if (pafi <= 200) fallas.push("Respiratoria");
     else if (pafi <= 300) disfunciones.push("Disfunción respiratoria");
+
   } else if (spofi !== null) {
-    respDato = `SpO₂/FiO₂ ${spofi}`;
+    respDato = "SpO₂/FiO₂ " + spofi;
+
     if (spofi > 512) respScore = 0;
     else if (spofi > 357) respScore = 1;
     else if (spofi > 214) respScore = 2;
@@ -778,33 +780,28 @@ function calcularClifSofaAclf() {
   const numFallas = fallas.length;
 
   let aclf = "";
-  let aclfClass = "";
+  let boxClass = "";
 
   if (numFallas >= 3) {
     aclf = "ACLF grado 3";
-    aclfClass = "danger-box";
+    boxClass = "danger-box";
   } else if (numFallas === 2) {
     aclf = "ACLF grado 2";
-    aclfClass = "warning-box";
+    boxClass = "warning-box";
   } else if (numFallas === 1) {
-    const falla = fallas[0];
-
-    if (falla === "Renal") {
+    if (fallas[0] === "Renal") {
       aclf = "ACLF grado 1";
-      aclfClass = "warning-box";
-    } else if (
-      falla !== "Renal" &&
-      (creat >= 1.5 || he === 1 || he === 2)
-    ) {
+      boxClass = "warning-box";
+    } else if (creat >= 1.5 || he === 1 || he === 2) {
       aclf = "ACLF grado 1";
-      aclfClass = "warning-box";
+      boxClass = "warning-box";
     } else {
       aclf = "Sin ACLF según criterios simplificados";
-      aclfClass = "success-box";
+      boxClass = "success-box";
     }
   } else {
     aclf = "Sin ACLF";
-    aclfClass = "success-box";
+    boxClass = "success-box";
   }
 
   setHTML(
@@ -816,8 +813,7 @@ function calcularClifSofaAclf() {
 
   setHTML(
     "interpretacionClifSofa",
-    `
-    <div class="${aclfClass}">
+    `<div class="${boxClass}">
       <strong>${aclf}</strong>
     </div>
 
@@ -874,14 +870,7 @@ function calcularClifSofaAclf() {
     <p>${fallas.length ? fallas.join(", ") : "No se identifican fallas orgánicas."}</p>
 
     <h3>Disfunciones asociadas</h3>
-    <p>${disfunciones.length ? disfunciones.join(", ") : "No se identifican disfunciones relevantes."}</p>
-
-    <p>
-      La clasificación ACLF debe interpretarse junto con el contexto clínico,
-      presencia de descompensación aguda, infección, sepsis, hemorragia digestiva
-      u otros precipitantes.
-    </p>
-    `
+    <p>${disfunciones.length ? disfunciones.join(", ") : "No se identifican disfunciones relevantes."}</p>`
   );
 }
 
