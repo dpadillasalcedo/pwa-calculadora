@@ -64,7 +64,7 @@ function updateEnteralTable(tableId, targetKcal, targetProtein) {
 
     const vol = targetKcal / kcalMl;
 
-    const protReal = vol * (prot100 / 100);
+    const protIdeal = vol * (prot100 / 100);
 
     const deficit = Math.max(
       0,
