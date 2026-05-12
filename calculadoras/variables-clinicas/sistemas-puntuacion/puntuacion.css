@@ -427,3 +427,130 @@ footer {
     font-size: 0.92rem;
   }
 }
+
+/* =========================
+   CLIF-SOFA / ACLF
+========================= */
+#clif-sofa-aclf {
+  scroll-margin-top: 1rem;
+}
+
+#clif-sofa-aclf select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  background: white;
+  color: var(--primary);
+}
+
+#clif-sofa-aclf select:focus {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
+}
+
+#interpretacionClifSofa {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+#interpretacionClifSofa h3 {
+  margin-top: 1.3rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+#interpretacionClifSofa p {
+  margin: 0.6rem 0;
+}
+
+#interpretacionClifSofa .acid-base-table {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#interpretacionClifSofa table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#interpretacionClifSofa th,
+#interpretacionClifSofa td {
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+#interpretacionClifSofa th {
+  background: #f1f5f9;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#interpretacionClifSofa td {
+  color: var(--text-soft);
+}
+
+/* =========================
+   BOXES ACLF
+========================= */
+.success-box,
+.warning-box,
+.danger-box {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.success-box {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.warning-box {
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+  color: #9a3412;
+}
+
+.danger-box {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  #interpretacionClifSofa {
+    padding: 0.85rem;
+  }
+
+  #interpretacionClifSofa table {
+    font-size: 0.8rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #interpretacionClifSofa th,
+  #interpretacionClifSofa td {
+    padding: 0.55rem;
+  }
+}
