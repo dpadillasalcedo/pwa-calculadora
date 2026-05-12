@@ -824,9 +824,6 @@ function calcularClifSofaAclf() {
     ? fallas.join(", ")
     : "No se identifican fallas orgánicas mayores";
 
-  const disfuncionesTexto = disfunciones.length
-    ? disfunciones.join(", ")
-    : "No se identifican disfunciones relevantes";
 
   setClifHTML(
     "resultadoClifSofa",
