@@ -651,37 +651,46 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* =========================
-   CLIF-SOFA / ACLF
+   CLIF-SOFA / CLIF-C ACLF
 ========================= */
+
+function getClifNum(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+
+  const num = Number(el.value);
+  return Number.isFinite(num) ? num : null;
+}
+
+function setClifHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
 function calcularClifSofaAclf() {
-  const bili = getNum("clif_bili");
-  const creat = getNum("clif_creat");
-  const inr = getNum("clif_inr");
-  const map = getNum("clif_map");
-  const pafi = getNum("clif_pafi");
-  const spofi = getNum("clif_spofi");
+  const bili = getClifNum("clif_bili");
+  const creat = getClifNum("clif_creat");
+  const inr = getClifNum("clif_inr");
+  const map = getClifNum("clif_map");
+  const pafi = getClifNum("clif_pafi");
+  const spofi = getClifNum("clif_spofi");
 
-  const heEl = document.getElementById("clif_he");
-  const rrtEl = document.getElementById("clif_rrt");
-  const vasoEl = document.getElementById("clif_vaso");
-
-  const he = heEl ? Number(heEl.value) : null;
-  const rrt = rrtEl ? rrtEl.value : "no";
-  const vaso = vasoEl ? vasoEl.value : "no";
+  const he = Number(document.getElementById("clif_he").value);
+  const rrt = document.getElementById("clif_rrt").value;
+  const vaso = document.getElementById("clif_vaso").value;
 
   if (
     bili === null ||
     creat === null ||
     inr === null ||
     map === null ||
-    he === null ||
     !Number.isFinite(he)
   ) {
-    setHTML(
+    setClifHTML(
       "resultadoClifSofa",
       "Complete bilirrubina, creatinina, encefalopatía, INR y PAM."
     );
-    setHTML("interpretacionClifSofa", "");
+    setClifHTML("interpretacionClifSofa", "");
     return;
   }
 
@@ -691,6 +700,7 @@ function calcularClifSofaAclf() {
 
   /* HÍGADO */
   let liverScore = 0;
+
   if (bili < 1.2) liverScore = 0;
   else if (bili < 2) liverScore = 1;
   else if (bili < 6) liverScore = 2;
@@ -704,6 +714,7 @@ function calcularClifSofaAclf() {
 
   /* RIÑÓN */
   let kidneyScore = 0;
+
   if (rrt === "si" || creat >= 3.5) kidneyScore = 4;
   else if (creat >= 2) kidneyScore = 3;
   else if (creat >= 1.5) kidneyScore = 2;
@@ -720,10 +731,11 @@ function calcularClifSofaAclf() {
   score += brainScore;
 
   if (he >= 3) fallas.push("Cerebral");
-  else if (he >= 1) disfunciones.push("Encefalopatía grado I–II");
+  else if (he >= 1) disfunciones.push("Encefalopatía grado I-II");
 
   /* COAGULACIÓN */
   let coagScore = 0;
+
   if (inr < 1.1) coagScore = 0;
   else if (inr < 1.25) coagScore = 1;
   else if (inr < 1.5) coagScore = 2;
@@ -737,6 +749,7 @@ function calcularClifSofaAclf() {
 
   /* CIRCULACIÓN */
   let circScore = 0;
+
   if (vaso === "si") circScore = 4;
   else if (map < 70) circScore = 1;
   else circScore = 0;
@@ -744,31 +757,33 @@ function calcularClifSofaAclf() {
   score += circScore;
 
   if (vaso === "si") fallas.push("Circulatoria");
-  else if (map < 70) disfunciones.push("Hipotensión sin vasopresores");
+  else if (map < 70) disfunciones.push("Disfunción circulatoria");
 
   /* RESPIRACIÓN */
   let respScore = 0;
-  let respDato = "No ingresado";
+  let respValue = null;
+  let respType = "";
 
   if (pafi !== null) {
-    respDato = "PaO₂/FiO₂ " + pafi;
+    respValue = pafi;
+    respType = "PaO₂/FiO₂";
 
-    if (pafi > 400) respScore = 0;
-    else if (pafi > 300) respScore = 1;
-    else if (pafi > 200) respScore = 2;
-    else if (pafi > 100) respScore = 3;
+    if (pafi > 300) respScore = 0;
+    else if (pafi > 200) respScore = 1;
+    else if (pafi > 100) respScore = 2;
+    else if (pafi > 50) respScore = 3;
     else respScore = 4;
 
     if (pafi <= 200) fallas.push("Respiratoria");
     else if (pafi <= 300) disfunciones.push("Disfunción respiratoria");
-
   } else if (spofi !== null) {
-    respDato = "SpO₂/FiO₂ " + spofi;
+    respValue = spofi;
+    respType = "SpO₂/FiO₂";
 
-    if (spofi > 512) respScore = 0;
-    else if (spofi > 357) respScore = 1;
-    else if (spofi > 214) respScore = 2;
-    else if (spofi > 89) respScore = 3;
+    if (spofi > 357) respScore = 0;
+    else if (spofi > 214) respScore = 1;
+    else if (spofi > 89) respScore = 2;
+    else if (spofi > 50) respScore = 3;
     else respScore = 4;
 
     if (spofi <= 214) fallas.push("Respiratoria");
@@ -777,101 +792,89 @@ function calcularClifSofaAclf() {
 
   score += respScore;
 
+  /* CLASIFICACIÓN ACLF */
   const numFallas = fallas.length;
+  let aclfGrade = "";
+  let aclfText = "";
 
-  let aclf = "";
-  let boxClass = "";
-
-  if (numFallas >= 3) {
-    aclf = "ACLF grado 3";
-    boxClass = "danger-box";
-  } else if (numFallas === 2) {
-    aclf = "ACLF grado 2";
-    boxClass = "warning-box";
+  if (numFallas === 0) {
+    aclfGrade = "Sin ACLF";
+    aclfText = "No se identifican fallas orgánicas mayores.";
   } else if (numFallas === 1) {
-    if (fallas[0] === "Renal") {
-      aclf = "ACLF grado 1";
-      boxClass = "warning-box";
-    } else if (creat >= 1.5 || he === 1 || he === 2) {
-      aclf = "ACLF grado 1";
-      boxClass = "warning-box";
+    if (
+      fallas.includes("Renal") ||
+      fallas.includes("Cerebral") ||
+      disfunciones.length > 0
+    ) {
+      aclfGrade = "ACLF grado 1";
+      aclfText = "Una falla orgánica con criterios compatibles con ACLF grado 1.";
     } else {
-      aclf = "Sin ACLF según criterios simplificados";
-      boxClass = "success-box";
+      aclfGrade = "Sin ACLF / evaluar contexto";
+      aclfText = "Existe una falla aislada, pero debe interpretarse según contexto clínico.";
     }
+  } else if (numFallas === 2) {
+    aclfGrade = "ACLF grado 2";
+    aclfText = "Dos fallas orgánicas.";
   } else {
-    aclf = "Sin ACLF";
-    boxClass = "success-box";
+    aclfGrade = "ACLF grado 3";
+    aclfText = "Tres o más fallas orgánicas.";
   }
 
-  setHTML(
+  const fallasTexto = fallas.length
+    ? fallas.join(", ")
+    : "No se identifican fallas orgánicas mayores";
+
+  const disfuncionesTexto = disfunciones.length
+    ? disfunciones.join(", ")
+    : "No se identifican disfunciones relevantes";
+
+  setClifHTML(
     "resultadoClifSofa",
-    `<strong>CLIF-SOFA:</strong> ${score} puntos<br>
-     <strong>Fallas orgánicas:</strong> ${numFallas}<br>
-     <strong>Clasificación:</strong> ${aclf}`
+    `
+      <b>CLIF-SOFA total:</b> ${score} puntos<br>
+      <b>Clasificación:</b> ${aclfGrade}
+    `
   );
 
-  setHTML(
+  setClifHTML(
     "interpretacionClifSofa",
-    `<div class="${boxClass}">
-      <strong>${aclf}</strong>
-    </div>
-
-    <h3>Detalle por órganos</h3>
-
-    <table class="acid-base-table">
-      <tbody>
-        <tr class="section">
-          <th>Órgano</th>
-          <th>Dato</th>
-          <th>Puntos</th>
-          <th>Interpretación</th>
-        </tr>
-        <tr>
-          <td>Hígado</td>
-          <td>Bilirrubina ${bili} mg/dL</td>
-          <td>${liverScore}</td>
-          <td>${bili >= 12 ? "Falla hepática" : bili >= 6 ? "Disfunción hepática" : "Sin falla"}</td>
-        </tr>
-        <tr>
-          <td>Riñón</td>
-          <td>Creatinina ${creat} mg/dL / TRR: ${rrt}</td>
-          <td>${kidneyScore}</td>
-          <td>${rrt === "si" || creat >= 2 ? "Falla renal" : creat >= 1.5 ? "Disfunción renal" : "Sin falla"}</td>
-        </tr>
-        <tr>
-          <td>Cerebro</td>
-          <td>EH grado ${he}</td>
-          <td>${brainScore}</td>
-          <td>${he >= 3 ? "Falla cerebral" : he >= 1 ? "Encefalopatía leve-moderada" : "Sin encefalopatía"}</td>
-        </tr>
-        <tr>
-          <td>Coagulación</td>
-          <td>INR ${inr}</td>
-          <td>${coagScore}</td>
-          <td>${inr >= 2.5 ? "Falla de coagulación" : inr >= 1.5 ? "Disfunción de coagulación" : "Sin falla"}</td>
-        </tr>
-        <tr>
-          <td>Circulación</td>
-          <td>PAM ${map} mmHg / Vasopresores: ${vaso}</td>
-          <td>${circScore}</td>
-          <td>${vaso === "si" ? "Falla circulatoria" : map < 70 ? "Hipotensión" : "Sin falla"}</td>
-        </tr>
-        <tr>
-          <td>Respiración</td>
-          <td>${respDato}</td>
-          <td>${respScore}</td>
-          <td>${respScore >= 3 ? "Falla respiratoria" : respScore === 2 ? "Disfunción respiratoria" : "Sin falla"}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Fallas identificadas</h3>
-    <p>${fallas.length ? fallas.join(", ") : "No se identifican fallas orgánicas."}</p>
-
-    <h3>Disfunciones asociadas</h3>
-    <p>${disfunciones.length ? disfunciones.join(", ") : "No se identifican disfunciones relevantes."}</p>`
+    `
+      <b>Interpretación:</b> ${aclfText}<br>
+      <b>Fallas orgánicas:</b> ${fallasTexto}<br>
+      <b>Disfunciones:</b> ${disfuncionesTexto}<br>
+      <b>Desglose:</b>
+      Hígado ${liverScore},
+      Riñón ${kidneyScore},
+      Cerebro ${brainScore},
+      Coagulación ${coagScore},
+      Circulación ${circScore},
+      Respiración ${respScore}${respType ? ` (${respType}: ${respValue})` : ""}.
+    `
   );
 }
 
-window.calcularClifSofaAclf = calcularClifSofaAclf;
+function resetClifSofaAclf() {
+  const inputs = [
+    "clif_bili",
+    "clif_creat",
+    "clif_inr",
+    "clif_map",
+    "clif_pafi",
+    "clif_spofi"
+  ];
+
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+
+  const selects = ["clif_rrt", "clif_he", "clif_vaso"];
+
+  selects.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.selectedIndex = 0;
+  });
+
+  setClifHTML("resultadoClifSofa", "");
+  setClifHTML("interpretacionClifSofa", "");
+}
