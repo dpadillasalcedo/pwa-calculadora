@@ -649,3 +649,240 @@ document.addEventListener("DOMContentLoaded", function () {
     resetBtn.addEventListener("click", resetPE2026);
   }
 });
+
+/* =========================
+   CLIF-SOFA / ACLF
+========================= */
+function calcularClifSofaAclf() {
+  const bili = getNum("clif_bili");
+  const creat = getNum("clif_creat");
+  const he = getNum("clif_he");
+  const inr = getNum("clif_inr");
+  const map = getNum("clif_map");
+  const pafi = getNum("clif_pafi");
+  const spofi = getNum("clif_spofi");
+
+  const rrt = document.getElementById("clif_rrt")?.value || "no";
+  const vaso = document.getElementById("clif_vaso")?.value || "no";
+
+  if (
+    bili === null ||
+    creat === null ||
+    he === null ||
+    inr === null ||
+    map === null
+  ) {
+    setText(
+      "resultadoClifSofa",
+      "Complete bilirrubina, creatinina, encefalopatía, INR y PAM."
+    );
+    setText("interpretacionClifSofa", "");
+    return;
+  }
+
+  let score = 0;
+  let fallas = [];
+  let disfunciones = [];
+
+  /* HÍGADO */
+  let liverScore = 0;
+  if (bili < 1.2) liverScore = 0;
+  else if (bili < 2) liverScore = 1;
+  else if (bili < 6) liverScore = 2;
+  else if (bili < 12) liverScore = 3;
+  else liverScore = 4;
+
+  score += liverScore;
+
+  if (bili >= 12) fallas.push("Hepática");
+  else if (bili >= 6) disfunciones.push("Disfunción hepática");
+
+  /* RIÑÓN */
+  let kidneyScore = 0;
+  if (rrt === "si" || creat >= 3.5) kidneyScore = 4;
+  else if (creat >= 2) kidneyScore = 3;
+  else if (creat >= 1.5) kidneyScore = 2;
+  else if (creat >= 1.2) kidneyScore = 1;
+  else kidneyScore = 0;
+
+  score += kidneyScore;
+
+  if (rrt === "si" || creat >= 2) fallas.push("Renal");
+  else if (creat >= 1.5) disfunciones.push("Disfunción renal");
+
+  /* CEREBRO */
+  let brainScore = 0;
+  if (he === 0) brainScore = 0;
+  else if (he === 1) brainScore = 1;
+  else if (he === 2) brainScore = 2;
+  else if (he === 3) brainScore = 3;
+  else if (he === 4) brainScore = 4;
+
+  score += brainScore;
+
+  if (he >= 3) fallas.push("Cerebral");
+  else if (he >= 1) disfunciones.push("Encefalopatía grado I–II");
+
+  /* COAGULACIÓN */
+  let coagScore = 0;
+  if (inr < 1.1) coagScore = 0;
+  else if (inr < 1.25) coagScore = 1;
+  else if (inr < 1.5) coagScore = 2;
+  else if (inr < 2.5) coagScore = 3;
+  else coagScore = 4;
+
+  score += coagScore;
+
+  if (inr >= 2.5) fallas.push("Coagulación");
+  else if (inr >= 1.5) disfunciones.push("Disfunción de coagulación");
+
+  /* CIRCULACIÓN */
+  let circScore = 0;
+  if (vaso === "si") circScore = 4;
+  else if (map < 70) circScore = 1;
+  else circScore = 0;
+
+  score += circScore;
+
+  if (vaso === "si") fallas.push("Circulatoria");
+  else if (map < 70) disfunciones.push("Hipotensión sin vasopresores");
+
+  /* RESPIRACIÓN */
+  let respScore = 0;
+  let respDato = "No ingresado";
+
+  if (pafi !== null) {
+    respDato = `PaO₂/FiO₂ ${pafi}`;
+    if (pafi > 400) respScore = 0;
+    else if (pafi > 300) respScore = 1;
+    else if (pafi > 200) respScore = 2;
+    else if (pafi > 100) respScore = 3;
+    else respScore = 4;
+
+    if (pafi <= 200) fallas.push("Respiratoria");
+    else if (pafi <= 300) disfunciones.push("Disfunción respiratoria");
+  } else if (spofi !== null) {
+    respDato = `SpO₂/FiO₂ ${spofi}`;
+    if (spofi > 512) respScore = 0;
+    else if (spofi > 357) respScore = 1;
+    else if (spofi > 214) respScore = 2;
+    else if (spofi > 89) respScore = 3;
+    else respScore = 4;
+
+    if (spofi <= 214) fallas.push("Respiratoria");
+    else if (spofi <= 357) disfunciones.push("Disfunción respiratoria");
+  }
+
+  score += respScore;
+
+  const numFallas = fallas.length;
+
+  let aclf = "";
+  let aclfClass = "";
+
+  if (numFallas >= 3) {
+    aclf = "ACLF grado 3";
+    aclfClass = "danger-box";
+  } else if (numFallas === 2) {
+    aclf = "ACLF grado 2";
+    aclfClass = "warning-box";
+  } else if (numFallas === 1) {
+    const falla = fallas[0];
+
+    if (falla === "Renal") {
+      aclf = "ACLF grado 1";
+      aclfClass = "warning-box";
+    } else if (
+      falla !== "Renal" &&
+      (creat >= 1.5 || he === 1 || he === 2)
+    ) {
+      aclf = "ACLF grado 1";
+      aclfClass = "warning-box";
+    } else {
+      aclf = "Sin ACLF según criterios simplificados";
+      aclfClass = "success-box";
+    }
+  } else {
+    aclf = "Sin ACLF";
+    aclfClass = "success-box";
+  }
+
+  setHTML(
+    "resultadoClifSofa",
+    `<strong>CLIF-SOFA:</strong> ${score} puntos<br>
+     <strong>Fallas orgánicas:</strong> ${numFallas}<br>
+     <strong>Clasificación:</strong> ${aclf}`
+  );
+
+  setHTML(
+    "interpretacionClifSofa",
+    `
+    <div class="${aclfClass}">
+      <strong>${aclf}</strong>
+    </div>
+
+    <h3>Detalle por órganos</h3>
+
+    <table class="acid-base-table">
+      <tbody>
+        <tr class="section">
+          <th>Órgano</th>
+          <th>Dato</th>
+          <th>Puntos</th>
+          <th>Interpretación</th>
+        </tr>
+        <tr>
+          <td>Hígado</td>
+          <td>Bilirrubina ${bili} mg/dL</td>
+          <td>${liverScore}</td>
+          <td>${bili >= 12 ? "Falla hepática" : bili >= 6 ? "Disfunción hepática" : "Sin falla"}</td>
+        </tr>
+        <tr>
+          <td>Riñón</td>
+          <td>Creatinina ${creat} mg/dL / TRR: ${rrt}</td>
+          <td>${kidneyScore}</td>
+          <td>${rrt === "si" || creat >= 2 ? "Falla renal" : creat >= 1.5 ? "Disfunción renal" : "Sin falla"}</td>
+        </tr>
+        <tr>
+          <td>Cerebro</td>
+          <td>EH grado ${he}</td>
+          <td>${brainScore}</td>
+          <td>${he >= 3 ? "Falla cerebral" : he >= 1 ? "Encefalopatía leve-moderada" : "Sin encefalopatía"}</td>
+        </tr>
+        <tr>
+          <td>Coagulación</td>
+          <td>INR ${inr}</td>
+          <td>${coagScore}</td>
+          <td>${inr >= 2.5 ? "Falla de coagulación" : inr >= 1.5 ? "Disfunción de coagulación" : "Sin falla"}</td>
+        </tr>
+        <tr>
+          <td>Circulación</td>
+          <td>PAM ${map} mmHg / Vasopresores: ${vaso}</td>
+          <td>${circScore}</td>
+          <td>${vaso === "si" ? "Falla circulatoria" : map < 70 ? "Hipotensión" : "Sin falla"}</td>
+        </tr>
+        <tr>
+          <td>Respiración</td>
+          <td>${respDato}</td>
+          <td>${respScore}</td>
+          <td>${respScore >= 3 ? "Falla respiratoria" : respScore === 2 ? "Disfunción respiratoria" : "Sin falla"}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Fallas identificadas</h3>
+    <p>${fallas.length ? fallas.join(", ") : "No se identifican fallas orgánicas."}</p>
+
+    <h3>Disfunciones asociadas</h3>
+    <p>${disfunciones.length ? disfunciones.join(", ") : "No se identifican disfunciones relevantes."}</p>
+
+    <p>
+      La clasificación ACLF debe interpretarse junto con el contexto clínico,
+      presencia de descompensación aguda, infección, sepsis, hemorragia digestiva
+      u otros precipitantes.
+    </p>
+    `
+  );
+}
+
+window.calcularClifSofaAclf = calcularClifSofaAclf;
