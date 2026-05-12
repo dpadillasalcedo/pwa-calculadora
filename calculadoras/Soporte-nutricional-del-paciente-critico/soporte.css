@@ -337,3 +337,70 @@ input:focus {
   font-size: 0.9rem;
   color: var(--text-soft);
 }
+
+/* =========================
+   REQUERIMIENTO CALÓRICO DIARIO
+========================= */
+
+.calorie-section {
+  margin-top: 1.5rem;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.method-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: #ffffff;
+}
+
+.method-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.method-card label {
+  margin-top: 0.75rem;
+}
+
+.formula {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.result-box {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.result-box b {
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+}
