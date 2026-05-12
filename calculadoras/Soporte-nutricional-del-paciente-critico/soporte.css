@@ -28,6 +28,7 @@ body {
 
   --surface: #ffffff;
   --border: #e2e8f0;
+
   --success-soft: #ecfdf5;
   --success-border: #86efac;
   --success-text: #166534;
@@ -61,6 +62,7 @@ body {
 
 .language-switcher a {
   color: var(--muted);
+  text-decoration: none;
 }
 
 .language-switcher a.active {
@@ -110,6 +112,7 @@ body {
 
 .card h2 {
   margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 /* =========================
@@ -128,8 +131,8 @@ input {
   border-radius: 10px;
   border: 1px solid var(--border);
   font-size: 0.95rem;
-  color: var(--primary);
   background: #ffffff;
+  color: var(--primary);
 }
 
 input:focus {
@@ -181,7 +184,7 @@ input:focus {
 }
 
 /* =========================
-   TABLA
+   TABLAS
 ========================= */
 .tabla-enterales {
   width: 100%;
@@ -219,7 +222,9 @@ input:focus {
   background: #f8fafc;
 }
 
-/* Mejor opción según menor déficit proteico */
+/* =========================
+   FILA DESTACADA
+========================= */
 .tabla-enterales tr.best-option {
   background: var(--success-soft);
 }
@@ -228,13 +233,6 @@ input:focus {
   color: var(--success-text);
   font-weight: 600;
   border-bottom-color: var(--success-border);
-}
-
-.tabla-enterales tr.best-option td:first-child::after {
-  content: " · mejor opción";
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--success-text);
 }
 
 /* =========================
@@ -269,6 +267,7 @@ input:focus {
 .footer-nav a {
   color: var(--primary-soft);
   font-weight: 600;
+  text-decoration: none;
 }
 
 .site-footer p {
@@ -280,6 +279,7 @@ input:focus {
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
+
   .grid {
     grid-template-columns: 1fr;
   }
@@ -302,6 +302,7 @@ input:focus {
 }
 
 @media (max-width: 520px) {
+
   .wrap {
     width: min(100% - 1rem, var(--container));
   }
