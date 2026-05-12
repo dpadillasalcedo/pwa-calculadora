@@ -47,11 +47,14 @@ function clearEnteralTable(tableId) {
 function updateEnteralTable(tableId, targetKcal, targetProtein) {
   if (!targetKcal || !targetProtein) return;
 
+  const restriccionVolumen =
+    $("restriccionVolumen")?.checked || false;
+
   const rows = document.querySelectorAll(`#${tableId} tbody tr`);
   const calc = [];
 
   rows.forEach(row => {
-    const kcalMl = Number(row.dataset.kcalml);
+    const kcalMl  = Number(row.dataset.kcalml);
     const prot100 = Number(row.dataset.prot100);
 
     if (!kcalMl || !prot100) return;
@@ -64,11 +67,31 @@ function updateEnteralTable(tableId, targetKcal, targetProtein) {
       row,
       vol,
       protReal,
-      deficit
+      deficit,
+      kcalMl,
+      prot100
     });
   });
 
-  calc.sort((a, b) => a.deficit - b.deficit);
+  calc.sort((a, b) => {
+    if (restriccionVolumen) {
+      if (a.vol !== b.vol) {
+        return a.vol - b.vol;
+      }
+
+      if (a.deficit !== b.deficit) {
+        return a.deficit - b.deficit;
+      }
+
+      return b.prot100 - a.prot100;
+    }
+
+    if (a.deficit !== b.deficit) {
+      return a.deficit - b.deficit;
+    }
+
+    return a.vol - b.vol;
+  });
 
   calc.forEach((c, i) => {
     c.row.querySelector(".vol").textContent =
@@ -143,4 +166,6 @@ function runCalculation() {
 
 document.addEventListener("DOMContentLoaded", () => {
   $("pesoIdeal").addEventListener("input", runCalculation);
+
+  $("restriccionVolumen").addEventListener("change", runCalculation);
 });
