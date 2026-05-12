@@ -251,12 +251,23 @@
      INPUT
 ========================= -->
 
-<section class="card">
-  <label for="pesoIdeal">Peso Ideal (kg)</label>
-  <input id="pesoIdeal" type="number" min="1" step="0.1" placeholder="Ej: 70">
-</section>
+<!-- =========================
+     INPUTS
+========================= -->
 
-<div class="divider"></div>
+<section class="card">
+
+  <label for="pesoIdeal">Peso ideal (kg)</label>
+  <input id="pesoIdeal" type="number" min="1" step="0.1" placeholder="Ej: 65">
+
+  <div class="checkbox-field">
+    <input id="restriccionVolumen" type="checkbox">
+    <label for="restriccionVolumen">
+      Paciente requiere restricción de volumen
+    </label>
+  </div>
+
+</section>
 
 <!-- =========================
      RESULTADOS
