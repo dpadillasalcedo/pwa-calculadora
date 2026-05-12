@@ -501,11 +501,7 @@ function resetSOFA(){
 }
 </script>
 
-<!-- =========================
-     CLIF-C ACLF (Insuficiencia hepática aguda sobre crónica)
-========================== -->
 <section id="clif-sofa-aclf" class="panel">
-
   <h2>CLIF-C ACLF y clasificación ACLF</h2>
 
   <p class="note">
@@ -552,15 +548,20 @@ function resetSOFA(){
   <label>SpO₂/FiO₂ si no hay PaO₂/FiO₂</label>
   <input id="clif_spofi" type="number" step="1" placeholder="Ej: 280">
 
-<button type="button" onclick="calcularClifSofaAclf()">
-  Calcular CLIF-SOFA / ACLF
-</button>
+  <div class="actions">
+    <button type="button" class="primary" onclick="calcularClifSofaAclf()">
+      Calcular CLIF-SOFA / ACLF
+    </button>
 
-<div id="resultadoClifSofa" class="result" aria-live="polite"></div>
-<div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
+    <button type="button" class="secondary" onclick="resetClifSofaAclf()">
+      Reiniciar
+    </button>
+  </div>
 
+  <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
+  <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
 </section>
-
+   
 <!-- ===================== APACHE II ===================== -->
 <section class="panel">
 <h2>APACHE II</h2>
