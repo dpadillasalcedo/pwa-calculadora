@@ -806,17 +806,17 @@ function calcularClifSofaAclf() {
       fallas.includes("Cerebral") ||
       disfunciones.length > 0
     ) {
-      aclfGrade = "ACLF grado 1";
+      aclfGrade = "ACLF grado 1- Mortalidad 22%";
       aclfText = "Una falla orgánica con criterios compatibles con ACLF grado 1.";
     } else {
       aclfGrade = "Sin ACLF / evaluar contexto";
       aclfText = "Existe una falla aislada, pero debe interpretarse según contexto clínico.";
     }
   } else if (numFallas === 2) {
-    aclfGrade = "ACLF grado 2";
+    aclfGrade = "ACLF grado 2- Mortalidad 32%";
     aclfText = "Dos fallas orgánicas.";
   } else {
-    aclfGrade = "ACLF grado 3";
+    aclfGrade = "ACLF grado 3 -Mortalidad 73%";
     aclfText = "Tres o más fallas orgánicas.";
   }
 
