@@ -320,3 +320,20 @@ input:focus {
     font-size: 1rem;
   }
 }
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.checkbox-field input {
+  width: auto;
+}
+
+.checkbox-field label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
