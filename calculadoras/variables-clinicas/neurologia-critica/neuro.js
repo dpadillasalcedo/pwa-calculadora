@@ -381,3 +381,96 @@ if (gcsReset) {
     resultadoGCS.className = "resultado";
   });
 }
+
+
+
+    /* =========================================================
+       ICH SCORE · HEMORRAGIA INTRAPARENQUIMATOSA
+    ========================================================= */
+
+    function resetICH() {
+
+      [
+        "ich_gcs",
+        "ich_volumen",
+        "ich_ivh",
+        "ich_infratentorial",
+        "ich_edad"
+      ].forEach((id) => {
+        const el = $(id);
+        if (el) el.value = "";
+      });
+
+      setResultBox("resultadoICH");
+      setHTML("interpretacionICH");
+    }
+
+    function calcularICH() {
+
+      const gcs = getSelectInt("ich_gcs");
+      const volumen = getSelectInt("ich_volumen");
+      const ivh = getSelectInt("ich_ivh");
+      const infra = getSelectInt("ich_infratentorial");
+      const edad = getSelectInt("ich_edad");
+
+      if (
+        gcs === null ||
+        volumen === null ||
+        ivh === null ||
+        infra === null ||
+        edad === null
+      ) {
+        setResultBox(
+          "resultadoICH",
+          "Completar todas las variables.",
+          "result-warn"
+        );
+        setHTML("interpretacionICH");
+        return;
+      }
+
+      let total = 0;
+
+      // GCS
+      total += gcs;
+
+      // Volumen hematoma
+      total += volumen;
+
+      // Hemorragia intraventricular
+      total += ivh;
+
+      // Origen infratentorial
+      total += infra;
+
+      // Edad
+      total += edad;
+
+      let riesgo = "";
+      let clase = "";
+
+      if (total <= 1) {
+        riesgo = "Bajo riesgo";
+        clase = "result-ok";
+      } else if (total <= 3) {
+        riesgo = "Riesgo moderado";
+        clase = "result-warn";
+      } else {
+        riesgo = "Alto riesgo de mortalidad";
+        clase = "result-bad";
+      }
+
+      setResultBox(
+        "resultadoICH",
+        `<strong>ICH Score:</strong> ${total} / 6 · ${riesgo}`,
+        clase
+      );
+
+      setHTML(
+        "interpretacionICH",
+        `
+        Escala pronóstica en hemorragia intracerebral espontánea.
+        Puntajes elevados se asocian con peor pronóstico funcional y mayor mortalidad.
+        `
+      );
+    }
