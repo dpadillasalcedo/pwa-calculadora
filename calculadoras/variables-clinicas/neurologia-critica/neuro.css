@@ -325,3 +325,84 @@ th {
     padding: 1.3rem;
   }
 }
+
+
+/* =========================
+   ICH SCORE
+========================= */
+
+#ich-score table td:first-child {
+  font-weight: 600;
+  color: var(--primary-soft);
+  width: 28%;
+}
+
+#ich-score table td:last-child {
+  text-align: center;
+  font-weight: 700;
+  width: 90px;
+}
+
+/* =========================
+   RESULTADOS SEMÁNTICOS
+========================= */
+
+.result-ok {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.result-warn {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.result-bad {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+/* =========================
+   TABLAS NEUROLÓGICAS
+========================= */
+
+.panel table tbody tr:hover {
+  background: rgba(148, 163, 184, 0.06);
+  transition: background 0.2s ease;
+}
+
+.panel table td strong {
+  color: var(--primary);
+}
+
+/* =========================
+   ICH ACTIONS
+========================= */
+
+#ich-score .actions {
+  margin-top: 1.2rem;
+}
+
+/* =========================
+   MOBILE TABLE IMPROVEMENT
+========================= */
+
+@media (max-width: 768px) {
+
+  table {
+    font-size: 0.82rem;
+  }
+
+  th,
+  td {
+    padding: 0.55rem;
+  }
+
+  #ich-score table td:first-child {
+    width: auto;
+  }
+
+}
