@@ -239,6 +239,67 @@
     <div id="sofa_mortality" class="note"></div>
   </section>
 
+<section id="clif-sofa-aclf" class="panel">
+  <h2>CLIF-C ACLF and ACLF Classification</h2>
+
+  <p class="note">
+    Educational calculator based on liver, kidney, cerebral, coagulation,
+    circulatory, and respiratory dysfunction.
+  </p>
+
+  <label>Total bilirubin (mg/dL)</label>
+  <input id="clif_bili" type="number" step="0.1" placeholder="Example: 12">
+
+  <label>Creatinine (mg/dL)</label>
+  <input id="clif_creat" type="number" step="0.1" placeholder="Example: 2.1">
+
+  <label>Renal replacement therapy?</label>
+  <select id="clif_rrt">
+    <option value="no">No</option>
+    <option value="si">Yes</option>
+  </select>
+
+  <label>Hepatic encephalopathy</label>
+  <select id="clif_he">
+    <option value="0">Grade 0</option>
+    <option value="1">Grade I</option>
+    <option value="2">Grade II</option>
+    <option value="3">Grade III</option>
+    <option value="4">Grade IV</option>
+  </select>
+
+  <label>INR</label>
+  <input id="clif_inr" type="number" step="0.1" placeholder="Example: 2.5">
+
+  <label>Mean arterial pressure - MAP (mmHg)</label>
+  <input id="clif_map" type="number" step="1" placeholder="Example: 68">
+
+  <label>Vasopressors</label>
+  <select id="clif_vaso">
+    <option value="no">No</option>
+    <option value="si">Yes</option>
+  </select>
+
+  <label>PaO₂/FiO₂</label>
+  <input id="clif_pafi" type="number" step="1" placeholder="Example: 220">
+
+  <label>SpO₂/FiO₂ if PaO₂/FiO₂ is unavailable</label>
+  <input id="clif_spofi" type="number" step="1" placeholder="Example: 280">
+
+  <div class="actions">
+    <button type="button" class="primary" onclick="calculateClifSofaAclf()">
+      Calculate CLIF-SOFA / ACLF
+    </button>
+
+    <button type="button" class="secondary" onclick="resetClifSofaAclf()">
+      Reset
+    </button>
+  </div>
+
+  <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
+  <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
+</section>
+  
   <!-- ===================== APACHE II ===================== -->
   <section class="panel">
     <h2>APACHE II</h2>
