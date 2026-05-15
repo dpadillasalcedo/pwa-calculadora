@@ -204,228 +204,296 @@
 
   <div class="divider"></div>
 
- <section class="card">
-  <label for="actualWeight">Actual body weight (kg)</label>
-  <input id="actualWeight" type="number" min="1" step="0.1" placeholder="e.g., 70">
+<!-- =========================
+     DAILY ENERGY REQUIREMENT
+========================= -->
+
+<section class="card calorie-section">
+
+  <h2>Daily Energy Requirement</h2>
+
+  <p class="small">
+    Estimation using indirect calorimetry, the Fick method, or predictive equations.
+  </p>
+
+  <div class="method-grid">
+
+    <!-- INDIRECT CALORIMETRY -->
+    <article class="method-card">
+      <h3>Indirect Calorimetry</h3>
+
+      <p class="formula">
+        EE = [(3.941 × VO₂) + (1.106 × VCO₂)] × 1440
+      </p>
+
+      <label for="vo2IC">VO₂ (L/min)</label>
+      <input id="vo2IC" type="number" min="0" step="0.01" placeholder="Example: 0.25">
+
+      <label for="vco2IC">VCO₂ (L/min)</label>
+      <input id="vco2IC" type="number" min="0" step="0.01" placeholder="Example: 0.20">
+
+      <div class="result-box">
+        <b id="kcalIC">—</b>
+      </div>
+    </article>
+
+    <!-- FICK METHOD -->
+    <article class="method-card">
+      <h3>Fick Method</h3>
+
+      <p class="formula">
+        VO₂ = CO × (CaO₂ − CvO₂) × 10
+      </p>
+
+      <label for="gcFick">Cardiac Output (L/min)</label>
+      <input id="gcFick" type="number" min="0" step="0.1" placeholder="Example: 5">
+
+      <label for="hbFick">Hemoglobin (g/dL)</label>
+      <input id="hbFick" type="number" min="0" step="0.1" placeholder="Example: 10">
+
+      <label for="sao2Fick">SaO₂ (%)</label>
+      <input id="sao2Fick" type="number" min="0" max="100" step="1" placeholder="Example: 96">
+
+      <label for="svo2Fick">SvO₂ (%)</label>
+      <input id="svo2Fick" type="number" min="0" max="100" step="1" placeholder="Example: 70">
+
+      <label for="pao2Fick">PaO₂ (mmHg)</label>
+      <input id="pao2Fick" type="number" min="0" step="1" placeholder="Example: 90">
+
+      <label for="pvo2Fick">PvO₂ (mmHg)</label>
+      <input id="pvo2Fick" type="number" min="0" step="1" placeholder="Example: 40">
+
+      <label for="rqFick">Estimated RQ</label>
+      <input id="rqFick" type="number" min="0.7" max="1.0" step="0.01" value="0.85">
+
+      <div class="result-box">
+        <b id="vo2FickResult">—</b>
+        <b id="kcalFick">—</b>
+      </div>
+    </article>
+
+    <!-- PREDICTIVE EQUATIONS -->
+    <article class="method-card">
+      <h3>Predictive Equations</h3>
+
+      <p class="formula">
+        20, 25 and 30 kcal/kg/day
+      </p>
+
+      <label for="pesoPredictivo">Weight used for calculation (kg)</label>
+      <input id="pesoPredictivo" type="number" min="1" step="0.1" placeholder="Example: 70">
+
+      <div class="result-box">
+        <b id="kcal20">—</b>
+        <b id="kcal25">—</b>
+        <b id="kcal30">—</b>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="note">
+    <b>Clinical interpretation:</b><br>
+    Indirect calorimetry is the preferred method whenever available.
+    The Fick method can estimate VO₂ when cardiac output and arterial/venous blood gas data are available.
+    Predictive equations provide approximate values and should be individualized according to clinical phase, tolerance, and risk of overfeeding.
+  </div>
+
 </section>
 
 
-  <div class="divider"></div>
+<!-- =========================
+     INPUTS
+========================= -->
 
-  <section class="grid">
+<section class="card">
+
+  <label for="pesoIdeal">Ideal Body Weight (kg)</label>
+  <input id="pesoIdeal" type="number" min="1" step="0.1" placeholder="Example: 65">
+
+  <div class="checkbox-field">
+    <input id="restriccionVolumen" type="checkbox">
+    <label for="restriccionVolumen">
+      Patient requires fluid restriction
+    </label>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     RESULTS
+========================= -->
+
+<section class="grid">
 
   <!-- TROPHIC -->
   <article class="card">
-    <h2>Trophic feeding</h2>
-    <p class="small">20 kcal/kg · 0.8 g protein/kg</p>
+    <h2>Trophic Feeding</h2>
+    <p class="small">20 kcal/kg · 1.5 g protein/kg</p>
+
     <div class="result">
-      <b id="kcalTrophic">—</b>
-      <b id="protTrophic">—</b>
+      <b id="kcalTrofico">—</b>
+      <b id="protTrofico">—</b>
     </div>
   </article>
 
-  <!-- FULL -->
+  <!-- HYPOCALORIC -->
   <article class="card">
-    <h2>Full feeding</h2>
-    <p class="small">30 kcal/kg · 2.0 g protein/kg</p>
-    <div class="result">
-      <b id="kcalFull">—</b>
-      <b id="protFull">—</b>
-    </div>
-  </article>
+    <h2>Hypocaloric / High-Protein</h2>
+    <p class="small">15 kcal/kg · 1.5 g protein/kg</p>
 
-  <!-- HYPO -->
-  <article class="card">
-    <h2>Hypocaloric / high-protein</h2>
-    <p class="small">15 kcal/kg · 2.0 g protein/kg</p>
     <div class="result">
-      <b id="kcalHypo">—</b>
-      <b id="protHypo">—</b>
+      <b id="kcalHipo">—</b>
+      <b id="protHipo">—</b>
     </div>
   </article>
 
 </section>
 
+<div class="divider"></div>
 
-  <div class="divider"></div>
 
-  <!-- ================= ENTERAL TABLES ================= -->
+<!-- =========================
+     TROPHIC TABLE
+========================= -->
 
-  <!-- TROPHIC -->
-  <section class="card">
-    <h2>Enteral suggestion – Trophic feeding</h2>
-    <table class="tabla-enterales" id="tablaTrophic">
-<thead>
-  <tr>
-    <th>Brand</th>
-    <th>Formula</th>
-    <th>kcal/ml</th>
-    <th>Total volume<br>(ml/day)</th>
-    <th>Total kcal/day</th>
-    <th>Protein<br>(g/day)</th>
-    <th>Protein deficit<br>(g/day)</th>
-  </tr>
-</thead>
-      <tbody>
-        <tr data-kcalml="1.0" data-prot100="4.0">
-          <td>Yeviti</td>
-          <td>1.0</td>
-          <td>4.0</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+<section class="card">
 
-        <tr data-kcalml="1.25" data-prot100="5.6">
-          <td>Energy</td>
-          <td>1.25</td>
-          <td>5.6</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+  <h2>Enteral Nutrition Suggestion – Trophic Feeding</h2>
 
-        <tr data-kcalml="1.25" data-prot100="6.3">
-          <td>Intense</td>
-          <td>1.25</td>
-          <td>6.3</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+  <table class="tabla-enterales" id="tablaTrofico">
 
-        <tr data-kcalml="1.5" data-prot100="7.5">
-          <td>Protison</td>
-          <td>1.5</td>
-          <td>7.5</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <thead>
+      <tr>
+        <th>Formula</th>
+        <th>kcal/ml</th>
+        <th>Protein<br>100 ml</th>
+        <th>Volume<br>day</th>
+        <th>kcal/day</th>
+        <th>Protein/day</th>
+        <th>Protein deficit</th>
+      </tr>
+    </thead>
 
-  <!-- FULL -->
-  <section class="card">
-    <h2>Enteral suggestion – Full feeding</h2>
-    <table class="tabla-enterales" id="tablaFull">
-<thead>
-  <tr>
-    <th>Brand</th>
-    <th>Formula</th>
-    <th>kcal/ml</th>
-    <th>Total volume<br>(ml/day)</th>
-    <th>Total kcal/day</th>
-    <th>Protein<br>(g/day)</th>
-    <th>Protein deficit<br>(g/day)</th>
-  </tr>
-</thead>
-      <tbody>
-        <tr data-kcalml="1.0" data-prot100="4.0">
-          <td>Yeviti</td>
-          <td>1.0</td>
-          <td>4.0</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+    <tbody>
 
-        <tr data-kcalml="1.25" data-prot100="5.6">
-          <td>Energy</td>
-          <td>1.25</td>
-          <td>5.6</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+      <tr data-kcalml="1.0" data-prot100="4.0">
+        <td>Yeviti</td>
+        <td>1.0</td>
+        <td>4.0 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
 
-        <tr data-kcalml="1.25" data-prot100="6.3">
-          <td>Intense</td>
-          <td>1.25</td>
-          <td>6.3</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+      <tr data-kcalml="1.25" data-prot100="5.6">
+        <td>Energy</td>
+        <td>1.25</td>
+        <td>5.6 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
 
-        <tr data-kcalml="1.5" data-prot100="7.5">
-          <td>Protison</td>
-          <td>1.5</td>
-          <td>7.5</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+      <tr data-kcalml="1.25" data-prot100="6.3">
+        <td>Intense</td>
+        <td>1.25</td>
+        <td>6.3 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
 
-  <!-- HYPO -->
-  <section class="card">
-    <h2>Enteral suggestion – Hypocaloric / high-protein</h2>
-    <table class="tabla-enterales" id="tablaHypo">
-<thead>
-  <tr>
-    <th>Brand</th>
-    <th>Formula</th>
-    <th>kcal/ml</th>
-    <th>Total volume<br>(ml/day)</th>
-    <th>Total kcal/day</th>
-    <th>Protein<br>(g/day)</th>
-    <th>Protein deficit<br>(g/day)</th>
-  </tr>
-</thead>
-      <tbody>
-        <tr data-kcalml="1.0" data-prot100="4.0">
-          <td>Yeviti</td>
-          <td>1.0</td>
-          <td>4.0</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+      <tr data-kcalml="1.5" data-prot100="7.5">
+        <td>Protison</td>
+        <td>1.5</td>
+        <td>7.5 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
 
-        <tr data-kcalml="1.25" data-prot100="5.6">
-          <td>Energy</td>
-          <td>1.25</td>
-          <td>5.6</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+    </tbody>
 
-        <tr data-kcalml="1.25" data-prot100="6.3">
-          <td>Intense</td>
-          <td>1.25</td>
-          <td>6.3</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
+  </table>
 
-        <tr data-kcalml="1.5" data-prot100="7.5">
-          <td>Protison</td>
-          <td>1.5</td>
-          <td>7.5</td>
-          <td class="vol">—</td>
-          <td class="kcal">—</td>
-          <td class="prot">—</td>
-          <td class="deficit">—</td>
-        </tr>
-      </tbody>
-    </table>
+</section>
+
+
+<!-- =========================
+     HYPOCALORIC TABLE
+========================= -->
+
+<section class="card">
+
+  <h2>Enteral Nutrition Suggestion – Hypocaloric Feeding</h2>
+
+  <table class="tabla-enterales" id="tablaHipo">
+
+    <thead>
+      <tr>
+        <th>Formula</th>
+        <th>kcal/ml</th>
+        <th>Protein<br>100 ml</th>
+        <th>Volume<br>day</th>
+        <th>kcal/day</th>
+        <th>Protein/day</th>
+        <th>Protein deficit</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr data-kcalml="1.0" data-prot100="4.0">
+        <td>Yeviti</td>
+        <td>1.0</td>
+        <td>4.0 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
+
+      <tr data-kcalml="1.25" data-prot100="5.6">
+        <td>Energy</td>
+        <td>1.25</td>
+        <td>5.6 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
+
+      <tr data-kcalml="1.25" data-prot100="6.3">
+        <td>Intense</td>
+        <td>1.25</td>
+        <td>6.3 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
+
+      <tr data-kcalml="1.5" data-prot100="7.5">
+        <td>Protison</td>
+        <td>1.5</td>
+        <td>7.5 g</td>
+        <td class="vol">—</td>
+        <td class="kcal">—</td>
+        <td class="prot">—</td>
+        <td class="deficit">—</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
 
    <div class="note" style="margin-top:1.5rem;">
   <b>Important clinical note</b><br><br>
