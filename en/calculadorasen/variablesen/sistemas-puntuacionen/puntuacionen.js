@@ -149,3 +149,87 @@ window.calcAPACHE = calcAPACHE;
 window.resetAPACHE = resetAPACHE;
 window.calcSAPS = calcSAPS;
 window.resetSAPS = resetSAPS;
+
+/* ACLF CLASSIFICATION */
+
+const numberOfFailures = fallas.length;
+let aclfGrade = "";
+let aclfText = "";
+
+if (numberOfFailures === 0) {
+  aclfGrade = "No ACLF";
+  aclfText = "No major organ failures are identified.";
+} else if (numberOfFailures === 1) {
+  if (
+    fallas.includes("Kidney") ||
+    fallas.includes("Cerebral") ||
+    disfunciones.length > 0
+  ) {
+    aclfGrade = "ACLF grade 1 - Mortality 22%";
+    aclfText = "One organ failure with criteria compatible with ACLF grade 1.";
+  } else {
+    aclfGrade = "No ACLF / assess clinical context";
+    aclfText = "There is one isolated organ failure, but it should be interpreted according to the clinical context.";
+  }
+} else if (numberOfFailures === 2) {
+  aclfGrade = "ACLF grade 2 - Mortality 32%";
+  aclfText = "Two organ failures.";
+} else {
+  aclfGrade = "ACLF grade 3 - Mortality 73%";
+  aclfText = "Three or more organ failures.";
+}
+
+const organFailuresText = fallas.length
+  ? fallas.join(", ")
+  : "No major organ failures are identified";
+
+setClifHTML(
+  "resultadoClifSofa",
+  `
+    <b>Total CLIF-SOFA:</b> ${score} points<br>
+    <b>Classification:</b> ${aclfGrade}
+  `
+);
+
+setClifHTML(
+  "interpretacionClifSofa",
+  `
+    <b>Interpretation:</b> ${aclfText}<br>
+    <b>Organ failures:</b> ${organFailuresText}<br>
+    <b>Dysfunctions:</b> ${disfuncionesTexto}<br>
+    <b>Breakdown:</b>
+    Liver ${liverScore},
+    Kidney ${kidneyScore},
+    Brain ${brainScore},
+    Coagulation ${coagScore},
+    Circulation ${circScore},
+    Respiration ${respScore}${respType ? ` (${respType}: ${respValue})` : ""}.
+  `
+);
+}
+
+function resetClifSofaAclf() {
+  const inputs = [
+    "clif_bili",
+    "clif_creat",
+    "clif_inr",
+    "clif_map",
+    "clif_pafi",
+    "clif_spofi"
+  ];
+
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+
+  const selects = ["clif_rrt", "clif_he", "clif_vaso"];
+
+  selects.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.selectedIndex = 0;
+  });
+
+  setClifHTML("resultadoClifSofa", "");
+  setClifHTML("interpretacionClifSofa", "");
+}
