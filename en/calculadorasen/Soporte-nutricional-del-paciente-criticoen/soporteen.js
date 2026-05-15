@@ -1,103 +1,269 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   CriticalCareTools – Nutritional Support
+========================= */
 
-  const weightInput = document.getElementById("actualWeight");
+const STRATEGIES = {
+  trophic: { kcalKg: 20, protKg: 1.5 },
+  hypo:    { kcalKg: 15, protKg: 1.5 }
+};
 
-  const kcalTrophic = document.getElementById("kcalTrophic");
-  const protTrophic = document.getElementById("protTrophic");
+const $ = id => document.getElementById(id);
 
-  const kcalFull = document.getElementById("kcalFull");
-  const protFull = document.getElementById("protFull");
+const round10 = v => Math.round(v / 10) * 10;
+const round0  = v => Math.round(v);
 
-  const kcalHypo = document.getElementById("kcalHypo");
-  const protHypo = document.getElementById("protHypo");
+function validNumber(v) {
+  const n = Number(v);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
 
-  if (!weightInput) return; // safety
+function calculate(weight, kcalKg, protKg) {
+  const kcal = weight * kcalKg;
+  const protein = weight * protKg;
 
-  weightInput.addEventListener("input", calculateAll);
+  return {
+    kcal: round10(kcal),
+    protein: round0(protein)
+  };
+}
 
-  function calculateAll() {
+/* =========================
+   ENTERAL TABLES
+========================= */
 
-    const weight = parseFloat(weightInput.value);
+function clearEnteralTable(tableId) {
+  document
+    .querySelectorAll(`#${tableId} tbody tr`)
+    .forEach(row => {
+      row.querySelector(".vol").textContent = "—";
+      row.querySelector(".kcal").textContent = "—";
+      row.querySelector(".prot").textContent = "—";
+      row.querySelector(".deficit").textContent = "—";
 
-    if (!weight || weight <= 0) {
-      resetAll();
-      return;
+      row.classList.remove("best-option");
+    });
+}
+
+function updateEnteralTable(tableId, targetKcal, targetProtein) {
+  if (!targetKcal || !targetProtein) return;
+
+  const fluidRestriction =
+    $("restriccionVolumen")?.checked || false;
+
+  const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+  const calc = [];
+
+  rows.forEach(row => {
+    const kcalMl  = Number(row.dataset.kcalml);
+    const prot100 = Number(row.dataset.prot100);
+
+    if (!kcalMl || !prot100) return;
+
+    const vol = targetKcal / kcalMl;
+    const actualProtein = vol * (prot100 / 100);
+    const deficit = Math.max(0, targetProtein - actualProtein);
+
+    calc.push({
+      row,
+      vol,
+      actualProtein,
+      deficit,
+      kcalMl,
+      prot100
+    });
+  });
+
+  calc.sort((a, b) => {
+    if (fluidRestriction) {
+      if (a.vol !== b.vol) {
+        return a.vol - b.vol;
+      }
+
+      if (a.deficit !== b.deficit) {
+        return a.deficit - b.deficit;
+      }
+
+      return b.prot100 - a.prot100;
     }
 
-    // =========================
-    // CALORIC TARGETS
-    // =========================
+    if (a.deficit !== b.deficit) {
+      return a.deficit - b.deficit;
+    }
 
-    const trophicKcal = weight * 20;
-    const trophicProt = weight * 0.8;
+    return a.vol - b.vol;
+  });
 
-    const fullKcal = weight * 30;
-    const fullProt = weight * 2.0;
+  calc.forEach((c, i) => {
+    c.row.querySelector(".vol").textContent =
+      `${Math.round(c.vol)} ml`;
 
-    const hypoKcal = weight * 15;
-    const hypoProt = weight * 2.0;
+    c.row.querySelector(".kcal").textContent =
+      `${targetKcal} kcal`;
 
-    kcalTrophic.textContent = trophicKcal.toFixed(0) + " kcal/day";
-    protTrophic.textContent = trophicProt.toFixed(1) + " g/day";
+    c.row.querySelector(".prot").textContent =
+      `${Math.round(c.actualProtein)} g`;
 
-    kcalFull.textContent = fullKcal.toFixed(0) + " kcal/day";
-    protFull.textContent = fullProt.toFixed(1) + " g/day";
+    c.row.querySelector(".deficit").textContent =
+      c.deficit > 0
+        ? `-${Math.round(c.deficit)} g`
+        : "0 g";
 
-    kcalHypo.textContent = hypoKcal.toFixed(0) + " kcal/day";
-    protHypo.textContent = hypoProt.toFixed(1) + " g/day";
+    c.row.classList.toggle("best-option", i === 0);
+  });
+}
 
-    updateTable("tablaTrophic", trophicKcal, trophicProt);
-    updateTable("tablaFull", fullKcal, fullProt);
-    updateTable("tablaHypo", hypoKcal, hypoProt);
+/* =========================
+   MAIN NUTRITION CALCULATION
+========================= */
+
+function runCalculation() {
+  const idealBodyWeight = validNumber($("pesoIdeal").value);
+
+  if (!idealBodyWeight) {
+    $("kcalTrofico").textContent = "—";
+    $("protTrofico").textContent = "—";
+
+    $("kcalHipo").textContent = "—";
+    $("protHipo").textContent = "—";
+
+    clearEnteralTable("tablaTrofico");
+    clearEnteralTable("tablaHipo");
+
+    return;
   }
 
-  function updateTable(tableId, targetKcal, targetProt) {
+  const trophic = calculate(
+    idealBodyWeight,
+    STRATEGIES.trophic.kcalKg,
+    STRATEGIES.trophic.protKg
+  );
 
-    const table = document.getElementById(tableId);
-    if (!table) return;
+  const hypo = calculate(
+    idealBodyWeight,
+    STRATEGIES.hypo.kcalKg,
+    STRATEGIES.hypo.protKg
+  );
 
-    const rows = table.querySelectorAll("tbody tr");
+  $("kcalTrofico").textContent =
+    `${trophic.kcal} kcal/day`;
 
-    rows.forEach(row => {
+  $("protTrofico").textContent =
+    `${trophic.protein} g/day`;
 
-      const kcalPerMl = parseFloat(row.dataset.kcalml);
-      const proteinPer100ml = parseFloat(row.dataset.prot100);
+  $("kcalHipo").textContent =
+    `${hypo.kcal} kcal/day`;
 
-      if (!kcalPerMl || !proteinPer100ml) return;
+  $("protHipo").textContent =
+    `${hypo.protein} g/day`;
 
-      const volume = targetKcal / kcalPerMl;
-      const proteinDelivered = (volume / 100) * proteinPer100ml;
-      const deficit = targetProt - proteinDelivered;
+  updateEnteralTable("tablaTrofico", trophic.kcal, trophic.protein);
+  updateEnteralTable("tablaHipo", hypo.kcal, hypo.protein);
+}
 
-      row.querySelector(".vol").textContent =
-        volume.toFixed(0) + " ml/day";
+/* =========================
+   DAILY ENERGY REQUIREMENT
+========================= */
 
-      row.querySelector(".kcal").textContent =
-        targetKcal.toFixed(0) + " kcal/day";
+function calculateIndirectCalorimetry() {
+  const vo2 = validNumber($("vo2IC").value);
+  const vco2 = validNumber($("vco2IC").value);
 
-      row.querySelector(".prot").textContent =
-        proteinDelivered.toFixed(1) + " g/day";
-
-      row.querySelector(".deficit").textContent =
-        deficit > 0
-          ? deficit.toFixed(1) + " g/day"
-          : "0 g/day";
-    });
+  if (!vo2 || !vco2) {
+    $("kcalIC").textContent = "—";
+    return;
   }
 
-  function resetAll() {
+  const kcalDay = ((3.941 * vo2) + (1.106 * vco2)) * 1440;
 
-    const resultFields = document.querySelectorAll(
-      "#kcalTrophic, #protTrophic, #kcalFull, #protFull, #kcalHypo, #protHypo"
-    );
+  $("kcalIC").textContent =
+    `${round10(kcalDay)} kcal/day`;
+}
 
-    resultFields.forEach(el => el.textContent = "—");
+function oxygenContent(hb, saturation, po2) {
+  return (1.34 * hb * saturation) + (0.0031 * po2);
+}
 
-    const tableCells = document.querySelectorAll(
-      ".vol, .kcal, .prot, .deficit"
-    );
+function calculateFick() {
+  const co = validNumber($("gcFick").value);
+  const hb = validNumber($("hbFick").value);
+  const sao2 = validNumber($("sao2Fick").value);
+  const svo2 = validNumber($("svo2Fick").value);
+  const pao2 = validNumber($("pao2Fick").value);
+  const pvo2 = validNumber($("pvo2Fick").value);
+  const rq = validNumber($("rqFick").value) || 0.85;
 
-    tableCells.forEach(cell => cell.textContent = "—");
+  if (!co || !hb || !sao2 || !svo2 || !pao2 || !pvo2) {
+    $("vo2FickResult").textContent = "—";
+    $("kcalFick").textContent = "—";
+    return;
   }
 
+  const caO2 = oxygenContent(hb, sao2 / 100, pao2);
+  const cvO2 = oxygenContent(hb, svo2 / 100, pvo2);
+
+  const vo2MlMin = co * (caO2 - cvO2) * 10;
+  const vo2LMin = vo2MlMin / 1000;
+  const vco2LMin = vo2LMin * rq;
+
+  const kcalDay =
+    ((3.941 * vo2LMin) + (1.106 * vco2LMin)) * 1440;
+
+  $("vo2FickResult").textContent =
+    `Estimated VO₂: ${round0(vo2MlMin)} ml/min`;
+
+  $("kcalFick").textContent =
+    `${round10(kcalDay)} kcal/day`;
+}
+
+function calculatePredictiveCalories() {
+  const weight = validNumber($("pesoPredictivo").value);
+
+  if (!weight) {
+    $("kcal20").textContent = "—";
+    $("kcal25").textContent = "—";
+    $("kcal30").textContent = "—";
+    return;
+  }
+
+  $("kcal20").textContent =
+    `20 kcal/kg: ${round10(weight * 20)} kcal/day`;
+
+  $("kcal25").textContent =
+    `25 kcal/kg: ${round10(weight * 25)} kcal/day`;
+
+  $("kcal30").textContent =
+    `30 kcal/kg: ${round10(weight * 30)} kcal/day`;
+}
+
+function runCalorieRequirementCalculation() {
+  calculateIndirectCalorimetry();
+  calculateFick();
+  calculatePredictiveCalories();
+}
+
+/* =========================
+   EVENTS
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  $("pesoIdeal").addEventListener("input", runCalculation);
+  $("restriccionVolumen").addEventListener("change", runCalculation);
+
+  [
+    "vo2IC",
+    "vco2IC",
+    "gcFick",
+    "hbFick",
+    "sao2Fick",
+    "svo2Fick",
+    "pao2Fick",
+    "pvo2Fick",
+    "rqFick",
+    "pesoPredictivo"
+  ].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener("input", runCalorieRequirementCalculation);
+    }
+  });
 });
