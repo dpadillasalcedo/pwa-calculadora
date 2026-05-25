@@ -361,31 +361,30 @@
 
 </section>
 
+
 <!-- =========================
-     RESULTADOS
+     REQUERIMIENTOS
 ========================= -->
 
 <section class="grid">
 
-  <!-- TRÓFICO -->
   <article class="card">
-    <h2>Soporte trófico</h2>
-    <p class="small">20 kcal/kg · 1.5 g proteína/kg</p>
+    <h2>Requerimiento calórico</h2>
+    <p class="small">20–30 kcal/kg/día</p>
 
     <div class="result">
-      <b id="kcalTrofico">—</b>
-      <b id="protTrofico">—</b>
+      <b id="kcalMin">—</b>
+      <b id="kcalMax">—</b>
     </div>
   </article>
 
-  <!-- HIPO -->
   <article class="card">
-    <h2>Hipocalórico / hiperproteico</h2>
-    <p class="small">15 kcal/kg · 1.5 g proteína/kg</p>
+    <h2>Requerimiento proteico</h2>
+    <p class="small">1.2–1.5 g/kg/día</p>
 
     <div class="result">
-      <b id="kcalHipo">—</b>
-      <b id="protHipo">—</b>
+      <b id="protMin">—</b>
+      <b id="protMax">—</b>
     </div>
   </article>
 
@@ -393,143 +392,22 @@
 
 <div class="divider"></div>
 
+
 <!-- =========================
-     TABLA TRÓFICO
+     RESULTADOS
 ========================= -->
 
 <section class="card">
 
-  <h2>Sugerencia enteral – Soporte trófico</h2>
+  <h2>Opciones sugeridas de nutrición enteral</h2>
 
-  <table class="tabla-enterales" id="tablaTrofico">
+  <p class="small">
+    Calculado según requerimiento calórico estimado y aporte proteico de cada fórmula.
+  </p>
 
-    <thead>
-      <tr>
-        <th>Marca</th>
-        <th>kcal/ml</th>
-        <th>Proteína<br>100 ml</th>
-        <th>Volumen<br>día</th>
-        <th>Kcal/día</th>
-        <th>Proteína/día</th>
-        <th>Déficit proteína</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr data-kcalml="1.0" data-prot100="4.0">
-        <td>Yeviti</td>
-        <td>1.0</td>
-        <td>4.0 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.25" data-prot100="5.6">
-        <td>Energy</td>
-        <td>1.25</td>
-        <td>5.6 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.25" data-prot100="6.3">
-        <td>Intense</td>
-        <td>1.25</td>
-        <td>6.3 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.5" data-prot100="7.5">
-        <td>Protison</td>
-        <td>1.5</td>
-        <td>7.5 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-    </tbody>
-
-  </table>
-
-</section>
-
-<!-- =========================
-     TABLA HIPO
-========================= -->
-
-<section class="card">
-
-  <h2>Sugerencia enteral – Hipocalórico </h2>
-
-  <table class="tabla-enterales" id="tablaHipo">
-
-    <thead>
-      <tr>
-        <th>Marca</th>
-        <th>kcal/ml</th>
-        <th>Proteína<br>100 ml</th>
-        <th>Volumen<br>día</th>
-        <th>Kcal/día</th>
-        <th>Proteína/día</th>
-        <th>Déficit proteína</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr data-kcalml="1.0" data-prot100="4.0">
-        <td>Yeviti</td>
-        <td>1.0</td>
-        <td>4.0 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.25" data-prot100="5.6">
-        <td>Energy</td>
-        <td>1.25</td>
-        <td>5.6 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.25" data-prot100="6.3">
-        <td>Intense</td>
-        <td>1.25</td>
-        <td>6.3 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-      <tr data-kcalml="1.5" data-prot100="7.5">
-        <td>Protison</td>
-        <td>1.5</td>
-        <td>7.5 g</td>
-        <td class="vol">—</td>
-        <td class="kcal">—</td>
-        <td class="prot">—</td>
-        <td class="deficit">—</td>
-      </tr>
-
-    </tbody>
-
-  </table>
+  <div id="resultadosEnterales" class="enteral-results">
+    Ingrese el peso ideal para calcular.
+  </div>
 
 </section>
   
