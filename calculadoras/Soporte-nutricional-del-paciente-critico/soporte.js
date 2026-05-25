@@ -140,7 +140,8 @@ function calcularRequerimientos(peso) {
     kcalMin: round10(peso * 20),
     kcalMax: round10(peso * 30),
     protMin: round0(peso * 1.2),
-    protMax: round0(peso * 1.5)
+    protMax: round0(peso * 1.5),
+    protRestriccion: round0(peso * 1.1)
   };
 }
 
@@ -201,16 +202,27 @@ function crearOpcionCombinada(f1, f2, targetKcal, targetProtein, proporcion1) {
   };
 }
 
-function calcularOpcionesEnterales(req) {
+function calcularOpcionesEnterales(req, peso) {
   const restriccionVolumen =
     $("restriccionVolumen")?.checked || false;
 
   const targetKcal = req.kcalMax;
-  const targetProtein = req.protMax;
+
+  const targetProtein = restriccionVolumen
+    ? round0(peso * 1.1)
+    : req.protMax;
+
+  let formulasDisponibles = ENTERALES;
+
+  if (restriccionVolumen) {
+    formulasDisponibles = ENTERALES.filter(formula =>
+      formula.protMl >= 0.075
+    );
+  }
 
   let opciones = [];
 
-  ENTERALES.forEach(formula => {
+  formulasDisponibles.forEach(formula => {
     opciones.push(
       crearOpcionSimple(
         formula,
@@ -220,13 +232,13 @@ function calcularOpcionesEnterales(req) {
     );
   });
 
-  for (let i = 0; i < ENTERALES.length; i++) {
-    for (let j = i + 1; j < ENTERALES.length; j++) {
+  for (let i = 0; i < formulasDisponibles.length; i++) {
+    for (let j = i + 1; j < formulasDisponibles.length; j++) {
       [0.25, 0.5, 0.75].forEach(proporcion => {
         opciones.push(
           crearOpcionCombinada(
-            ENTERALES[i],
-            ENTERALES[j],
+            formulasDisponibles[i],
+            formulasDisponibles[j],
             targetKcal,
             targetProtein,
             proporcion
@@ -237,8 +249,8 @@ function calcularOpcionesEnterales(req) {
   }
 
   opciones.sort((a, b) => {
-    const aCumple = a.deficit === 0;
-    const bCumple = b.deficit === 0;
+    const aCumple = a.proteina >= targetProtein;
+    const bCumple = b.proteina >= targetProtein;
 
     if (aCumple !== bCumple) {
       return aCumple ? -1 : 1;
@@ -249,7 +261,7 @@ function calcularOpcionesEnterales(req) {
         return a.volumen - b.volumen;
       }
 
-      return a.deficit - b.deficit;
+      return b.proteina - a.proteina;
     }
 
     if (a.deficit !== b.deficit) {
@@ -259,11 +271,16 @@ function calcularOpcionesEnterales(req) {
     return a.volumen - b.volumen;
   });
 
-  return opciones;
+  return {
+    opciones,
+    targetKcal,
+    targetProtein,
+    restriccionVolumen
+  };
 }
 
-function renderOpciones(opciones) {
-  const mejores = opciones.slice(0, 5);
+function renderOpciones(data) {
+  const mejores = data.opciones.slice(0, 5);
 
   let html = "";
 
@@ -279,7 +296,7 @@ function renderOpciones(opciones) {
         : `<span class="badge-alt">Alternativa</span>`;
 
     const detalleFormulas = opcion.formulas
-      .map(f => `${f.nombre}: ${round0(f.volumen)} ml/día`)
+      .map(formula => `${formula.nombre}: ${round0(formula.volumen)} ml/día`)
       .join("<br>");
 
     html += `
@@ -321,9 +338,9 @@ function runCalculation() {
   $("protMin").textContent = `${req.protMin} g/día`;
   $("protMax").textContent = `${req.protMax} g/día`;
 
-  const opciones = calcularOpcionesEnterales(req);
+  const data = calcularOpcionesEnterales(req, pesoIdeal);
 
-  renderOpciones(opciones);
+  renderOpciones(data);
 }
 
 $("pesoIdeal").addEventListener("input", runCalculation);
