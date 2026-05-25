@@ -1,176 +1,4 @@
 /* =========================
-   CriticalCareTools – Soporte Nutricional
-========================= */
-
-const STRATEGIES = {
-  trofico: { kcalKg: 20, protKg: 1.5 },
-  hipo:    { kcalKg: 15, protKg: 1.5 }
-};
-
-const $ = id => document.getElementById(id);
-
-const round10 = v => Math.round(v / 10) * 10;
-const round0  = v => Math.round(v);
-
-function validNumber(v) {
-  const n = Number(v);
-  return Number.isFinite(n) && n > 0 ? n : null;
-}
-
-function calculate(weight, kcalKg, protKg) {
-  const kcal = weight * kcalKg;
-  const protein = weight * protKg;
-
-  return {
-    kcal: round10(kcal),
-    protein: round0(protein)
-  };
-}
-
-/* =========================
-   TABLAS ENTERALES
-========================= */
-
-function clearEnteralTable(tableId) {
-  document
-    .querySelectorAll(`#${tableId} tbody tr`)
-    .forEach(row => {
-      row.querySelector(".vol").textContent = "—";
-      row.querySelector(".kcal").textContent = "—";
-      row.querySelector(".prot").textContent = "—";
-      row.querySelector(".deficit").textContent = "—";
-
-      row.classList.remove("best-option");
-    });
-}
-
-function updateEnteralTable(tableId, targetKcal, targetProtein) {
-  if (!targetKcal || !targetProtein) return;
-
-  const restriccionVolumen =
-    $("restriccionVolumen")?.checked || false;
-
-  const rows = document.querySelectorAll(`#${tableId} tbody tr`);
-  const calc = [];
-
-  rows.forEach(row => {
-    const kcalMl  = Number(row.dataset.kcalml);
-    const prot100 = Number(row.dataset.prot100);
-
-    if (!kcalMl || !prot100) return;
-
-    const vol = targetKcal / kcalMl;
-    const protReal = vol * (prot100 / 100);
-    const deficit = Math.max(0, targetProtein - protReal);
-
-    calc.push({
-      row,
-      vol,
-      protReal,
-      deficit,
-      kcalMl,
-      prot100
-    });
-  });
-
-  calc.sort((a, b) => {
-    if (restriccionVolumen) {
-      if (a.vol !== b.vol) {
-        return a.vol - b.vol;
-      }
-
-      if (a.deficit !== b.deficit) {
-        return a.deficit - b.deficit;
-      }
-
-      return b.prot100 - a.prot100;
-    }
-
-    if (a.deficit !== b.deficit) {
-      return a.deficit - b.deficit;
-    }
-
-    return a.vol - b.vol;
-  });
-
-  calc.forEach((c, i) => {
-    c.row.querySelector(".vol").textContent =
-      `${Math.round(c.vol)} ml`;
-
-    c.row.querySelector(".kcal").textContent =
-      `${targetKcal} kcal`;
-
-    c.row.querySelector(".prot").textContent =
-      `${Math.round(c.protReal)} g`;
-
-    c.row.querySelector(".deficit").textContent =
-      c.deficit > 0
-        ? `-${Math.round(c.deficit)} g`
-        : "0 g";
-
-    c.row.classList.toggle("best-option", i === 0);
-  });
-}
-
-/* =========================
-   MAIN
-========================= */
-
-function runCalculation() {
-  const pesoIdeal = validNumber($("pesoIdeal").value);
-
-  if (!pesoIdeal) {
-    $("kcalTrofico").textContent = "—";
-    $("protTrofico").textContent = "—";
-
-    $("kcalHipo").textContent = "—";
-    $("protHipo").textContent = "—";
-
-    clearEnteralTable("tablaTrofico");
-    clearEnteralTable("tablaHipo");
-
-    return;
-  }
-
-  const trof = calculate(
-    pesoIdeal,
-    STRATEGIES.trofico.kcalKg,
-    STRATEGIES.trofico.protKg
-  );
-
-  const hipo = calculate(
-    pesoIdeal,
-    STRATEGIES.hipo.kcalKg,
-    STRATEGIES.hipo.protKg
-  );
-
-  $("kcalTrofico").textContent =
-    `${trof.kcal} kcal/día`;
-
-  $("protTrofico").textContent =
-    `${trof.protein} g/día`;
-
-  $("kcalHipo").textContent =
-    `${hipo.kcal} kcal/día`;
-
-  $("protHipo").textContent =
-    `${hipo.protein} g/día`;
-
-  updateEnteralTable("tablaTrofico", trof.kcal, trof.protein);
-  updateEnteralTable("tablaHipo", hipo.kcal, hipo.protein);
-}
-
-/* =========================
-   EVENTS
-========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-  $("pesoIdeal").addEventListener("input", runCalculation);
-
-  $("restriccionVolumen").addEventListener("change", runCalculation);
-});
-
-/* =========================
    REQUERIMIENTO CALÓRICO DIARIO
 ========================= */
 
@@ -270,3 +98,199 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+/* =========================
+   CriticalCareTools – Nutrición Enteral
+========================= */
+
+const ENTERALES = [
+  {
+    nombre: "Yeviti",
+    kcalMl: 1.0,
+    protMl: 0.04
+  },
+  {
+    nombre: "Jevity",
+    kcalMl: 1.2,
+    protMl: 0.05
+  },
+  {
+    nombre: "Protison",
+    kcalMl: 1.28,
+    protMl: 0.075
+  },
+  {
+    nombre: "Intense",
+    kcalMl: 1.25,
+    protMl: 0.10
+  },
+  {
+    nombre: "Supportan",
+    kcalMl: 1.5,
+    protMl: 0.10
+  },
+  {
+    nombre: "Energy",
+    kcalMl: 1.5,
+    protMl: 0.06
+  },
+  {
+    nombre: "Alterna Peptid",
+    kcalMl: 1.5,
+    protMl: 0.068
+  },
+  {
+    nombre: "Glucerna 1.5",
+    kcalMl: 1.5,
+    protMl: 0.0825
+  }
+];
+
+const $ = id => document.getElementById(id);
+
+const round0 = value => Math.round(value);
+const round10 = value => Math.round(value / 10) * 10;
+
+function validNumber(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function clearResults() {
+  $("kcalMin").textContent = "—";
+  $("kcalMax").textContent = "—";
+  $("protMin").textContent = "—";
+  $("protMax").textContent = "—";
+
+  $("resultadosEnterales").innerHTML =
+    "Ingrese el peso ideal para calcular.";
+}
+
+function calcularRequerimientos(peso) {
+  return {
+    kcalMin: round10(peso * 20),
+    kcalMax: round10(peso * 30),
+    protMin: round0(peso * 1.2),
+    protMax: round0(peso * 1.5)
+  };
+}
+
+function calcularOpcionesEnterales(req) {
+  const restriccionVolumen =
+    $("restriccionVolumen")?.checked || false;
+
+  const targetKcal = req.kcalMax;
+  const targetProtein = req.protMax;
+
+  const opciones = ENTERALES.map(formula => {
+    const volumen = targetKcal / formula.kcalMl;
+    const kcalAportadas = volumen * formula.kcalMl;
+    const proteinaAportada = volumen * formula.protMl;
+
+    const deficitProteina =
+      Math.max(0, targetProtein - proteinaAportada);
+
+    const excesoProteina =
+      Math.max(0, proteinaAportada - targetProtein);
+
+    return {
+      nombre: formula.nombre,
+      kcalMl: formula.kcalMl,
+      prot100: formula.protMl * 100,
+      volumen,
+      kcalAportadas,
+      proteinaAportada,
+      deficitProteina,
+      excesoProteina
+    };
+  });
+
+  opciones.sort((a, b) => {
+    if (restriccionVolumen) {
+      if (a.volumen !== b.volumen) {
+        return a.volumen - b.volumen;
+      }
+
+      if (a.deficitProteina !== b.deficitProteina) {
+        return a.deficitProteina - b.deficitProteina;
+      }
+
+      return b.proteinaAportada - a.proteinaAportada;
+    }
+
+    if (a.deficitProteina !== b.deficitProteina) {
+      return a.deficitProteina - b.deficitProteina;
+    }
+
+    if (a.volumen !== b.volumen) {
+      return a.volumen - b.volumen;
+    }
+
+    return b.proteinaAportada - a.proteinaAportada;
+  });
+
+  return opciones;
+}
+
+function renderOpciones(opciones) {
+  const mejores = opciones.slice(0, 5);
+
+  let html = "";
+
+  mejores.forEach((opcion, index) => {
+    const deficitTexto =
+      opcion.deficitProteina > 0
+        ? `-${round0(opcion.deficitProteina)} g`
+        : "0 g";
+
+    const badge =
+      index === 0
+        ? `<span class="badge-best">Mejor opción</span>`
+        : `<span class="badge-alt">Alternativa</span>`;
+
+    html += `
+      <article class="enteral-option ${index === 0 ? "best-option" : ""}">
+        <div class="enteral-header">
+          <h3>${opcion.nombre}</h3>
+          ${badge}
+        </div>
+
+        <div class="enteral-data">
+          <p><b>Concentración:</b> ${opcion.kcalMl} kcal/ml</p>
+          <p><b>Proteína:</b> ${opcion.prot100.toFixed(1)} g/100 ml</p>
+          <p><b>Volumen diario:</b> ${round0(opcion.volumen)} ml/día</p>
+          <p><b>Kcal aportadas:</b> ${round0(opcion.kcalAportadas)} kcal/día</p>
+          <p><b>Proteína aportada:</b> ${round0(opcion.proteinaAportada)} g/día</p>
+          <p><b>Déficit proteico:</b> ${deficitTexto}</p>
+        </div>
+      </article>
+    `;
+  });
+
+  $("resultadosEnterales").innerHTML = html;
+}
+
+function runCalculation() {
+  const pesoIdeal = validNumber($("pesoIdeal").value);
+
+  if (!pesoIdeal) {
+    clearResults();
+    return;
+  }
+
+  const req = calcularRequerimientos(pesoIdeal);
+
+  $("kcalMin").textContent = `${req.kcalMin} kcal/día`;
+  $("kcalMax").textContent = `${req.kcalMax} kcal/día`;
+
+  $("protMin").textContent = `${req.protMin} g/día`;
+  $("protMax").textContent = `${req.protMax} g/día`;
+
+  const opciones = calcularOpcionesEnterales(req);
+
+  renderOpciones(opciones);
+}
+
+$("pesoIdeal").addEventListener("input", runCalculation);
+$("restriccionVolumen").addEventListener("change", runCalculation);
