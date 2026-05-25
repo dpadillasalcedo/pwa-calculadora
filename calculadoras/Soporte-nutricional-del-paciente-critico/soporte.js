@@ -105,46 +105,14 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================= */
 
 const ENTERALES = [
-  {
-    nombre: "Yeviti",
-    kcalMl: 1.0,
-    protMl: 0.04
-  },
-  {
-    nombre: "Jevity",
-    kcalMl: 1.2,
-    protMl: 0.05
-  },
-  {
-    nombre: "Protison",
-    kcalMl: 1.28,
-    protMl: 0.075
-  },
-  {
-    nombre: "Intense",
-    kcalMl: 1.25,
-    protMl: 0.10
-  },
-  {
-    nombre: "Supportan",
-    kcalMl: 1.5,
-    protMl: 0.10
-  },
-  {
-    nombre: "Energy",
-    kcalMl: 1.5,
-    protMl: 0.06
-  },
-  {
-    nombre: "Alterna Peptid",
-    kcalMl: 1.5,
-    protMl: 0.068
-  },
-  {
-    nombre: "Glucerna 1.5",
-    kcalMl: 1.5,
-    protMl: 0.0825
-  }
+  { nombre: "Yeviti", kcalMl: 1.0, protMl: 0.04 },
+  { nombre: "Jevity", kcalMl: 1.2, protMl: 0.05 },
+  { nombre: "Protison", kcalMl: 1.28, protMl: 0.075 },
+  { nombre: "Intense", kcalMl: 1.25, protMl: 0.10 },
+  { nombre: "Supportan", kcalMl: 1.5, protMl: 0.10 },
+  { nombre: "Energy", kcalMl: 1.5, protMl: 0.06 },
+  { nombre: "Alterna Peptid", kcalMl: 1.5, protMl: 0.068 },
+  { nombre: "Glucerna 1.5", kcalMl: 1.5, protMl: 0.0825 }
 ];
 
 const $ = id => document.getElementById(id);
@@ -163,6 +131,9 @@ function clearResults() {
   $("protMin").textContent = "—";
   $("protMax").textContent = "—";
 
+  $("criterioCalculo").textContent =
+    "Ingrese el peso ideal para calcular.";
+
   $("resultadosEnterales").innerHTML =
     "Ingrese el peso ideal para calcular.";
 }
@@ -180,7 +151,10 @@ function calcularOpcionesEnterales(req) {
   const restriccionVolumen =
     $("restriccionVolumen")?.checked || false;
 
-  const targetKcal = req.kcalMax;
+  const targetKcal = restriccionVolumen
+    ? req.kcalMin
+    : req.kcalMax;
+
   const targetProtein = req.protMax;
 
   const opciones = ENTERALES.map(formula => {
@@ -191,9 +165,6 @@ function calcularOpcionesEnterales(req) {
     const deficitProteina =
       Math.max(0, targetProtein - proteinaAportada);
 
-    const excesoProteina =
-      Math.max(0, proteinaAportada - targetProtein);
-
     return {
       nombre: formula.nombre,
       kcalMl: formula.kcalMl,
@@ -201,8 +172,7 @@ function calcularOpcionesEnterales(req) {
       volumen,
       kcalAportadas,
       proteinaAportada,
-      deficitProteina,
-      excesoProteina
+      deficitProteina
     };
   });
 
@@ -230,11 +200,16 @@ function calcularOpcionesEnterales(req) {
     return b.proteinaAportada - a.proteinaAportada;
   });
 
-  return opciones;
+  return {
+    opciones,
+    targetKcal,
+    targetProtein,
+    restriccionVolumen
+  };
 }
 
-function renderOpciones(opciones) {
-  const mejores = opciones.slice(0, 5);
+function renderOpciones(data) {
+  const mejores = data.opciones.slice(0, 5);
 
   let html = "";
 
@@ -260,7 +235,7 @@ function renderOpciones(opciones) {
           <p><b>Concentración:</b> ${opcion.kcalMl} kcal/ml</p>
           <p><b>Proteína:</b> ${opcion.prot100.toFixed(1)} g/100 ml</p>
           <p><b>Volumen diario:</b> ${round0(opcion.volumen)} ml/día</p>
-          <p><b>Kcal aportadas:</b> ${round0(opcion.kcalAportadas)} kcal/día</p>
+          <p><b>Objetivo calórico usado:</b> ${round0(opcion.kcalAportadas)} kcal/día</p>
           <p><b>Proteína aportada:</b> ${round0(opcion.proteinaAportada)} g/día</p>
           <p><b>Déficit proteico:</b> ${deficitTexto}</p>
         </div>
@@ -287,9 +262,13 @@ function runCalculation() {
   $("protMin").textContent = `${req.protMin} g/día`;
   $("protMax").textContent = `${req.protMax} g/día`;
 
-  const opciones = calcularOpcionesEnterales(req);
+  const data = calcularOpcionesEnterales(req);
 
-  renderOpciones(opciones);
+  $("criterioCalculo").textContent = data.restriccionVolumen
+    ? `Restricción de volumen activa: se usa objetivo calórico bajo (${data.targetKcal} kcal/día) y objetivo proteico alto (${data.targetProtein} g/día).`
+    : `Sin restricción de volumen: se usa objetivo calórico alto (${data.targetKcal} kcal/día) y objetivo proteico alto (${data.targetProtein} g/día).`;
+
+  renderOpciones(data);
 }
 
 $("pesoIdeal").addEventListener("input", runCalculation);
