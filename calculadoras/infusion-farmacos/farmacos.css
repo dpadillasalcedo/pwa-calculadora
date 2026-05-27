@@ -317,3 +317,13 @@ button:hover {
     padding: 1.3rem;
   }
 }
+
+.seo-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.seo-toggle {
+  margin-top: 20px;
+}
