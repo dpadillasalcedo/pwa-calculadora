@@ -554,3 +554,13 @@ footer {
     padding: 0.55rem;
   }
 }
+
+.seo-toggle summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.seo-toggle {
+  margin-top: 20px;
+}
