@@ -272,3 +272,51 @@ function toggleTablasDriveRespiratorio() {
 }
 
 window.toggleTablasDriveRespiratorio = toggleTablasDriveRespiratorio;
+
+function calcularTranspulmonar() {
+  const pplat = parseFloat(document.getElementById("pplat").value);
+  const peep = parseFloat(document.getElementById("peep").value);
+  const pesInsp = parseFloat(document.getElementById("pesInsp").value);
+  const pesExp = parseFloat(document.getElementById("pesExp").value);
+  const vt = parseFloat(document.getElementById("vt").value);
+
+  if (
+    isNaN(pplat) ||
+    isNaN(peep) ||
+    isNaN(pesInsp) ||
+    isNaN(pesExp) ||
+    isNaN(vt)
+  ) {
+    alert("Completa todos los campos.");
+    return;
+  }
+
+  const plInsp = pplat - pesInsp;
+  const plExp = peep - pesExp;
+  const dpLung = plInsp - plExp;
+
+  const dpRS = pplat - peep;
+  const dpChest = pesInsp - pesExp;
+
+  const cRS = vt / dpRS;
+  const cLung = vt / dpLung;
+  const cChest = vt / dpChest;
+
+  const elastanceRS = dpRS / vt;
+  const elastanceLung = dpLung / vt;
+  const elastanceChest = dpChest / vt;
+
+  const lungComponent = (elastanceLung / elastanceRS) * 100;
+  const chestComponent = (elastanceChest / elastanceRS) * 100;
+
+  document.getElementById("plInsp").textContent = plInsp.toFixed(1);
+  document.getElementById("plExp").textContent = plExp.toFixed(1);
+  document.getElementById("dpLung").textContent = dpLung.toFixed(1);
+
+  document.getElementById("cRS").textContent = cRS.toFixed(1);
+  document.getElementById("cLung").textContent = cLung.toFixed(1);
+  document.getElementById("cChest").textContent = cChest.toFixed(1);
+
+  document.getElementById("lungComponent").textContent = lungComponent.toFixed(1);
+  document.getElementById("chestComponent").textContent = chestComponent.toFixed(1);
+}
