@@ -875,3 +875,31 @@ function resetClifSofaAclf() {
   setClifHTML("resultadoClifSofa", "");
   setClifHTML("interpretacionClifSofa", "");
 }
+
+const plasmicInputs = document.querySelectorAll('.plasmic-table input');
+const plasmicScore = document.getElementById('plasmicScore');
+const plasmicRisk = document.getElementById('plasmicRisk');
+
+plasmicInputs.forEach(input => {
+  input.addEventListener('change', calculatePlasmicScore);
+});
+
+function calculatePlasmicScore() {
+  let score = 0;
+
+  plasmicInputs.forEach(input => {
+    if (input.checked) {
+      score += Number(input.value);
+    }
+  });
+
+  plasmicScore.textContent = score;
+
+  if (score <= 4) {
+    plasmicRisk.textContent = 'Score 0–4 – low risk of severe ADAMTS13 deficiency';
+  } else if (score === 5) {
+    plasmicRisk.textContent = 'Score 5 – intermediate risk of severe ADAMTS13 deficiency';
+  } else {
+    plasmicRisk.textContent = 'Score 6 or 7 – high risk of severe ADAMTS13 deficiency';
+  }
+}
