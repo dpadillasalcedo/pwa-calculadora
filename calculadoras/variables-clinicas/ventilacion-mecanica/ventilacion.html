@@ -331,6 +331,56 @@
 
  </main>
 
+     <section class="card transpulmonary-calculator">
+  <h2>Presión transpulmonar y mecánica respiratoria</h2>
+
+  <div class="grid">
+    <label>
+      Pplat / Presión plateau (cmH₂O)
+      <input type="number" id="pplat" step="0.1">
+    </label>
+
+    <label>
+      PEEP total (cmH₂O)
+      <input type="number" id="peep" step="0.1">
+    </label>
+
+    <label>
+      Pes inspiratoria (cmH₂O)
+      <input type="number" id="pesInsp" step="0.1">
+    </label>
+
+    <label>
+      Pes espiratoria (cmH₂O)
+      <input type="number" id="pesExp" step="0.1">
+    </label>
+
+    <label>
+      Volumen tidal VT (mL)
+      <input type="number" id="vt" step="1">
+    </label>
+  </div>
+
+  <button onclick="calcularTranspulmonar()">Calcular</button>
+
+  <div class="results">
+    <p><strong>Presión transpulmonar inspiratoria:</strong> <span id="plInsp">--</span> cmH₂O</p>
+    <p><strong>Presión transpulmonar espiratoria:</strong> <span id="plExp">--</span> cmH₂O</p>
+    <p><strong>Driving pressure transpulmonar:</strong> <span id="dpLung">--</span> cmH₂O</p>
+
+    <hr>
+
+    <p><strong>Compliance del sistema respiratorio:</strong> <span id="cRS">--</span> mL/cmH₂O</p>
+    <p><strong>Compliance pulmonar:</strong> <span id="cLung">--</span> mL/cmH₂O</p>
+    <p><strong>Compliance de caja torácica:</strong> <span id="cChest">--</span> mL/cmH₂O</p>
+
+    <hr>
+
+    <p><strong>Componente pulmonar de la presión:</strong> <span id="lungComponent">--</span>%</p>
+    <p><strong>Componente de caja torácica:</strong> <span id="chestComponent">--</span>%</p>
+  </div>
+</section>
+
      <!-- =========================
      P0.1 Y POCC EN VENTILACIÓN MECÁNICA
 ========================== -->
