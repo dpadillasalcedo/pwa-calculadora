@@ -564,3 +564,96 @@ footer {
 .seo-toggle {
   margin-top: 20px;
 }
+
+.plasmic-card {
+  max-width: 760px;
+  margin: 30px auto;
+  background: #f8eeee;
+  border: 1px solid #d8caca;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+.plasmic-card h2 {
+  margin: 0;
+  padding: 18px;
+  text-align: center;
+  font-size: 42px;
+  color: #5b1720;
+  background: #f3dddd;
+}
+
+.subtitle {
+  margin: 0;
+  padding: 18px 28px;
+  font-size: 26px;
+  background: #f3dddd;
+  border-bottom: 1px solid #777;
+}
+
+.plasmic-table .header,
+.plasmic-table label {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 18px;
+  border-bottom: 1px dotted #999;
+}
+
+.plasmic-table .header {
+  font-weight: bold;
+  background: #f3dddd;
+  border-bottom: 1px solid #777;
+}
+
+.plasmic-table label {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.plasmic-table small {
+  display: block;
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.plasmic-table input {
+  width: 24px;
+  height: 24px;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.result {
+  padding: 18px;
+  font-size: 24px;
+  background: #f3dddd;
+  border-top: 1px solid #777;
+}
+
+.result p {
+  margin: 8px 0 0;
+  font-weight: bold;
+}
+
+.interpretation {
+  padding: 0 18px 14px;
+  font-size: 23px;
+  font-weight: bold;
+  background: #f3dddd;
+}
+
+.interpretation p {
+  margin: 8px 0;
+}
+
+.reference {
+  padding: 14px 18px 22px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  background: #f3dddd;
+}
