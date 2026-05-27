@@ -1275,6 +1275,76 @@ function resetSOFA(){
   </div>
 
 </section>
+
+   <section class="plasmic-card">
+  <h2>PLASMIC Score</h2>
+  <p class="subtitle">A seven component prediction score</p>
+
+  <div class="plasmic-table">
+    <div class="header">
+      <span>Variable</span>
+      <span>Points</span>
+    </div>
+
+    <label>
+      <span>Platelet count &lt;30 × 10<sup>9</sup> per L</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>
+        Evidence of hemolysis<br>
+        <small>
+          Reticulocyte count &gt;2.5%, or haptoglobin undetectable,
+          or indirect bilirubin &gt;2.0 mg/dL
+        </small>
+      </span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>No active cancer</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>No history of solid-organ or stem-cell transplant</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>MCV &lt;90 fL</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>INR &lt;1.5</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>Creatinine &lt;2 mg/dL</span>
+      <input type="checkbox" value="1">
+    </label>
+  </div>
+
+  <div class="result">
+    <strong>Total score: <span id="plasmicScore">0</span></strong>
+    <p id="plasmicRisk">Score 0–4 – low risk of severe ADAMTS13 deficiency</p>
+  </div>
+
+  <div class="interpretation">
+    <p><strong>Score 0–4</strong> – low risk of severe ADAMTS13 deficiency</p>
+    <p><strong>Score 5</strong> – intermediate risk of severe ADAMTS13 deficiency</p>
+    <p><strong>Score 6 or 7</strong> – high risk of severe ADAMTS13 deficiency</p>
+  </div>
+
+  <p class="reference">
+    Bendapudi PK, Hurwitz S, Fry A, et al. Derivation and external validation
+    of the PLASMIC score for rapid assessment of adults with thrombotic
+    microangiopathies: a cohort study. Lancet Haematol. 2017;4(4):e157–e164.
+  </p>
+</section>
    
    
 <details class="seo-toggle">
