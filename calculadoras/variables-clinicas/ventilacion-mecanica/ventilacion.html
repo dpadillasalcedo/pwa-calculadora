@@ -331,37 +331,41 @@
 
  </main>
 
-     <section class="card transpulmonary-calculator">
+<section class="card transpulmonary-calculator">
   <h2>Presión transpulmonar y mecánica respiratoria</h2>
+
+  <p class="intro">
+    Ingresa siempre valores positivos. La calculadora aplicará internamente la diferencia correspondiente según la fórmula.
+  </p>
 
   <div class="grid">
     <label>
-      Pplat / Presión plateau (cmH₂O)
-      <input type="number" id="pplat" step="0.1">
+      Pplat / Presión plateau positiva (+) cmH₂O
+      <input type="number" id="pplat" step="0.1" min="0" placeholder="Ej: 22">
     </label>
 
     <label>
-      PEEP total (cmH₂O)
-      <input type="number" id="peep" step="0.1">
+      PEEP total positiva (+) cmH₂O
+      <input type="number" id="peep" step="0.1" min="0" placeholder="Ej: 12">
     </label>
 
     <label>
-      Pes inspiratoria (cmH₂O)
-      <input type="number" id="pesInsp" step="0.1">
+      Pes inspiratoria positiva (+) cmH₂O
+      <input type="number" id="pesInsp" step="0.1" min="0" placeholder="Ej: 15">
     </label>
 
     <label>
-      Pes espiratoria (cmH₂O)
-      <input type="number" id="pesExp" step="0.1">
+      Pes espiratoria positiva (+) cmH₂O
+      <input type="number" id="pesExp" step="0.1" min="0" placeholder="Ej: 10">
     </label>
 
     <label>
-      Volumen tidal VT (mL)
-      <input type="number" id="vt" step="1">
+      Volumen tidal VT positivo (+) mL
+      <input type="number" id="vt" step="1" min="0" placeholder="Ej: 333">
     </label>
   </div>
 
-  <button onclick="calcularTranspulmonar()">Calcular</button>
+  <button type="button" onclick="calcularTranspulmonar()">Calcular</button>
 
   <div class="results">
     <p><strong>Presión transpulmonar inspiratoria:</strong> <span id="plInsp">--</span> cmH₂O</p>
@@ -378,6 +382,50 @@
 
     <p><strong>Componente pulmonar de la presión:</strong> <span id="lungComponent">--</span>%</p>
     <p><strong>Componente de caja torácica:</strong> <span id="chestComponent">--</span>%</p>
+  </div>
+
+  <div class="formula-box">
+    <h3>Fórmulas utilizadas</h3>
+
+    <p><strong>Presión transpulmonar inspiratoria:</strong><br>
+      PL insp = Pplat − Pes insp
+    </p>
+
+    <p><strong>Presión transpulmonar espiratoria:</strong><br>
+      PL esp = PEEP − Pes esp
+    </p>
+
+    <p><strong>Driving pressure transpulmonar:</strong><br>
+      ΔPL = |PL insp − PL esp|
+    </p>
+
+    <p><strong>Driving pressure del sistema respiratorio:</strong><br>
+      ΔPRS = |Pplat − PEEP|
+    </p>
+
+    <p><strong>Driving pressure de caja torácica:</strong><br>
+      ΔPcw = |Pes insp − Pes esp|
+    </p>
+
+    <p><strong>Compliance del sistema respiratorio:</strong><br>
+      CRS = VT / ΔPRS
+    </p>
+
+    <p><strong>Compliance pulmonar:</strong><br>
+      CL = VT / ΔPL
+    </p>
+
+    <p><strong>Compliance de caja torácica:</strong><br>
+      CCW = VT / ΔPcw
+    </p>
+
+    <p><strong>Componente pulmonar:</strong><br>
+      (ΔPL / ΔPRS) × 100
+    </p>
+
+    <p><strong>Componente de caja torácica:</strong><br>
+      (ΔPcw / ΔPRS) × 100
+    </p>
   </div>
 </section>
 
