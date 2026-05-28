@@ -275,26 +275,54 @@ window.toggleTablasDriveRespiratorio = toggleTablasDriveRespiratorio;
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("ptp-btn");
+  btn.addEventListener("click", calcularTranspulmonar);
+});
+
+function obtenerNumero(id) {
+  const campo = document.getElementById(id);
+
+  if (!campo) {
+    alert("No se encontró el campo: " + id);
+    return null;
+  }
+
+  const valor = campo.value.trim().replace(",", ".");
+
+  if (valor === "") {
+    return null;
+  }
+
+  const numero = Number(valor);
+
+  if (!Number.isFinite(numero)) {
+    return null;
+  }
+
+  return numero;
+}
+
 function calcularTranspulmonar() {
-  const pplat = Number(document.getElementById("pplat").value);
-  const peep = Number(document.getElementById("peep").value);
-  const pesInsp = Number(document.getElementById("pesInsp").value);
-  const pesExp = Number(document.getElementById("pesExp").value);
-  const vt = Number(document.getElementById("vt").value);
+  const pplat = obtenerNumero("ptp-pplat");
+  const peep = obtenerNumero("ptp-peep");
+  const pesInsp = obtenerNumero("ptp-pes-insp");
+  const pesExp = obtenerNumero("ptp-pes-exp");
+  const vt = obtenerNumero("ptp-vt");
 
   if (
-    !isFinite(pplat) ||
-    !isFinite(peep) ||
-    !isFinite(pesInsp) ||
-    !isFinite(pesExp) ||
-    !isFinite(vt) ||
-    pplat <= 0 ||
-    peep < 0 ||
-    pesInsp < 0 ||
-    pesExp < 0 ||
-    vt <= 0
+    pplat === null ||
+    peep === null ||
+    pesInsp === null ||
+    pesExp === null ||
+    vt === null
   ) {
-    alert("Completa todos los campos con valores positivos válidos.");
+    alert("Completa todos los campos.");
+    return;
+  }
+
+  if (pplat <= 0 || peep < 0 || pesInsp < 0 || pesExp < 0 || vt <= 0) {
+    alert("Ingresa valores positivos válidos.");
     return;
   }
 
@@ -305,8 +333,8 @@ function calcularTranspulmonar() {
   const dpRS = Math.abs(pplat - peep);
   const dpChest = Math.abs(pesInsp - pesExp);
 
-  if (dpRS === 0 || dpLung === 0 || dpChest === 0) {
-    alert("Las diferencias de presión no pueden ser cero para calcular compliance.");
+  if (dpLung === 0 || dpRS === 0 || dpChest === 0) {
+    alert("Las diferencias de presión no pueden ser cero.");
     return;
   }
 
@@ -317,14 +345,14 @@ function calcularTranspulmonar() {
   const lungComponent = (dpLung / dpRS) * 100;
   const chestComponent = (dpChest / dpRS) * 100;
 
-  document.getElementById("plInsp").textContent = plInsp.toFixed(1);
-  document.getElementById("plExp").textContent = plExp.toFixed(1);
-  document.getElementById("dpLung").textContent = dpLung.toFixed(1);
+  document.getElementById("ptp-pl-insp").textContent = plInsp.toFixed(1);
+  document.getElementById("ptp-pl-exp").textContent = plExp.toFixed(1);
+  document.getElementById("ptp-dp-lung").textContent = dpLung.toFixed(1);
 
-  document.getElementById("cRS").textContent = cRS.toFixed(1);
-  document.getElementById("cLung").textContent = cLung.toFixed(1);
-  document.getElementById("cChest").textContent = cChest.toFixed(1);
+  document.getElementById("ptp-crs").textContent = cRS.toFixed(1);
+  document.getElementById("ptp-clung").textContent = cLung.toFixed(1);
+  document.getElementById("ptp-cchest").textContent = cChest.toFixed(1);
 
-  document.getElementById("lungComponent").textContent = lungComponent.toFixed(1);
-  document.getElementById("chestComponent").textContent = chestComponent.toFixed(1);
+  document.getElementById("ptp-lung-component").textContent = lungComponent.toFixed(1);
+  document.getElementById("ptp-chest-component").textContent = chestComponent.toFixed(1);
 }
