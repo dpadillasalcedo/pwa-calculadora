@@ -273,41 +273,49 @@ function toggleTablasDriveRespiratorio() {
 
 window.toggleTablasDriveRespiratorio = toggleTablasDriveRespiratorio;
 
+
+
 function calcularTranspulmonar() {
-  const pplat = parseFloat(document.getElementById("pplat").value);
-  const peep = parseFloat(document.getElementById("peep").value);
-  const pesInsp = parseFloat(document.getElementById("pesInsp").value);
-  const pesExp = parseFloat(document.getElementById("pesExp").value);
-  const vt = parseFloat(document.getElementById("vt").value);
+  const pplat = Number(document.getElementById("pplat").value);
+  const peep = Number(document.getElementById("peep").value);
+  const pesInsp = Number(document.getElementById("pesInsp").value);
+  const pesExp = Number(document.getElementById("pesExp").value);
+  const vt = Number(document.getElementById("vt").value);
 
   if (
-    isNaN(pplat) ||
-    isNaN(peep) ||
-    isNaN(pesInsp) ||
-    isNaN(pesExp) ||
-    isNaN(vt)
+    !isFinite(pplat) ||
+    !isFinite(peep) ||
+    !isFinite(pesInsp) ||
+    !isFinite(pesExp) ||
+    !isFinite(vt) ||
+    pplat <= 0 ||
+    peep < 0 ||
+    pesInsp < 0 ||
+    pesExp < 0 ||
+    vt <= 0
   ) {
-    alert("Completa todos los campos.");
+    alert("Completa todos los campos con valores positivos válidos.");
     return;
   }
 
   const plInsp = pplat - pesInsp;
   const plExp = peep - pesExp;
-  const dpLung = plInsp - plExp;
 
-  const dpRS = pplat - peep;
-  const dpChest = pesInsp - pesExp;
+  const dpLung = Math.abs(plInsp - plExp);
+  const dpRS = Math.abs(pplat - peep);
+  const dpChest = Math.abs(pesInsp - pesExp);
+
+  if (dpRS === 0 || dpLung === 0 || dpChest === 0) {
+    alert("Las diferencias de presión no pueden ser cero para calcular compliance.");
+    return;
+  }
 
   const cRS = vt / dpRS;
   const cLung = vt / dpLung;
   const cChest = vt / dpChest;
 
-  const elastanceRS = dpRS / vt;
-  const elastanceLung = dpLung / vt;
-  const elastanceChest = dpChest / vt;
-
-  const lungComponent = (elastanceLung / elastanceRS) * 100;
-  const chestComponent = (elastanceChest / elastanceRS) * 100;
+  const lungComponent = (dpLung / dpRS) * 100;
+  const chestComponent = (dpChest / dpRS) * 100;
 
   document.getElementById("plInsp").textContent = plInsp.toFixed(1);
   document.getElementById("plExp").textContent = plExp.toFixed(1);
