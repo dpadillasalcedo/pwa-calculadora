@@ -82,7 +82,9 @@ body {
 
 a:focus-visible,
 button:focus-visible,
-select:focus-visible {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
   outline: 3px solid rgba(15, 76, 129, 0.35);
   outline-offset: 3px;
   border-radius: 6px;
@@ -94,7 +96,11 @@ select:focus-visible {
 .site-header {
   padding: 1.4rem 0 2.2rem;
   border-bottom: 1px solid rgba(219, 227, 236, 0.85);
-  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.92) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92) 0%,
+    rgba(248,250,252,0.92) 100%
+  );
   backdrop-filter: blur(4px);
 }
 
@@ -119,10 +125,7 @@ select:focus-visible {
   transition: color var(--transition);
 }
 
-.language-switcher a:hover {
-  color: var(--primary);
-}
-
+.language-switcher a:hover,
 .language-switcher a.active {
   color: var(--primary);
 }
@@ -145,6 +148,9 @@ select:focus-visible {
   color: var(--primary-dark);
 }
 
+/* =========================
+   HERO
+========================= */
 .hero {
   max-width: 760px;
 }
@@ -163,7 +169,8 @@ select:focus-visible {
   text-transform: uppercase;
 }
 
-.hero h1 {
+.hero h1,
+h1 {
   font-size: clamp(2.1rem, 4.8vw, 3.4rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -185,15 +192,21 @@ select:focus-visible {
 }
 
 /* =========================
-   PANELS
+   PANELS / CARDS
 ========================= */
-.panel {
+.panel,
+.card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: 1.6rem;
   margin-bottom: 1.6rem;
+}
+
+.card {
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
 }
 
 .panel h2 {
@@ -203,6 +216,17 @@ select:focus-visible {
   margin-bottom: 0.65rem;
 }
 
+.panel h3,
+.card h3 {
+  font-size: 1.12rem;
+  line-height: 1.25;
+  color: var(--heading);
+  margin-bottom: 0.8rem;
+}
+
+/* =========================
+   NOTES / RESULTS
+========================= */
 .note {
   background: var(--primary-soft);
   border: 1px solid rgba(15, 76, 129, 0.12);
@@ -217,17 +241,49 @@ select:focus-visible {
   margin-bottom: 1rem;
 }
 
+.result,
+.resultado {
+  margin-top: 1rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.05rem;
+  color: var(--heading);
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.result b,
+.resultado b {
+  color: var(--primary);
+}
+
+.result:empty,
+.resultado:empty,
+.note:empty {
+  display: none;
+}
+
 /* =========================
    GRID / FORM
 ========================= */
-.grid {
+.grid,
+.grid-2 {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem 1.1rem;
   margin-top: 1rem;
 }
 
-label {
+.grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+label,
+.field {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -236,7 +292,14 @@ label {
   font-size: 0.96rem;
 }
 
-select {
+.field span {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
   width: 100%;
   min-height: 46px;
   padding: 0.78rem 0.92rem;
@@ -247,10 +310,17 @@ select {
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-select:focus {
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.14);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
 }
 
 /* =========================
@@ -263,7 +333,9 @@ select:focus {
   margin-top: 1.35rem;
 }
 
-button {
+button,
+.btn,
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -280,52 +352,251 @@ button {
     box-shadow var(--transition);
 }
 
-button.primary {
+button.primary,
+.btn {
   background: var(--primary);
   color: #ffffff;
   box-shadow: 0 10px 28px rgba(15, 76, 129, 0.20);
 }
 
-button.primary:hover {
+button.primary:hover,
+.btn:hover {
   background: var(--primary-dark);
   transform: translateY(-1px);
 }
 
-button.secondary {
+button.secondary,
+.btn-secondary {
   background: #ffffff;
   color: var(--primary);
   border-color: var(--border);
 }
 
-button.secondary:hover {
+button.secondary:hover,
+.btn-secondary:hover {
   background: #f8fafc;
   border-color: #bfd1e3;
+  transform: translateY(-1px);
 }
 
 /* =========================
-   RESULTS
+   CLIF-SOFA / ACLF
 ========================= */
-.result {
+#clif-sofa-aclf {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#clif-sofa-aclf h2 {
+  font-size: 1.7rem;
+}
+
+#interpretacionClifSofa {
   margin-top: 1rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+#interpretacionClifSofa b {
+  color: var(--heading);
+}
+
+/* =========================
+   PE AHA/ACC 2026
+========================= */
+#tep-risk-aha-acc-2026 .panel-head {
+  margin-bottom: 0.5rem;
+}
+
+#tep-risk-aha-acc-2026 .card + .card {
+  margin-top: 1.25rem;
+}
+
+#pe2026_result {
+  border-left: 4px solid var(--primary);
+  background: #eef6ff;
+}
+
+#pe2026_summary {
+  margin-top: 0.75rem;
+}
+
+#pe2026_logic {
+  margin-top: 1rem;
+  padding: 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 1rem 1.05rem;
-  color: var(--heading);
-  font-weight: 700;
+  background: #ffffff;
 }
 
-.result:empty,
-.note:empty {
-  display: none;
+#pe2026_logic ul,
+#pe2026_management ul {
+  margin-top: 0.6rem;
+  padding-left: 1.2rem;
+}
+
+#pe2026_logic li,
+#pe2026_management li {
+  margin-bottom: 0.55rem;
+  color: var(--text-muted);
 }
 
 /* =========================
-   DIVIDER
+   COR BADGES
 ========================= */
-.subsection-divider {
+.cor-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-right: 0.45rem;
+  white-space: nowrap;
+}
+
+.cor-1 {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.cor-2a {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.cor-2b {
+  background: #fed7aa;
+  color: #9a3412;
+  border: 1px solid #fdba74;
+}
+
+/* =========================
+   SEO PANEL
+========================= */
+.seo-toggle {
+  margin-top: 2rem;
+}
+
+.seo-toggle summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.seo-panel {
+  background: var(--surface);
+}
+
+.seo-panel h2 {
+  font-size: 1.5rem;
+}
+
+.seo-panel h3 {
+  margin-top: 1.4rem;
+  margin-bottom: 0.45rem;
+}
+
+.seo-panel p {
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+}
+
+/* =========================
+   PLASMIC SCORE
+========================= */
+.plasmic-card {
+  max-width: 760px;
+  margin: 2rem auto;
+  background: #fff7f7;
+  border: 1px solid #e7cccc;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  color: var(--text);
+}
+
+.plasmic-card h2 {
+  margin: 0;
+  padding: 1.15rem;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  color: #5b1720;
+  background: #f3dddd;
+}
+
+.plasmic-card .subtitle {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1.35rem;
+  background: #f3dddd;
+  border-bottom: 1px solid #d8caca;
+}
+
+.plasmic-table .header,
+.plasmic-table label {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem 1.3rem;
+  border-bottom: 1px solid #eadada;
+}
+
+.plasmic-table .header {
+  font-weight: 700;
+  background: #f8eeee;
+}
+
+.plasmic-table label {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.plasmic-table small {
+  color: var(--text-muted);
+}
+
+.plasmic-table input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  min-height: auto;
+  justify-self: center;
+}
+
+.plasmic-card .result {
+  margin: 1.3rem;
+}
+
+.plasmic-card .interpretation {
+  padding: 0 1.3rem 1.3rem;
+  color: var(--text-muted);
+}
+
+.plasmic-card .interpretation p + p {
+  margin-top: 0.45rem;
+}
+
+.plasmic-card .reference {
+  padding: 1rem 1.3rem 1.3rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid #eadada;
+}
+
+/* =========================
+   DIVIDERS
+========================= */
+.subsection-divider,
+hr {
   height: 1px;
   background: var(--border);
+  border: none;
   margin: 1.5rem 0;
 }
 
@@ -378,12 +649,34 @@ button.secondary:hover {
     padding: 2rem 0 3rem;
   }
 
-  .panel {
+  .panel,
+  .card {
     padding: 1.25rem;
   }
 
-  .grid {
+  .grid,
+  .grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  button,
+  .btn,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  #clif-sofa-aclf h2 {
+    font-size: 1.4rem;
+  }
+
+  .plasmic-table .header,
+  .plasmic-table label {
+    grid-template-columns: 1fr 70px;
+    padding: 0.85rem 1rem;
   }
 }
 
@@ -399,423 +692,8 @@ button.secondary:hover {
   .site-footer {
     text-align: left;
   }
-}
 
-/* =========================
-   CLIF-SOFA / ACLF PANEL
-========================= */
-
-#clif-sofa-aclf {
-  background: #fff;
-  border: 1px solid #dbe3ec;
-  border-radius: 18px;
-  padding: 1.8rem;
-  box-shadow:
-    0 8px 24px rgba(0,0,0,.06);
-
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
-
-
-/* =========================
-   TITLES
-========================= */
-
-#clif-sofa-aclf h2{
-
-  font-size:1.7rem;
-  line-height:1.2;
-
-  color:#0b1324;
-
-  margin-bottom:.5rem;
-
-}
-
-
-#clif-sofa-aclf .note{
-
-  background:
-  rgba(15,76,129,.06);
-
-  border:
-  1px solid rgba(15,76,129,.10);
-
-  border-radius:14px;
-
-  padding:1rem;
-
-  color:#475569;
-
-  font-size:.95rem;
-
-}
-
-
-
-/* =========================
-   LABELS
-========================= */
-
-#clif-sofa-aclf label{
-
-  font-weight:600;
-
-  color:#0f172a;
-
-  font-size:.95rem;
-
-  margin-top:.4rem;
-
-}
-
-
-
-/* =========================
-   INPUTS
-========================= */
-
-#clif-sofa-aclf input,
-#clif-sofa-aclf select{
-
-  width:100%;
-
-  padding:
-
-  .85rem
-  1rem;
-
-  border:
-
-  1px solid #cbd5e1;
-
-  border-radius:
-
-  12px;
-
-  background:
-
-  #fff;
-
-  min-height:
-
-  48px;
-
-  font-size:
-
-  1rem;
-
-  transition:
-
-  .25s;
-
-}
-
-
-
-#clif-sofa-aclf input:focus,
-#clif-sofa-aclf select:focus{
-
-outline:none;
-
-border-color:
-
-#0f4c81;
-
-
-box-shadow:
-
-0 0 0 3px
-rgba(15,76,129,.15);
-
-}
-
-
-
-/* =========================
-   PLACEHOLDER
-========================= */
-
-#clif-sofa-aclf input::placeholder{
-
-color:
-
-#94a3b8;
-
-}
-
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.actions{
-
-display:flex;
-
-gap:
-
-1rem;
-
-flex-wrap:
-
-wrap;
-
-margin-top:
-
-1rem;
-
-}
-
-
-
-button.primary{
-
-background:
-
-#0f4c81;
-
-color:
-
-white;
-
-border:
-
-none;
-
-padding:
-
-.9rem 1.4rem;
-
-border-radius:
-
-999px;
-
-font-weight:
-
-700;
-
-cursor:
-
-pointer;
-
-transition:
-
-.25s;
-
-}
-
-
-
-button.primary:hover{
-
-background:
-
-#0b3b63;
-
-transform:
-
-translateY(-1px);
-
-}
-
-
-
-button.secondary{
-
-background:
-
-white;
-
-color:
-
-#0f4c81;
-
-border:
-
-1px solid #dbe3ec;
-
-padding:
-
-.9rem 1.4rem;
-
-border-radius:
-
-999px;
-
-font-weight:
-
-700;
-
-cursor:
-
-pointer;
-
-transition:
-
-.25s;
-
-}
-
-
-
-button.secondary:hover{
-
-background:
-
-#f8fafc;
-
-}
-
-
-
-/* =========================
-   RESULT BOX
-========================= */
-
-.result{
-
-margin-top:
-
-1rem;
-
-background:
-
-linear-gradient(
-180deg,
-#fff 0%,
-#f8fbfd 100%
-);
-
-border:
-
-1px solid #dbe3ec;
-
-border-radius:
-
-14px;
-
-padding:
-
-1rem;
-
-font-size:
-
-1rem;
-
-line-height:
-
-1.7;
-
-color:
-
-#0b1324;
-
-font-weight:
-
-600;
-
-}
-
-
-
-.result b{
-
-color:
-
-#0f4c81;
-
-}
-
-
-
-/* =========================
-   INTERPRETATION
-========================= */
-
-#interpretacionClifSofa{
-
-margin-top:
-
-1rem;
-
-line-height:
-
-1.8;
-
-font-size:
-
-.95rem;
-
-}
-
-
-
-#interpretacionClifSofa b{
-
-color:
-
-#0f172a;
-
-}
-
-
-
-/* =========================
-   EMPTY STATES
-========================= */
-
-.result:empty,
-.note:empty{
-
-display:none;
-
-}
-
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
-
-#clif-sofa-aclf{
-
-padding:
-
-1.25rem;
-
-}
-
-
-.actions{
-
-flex-direction:
-
-column;
-
-}
-
-
-button{
-
-width:
-
-100%;
-
-}
-
-
-#clif-sofa-aclf h2{
-
-font-size:
-
-1.4rem;
-
-}
-
+  .plasmic-card .subtitle {
+    font-size: 1.05rem;
+  }
 }
