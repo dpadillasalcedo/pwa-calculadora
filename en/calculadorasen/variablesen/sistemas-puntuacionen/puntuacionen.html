@@ -155,490 +155,957 @@
 
 <main class="container main-content">
 
-  <!-- ======================= SOFA-2 ======================= -->
-  <section class="panel">
-    <h2>SOFA-2</h2>
-    <p class="note">Sequential Organ Failure Assessment</p>
+ <section class="card">
 
-    <div class="grid">
+  <h2>SOFA-1 Score (Classic SOFA)</h2>
 
-      <label>Neurological (GCS)
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">GCS 15</option>
-          <option value="1">GCS 13–14 / treated delirium</option>
-          <option value="2">GCS 9–12</option>
-          <option value="3">GCS 6–8</option>
-          <option value="4">GCS 3–5</option>
-        </select>
-      </label>
-
-      <label>Respiratory
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">PaO₂/FiO₂ &gt; 300</option>
-          <option value="1">≤300</option>
-          <option value="2">≤225</option>
-          <option value="3">≤150 + ventilatory support</option>
-          <option value="4">≤75 + ventilatory support / ECMO</option>
-        </select>
-      </label>
-
-      <label>Cardiovascular
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">MAP ≥70, no vasopressors</option>
-          <option value="1">MAP &lt;70</option>
-          <option value="2">Low-dose vasopressor (≤0.2 µg/kg/min)</option>
-          <option value="3">Moderate-dose (0.2–0.4)</option>
-          <option value="4">High-dose (&gt;0.4) / mechanical support</option>
-        </select>
-      </label>
-
-      <label>Hepatic (Bilirubin)
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">≤1.2 mg/dL</option>
-          <option value="1">≤3.0</option>
-          <option value="2">≤6.0</option>
-          <option value="3">≤12.0</option>
-          <option value="4">&gt;12</option>
-        </select>
-      </label>
-
-      <label>Renal
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">Creat ≤1.2</option>
-          <option value="1">≤2.0 or urine &lt;0.5 ml/kg/h (6–12h)</option>
-          <option value="2">≤3.5 or urine &lt;0.5 ml/kg/h ≥12h</option>
-          <option value="3">&gt;3.5 or urine &lt;0.3 ml/kg/h ≥24h</option>
-          <option value="4">Renal replacement therapy</option>
-        </select>
-      </label>
-
-      <label>Coagulation (Platelets)
-        <select class="sofa">
-          <option value=""></option>
-          <option value="0">&gt;150,000</option>
-          <option value="1">≤150,000</option>
-          <option value="2">≤100,000</option>
-          <option value="3">≤80,000</option>
-          <option value="4">≤50,000</option>
-        </select>
-      </label>
-
-    </div>
-
-    <div class="actions">
-      <button type="button" class="primary" onclick="calcSOFA()">Calculate SOFA-2</button>
-      <button type="button" class="secondary" onclick="resetSOFA()">Reset</button>
-    </div>
-
-    <div id="sofa_result" class="result"></div>
-    <div id="sofa_mortality" class="note"></div>
-  </section>
-
-<section id="clif-sofa-aclf" class="panel">
-  <h2>CLIF-C ACLF and ACLF Classification</h2>
-
-  <p class="note">
-    Educational calculator based on liver, kidney, cerebral, coagulation,
-    circulatory, and respiratory dysfunction.
+  <p class="small">
+    Sequential Organ Failure Assessment (SOFA) score for evaluating organ dysfunction and estimating mortality risk in critically ill patients.
   </p>
 
-  <label>Total bilirubin (mg/dL)</label>
-  <input id="clif_bili" type="number" step="0.1" placeholder="Example: 12">
+  <div class="form-grid">
 
-  <label>Creatinine (mg/dL)</label>
-  <input id="clif_creat" type="number" step="0.1" placeholder="Example: 2.1">
+    <label>
+      Respiratory (PaO₂/FiO₂)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&gt;400</option>
+        <option value="1">≤400</option>
+        <option value="2">≤300</option>
+        <option value="3">≤200 with respiratory support</option>
+        <option value="4">≤100 with respiratory support</option>
+      </select>
+    </label>
 
-  <label>Renal replacement therapy?</label>
-  <select id="clif_rrt">
-    <option value="no">No</option>
-    <option value="si">Yes</option>
-  </select>
+    <label>
+      Coagulation (Platelets ×10³/µL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&gt;150</option>
+        <option value="1">≤150</option>
+        <option value="2">≤100</option>
+        <option value="3">≤50</option>
+        <option value="4">≤20</option>
+      </select>
+    </label>
 
-  <label>Hepatic encephalopathy</label>
-  <select id="clif_he">
-    <option value="0">Grade 0</option>
-    <option value="1">Grade I</option>
-    <option value="2">Grade II</option>
-    <option value="3">Grade III</option>
-    <option value="4">Grade IV</option>
-  </select>
+    <label>
+      Liver (Bilirubin mg/dL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&lt;1.2</option>
+        <option value="1">1.2–1.9</option>
+        <option value="2">2.0–5.9</option>
+        <option value="3">6.0–11.9</option>
+        <option value="4">&gt;12.0</option>
+      </select>
+    </label>
 
-  <label>INR</label>
-  <input id="clif_inr" type="number" step="0.1" placeholder="Example: 2.5">
+    <label>
+      Cardiovascular
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">Normal MAP</option>
+        <option value="1">MAP &lt;70 mmHg</option>
+        <option value="2">Dopamine ≤5 or Dobutamine</option>
+        <option value="3">Dopamine &gt;5 or Epinephrine/Norepinephrine ≤0.1</option>
+        <option value="4">Dopamine &gt;15 or Epinephrine/Norepinephrine &gt;0.1</option>
+      </select>
+    </label>
 
-  <label>Mean arterial pressure - MAP (mmHg)</label>
-  <input id="clif_map" type="number" step="1" placeholder="Example: 68">
+    <label>
+      Central Nervous System (Glasgow Coma Scale)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">15</option>
+        <option value="1">13–14</option>
+        <option value="2">10–12</option>
+        <option value="3">6–9</option>
+        <option value="4">&lt;6</option>
+      </select>
+    </label>
 
-  <label>Vasopressors</label>
-  <select id="clif_vaso">
-    <option value="no">No</option>
-    <option value="si">Yes</option>
-  </select>
+    <label>
+      Renal (Creatinine mg/dL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&lt;1.2</option>
+        <option value="1">1.2–1.9</option>
+        <option value="2">2.0–3.4</option>
+        <option value="3">3.5–4.9</option>
+        <option value="4">&gt;5.0 or renal replacement therapy</option>
+      </select>
+    </label>
 
-  <label>PaO₂/FiO₂</label>
-  <input id="clif_pafi" type="number" step="1" placeholder="Example: 220">
-
-  <label>SpO₂/FiO₂ if PaO₂/FiO₂ is unavailable</label>
-  <input id="clif_spofi" type="number" step="1" placeholder="Example: 280">
-
-  <div class="actions">
-<button type="button" class="primary" onclick="calcularClifSofaAclf()">
-  Calculate CLIF-SOFA / ACLF
-</button>
-
-    <button type="button" class="secondary" onclick="resetClifSofaAclf()">
-      Reset
-    </button>
   </div>
 
-  <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
-  <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
+  <div class="button-group">
+    <button onclick="calcSOFA1()">Calculate SOFA-1</button>
+    <button onclick="resetSOFA1()" class="secondary">Reset</button>
+  </div>
+
+  <div class="result-box">
+    <div id="sofa1_result"></div>
+    <div id="sofa1_mortality"></div>
+    <div id="sofa1_breakdown"></div>
+  </div>
+
 </section>
+
+  <section class="card">
+
+  <h2>SOFA-1 Score (Classic SOFA)</h2>
+
+  <p class="small">
+    Sequential Organ Failure Assessment (SOFA) score for evaluating organ dysfunction and estimating mortality risk in critically ill patients.
+  </p>
+
+  <div class="form-grid">
+
+    <label>
+      Respiratory (PaO₂/FiO₂)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&gt;400</option>
+        <option value="1">≤400</option>
+        <option value="2">≤300</option>
+        <option value="3">≤200 with respiratory support</option>
+        <option value="4">≤100 with respiratory support</option>
+      </select>
+    </label>
+
+    <label>
+      Coagulation (Platelets ×10³/µL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&gt;150</option>
+        <option value="1">≤150</option>
+        <option value="2">≤100</option>
+        <option value="3">≤50</option>
+        <option value="4">≤20</option>
+      </select>
+    </label>
+
+    <label>
+      Liver (Bilirubin mg/dL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&lt;1.2</option>
+        <option value="1">1.2–1.9</option>
+        <option value="2">2.0–5.9</option>
+        <option value="3">6.0–11.9</option>
+        <option value="4">&gt;12.0</option>
+      </select>
+    </label>
+
+    <label>
+      Cardiovascular
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">Normal MAP</option>
+        <option value="1">MAP &lt;70 mmHg</option>
+        <option value="2">Dopamine ≤5 or Dobutamine</option>
+        <option value="3">Dopamine &gt;5 or Epinephrine/Norepinephrine ≤0.1</option>
+        <option value="4">Dopamine &gt;15 or Epinephrine/Norepinephrine &gt;0.1</option>
+      </select>
+    </label>
+
+    <label>
+      Central Nervous System (Glasgow Coma Scale)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">15</option>
+        <option value="1">13–14</option>
+        <option value="2">10–12</option>
+        <option value="3">6–9</option>
+        <option value="4">&lt;6</option>
+      </select>
+    </label>
+
+    <label>
+      Renal (Creatinine mg/dL)
+      <select class="sofa1">
+        <option value="">Select</option>
+        <option value="0">&lt;1.2</option>
+        <option value="1">1.2–1.9</option>
+        <option value="2">2.0–3.4</option>
+        <option value="3">3.5–4.9</option>
+        <option value="4">&gt;5.0 or renal replacement therapy</option>
+      </select>
+    </label>
+
+  </div>
+
+  <div class="button-group">
+    <button onclick="calcSOFA1()">Calculate SOFA-1</button>
+    <button onclick="resetSOFA1()" class="secondary">Reset</button>
+  </div>
+
+  <div class="result-box">
+    <div id="sofa1_result"></div>
+    <div id="sofa1_mortality"></div>
+    <div id="sofa1_breakdown"></div>
+  </div>
+
+</section>
+
+  <section class="panel">
+
+<h2>APACHE II</h2>
+
+<p class="note">
+12 acute physiological variables + age + chronic health conditions
+</p>
+
+<div class="grid">
+
+<label>
+Temperature (°C)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">36–38.4</option>
+<option value="1">34–35.9 / 38.5–38.9</option>
+<option value="2">32–33.9 / 39–40.9</option>
+<option value="3">30–31.9</option>
+<option value="4">&lt;30 / ≥41</option>
+</select>
+</label>
+
+<label>
+Mean Arterial Pressure (MAP, mmHg)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">70–109</option>
+<option value="2">50–69 / 110–129</option>
+<option value="3">130–159</option>
+<option value="4">&lt;50 / ≥160</option>
+</select>
+</label>
+
+<label>
+Heart Rate
+<select class="apache">
+<option value="" selected></option>
+<option value="0">70–109</option>
+<option value="2">55–69 / 110–139</option>
+<option value="3">40–54 / 140–179</option>
+<option value="4">&lt;40 / ≥180</option>
+</select>
+</label>
+
+<label>
+Respiratory Rate
+<select class="apache">
+<option value="" selected></option>
+<option value="0">12–24</option>
+<option value="1">10–11 / 25–34</option>
+<option value="2">6–9</option>
+<option value="3">35–49</option>
+<option value="4">&lt;6 / ≥50</option>
+</select>
+</label>
+
+<label for="oxygenation">
+Oxygenation (PaO₂ / A–a Gradient)
+
+<select id="oxygenation" class="apache">
+
+<option value="" selected></option>
+
+<option value="0">
+Normal — PaO₂ ≥70 mmHg (FiO₂ &lt;0.5)
+</option>
+
+<option value="1">
+Mild impairment — PaO₂ 61–70 mmHg (FiO₂ &lt;0.5)
+</option>
+
+<option value="3">
+Moderate impairment — PaO₂ 55–60 mmHg (FiO₂ &lt;0.5)
+</option>
+
+<option value="4">
+Severe impairment — PaO₂ &lt;55 mmHg (FiO₂ &lt;0.5)
+</option>
+
+<option value="0">
+Normal — A–a Gradient &lt;200 mmHg (FiO₂ ≥0.5)
+</option>
+
+<option value="2">
+Moderate impairment — A–a Gradient 200–349 mmHg (FiO₂ ≥0.5)
+</option>
+
+<option value="3">
+Severe impairment — A–a Gradient 350–499 mmHg (FiO₂ ≥0.5)
+</option>
+
+<option value="4">
+Very severe impairment — A–a Gradient ≥500 mmHg (FiO₂ ≥0.5)
+</option>
+
+</select>
+</label>
+
+<label>
+Arterial pH
+<select class="apache">
+<option value="" selected></option>
+<option value="0">7.33–7.49</option>
+<option value="2">7.25–7.32 / 7.50–7.59</option>
+<option value="3">7.15–7.24 / 7.60–7.69</option>
+<option value="4">&lt;7.15 / ≥7.70</option>
+</select>
+</label>
+
+<label>
+Sodium (mmol/L)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">130–149</option>
+<option value="1">150–154</option>
+<option value="2">120–129 / 155–159</option>
+<option value="3">160–179</option>
+<option value="4">&lt;120 / ≥180</option>
+</select>
+</label>
+
+<label>
+Potassium (mmol/L)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">3.5–5.4</option>
+<option value="1">3.0–3.4 / 5.5–5.9</option>
+<option value="2">2.5–2.9 / 6.0–6.9</option>
+<option value="4">&lt;2.5 / ≥7.0</option>
+</select>
+</label>
+
+<label>
+Creatinine (mg/dL)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">&lt;1.5</option>
+<option value="2">1.5–1.9</option>
+<option value="3">2.0–3.4</option>
+<option value="4">≥3.5</option>
+</select>
+</label>
+
+<label>
+Hematocrit (%)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">30–45</option>
+<option value="2">20–29.9 / 46–49.9</option>
+<option value="3">50–59.9</option>
+<option value="4">&lt;20 / ≥60</option>
+</select>
+</label>
+
+<label>
+White Blood Cell Count (×10³/µL)
+<select class="apache">
+<option value="" selected></option>
+<option value="0">3–14.9</option>
+<option value="1">15–19.9</option>
+<option value="2">1–2.9 / ≥20</option>
+<option value="4">&lt;1</option>
+</select>
+</label>
+
+<label>
+Glasgow Coma Scale
+<select class="apache">
+<option value="" selected></option>
+<option value="0">15</option>
+<option value="1">13–14</option>
+<option value="2">10–12</option>
+<option value="3">6–9</option>
+<option value="4">&lt;6</option>
+</select>
+</label>
+
+</div>
+
+<hr style="margin:1.5rem 0;border-color:var(--border)">
+
+<div class="grid">
+
+<label>
+Age
+<select id="apache_age">
+<option value="" selected></option>
+<option value="0">&lt;44</option>
+<option value="2">45–54</option>
+<option value="3">55–64</option>
+<option value="5">65–74</option>
+<option value="6">≥75</option>
+</select>
+</label>
+
+<label>
+Chronic Health Condition
+<select id="apache_chronic">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="2">Postoperative Patient</option>
+<option value="5">Nonoperative Patient</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+
+<button
+class="primary"
+type="button"
+onclick="calcAPACHE()">
+Calculate APACHE II
+</button>
+
+<button
+class="secondary"
+type="button"
+onclick="resetAPACHE()">
+Reset
+</button>
+
+</div>
+
+<div id="apache_result" class="result"></div>
+<div id="apache_mortality" class="note"></div>
+
+</section>
+
+  <section class="panel">
+
+<h2>SAPS II</h2>
+
+<p class="note">
+17 variables – logistic mortality prediction model
+</p>
+
+<div class="grid">
+
+<label>
+Age
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;40</option>
+<option value="7">40–59</option>
+<option value="12">60–69</option>
+<option value="15">70–74</option>
+<option value="16">75–79</option>
+<option value="18">≥80</option>
+</select>
+</label>
+
+<label>
+Heart Rate
+<select class="saps">
+<option value="" selected></option>
+<option value="0">70–119</option>
+<option value="2">55–69 / 120–159</option>
+<option value="4">&lt;55 / ≥160</option>
+</select>
+</label>
+
+<label>
+Systolic Blood Pressure
+<select class="saps">
+<option value="" selected></option>
+<option value="0">100–199</option>
+<option value="5">70–99</option>
+<option value="13">&lt;70 / ≥200</option>
+</select>
+</label>
+
+<label>
+Temperature
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥39</option>
+<option value="3">38–38.9</option>
+<option value="6">&lt;38</option>
+</select>
+</label>
+
+<label>
+Glasgow Coma Scale
+<select class="saps">
+<option value="" selected></option>
+<option value="0">15</option>
+<option value="5">13–14</option>
+<option value="10">10–12</option>
+<option value="15">&lt;10</option>
+</select>
+</label>
+
+<label>
+Oxygenation (PaO₂/FiO₂)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥200</option>
+<option value="9">&lt;200</option>
+</select>
+</label>
+
+<label>
+Blood Urea Nitrogen (mg/dL)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;10</option>
+<option value="6">10–29</option>
+<option value="10">30–59</option>
+<option value="15">≥60</option>
+</select>
+</label>
+
+<label>
+Sodium
+<select class="saps">
+<option value="" selected></option>
+<option value="0">125–144</option>
+<option value="5">&lt;125 / ≥145</option>
+</select>
+</label>
+
+<label>
+Potassium
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–4.9</option>
+<option value="3">&lt;3 / ≥5</option>
+</select>
+</label>
+
+<label>
+Bicarbonate
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥20</option>
+<option value="6">&lt;20</option>
+</select>
+</label>
+
+<label>
+Bilirubin
+<select class="saps">
+<option value="" selected></option>
+<option value="0">&lt;4</option>
+<option value="4">4–5.9</option>
+<option value="9">≥6</option>
+</select>
+</label>
+
+<label>
+White Blood Cell Count
+<select class="saps">
+<option value="" selected></option>
+<option value="0">3–20</option>
+<option value="3">&lt;3 / ≥20</option>
+</select>
+</label>
+
+<label>
+Urine Output (24 h)
+<select class="saps">
+<option value="" selected></option>
+<option value="0">≥1 L</option>
+<option value="11">&lt;1 L</option>
+</select>
+</label>
+
+<label>
+Admission Type
+<select class="saps">
+<option value="" selected></option>
+<option value="0">Scheduled</option>
+<option value="6">Emergency</option>
+</select>
+</label>
+
+<label>
+Surgery
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="8">Yes</option>
+</select>
+</label>
+
+<label>
+AIDS
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="17">Yes</option>
+</select>
+</label>
+
+<label>
+Hematologic Malignancy
+<select class="saps">
+<option value="" selected></option>
+<option value="0">No</option>
+<option value="10">Yes</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions">
+  <button type="button" class="primary" onclick="calcSAPS()">Calculate SAPS II</button>
+  <button type="button" class="secondary" onclick="resetSAPS()">Reset</button>
+</div>
+
+<div id="saps_result" class="result"></div>
+<div id="saps_mortality" class="note"></div>
+
+</section>
+
+  <div class="card">
+
+<h3>📊 PESI (Pulmonary Embolism Severity Index)</h3>
+
+<div class="grid-2">
+
+<label class="field">
+<span>Age (years)</span>
+<input type="number" id="pesi_age" min="0">
+</label>
+
+<label class="field">
+<span>Male Sex</span>
+<select id="pesi_male">
+<option value="0">No</option>
+<option value="10">Yes (+10)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Cancer</span>
+<select id="pesi_cancer">
+<option value="0">No</option>
+<option value="30">Yes (+30)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Chronic Heart Failure</span>
+<select id="pesi_chf">
+<option value="0">No</option>
+<option value="10">Yes (+10)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Chronic Lung Disease</span>
+<select id="pesi_copd">
+<option value="0">No</option>
+<option value="10">Yes (+10)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Heart Rate ≥110 bpm</span>
+<select id="pesi_hr">
+<option value="0">No</option>
+<option value="20">Yes (+20)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Systolic Blood Pressure &lt;100 mmHg</span>
+<select id="pesi_sbp">
+<option value="0">No</option>
+<option value="30">Yes (+30)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Respiratory Rate ≥30 breaths/min</span>
+<select id="pesi_rr">
+<option value="0">No</option>
+<option value="20">Yes (+20)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Temperature &lt;36°C</span>
+<select id="pesi_temp">
+<option value="0">No</option>
+<option value="20">Yes (+20)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Altered Mental Status</span>
+<select id="pesi_mental">
+<option value="0">No</option>
+<option value="60">Yes (+60)</option>
+</select>
+</label>
+
+<label class="field">
+<span>Oxygen Saturation &lt;90%</span>
+<select id="pesi_sat">
+<option value="0">No</option>
+<option value="20">Yes (+20)</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions" style="margin-top:1rem;">
+<button type="button" class="btn" id="pesi_calc">
+Calculate PESI
+</button>
+
+<button type="button" class="btn-secondary" id="pesi_reset">
+Reset
+</button>
+</div>
+
+<div id="resultadoPESI" class="resultado"></div>
+<div id="interpretacionPESI" class="note"></div>
+
+</div>
+
+  <div class="card" style="margin-top:1.5rem;">
+
+<h3>📌 Global Pulmonary Embolism Risk Classification</h3>
+
+<div class="grid-2">
+
+<label class="field">
+<span>Hemodynamic Instability</span>
+<select id="tep_hemo">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</label>
+
+<label class="field">
+<span>Right Ventricular Dysfunction</span>
+<select id="tep_vd">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</label>
+
+<label class="field">
+<span>Elevated Cardiac Troponins</span>
+<select id="tep_trop">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</label>
+
+</div>
+
+<div class="actions" style="margin-top:1rem;">
+<button type="button" class="btn" id="tep_calc">
+Classify Risk
+</button>
+</div>
+
+<div id="resultadoTEP" class="resultado"></div>
+<div id="interpretacionTEP" class="note"></div>
+
+</div>
+
+  <section class="plasmic-card">
+  <h2>PLASMIC Score</h2>
+  <p class="subtitle">A seven-component prediction score</p>
+
+  <div class="plasmic-table">
+    <div class="header">
+      <span>Variable</span>
+      <span>Points</span>
+    </div>
+
+    <label>
+      <span>Platelet count &lt;30 × 10<sup>9</sup>/L</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>
+        Evidence of hemolysis<br>
+        <small>
+          Reticulocyte count &gt;2.5%, undetectable haptoglobin,
+          or indirect bilirubin &gt;2.0 mg/dL
+        </small>
+      </span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>No active cancer</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>No history of solid-organ or stem-cell transplant</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>MCV &lt;90 fL</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>INR &lt;1.5</span>
+      <input type="checkbox" value="1">
+    </label>
+
+    <label>
+      <span>Creatinine &lt;2 mg/dL</span>
+      <input type="checkbox" value="1">
+    </label>
+  </div>
+
+  <div class="result">
+    <strong>Total score: <span id="plasmicScore">0</span></strong>
+    <p id="plasmicRisk">Score 0–4 – low risk of severe ADAMTS13 deficiency</p>
+  </div>
+
+  <div class="interpretation">
+    <p><strong>Score 0–4</strong> – low risk of severe ADAMTS13 deficiency</p>
+    <p><strong>Score 5</strong> – intermediate risk of severe ADAMTS13 deficiency</p>
+    <p><strong>Score 6 or 7</strong> – high risk of severe ADAMTS13 deficiency</p>
+  </div>
+
+  <p class="reference">
+    Bendapudi PK, Hurwitz S, Fry A, et al. Derivation and external validation
+    of the PLASMIC score for rapid assessment of adults with thrombotic
+    microangiopathies: a cohort study. Lancet Haematol. 2017;4(4):e157–e164.
+  </p>
+</section>
+
+<details class="seo-toggle" open>
+  <summary>View clinical background of ICU scoring systems</summary>
+
+  <section class="panel seo-panel">
+
+    <h2>Clinical Background of ICU Scoring Systems</h2>
+
+    <p>
+      Scoring systems in the Intensive Care Unit (ICU) are essential tools for assessing
+      the severity of critical illness, estimating mortality risk, and supporting clinical
+      decision-making. They help standardize patient evaluation, improve communication
+      between healthcare teams, and allow comparison of outcomes across institutions.
+    </p>
+
+    <h3>Purpose of ICU Scoring Systems</h3>
+    <p>
+      These scores are designed to quantify organ dysfunction, identify high-risk patients,
+      and monitor clinical evolution over time. They are especially useful in sepsis,
+      multiorgan failure, acute respiratory failure, shock, and other complex critical
+      illness scenarios.
+    </p>
+
+    <h3>SOFA (Sequential Organ Failure Assessment)</h3>
+    <p>
+      The <strong>SOFA score</strong> evaluates six organ systems: respiratory,
+      cardiovascular, hepatic, neurological, renal, and hematologic/coagulation function.
+      Each system is assigned 0 to 4 points, allowing clinicians to identify the degree
+      of organ dysfunction.
+    </p>
+
+    <h3>SOFA Interpretation</h3>
+    <p>
+      An increase in SOFA score of 2 or more points is associated with a higher risk of
+      mortality and is a key element in the clinical definition of sepsis. Serial SOFA
+      assessment can help evaluate response to treatment and progression of organ failure.
+    </p>
+
+    <p>
+      Higher SOFA values reflect greater multiorgan involvement and worse prognosis.
+      However, interpretation should always consider the clinical context, baseline organ
+      function, and the dynamic evolution of the patient.
+    </p>
+
+    <h3>APACHE II</h3>
+    <p>
+      <strong>APACHE II</strong> integrates acute physiological variables, age, and chronic
+      health conditions to estimate hospital mortality. It is based on 12 physiological
+      parameters usually assessed during the first 24 hours of ICU admission.
+    </p>
+
+    <h3>APACHE II Interpretation</h3>
+    <p>
+      Higher APACHE II scores correlate with increased mortality risk. This score is widely
+      used for prognostic assessment, severity adjustment, and comparison of ICU performance
+      across populations.
+    </p>
+
+    <h3>SAPS II</h3>
+    <p>
+      <strong>SAPS II</strong> uses a logistic model based on 17 clinical and laboratory
+      variables. It estimates the probability of hospital mortality in critically ill
+      patients and is frequently used for population-level risk adjustment.
+    </p>
+
+    <h3>Differences Between SOFA, APACHE II, and SAPS II</h3>
+    <p>
+      SOFA is mainly used for sequential monitoring of organ dysfunction, while APACHE II
+      and SAPS II are primarily initial prognostic scores. The most appropriate score
+      depends on the clinical objective: monitoring progression, estimating prognosis,
+      or comparing outcomes.
+    </p>
+
+    <h3>PESI in Pulmonary Embolism</h3>
+    <p>
+      The <strong>Pulmonary Embolism Severity Index (PESI)</strong> stratifies mortality
+      risk in patients with acute pulmonary embolism. It can support decisions regarding
+      outpatient management, hospitalization, monitoring intensity, and escalation of care.
+    </p>
+
+    <h3>Clinical Application of Results</h3>
+    <p>
+      Score results should be integrated with global clinical assessment, including
+      hemodynamic status, organ function, lactate, oxygenation, vasopressor requirement,
+      mechanical ventilation, comorbidities, and response to therapy. Trends over time
+      are often more informative than a single isolated measurement.
+    </p>
+
+    <p>
+      In critically ill patients, factors such as sepsis, mechanical ventilation,
+      vasopressor use, renal replacement therapy, bleeding risk, and baseline comorbidities
+      may significantly modify prognosis.
+    </p>
+
+    <h3>Limitations of Scoring Systems</h3>
+    <p>
+      Although useful, scoring systems do not replace clinical judgment. They may
+      underestimate or overestimate risk in selected populations and should always be
+      interpreted alongside the patient's clinical condition, goals of care, and local
+      protocols.
+    </p>
+
+    <h3>Clinical Disclaimer</h3>
+    <p>
+      These tools are intended for educational and clinical support purposes. They do not
+      replace medical judgment, clinical guidelines, or individualized patient evaluation.
+      Therapeutic decisions must be adapted to each patient and institutional practice.
+    </p>
+
+    <h3>References</h3>
+    <p>
+      Vincent JL et al. The SOFA score to describe organ dysfunction/failure.<br>
+      Knaus WA et al. APACHE II: a severity of disease classification system.<br>
+      Le Gall JR et al. SAPS II: a simplified acute physiology score.<br>
+      International critical care and pulmonary embolism guidelines.
+    </p>
+
+  </section>
+</details>
   
-  <!-- ===================== APACHE II ===================== -->
-  <section class="panel">
-    <h2>APACHE II</h2>
-    <p class="note">12 physiological variables + age + chronic health status</p>
-
-    <div class="grid">
-
-      <label>Temperature (°C)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">36–38.4</option>
-          <option value="1">34–35.9 / 38.5–38.9</option>
-          <option value="2">32–33.9 / 39–40.9</option>
-          <option value="3">30–31.9</option>
-          <option value="4">&lt;30 / ≥41</option>
-        </select>
-      </label>
-
-      <label>Mean Arterial Pressure (mmHg)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">70–109</option>
-          <option value="2">50–69 / 110–129</option>
-          <option value="3">130–159</option>
-          <option value="4">&lt;50 / ≥160</option>
-        </select>
-      </label>
-
-      <label>Heart Rate (beats/min)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">70–109</option>
-          <option value="2">55–69 / 110–139</option>
-          <option value="3">40–54 / 140–179</option>
-          <option value="4">&lt;40 / ≥180</option>
-        </select>
-      </label>
-
-      <label>Respiratory Rate (breaths/min)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">12–24</option>
-          <option value="1">10–11 / 25–34</option>
-          <option value="2">6–9</option>
-          <option value="3">35–49</option>
-          <option value="4">&lt;6 / ≥50</option>
-        </select>
-      </label>
-
-      <label for="oxygenation">
-        Oxygenation (PaO₂ / A–a Gradient)
-        <select id="oxygenation" class="apache">
-          <option value="" selected></option>
-          <option value="0">Normal — PaO₂ ≥ 70 mmHg (FiO₂ &lt; 0.5)</option>
-          <option value="1">Mild — PaO₂ 61–70 mmHg (FiO₂ &lt; 0.5)</option>
-          <option value="3">Moderate — PaO₂ 55–60 mmHg (FiO₂ &lt; 0.5)</option>
-          <option value="4">Severe — PaO₂ &lt; 55 mmHg (FiO₂ &lt; 0.5)</option>
-          <option value="0">Normal — A–a Gradient &lt; 200 mmHg (FiO₂ ≥ 0.5)</option>
-          <option value="2">Moderate — A–a Gradient 200–349 mmHg (FiO₂ ≥ 0.5)</option>
-          <option value="3">Severe — A–a Gradient 350–499 mmHg (FiO₂ ≥ 0.5)</option>
-          <option value="4">Very Severe — A–a Gradient ≥ 500 mmHg (FiO₂ ≥ 0.5)</option>
-        </select>
-      </label>
-
-      <label>Arterial pH
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">7.33–7.49</option>
-          <option value="2">7.25–7.32 / 7.50–7.59</option>
-          <option value="3">7.15–7.24 / 7.60–7.69</option>
-          <option value="4">&lt;7.15 / ≥7.70</option>
-        </select>
-      </label>
-
-      <label>Sodium (mmol/L)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">130–149</option>
-          <option value="1">150–154</option>
-          <option value="2">120–129 / 155–159</option>
-          <option value="3">160–179</option>
-          <option value="4">&lt;120 / ≥180</option>
-        </select>
-      </label>
-
-      <label>Potassium (mmol/L)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">3.5–5.4</option>
-          <option value="1">3.0–3.4 / 5.5–5.9</option>
-          <option value="2">2.5–2.9 / 6.0–6.9</option>
-          <option value="4">&lt;2.5 / ≥7.0</option>
-        </select>
-      </label>
-
-      <label>Creatinine (mg/dL)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">&lt;1.5</option>
-          <option value="2">1.5–1.9</option>
-          <option value="3">2.0–3.4</option>
-          <option value="4">≥3.5</option>
-        </select>
-      </label>
-
-      <label>Hematocrit (%)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">30–45</option>
-          <option value="2">20–29.9 / 46–49.9</option>
-          <option value="3">50–59.9</option>
-          <option value="4">&lt;20 / ≥60</option>
-        </select>
-      </label>
-
-      <label>White Blood Cell Count (×10³/µL)
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">3–14.9</option>
-          <option value="1">15–19.9</option>
-          <option value="2">1–2.9 / ≥20</option>
-          <option value="4">&lt;1</option>
-        </select>
-      </label>
-
-      <label>Glasgow Coma Scale
-        <select class="apache">
-          <option value="" selected></option>
-          <option value="0">15</option>
-          <option value="1">13–14</option>
-          <option value="2">10–12</option>
-          <option value="3">6–9</option>
-          <option value="4">&lt;6</option>
-        </select>
-      </label>
-
-    </div>
-
-    <div class="subsection-divider"></div>
-
-    <div class="grid">
-
-      <label>Age
-        <select id="apache_age">
-          <option value="" selected></option>
-          <option value="0">&lt;44</option>
-          <option value="2">45–54</option>
-          <option value="3">55–64</option>
-          <option value="5">65–74</option>
-          <option value="6">≥75</option>
-        </select>
-      </label>
-
-      <label>Chronic Health Condition
-        <select id="apache_chronic">
-          <option value="" selected></option>
-          <option value="0">No</option>
-          <option value="2">Postoperative (Elective Surgery)</option>
-          <option value="5">Non-operative or Emergency Surgery</option>
-        </select>
-      </label>
-
-    </div>
-
-    <div class="actions">
-      <button class="primary" type="button" onclick="calcAPACHE()">Calculate APACHE II</button>
-      <button class="secondary" type="button" onclick="resetAPACHE()">Reset</button>
-    </div>
-
-    <div id="apache_result" class="result"></div>
-    <div id="apache_mortality" class="note"></div>
-  </section>
-
-  <!-- ====================== SAPS II ====================== -->
-  <section class="panel">
-    <h2>SAPS II</h2>
-    <p class="note">17 variables – logistic mortality prediction model</p>
-
-    <div class="grid">
-
-      <label>Age
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">&lt;40</option>
-          <option value="7">40–59</option>
-          <option value="12">60–69</option>
-          <option value="15">70–74</option>
-          <option value="16">75–79</option>
-          <option value="18">≥80</option>
-        </select>
-      </label>
-
-      <label>Heart Rate (beats/min)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">70–119</option>
-          <option value="2">55–69 / 120–159</option>
-          <option value="4">&lt;55 / ≥160</option>
-        </select>
-      </label>
-
-      <label>Systolic Blood Pressure (mmHg)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">100–199</option>
-          <option value="5">70–99</option>
-          <option value="13">&lt;70 / ≥200</option>
-        </select>
-      </label>
-
-      <label>Temperature (°C)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">≥39</option>
-          <option value="3">38–38.9</option>
-          <option value="6">&lt;38</option>
-        </select>
-      </label>
-
-      <label>Glasgow Coma Scale
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">15</option>
-          <option value="5">13–14</option>
-          <option value="10">10–12</option>
-          <option value="15">&lt;10</option>
-        </select>
-      </label>
-
-      <label>Oxygenation (PaO₂/FiO₂)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">≥200</option>
-          <option value="9">&lt;200</option>
-        </select>
-      </label>
-
-      <label>Urea (mg/dL)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">&lt;10</option>
-          <option value="6">10–29</option>
-          <option value="10">30–59</option>
-          <option value="15">≥60</option>
-        </select>
-      </label>
-
-      <label>Sodium (mmol/L)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">125–144</option>
-          <option value="5">&lt;125 / ≥145</option>
-        </select>
-      </label>
-
-      <label>Potassium (mmol/L)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">3–4.9</option>
-          <option value="3">&lt;3 / ≥5</option>
-        </select>
-      </label>
-
-      <label>Serum Bicarbonate (mmol/L)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">≥20</option>
-          <option value="6">&lt;20</option>
-        </select>
-      </label>
-
-      <label>Total Bilirubin (mg/dL)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">&lt;4</option>
-          <option value="4">4–5.9</option>
-          <option value="9">≥6</option>
-        </select>
-      </label>
-
-      <label>White Blood Cell Count (×10³/µL)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">3–20</option>
-          <option value="3">&lt;3 / ≥20</option>
-        </select>
-      </label>
-
-      <label>Urine Output (24h)
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">≥1 L</option>
-          <option value="11">&lt;1 L</option>
-        </select>
-      </label>
-
-      <label>Type of Admission
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">Scheduled (Elective)</option>
-          <option value="6">Emergency</option>
-        </select>
-      </label>
-
-      <label>Recent Surgery
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">No</option>
-          <option value="8">Yes</option>
-        </select>
-      </label>
-
-      <label>AIDS
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">No</option>
-          <option value="17">Yes</option>
-        </select>
-      </label>
-
-      <label>Hematologic Malignancy
-        <select class="saps">
-          <option value="" selected></option>
-          <option value="0">No</option>
-          <option value="10">Yes</option>
-        </select>
-      </label>
-
-    </div>
-
-    <div class="actions">
-      <button type="button" class="primary" onclick="calcSAPS()">Calculate SAPS II</button>
-      <button type="button" class="secondary" onclick="resetSAPS()">Reset</button>
-    </div>
-
-    <div id="saps_result" class="result"></div>
-    <div id="saps_mortality" class="note"></div>
-  </section>
-
 </main>
 
 <footer class="site-footer">
