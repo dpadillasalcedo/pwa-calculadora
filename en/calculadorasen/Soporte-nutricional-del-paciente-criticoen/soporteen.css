@@ -234,3 +234,277 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header{
+  text-align:center;
+  margin-bottom:2rem;
+}
+
+.page-header h2{
+  font-size:2rem;
+  margin-bottom:.5rem;
+}
+
+.page-header p{
+  color:#666;
+  font-size:1rem;
+}
+
+.divider{
+  height:1px;
+  background:#e5e7eb;
+  margin:2rem 0;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:1.5rem;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+
+.card h2{
+  margin-top:0;
+}
+
+.small{
+  color:#6b7280;
+  font-size:.9rem;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;
+}
+
+.method-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;
+}
+
+.method-card{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:1rem;
+  background:#fafafa;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+label{
+  display:block;
+  font-weight:600;
+  margin-top:1rem;
+  margin-bottom:.35rem;
+}
+
+input[type="number"]{
+  width:100%;
+  padding:.75rem;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:1rem;
+  box-sizing:border-box;
+}
+
+input[type="number"]:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.checkbox-field{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin-top:1rem;
+}
+
+.checkbox-field label{
+  margin:0;
+  font-weight:500;
+}
+
+/* =========================
+   FORMULAS
+========================= */
+
+.formula{
+  background:#f3f4f6;
+  padding:.75rem;
+  border-radius:8px;
+  font-family:monospace;
+  font-size:.95rem;
+  overflow-x:auto;
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+.result-box{
+  margin-top:1rem;
+  padding:1rem;
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  border-radius:8px;
+}
+
+.result-box b{
+  display:block;
+  margin-bottom:.4rem;
+}
+
+.result{
+  text-align:center;
+  margin-top:1rem;
+}
+
+.result b{
+  display:block;
+  font-size:1.2rem;
+  margin-bottom:.5rem;
+}
+
+/* =========================
+   CLINICAL NOTE
+========================= */
+
+.note{
+  margin-top:1.5rem;
+  background:#fefce8;
+  border-left:4px solid #facc15;
+  padding:1rem;
+  border-radius:8px;
+}
+
+/* =========================
+   ENTERAL OPTIONS
+========================= */
+
+.enteral-results{
+  display:grid;
+  gap:1rem;
+}
+
+.enteral-option{
+  border:1px solid #dbeafe;
+  border-radius:10px;
+  padding:1rem;
+  background:#ffffff;
+}
+
+.best-option{
+  border:2px solid #2563eb;
+  background:#eff6ff;
+}
+
+.enteral-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:1rem;
+  gap:1rem;
+}
+
+.enteral-header h3{
+  margin:0;
+}
+
+.enteral-data p{
+  margin:.5rem 0;
+}
+
+.badge-best{
+  background:#2563eb;
+  color:white;
+  padding:.35rem .8rem;
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:600;
+}
+
+.badge-alt{
+  background:#e5e7eb;
+  color:#374151;
+  padding:.35rem .8rem;
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:600;
+}
+
+/* =========================
+   SEO CONTENT
+========================= */
+
+.seo-toggle{
+  margin-top:2rem;
+}
+
+.seo-toggle summary{
+  cursor:pointer;
+  font-weight:700;
+  padding:1rem;
+  background:#f3f4f6;
+  border-radius:10px;
+}
+
+.seo-panel{
+  margin-top:1rem;
+}
+
+.seo-panel h2{
+  margin-top:0;
+}
+
+.seo-panel h3{
+  margin-top:1.75rem;
+  color:#1f2937;
+}
+
+.seo-panel p{
+  line-height:1.7;
+  color:#374151;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .page-header h2{
+    font-size:1.5rem;
+  }
+
+  .method-grid{
+    grid-template-columns:1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .enteral-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
