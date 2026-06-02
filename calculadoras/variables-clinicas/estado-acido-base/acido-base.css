@@ -570,3 +570,28 @@ footer {
 .seo-toggle {
   margin-top: 20px;
 }
+
+.formula-box{
+  background:#f8fafc;
+  border:1px solid #dbe4ee;
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:20px;
+}
+
+.formula-box h3{
+  margin-top:0;
+  margin-bottom:10px;
+}
+
+.formula-box p{
+  margin:8px 0;
+}
+
+.formula-box ul{
+  margin:8px 0 0 20px;
+}
+
+.formula-box li{
+  margin:6px 0;
+}
