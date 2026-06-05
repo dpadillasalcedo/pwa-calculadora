@@ -208,144 +208,142 @@ function calcularEadyn() {
   document.getElementById("resultado").innerHTML = html;
 }
 
-/* =========================
-   SWAN-GANZ
-========================= */
+function getNum(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+
+  const value = Number(el.value);
+  return Number.isFinite(value) ? value : null;
+}
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
 
 function calcularSwanGanz() {
+  const PAS = getNum("pas");
+  const PAD = getNum("pad");
+  const FC = getNum("fc");
+  const GC = getNum("gc");
+  const SC = getNum("sc");
 
-    const PAS = getNum("pas");
-    const PAD = getNum("pad");
-    const FC = getNum("fc");
-    const GC = getNum("gc");
-    const SC = getNum("sc");
+  const PVC = getNum("pvc");
+  const PAPM = getNum("papm");
+  const PW = getNum("pw");
 
-    const PVC = getNum("pvc");
-    const PAPM = getNum("papm");
-    const PW = getNum("pw");
+  const Hb = getNum("hb");
+  const SaO2 = getNum("sao2");
+  const SvO2 = getNum("svo2");
 
-    const Hb = getNum("hb");
-    const SaO2 = getNum("sao2");
-    const SvO2 = getNum("svo2");
+  const PaO2 = getNum("pao2");
+  const PvO2 = getNum("pvo2");
 
-    const PaO2 = getNum("pao2");
-    const PvO2 = getNum("pvo2");
+  const campos = [
+    PAS, PAD, FC, GC, SC,
+    PVC, PAPM, PW,
+    Hb, SaO2, SvO2,
+    PaO2, PvO2
+  ];
 
-    if (
-        [
-            PAS, PAD, FC, GC, SC,
-            PVC, PAPM, PW,
-            Hb, SaO2, SvO2,
-            PaO2, PvO2
-        ].includes(null)
-    ) {
-        alert("Complete todos los campos");
-        return;
-    }
+  if (campos.includes(null)) {
+    alert("Complete todos los campos");
+    return;
+  }
 
-    if (FC <= 0 || GC <= 0 || SC <= 0) {
-        alert("FC, GC y SC deben ser mayores que cero");
-        return;
-    }
+  if (FC <= 0 || GC <= 0 || SC <= 0) {
+    alert("FC, GC y SC deben ser mayores que cero");
+    return;
+  }
 
-    /* =====================
-       CÁLCULOS
-    ===================== */
+  if (SaO2 < 0 || SaO2 > 100 || SvO2 < 0 || SvO2 > 100) {
+    alert("SaO₂ y SvO₂ deben estar entre 0 y 100%");
+    return;
+  }
 
-    const TAM = PAD + ((PAS - PAD) / 3);
+  const TAM = PAD + ((PAS - PAD) / 3);
 
-    const IC = GC / SC;
+  const IC = GC / SC;
 
-    const IVS = (IC / FC) * 1000;
+  const VS = (GC * 1000) / FC;
 
-    const ITSVI = IVS * (TAM - PW) * 0.0136;
+  const IVS = VS / SC;
 
-    const ITSVD = IVS * (PAPM - PVC) * 0.0136;
+  const ITSVI = IVS * (TAM - PW) * 0.0136;
 
-    const RVS = ((TAM - PVC) * 80) / GC;
+  const ITSVD = IVS * (PAPM - PVC) * 0.0136;
 
-    const RVP = ((PAPM - PW) * 80) / GC;
+  const RVS = ((TAM - PVC) * 80) / GC;
 
-    const CaO2 =
-        (Hb * 1.39 * (SaO2 / 100)) +
-        (PaO2 * 0.0031);
+  const RVP = ((PAPM - PW) * 80) / GC;
 
-    const CvO2 =
-        (Hb * 1.39 * (SvO2 / 100)) +
-        (PvO2 * 0.0031);
+  const CaO2 =
+    (Hb * 1.34 * (SaO2 / 100)) +
+    (PaO2 * 0.0031);
 
-    const IDO2 = IC * CaO2 * 10;
+  const CvO2 =
+    (Hb * 1.34 * (SvO2 / 100)) +
+    (PvO2 * 0.0031);
 
-    const IVO2 = IC * (CaO2 - CvO2) * 10;
+  const IDO2 = IC * CaO2 * 10;
 
-    const EXTO2 = (IVO2 / IDO2) * 100;
+  const IVO2 = IC * (CaO2 - CvO2) * 10;
 
-    /* =====================
-       RESULTADOS
-    ===================== */
+  const EXTO2 = (IVO2 / IDO2) * 100;
 
-    setHTML("r_tam", TAM.toFixed(1) + " mmHg");
+  setHTML("r_tam", TAM.toFixed(1) + " mmHg");
+  setHTML("r_ic", IC.toFixed(2) + " L/min/m²");
+  setHTML("r_vs", VS.toFixed(0) + " mL/lat");
+  setHTML("r_ivs", IVS.toFixed(1) + " mL/lat/m²");
+  setHTML("r_itsvi", ITSVI.toFixed(1) + " g·m/m²");
+  setHTML("r_itsvd", ITSVD.toFixed(1) + " g·m/m²");
+  setHTML("r_rvs", RVS.toFixed(0) + " dyn·s·cm⁻⁵");
+  setHTML("r_rvp", RVP.toFixed(0) + " dyn·s·cm⁻⁵");
+  setHTML("r_cao2", CaO2.toFixed(2) + " mL/dL");
+  setHTML("r_cvo2", CvO2.toFixed(2) + " mL/dL");
+  setHTML("r_ido2", IDO2.toFixed(0) + " mL/min/m²");
+  setHTML("r_ivo2", IVO2.toFixed(0) + " mL/min/m²");
+  setHTML("r_ext", EXTO2.toFixed(1) + " %");
 
-    setHTML("r_ic", IC.toFixed(2) + " L/min/m²");
+  let perfil = [];
 
-    setHTML("r_ivs", IVS.toFixed(1) + " mL/lat/m²");
+  if (IC < 2.2) perfil.push("🔴 Bajo índice cardíaco");
+  if (IC > 4.5) perfil.push("🟠 Estado hiperdinámico");
 
-    setHTML("r_itsvi", ITSVI.toFixed(1) + " g·m/m²");
+  if (VS < 60) perfil.push("🔴 Volumen sistólico bajo");
+  if (VS > 100) perfil.push("🟠 Volumen sistólico elevado");
 
-    setHTML("r_itsvd", ITSVD.toFixed(1) + " g·m/m²");
+  if (IVS < 33) perfil.push("🟡 Índice de volumen sistólico bajo");
+  if (IVS > 47) perfil.push("🟠 Índice de volumen sistólico elevado");
 
-    setHTML("r_rvs", RVS.toFixed(0) + " dyn·s·cm⁻⁵");
+  if (RVS < 800) perfil.push("🟢 Vasoplejía / shock distributivo");
+  if (RVS > 1200) perfil.push("🟣 Vasoconstricción sistémica elevada");
 
-    setHTML("r_rvp", RVP.toFixed(0) + " dyn·s·cm⁻⁵");
+  if (RVP > 120) perfil.push("🟠 Resistencia vascular pulmonar elevada");
 
-    setHTML("r_cao2", CaO2.toFixed(2) + " mL/dL");
+  if (PW > 18) perfil.push("🔴 Presiones de llenado izquierdas elevadas");
+  if (PAPM > 20) perfil.push("🟠 Hipertensión pulmonar");
 
-    setHTML("r_cvo2", CvO2.toFixed(2) + " mL/dL");
+  if (ITSVI < 45) perfil.push("🟡 Trabajo sistólico ventricular izquierdo bajo");
+  if (ITSVD < 5) perfil.push("🟡 Trabajo sistólico ventricular derecho bajo");
 
-    setHTML("r_ido2", IDO2.toFixed(0) + " mL/min/m²");
+  if (CaO2 < 16) perfil.push("🔴 Bajo contenido arterial de oxígeno");
+  if (CvO2 < 12) perfil.push("🟡 Bajo contenido venoso de oxígeno");
 
-    setHTML("r_ivo2", IVO2.toFixed(0) + " mL/min/m²");
+  if (IDO2 < 500) perfil.push("🔴 Bajo aporte indexado de oxígeno");
+  if (IVO2 > 160) perfil.push("🟠 Consumo indexado de oxígeno elevado");
 
-    setHTML("r_ext", EXTO2.toFixed(1) + " %");
+  if (EXTO2 > 30) perfil.push("🔴 Aumento de extracción tisular de O₂");
+  if (EXTO2 < 20) perfil.push("🟡 Extracción tisular de O₂ baja");
 
-    /* =====================
-       INTERPRETACIÓN
-    ===================== */
+  if (perfil.length === 0) {
+    perfil.push("✅ Perfil hemodinámico dentro de parámetros habituales");
+  }
 
-    let perfil = [];
-
-    if (IC < 2.2)
-        perfil.push("🔴 Bajo índice cardíaco");
-
-    if (IC > 4.5)
-        perfil.push("🟠 Estado hiperdinámico");
-
-    if (RVS < 800)
-        perfil.push("🟢 Vasoplejía / shock distributivo");
-
-    if (RVS > 1500)
-        perfil.push("🟣 Vasoconstricción sistémica elevada");
-
-    if (PW > 18)
-        perfil.push("🔴 Presiones de llenado izquierdas elevadas");
-
-    if (PAPM > 20)
-        perfil.push("🟠 Hipertensión pulmonar");
-
-    if (ITSVD < 7)
-        perfil.push("🟡 Disfunción ventricular derecha");
-
-    if (ITSVI < 44)
-        perfil.push("🟡 Disfunción ventricular izquierda");
-
-    if (EXTO2 > 30)
-        perfil.push("🔴 Aumento de extracción tisular de O₂");
-
-    if (perfil.length === 0)
-        perfil.push("✅ Perfil hemodinámico dentro de parámetros habituales");
-
-    setHTML(
-        "interpretacionSwan",
-        "<ul><li>" + perfil.join("</li><li>") + "</li></ul>"
-    );
+  setHTML(
+    "interpretacionSwan",
+    "<strong>Interpretación:</strong><ul><li>" +
+      perfil.join("</li><li>") +
+    "</li></ul>"
+  );
 }
