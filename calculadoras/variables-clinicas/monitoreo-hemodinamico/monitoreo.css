@@ -388,3 +388,85 @@ button:hover {
 .seo-toggle {
   margin-top: 20px;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,.1);
+}
+
+h1 {
+    text-align: center;
+    color: #003366;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #003366;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inputs td {
+    padding: 10px;
+}
+
+.results th {
+    background: #003366;
+    color: white;
+}
+
+.results td,
+.results th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: #003366;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0055aa;
+}
+
+@media(max-width:768px){
+
+    table,
+    tr,
+    td{
+        display:block;
+        width:100%;
+    }
+
+    input{
+        margin-bottom:10px;
+    }
+
+}
