@@ -414,38 +414,53 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
     <div id="interpretacionRVS" class="note" aria-live="polite"></div>
   </section>
 
-  <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
   
-  <title>Eadyn y Destete de Vasopresores</title>
+  <section id="eadyn" class="panel">
 
-  <h1>Eadyn, fluidos y Destete de Vasopresores</h1>
-  <p class="subtitle">Evaluación del acoplamiento ventrículo-arterial</p>
+  <h2>📈 Eadyn, fluidos y destete de vasopresores</h2>
 
-  <div class="panel">
+  <p class="subtitle">
+    Evaluación del acoplamiento ventrículo-arterial
+  </p>
 
-    <label>PPV (%)</label>
-    <input type="number" id="ppv" placeholder="Ej: 12">
+  <div class="grid-2">
 
-    <label>SVV (%)</label>
-    <input type="number" id="svv" placeholder="Ej: 10">
+    <div>
+      <label>PPV (%)</label>
+      <input type="number" id="ppv" placeholder="12">
+    </div>
 
-    <label>PAM (mmHg)</label>
-    <input type="number" id="map" placeholder="Ej: 65">
+    <div>
+      <label>SVV (%)</label>
+      <input type="number" id="svv" placeholder="10">
+    </div>
 
-    <label>Dosis vasopresor (mcg/kg/min)</label>
-    <input type="number" step="0.01" id="vaso" placeholder="Ej: 0.1">
+    <div>
+      <label>PAM (mmHg)</label>
+      <input type="number" id="map" placeholder="65">
+    </div>
 
-    <button onclick="calcular()">Calcular</button>
-
-    <div id="resultado"></div>
+    <div>
+      <label>Dosis vasopresor (mcg/kg/min)</label>
+      <input
+        type="number"
+        step="0.01"
+        id="vaso"
+        placeholder="0.10">
+    </div>
 
   </div>
 
+  <button
+      type="button"
+      onclick="calcularEadyn()">
+      Calcular Eadyn
+  </button>
+
+  <div id="resultado" class="result"></div>
+
+  </section>
+  
 
 <div class="container">
 
@@ -508,9 +523,11 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
 
     </table>
 
-    <button onclick="calcular()">
-        Calcular
-    </button>
+    <button
+    type="button"
+    onclick="calcularSwanGanz()">
+    Calcular Swan-Ganz
+</button>
 
     <h2>Resultados</h2>
 
@@ -542,6 +559,10 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
         </tbody>
 
     </table>
+  <div id="interpretacionSwan"
+     class="note"
+     aria-live="polite">
+  </div>
 
 </div>
 
