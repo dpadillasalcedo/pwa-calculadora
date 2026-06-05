@@ -464,112 +464,180 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
 
 <div class="container">
 
-    <h1>Calculadora Hemodinámica Swan-Ganz</h1>
+ <section class="panel">
 
-    <table class="inputs">
+  <h1>Calculadora Hemodinámica Swan-Ganz</h1>
 
-        <tr>
-            <td>PAS (mmHg)</td>
-            <td><input id="pas" type="number"></td>
+  <table class="inputs">
+    <tr>
+      <td>PAS (mmHg)</td>
+      <td><input id="pas" type="number"></td>
 
-            <td>PAD (mmHg)</td>
-            <td><input id="pad" type="number"></td>
-        </tr>
+      <td>PAD (mmHg)</td>
+      <td><input id="pad" type="number"></td>
+    </tr>
 
-        <tr>
-            <td>FC (lpm)</td>
-            <td><input id="fc" type="number"></td>
+    <tr>
+      <td>FC (lpm)</td>
+      <td><input id="fc" type="number"></td>
 
-            <td>GC (L/min)</td>
-            <td><input id="gc" type="number" step="0.1"></td>
-        </tr>
+      <td>GC (L/min)</td>
+      <td><input id="gc" type="number" step="0.1"></td>
+    </tr>
 
-        <tr>
-            <td>SC (m²)</td>
-            <td><input id="sc" type="number" step="0.01"></td>
+    <tr>
+      <td>SC (m²)</td>
+      <td><input id="sc" type="number" step="0.01"></td>
 
-            <td>PVC (mmHg)</td>
-            <td><input id="pvc" type="number"></td>
-        </tr>
+      <td>PVC (mmHg)</td>
+      <td><input id="pvc" type="number"></td>
+    </tr>
 
-        <tr>
-            <td>PAPM (mmHg)</td>
-            <td><input id="papm" type="number"></td>
+    <tr>
+      <td>PAPM (mmHg)</td>
+      <td><input id="papm" type="number"></td>
 
-            <td>PW (mmHg)</td>
-            <td><input id="pw" type="number"></td>
-        </tr>
+      <td>PW / PCP (mmHg)</td>
+      <td><input id="pw" type="number"></td>
+    </tr>
 
-        <tr>
-            <td>Hb (g/dL)</td>
-            <td><input id="hb" type="number" step="0.1"></td>
+    <tr>
+      <td>Hb (g/dL)</td>
+      <td><input id="hb" type="number" step="0.1"></td>
 
-            <td>SaO₂ (%)</td>
-            <td><input id="sao2" type="number"></td>
-        </tr>
+      <td>SaO₂ (%)</td>
+      <td><input id="sao2" type="number"></td>
+    </tr>
 
-        <tr>
-            <td>SvO₂ (%)</td>
-            <td><input id="svo2" type="number"></td>
+    <tr>
+      <td>SvO₂ (%)</td>
+      <td><input id="svo2" type="number"></td>
 
-            <td>PaO₂ (mmHg)</td>
-            <td><input id="pao2" type="number"></td>
-        </tr>
+      <td>PaO₂ (mmHg)</td>
+      <td><input id="pao2" type="number"></td>
+    </tr>
 
-        <tr>
-            <td>PvO₂ (mmHg)</td>
-            <td><input id="pvo2" type="number"></td>
-        </tr>
+    <tr>
+      <td>PvO₂ (mmHg)</td>
+      <td><input id="pvo2" type="number"></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
 
-    </table>
-
-    <button
-    type="button"
-    onclick="calcularSwanGanz()">
+  <button type="button" onclick="calcularSwanGanz()">
     Calcular Swan-Ganz
-</button>
+  </button>
 
-    <h2>Resultados</h2>
+  <h2>Resultados</h2>
 
-    <table class="results">
+  <table class="results">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Resultado</th>
+        <th>Normal</th>
+        <th>Fórmula</th>
+      </tr>
+    </thead>
 
-        <thead>
-            <tr>
-                <th>Variable</th>
-                <th>Resultado</th>
-                <th>Normal</th>
-            </tr>
-        </thead>
+    <tbody>
+      <tr>
+        <td>TAM</td>
+        <td id="r_tam"></td>
+        <td>70-100 mmHg</td>
+        <td>TAM = PAD + (PAS − PAD) / 3</td>
+      </tr>
 
-        <tbody>
+      <tr>
+        <td>IC</td>
+        <td id="r_ic"></td>
+        <td>2.5-4.5 L/min/m²</td>
+        <td>IC = GC / SC</td>
+      </tr>
 
-            <tr><td>TAM</td><td id="r_tam"></td><td>70-100</td></tr>
-            <tr><td>IC</td><td id="r_ic"></td><td>2.5-4.5</td></tr>
-            <tr><td>IVS</td><td id="r_ivs"></td><td>40-50</td></tr>
-            <tr><td>ITSVI</td><td id="r_itsvi"></td><td>44-64</td></tr>
-            <tr><td>ITSVD</td><td id="r_itsvd"></td><td>7-12</td></tr>
-            <tr><td>RVS</td><td id="r_rvs"></td><td>770-1500</td></tr>
-            <tr><td>RVP</td><td id="r_rvp"></td><td>20-120</td></tr>
-            <tr><td>CaO₂</td><td id="r_cao2"></td><td>17-20</td></tr>
-            <tr><td>CvO₂</td><td id="r_cvo2"></td><td>12-15</td></tr>
-            <tr><td>IDO₂</td><td id="r_ido2"></td><td>500-600</td></tr>
-            <tr><td>IVO₂</td><td id="r_ivo2"></td><td>120-160</td></tr>
-            <tr><td>EXTO₂</td><td id="r_ext"></td><td>20-30%</td></tr>
+      <tr>
+        <td>VS</td>
+        <td id="r_vs"></td>
+        <td>60-100 mL/lat</td>
+        <td>VS = (GC × 1000) / FC</td>
+      </tr>
 
-        </tbody>
+      <tr>
+        <td>IVS</td>
+        <td id="r_ivs"></td>
+        <td>33-47 mL/lat/m²</td>
+        <td>IVS = VS / SC</td>
+      </tr>
 
-    </table>
-  <div id="interpretacionSwan"
-     class="note"
-     aria-live="polite">
-  </div>
+      <tr>
+        <td>ITSVI</td>
+        <td id="r_itsvi"></td>
+        <td>45-60 g·m/m²</td>
+        <td>ITSVI = IVS × (TAM − PW) × 0.0136</td>
+      </tr>
 
-</div>
+      <tr>
+        <td>ITSVD</td>
+        <td id="r_itsvd"></td>
+        <td>5-10 g·m/m²</td>
+        <td>ITSVD = IVS × (PAPM − PVC) × 0.0136</td>
+      </tr>
 
-<script src="script.js"></script>
+      <tr>
+        <td>RVS</td>
+        <td id="r_rvs"></td>
+        <td>800-1200 dyn·s·cm⁻⁵</td>
+        <td>RVS = ((TAM − PVC) × 80) / GC</td>
+      </tr>
 
-</body>
-</html>
+      <tr>
+        <td>RVP</td>
+        <td id="r_rvp"></td>
+        <td>20-120 dyn·s·cm⁻⁵</td>
+        <td>RVP = ((PAPM − PW) × 80) / GC</td>
+      </tr>
+
+      <tr>
+        <td>CaO₂</td>
+        <td id="r_cao2"></td>
+        <td>16-22 mL/dL</td>
+        <td>CaO₂ = (Hb × 1.34 × SaO₂/100) + (PaO₂ × 0.0031)</td>
+      </tr>
+
+      <tr>
+        <td>CvO₂</td>
+        <td id="r_cvo2"></td>
+        <td>12-16 mL/dL</td>
+        <td>CvO₂ = (Hb × 1.34 × SvO₂/100) + (PvO₂ × 0.0031)</td>
+      </tr>
+
+      <tr>
+        <td>IDO₂</td>
+        <td id="r_ido2"></td>
+        <td>500-700 mL/min/m²</td>
+        <td>IDO₂ = IC × CaO₂ × 10</td>
+      </tr>
+
+      <tr>
+        <td>IVO₂</td>
+        <td id="r_ivo2"></td>
+        <td>110-160 mL/min/m²</td>
+        <td>IVO₂ = IC × (CaO₂ − CvO₂) × 10</td>
+      </tr>
+
+      <tr>
+        <td>EXTO₂</td>
+        <td id="r_ext"></td>
+        <td>20-30%</td>
+        <td>EXTO₂ = (IVO₂ / IDO₂) × 100</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="interpretacionSwan" class="note" aria-live="polite"></div>
+
+</section>
   
 
      <details class="seo-toggle">
