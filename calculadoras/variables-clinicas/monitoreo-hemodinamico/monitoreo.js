@@ -133,7 +133,7 @@ function calcularRVS() {
   setHTML("interpretacionRVS", interp);
 }
 
-function calcular() {
+function calcularEadyn() {
 
   let ppv = parseFloat(document.getElementById("ppv").value);
   let svv = parseFloat(document.getElementById("svv").value);
