@@ -1,5 +1,5 @@
 /* =========================
-   RESET
+   RESET / BASE
 ========================= */
 *,
 *::before,
@@ -7,35 +7,29 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
-  line-height: 1.6;
-}
-
-/* =========================
-   VARIABLES
-========================= */
 :root {
   --primary: #020617;
   --primary-soft: #0f172a;
-
+  --text: #0f172a;
   --text-soft: #475569;
   --muted: #64748b;
-
   --surface: #ffffff;
+  --bg: #f8fafc;
   --border: #e2e8f0;
-
+  --border-strong: #cbd5e1;
   --radius: 14px;
   --radius-lg: 22px;
-
   --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.05);
   --shadow-md: 0 14px 36px rgba(2, 6, 23, 0.08);
-
   --container: 900px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
 /* =========================
@@ -47,17 +41,43 @@ body {
   padding: 1.2rem 0 2.5rem;
 }
 
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
-.language-switcher {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  color: var(--muted);
+.app-header {
+  margin-bottom: 2rem;
 }
 
-.language-switcher a {
+h1 {
+  font-size: clamp(2rem, 4vw, 2.3rem);
+  margin: 0 0 0.4rem;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--primary-soft);
+}
+
+.subtitle,
+.seo-intro {
+  color: var(--text-soft);
+}
+
+/* =========================
+   LINKS / NAV
+========================= */
+a {
+  color: var(--primary-soft);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.language-switcher,
+.breadcrumb {
+  font-size: 0.9rem;
   color: var(--muted);
+  margin-bottom: 1rem;
 }
 
 .language-switcher .active {
@@ -65,46 +85,12 @@ body {
   font-weight: 600;
 }
 
-/* =========================
-   BREADCRUMB
-========================= */
 .breadcrumb {
-  font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  color: var(--muted);
-}
-
-.breadcrumb a {
-  color: var(--text-soft);
-}
-
-.breadcrumb a:hover {
-  color: var(--primary);
 }
 
 /* =========================
-   HEADER
-========================= */
-.app-header {
-  margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  font-size: clamp(2rem, 4vw, 2.3rem);
-  margin-bottom: 0.4rem;
-}
-
-.subtitle {
-  color: var(--text-soft);
-}
-
-.seo-intro {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-/* =========================
-   PANEL
+   PANELS
 ========================= */
 .panel {
   background: var(--surface);
@@ -115,14 +101,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.panel h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
-}
-
-/* =========================
-   FIELDSET
-========================= */
 fieldset {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -139,16 +117,18 @@ legend {
 /* =========================
    GRID
 ========================= */
-.grid-2 {
+.grid-2,
+.grid-3 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 0.8rem;
 }
 
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .grid-3 {
-  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
 }
 
 /* =========================
@@ -157,16 +137,17 @@ legend {
 label {
   display: block;
   font-size: 0.9rem;
-  margin-bottom: 0.3rem;
+  margin: 0.7rem 0 0.3rem;
   font-weight: 500;
 }
 
 input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-radius: 10px;
-  border: 1px solid var(--border);
-  font-size: 0.9rem;
+  border: 1px solid var(--border-strong);
+  font-size: 0.95rem;
+  background: #fff;
 }
 
 input:focus {
@@ -175,21 +156,18 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
 }
 
-/* =========================
-   BUTTON
-========================= */
 button {
-  margin-top: 1rem;
   width: 100%;
-  padding: 0.7rem;
-  border-radius: 999px;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
   border: none;
+  border-radius: 999px;
   background: var(--primary);
   color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.2s ease;
 }
 
 button:hover {
@@ -203,158 +181,8 @@ button:hover {
 .result {
   margin-top: 1rem;
   padding: 0.9rem;
-  border-radius: 10px;
-  background: #f1f5f9;
-  font-weight: 600;
-}
-
-.note {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* =========================
-   SEO PANEL
-========================= */
-.seo-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.seo-panel h2 {
-  font-size: 1.4rem;
-}
-
-.seo-panel h3 {
-  margin-top: 1.4rem;
-}
-
-.seo-panel p {
-  color: var(--text-soft);
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 1.6rem 0;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.footer-nav {
-  margin-bottom: 0.5rem;
-}
-
-.footer-nav a {
-  color: var(--primary-soft);
-  font-weight: 600;
-}
-
-.footer-nav a:hover {
-  color: var(--primary);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-
-  .panel {
-    padding: 1.3rem;
-  }
-
-  fieldset {
-    padding: 1rem;
-  }
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system;
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-}
-
-h1 {
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  color: #475569;
-  margin-bottom: 20px;
-}
-
-.panel {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 20px;
-}
-
-label {
-  display: block;
-  margin-top: 12px;
-  font-weight: 500;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
-  font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #94a3b8;
-  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
-}
-
-button {
-  width: 100%;
-  margin-top: 18px;
-  padding: 12px;
-  border: none;
-  border-radius: 999px;
-  background: #020617;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  transform: translateY(-2px);
-}
-
-.result {
-  margin-top: 15px;
-  padding: 15px;
   border-radius: 12px;
+  background: #f1f5f9;
   font-weight: 600;
 }
 
@@ -374,99 +202,113 @@ button:hover {
 }
 
 .note {
-  font-size: 13px;
-  color: #64748b;
-  margin-top: 10px;
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* =========================
+   TABLES SWAN-GANZ
+========================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.inputs td {
+  padding: 0.6rem;
+}
+
+.results th {
+  background: var(--primary-soft);
+  color: white;
+}
+
+.results td,
+.results th {
+  border: 1px solid var(--border);
+  padding: 0.7rem;
+  text-align: left;
+}
+
+/* =========================
+   SEO
+========================= */
+.seo-toggle {
+  margin-top: 1.5rem;
 }
 
 .seo-toggle summary {
   cursor: pointer;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
-.seo-toggle {
-  margin-top: 20px;
+.seo-panel p {
+  color: var(--text-soft);
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    margin: 0;
-    padding: 20px;
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 1.6rem 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,.1);
+.footer-nav {
+  margin-bottom: 0.5rem;
 }
 
-h1 {
-    text-align: center;
-    color: #003366;
+.footer-nav a {
+  color: var(--primary-soft);
+  font-weight: 600;
 }
 
-h2 {
-    margin-top: 30px;
-    color: #003366;
-}
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
 
-table {
+  .panel {
+    padding: 1.3rem;
+  }
+
+  fieldset {
+    padding: 1rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  td,
+  th {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-}
+  }
 
-.inputs td {
-    padding: 10px;
-}
+  .results thead {
+    display: none;
+  }
 
-.results th {
-    background: #003366;
-    color: white;
-}
+  .results tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-.results td,
-.results th {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    margin-top: 20px;
-    padding: 12px 25px;
+  .results td {
     border: none;
-    background: #003366;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0055aa;
-}
-
-@media(max-width:768px){
-
-    table,
-    tr,
-    td{
-        display:block;
-        width:100%;
-    }
-
-    input{
-        margin-bottom:10px;
-    }
-
+    border-bottom: 1px solid var(--border);
+  }
 }
