@@ -446,7 +446,109 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
 
   </div>
 
+
+<div class="container">
+
+    <h1>Calculadora Hemodinámica Swan-Ganz</h1>
+
+    <table class="inputs">
+
+        <tr>
+            <td>PAS (mmHg)</td>
+            <td><input id="pas" type="number"></td>
+
+            <td>PAD (mmHg)</td>
+            <td><input id="pad" type="number"></td>
+        </tr>
+
+        <tr>
+            <td>FC (lpm)</td>
+            <td><input id="fc" type="number"></td>
+
+            <td>GC (L/min)</td>
+            <td><input id="gc" type="number" step="0.1"></td>
+        </tr>
+
+        <tr>
+            <td>SC (m²)</td>
+            <td><input id="sc" type="number" step="0.01"></td>
+
+            <td>PVC (mmHg)</td>
+            <td><input id="pvc" type="number"></td>
+        </tr>
+
+        <tr>
+            <td>PAPM (mmHg)</td>
+            <td><input id="papm" type="number"></td>
+
+            <td>PW (mmHg)</td>
+            <td><input id="pw" type="number"></td>
+        </tr>
+
+        <tr>
+            <td>Hb (g/dL)</td>
+            <td><input id="hb" type="number" step="0.1"></td>
+
+            <td>SaO₂ (%)</td>
+            <td><input id="sao2" type="number"></td>
+        </tr>
+
+        <tr>
+            <td>SvO₂ (%)</td>
+            <td><input id="svo2" type="number"></td>
+
+            <td>PaO₂ (mmHg)</td>
+            <td><input id="pao2" type="number"></td>
+        </tr>
+
+        <tr>
+            <td>PvO₂ (mmHg)</td>
+            <td><input id="pvo2" type="number"></td>
+        </tr>
+
+    </table>
+
+    <button onclick="calcular()">
+        Calcular
+    </button>
+
+    <h2>Resultados</h2>
+
+    <table class="results">
+
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Resultado</th>
+                <th>Normal</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr><td>TAM</td><td id="r_tam"></td><td>70-100</td></tr>
+            <tr><td>IC</td><td id="r_ic"></td><td>2.5-4.5</td></tr>
+            <tr><td>IVS</td><td id="r_ivs"></td><td>40-50</td></tr>
+            <tr><td>ITSVI</td><td id="r_itsvi"></td><td>44-64</td></tr>
+            <tr><td>ITSVD</td><td id="r_itsvd"></td><td>7-12</td></tr>
+            <tr><td>RVS</td><td id="r_rvs"></td><td>770-1500</td></tr>
+            <tr><td>RVP</td><td id="r_rvp"></td><td>20-120</td></tr>
+            <tr><td>CaO₂</td><td id="r_cao2"></td><td>17-20</td></tr>
+            <tr><td>CvO₂</td><td id="r_cvo2"></td><td>12-15</td></tr>
+            <tr><td>IDO₂</td><td id="r_ido2"></td><td>500-600</td></tr>
+            <tr><td>IVO₂</td><td id="r_ivo2"></td><td>120-160</td></tr>
+            <tr><td>EXTO₂</td><td id="r_ext"></td><td>20-30%</td></tr>
+
+        </tbody>
+
+    </table>
+
 </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
   
 
      <details class="seo-toggle">
