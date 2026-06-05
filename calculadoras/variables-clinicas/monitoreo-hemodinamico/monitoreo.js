@@ -207,3 +207,65 @@ function calcular() {
 
   document.getElementById("resultado").innerHTML = html;
 }
+
+function calcular() {
+
+    const PAS = Number(document.getElementById("pas").value);
+    const PAD = Number(document.getElementById("pad").value);
+    const FC = Number(document.getElementById("fc").value);
+    const GC = Number(document.getElementById("gc").value);
+    const SC = Number(document.getElementById("sc").value);
+    const PVC = Number(document.getElementById("pvc").value);
+    const PAPM = Number(document.getElementById("papm").value);
+    const PW = Number(document.getElementById("pw").value);
+
+    const Hb = Number(document.getElementById("hb").value);
+    const SaO2 = Number(document.getElementById("sao2").value) / 100;
+    const SvO2 = Number(document.getElementById("svo2").value) / 100;
+
+    const PaO2 = Number(document.getElementById("pao2").value);
+    const PvO2 = Number(document.getElementById("pvo2").value);
+
+    const TAM = PAD + ((PAS - PAD) / 3);
+
+    const IC = GC / SC;
+
+    const IVS = (IC / FC) * 1000;
+
+    const ITSVI = IVS * (TAM - PW) * 0.0136;
+
+    const ITSVD = IVS * (PAPM - PVC) * 0.0136;
+
+    const RVS = ((TAM - PVC) * 80) / GC;
+
+    const RVP = ((PAPM - PW) * 80) / GC;
+
+    const CaO2 = (Hb * SaO2 * 1.39) + (PaO2 * 0.0031);
+
+    const CvO2 = (Hb * SvO2 * 1.39) + (PvO2 * 0.0031);
+
+    const IDO2 = CaO2 * IC * 10;
+
+    const IVO2 = (CaO2 - CvO2) * IC * 10;
+
+    const EXTO2 = (IVO2 / IDO2) * 100;
+
+    document.getElementById("r_tam").innerHTML = TAM.toFixed(1);
+    document.getElementById("r_ic").innerHTML = IC.toFixed(2);
+    document.getElementById("r_ivs").innerHTML = IVS.toFixed(1);
+
+    document.getElementById("r_itsvi").innerHTML = ITSVI.toFixed(1);
+    document.getElementById("r_itsvd").innerHTML = ITSVD.toFixed(1);
+
+    document.getElementById("r_rvs").innerHTML = RVS.toFixed(0);
+    document.getElementById("r_rvp").innerHTML = RVP.toFixed(0);
+
+    document.getElementById("r_cao2").innerHTML = CaO2.toFixed(2);
+    document.getElementById("r_cvo2").innerHTML = CvO2.toFixed(2);
+
+    document.getElementById("r_ido2").innerHTML = IDO2.toFixed(0);
+    document.getElementById("r_ivo2").innerHTML = IVO2.toFixed(0);
+
+    document.getElementById("r_ext").innerHTML =
+        EXTO2.toFixed(1) + "%";
+}
