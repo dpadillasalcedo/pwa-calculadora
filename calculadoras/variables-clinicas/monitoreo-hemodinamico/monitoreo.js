@@ -221,6 +221,24 @@ function calcularEadyn() {
   document.getElementById("resultado").innerHTML = html;
 }
 
+function getNum(id) {
+  const el = document.getElementById(id);
+  if (!el || el.value === "") return null;
+
+  const value = Number(el.value);
+  return Number.isFinite(value) ? value : null;
+}
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+function claseValor(valor, bajo, alto) {
+  if (valor < bajo || valor > alto) return "result-warn";
+  return "result-normal";
+}
+
 function calcularSwanGanz() {
   const PAS = getNum("pas");
   const PAD = getNum("pad");
@@ -230,6 +248,7 @@ function calcularSwanGanz() {
 
   const PVC = getNum("pvc");
   const PAPM = getNum("papm");
+  const PAPD = getNum("papd");
   const PW = getNum("pw");
 
   const Hb = getNum("hb");
@@ -241,7 +260,7 @@ function calcularSwanGanz() {
 
   const campos = [
     PAS, PAD, FC, GC, SC,
-    PVC, PAPM, PW,
+    PVC, PAPM, PAPD, PW,
     Hb, SaO2, SvO2,
     PaO2, PvO2
   ];
@@ -262,20 +281,20 @@ function calcularSwanGanz() {
   }
 
   const TAM = PAD + ((PAS - PAD) / 3);
-
   const IC = GC / SC;
-
   const VS = (GC * 1000) / FC;
-
   const IVS = VS / SC;
 
   const ITSVI = IVS * (TAM - PW) * 0.0136;
-
   const ITSVD = IVS * (PAPM - PVC) * 0.0136;
 
   const RVS = ((TAM - PVC) * 80) / GC;
 
-  const RVP = ((PAPM - PW) * 80) / GC;
+  const RVP_WU = (PAPM - PW) / GC;
+  const RVP = RVP_WU * 80;
+
+  const TPG = PAPM - PW;
+  const DPG = PAPD - PW;
 
   const CaO2 =
     (Hb * 1.34 * (SaO2 / 100)) +
@@ -286,64 +305,94 @@ function calcularSwanGanz() {
     (PvO2 * 0.0031);
 
   const IDO2 = IC * CaO2 * 10;
-
   const IVO2 = IC * (CaO2 - CvO2) * 10;
-
   const EXTO2 = (IVO2 / IDO2) * 100;
 
-  setHTML("r_tam", TAM.toFixed(1) + " mmHg");
-  setHTML("r_ic", IC.toFixed(2) + " L/min/m²");
-  setHTML("r_vs", VS.toFixed(0) + " mL/lat");
-  setHTML("r_ivs", IVS.toFixed(1) + " mL/lat/m²");
-  setHTML("r_itsvi", ITSVI.toFixed(1) + " g·m/m²");
-  setHTML("r_itsvd", ITSVD.toFixed(1) + " g·m/m²");
-  setHTML("r_rvs", RVS.toFixed(0) + " dyn·s·cm⁻⁵");
-  setHTML("r_rvp", RVP.toFixed(0) + " dyn·s·cm⁻⁵");
-  setHTML("r_cao2", CaO2.toFixed(2) + " mL/dL");
-  setHTML("r_cvo2", CvO2.toFixed(2) + " mL/dL");
-  setHTML("r_ido2", IDO2.toFixed(0) + " mL/min/m²");
-  setHTML("r_ivo2", IVO2.toFixed(0) + " mL/min/m²");
-  setHTML("r_ext", EXTO2.toFixed(1) + " %");
+  setHTML("r_tam", `<span class="${claseValor(TAM, 70, 100)}">${TAM.toFixed(1)} mmHg</span>`);
+  setHTML("r_ic", `<span class="${claseValor(IC, 2.5, 4.5)}">${IC.toFixed(2)} L/min/m²</span>`);
+  setHTML("r_vs", `<span class="${claseValor(VS, 60, 100)}">${VS.toFixed(0)} mL/lat</span>`);
+  setHTML("r_ivs", `<span class="${claseValor(IVS, 33, 47)}">${IVS.toFixed(1)} mL/lat/m²</span>`);
+  setHTML("r_itsvi", `<span class="${claseValor(ITSVI, 45, 60)}">${ITSVI.toFixed(1)} g·m/m²</span>`);
+  setHTML("r_itsvd", `<span class="${claseValor(ITSVD, 5, 10)}">${ITSVD.toFixed(1)} g·m/m²</span>`);
+  setHTML("r_rvs", `<span class="${claseValor(RVS, 800, 1200)}">${RVS.toFixed(0)} dyn·s·cm⁻⁵</span>`);
+  setHTML("r_rvp", `<span class="${RVP > 160 ? "result-bad" : "result-normal"}">${RVP.toFixed(0)} dyn·s·cm⁻⁵</span>`);
+  setHTML("r_rvp_wu", `<span class="${RVP_WU > 2 ? "result-bad" : "result-normal"}">${RVP_WU.toFixed(2)} WU</span>`);
+  setHTML("r_tpg", `<span class="${TPG >= 12 ? "result-warn" : "result-normal"}">${TPG.toFixed(1)} mmHg</span>`);
+  setHTML("r_dpg", `<span class="${DPG >= 7 ? "result-bad" : "result-normal"}">${DPG.toFixed(1)} mmHg</span>`);
+  setHTML("r_cao2", `<span class="${claseValor(CaO2, 16, 22)}">${CaO2.toFixed(2)} mL/dL</span>`);
+  setHTML("r_cvo2", `<span class="${claseValor(CvO2, 12, 16)}">${CvO2.toFixed(2)} mL/dL</span>`);
+  setHTML("r_ido2", `<span class="${claseValor(IDO2, 500, 700)}">${IDO2.toFixed(0)} mL/min/m²</span>`);
+  setHTML("r_ivo2", `<span class="${claseValor(IVO2, 110, 160)}">${IVO2.toFixed(0)} mL/min/m²</span>`);
+  setHTML("r_ext", `<span class="${claseValor(EXTO2, 20, 30)}">${EXTO2.toFixed(1)} %</span>`);
 
   let perfil = [];
 
-  if (IC < 2.2) perfil.push("🔴 Bajo índice cardíaco");
-  if (IC > 4.5) perfil.push("🟠 Estado hiperdinámico");
-
-  if (VS < 60) perfil.push("🔴 Volumen sistólico bajo");
-  if (VS > 100) perfil.push("🟠 Volumen sistólico elevado");
-
-  if (IVS < 33) perfil.push("🟡 Índice de volumen sistólico bajo");
-  if (IVS > 47) perfil.push("🟠 Índice de volumen sistólico elevado");
-
-  if (RVS < 800) perfil.push("🟢 Vasoplejía / shock distributivo");
-  if (RVS > 1200) perfil.push("🟣 Vasoconstricción sistémica elevada");
-
-  if (RVP > 120) perfil.push("🟠 Resistencia vascular pulmonar elevada");
-
-  if (PW > 18) perfil.push("🔴 Presiones de llenado izquierdas elevadas");
-  if (PAPM > 20) perfil.push("🟠 Hipertensión pulmonar");
-
-  if (ITSVI < 45) perfil.push("🟡 Trabajo sistólico ventricular izquierdo bajo");
-  if (ITSVD < 5) perfil.push("🟡 Trabajo sistólico ventricular derecho bajo");
-
-  if (CaO2 < 16) perfil.push("🔴 Bajo contenido arterial de oxígeno");
-  if (CvO2 < 12) perfil.push("🟡 Bajo contenido venoso de oxígeno");
-
-  if (IDO2 < 500) perfil.push("🔴 Bajo aporte indexado de oxígeno");
-  if (IVO2 > 160) perfil.push("🟠 Consumo indexado de oxígeno elevado");
-
-  if (EXTO2 > 30) perfil.push("🔴 Aumento de extracción tisular de O₂");
-  if (EXTO2 < 20) perfil.push("🟡 Extracción tisular de O₂ baja");
-
-  if (perfil.length === 0) {
-    perfil.push("✅ Perfil hemodinámico dentro de parámetros habituales");
+  if (PAPM <= 20) {
+    perfil.push("✅ No cumple criterio hemodinámico de hipertensión pulmonar: PAPM ≤ 20 mmHg.");
   }
+
+  if (PAPM > 20 && PW <= 15 && RVP_WU > 2) {
+    perfil.push("🫁 Hipertensión pulmonar precapilar: PAPM > 20 mmHg, PW/PCP ≤ 15 mmHg y RVP > 2 WU.");
+  }
+
+  if (PAPM > 20 && PW > 15 && RVP_WU <= 2) {
+    perfil.push("🫁 Hipertensión pulmonar postcapilar aislada: PAPM > 20 mmHg, PW/PCP > 15 mmHg y RVP ≤ 2 WU. Sugiere origen por corazón izquierdo.");
+  }
+
+  if (PAPM > 20 && PW > 15 && RVP_WU > 2) {
+    perfil.push("🫁 Hipertensión pulmonar combinada pre y postcapilar: PAPM > 20 mmHg, PW/PCP > 15 mmHg y RVP > 2 WU.");
+  }
+
+  if (PAPM > 20 && PW <= 15 && RVP_WU <= 2) {
+    perfil.push("⚠ PAPM elevada con PW/PCP normal, pero RVP no elevada. Revisar mediciones, gasto cardíaco alto o situación hiperdinámica.");
+  }
+
+  if (DPG >= 7) {
+    perfil.push("🔴 DPG elevado: sugiere componente vascular pulmonar significativo o remodelado vascular pulmonar.");
+  } else {
+    perfil.push("✅ DPG no elevado: menor evidencia de componente vascular pulmonar fijo por este parámetro.");
+  }
+
+  if (TPG >= 12) {
+    perfil.push("🟠 TPG elevado: gradiente transpulmonar aumentado.");
+  }
+
+  if (RVP_WU > 2) {
+    perfil.push("🟠 RVP elevada: aumento de poscarga del ventrículo derecho.");
+  }
+
+  if (PW > 15) {
+    perfil.push("🟣 PW/PCP elevada: sugiere aumento de presiones de llenado izquierdas.");
+  }
+
+  if (IC < 2.2) perfil.push("🔴 Bajo índice cardíaco.");
+  if (IC > 4.5) perfil.push("🟠 Estado hiperdinámico.");
+
+  if (VS < 60) perfil.push("🔴 Volumen sistólico bajo.");
+  if (IVS < 33) perfil.push("🟡 Índice de volumen sistólico bajo.");
+
+  if (ITSVD < 5) perfil.push("🟡 Trabajo sistólico ventricular derecho bajo.");
+  if (ITSVI < 45) perfil.push("🟡 Trabajo sistólico ventricular izquierdo bajo.");
+
+  if (CaO2 < 16) perfil.push("🔴 Bajo contenido arterial de oxígeno.");
+  if (CvO2 < 12) perfil.push("🟡 Bajo contenido venoso de oxígeno.");
+
+  if (IDO2 < 500) perfil.push("🔴 Bajo aporte indexado de oxígeno.");
+  if (EXTO2 > 30) perfil.push("🔴 Extracción tisular de oxígeno aumentada.");
 
   setHTML(
     "interpretacionSwan",
-    "<strong>Interpretación:</strong><ul><li>" +
-      perfil.join("</li><li>") +
-    "</li></ul>"
+    `
+    <strong>Interpretación hemodinámica:</strong>
+    <ul>
+      <li>${perfil.join("</li><li>")}</li>
+    </ul>
+
+    <p>
+      <strong>Nota:</strong> La clasificación de hipertensión pulmonar requiere integración clínica.
+      La PW/PCP debe estar correctamente medida, idealmente al final de la espiración.
+      El DPG se interpreta como apoyo y no reemplaza la clasificación basada en PAPM, PW/PCP y RVP.
+    </p>
+    `
   );
 }
