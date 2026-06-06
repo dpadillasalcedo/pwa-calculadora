@@ -466,14 +466,16 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
 
  <section class="panel">
 
+ <section class="panel swan-panel">
+
   <h1>Calculadora Hemodinámica Swan-Ganz</h1>
 
   <table class="inputs">
     <tr>
-      <td>PAS (mmHg)</td>
+      <td>PAS sistémica (mmHg)</td>
       <td><input id="pas" type="number"></td>
 
-      <td>PAD (mmHg)</td>
+      <td>PAD sistémica (mmHg)</td>
       <td><input id="pad" type="number"></td>
     </tr>
 
@@ -497,31 +499,32 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
       <td>PAPM (mmHg)</td>
       <td><input id="papm" type="number"></td>
 
+      <td>PAPD (mmHg)</td>
+      <td><input id="papd" type="number"></td>
+    </tr>
+
+    <tr>
       <td>PW / PCP (mmHg)</td>
       <td><input id="pw" type="number"></td>
-    </tr>
 
-    <tr>
       <td>Hb (g/dL)</td>
       <td><input id="hb" type="number" step="0.1"></td>
+    </tr>
 
+    <tr>
       <td>SaO₂ (%)</td>
       <td><input id="sao2" type="number"></td>
-    </tr>
 
-    <tr>
       <td>SvO₂ (%)</td>
       <td><input id="svo2" type="number"></td>
-
-      <td>PaO₂ (mmHg)</td>
-      <td><input id="pao2" type="number"></td>
     </tr>
 
     <tr>
+      <td>PaO₂ (mmHg)</td>
+      <td><input id="pao2" type="number"></td>
+
       <td>PvO₂ (mmHg)</td>
       <td><input id="pvo2" type="number"></td>
-      <td></td>
-      <td></td>
     </tr>
   </table>
 
@@ -536,7 +539,7 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
       <tr>
         <th>Variable</th>
         <th>Resultado</th>
-        <th>Normal</th>
+        <th>Normal / referencia</th>
         <th>Fórmula</th>
       </tr>
     </thead>
@@ -599,6 +602,27 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
       </tr>
 
       <tr>
+        <td>RVP Wood</td>
+        <td id="r_rvp_wu"></td>
+        <td>≤ 2 WU</td>
+        <td>RVP = (PAPM − PW) / GC</td>
+      </tr>
+
+      <tr>
+        <td>TPG</td>
+        <td id="r_tpg"></td>
+        <td>&lt; 12 mmHg</td>
+        <td>TPG = PAPM − PW</td>
+      </tr>
+
+      <tr>
+        <td>DPG</td>
+        <td id="r_dpg"></td>
+        <td>&lt; 7 mmHg</td>
+        <td>DPG = PAPD − PW</td>
+      </tr>
+
+      <tr>
         <td>CaO₂</td>
         <td id="r_cao2"></td>
         <td>16-22 mL/dL</td>
@@ -635,7 +659,7 @@ consumo de oxígeno (VO₂), extracción tisular y resistencia vascular sistémi
     </tbody>
   </table>
 
-  <div id="interpretacionSwan" class="note" aria-live="polite"></div>
+  <div id="interpretacionSwan" class="note interpretation" aria-live="polite"></div>
 
 </section>
   
