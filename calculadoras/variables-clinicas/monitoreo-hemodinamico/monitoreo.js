@@ -135,65 +135,76 @@ function calcularRVS() {
 
 function calcularEadyn() {
 
-  let ppv = parseFloat(document.getElementById("ppv").value);
-  let svv = parseFloat(document.getElementById("svv").value);
-  let map = parseFloat(document.getElementById("map").value);
-  let vaso = parseFloat(document.getElementById("vaso").value);
+  const ppv = parseFloat(document.getElementById("ppv").value);
+  const svv = parseFloat(document.getElementById("svv").value);
+  const map = parseFloat(document.getElementById("map").value);
+  const vaso = parseFloat(document.getElementById("vaso").value);
 
   if (isNaN(ppv) || isNaN(svv)) {
     alert("Completar PPV y SVV");
     return;
   }
 
-  let eadyn = ppv / svv;
+  if (svv <= 0) {
+    alert("SVV debe ser mayor que cero");
+    return;
+  }
+
+  const eadyn = ppv / svv;
 
   let html = `
     <div class="result">
-      Eadyn: ${eadyn.toFixed(2)}
+      <strong>Eadyn:</strong> ${eadyn.toFixed(2)}
     </div>
   `;
 
-  // Interpretación
-  if (eadyn > 1) {
+  if (eadyn >= 1.0) {
     html += `
       <div class="result good">
-        ✔ Buen acoplamiento ventrículo-arterial <br>
-        → El volumen probablemente aumente la presión arterial <br>
-        → Considerar descenso de vasopresor
+        ✔ Eadyn elevada<br>
+        → Mayor probabilidad de que un aumento del volumen sistólico se traduzca en aumento de la PAM.<br>
+        → Sugiere buen acoplamiento dinámico presión-volumen.<br>
+        → Si el paciente es respondedor a fluidos, el volumen podría mejorar la presión arterial.
       </div>
     `;
   } 
-  else if (eadyn >= 0.8 && eadyn <= 1) {
+  else if (eadyn >= 0.8 && eadyn < 1.0) {
     html += `
       <div class="result warn">
-        ⚠ Zona gris <br>
-        → Respuesta incierta <br>
-        → Integrar con clínica (lactato, eco, perfusión)
+        ⚠ Zona gris<br>
+        → La respuesta de la PAM al aumento del volumen sistólico es incierta.<br>
+        → Integrar con ecocardiografía, lactato, perfusión periférica, diuresis y tendencia de vasopresores.
       </div>
     `;
   } 
   else {
     html += `
       <div class="result bad">
-        ✖ Desacople ventrículo-arterial <br>
-        → El volumen NO aumentará presión <br>
-        → Mantener o aumentar vasopresor
+        ✖ Eadyn baja<br>
+        → Menor probabilidad de que el aumento del volumen sistólico eleve la PAM.<br>
+        → Sugiere desacople presión-volumen o predominio de vasoplejía.<br>
+        → Considerar optimización del tono vascular según contexto clínico.
       </div>
     `;
   }
 
-  // Destete
   if (!isNaN(map) && !isNaN(vaso)) {
-    if (map >= 65 && eadyn > 0.9 && vaso < 0.1) {
+    if (map >= 65 && eadyn >= 1.0 && vaso <= 0.1) {
       html += `
         <div class="result good">
-          🟢 Candidato a destete de vasopresor
+          🟢 Perfil compatible con posible reducción progresiva de vasopresor si la perfusión es adecuada.
+        </div>
+      `;
+    } else if (map >= 65 && eadyn < 0.8) {
+      html += `
+        <div class="result warn">
+          🟡 PAM aceptable, pero Eadyn baja: vigilar vasoplejía y perfusión antes de reducir vasopresor.
         </div>
       `;
     } else {
       html += `
         <div class="result warn">
-          🟡 No óptimo para destete aún
+          🟡 No óptimo para destete de vasopresor: valorar PAM, dosis, perfusión y tendencia clínica.
         </div>
       `;
     }
@@ -201,24 +212,13 @@ function calcularEadyn() {
 
   html += `
     <div class="note">
-      Eadyn = PPV / SVV. Válido en VM controlada, ritmo sinusal y sin esfuerzo respiratorio.
+      Eadyn = PPV / SVV. Interpreta la capacidad del cambio de volumen sistólico para generar cambio de presión arterial.
+      No predice por sí sola respuesta a fluidos. Usar solo en condiciones válidas: ventilación mecánica controlada,
+      ritmo sinusal, ausencia de esfuerzo respiratorio significativo y mediciones confiables de PPV/SVV.
     </div>
   `;
 
   document.getElementById("resultado").innerHTML = html;
-}
-
-function getNum(id) {
-  const el = document.getElementById(id);
-  if (!el || el.value === "") return null;
-
-  const value = Number(el.value);
-  return Number.isFinite(value) ? value : null;
-}
-
-function setHTML(id, html) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = html;
 }
 
 function calcularSwanGanz() {
