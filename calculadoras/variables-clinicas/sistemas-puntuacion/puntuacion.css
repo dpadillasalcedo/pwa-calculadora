@@ -7,13 +7,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
   background: #f8fafc;
   color: #0f172a;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* =========================
@@ -22,20 +26,37 @@ body {
 :root {
   --primary: #020617;
   --primary-soft: #0f172a;
-
   --text-soft: #475569;
   --muted: #64748b;
-
   --surface: #ffffff;
+  --surface-soft: #f1f5f9;
   --border: #e2e8f0;
-
+  --border-strong: #cbd5e1;
   --radius: 14px;
   --radius-lg: 22px;
-
   --shadow-sm: 0 6px 20px rgba(2, 6, 23, 0.05);
   --shadow-md: 0 14px 40px rgba(2, 6, 23, 0.08);
-
   --container: 920px;
+}
+
+/* =========================
+   BASE
+========================= */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--primary);
+  line-height: 1.2;
 }
 
 /* =========================
@@ -60,7 +81,8 @@ body {
   color: var(--muted);
 }
 
-.language-switcher a.active {
+.language-switcher a.active,
+.language-switcher a:hover {
   color: var(--primary);
   font-weight: 600;
 }
@@ -82,16 +104,55 @@ body {
   color: var(--primary);
 }
 
+.breadcrumb-nav span:last-child {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* =========================
+   INTRO
+========================= */
+.intro {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.intro .centered {
+  text-align: center;
+  max-width: 20ch;
+  margin-inline: auto;
+}
+
+.intro p {
+  max-width: 780px;
+  margin: 1rem auto 0;
+  text-align: center;
+  color: var(--text-soft);
+}
+
 /* =========================
    TITLE
 ========================= */
 h1 {
-  font-size: clamp(2rem, 4vw, 2.4rem);
-  margin-bottom: 0.3rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.7rem;
+}
+
+.subtitle {
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  max-width: 780px;
+  margin-bottom: 2rem;
 }
 
 .note {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--muted);
   margin-bottom: 1rem;
 }
@@ -103,18 +164,19 @@ h1 {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.6rem;
+  padding: clamp(1.3rem, 3vw, 1.8rem);
   margin-bottom: 1.6rem;
   box-shadow: var(--shadow-sm);
 }
 
-/* =========================
-   SECTION TITLES
-========================= */
 .panel h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 0.4rem;
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+}
+
+.panel h3 {
+  margin: 1.4rem 0 0.7rem;
+  font-size: 1.08rem;
 }
 
 /* =========================
@@ -139,17 +201,20 @@ label {
   display: flex;
   flex-direction: column;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--primary-soft);
 }
 
 select,
 input {
-  margin-top: 0.3rem;
-  padding: 0.6rem;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.65rem 0.7rem;
   border-radius: 10px;
   border: 1px solid var(--border);
-  font-size: 0.9rem;
-  background: white;
+  font-size: 0.92rem;
+  background: #ffffff;
+  color: var(--primary);
 }
 
 select:focus,
@@ -170,30 +235,28 @@ input:focus {
 
 button {
   flex: 1;
-  padding: 0.7rem;
+  padding: 0.75rem;
   border-radius: 999px;
   border: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: 0.25s ease;
 }
 
-/* PRIMARY */
 button.primary,
 button.btn {
   background: var(--primary);
-  color: white;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 700;
 }
 
-/* SECONDARY */
 button.secondary,
 button.btn-secondary {
   background: #e2e8f0;
-  color: #0f172a;
+  color: var(--primary);
+  font-weight: 600;
 }
 
-/* HOVER */
 button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -207,8 +270,9 @@ button:hover {
   margin-top: 1rem;
   padding: 0.9rem;
   border-radius: 10px;
-  background: #f1f5f9;
-  font-weight: 600;
+  background: var(--surface-soft);
+  font-weight: 700;
+  color: var(--primary-soft);
 }
 
 /* =========================
@@ -222,13 +286,21 @@ button:hover {
 }
 
 /* =========================
-   CARDS INTERNAS (TEP)
+   CARDS INTERNAS
 ========================= */
 .card {
   background: #f8fafc;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.4rem;
+}
+
+.card + .card {
+  margin-top: 1.25rem;
+}
+
+.card p {
+  color: var(--text-soft);
 }
 
 /* =========================
@@ -238,65 +310,57 @@ button:hover {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
   box-shadow: var(--shadow-sm);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .seo-panel h2 {
-  font-size: 1.4rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
   margin-bottom: 1rem;
 }
 
 .seo-panel h3 {
-  margin-top: 1.4rem;
-  font-size: 1.05rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.08rem;
 }
 
 .seo-panel p {
   color: var(--text-soft);
+  line-height: 1.75;
+  max-width: 70ch;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 1.6rem 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.footer-nav {
-  margin-bottom: 0.5rem;
-}
-
-.footer-nav a {
-  color: var(--primary-soft);
-  font-weight: 600;
-}
-
-.footer-nav a:hover {
+.seo-panel strong {
   color: var(--primary);
 }
 
 /* =========================
-   RESPONSIVE
+   ABOUT MINI
 ========================= */
-@media (max-width: 768px) {
-  .grid,
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
+.about-mini {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  margin: 2rem auto;
+  box-shadow: var(--shadow-sm);
+}
 
-  .panel {
-    padding: 1.3rem;
-  }
+.about-mini h2 {
+  margin-top: 0;
+}
+
+.about-mini p {
+  color: var(--text-soft);
+  margin-bottom: 0;
 }
 
 /* =========================
    TEP AHA/ACC 2026
 ========================= */
-
 #tep-risk-aha-acc-2026 .panel-head {
   margin-bottom: 0.5rem;
 }
@@ -315,12 +379,8 @@ footer {
   font-weight: 600;
 }
 
-#tep-risk-aha-acc-2026 .card + .card {
-  margin-top: 1.25rem;
-}
-
 #pe2026_result {
-  border-left: 4px solid #0f172a;
+  border-left: 4px solid var(--primary);
   background: #eef2ff;
 }
 
@@ -335,31 +395,23 @@ footer {
   padding: 1rem 1rem 0.8rem;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: #fff;
+  background: #ffffff;
   color: var(--text-soft);
 }
 
-#pe2026_logic ul {
+#pe2026_logic ul,
+#pe2026_management ul {
   margin: 0.6rem 0 0;
   padding-left: 1.2rem;
 }
 
-#pe2026_logic li {
+#pe2026_logic li,
+#pe2026_management li {
   margin-bottom: 0.45rem;
 }
 
 #pe2026_management {
   margin-top: 0.25rem;
-}
-
-#pe2026_management ul {
-  margin: 0;
-  padding-left: 1.2rem;
-}
-
-#pe2026_management li {
-  margin-bottom: 0.7rem;
-  color: var(--text-soft);
 }
 
 #pe2026_management strong {
@@ -369,7 +421,6 @@ footer {
 /* =========================
    BADGES COR
 ========================= */
-
 .cor-badge {
   display: inline-flex;
   align-items: center;
@@ -402,53 +453,10 @@ footer {
 }
 
 /* =========================
-   BLOQUE LEYENDA
-========================= */
-
-#tep-risk-aha-acc-2026 .card p {
-  margin: 0.45rem 0;
-}
-
-/* =========================
-   RESPONSIVE EXTRA TEP
-========================= */
-
-@media (max-width: 768px) {
-  #tep-risk-aha-acc-2026 .actions {
-    flex-direction: column;
-  }
-
-  #tep-risk-aha-acc-2026 button {
-    width: 100%;
-  }
-
-  #pe2026_logic,
-  #pe2026_management {
-    font-size: 0.92rem;
-  }
-}
-
-/* =========================
    CLIF-SOFA / ACLF
 ========================= */
 #clif-sofa-aclf {
   scroll-margin-top: 1rem;
-}
-
-#clif-sofa-aclf select {
-  width: 100%;
-  padding: 0.6rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  font-size: 0.9rem;
-  background: white;
-  color: var(--primary);
-}
-
-#clif-sofa-aclf select:focus {
-  outline: none;
-  border-color: #94a3b8;
-  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
 }
 
 #interpretacionClifSofa {
@@ -472,15 +480,10 @@ footer {
   margin: 0.6rem 0;
 }
 
-#interpretacionClifSofa .acid-base-table {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-}
-
 #interpretacionClifSofa table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -494,7 +497,7 @@ footer {
 }
 
 #interpretacionClifSofa th {
-  background: #f1f5f9;
+  background: var(--surface-soft);
   color: var(--primary);
   font-weight: 700;
 }
@@ -534,16 +537,167 @@ footer {
 }
 
 /* =========================
-   MOBILE
+   PLASMIC SCORE
+========================= */
+.plasmic-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.3rem, 3vw, 1.8rem);
+  margin-bottom: 1.6rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.plasmic-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  color: var(--primary);
+}
+
+.plasmic-card .subtitle {
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--text-soft);
+  border-bottom: none;
+}
+
+.plasmic-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.plasmic-table .header,
+.plasmic-table label {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.plasmic-table .header {
+  font-weight: 700;
+  background: var(--surface-soft);
+  color: var(--primary);
+}
+
+.plasmic-table label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.plasmic-table small {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-soft);
+}
+
+.plasmic-table input {
+  width: 22px;
+  height: 22px;
+  justify-self: center;
+  cursor: pointer;
+}
+
+.interpretation {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  color: var(--text-soft);
+}
+
+.interpretation p {
+  margin-bottom: 0.5rem;
+}
+
+.reference {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer,
+footer {
+  text-align: center;
+  padding: 1.8rem 1rem 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.footer-nav {
+  margin-bottom: 0.7rem;
+}
+
+.footer-nav a {
+  color: var(--primary-soft);
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  color: var(--primary);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(15, 23, 42, 0.25);
+  outline-offset: 3px;
+}
+
+/* =========================
+   RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
+  .container {
+    width: min(100% - 1.2rem, var(--container));
+  }
 
+  .grid,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .panel,
+  .intro,
+  .about-mini,
+  .plasmic-card {
+    padding: 1.2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  #pe2026_logic,
+  #pe2026_management,
   #interpretacionClifSofa {
-    padding: 0.85rem;
+    font-size: 0.92rem;
   }
 
   #interpretacionClifSofa table {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     display: block;
     overflow-x: auto;
     white-space: nowrap;
@@ -553,107 +707,10 @@ footer {
   #interpretacionClifSofa td {
     padding: 0.55rem;
   }
-}
 
-.seo-toggle summary {
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.seo-toggle {
-  margin-top: 20px;
-}
-
-.plasmic-card {
-  max-width: 760px;
-  margin: 30px auto;
-  background: #f8eeee;
-  border: 1px solid #d8caca;
-  font-family: Arial, sans-serif;
-  color: #111;
-}
-
-.plasmic-card h2 {
-  margin: 0;
-  padding: 18px;
-  text-align: center;
-  font-size: 42px;
-  color: #5b1720;
-  background: #f3dddd;
-}
-
-.subtitle {
-  margin: 0;
-  padding: 18px 28px;
-  font-size: 26px;
-  background: #f3dddd;
-  border-bottom: 1px solid #777;
-}
-
-.plasmic-table .header,
-.plasmic-table label {
-  display: grid;
-  grid-template-columns: 1fr 100px;
-  align-items: center;
-  gap: 15px;
-  padding: 14px 18px;
-  border-bottom: 1px dotted #999;
-}
-
-.plasmic-table .header {
-  font-weight: bold;
-  background: #f3dddd;
-  border-bottom: 1px solid #777;
-}
-
-.plasmic-table label {
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.plasmic-table small {
-  display: block;
-  margin-top: 6px;
-  font-size: 20px;
-  line-height: 1.4;
-}
-
-.plasmic-table input {
-  width: 24px;
-  height: 24px;
-  justify-self: center;
-  cursor: pointer;
-}
-
-.result {
-  padding: 18px;
-  font-size: 24px;
-  background: #f3dddd;
-  border-top: 1px solid #777;
-}
-
-.result p {
-  margin: 8px 0 0;
-  font-weight: bold;
-}
-
-.interpretation {
-  padding: 0 18px 14px;
-  font-size: 23px;
-  font-weight: bold;
-  background: #f3dddd;
-}
-
-.interpretation p {
-  margin: 8px 0;
-}
-
-.reference {
-  padding: 14px 18px 22px;
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.4;
-  background: #f3dddd;
+  .plasmic-table .header,
+  .plasmic-table label {
+    grid-template-columns: 1fr 60px;
+    padding: 0.8rem;
+  }
 }
