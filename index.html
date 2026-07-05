@@ -74,6 +74,7 @@
   ========================== -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="Critical Care Tools" />
   <meta property="og:title" content="Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más" />
   <meta
@@ -153,20 +154,15 @@
   <!-- =========================
        SCHEMA: WEBSITE
   ========================== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/",
-    "inLanguage": "es",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://criticalcaretools.com/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Critical Care Tools",
+  "url": "https://criticalcaretools.com/",
+  "inLanguage": "es"
+}
+</script>
 
   <!-- =========================
        SCHEMA: ORGANIZATION
@@ -183,16 +179,30 @@
   <!-- =========================
        SCHEMA: WEBPAGE
   ========================== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más",
-    "url": "https://criticalcaretools.com/",
-    "inLanguage": "es",
-    "description": "Plataforma de calculadoras clínicas para cuidados intensivos (UCI): SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos."
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más",
+  "url": "https://criticalcaretools.com/",
+  "inLanguage": "es",
+  "description": "Plataforma de calculadoras clínicas para cuidados intensivos: SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos.",
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "HealthcareProfessional"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Critical Care Tools",
+    "url": "https://criticalcaretools.com/"
   }
-  </script>
+}
+</script>
 
 </head>
 
