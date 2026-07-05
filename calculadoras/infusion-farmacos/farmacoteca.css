@@ -1,55 +1,56 @@
-/* =========================
-   RESET
-========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #020617;
+  --primary-soft: #0f172a;
+  --text: #0f172a;
+  --text-soft: #475569;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --bg: #f8fafc;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 6px 20px rgba(2, 6, 23, 0.05);
+  --shadow-md: 0 14px 40px rgba(2, 6, 23, 0.08);
+  --container: 1100px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
-  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
 }
 
-/* =========================
-   VARIABLES
-========================= */
-:root {
-  --primary: #020617;
-  --primary-soft: #0f172a;
-
-  --text-soft: #475569;
-  --muted: #64748b;
-
-  --surface: #ffffff;
-  --border: #e2e8f0;
-
-  --radius: 14px;
-  --radius-lg: 22px;
-
-  --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.05);
-  --shadow-md: 0 14px 36px rgba(2, 6, 23, 0.08);
-
-  --container: 1100px;
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.25s ease;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+p {
+  margin: 0 0 1rem;
+}
+
 .container {
   width: min(100% - 2rem, var(--container));
   margin-inline: auto;
   padding: 1.2rem 0 2.5rem;
 }
 
-/* =========================
-   LANGUAGE SWITCHER
-========================= */
 .language-switcher {
   font-size: 0.9rem;
   margin-bottom: 1rem;
@@ -60,271 +61,355 @@ body {
   color: var(--muted);
 }
 
-.language-switcher a.active {
+.language-switcher a.active,
+.language-switcher a:hover {
   color: var(--primary);
   font-weight: 600;
 }
 
-/* =========================
-   CONTROLES (BUSCADOR)
-========================= */
-.controls {
-  padding: 1.4rem;
-}
-
-.controls-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr auto;
-  gap: 0.8rem;
-  align-items: end;
-}
-
-.controls label {
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
-  display: block;
-}
-
-.controls input,
-.controls select {
-  width: 100%;
-  padding: 0.6rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-
-.controls-actions {
-  display: flex;
-  align-items: end;
-}
-
-.hint {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
+.breadcrumb {
+  font-size: 0.9rem;
   color: var(--muted);
+  margin-bottom: 1.4rem;
 }
 
-/* =========================
-   HEADINGS
-========================= */
-h2 {
-  margin-top: 2rem;
-  font-size: 1.2rem;
+.breadcrumb a {
+  color: var(--text-soft);
 }
 
-/* =========================
-   DRUG CARD
-========================= */
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb span:last-child {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.page-header {
+  margin-bottom: 1.6rem;
+}
+
+.page-header h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.subtitle {
+  max-width: 820px;
+  color: var(--text-soft);
+  font-size: 1.06rem;
+}
+
+.intro-card,
+.card,
+.panel,
 .drug-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  margin-top: 1rem;
   box-shadow: var(--shadow-sm);
+}
+
+.intro-card {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+}
+
+.intro-card h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.45rem;
+}
+
+.intro-card p {
+  color: var(--text-soft);
+  max-width: 850px;
+}
+
+.drug-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.6rem;
+}
+
+.drug-index a {
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--primary-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.drug-index a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border-strong);
+}
+
+.controls {
+  padding: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 260px auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.controls label,
+.drug-sheet label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-soft);
+  margin-bottom: 0.35rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.68rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
+}
+
+.hint {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+h2 {
+  margin: 2rem 0 1rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+  color: var(--primary);
+  scroll-margin-top: 1rem;
+}
+
+.drug-card {
+  margin-bottom: 1rem;
   overflow: hidden;
-  transition: 0.2s ease;
 }
 
-.drug-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-/* =========================
-   HEADER CARD
-========================= */
 .drug-head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.2rem;
-  border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-left: 5px solid var(--primary);
 }
 
 .drug-head h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.18rem;
+  color: var(--primary);
 }
 
-.muted.small {
-  font-size: 0.8rem;
+.muted,
+.small {
   color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
 }
 
-/* =========================
-   BOTONES
-========================= */
-.btn {
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
+.btn,
+button {
   border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
   background: var(--primary);
   color: white;
-  font-size: 0.85rem;
   cursor: pointer;
-  transition: 0.2s ease;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: 0.25s ease;
 }
 
-.btn.secondary {
+.btn:hover,
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn.secondary,
+.secondary {
   background: #e2e8f0;
-  color: #0f172a;
+  color: var(--primary);
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-/* =========================
-   SHEET (INTERIOR)
-========================= */
 .drug-sheet {
-  padding: 1.2rem;
-  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  padding: 1.25rem;
+  background: #ffffff;
 }
 
 .hidden {
   display: none;
 }
 
-/* =========================
-   GRID INFO
-========================= */
-.sheet-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-}
-
-.sheet-grid div {
-  font-size: 0.85rem;
-}
-
-.sheet-grid span {
-  display: block;
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-
-/* =========================
-   CALCULADORA
-========================= */
-.calc-block {
-  margin-top: 1rem;
-}
-
+.sheet-grid,
 .calc-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
 }
 
-.calc-block label {
-  font-size: 0.85rem;
-}
-
-.calc-block input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
-
-/* =========================
-   RESULTADO
-========================= */
+.sheet-grid > div,
 .calc-result {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 0.85rem;
+  padding: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
 }
 
-.calc-result b {
+.sheet-grid span,
+.calc-result span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.sheet-grid b,
+.calc-result b,
+.concentracion,
+.resultado {
+  color: var(--primary);
+}
+
+.calc-block {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #f8fafc;
+}
+
+.calc-block h4 {
+  margin: 0 0 0.8rem;
+  color: var(--primary);
+}
+
+.clinical-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius);
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #1e293b;
+  font-size: 0.94rem;
+}
+
+.drug-info {
+  margin-top: 1.1rem;
+  padding-top: 0.4rem;
+}
+
+.drug-info h4 {
+  margin: 1rem 0 0.4rem;
+  color: var(--primary);
   font-size: 1rem;
 }
 
-/* =========================
-   NOTA CLÍNICA
-========================= */
-.clinical-note {
-  margin-top: 0.8rem;
-  padding: 0.7rem;
-  border-radius: 10px;
-  background: #e2e8f0;
-  font-size: 0.85rem;
+.drug-info p {
+  color: var(--text-soft);
+  margin-bottom: 0.6rem;
 }
 
-/* =========================
-   SEO PANEL
-========================= */
 .seo-panel {
+  padding: clamp(1.5rem, 3vw, 2.2rem);
   margin-top: 2rem;
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
 }
 
 .seo-panel h2 {
-  font-size: 1.4rem;
+  margin-top: 0;
 }
 
 .seo-panel h3 {
-  margin-top: 1.4rem;
+  margin: 1.5rem 0 0.6rem;
+  color: var(--primary);
 }
 
 .seo-panel p {
   color: var(--text-soft);
+  max-width: 75ch;
+  line-height: 1.75;
 }
 
-/* =========================
-   FOOTER
-========================= */
 .site-footer {
-  margin-top: 2rem;
   border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
   text-align: center;
+  padding: 1.8rem 1rem 2rem;
 }
 
 .footer-nav {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .footer-nav a {
-  color: var(--primary-soft);
-  font-weight: 600;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
 }
 
 .footer-copy {
-  font-size: 0.9rem;
   color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-  .sheet-grid {
-    grid-template-columns: repeat(2, 1fr);
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(15, 23, 42, 0.25);
+  outline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: min(100% - 1.2rem, var(--container));
   }
 
+  .controls-grid,
+  .sheet-grid,
   .calc-grid {
     grid-template-columns: 1fr;
   }
 
-  .controls-grid {
-    grid-template-columns: 1fr;
+  .drug-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
 
-.seo-toggle summary {
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+  .drug-head .btn {
+    width: 100%;
+  }
 
-.seo-toggle {
-  margin-top: 20px;
+  .controls-actions .btn {
+    width: 100%;
+  }
 }
