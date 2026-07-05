@@ -7,13 +7,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
   background: #f8fafc;
   color: #0f172a;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* =========================
@@ -22,20 +26,15 @@ body {
 :root {
   --primary: #020617;
   --primary-soft: #0f172a;
-
   --text-soft: #475569;
   --muted: #64748b;
-
   --surface: #ffffff;
   --border: #e2e8f0;
-
   --radius: 14px;
   --radius-lg: 22px;
-
   --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.05);
   --shadow-md: 0 14px 36px rgba(2, 6, 23, 0.08);
-
-  --container: 900px;
+  --container: 960px;
 }
 
 /* =========================
@@ -48,38 +47,47 @@ body {
 }
 
 /* =========================
-   LANGUAGE SWITCHER
+   LINKS / NAV
 ========================= */
-.language-switcher {
+a {
+  color: var(--primary-soft);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.language-switcher,
+.breadcrumb {
   font-size: 0.9rem;
-  margin-bottom: 1rem;
   color: var(--muted);
+  margin-bottom: 1rem;
 }
 
 .language-switcher a {
   color: var(--muted);
 }
 
-.language-switcher a.active {
+.language-switcher a.active,
+.language-switcher .active {
   color: var(--primary);
   font-weight: 600;
 }
 
-/* =========================
-   BREADCRUMB
-========================= */
 .breadcrumb {
-  font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  color: var(--muted);
 }
 
 .breadcrumb a {
   color: var(--text-soft);
 }
 
-.breadcrumb a:hover {
+.breadcrumb span:last-child {
   color: var(--primary);
+  font-weight: 600;
 }
 
 /* =========================
@@ -90,12 +98,34 @@ body {
 }
 
 .app-header h1 {
-  font-size: clamp(2rem, 4vw, 2.3rem);
-  margin-bottom: 0.4rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.7rem;
 }
 
-.subtitle {
+.subtitle,
+.seo-intro {
   color: var(--text-soft);
+  font-size: 1.05rem;
+  max-width: 780px;
+}
+
+/* =========================
+   TITLES
+========================= */
+h2 {
+  font-size: 1.45rem;
+  color: var(--primary);
+  margin-bottom: 0.9rem;
+}
+
+h3 {
+  font-size: 1.08rem;
+  color: var(--primary);
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
 }
 
 /* =========================
@@ -112,11 +142,34 @@ body {
 
 .panel h2 {
   margin-top: 0;
-  font-size: 1.2rem;
 }
 
-.panel h3 {
-  margin-top: 1.4rem;
+/* =========================
+   FORMULA BOX
+========================= */
+.formula-box {
+  background: #f8fafc;
+  border: 1px solid #dbe4ee;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.formula-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.formula-box p {
+  margin: 8px 0;
+}
+
+.formula-box ul {
+  margin: 8px 0 0 20px;
+}
+
+.formula-box li {
+  margin: 6px 0;
 }
 
 /* =========================
@@ -127,15 +180,18 @@ label {
   font-size: 0.9rem;
   margin-top: 0.8rem;
   margin-bottom: 0.3rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--primary-soft);
 }
 
 input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-radius: 10px;
   border: 1px solid var(--border);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: var(--primary);
 }
 
 input:focus {
@@ -150,13 +206,13 @@ input:focus {
 button {
   margin-top: 1rem;
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.75rem;
   border-radius: 999px;
   border: none;
   background: var(--primary);
   color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -184,7 +240,7 @@ button:hover {
 }
 
 /* =========================
-   TABLA
+   TABLAS
 ========================= */
 .table-wrapper {
   margin-bottom: 2rem;
@@ -204,15 +260,18 @@ button:hover {
 .acid-base-table td {
   padding: 0.7rem;
   border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
 }
 
 .acid-base-table .section th {
   background: #f1f5f9;
-  text-align: left;
   font-weight: 700;
+  color: var(--primary);
 }
 
-.acid-base-table .content td {
+.acid-base-table .content td,
+.acid-base-table td {
   color: var(--text-soft);
 }
 
@@ -223,61 +282,25 @@ button:hover {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
   box-shadow: var(--shadow-sm);
-}
-
-.seo-panel h2 {
-  font-size: 1.4rem;
-}
-
-.seo-panel h3 {
-  margin-top: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .seo-panel p {
   color: var(--text-soft);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  max-width: 840px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 1.6rem 0;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.footer-nav {
-  margin-bottom: 0.5rem;
-}
-
-.footer-nav a {
-  color: var(--primary-soft);
-  font-weight: 600;
-}
-
-.footer-nav a:hover {
+.seo-panel strong {
   color: var(--primary);
 }
 
 /* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .panel {
-    padding: 1.3rem;
-  }
-
-  .acid-base-table {
-    font-size: 0.85rem;
-  }
-}
-
-/* =========================
-   COLLAPSIBLE ALGORITMO
+   COLLAPSIBLE ALGORITMOS
 ========================= */
 .collapsible-box {
   max-height: 0;
@@ -291,7 +314,7 @@ footer {
 }
 
 .collapsible-box.active {
-  max-height: 10000px;
+  max-height: 12000px;
   opacity: 1;
   margin-top: 1.2rem;
 }
@@ -307,7 +330,7 @@ footer {
   background: var(--primary);
   color: white;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition:
     background 0.25s ease,
@@ -322,153 +345,15 @@ footer {
 }
 
 /* =========================
-   CONTENIDO ALGORITMO
+   CONTENIDO ALGORITMOS
 ========================= */
-#contenidoAlgoritmoAlcalosis {
-  color: var(--text-soft);
-  line-height: 1.75;
-}
-
-#contenidoAlgoritmoAlcalosis h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--primary);
-  font-size: 1.4rem;
-}
-
-#contenidoAlgoritmoAlcalosis h3 {
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-  color: var(--primary);
-  font-size: 1rem;
-}
-
-#contenidoAlgoritmoAlcalosis p {
-  margin: 0.7rem 0;
-}
-
-#contenidoAlgoritmoAlcalosis ul {
-  margin: 0.7rem 0 1rem 1.2rem;
-  padding: 0;
-}
-
-#contenidoAlgoritmoAlcalosis li {
-  margin-bottom: 0.45rem;
-}
-
-/* =========================
-   TABLAS INTERNAS
-========================= */
-#contenidoAlgoritmoAlcalosis .acid-base-table {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-#contenidoAlgoritmoAlcalosis table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-#contenidoAlgoritmoAlcalosis th,
-#contenidoAlgoritmoAlcalosis td {
-  padding: 0.75rem;
-  border: 1px solid var(--border);
-  text-align: left;
-}
-
-#contenidoAlgoritmoAlcalosis th {
-  background: #f1f5f9;
-  color: var(--primary);
-  font-weight: 700;
-}
-
-#contenidoAlgoritmoAlcalosis td {
-  color: var(--text-soft);
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 768px) {
-
-  .toggle-btn {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-  #contenidoAlgoritmoAlcalosis h2 {
-    font-size: 1.2rem;
-  }
-
-  #contenidoAlgoritmoAlcalosis h3 {
-    font-size: 0.95rem;
-  }
-
-  #contenidoAlgoritmoAlcalosis table {
-    font-size: 0.82rem;
-  }
-
-  #contenidoAlgoritmoAlcalosis th,
-  #contenidoAlgoritmoAlcalosis td {
-    padding: 0.55rem;
-  }
-}
-
-/* =========================
-   COLLAPSIBLE HIPONATREMIA HIPOTÓNICA
-========================= */
-#contenidoAlgoritmoHiponatremiaHipotonica.collapsible-box {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition:
-    max-height 0.4s ease,
-    opacity 0.3s ease,
-    margin-top 0.3s ease;
-}
-
-#contenidoAlgoritmoHiponatremiaHipotonica.collapsible-box.active {
-  max-height: 12000px;
-  opacity: 1;
-  margin-top: 1.2rem;
-}
-
-/* =========================
-   BOTÓN DESPLEGABLE
-========================= */
-#algoritmo-hiponatremia-hipotonica .toggle-btn {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border: none;
-  border-radius: 14px;
-  background: var(--primary);
-  color: white;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.25s ease,
-    transform 0.2s ease,
-    box-shadow 0.25s ease;
-}
-
-#algoritmo-hiponatremia-hipotonica .toggle-btn:hover {
-  background: var(--primary-soft);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* =========================
-   CONTENIDO
-========================= */
+#contenidoAlgoritmoAlcalosis,
 #contenidoAlgoritmoHiponatremiaHipotonica {
   color: var(--text-soft);
   line-height: 1.75;
 }
 
+#contenidoAlgoritmoAlcalosis h2,
 #contenidoAlgoritmoHiponatremiaHipotonica h2 {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -476,6 +361,7 @@ footer {
   font-size: 1.4rem;
 }
 
+#contenidoAlgoritmoAlcalosis h3,
 #contenidoAlgoritmoHiponatremiaHipotonica h3 {
   margin-top: 1.6rem;
   margin-bottom: 0.6rem;
@@ -483,27 +369,32 @@ footer {
   font-size: 1rem;
 }
 
+#contenidoAlgoritmoAlcalosis p,
 #contenidoAlgoritmoHiponatremiaHipotonica p {
   margin: 0.7rem 0;
 }
 
+#contenidoAlgoritmoAlcalosis ul,
 #contenidoAlgoritmoHiponatremiaHipotonica ul {
   margin: 0.7rem 0 1rem 1.2rem;
   padding: 0;
 }
 
+#contenidoAlgoritmoAlcalosis li,
 #contenidoAlgoritmoHiponatremiaHipotonica li {
   margin-bottom: 0.45rem;
 }
 
 /* =========================
-   TABLA INTERNA
+   TABLAS INTERNAS
 ========================= */
+#contenidoAlgoritmoAlcalosis .acid-base-table,
 #contenidoAlgoritmoHiponatremiaHipotonica .acid-base-table {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
+#contenidoAlgoritmoAlcalosis table,
 #contenidoAlgoritmoHiponatremiaHipotonica table {
   width: 100%;
   border-collapse: collapse;
@@ -512,6 +403,8 @@ footer {
   overflow: hidden;
 }
 
+#contenidoAlgoritmoAlcalosis th,
+#contenidoAlgoritmoAlcalosis td,
 #contenidoAlgoritmoHiponatremiaHipotonica th,
 #contenidoAlgoritmoHiponatremiaHipotonica td {
   padding: 0.75rem;
@@ -520,78 +413,103 @@ footer {
   vertical-align: top;
 }
 
+#contenidoAlgoritmoAlcalosis th,
 #contenidoAlgoritmoHiponatremiaHipotonica th {
   background: #f1f5f9;
   color: var(--primary);
   font-weight: 700;
 }
 
+#contenidoAlgoritmoAlcalosis td,
 #contenidoAlgoritmoHiponatremiaHipotonica td {
   color: var(--text-soft);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer,
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer-nav {
+  margin-bottom: 0.7rem;
+}
+
+.footer-nav a {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+footer p,
+.site-footer p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(15, 23, 42, 0.25);
+  outline-offset: 3px;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
-
-  #algoritmo-hiponatremia-hipotonica .toggle-btn {
-    font-size: 0.9rem;
-    padding: 0.8rem;
+  .container {
+    width: min(100% - 1rem, var(--container));
   }
 
-  #contenidoAlgoritmoHiponatremiaHipotonica h2 {
-    font-size: 1.2rem;
+  .app-header h1 {
+    font-size: 1.8rem;
   }
 
-  #contenidoAlgoritmoHiponatremiaHipotonica h3 {
-    font-size: 0.95rem;
+  .panel {
+    padding: 1.2rem;
   }
 
-  #contenidoAlgoritmoHiponatremiaHipotonica table {
-    font-size: 0.8rem;
+  .seo-panel {
+    padding: 1.3rem;
+  }
+
+  .acid-base-table {
+    font-size: 0.82rem;
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
 
-  #contenidoAlgoritmoHiponatremiaHipotonica th,
-  #contenidoAlgoritmoHiponatremiaHipotonica td {
+  .acid-base-table th,
+  .acid-base-table td {
     padding: 0.55rem;
   }
-}
 
-.seo-toggle summary {
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+  .toggle-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
 
-.seo-toggle {
-  margin-top: 20px;
-}
+  #contenidoAlgoritmoAlcalosis h2,
+  #contenidoAlgoritmoHiponatremiaHipotonica h2 {
+    font-size: 1.2rem;
+  }
 
-.formula-box{
-  background:#f8fafc;
-  border:1px solid #dbe4ee;
-  border-radius:10px;
-  padding:16px;
-  margin-bottom:20px;
-}
-
-.formula-box h3{
-  margin-top:0;
-  margin-bottom:10px;
-}
-
-.formula-box p{
-  margin:8px 0;
-}
-
-.formula-box ul{
-  margin:8px 0 0 20px;
-}
-
-.formula-box li{
-  margin:6px 0;
+  #contenidoAlgoritmoAlcalosis h3,
+  #contenidoAlgoritmoHiponatremiaHipotonica h3 {
+    font-size: 0.95rem;
+  }
 }
