@@ -286,102 +286,104 @@
   <hr />
 
   <section id="camicu" class="panel">
-    <div class="panel-head">
-      <h2>🧠 CAM-ICU · Delirium</h2>
-      <p class="note">
-        El CAM-ICU es <strong>positivo</strong> si se cumple:
-        <strong>Paso 1 + Paso 2</strong> y <strong>(Paso 3 o Paso 4)</strong>.
-        <br />
-        Si el <strong>Paso 1 es negativo</strong>, el delirium queda <strong>descartado</strong>.
+  <div class="panel-head">
+    <h2>🧠 CAM-ICU · Delirium</h2>
+    <p class="note">
+      El CAM-ICU es <strong>positivo</strong> si se cumple:
+      <strong>Paso 1 + Paso 2</strong> y <strong>(Paso 3 o Paso 4)</strong>.
+      <br />
+      El <strong>Paso 4</strong> solo se evalúa si el <strong>Paso 3 es negativo</strong>.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" id="card_step1">
+      <h3>Paso 1 · Inicio agudo o curso fluctuante</h3>
+      <p class="hint">
+        Cambio agudo del estado mental respecto al basal o fluctuaciones durante el día.
+        <br /><br />
+        <strong>Ejemplos:</strong> desorientación reciente, alternancia entre somnolencia y agitación,
+        cambios conductuales no explicados por sedación.
       </p>
+
+      <label class="field">
+        <span>¿Existe <strong>inicio agudo</strong> o <strong>curso fluctuante</strong>?</span>
+        <select id="cam_step1">
+          <option value="">Seleccionar…</option>
+          <option value="1">Sí</option>
+          <option value="0">No</option>
+        </select>
+      </label>
     </div>
 
-    <div class="grid-2">
-      <div class="card" id="card_step1">
-        <h3>Paso 1 · Inicio agudo o curso fluctuante</h3>
-        <p class="hint">
-          Cambio agudo del estado mental respecto al basal o fluctuaciones durante el día.
-          <br /><br />
-          <strong>Ejemplos:</strong> desorientación reciente, alternancia entre somnolencia y agitación,
-          cambios conductuales no explicados por sedación.
-        </p>
+    <div class="card hidden" id="card_step2">
+      <h3>Paso 2 · Inatención</h3>
+      <p class="hint">
+        <strong>Test de letras:</strong> deletrear lentamente <strong>CASABLANCA</strong> y pedir
+        que responda a la letra <strong>A</strong>.
+        <br /><br />
+        Se considera positivo si hay <strong>≥ 2 errores</strong>.
+      </p>
 
-        <label class="field">
-          <span>¿Existe <strong>inicio agudo</strong> o <strong>curso fluctuante</strong>?</span>
-          <select id="cam_step1">
-            <option value="">Seleccionar…</option>
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="card hidden" id="card_step2">
-        <h3>Paso 2 · Inatención</h3>
-        <p class="hint">
-          <strong>Test de letras:</strong> deletrear lentamente <strong>CASABLANCA</strong> y pedir
-          que responda a la letra <strong>A</strong>.
-          <br /><br />
-          Se considera positivo si hay <strong>≥ 2 errores</strong>.
-        </p>
-
-        <label class="field">
-          <span>¿Se detecta <strong>inatención</strong>?</span>
-          <select id="cam_step2">
-            <option value="">Seleccionar…</option>
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </label>
-      </div>
+      <label class="field">
+        <span>¿Se detecta <strong>inatención</strong>?</span>
+        <select id="cam_step2">
+          <option value="">Seleccionar…</option>
+          <option value="1">Sí</option>
+          <option value="0">No</option>
+        </select>
+      </label>
     </div>
+  </div>
 
-    <div id="cam_wait" class="callout hidden">
-      Completar <strong>Paso 1</strong> y <strong>Paso 2</strong> para continuar la evaluación.
+  <div id="cam_wait" class="callout hidden">
+    Completar <strong>Paso 1</strong> y <strong>Paso 2</strong> para continuar la evaluación.
+  </div>
+
+  <div id="cam_step3_wrap" class="grid-2 hidden">
+    <div class="card">
+      <h3>Paso 3 · Alteración del nivel de conciencia</h3>
+      <p class="hint">
+        Evaluar con <strong>RASS</strong>. Positivo si <strong>RASS ≠ 0</strong>.
+      </p>
+
+      <label class="field">
+        <span>¿RASS distinto de 0?</span>
+        <select id="cam_step3">
+          <option value="">Seleccionar…</option>
+          <option value="1">Sí</option>
+          <option value="0">No</option>
+        </select>
+      </label>
     </div>
+  </div>
 
-    <div id="cam_steps34" class="grid-2 hidden">
-      <div class="card">
-        <h3>Paso 3 · Alteración del nivel de conciencia</h3>
-        <p class="hint">
-          Evaluar con <strong>RASS</strong>. Positivo si <strong>RASS ≠ 0</strong>.
-        </p>
+  <div id="cam_step4_wrap" class="grid-2 hidden">
+    <div class="card">
+      <h3>Paso 4 · Pensamiento desorganizado</h3>
+      <p class="hint">
+        Preguntas simples (sí/no) u órdenes breves.
+        Respuestas incoherentes sugieren positividad.
+      </p>
 
-        <label class="field">
-          <span>¿RASS distinto de 0?</span>
-          <select id="cam_step3">
-            <option value="">Seleccionar…</option>
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="card">
-        <h3>Paso 4 · Pensamiento desorganizado</h3>
-        <p class="hint">
-          Preguntas simples (sí/no) u órdenes breves.
-          Respuestas incoherentes sugieren positividad.
-        </p>
-
-        <label class="field">
-          <span>¿Existe <strong>pensamiento desorganizado</strong>?</span>
-          <select id="cam_step4">
-            <option value="">Seleccionar…</option>
-            <option value="1">Sí</option>
-            <option value="0">No</option>
-          </select>
-        </label>
-      </div>
+      <label class="field">
+        <span>¿Existe <strong>pensamiento desorganizado</strong>?</span>
+        <select id="cam_step4">
+          <option value="">Seleccionar…</option>
+          <option value="1">Sí</option>
+          <option value="0">No</option>
+        </select>
+      </label>
     </div>
+  </div>
 
-    <div class="actions">
-      <button type="button" class="btn-secondary" id="cam_reset">Reiniciar CAM-ICU</button>
-    </div>
+  <div class="actions">
+    <button type="button" class="btn-secondary" id="cam_reset">Reiniciar CAM-ICU</button>
+  </div>
 
-    <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
-    <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
-  </section>
+  <div id="resultadoCAMICU" class="resultado" aria-live="polite"></div>
+  <div id="interpretacionCAMICU" class="note" aria-live="polite"></div>
+</section>
 
   <hr />
 
