@@ -2,204 +2,238 @@
 <html lang="es">
 <head>
 
-<!-- =========================
-     Cookiebot (SIEMPRE PRIMERO)
-========================== -->
-<script
-  id="Cookiebot"
-  src="https://consent.cookiebot.com/uc.js"
-  data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-  data-blockingmode="auto"
-  type="text/javascript">
-</script>
+  <script
+    id="Cookiebot"
+    src="https://consent.cookiebot.com/uc.js"
+    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
+    data-blockingmode="auto"
+    type="text/javascript">
+  </script>
 
-<!-- =========================
-     Google Consent Mode v2
-========================== -->
-<script data-cookieconsent="ignore">
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag("consent", "default", {
-    ad_personalization: "denied",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    analytics_storage: "denied",
-    functionality_storage: "denied",
-    personalization_storage: "denied",
-    security_storage: "granted",
-    wait_for_update: 500,
-  });
-
-  gtag("set", "ads_data_redaction", true);
-  gtag("set", "url_passthrough", false);
-</script>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<!-- =========================
-     SEO TITLE OPTIMIZADO
-========================== -->
-<title>Calculadora de Ventilación Mecánica | PBW, Driving Pressure y Ajuste PCO₂ UCI</title>
-
-<!-- =========================
-     META DESCRIPTION OPTIMIZADA
-========================== -->
-<meta name="description"
-      content="Calculadora de ventilación mecánica invasiva para UCI. Calcula PBW (peso ideal), Driving Pressure (ΔP) y ajustes de PCO₂. Herramienta clínica gratuita de apoyo en cuidados intensivos." />
-
-<meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#020617" />
-
-<link rel="manifest" href="/manifest.json" />
-
-<!-- Canonical -->
-<link rel="canonical"
-      href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" />
-
-<!-- Hreflang -->
-<link rel="alternate" hreflang="es"
-      href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" />
-<link rel="alternate" hreflang="en"
-      href="https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html" />
-<link rel="alternate" hreflang="x-default"
-      href="https://criticalcaretools.com/" />
-
-<!-- Open Graph -->
-<meta property="og:title" content="Calculadora de Ventilación Mecánica UCI | PBW y Driving Pressure" />
-<meta property="og:description"
-      content="Calcula PBW, Driving Pressure (ΔP) y ajuste de PCO₂ en ventilación mecánica invasiva. Herramienta para profesionales en cuidados intensivos." />
-<meta property="og:type" content="website" />
-<meta property="og:url"
-      content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" />
-<meta property="og:locale" content="es_ES" />
-<meta property="og:locale:alternate" content="en_US" />
-     <meta name="google-adsense-account" content="ca-pub-2985318585101906">
-
-<link rel="stylesheet"
-      href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=5" />
-
-<!-- =========================
-     SCHEMA MEDICAL
-========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Calculadora de Ventilación Mecánica UCI",
-  "description": "Herramientas para cálculo de PBW, Driving Pressure y ajuste de PCO2 en ventilación mecánica invasiva.",
-  "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html",
-  "inLanguage": "es",
-  "about": {
-    "@type": "MedicalProcedure",
-    "name": "Ventilación mecánica invasiva"
-  },
-  "audience": {
-    "@type": "MedicalAudience",
-    "audienceType": "HealthcareProfessional"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com"
-  }
-}
-</script>
-
-<!-- =========================
-     SCHEMA FAQ
-========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Qué es el peso corporal ideal (PBW) en ventilación mecánica?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El PBW se utiliza para calcular el volumen tidal adecuado en ventilación mecánica protectora, especialmente en pacientes con síndrome de distrés respiratorio agudo."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué es la Driving Pressure (ΔP)?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La Driving Pressure es la diferencia entre la presión plateau y la PEEP. Se asocia con el riesgo de lesión pulmonar inducida por ventilación."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Estos cálculos reemplazan el criterio clínico?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Son herramientas de apoyo y deben interpretarse dentro del contexto clínico individual del paciente."
-      }
+  <script data-cookieconsent="ignore">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
     }
-  ]
-}
-</script>
 
-<!-- =========================
-     Google Analytics GA4
-========================== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-<script>
-  gtag('js', new Date());
+    gtag("consent", "default", {
+      ad_personalization: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted",
+      wait_for_update: 500
+    });
 
-  gtag('config', 'G-WQREHQ56Q4', {
-    anonymize_ip: true,
-    send_page_view: true
-  });
-</script>
+    gtag("set", "ads_data_redaction", true);
+    gtag("set", "url_passthrough", false);
+  </script>
 
-<!-- =========================
-     Google AdSense
-========================== -->
-<script async
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-  crossorigin="anonymous">
-</script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
+
+  <title>Calculadoras de Ventilación Mecánica UCI | PBW, Driving Pressure y PCO₂</title>
+
+  <meta
+    name="description"
+    content="Calculadoras de ventilación mecánica para UCI: peso corporal predicho PBW, Driving Pressure, compliance, ajuste de PCO₂, componente resistivo y presión transpulmonar."
+  />
+
+  <meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  />
+
+  <meta name="author" content="Critical Care Tools" />
+  <meta name="theme-color" content="#020617" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <link
+    rel="canonical"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+  />
+
+  <link
+    rel="alternate"
+    hreflang="es"
+    href="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://criticalcaretools.com/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html"
+  />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://criticalcaretools.com/"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="Critical Care Tools" />
+  <meta property="og:title" content="Calculadoras de Ventilación Mecánica UCI | PBW, Driving Pressure y PCO₂" />
+  <meta
+    property="og:description"
+    content="Herramientas clínicas para calcular PBW, Driving Pressure, compliance, ajuste de PCO₂ y presión transpulmonar en UCI."
+  />
+  <meta
+    property="og:url"
+    content="https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadoras de Ventilación Mecánica UCI | PBW, Driving Pressure y PCO₂" />
+  <meta
+    name="twitter:description"
+    content="Calculadoras clínicas para ventilación mecánica protectora en pacientes críticos adultos."
+  />
+
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preconnect" href="https://consent.cookiebot.com" />
+  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
+
+  <link
+    rel="stylesheet"
+    href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=6"
+  />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script data-cookieconsent="ignore">
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  </script>
+
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://criticalcaretools.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Variables clínicas",
+        "item": "https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Ventilación mecánica",
+        "item": "https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Calculadoras de Ventilación Mecánica UCI",
+    "description": "Herramientas para cálculo de PBW, Driving Pressure, compliance, ajuste de PCO2, componente resistivo y presión transpulmonar en ventilación mecánica invasiva.",
+    "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html",
+    "inLanguage": "es",
+    "about": {
+      "@type": "MedicalProcedure",
+      "name": "Ventilación mecánica invasiva"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "HealthcareProfessional"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
+    }
+  }
+  </script>
 
 </head>
-     
+
 <body>
 
 <main class="app container">
 
-<!-- LANGUAGE SWITCHER -->
-<div class="language-switcher">
-  <a href="/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html">EN</a> |
-  <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" class="active">ES</a>
-</div>
+  <div class="language-switcher">
+    <a href="/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html">EN</a> |
+    <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" class="active">ES</a>
+  </div>
 
-<!-- BREADCRUMB -->
-<nav class="breadcrumb" aria-label="Navegación">
-  <a href="/">Inicio</a>
-  <span aria-hidden="true">›</span>
-  <a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a>
-  <span aria-hidden="true">›</span>
-  <span aria-current="page">Ventilación mecánica</span>
-</nav>
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a href="/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Ventilación mecánica</span>
+  </nav>
 
-<header class="app-header">
-  <h1>Ventilación mecánica</h1>
-  <p class="subtitle">
-    Herramientas orientativas. Interpretar siempre en contexto clínico.
-  </p>
-</header>
+  <header class="app-header">
+    <h1>Calculadoras de ventilación mecánica para pacientes en UCI</h1>
+    <p class="subtitle">
+      Herramientas para calcular peso corporal predicho, Driving Pressure, compliance,
+      ajuste de PCO₂, componente resistivo, presión transpulmonar y parámetros de
+      ventilación mecánica protectora en pacientes críticos adultos.
+    </p>
+  </header>
 
-  
-<!-- =========================
-       PBW · PESO CORPORAL PREDICHO
-  ========================= -->
+  <section class="panel seo-panel">
+    <h2>Evaluación de la mecánica ventilatoria en cuidados intensivos</h2>
+
+    <p>
+      La ventilación mecánica invasiva es una intervención frecuente en la Unidad de Cuidados
+      Intensivos para sostener el intercambio gaseoso, disminuir el trabajo respiratorio y
+      estabilizar pacientes con insuficiencia respiratoria aguda. Su ajuste requiere integrar
+      oxigenación, ventilación minuto, presión de vía aérea, distensibilidad pulmonar, resistencia
+      y sincronía paciente-ventilador.
+    </p>
+
+    <p>
+      Esta sección reúne herramientas orientativas para apoyar la ventilación protectora del
+      paciente crítico adulto. Los resultados deben interpretarse junto con gasometría arterial,
+      mecánica respiratoria, presión plateau, PEEP, volumen corriente, sedación, esfuerzo
+      inspiratorio y evolución clínica.
+    </p>
+
+    <h2>¿Qué incluye esta página?</h2>
+
+    <p>
+      Incluye cálculo de peso corporal predicho para estimar volumen tidal, ajuste orientativo
+      de PCO₂ según ventilación minuto, Driving Pressure y compliance, componente resistivo,
+      presión transpulmonar, compliance pulmonar y parámetros relacionados con drive respiratorio
+      como P0.1 y POCC.
+    </p>
+  </section>
+
   <section class="panel">
-
     <h2>🫁 Peso corporal predicho (PBW)</h2>
 
     <p class="note">
@@ -221,14 +255,9 @@
     </button>
 
     <div id="resultadoPeso" class="result"></div>
-
   </section>
 
-  <!-- =========================
-       AJUSTE DE PCO₂
-  ========================= -->
   <section class="panel">
-
     <h2>🫁 Ajuste de PCO₂</h2>
 
     <p class="note">
@@ -262,211 +291,198 @@
 
     <div id="resultadoPCO2" class="result"></div>
     <div id="resultadoPCO2Detalle" class="note"></div>
-
   </section>
 
- <!-- =========================
-     DRIVING PRESSURE + COMPLIANCE
-========================= -->
-<section class="panel">
+  <section class="panel">
+    <h2>🫁 Driving Pressure (ΔP) y complacencia pulmonar</h2>
 
-  <h2>🫁 Driving Pressure (ΔP) y Complacencia Pulmonar</h2>
-
-  <p class="note">
-    <strong>ΔP = Pplat − PEEP</strong><br>
-    <strong>Compliance (Crs) = Vt / ΔP</strong><br>
-    Evaluación del estrés pulmonar y la mecánica respiratoria.
-  </p>
-
-  <label for="pplat">Presión Plateau (cmH₂O)</label>
-  <input type="number" id="pplat" step="0.1" />
-
-  <label for="peep">PEEP (cmH₂O)</label>
-  <input type="number" id="peep" step="0.1" />
-
-  <label for="vt">Volumen corriente (ml)</label>
-  <input type="number" id="vt" step="1" />
-
-  <button type="button" onclick="calcularDeltaP()">
-    Calcular
-  </button>
-
-  <div id="resultadoDeltaP" class="result"></div>
-  <div id="interpretacionDeltaP" class="note"></div>
-
-</section>
-
-     <!-- =========================
-     COMPONENTE RESISTIVO
-========================= -->
-<section class="panel">
-
-<section class="panel">
-  <h2>🫁 Componente resistivo</h2>
-
-  <p class="note">
-    <strong>Componente resistivo = Presión pico − Presión plateau</strong><br>
-    Si ingresás el flujo inspiratorio, también se calcula la
-    <strong>resistencia de la vía aérea (Raw)</strong>.
-  </p>
-
-  <label for="ppico">Presión pico (cmH₂O)</label>
-  <input type="number" id="ppico" step="0.1" />
-
-  <label for="pplat_res">Presión plateau (cmH₂O)</label>
-  <input type="number" id="pplat_res" step="0.1" />
-
-<label for="flujo_insp">
-  Flujo inspiratorio (L/min) <span class="note">(opcional)</span>
-</label>
-<input type="number" id="flujo_insp" step="0.1" />
-
-  <button type="button" onclick="calcularComponenteResistivo()">
-    Calcular componente resistivo
-  </button>
-
-  <div id="resultadoResistivo" class="result"></div>
-  <div id="interpretacionResistivo" class="note"></div>
-</section>
-
- </main>
-
-<section class="card transpulmonary-calculator">
-  <h2>Presión transpulmonar y mecánica respiratoria</h2>
-
-  <div class="grid">
-    <label>Pplat / Presión plateau  cmH₂O
-      <input type="number" id="ptp-pplat" step="0.1" min="0" placeholder="Ej: 22">
-    </label>
-
-    <label>PEEP total  cmH₂O
-      <input type="number" id="ptp-peep" step="0.1" min="0" placeholder="Ej: 12">
-    </label>
-
-    <label>Pes inspiratoria  cmH₂O
-      <input type="number" id="ptp-pes-insp" step="0.1" min="0" placeholder="Ej: 15">
-    </label>
-
-    <label>Pes espiratoria  cmH₂O
-      <input type="number" id="ptp-pes-exp" step="0.1" min="0" placeholder="Ej: 10">
-    </label>
-
-    <label>Volumen tidal VT  mL
-      <input type="number" id="ptp-vt" step="1" min="0" placeholder="Ej: 333">
-    </label>
-  </div>
-
-  <button type="button" id="ptp-btn">Calcular</button>
-
-  <div class="results">
-    <p><strong>Presión transpulmonar inspiratoria:</strong> <span id="ptp-pl-insp">--</span> cmH₂O</p>
-    <p><strong>Presión transpulmonar espiratoria:</strong> <span id="ptp-pl-exp">--</span> cmH₂O</p>
-    <p><strong>Driving pressure transpulmonar:</strong> <span id="ptp-dp-lung">--</span> cmH₂O</p>
-
-    <hr>
-
-    <p><strong>Compliance del sistema respiratorio:</strong> <span id="ptp-crs">--</span> mL/cmH₂O</p>
-    <p><strong>Compliance pulmonar:</strong> <span id="ptp-clung">--</span> mL/cmH₂O</p>
-    <p><strong>Compliance de caja torácica:</strong> <span id="ptp-cchest">--</span> mL/cmH₂O</p>
-
-    <hr>
-
-    <p><strong>Componente pulmonar de la presión:</strong> <span id="ptp-lung-component">--</span>%</p>
-    <p><strong>Componente de caja torácica:</strong> <span id="ptp-chest-component">--</span>%</p>
-  </div>
-
-</section>
-
-     <!-- =========================
-     P0.1 Y POCC EN VENTILACIÓN MECÁNICA
-========================== -->
-<section id="tablas-drive-respiratorio" class="panel">
-
-  <button
-    type="button"
-    class="toggle-btn"
-    onclick="toggleTablasDriveRespiratorio()"
-    aria-expanded="false"
-    aria-controls="contenidoTablasDriveRespiratorio">
-    Mostrar tablas P0.1 y POCC
-  </button>
-
-  <div
-    id="contenidoTablasDriveRespiratorio"
-    class="collapsible-box">
-
-    <h2>P0.1 y POCC en ventilación mecánica</h2>
-
-    <p>
-      La P0.1 y la POCC son herramientas útiles para estimar el drive respiratorio
-      y el esfuerzo inspiratorio durante la ventilación mecánica asistida.
+    <p class="note">
+      <strong>ΔP = Pplat − PEEP</strong><br>
+      <strong>Compliance (Crs) = Vt / ΔP</strong><br>
+      Evaluación del estrés pulmonar y la mecánica respiratoria.
     </p>
 
-    <h3>P0.1</h3>
-    <p>
-      La P0.1 corresponde a la presión generada durante los primeros 100 ms
-      de una oclusión inspiratoria. Refleja principalmente el impulso respiratorio
-      central.
+    <label for="pplat">Presión Plateau (cmH₂O)</label>
+    <input type="number" id="pplat" step="0.1" />
+
+    <label for="peep">PEEP (cmH₂O)</label>
+    <input type="number" id="peep" step="0.1" />
+
+    <label for="vt">Volumen corriente (mL)</label>
+    <input type="number" id="vt" step="1" />
+
+    <button type="button" onclick="calcularDeltaP()">
+      Calcular
+    </button>
+
+    <div id="resultadoDeltaP" class="result"></div>
+    <div id="interpretacionDeltaP" class="note"></div>
+  </section>
+
+  <section class="panel">
+    <h2>🫁 Componente resistivo</h2>
+
+    <p class="note">
+      <strong>Componente resistivo = Presión pico − Presión plateau</strong><br>
+      Si se ingresa el flujo inspiratorio, también se calcula la
+      <strong>resistencia de la vía aérea (Raw)</strong>.
     </p>
 
-    <table class="acid-base-table">
-      <tbody>
-        <tr class="section">
-          <th>P0.1</th>
-          <th>Interpretación</th>
-        </tr>
-        <tr>
-          <td>&lt;1 cmH₂O</td>
-          <td>Drive bajo / posible sobreasistencia.</td>
-        </tr>
-        <tr>
-          <td>1–3.5 cmH₂O</td>
-          <td>Rango generalmente adecuado.</td>
-        </tr>
-        <tr>
-          <td>&gt;3.5–4 cmH₂O</td>
-          <td>Drive respiratorio alto.</td>
-        </tr>
-        <tr>
-          <td>&gt;6 cmH₂O</td>
-          <td>Drive muy alto / riesgo de esfuerzo lesivo.</td>
-        </tr>
-      </tbody>
-    </table>
+    <label for="ppico">Presión pico (cmH₂O)</label>
+    <input type="number" id="ppico" step="0.1" />
 
-    <h3>POCC</h3>
-    <p>
-      La POCC es la presión generada durante una oclusión espiratoria. Se usa
-      como estimador indirecto del esfuerzo inspiratorio y de la presión muscular.
-    </p>
+    <label for="pplat_res">Presión plateau (cmH₂O)</label>
+    <input type="number" id="pplat_res" step="0.1" />
 
-    <table class="acid-base-table">
-      <tbody>
-        <tr class="section">
-          <th>POCC</th>
-          <th>Interpretación</th>
-        </tr>
-        <tr>
-          <td>0 a −5 cmH₂O</td>
-          <td>Esfuerzo bajo.</td>
-        </tr>
-        <tr>
-          <td>−5 a −10 cmH₂O</td>
-          <td>Esfuerzo moderado.</td>
-        </tr>
-        <tr>
-          <td>&lt;−10 a −15 cmH₂O</td>
-          <td>Esfuerzo alto.</td>
-        </tr>
-        <tr>
-          <td>&lt;−15 cmH₂O</td>
-          <td>Esfuerzo excesivo / riesgo de P-SILI.</td>
-        </tr>
-      </tbody>
-    </table>
+    <label for="flujo_insp">
+      Flujo inspiratorio (L/min) <span class="note">(opcional)</span>
+    </label>
+    <input type="number" id="flujo_insp" step="0.1" />
 
-  </div>
-</section>
+    <button type="button" onclick="calcularComponenteResistivo()">
+      Calcular componente resistivo
+    </button>
+
+    <div id="resultadoResistivo" class="result"></div>
+    <div id="interpretacionResistivo" class="note"></div>
+  </section>
+
+  <section class="panel transpulmonary-calculator">
+    <h2>🫁 Presión transpulmonar y mecánica respiratoria</h2>
+
+    <div class="grid-2">
+      <label>
+        Pplat / Presión plateau (cmH₂O)
+        <input type="number" id="ptp-pplat" step="0.1" min="0" placeholder="Ej: 22" />
+      </label>
+
+      <label>
+        PEEP total (cmH₂O)
+        <input type="number" id="ptp-peep" step="0.1" min="0" placeholder="Ej: 12" />
+      </label>
+
+      <label>
+        Pes inspiratoria (cmH₂O)
+        <input type="number" id="ptp-pes-insp" step="0.1" min="0" placeholder="Ej: 15" />
+      </label>
+
+      <label>
+        Pes espiratoria (cmH₂O)
+        <input type="number" id="ptp-pes-exp" step="0.1" min="0" placeholder="Ej: 10" />
+      </label>
+
+      <label>
+        Volumen tidal VT (mL)
+        <input type="number" id="ptp-vt" step="1" min="0" placeholder="Ej: 333" />
+      </label>
+    </div>
+
+    <button type="button" id="ptp-btn">Calcular</button>
+
+    <div class="results">
+      <p><strong>Presión transpulmonar inspiratoria:</strong> <span id="ptp-pl-insp">--</span> cmH₂O</p>
+      <p><strong>Presión transpulmonar espiratoria:</strong> <span id="ptp-pl-exp">--</span> cmH₂O</p>
+      <p><strong>Driving pressure transpulmonar:</strong> <span id="ptp-dp-lung">--</span> cmH₂O</p>
+
+      <hr />
+
+      <p><strong>Compliance del sistema respiratorio:</strong> <span id="ptp-crs">--</span> mL/cmH₂O</p>
+      <p><strong>Compliance pulmonar:</strong> <span id="ptp-clung">--</span> mL/cmH₂O</p>
+      <p><strong>Compliance de caja torácica:</strong> <span id="ptp-cchest">--</span> mL/cmH₂O</p>
+
+      <hr />
+
+      <p><strong>Componente pulmonar de la presión:</strong> <span id="ptp-lung-component">--</span>%</p>
+      <p><strong>Componente de caja torácica:</strong> <span id="ptp-chest-component">--</span>%</p>
+    </div>
+  </section>
+
+  <section id="tablas-drive-respiratorio" class="panel">
+    <button
+      type="button"
+      class="toggle-btn"
+      onclick="toggleTablasDriveRespiratorio()"
+      aria-expanded="false"
+      aria-controls="contenidoTablasDriveRespiratorio">
+      Mostrar tablas P0.1 y POCC
+    </button>
+
+    <div
+      id="contenidoTablasDriveRespiratorio"
+      class="collapsible-box">
+
+      <h2>P0.1 y POCC en ventilación mecánica</h2>
+
+      <p>
+        La P0.1 y la POCC son herramientas útiles para estimar el drive respiratorio
+        y el esfuerzo inspiratorio durante la ventilación mecánica asistida.
+      </p>
+
+      <h3>P0.1</h3>
+      <p>
+        La P0.1 corresponde a la presión generada durante los primeros 100 ms
+        de una oclusión inspiratoria. Refleja principalmente el impulso respiratorio
+        central.
+      </p>
+
+      <table class="acid-base-table">
+        <tbody>
+          <tr class="section">
+            <th>P0.1</th>
+            <th>Interpretación</th>
+          </tr>
+          <tr>
+            <td>&lt;1 cmH₂O</td>
+            <td>Drive bajo / posible sobreasistencia.</td>
+          </tr>
+          <tr>
+            <td>1–3.5 cmH₂O</td>
+            <td>Rango generalmente adecuado.</td>
+          </tr>
+          <tr>
+            <td>&gt;3.5–4 cmH₂O</td>
+            <td>Drive respiratorio alto.</td>
+          </tr>
+          <tr>
+            <td>&gt;6 cmH₂O</td>
+            <td>Drive muy alto / riesgo de esfuerzo lesivo.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>POCC</h3>
+      <p>
+        La POCC es la presión generada durante una oclusión espiratoria. Se usa
+        como estimador indirecto del esfuerzo inspiratorio y de la presión muscular.
+      </p>
+
+      <table class="acid-base-table">
+        <tbody>
+          <tr class="section">
+            <th>POCC</th>
+            <th>Interpretación</th>
+          </tr>
+          <tr>
+            <td>0 a −5 cmH₂O</td>
+            <td>Esfuerzo bajo.</td>
+          </tr>
+          <tr>
+            <td>−5 a −10 cmH₂O</td>
+            <td>Esfuerzo moderado.</td>
+          </tr>
+          <tr>
+            <td>&lt;−10 a −15 cmH₂O</td>
+            <td>Esfuerzo alto.</td>
+          </tr>
+          <tr>
+            <td>&lt;−15 cmH₂O</td>
+            <td>Esfuerzo excesivo / riesgo de P-SILI.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
      
 
   <details class="seo-toggle">
