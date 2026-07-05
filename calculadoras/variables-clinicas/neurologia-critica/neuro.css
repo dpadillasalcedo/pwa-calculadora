@@ -7,13 +7,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
   background: #f8fafc;
   color: #0f172a;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* =========================
@@ -22,20 +26,37 @@ body {
 :root {
   --primary: #020617;
   --primary-soft: #0f172a;
-
   --text-soft: #475569;
   --muted: #64748b;
-
   --surface: #ffffff;
+  --surface-soft: #f1f5f9;
   --border: #e2e8f0;
-
+  --border-strong: #cbd5e1;
   --radius: 14px;
   --radius-lg: 22px;
-
   --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.05);
   --shadow-md: 0 14px 40px rgba(2, 6, 23, 0.08);
-
   --container: 1000px;
+}
+
+/* =========================
+   BASE
+========================= */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--primary);
+  line-height: 1.2;
 }
 
 /* =========================
@@ -44,6 +65,9 @@ body {
 .container {
   width: min(100% - 2rem, var(--container));
   margin-inline: auto;
+}
+
+.app {
   padding: 1.2rem 0 2.5rem;
 }
 
@@ -60,7 +84,8 @@ body {
   color: var(--muted);
 }
 
-.language-switcher a.active {
+.language-switcher a.active,
+.language-switcher a:hover {
   color: var(--primary);
   font-weight: 600;
 }
@@ -82,6 +107,11 @@ body {
   color: var(--primary);
 }
 
+.breadcrumb span:last-child {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -90,13 +120,16 @@ body {
 }
 
 .app-header h1 {
-  font-size: clamp(2rem, 4vw, 2.3rem);
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  margin: 0 0 0.7rem;
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
+  max-width: 780px;
   color: var(--text-soft);
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 /* =========================
@@ -106,7 +139,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.6rem;
+  padding: clamp(1.3rem, 3vw, 2rem);
   margin-bottom: 1.6rem;
   box-shadow: var(--shadow-sm);
 }
@@ -114,13 +147,13 @@ body {
 /* =========================
    PANEL HEAD
 ========================= */
-.panel-head h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
 .panel-head {
   margin-bottom: 1rem;
+}
+
+.panel-head h2 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
 }
 
 /* =========================
@@ -148,6 +181,11 @@ body {
   padding: 1.2rem;
 }
 
+.card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.05rem;
+}
+
 /* =========================
    FIELD
 ========================= */
@@ -158,16 +196,20 @@ body {
 }
 
 .field span {
-  margin-bottom: 0.3rem;
-  font-weight: 500;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--primary-soft);
 }
 
 select,
 input {
-  padding: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 0.7rem;
   border-radius: 10px;
   border: 1px solid var(--border);
-  font-size: 0.9rem;
+  background: #ffffff;
+  color: var(--primary);
+  font-size: 0.92rem;
 }
 
 select:focus,
@@ -188,29 +230,28 @@ input:focus {
 
 button {
   flex: 1;
-  padding: 0.7rem;
+  padding: 0.75rem;
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: 0.25s ease;
 }
 
-/* PRIMARY */
 .btn,
 button.primary {
   background: var(--primary);
-  color: white;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 700;
 }
 
-/* SECONDARY */
 .btn-secondary,
 button.secondary {
   background: #e2e8f0;
+  color: var(--primary);
+  font-weight: 600;
 }
 
-/* HOVER */
 button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -223,8 +264,22 @@ button:hover {
   margin-top: 1rem;
   padding: 0.9rem;
   border-radius: 10px;
-  background: #f1f5f9;
-  font-weight: 600;
+  background: var(--surface-soft);
+  font-weight: 700;
+}
+
+/* =========================
+   TEXTOS AUXILIARES
+========================= */
+.note,
+.hint {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.note strong,
+.hint strong {
+  color: var(--primary);
 }
 
 /* =========================
@@ -238,14 +293,23 @@ table {
 
 th,
 td {
-  padding: 0.6rem;
+  padding: 0.65rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
 th {
-  font-weight: 600;
-  background: #f1f5f9;
+  font-weight: 700;
+  background: var(--surface-soft);
+}
+
+.panel table tbody tr:hover {
+  background: rgba(148, 163, 184, 0.06);
+  transition: background 0.2s ease;
+}
+
+.panel table td strong {
+  color: var(--primary);
 }
 
 /* =========================
@@ -253,14 +317,14 @@ th {
 ========================= */
 .callout {
   margin-top: 1rem;
-  padding: 0.8rem;
+  padding: 0.85rem;
   border-radius: 10px;
   background: #e2e8f0;
   font-size: 0.9rem;
 }
 
 /* =========================
-   HIDDEN (CAM ICU FLOW)
+   HIDDEN
 ========================= */
 .hidden {
   display: none;
@@ -269,68 +333,28 @@ th {
 /* =========================
    SEO PANEL
 ========================= */
-.seo-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  box-shadow: var(--shadow-sm);
+.seo-panel h2 {
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  margin: 0 0 1rem;
 }
 
-.seo-panel h2 {
-  font-size: 1.4rem;
+.seo-panel h2:not(:first-child) {
+  margin-top: 2rem;
 }
 
 .seo-panel h3 {
-  margin-top: 1.4rem;
+  margin: 1.5rem 0 0.6rem;
+  font-size: 1.08rem;
 }
 
 .seo-panel p {
   color: var(--text-soft);
+  max-width: 840px;
 }
-
-/* =========================
-   FOOTER
-========================= */
-.site-footer {
-  text-align: center;
-  padding: 1.6rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.footer-nav {
-  margin-bottom: 0.6rem;
-}
-
-.footer-nav a {
-  color: var(--primary-soft);
-  font-weight: 600;
-}
-
-.footer-copy {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .grid-2,
-  .nihss-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .panel {
-    padding: 1.3rem;
-  }
-}
-
 
 /* =========================
    ICH SCORE
 ========================= */
-
 #ich-score table td:first-child {
   font-weight: 600;
   color: var(--primary-soft);
@@ -343,10 +367,13 @@ th {
   width: 90px;
 }
 
+#ich-score .actions {
+  margin-top: 1.2rem;
+}
+
 /* =========================
    RESULTADOS SEMÁNTICOS
 ========================= */
-
 .result-ok {
   background: #ecfdf5;
   border: 1px solid #bbf7d0;
@@ -366,31 +393,64 @@ th {
 }
 
 /* =========================
-   TABLAS NEUROLÓGICAS
+   FOOTER
 ========================= */
-
-.panel table tbody tr:hover {
-  background: rgba(148, 163, 184, 0.06);
-  transition: background 0.2s ease;
+.site-footer {
+  text-align: center;
+  padding: 1.7rem 1rem 2rem;
+  border-top: 1px solid var(--border);
 }
 
-.panel table td strong {
+.footer-inner {
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.footer-nav {
+  margin-bottom: 0.8rem;
+}
+
+.footer-nav a {
+  color: var(--primary-soft);
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
   color: var(--primary);
 }
 
-/* =========================
-   ICH ACTIONS
-========================= */
-
-#ich-score .actions {
-  margin-top: 1.2rem;
+.footer-copy {
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 /* =========================
-   MOBILE TABLE IMPROVEMENT
+   ACCESSIBILITY
 ========================= */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(15, 23, 42, 0.25);
+  outline-offset: 3px;
+}
 
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
+  .container {
+    width: min(100% - 1.2rem, var(--container));
+  }
+
+  .grid-2,
+  .nihss-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
 
   table {
     font-size: 0.82rem;
@@ -404,15 +464,4 @@ th {
   #ich-score table td:first-child {
     width: auto;
   }
-
-}
-
-.seo-toggle summary {
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.seo-toggle {
-  margin-top: 20px;
 }
