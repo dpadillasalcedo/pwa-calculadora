@@ -284,14 +284,31 @@
   <span aria-current="page">Sistemas de puntuación</span>
 </nav>
 
+   <section class="intro">
+
+<h2 class="centered">
+Escalas pronósticas para pacientes críticos
+</h2>
+
+<p>
+Esta colección reúne las principales calculadoras utilizadas en cuidados intensivos para estimar gravedad, disfunción orgánica y riesgo de mortalidad. Incluye SOFA clásico, SOFA actualizado, APACHE II, SAPS II, CLIF-SOFA, PESI y otras herramientas validadas internacionalmente.
+</p>
+
+</section>
   
-<h1>Calculadoras UCI</h1>
-<p class="note">SOFA 1 Y SOFA-2 · APACHE II · SAPS II</p>
+<h1>Calculadoras de gravedad y mortalidad en UCI</h1>
+
+<p class="subtitle">
+Calculadoras clínicas online de SOFA, APACHE II, SAPS II, PESI, CLIF-SOFA, PLASMIC y otras escalas utilizadas en medicina crítica.
+</p>
 
   <!-- ======================= SOFA-1 ======================= -->
 <section class="panel">
-<h2>SOFA-1</h2>
-<p class="note">Sequential Organ Failure Assessment (versión clásica original)</p>
+<h2>SOFA clásico</h2>
+
+<p class="note">
+Evalúa la disfunción de seis órganos y permite monitorizar la evolución del paciente crítico durante la hospitalización.
+</p>
 
 <div class="grid">
 
@@ -504,10 +521,9 @@ function resetSOFA(){
 <section id="clif-sofa-aclf" class="panel">
   <h2>CLIF-C ACLF y clasificación ACLF</h2>
 
-  <p class="note">
-    Calculadora educativa basada en disfunción hepática, renal, cerebral,
-    coagulación, circulación y respiración.
-  </p>
+<p class="note">
+Evalúa la gravedad del Acute-on-Chronic Liver Failure mediante la valoración de múltiples órganos.
+</p>
 
   <label>Bilirrubina total (mg/dL)</label>
   <input id="clif_bili" type="number" step="0.1" placeholder="Ej: 12">
@@ -565,7 +581,9 @@ function resetSOFA(){
 <!-- ===================== APACHE II ===================== -->
 <section class="panel">
 <h2>APACHE II</h2>
-<p class="note">12 variables fisiológicas + edad + enfermedad crónica</p>
+<p class="note">
+Sistema pronóstico que estima mortalidad hospitalaria utilizando variables fisiológicas obtenidas durante las primeras 24 horas.
+</p>
 
 <div class="grid">
   <label>Temperatura (°C)
@@ -751,7 +769,9 @@ function resetSOFA(){
 <!-- ====================== SAPS II ====================== -->
 <section class="panel">
 <h2>SAPS II</h2>
-<p class="note">17 variables – mortalidad logística</p>
+<p class="note">
+Escala validada para estratificar riesgo de mortalidad en pacientes con tromboembolismo pulmonar agudo.
+</p>
 
 <div class="grid">
 
@@ -1347,15 +1367,18 @@ function resetSOFA(){
 </section>
    
    
-<details class="seo-toggle">
-  <summary>Ver fundamento clínico de los sistemas de puntuación en UCI</summary>
+<summary>
+
+Información clínica sobre SOFA, APACHE II y SAPS II
+
+</summary>
 
   <!-- =========================
        FUNDAMENTO CLÍNICO ESCALAS UCI
   ========================== -->
   <section class="panel seo-panel">
 
-    <h2>Fundamento clínico de los sistemas de puntuación en UCI</h2>
+    <h2>SOFA, APACHE II y SAPS II: interpretación clínica</h2>
 
     <p>
       Los sistemas de puntuación en la Unidad de Cuidados Intensivos (UCI) son herramientas fundamentales para evaluar la gravedad del paciente crítico, estimar el riesgo de mortalidad y orientar la toma de decisiones clínicas. Su uso permite estandarizar la evaluación, facilitar la comunicación entre equipos y comparar resultados entre instituciones.
@@ -1439,6 +1462,18 @@ function resetSOFA(){
 </main>
 
   <hr class="divider">
+
+  <section class="about-mini">
+
+<h2>Sobre estas calculadoras</h2>
+
+<p>
+
+Estas herramientas fueron desarrolladas para facilitar la aplicación práctica de escalas pronósticas utilizadas en medicina intensiva. Los cálculos reproducen las fórmulas publicadas en la literatura científica y deben interpretarse junto con la valoración clínica integral del paciente.
+
+</p>
+
+</section>
 
 <footer>
   <div class="footer-container">
