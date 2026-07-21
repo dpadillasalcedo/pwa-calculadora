@@ -523,13 +523,78 @@ select:focus-visible {
 
 .tabla-betalactamicos {
   width: 100%;
-  min-width: 1300px;
+  min-width: 100%;
 
   border-collapse: collapse;
 
+  table-layout: fixed;
+
   background: #ffffff;
 
-  font-size: 0.87rem;
+  font-size: 0.78rem;
+}
+
+/* =========================
+   AJUSTE DE COLUMNAS
+========================= */
+
+.tabla-betalactamicos th,
+.tabla-betalactamicos td {
+  padding: 0.65rem 0.55rem;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
+
+  white-space: normal;
+}
+
+
+/* Antibiótico */
+.tabla-betalactamicos th:nth-child(1),
+.tabla-betalactamicos td:nth-child(1) {
+  width: 15%;
+}
+
+
+/* Dilución */
+.tabla-betalactamicos th:nth-child(4),
+.tabla-betalactamicos td:nth-child(4) {
+  width: 12%;
+}
+
+
+/* Solventes */
+.tabla-betalactamicos th:nth-child(5),
+.tabla-betalactamicos td:nth-child(5) {
+  width: 9%;
+}
+
+
+/* Estabilidad */
+.tabla-betalactamicos th:nth-child(6),
+.tabla-betalactamicos td:nth-child(6) {
+  width: 8%;
+}
+
+
+/* Infusión extendida */
+.tabla-betalactamicos th:nth-child(7),
+.tabla-betalactamicos td:nth-child(7) {
+  width: 11%;
+}
+
+
+/* Dosis de carga */
+.tabla-betalactamicos th:nth-child(8),
+.tabla-betalactamicos td:nth-child(8) {
+  width: 10%;
+}
+
+
+/* Infusión dosis de carga */
+.tabla-betalactamicos th:nth-child(9),
+.tabla-betalactamicos td:nth-child(9) {
+  width: 14%;
 }
 
 .tabla-betalactamicos th,
