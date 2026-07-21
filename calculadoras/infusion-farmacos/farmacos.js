@@ -169,3 +169,205 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const tabla = document.getElementById("tablaBetalactamicos");
+  const buscador = document.getElementById("buscarAntibiotico");
+  const btnTodos = document.getElementById("btnTodos");
+  const btnIC = document.getElementById("btnIC");
+  const contador = document.getElementById("contadorResultados");
+
+  if (!tabla) return;
+
+  const filas = Array.from(
+    tabla.querySelectorAll("tbody tr")
+  );
+
+  let filtroActual = "todos";
+
+
+  /* =========================
+     NORMALIZAR TEXTO
+  ========================= */
+
+  function normalizar(texto) {
+
+    return texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+
+  }
+
+
+  /* =========================
+     FILTRAR
+  ========================= */
+
+  function filtrarTabla() {
+
+    const textoBusqueda = normalizar(
+      buscador.value
+    );
+
+    let visibles = 0;
+
+
+    filas.forEach((fila) => {
+
+      const antibiotico = normalizar(
+        fila.dataset.antibiotico || ""
+      );
+
+      const contenido = normalizar(
+        fila.textContent || ""
+      );
+
+
+      const coincideBusqueda =
+        textoBusqueda === "" ||
+        antibiotico.includes(textoBusqueda) ||
+        contenido.includes(textoBusqueda);
+
+
+      const coincideFiltro =
+        filtroActual === "todos" ||
+        (
+          filtroActual === "ic" &&
+          fila.dataset.ic === "si"
+        );
+
+
+      const mostrar =
+        coincideBusqueda &&
+        coincideFiltro;
+
+
+      fila.classList.toggle(
+        "fila-oculta",
+        !mostrar
+      );
+
+
+      if (mostrar) {
+        visibles++;
+      }
+
+    });
+
+
+    actualizarContador(visibles);
+
+  }
+
+
+  /* =========================
+     CONTADOR
+  ========================= */
+
+  function actualizarContador(cantidad) {
+
+    if (!contador) return;
+
+
+    if (cantidad === 0) {
+
+      contador.textContent =
+        "No se encontraron antibióticos.";
+
+      return;
+    }
+
+
+    if (cantidad === 1) {
+
+      contador.textContent =
+        "1 antibiótico encontrado.";
+
+      return;
+    }
+
+
+    contador.textContent =
+      `${cantidad} antibióticos encontrados.`;
+
+  }
+
+
+  /* =========================
+     BOTONES
+  ========================= */
+
+  function activarBoton(boton) {
+
+    btnTodos.classList.remove("active");
+    btnIC.classList.remove("active");
+
+    boton.classList.add("active");
+
+  }
+
+
+  btnTodos.addEventListener("click", () => {
+
+    filtroActual = "todos";
+
+    activarBoton(btnTodos);
+
+    filtrarTabla();
+
+  });
+
+
+  btnIC.addEventListener("click", () => {
+
+    filtroActual = "ic";
+
+    activarBoton(btnIC);
+
+    filtrarTabla();
+
+  });
+
+
+  /* =========================
+     BUSCADOR
+  ========================= */
+
+  buscador.addEventListener(
+    "input",
+    filtrarTabla
+  );
+
+
+  /* Escape limpia búsqueda */
+  buscador.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key !== "Escape") return;
+
+      buscador.value = "";
+
+      filtroActual = "todos";
+
+      activarBoton(btnTodos);
+
+      filtrarTabla();
+
+    }
+  );
+
+
+  /* =========================
+     INICIO
+  ========================= */
+
+  filtrarTabla();
+
+});
