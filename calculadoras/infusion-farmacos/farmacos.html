@@ -282,6 +282,441 @@
 
   </section>
 
+  <section class="betalactamicos-section">
+
+  <div class="tabla-header">
+    <div>
+      <h2>Administración de betalactámicos en infusión extendida</h2>
+      <p>
+        Reconstitución, dilución, estabilidad, dosis de carga y tiempo de infusión.
+      </p>
+    </div>
+  </div>
+
+  <div class="tabla-controles">
+
+    <input
+      type="search"
+      id="buscarAntibiotico"
+      placeholder="Buscar antibiótico..."
+      aria-label="Buscar antibiótico"
+    />
+
+    <div class="tabla-filtros">
+
+      <button
+        type="button"
+        class="filtro-btn active"
+        id="btnTodos"
+      >
+        Todos
+      </button>
+
+      <button
+        type="button"
+        class="filtro-btn"
+        id="btnIC"
+      >
+        Admiten IC
+      </button>
+
+    </div>
+
+  </div>
+
+  <p id="contadorResultados" class="contador-resultados"></p>
+
+  <div class="tabla-scroll">
+
+    <table
+      class="tabla-betalactamicos"
+      id="tablaBetalactamicos"
+    >
+
+      <thead>
+        <tr>
+          <th>Antibiótico</th>
+          <th>Presentación</th>
+          <th>Reconstitución</th>
+          <th>Dilución</th>
+          <th>Solventes</th>
+          <th>Estabilidad</th>
+          <th>Infusión extendida</th>
+          <th>Dosis de carga</th>
+          <th>Infusión dosis de carga</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr
+          data-antibiotico="ampicilina"
+          data-ic="no"
+        >
+          <th>Ampicilina</th>
+          <td>FA / 1 g</td>
+          <td>10 mL de API por ampolla</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 30 mg/mL
+            </span>
+          </td>
+          <td>SF</td>
+          <td>8 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+            <span class="dato-secundario">
+              Evaluar necesidad
+            </span>
+          </td>
+          <td>
+            1 g o 2 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>
+            30 min ideal
+            <span class="dato-secundario">
+              Máximo 60 min
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="ampicilina sulbactam"
+          data-ic="no"
+        >
+          <th>Ampicilina-sulbactam</th>
+          <td>FA / 1,5 g</td>
+          <td>10 mL de API por ampolla</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 30 mg/mL
+            </span>
+          </td>
+          <td>SF</td>
+          <td>8 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+            <span class="dato-secundario">
+              Evaluar necesidad
+            </span>
+          </td>
+          <td>
+            1,5 g o 3 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>
+            30 min ideal
+            <span class="dato-secundario">
+              Máximo 60 min
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="cefazolina"
+          data-ic="no"
+        >
+          <th>Cefazolina</th>
+          <td>FA / 1 g</td>
+          <td>10 mL de API o SF por ampolla</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 20 mg/mL
+            </span>
+          </td>
+          <td>SF / Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+          </td>
+          <td>
+            1 o 2 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>
+            30 min ideal
+            <span class="dato-secundario">
+              Máximo 60 min
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="cefepime"
+          data-ic="si"
+        >
+          <th>
+            Cefepime
+            <span class="badge-ic">Admite IC</span>
+          </th>
+          <td>FA / 2 g</td>
+          <td>20 mL de API, SF o Dx 5%</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 40 mg/mL
+            </span>
+          </td>
+          <td>SF / Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+            <span class="dato-secundario ic-text">
+              Admite infusión continua
+            </span>
+          </td>
+          <td>
+            1 o 2 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>
+            30 min ideal
+            <span class="dato-secundario">
+              Máximo 60 min
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="ceftazidima"
+          data-ic="si"
+        >
+          <th>
+            Ceftazidima
+            <span class="badge-ic">Admite IC</span>
+          </th>
+          <td>FA / 1 g</td>
+          <td>
+            10 mL de API, SF o Dx 5% por ampolla
+          </td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 40 mg/mL
+            </span>
+          </td>
+          <td>SF / Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+            <span class="dato-secundario ic-text">
+              Admite infusión continua
+            </span>
+          </td>
+          <td>
+            1 o 2 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>30 minutos</td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="ceftazidima avibactam caz avi"
+          data-ic="no"
+        >
+          <th>
+            Ceftazidima-avibactam
+            <span class="abreviatura">CAZ-AVI</span>
+          </th>
+          <td>FA / 2,5 g</td>
+          <td>
+            10 mL de API, SF o Dx 5%
+            <span class="dato-secundario">
+              Vf = 12 mL por expansión de volumen
+            </span>
+          </td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 40 mg/mL
+            </span>
+          </td>
+          <td>SF, Dx 5%, RL</td>
+          <td>12 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+          </td>
+          <td>2,5 g</td>
+          <td>
+            Shock séptico/sepsis: 1 h
+            <span class="dato-secundario">
+              En ausencia del mismo, infundir extendido directamente.
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="aztreonam atm"
+          data-ic="no"
+        >
+          <th>
+            Aztreonam
+            <span class="abreviatura">ATM</span>
+            <span class="dato-secundario alerta">
+              Infundir en Y con CAZ-AVI al mismo tiempo.
+            </span>
+          </th>
+          <td>FA / 1 g</td>
+          <td>3 mL de API</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 20 mg/mL
+            </span>
+          </td>
+          <td>SF, RL, Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+          </td>
+          <td>2 g</td>
+          <td>
+            Shock séptico/sepsis: 1 h
+            <span class="dato-secundario">
+              En ausencia del mismo, infundir extendido directamente.
+            </span>
+          </td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="ceftriaxona"
+          data-ic="no"
+        >
+          <th>Ceftriaxona</th>
+          <td>FA / 1 g</td>
+          <td>10 mL de API por ampolla</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 40 mg/mL
+            </span>
+          </td>
+          <td>SF / Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            No corresponde
+            <span class="dato-secundario">
+              Por vida media larga se administra en 30 min.
+            </span>
+          </td>
+          <td>No corresponde</td>
+          <td>No corresponde</td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="imipenem"
+          data-ic="no"
+        >
+          <th>Imipenem</th>
+          <td>FA / 500 mg</td>
+          <td>10 mL de SF</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 5 mg/mL
+            </span>
+          </td>
+          <td>SF</td>
+          <td>4 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+          </td>
+          <td>500 mg</td>
+          <td>30 min</td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="meropenem"
+          data-ic="no"
+        >
+          <th>Meropenem</th>
+          <td>FA / 1 g o 500 mg</td>
+          <td>
+            500 mg = 10 mL de API
+            <span class="dato-secundario">
+              1 g = 20 mL de API
+            </span>
+          </td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 5 mg/mL
+            </span>
+          </td>
+          <td>SF</td>
+          <td>4 h a TA</td>
+          <td>
+            <span class="badge-tiempo">3 horas</span>
+          </td>
+          <td>
+            1 o 2 g
+            <span class="dato-secundario">
+              Dosis plena según indicación
+            </span>
+          </td>
+          <td>30 min</td>
+        </tr>
+
+
+        <tr
+          data-antibiotico="piperacilina tazobactam"
+          data-ic="si"
+        >
+          <th>
+            Piperacilina-tazobactam
+            <span class="badge-ic">Admite IC</span>
+          </th>
+          <td>FA / 4,5 g</td>
+          <td>20 mL de API o SF</td>
+          <td>
+            100 mL
+            <span class="dato-secundario">
+              Concentración máxima 40 mg/mL
+            </span>
+          </td>
+          <td>SF o Dx 5%</td>
+          <td>24 h a TA</td>
+          <td>
+            <span class="badge-tiempo">4 horas</span>
+            <span class="dato-secundario ic-text">
+              Admite infusión continua
+            </span>
+          </td>
+          <td>4,5 g</td>
+          <td>30 min</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
   <section class="panel seo-panel">
 
     <h2>Fundamento clínico del cálculo</h2>
