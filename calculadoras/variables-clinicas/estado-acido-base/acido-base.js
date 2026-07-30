@@ -52,7 +52,7 @@ function calcularDeltaGap() {
   const ag = getNum("dd_ag");
   const hco3 = getNum("dd_hco3");
 
-  const AG_NORMAL = 12;
+  const AG_NORMAL = 16;
   const HCO3_NORMAL = 24;
 
   if (ag === null || hco3 === null) {
