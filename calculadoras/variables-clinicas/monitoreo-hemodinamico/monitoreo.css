@@ -379,3 +379,420 @@ button:hover {
     font-weight: 700;
   }
 }
+
+/* =========================================================
+   CriticalCareTools
+   TAPSE / MAPSE
+   ========================================================= */
+
+.cct-echo-tool {
+  --cct-primary: #2563eb;
+  --cct-primary-dark: #1d4ed8;
+  --cct-text: #172033;
+  --cct-muted: #64748b;
+  --cct-border: #e2e8f0;
+  --cct-bg: #f8fafc;
+  --cct-card: #ffffff;
+  --cct-success: #15803d;
+  --cct-warning: #b45309;
+  --cct-danger: #b91c1c;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--cct-text);
+  line-height: 1.6;
+}
+
+
+/* Header */
+
+.cct-header {
+  margin-bottom: 28px;
+}
+
+.cct-kicker {
+  display: inline-block;
+  margin-bottom: 6px;
+
+  color: var(--cct-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cct-header h1 {
+  margin: 0;
+
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+}
+
+.cct-header p {
+  max-width: 760px;
+  margin: 12px 0 0;
+
+  color: var(--cct-muted);
+  font-size: 1rem;
+}
+
+
+/* Main cards */
+
+.cct-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.cct-card,
+.cct-section-card {
+  background: var(--cct-card);
+  border: 1px solid var(--cct-border);
+  border-radius: 16px;
+  padding: 24px;
+
+  box-shadow:
+    0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.cct-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.cct-label {
+  display: block;
+
+  color: var(--cct-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cct-card h2 {
+  margin: 2px 0 0;
+  font-size: 1.8rem;
+}
+
+.cct-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  font-weight: 800;
+}
+
+.cct-badge.rv {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.cct-badge.lv {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
+
+/* Definition */
+
+.cct-definition {
+  margin: 0 0 22px;
+
+  color: #475569;
+}
+
+
+/* Measurement */
+
+.cct-measurement {
+  margin-top: 18px;
+}
+
+.cct-measurement label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-weight: 700;
+}
+
+.cct-input-wrapper {
+  display: flex;
+  align-items: center;
+
+  border: 2px solid var(--cct-border);
+  border-radius: 10px;
+  overflow: hidden;
+
+  background: white;
+
+  transition: border-color 0.2s ease;
+}
+
+.cct-input-wrapper:focus-within {
+  border-color: var(--cct-primary);
+}
+
+.cct-input-wrapper input {
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+
+  padding: 12px 14px;
+
+  font-size: 1.1rem;
+  color: var(--cct-text);
+}
+
+.cct-input-wrapper span {
+  padding-right: 14px;
+
+  color: var(--cct-muted);
+  font-weight: 700;
+}
+
+
+/* Result */
+
+.cct-result {
+  margin-top: 14px;
+  padding: 13px 15px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+}
+
+.cct-result.neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.cct-result.normal {
+  background: #f0fdf4;
+  color: var(--cct-success);
+}
+
+.cct-result.warning {
+  background: #fffbeb;
+  color: var(--cct-warning);
+}
+
+.cct-result.abnormal {
+  background: #fef2f2;
+  color: var(--cct-danger);
+}
+
+.cct-reference {
+  margin-top: 14px;
+
+  color: var(--cct-muted);
+  font-size: 0.86rem;
+}
+
+
+/* Section cards */
+
+.cct-section-card {
+  margin-top: 20px;
+}
+
+.cct-section-card h2,
+.cct-references h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+
+  font-size: 1.35rem;
+}
+
+
+/* Technique */
+
+.technique-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.technique-grid h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.technique-grid ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.technique-grid li {
+  margin-bottom: 7px;
+}
+
+
+/* Interpretation table */
+
+.interpretation-table {
+  border: 1px solid var(--cct-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+
+  border-bottom: 1px solid var(--cct-border);
+}
+
+.table-row:last-child {
+  border-bottom: 0;
+}
+
+.table-row > div {
+  padding: 12px 14px;
+}
+
+.table-head {
+  background: var(--cct-bg);
+
+  font-weight: 700;
+}
+
+
+/* Integration */
+
+.integration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.integration-box {
+  padding: 18px;
+
+  border: 1px solid var(--cct-border);
+  border-radius: 12px;
+
+  background: var(--cct-bg);
+}
+
+.integration-box h3 {
+  margin: 0 0 7px;
+}
+
+.integration-box p {
+  margin: 0;
+  color: var(--cct-muted);
+}
+
+
+/* Warning */
+
+.warning-card {
+  border-left: 4px solid var(--cct-warning);
+}
+
+.warning-card ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.warning-card li {
+  margin-bottom: 8px;
+}
+
+
+/* Clinical note */
+
+.cct-note {
+  margin-top: 20px;
+  padding: 18px;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+  color: #1e3a8a;
+
+  font-size: 0.92rem;
+}
+
+
+/* References */
+
+.cct-references {
+  margin-top: 28px;
+
+  color: var(--cct-muted);
+  font-size: 0.85rem;
+}
+
+.cct-references ol {
+  padding-left: 20px;
+}
+
+.cct-references li {
+  margin-bottom: 8px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 760px) {
+
+  .cct-grid,
+  .technique-grid,
+  .integration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cct-card,
+  .cct-section-card {
+    padding: 18px;
+  }
+
+  .interpretation-table {
+    border: 0;
+  }
+
+  .table-row {
+    grid-template-columns: 1fr;
+    border: 1px solid var(--cct-border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .table-head {
+    display: none;
+  }
+
+  .table-row > div {
+    border-bottom: 1px solid var(--cct-border);
+  }
+
+  .table-row > div:last-child {
+    border-bottom: 0;
+  }
+
+}
