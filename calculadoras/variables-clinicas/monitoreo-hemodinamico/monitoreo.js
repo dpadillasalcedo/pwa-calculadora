@@ -396,3 +396,120 @@ function calcularSwanGanz() {
     `
   );
 }
+
+/* =========================================================
+   CriticalCareTools
+   TAPSE / MAPSE interpretation
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const tapseInput = document.getElementById("tapseValue");
+  const mapseInput = document.getElementById("mapseValue");
+
+  const tapseResult = document.getElementById("tapseResult");
+  const mapseResult = document.getElementById("mapseResult");
+
+
+  /* -------------------------
+     TAPSE
+     ------------------------- */
+
+  function interpretTAPSE() {
+
+    const value = parseFloat(tapseInput.value);
+
+    if (isNaN(value)) {
+
+      tapseResult.className = "cct-result neutral";
+
+      tapseResult.textContent =
+        "Introduzca un valor para interpretar.";
+
+      return;
+    }
+
+
+    if (value >= 17) {
+
+      tapseResult.className = "cct-result normal";
+
+      tapseResult.innerHTML =
+        "<strong>≥17 mm:</strong> función longitudinal del VD " +
+        "generalmente conservada.";
+
+    } else {
+
+      tapseResult.className = "cct-result abnormal";
+
+      tapseResult.innerHTML =
+        "<strong>&lt;17 mm:</strong> hallazgo sugestivo de " +
+        "disfunción sistólica longitudinal del VD.";
+    }
+  }
+
+
+  /* -------------------------
+     MAPSE
+     ------------------------- */
+
+  function interpretMAPSE() {
+
+    const value = parseFloat(mapseInput.value);
+
+    if (isNaN(value)) {
+
+      mapseResult.className = "cct-result neutral";
+
+      mapseResult.textContent =
+        "Introduzca un valor para interpretar.";
+
+      return;
+    }
+
+
+    /*
+     * MAPSE no posee un único punto de corte universal
+     * equivalente al TAPSE <17 mm.
+     *
+     * Se utiliza una interpretación orientativa.
+     */
+
+    if (value >= 10) {
+
+      mapseResult.className = "cct-result normal";
+
+      mapseResult.innerHTML =
+        "<strong>≥10 mm:</strong> excursión longitudinal " +
+        "mitral no reducida de forma evidente. Integrar con FEVI " +
+        "y otros parámetros.";
+
+    } else if (value >= 8) {
+
+      mapseResult.className = "cct-result warning";
+
+      mapseResult.innerHTML =
+        "<strong>8–9.9 mm:</strong> valor limítrofe/reducido. " +
+        "Debe interpretarse junto con FEVI, S′, GLS y contexto clínico.";
+
+    } else {
+
+      mapseResult.className = "cct-result abnormal";
+
+      mapseResult.innerHTML =
+        "<strong>&lt;8 mm:</strong> excursión longitudinal " +
+        "marcadamente reducida. Correlacionar con otros parámetros " +
+        "de función sistólica del VI.";
+    }
+
+  }
+
+
+  /* -------------------------
+     Events
+     ------------------------- */
+
+  tapseInput.addEventListener("input", interpretTAPSE);
+  mapseInput.addEventListener("input", interpretMAPSE);
+
+});
