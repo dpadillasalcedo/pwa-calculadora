@@ -205,13 +205,13 @@ function calcularComponenteResistivo() {
   // Interpretación básica (no rígida)
   if (componenteResistivo <= 5) {
     textoInterpretacion =
-      "Componente resistivo dentro de rango esperado.";
+      "Componente resistivo dentro de rango esperado <5cmshwo.";
   } else if (componenteResistivo <= 10) {
     textoInterpretacion =
-      "Componente resistivo discretamente aumentado. Interpretar según flujo.";
+      "Componente resistivo discretamente aumentado 5-10 cmsh2o. Interpretar según flujo.";
   } else {
     textoInterpretacion =
-      "Componente resistivo elevado. Puede sugerir aumento de resistencia o flujo alto.";
+      "Componente resistivo elevado >10 cmsh2o. Puede sugerir aumento de resistencia o flujo alto.";
   }
 
   // Si hay flujo → convertir y calcular Raw
@@ -227,13 +227,13 @@ function calcularComponenteResistivo() {
     // Interpretación basada en evidencia (Raw)
     if (raw < 10) {
       textoInterpretacion +=
-        " Resistencia de la vía aérea dentro de rango esperado.";
+        " Resistencia de la vía aérea dentro de rango esperado. 5-10 cmsh2o/l/seg";
     } else if (raw <= 15) {
       textoInterpretacion +=
-        " Resistencia moderadamente aumentada.";
+        " Resistencia moderadamente aumentada 10-15 cmsh2o/l/seg.";
     } else {
       textoInterpretacion +=
-        " Resistencia elevada, sugerente de obstrucción significativa (broncoespasmo, secreciones, tubo acodado).";
+        " Resistencia elevada, sugerente de obstrucción significativa >15 cmsh2o/l/seg(broncoespasmo, secreciones, tubo acodado).";
     }
   } else {
     textoInterpretacion +=
