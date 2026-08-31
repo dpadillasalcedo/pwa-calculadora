@@ -513,3 +513,240 @@ document.addEventListener("DOMContentLoaded", function () {
   mapseInput.addEventListener("input", interpretMAPSE);
 
 });
+
+
+/* =========================================
+   ACOPLAMIENTO VENTRÍCULO-ARTERIAL (VAC)
+========================================= */
+
+function calcularVAC() {
+
+  const pas = parseFloat(document.getElementById("vac_pas").value);
+  const vtd = parseFloat(document.getElementById("vac_vtd").value);
+  const vts = parseFloat(document.getElementById("vac_vts").value);
+
+  const resultados = document.getElementById("vac_resultados");
+  const errorBox = document.getElementById("vac_error");
+  const interpretacion = document.getElementById("vac_interpretacion");
+
+  /* Limpiar estado previo */
+  errorBox.hidden = true;
+  errorBox.textContent = "";
+
+  resultados.hidden = true;
+  interpretacion.innerHTML = "";
+  interpretacion.className = "vac-interpretation";
+
+
+  /* =========================================
+     VALIDACIONES
+  ========================================= */
+
+  if (!Number.isFinite(pas) || pas <= 0) {
+    mostrarErrorVAC(
+      "Introduzca una presión arterial sistólica (PAS) válida."
+    );
+    return;
+  }
+
+  if (!Number.isFinite(vtd) || vtd <= 0) {
+    mostrarErrorVAC(
+      "Introduzca un volumen telediastólico (VTD) válido."
+    );
+    return;
+  }
+
+  if (!Number.isFinite(vts) || vts <= 0) {
+    mostrarErrorVAC(
+      "Introduzca un volumen telesistólico (VTS) válido."
+    );
+    return;
+  }
+
+  if (vts >= vtd) {
+    mostrarErrorVAC(
+      "El volumen telesistólico (VTS) debe ser menor que el volumen telediastólico (VTD)."
+    );
+    return;
+  }
+
+
+  /* =========================================
+     CÁLCULOS
+  ========================================= */
+
+  /*
+    Presión telesistólica estimada:
+    Pes ≈ 0.9 × PAS
+  */
+
+  const pes = 0.9 * pas;
+
+
+  /*
+    Volumen sistólico:
+    VS = VTD - VTS
+  */
+
+  const vs = vtd - vts;
+
+
+  /*
+    Elastancia arterial efectiva:
+    Ea = Pes / VS
+  */
+
+  const ea = pes / vs;
+
+
+  /*
+    Elastancia telesistólica ventricular
+    simplificada:
+
+    Ees ≈ Pes / VTS
+
+    Esta aproximación supone V0 ≈ 0.
+  */
+
+  const ees = pes / vts;
+
+
+  /*
+    Acoplamiento ventrículo-arterial:
+
+    VAC = Ea / Ees
+  */
+
+  const vac = ea / ees;
+
+
+  /* =========================================
+     MOSTRAR RESULTADOS
+  ========================================= */
+
+  document.getElementById("vac_res_pes").textContent =
+    pes.toFixed(1);
+
+  document.getElementById("vac_res_vts").textContent =
+    vts.toFixed(1);
+
+  document.getElementById("vac_res_vs").textContent =
+    vs.toFixed(1);
+
+  document.getElementById("vac_res_ea").textContent =
+    ea.toFixed(2);
+
+  document.getElementById("vac_res_ees").textContent =
+    ees.toFixed(2);
+
+  document.getElementById("vac_res_ratio").textContent =
+    vac.toFixed(2);
+
+
+  /* =========================================
+     INTERPRETACIÓN
+  ========================================= */
+
+  let mensaje = "";
+  let clase = "";
+
+
+  if (vac < 0.5) {
+
+    mensaje = `
+      <strong>Acoplamiento ventrículo–arterial bajo.</strong>
+      La elastancia ventricular es relativamente elevada respecto
+      a la carga arterial. El resultado debe interpretarse junto con
+      el estado hemodinámico y la función ventricular.
+    `;
+
+    clase = "vac-low";
+
+  } else if (vac <= 1.0) {
+
+    mensaje = `
+      <strong>Relación ventrículo–arterial relativamente eficiente.</strong>
+      La relación entre elastancia arterial efectiva y elastancia
+      telesistólica ventricular se encuentra en un rango fisiológicamente
+      favorable dentro de esta aproximación simplificada.
+    `;
+
+    clase = "vac-normal";
+
+  } else if (vac <= 1.36) {
+
+    mensaje = `
+      <strong>Acoplamiento ventrículo–arterial elevado.</strong>
+      Existe un aumento relativo de la carga arterial respecto
+      a la elastancia ventricular. Debe valorarse la contribución
+      individual de Ea y Ees.
+    `;
+
+    clase = "vac-warning-result";
+
+  } else {
+
+    mensaje = `
+      <strong>Posible desacoplamiento ventrículo–arterial.</strong>
+      Una relación Ea/Ees elevada puede reflejar aumento de la carga
+      arterial efectiva, reducción de la elastancia ventricular
+      o una combinación de ambas.
+    `;
+
+    clase = "vac-high";
+
+  }
+
+
+  interpretacion.className =
+    "vac-interpretation " + clase;
+
+  interpretacion.innerHTML = mensaje;
+
+  resultados.hidden = false;
+}
+
+
+/* =========================================
+   MOSTRAR ERROR
+========================================= */
+
+function mostrarErrorVAC(mensaje) {
+
+  const errorBox =
+    document.getElementById("vac_error");
+
+  errorBox.textContent = mensaje;
+  errorBox.hidden = false;
+
+}
+
+
+/* =========================================
+   LIMPIAR CALCULADORA
+========================================= */
+
+function limpiarVAC() {
+
+  document.getElementById("vac_pas").value = "";
+  document.getElementById("vac_vtd").value = "";
+  document.getElementById("vac_vts").value = "";
+
+  document.getElementById("vac_resultados").hidden = true;
+  document.getElementById("vac_error").hidden = true;
+
+  const interpretacion =
+    document.getElementById("vac_interpretacion");
+
+  interpretacion.innerHTML = "";
+  interpretacion.className = "vac-interpretation";
+
+
+  document.getElementById("vac_res_pes").textContent = "—";
+  document.getElementById("vac_res_vts").textContent = "—";
+  document.getElementById("vac_res_vs").textContent = "—";
+  document.getElementById("vac_res_ea").textContent = "—";
+  document.getElementById("vac_res_ees").textContent = "—";
+  document.getElementById("vac_res_ratio").textContent = "—";
+
+}
