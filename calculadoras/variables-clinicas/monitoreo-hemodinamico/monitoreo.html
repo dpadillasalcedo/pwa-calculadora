@@ -701,7 +701,361 @@
   <div id="resultado" class="result"></div>
 
   </section>
-  
+
+
+ <!-- =========================================
+     ACOPLAMIENTO VENTRÍCULO-ARTERIAL
+========================================== -->
+<section id="acoplamiento-va" class="panel vac-panel">
+
+  <h2>🫀 Acoplamiento ventrículo–arterial (VAC)</h2>
+
+  <p class="vac-intro">
+    Estimación simplificada del acoplamiento ventrículo–arterial izquierdo
+    mediante presión arterial y volúmenes ventriculares ecocardiográficos.
+  </p>
+
+
+  <!-- FÓRMULAS -->
+
+  <div class="vac-formula-box">
+
+    <strong>Fórmulas utilizadas</strong>
+
+    <div class="vac-formulas">
+
+      <span>
+        Presión telesistólica (P<sub>es</sub>) ≈ 0.9 × PAS
+      </span>
+
+      <span>
+        Volumen sistólico (VS) = VTD − VTS
+      </span>
+
+      <span>
+        Elastancia arterial efectiva (Ea) = P<sub>es</sub> / VS
+      </span>
+
+      <span>
+        Elastancia telesistólica ventricular (Ees) ≈ P<sub>es</sub> / VTS
+      </span>
+
+      <span>
+        Acoplamiento ventrículo–arterial (VAC) = Ea / Ees
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- DATOS DEL PACIENTE -->
+
+  <fieldset>
+
+    <legend>Datos del paciente</legend>
+
+    <div class="grid-2">
+
+
+      <!-- PAS -->
+
+      <div>
+
+        <label for="vac_pas">
+          Presión arterial sistólica (PAS)
+        </label>
+
+        <div class="vac-input-unit">
+
+          <input
+            type="number"
+            id="vac_pas"
+            min="1"
+            step="1"
+            placeholder="Ej. 120"
+            inputmode="decimal"
+          >
+
+          <span>mmHg</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- VTD -->
+
+      <div>
+
+        <label for="vac_vtd">
+          Volumen telediastólico del ventrículo izquierdo (VTD)
+        </label>
+
+        <div class="vac-input-unit">
+
+          <input
+            type="number"
+            id="vac_vtd"
+            min="1"
+            step="0.1"
+            placeholder="Ej. 120"
+            inputmode="decimal"
+          >
+
+          <span>mL</span>
+
+        </div>
+
+        <small>
+          Preferentemente medido mediante Simpson biplano.
+        </small>
+
+      </div>
+
+
+      <!-- VTS -->
+
+      <div>
+
+        <label for="vac_vts">
+          Volumen telesistólico del ventrículo izquierdo (VTS)
+        </label>
+
+        <div class="vac-input-unit">
+
+          <input
+            type="number"
+            id="vac_vts"
+            min="0.1"
+            step="0.1"
+            placeholder="Ej. 50"
+            inputmode="decimal"
+          >
+
+          <span>mL</span>
+
+        </div>
+
+        <small>
+          Medido al final de la sístole, preferentemente mediante Simpson biplano.
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <!-- BOTONES -->
+
+    <div class="vac-actions">
+
+      <button
+        type="button"
+        onclick="calcularVAC()"
+      >
+        Calcular acoplamiento
+      </button>
+
+      <button
+        type="button"
+        class="vac-secondary-btn"
+        onclick="limpiarVAC()"
+      >
+        Limpiar
+      </button>
+
+    </div>
+
+  </fieldset>
+
+
+  <!-- RESULTADOS -->
+
+  <div
+    id="vac_resultados"
+    class="vac-results"
+    aria-live="polite"
+    hidden
+  >
+
+    <h3>Resultados</h3>
+
+    <div class="vac-result-grid">
+
+
+      <!-- Pes -->
+
+      <div class="vac-result-card">
+
+        <span class="vac-result-label">
+          Presión telesistólica estimada (P<sub>es</sub>)
+        </span>
+
+        <strong id="vac_res_pes">—</strong>
+
+        <span class="vac-result-unit">
+          mmHg
+        </span>
+
+      </div>
+
+
+      <!-- VTS -->
+
+      <div class="vac-result-card">
+
+        <span class="vac-result-label">
+          Volumen telesistólico (VTS)
+        </span>
+
+        <strong id="vac_res_vts">—</strong>
+
+        <span class="vac-result-unit">
+          mL
+        </span>
+
+      </div>
+
+
+      <!-- VS -->
+
+      <div class="vac-result-card">
+
+        <span class="vac-result-label">
+          Volumen sistólico (VS)
+        </span>
+
+        <strong id="vac_res_vs">—</strong>
+
+        <span class="vac-result-unit">
+          mL/latido
+        </span>
+
+      </div>
+
+
+      <!-- Ea -->
+
+      <div class="vac-result-card">
+
+        <span class="vac-result-label">
+          Elastancia arterial efectiva (Ea)
+        </span>
+
+        <strong id="vac_res_ea">—</strong>
+
+        <span class="vac-result-unit">
+          mmHg/mL
+        </span>
+
+      </div>
+
+
+      <!-- Ees -->
+
+      <div class="vac-result-card">
+
+        <span class="vac-result-label">
+          Elastancia telesistólica ventricular (Ees)
+        </span>
+
+        <strong id="vac_res_ees">—</strong>
+
+        <span class="vac-result-unit">
+          mmHg/mL
+        </span>
+
+      </div>
+
+
+      <!-- VAC -->
+
+      <div class="vac-result-card vac-main-result">
+
+        <span class="vac-result-label">
+          Acoplamiento ventrículo–arterial (VAC)
+        </span>
+
+        <strong id="vac_res_ratio">—</strong>
+
+        <span class="vac-result-unit">
+          Ea / Ees
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- INTERPRETACIÓN -->
+
+    <div
+      id="vac_interpretacion"
+      class="vac-interpretation"
+    ></div>
+
+  </div>
+
+
+  <!-- ERROR -->
+
+  <div
+    id="vac_error"
+    class="vac-error"
+    aria-live="polite"
+    hidden
+  ></div>
+
+
+  <!-- INFORMACIÓN -->
+
+  <article class="vac-info">
+
+    <h3>Interpretación fisiológica</h3>
+
+    <p>
+      La elastancia arterial efectiva (Ea) representa una estimación integrada
+      de la carga arterial contra la que eyecta el ventrículo izquierdo.
+    </p>
+
+    <p>
+      La elastancia telesistólica ventricular (Ees) representa una aproximación
+      de la capacidad contráctil del ventrículo izquierdo.
+    </p>
+
+    <p>
+      La relación entre ambas variables constituye el
+      <strong>acoplamiento ventrículo–arterial (VAC)</strong>:
+    </p>
+
+    <p>
+      <strong>VAC = Ea / Ees</strong>
+    </p>
+
+  </article>
+
+
+  <!-- ADVERTENCIA -->
+
+  <div class="vac-warning">
+
+    <strong>Importante:</strong>
+
+    esta calculadora utiliza una aproximación simplificada de la
+    elastancia telesistólica ventricular (Ees), considerando
+    V<sub>0</sub> ≈ 0.
+
+    No equivale a la medición invasiva mediante curvas presión–volumen
+    ni al método single-beat de Chen.
+
+    Los resultados deben integrarse con la evaluación ecocardiográfica,
+    la presión arterial, el volumen sistólico y el contexto hemodinámico
+    del paciente.
+
+  </div>
+
+</section>
 
 
  <section class="panel swan-panel">
