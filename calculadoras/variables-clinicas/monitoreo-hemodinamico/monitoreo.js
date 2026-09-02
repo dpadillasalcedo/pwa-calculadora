@@ -395,14 +395,12 @@ function calcularSwanGanz() {
     </p>
     `
   );
-}
-
-/* =========================================================
+}/* =========================================
+   TAPSE / MAPSE CALCULATOR
    CriticalCareTools
-   TAPSE / MAPSE interpretation
-   ========================================================= */
+   ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   const tapseInput = document.getElementById("tapseValue");
   const mapseInput = document.getElementById("mapseValue");
@@ -410,109 +408,207 @@ document.addEventListener("DOMContentLoaded", function () {
   const tapseResult = document.getElementById("tapseResult");
   const mapseResult = document.getElementById("mapseResult");
 
+  const combinedResult = document.getElementById("combinedResult");
 
-  /* -------------------------
+  const rvSummary = document.getElementById("rvSummary");
+  const lvSummary = document.getElementById("lvSummary");
+
+  const shockInterpretation =
+    document.getElementById("shockInterpretation");
+
+
+  /* =========================
      TAPSE
-     ------------------------- */
+     ========================= */
 
-  function interpretTAPSE() {
+  function interpretTAPSE(value) {
 
-    const value = parseFloat(tapseInput.value);
-
-    if (isNaN(value)) {
-
-      tapseResult.className = "cct-result neutral";
-
-      tapseResult.textContent =
-        "Introduzca un valor para interpretar.";
-
-      return;
+    if (value === null || isNaN(value)) {
+      return {
+        text: "Enter TAPSE value",
+        className: "neutral",
+        summary: "Not assessed"
+      };
     }
-
 
     if (value >= 17) {
-
-      tapseResult.className = "cct-result normal";
-
-      tapseResult.innerHTML =
-        "<strong>≥17 mm:</strong> función longitudinal del VD " +
-        "generalmente conservada.";
-
-    } else {
-
-      tapseResult.className = "cct-result abnormal";
-
-      tapseResult.innerHTML =
-        "<strong>&lt;17 mm:</strong> hallazgo sugestivo de " +
-        "disfunción sistólica longitudinal del VD.";
-    }
-  }
-
-
-  /* -------------------------
-     MAPSE
-     ------------------------- */
-
-  function interpretMAPSE() {
-
-    const value = parseFloat(mapseInput.value);
-
-    if (isNaN(value)) {
-
-      mapseResult.className = "cct-result neutral";
-
-      mapseResult.textContent =
-        "Introduzca un valor para interpretar.";
-
-      return;
+      return {
+        text: "Normal RV longitudinal systolic function",
+        className: "normal",
+        summary: "Preserved"
+      };
     }
 
-
-    /*
-     * MAPSE no posee un único punto de corte universal
-     * equivalente al TAPSE <17 mm.
-     *
-     * Se utiliza una interpretación orientativa.
-     */
+    if (value >= 14) {
+      return {
+        text: "Mildly reduced RV longitudinal function",
+        className: "abnormal",
+        summary: "Mildly reduced"
+      };
+    }
 
     if (value >= 10) {
+      return {
+        text: "Moderately reduced RV longitudinal function",
+        className: "abnormal",
+        summary: "Moderately reduced"
+      };
+    }
 
-      mapseResult.className = "cct-result normal";
+    return {
+      text: "Severely reduced RV longitudinal function",
+      className: "severe",
+      summary: "Severely reduced"
+    };
+  }
 
-      mapseResult.innerHTML =
-        "<strong>≥10 mm:</strong> excursión longitudinal " +
-        "mitral no reducida de forma evidente. Integrar con FEVI " +
-        "y otros parámetros.";
 
-    } else if (value >= 8) {
+  /* =========================
+     MAPSE
+     ========================= */
 
-      mapseResult.className = "cct-result warning";
+  function interpretMAPSE(value) {
 
-      mapseResult.innerHTML =
-        "<strong>8–9.9 mm:</strong> valor limítrofe/reducido. " +
-        "Debe interpretarse junto con FEVI, S′, GLS y contexto clínico.";
+    if (value === null || isNaN(value)) {
+      return {
+        text: "Enter MAPSE value",
+        className: "neutral",
+        summary: "Not assessed"
+      };
+    }
+
+    if (value >= 10) {
+      return {
+        text: "Normal LV longitudinal systolic function",
+        className: "normal",
+        summary: "Preserved"
+      };
+    }
+
+    if (value >= 8) {
+      return {
+        text: "Mildly reduced LV longitudinal function",
+        className: "abnormal",
+        summary: "Mildly reduced"
+      };
+    }
+
+    if (value >= 6) {
+      return {
+        text: "Moderately reduced LV longitudinal function",
+        className: "abnormal",
+        summary: "Moderately reduced"
+      };
+    }
+
+    return {
+      text: "Severely reduced LV longitudinal function",
+      className: "severe",
+      summary: "Severely reduced"
+    };
+  }
+
+
+  /* =========================
+     UPDATE
+     ========================= */
+
+  function updateCalculator() {
+
+    const tapse =
+      tapseInput.value === ""
+        ? null
+        : parseFloat(tapseInput.value);
+
+    const mapse =
+      mapseInput.value === ""
+        ? null
+        : parseFloat(mapseInput.value);
+
+
+    const tapseInterpretation = interpretTAPSE(tapse);
+    const mapseInterpretation = interpretMAPSE(mapse);
+
+
+    /* TAPSE result */
+
+    tapseResult.className =
+      `result-box ${tapseInterpretation.className}`;
+
+    tapseResult.textContent =
+      tapseInterpretation.text;
+
+
+    /* MAPSE result */
+
+    mapseResult.className =
+      `result-box ${mapseInterpretation.className}`;
+
+    mapseResult.textContent =
+      mapseInterpretation.text;
+
+
+    /* Combined interpretation */
+
+    if (tapse !== null && mapse !== null) {
+
+      combinedResult.classList.remove("hidden");
+
+      rvSummary.textContent =
+        tapseInterpretation.summary;
+
+      lvSummary.textContent =
+        mapseInterpretation.summary;
+
+
+      if (tapse < 17 && mapse < 10) {
+
+        shockInterpretation.textContent =
+          "Both TAPSE and MAPSE are reduced, suggesting biventricular longitudinal systolic dysfunction. In shock, integrate with VTI of the LVOT, RV size and function, ventricular interaction, filling pressures and clinical context.";
+
+      } else if (tapse < 17 && mapse >= 10) {
+
+        shockInterpretation.textContent =
+          "Reduced TAPSE with preserved MAPSE suggests predominant RV longitudinal systolic dysfunction. Consider increased RV afterload, pulmonary embolism, pulmonary hypertension, mechanical ventilation/PEEP or RV ischemia.";
+
+      } else if (tapse >= 17 && mapse < 10) {
+
+        shockInterpretation.textContent =
+          "Preserved TAPSE with reduced MAPSE suggests predominant LV longitudinal systolic dysfunction. Integrate with LV ejection fraction, LVOT VTI, GLS and loading conditions.";
+
+      } else {
+
+        shockInterpretation.textContent =
+          "Both TAPSE and MAPSE are within the reference range. This does not exclude shock or low cardiac output. Assess LVOT VTI, preload, afterload, ventricular interaction and other causes of hemodynamic instability.";
+
+      }
 
     } else {
 
-      mapseResult.className = "cct-result abnormal";
+      combinedResult.classList.add("hidden");
 
-      mapseResult.innerHTML =
-        "<strong>&lt;8 mm:</strong> excursión longitudinal " +
-        "marcadamente reducida. Correlacionar con otros parámetros " +
-        "de función sistólica del VI.";
     }
 
   }
 
 
-  /* -------------------------
-     Events
-     ------------------------- */
+  /* =========================
+     EVENTS
+     ========================= */
 
-  tapseInput.addEventListener("input", interpretTAPSE);
-  mapseInput.addEventListener("input", interpretMAPSE);
+  tapseInput.addEventListener("input", updateCalculator);
+  mapseInput.addEventListener("input", updateCalculator);
+
+
+  /* =========================
+     INITIAL STATE
+     ========================= */
+
+  updateCalculator();
 
 });
+
+
 
 
 /* =========================================
