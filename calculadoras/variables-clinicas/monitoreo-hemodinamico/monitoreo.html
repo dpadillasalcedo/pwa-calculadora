@@ -364,247 +364,189 @@
 
   <div class="cct-grid">
 
+<section class="echo-calculator" id="tapse-mapse-calculator">
+  <div class="calculator-header">
+    <h2>TAPSE & MAPSE Calculator</h2>
+    <p>
+      Assessment of longitudinal right and left ventricular systolic function.
+    </p>
+  </div>
+
+  <div class="reference-box">
+    <div class="reference-title">Normal values</div>
+
+    <div class="reference-grid">
+      <div class="reference-item">
+        <span class="reference-label">TAPSE</span>
+        <strong>≥ 17 mm</strong>
+        <small>Normal RV longitudinal function</small>
+      </div>
+
+      <div class="reference-item">
+        <span class="reference-label">MAPSE</span>
+        <strong>≥ 10 mm</strong>
+        <small>Normal LV longitudinal function</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="calculator-grid">
+
     <!-- TAPSE -->
-    <article class="cct-card">
-      <div class="cct-card-header">
+    <div class="parameter-card">
+      <div class="parameter-header">
         <div>
-          <span class="cct-label">Right ventricle</span>
-          <h2>TAPSE</h2>
+          <span class="parameter-name">TAPSE</span>
+          <span class="parameter-description">
+            Tricuspid Annular Plane Systolic Excursion
+          </span>
         </div>
-        <span class="cct-badge rv">VD</span>
+        <span class="ventricle-badge rv">RV</span>
       </div>
 
-      <p class="cct-definition">
-        <strong>Tricuspid Annular Plane Systolic Excursion</strong>.
-        Mide el desplazamiento longitudinal del anillo tricuspídeo
-        durante la sístole.
-      </p>
+      <label for="tapseValue">TAPSE</label>
 
-      <div class="cct-measurement">
-        <label for="tapseValue">TAPSE</label>
-        <div class="cct-input-wrapper">
-          <input
-            type="number"
-            id="tapseValue"
-            min="0"
-            max="40"
-            step="0.1"
-            placeholder="Ej. 18"
-            inputmode="decimal"
-          >
-          <span>mm</span>
-        </div>
+      <div class="input-wrapper">
+        <input
+          type="number"
+          id="tapseValue"
+          min="0"
+          max="50"
+          step="0.1"
+          placeholder="e.g. 18"
+          inputmode="decimal"
+        />
+        <span>mm</span>
       </div>
 
-      <div id="tapseResult" class="cct-result neutral">
-        Introduzca un valor para interpretar.
+      <div class="normal-range">
+        Normal: <strong>≥ 17 mm</strong>
       </div>
 
-      <div class="cct-reference">
-        <strong>Referencia:</strong>
-        TAPSE ≥17 mm generalmente se considera normal.
+      <div id="tapseResult" class="result-box neutral">
+        Enter TAPSE value
       </div>
-    </article>
+    </div>
 
 
     <!-- MAPSE -->
-    <article class="cct-card">
-      <div class="cct-card-header">
+    <div class="parameter-card">
+      <div class="parameter-header">
         <div>
-          <span class="cct-label">Left ventricle</span>
-          <h2>MAPSE</h2>
+          <span class="parameter-name">MAPSE</span>
+          <span class="parameter-description">
+            Mitral Annular Plane Systolic Excursion
+          </span>
         </div>
-        <span class="cct-badge lv">VI</span>
+        <span class="ventricle-badge lv">LV</span>
       </div>
 
-      <p class="cct-definition">
-        <strong>Mitral Annular Plane Systolic Excursion</strong>.
-        Mide el desplazamiento longitudinal del anillo mitral
-        durante la sístole.
-      </p>
+      <label for="mapseValue">MAPSE</label>
 
-      <div class="cct-measurement">
-        <label for="mapseValue">MAPSE</label>
-        <div class="cct-input-wrapper">
-          <input
-            type="number"
-            id="mapseValue"
-            min="0"
-            max="30"
-            step="0.1"
-            placeholder="Ej. 12"
-            inputmode="decimal"
-          >
-          <span>mm</span>
-        </div>
+      <div class="input-wrapper">
+        <input
+          type="number"
+          id="mapseValue"
+          min="0"
+          max="40"
+          step="0.1"
+          placeholder="e.g. 12"
+          inputmode="decimal"
+        />
+        <span>mm</span>
       </div>
 
-      <div id="mapseResult" class="cct-result neutral">
-        Introduzca un valor para interpretar.
+      <div class="normal-range">
+        Normal: <strong>≥ 10 mm</strong>
       </div>
 
-      <div class="cct-reference">
-        <strong>Referencia:</strong>
-        MAPSE debe interpretarse junto con otros parámetros de función
-        sistólica del VI.
+      <div id="mapseResult" class="result-box neutral">
+        Enter MAPSE value
       </div>
-    </article>
+    </div>
 
   </div>
 
 
-  <!-- Técnica -->
-  <article class="cct-section-card">
+  <!-- Combined interpretation -->
+  <div id="combinedResult" class="combined-result hidden">
 
-    <h2>¿Cómo se mide?</h2>
+    <div class="combined-title">
+      Integrated interpretation
+    </div>
 
-    <div class="technique-grid">
+    <div class="ventricular-summary">
 
-      <div>
-        <h3>TAPSE</h3>
-        <ol>
-          <li>Obtener una vista apical de cuatro cámaras.</li>
-          <li>Utilizar modo M.</li>
-          <li>Colocar el cursor sobre el anillo tricuspídeo lateral.</li>
-          <li>Alinear el cursor con el movimiento longitudinal del anillo.</li>
-          <li>Medir la distancia entre la posición diastólica y la posición sistólica máxima.</li>
-        </ol>
+      <div class="ventricle-result">
+        <span>Right ventricle</span>
+        <strong id="rvSummary">—</strong>
       </div>
 
-      <div>
-        <h3>MAPSE</h3>
-        <ol>
-          <li>Obtener una vista apical de cuatro cámaras.</li>
-          <li>Utilizar modo M o Doppler tisular según el método utilizado.</li>
-          <li>Colocar el cursor sobre el anillo mitral.</li>
-          <li>Alinear el cursor con el desplazamiento longitudinal.</li>
-          <li>Medir la excursión sistólica del anillo.</li>
-        </ol>
+      <div class="ventricle-result">
+        <span>Left ventricle</span>
+        <strong id="lvSummary">—</strong>
       </div>
 
     </div>
 
-  </article>
+    <div id="shockInterpretation" class="clinical-note">
+      TAPSE and MAPSE should not be interpreted in isolation.
+    </div>
+
+  </div>
 
 
-  <!-- Interpretación -->
-  <article class="cct-section-card">
+  <!-- Clinical reference -->
+  <div class="clinical-reference">
 
-    <h2>Interpretación clínica</h2>
+    <h3>Clinical interpretation</h3>
 
     <div class="interpretation-table">
 
-      <div class="table-row table-head">
-        <div>Parámetro</div>
-        <div>Valor</div>
-        <div>Interpretación</div>
+      <div class="table-row table-header">
+        <span>Parameter</span>
+        <span>Value</span>
+        <span>Interpretation</span>
       </div>
 
       <div class="table-row">
-        <div><strong>TAPSE</strong></div>
-        <div>≥17 mm</div>
-        <div>Función longitudinal del VD generalmente conservada</div>
+        <span>TAPSE</span>
+        <span>≥ 17 mm</span>
+        <span>Normal RV longitudinal systolic function</span>
       </div>
 
       <div class="table-row">
-        <div><strong>TAPSE</strong></div>
-        <div>&lt;17 mm</div>
-        <div>Disfunción sistólica del VD sugerida</div>
+        <span>TAPSE</span>
+        <span>&lt; 17 mm</span>
+        <span>Suggests RV systolic dysfunction</span>
       </div>
 
       <div class="table-row">
-        <div><strong>MAPSE</strong></div>
-        <div>Interpretación integrada</div>
-        <div>Debe valorarse junto con FEVI, S′, GLS y otros parámetros</div>
+        <span>MAPSE</span>
+        <span>≥ 10 mm</span>
+        <span>Normal LV longitudinal systolic function</span>
+      </div>
+
+      <div class="table-row">
+        <span>MAPSE</span>
+        <span>&lt; 10 mm</span>
+        <span>Suggests LV longitudinal systolic dysfunction</span>
       </div>
 
     </div>
 
-  </article>
-
-
-  <!-- Limitaciones -->
-  <article class="cct-section-card warning-card">
-
-    <h2>Limitaciones importantes</h2>
-
-    <ul>
-      <li>TAPSE representa principalmente la función longitudinal del VD y no toda la función ventricular.</li>
-      <li>Es dependiente del ángulo y de la correcta alineación del M-mode.</li>
-      <li>Puede verse afectado por la traslación cardíaca y por las condiciones de carga.</li>
-      <li>La función regional puede generar discordancia entre TAPSE y la función global del VD.</li>
-      <li>MAPSE tampoco debe utilizarse como sustituto aislado de la FEVI.</li>
-      <li>En pacientes críticos, la interpretación debe integrar precarga, poscarga, función ventricular y contexto hemodinámico.</li>
-    </ul>
-
-  </article>
-
-
-  <!-- Integración -->
-  <article class="cct-section-card">
-
-    <h2>Evaluación integrada</h2>
-
-    <div class="integration-grid">
-
-      <div class="integration-box">
-        <h3>Ventrículo derecho</h3>
-        <p>
-          TAPSE + S′ tricuspídea + FAC + tamaño del VD +
-          función del VD + presión pulmonar.
-        </p>
-      </div>
-
-      <div class="integration-box">
-        <h3>Ventrículo izquierdo</h3>
-        <p>
-          FEVI + MAPSE + S′ mitral + GLS +
-          VTI del TSVI + volumen sistólico.
-        </p>
-      </div>
-
+    <div class="warning-box">
+      <strong>Important:</strong>
+      TAPSE and MAPSE are load-dependent measures and assess predominantly
+      longitudinal annular motion. They should be integrated with other
+      echocardiographic and hemodynamic parameters, particularly in shock.
     </div>
 
-  </article>
-
-
-  <!-- Nota clínica -->
-  <div class="cct-note">
-    <strong>Nota:</strong>
-    TAPSE y MAPSE son parámetros ecocardiográficos de función longitudinal.
-    Un valor aislado no debe utilizarse para establecer por sí solo la función
-    ventricular global ni para tomar decisiones terapéuticas.
   </div>
 
-
-  <!-- Referencias -->
-  <article class="cct-references">
-
-    <h2>Referencias</h2>
-
-    <ol>
-      <li>
-        Lang RM, et al. Recommendations for Cardiac Chamber Quantification
-        by Echocardiography in Adults. ASE/EACVI.
-      </li>
-
-      <li>
-        Galderisi M, et al. Standardization of adult transthoracic
-        echocardiography reporting. EACVI.
-      </li>
-
-      <li>
-        Rudski LG, et al. Echocardiographic Assessment of the Right Heart
-        in Adults and Special Considerations in Pulmonary Hypertension.
-        ASE, 2025.
-      </li>
-    </ol>
-
-  </article>
-
- </section>
-
-  <hr />
+</section>
+    
+ 
 
   <!-- =========================
        OXIGENACIÓN
