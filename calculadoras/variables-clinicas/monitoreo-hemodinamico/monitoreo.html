@@ -302,6 +302,24 @@
   </p>
 </section>
 
+<section class="tool-index" aria-labelledby="tool-index-title">
+  <div class="tool-index__header">
+    <span class="eyebrow">Acceso rápido</span>
+    <h2 id="tool-index-title">Herramientas hemodinámicas</h2>
+    <p>Seleccione una calculadora para ir directamente al módulo clínico.</p>
+  </div>
+
+  <nav class="tool-index__grid" aria-label="Índice de calculadoras hemodinámicas">
+    <a href="#eco">Ecocardiografía <span>GC por VTI · FA</span></a>
+    <a href="#tapse-mapse-tool">TAPSE & MAPSE <span>Función longitudinal VD/VI</span></a>
+    <a href="#oxi">Oxigenación <span>DO₂ · VO₂ · ERO₂</span></a>
+    <a href="#rvs">RVS <span>Resistencia vascular sistémica</span></a>
+    <a href="#eadyn">Eadyn <span>Acoplamiento presión–volumen</span></a>
+    <a href="#acoplamiento-va">VAC <span>Ea · Ees · Ea/Ees</span></a>
+    <a href="#swan-ganz">Swan-Ganz <span>Hemodinámica avanzada</span></a>
+  </nav>
+</section>
+
   <!-- =========================
        ECOCARDIOGRAFÍA
   ========================== -->
@@ -313,15 +331,15 @@
 
       <div class="grid-3">
         <div>
-          <label>Diámetro TSVI (cm)</label>
+          <label for="eco_dtsvi">Diámetro TSVI (cm)</label>
           <input type="number" id="eco_dtsvi" step="0.1">
         </div>
         <div>
-          <label>VTI TSVI (cm)</label>
+          <label for="eco_vti">VTI TSVI (cm)</label>
           <input type="number" id="eco_vti" step="0.1">
         </div>
         <div>
-          <label>Frecuencia cardíaca (lpm)</label>
+          <label for="eco_fc">Frecuencia cardíaca (lpm)</label>
           <input type="number" id="eco_fc">
         </div>
       </div>
@@ -331,35 +349,33 @@
       <div id="interpretacionGCEco" class="note" aria-live="polite"></div>
     </fieldset>
 
-  </div>
 
     <fieldset>
-      <legend>CAMBIO FRACCIONAL DE ÁREA DEL VENTRICULO IZQUIERDO</legend>
+      <legend>Fracción de acortamiento del ventrículo izquierdo</legend>
 
       <div class="grid-2">
         <div>
-          <label>DDVI (cm)</label>
+          <label for="fa_ddvi">DDVI (cm)</label>
           <input type="number" id="fa_ddvi" step="0.1">
         </div>
         <div>
-          <label>DSVI (cm)</label>
+          <label for="fa_dsvi">DSVI (cm)</label>
           <input type="number" id="fa_dsvi" step="0.1">
         </div>
       </div>
 
-      <button type="button" onclick="calcular()">Calcular FA</button>
+      <button type="button" onclick="calcularFA()">Calcular FA</button>
       <div id="resultadoFA" class="result" aria-live="polite"></div>
       <div id="interpretacionFA" class="note" aria-live="polite"></div>
     </fieldset>
   </section>
 
-</div>
 
  <section class="cct-echo-tool" id="tapse-mapse-tool">
 
   <div class="cct-header">
-    <span class="cct-kicker">Echocardiography</span>
-    <h1>TAPSE & MAPSE</h1>
+    <span class="cct-kicker">Ecocardiografía</span>
+    <h2>TAPSE & MAPSE</h2>
     <p>
       Evaluación ecocardiográfica de la función sistólica longitudinal
       del ventrículo derecho e izquierdo.
@@ -370,26 +386,26 @@
 
 <section class="echo-calculator" id="tapse-mapse-calculator">
   <div class="calculator-header">
-    <h2>TAPSE & MAPSE Calculator</h2>
+    <h3>TAPSE & MAPSE</h3>
     <p>
-      Assessment of longitudinal right and left ventricular systolic function.
+      Evaluación de la función sistólica longitudinal de los ventrículos derecho e izquierdo.
     </p>
   </div>
 
   <div class="reference-box">
-    <div class="reference-title">Normal values</div>
+    <div class="reference-title">Valores de referencia</div>
 
     <div class="reference-grid">
       <div class="reference-item">
         <span class="reference-label">TAPSE</span>
         <strong>≥ 17 mm</strong>
-        <small>Normal RV longitudinal function</small>
+        <small>Función longitudinal del VD conservada</small>
       </div>
 
       <div class="reference-item">
         <span class="reference-label">MAPSE</span>
         <strong>≥ 10 mm</strong>
-        <small>Normal LV longitudinal function</small>
+        <small>Función longitudinal del VI conservada</small>
       </div>
     </div>
   </div>
@@ -417,7 +433,7 @@
           min="0"
           max="50"
           step="0.1"
-          placeholder="e.g. 18"
+          placeholder="Ej. 18"
           inputmode="decimal"
         />
         <span>mm</span>
@@ -427,8 +443,8 @@
         Normal: <strong>≥ 17 mm</strong>
       </div>
 
-      <div id="tapseResult" class="result-box neutral">
-        Enter TAPSE value
+      <div id="tapseResult" class="result-box neutral" aria-live="polite">
+        Ingrese el valor de TAPSE
       </div>
     </div>
 
@@ -454,7 +470,7 @@
           min="0"
           max="40"
           step="0.1"
-          placeholder="e.g. 12"
+          placeholder="Ej. 12"
           inputmode="decimal"
         />
         <span>mm</span>
@@ -464,8 +480,8 @@
         Normal: <strong>≥ 10 mm</strong>
       </div>
 
-      <div id="mapseResult" class="result-box neutral">
-        Enter MAPSE value
+      <div id="mapseResult" class="result-box neutral" aria-live="polite">
+        Ingrese el valor de MAPSE
       </div>
     </div>
 
@@ -473,36 +489,35 @@
 
 
   <!-- Combined interpretation -->
-  <div id="combinedResult" class="combined-result hidden">
+  <div id="combinedResult" class="combined-result hidden" aria-live="polite">
 
     <div class="combined-title">
-      Integrated interpretation
+      Interpretación integrada
     </div>
 
     <div class="ventricular-summary">
 
       <div class="ventricle-result">
-        <span>Right ventricle</span>
+        <span>Ventrículo derecho</span>
         <strong id="rvSummary">—</strong>
       </div>
 
       <div class="ventricle-result">
-        <span>Left ventricle</span>
+        <span>Ventrículo izquierdo</span>
         <strong id="lvSummary">—</strong>
       </div>
 
     </div>
 
-    <div id="shockInterpretation" class="clinical-note">
-      TAPSE and MAPSE should not be interpreted in isolation.
+    <div id="shockInterpretation" class="clinical-note" aria-live="polite">
+      TAPSE y MAPSE deben interpretarse dentro del contexto clínico y ecocardiográfico.
     </div>
-
-
-  
+  </div>
 
 </section>
 
   </div>
+</section>
     
  
 
@@ -510,26 +525,26 @@
        OXIGENACIÓN
   ========================== -->
   <section id="oxi" class="panel">
-    <h2>🩸 Oxigenación y consumo de oxigeno</h2>
+    <h2>🩸 Oxigenación y consumo de oxígeno</h2>
 
     <fieldset>
-      <label>GC (L/min)</label>
+      <label for="oxi_gc">GC (L/min)</label>
       <input type="number" id="oxi_gc" step="0.1">
-      <label>Hemoglobina (g/dL)</label>
+      <label for="oxi_hb">Hemoglobina (g/dL)</label>
       <input type="number" id="oxi_hb" step="0.1">
     </fieldset>
 
     <fieldset>
-      <label>SaO₂ (%)</label>
+      <label for="oxi_sao2">SaO₂ (%)</label>
       <input type="number" id="oxi_sao2">
-      <label>PaO₂ (mmHg)</label>
+      <label for="oxi_pao2">PaO₂ (mmHg)</label>
       <input type="number" id="oxi_pao2">
     </fieldset>
 
     <fieldset>
-      <label>SvO₂ (%)</label>
+      <label for="oxi_svo2">SvO₂ (%)</label>
       <input type="number" id="oxi_svo2">
-      <label>PvO₂ (mmHg)</label>
+      <label for="oxi_pvo2">PvO₂ (mmHg)</label>
       <input type="number" id="oxi_pvo2">
     </fieldset>
 
@@ -539,7 +554,6 @@
 
   <hr />
 
-  </div>
 
   <!-- =========================
        RVS
@@ -547,13 +561,13 @@
   <section id="rvs" class="panel">
     <h2>🫀 Presiones y resistencia vascular sistémica</h2>
 
-    <label>TAM (mmHg)</label>
+    <label for="rvs_tam">TAM (mmHg)</label>
     <input type="number" id="rvs_tam">
 
-    <label>PVC (mmHg)</label>
+    <label for="rvs_pvc">PVC (mmHg)</label>
     <input type="number" id="rvs_pvc">
 
-    <label>GC (L/min)</label>
+    <label for="oxi_gc">GC (L/min)</label>
     <input type="number" id="rvs_gc">
 
     <button type="button" onclick="calcularRVS()">Calcular RVS</button>
@@ -569,22 +583,22 @@
   <div class="grid-2">
 
     <div>
-      <label>PPV (%)</label>
+      <label for="ppv">PPV (%)</label>
       <input type="number" id="ppv" placeholder="12">
     </div>
 
     <div>
-      <label>SVV (%)</label>
+      <label for="svv">SVV (%)</label>
       <input type="number" id="svv" placeholder="10">
     </div>
 
     <div>
-      <label>PAM (mmHg)</label>
+      <label for="map">PAM (mmHg)</label>
       <input type="number" id="map" placeholder="65">
     </div>
 
     <div>
-      <label>Dosis vasopresor (mcg/kg/min)</label>
+      <label for="vaso">Dosis vasopresor (mcg/kg/min)</label>
       <input
         type="number"
         step="0.01"
@@ -604,7 +618,6 @@
 
   </section>
 
-  </div>
 
 
  <!-- =========================================
@@ -1034,14 +1047,13 @@
 </div>
 
 
-  </div>
 
 </section>
 
 
- <section class="panel swan-panel">
+ <section id="swan-ganz" class="panel swan-panel">
 
-  <h1>Calculadora Hemodinámica Swan-Ganz</h1>
+  <h2>Calculadora hemodinámica Swan-Ganz</h2>
 
   <table class="inputs">
     <tr>
@@ -1395,7 +1407,7 @@
 <!-- =========================
      FOOTER
 ========================== -->
-<footer>
+<footer class="site-footer">
 <nav class="footer-nav" aria-label="Footer">
   <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
   <span aria-hidden="true">·</span>
