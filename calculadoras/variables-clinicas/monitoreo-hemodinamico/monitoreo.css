@@ -453,342 +453,360 @@ button:disabled {
   margin-top: 16px;
 }
 
-/* =========================================================
-   TAPSE / MAPSE — ECHO TOOL
-   ========================================================= */
 
-.cct-echo-tool {
-  --cct-primary: var(--accent);
-  --cct-primary-dark: var(--accent-hover);
-  --cct-text: var(--text);
-  --cct-muted: var(--muted);
-  --cct-border: var(--border);
-  --cct-bg: var(--surface-soft);
-  --cct-card: var(--surface);
-  --cct-success: var(--success);
-  --cct-warning: var(--warning);
-  --cct-danger: var(--danger);
 
-  width: min(calc(100% - 32px), var(--container));
+/* =========================================
+   TAPSE / MAPSE CALCULATOR
+   CriticalCareTools
+   ========================================= */
+
+.echo-calculator {
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 32px 0 64px;
-  color: var(--cct-text);
-  line-height: 1.6;
+  font-family: inherit;
+  color: #1f2937;
 }
 
-.cct-header {
-  margin-bottom: 28px;
-}
-
-.cct-kicker {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  margin-bottom: 8px;
-  padding: 4px 10px;
-  color: var(--cct-primary-dark);
-  background: var(--accent-soft);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.cct-header h1 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: -0.03em;
-}
-
-.cct-header p {
-  max-width: 760px;
-  margin: 12px 0 0;
-  color: var(--cct-muted);
-}
-
-/* Cards */
-
-.cct-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+.calculator-header {
   margin-bottom: 20px;
 }
 
-.cct-card,
-.cct-section-card {
-  min-width: 0;
-  padding: clamp(18px, 3vw, 26px);
-  background: var(--cct-card);
-  border: 1px solid var(--cct-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
-
-.cct-card {
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    border-color var(--transition);
-}
-
-.cct-card:hover {
-  border-color: #d5deea;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.cct-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-
-.cct-label {
-  display: block;
-  color: var(--cct-muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.cct-card h2 {
-  margin: 3px 0 0;
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-}
-
-.cct-badge {
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-weight: 800;
-}
-
-.cct-badge.rv {
-  background: #eff6ff;
-  color: #1d4ed8;
-}
-
-.cct-badge.lv {
-  background: #f5f3ff;
-  color: #6d28d9;
-}
-
-.cct-definition {
-  margin: 0 0 22px;
-  color: var(--text-soft);
-}
-
-/* Measurement */
-
-.cct-measurement {
-  margin-top: 18px;
-}
-
-.cct-measurement label {
-  margin: 0 0 7px;
-}
-
-.cct-input-wrapper {
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-  overflow: hidden;
-  background: var(--surface);
-  border: 2px solid var(--cct-border);
-  border-radius: var(--radius);
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.cct-input-wrapper:focus-within {
-  border-color: var(--cct-primary);
-  box-shadow: var(--focus-ring);
-}
-
-.cct-input-wrapper input {
-  flex: 1;
-  min-width: 0;
-  min-height: 48px;
-  padding: 11px 14px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  box-shadow: none;
-  font-size: 1.1rem;
-}
-
-.cct-input-wrapper span {
-  display: flex;
-  align-items: center;
-  padding: 0 14px;
-  color: var(--cct-muted);
-  border-left: 1px solid var(--cct-border);
-  background: var(--surface-soft);
-  font-size: 0.82rem;
+.calculator-header h2 {
+  margin: 0 0 8px;
+  font-size: 1.8rem;
   font-weight: 700;
-  white-space: nowrap;
 }
 
-/* Echo result */
-
-.cct-result.neutral {
-  background: var(--surface-alt);
-  color: var(--text-soft);
-}
-
-.cct-result.normal {
-  background: var(--success-bg);
-  color: var(--cct-success);
-}
-
-.cct-result.warning {
-  background: var(--warning-bg);
-  color: var(--cct-warning);
-}
-
-.cct-result.abnormal {
-  background: var(--danger-bg);
-  color: var(--cct-danger);
-}
-
-.cct-reference {
-  margin-top: 14px;
-  color: var(--cct-muted);
-  font-size: 0.86rem;
-}
-
-/* Sections */
-
-.cct-section-card {
-  margin-top: 20px;
-}
-
-.cct-section-card h2,
-.cct-references h2 {
-  margin: 0 0 18px;
-  font-size: 1.35rem;
-}
-
-/* Technique */
-
-.technique-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px;
-}
-
-.technique-grid h3 {
-  margin: 0 0 10px;
-}
-
-.technique-grid ol {
+.calculator-header p {
   margin: 0;
-  padding-left: 22px;
+  color: #64748b;
+  line-height: 1.5;
 }
 
-.technique-grid li {
+
+/* =========================
+   NORMAL VALUES
+   ========================= */
+
+.reference-box {
+  border: 1px solid #dbe3ec;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+  background: #f8fafc;
+}
+
+.reference-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  color: #475569;
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.reference-item {
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.reference-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.reference-item strong {
+  display: block;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.reference-item small {
+  color: #64748b;
+}
+
+
+/* =========================
+   CALCULATOR CARDS
+   ========================= */
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.parameter-card {
+  border: 1px solid #dbe3ec;
+  border-radius: 14px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.parameter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.parameter-name {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.parameter-description {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.ventricle-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 6px;
+}
+
+.ventricle-badge.rv {
+  background: #eef6ff;
+  color: #2563eb;
+}
+
+.ventricle-badge.lv {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+
+/* =========================
+   INPUT
+   ========================= */
+
+.parameter-card label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
   margin-bottom: 7px;
 }
 
-/* Interpretation table */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid #dbe3ec;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  transition: border-color 0.2s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: #2563eb;
+}
+
+.input-wrapper input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 13px 14px;
+  font-size: 1.1rem;
+  background: transparent;
+}
+
+.input-wrapper span {
+  padding-right: 14px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.normal-range {
+  margin-top: 9px;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+
+/* =========================
+   RESULT
+   ========================= */
+
+.result-box {
+  margin-top: 16px;
+  padding: 13px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.result-box.neutral {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.result-box.normal {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.result-box.abnormal {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.result-box.severe {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+
+/* =========================
+   COMBINED RESULT
+   ========================= */
+
+.combined-result {
+  margin-top: 20px;
+  border: 1px solid #dbe3ec;
+  border-radius: 14px;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.combined-result.hidden {
+  display: none;
+}
+
+.combined-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.ventricular-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.ventricle-result {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  border-radius: 9px;
+}
+
+.ventricle-result span {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.ventricle-result strong {
+  font-size: 1rem;
+}
+
+.clinical-note {
+  margin-top: 15px;
+  padding: 14px;
+  border-left: 4px solid #64748b;
+  background: white;
+  border-radius: 6px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   REFERENCE TABLE
+   ========================= */
+
+.clinical-reference {
+  margin-top: 25px;
+}
+
+.clinical-reference h3 {
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+}
 
 .interpretation-table {
+  border: 1px solid #dbe3ec;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--cct-border);
-  border-radius: var(--radius);
 }
 
 .table-row {
   display: grid;
-  grid-template-columns: minmax(140px, 1fr) minmax(120px, 1fr) minmax(200px, 2fr);
-  border-bottom: 1px solid var(--cct-border);
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.88rem;
 }
 
 .table-row:last-child {
-  border-bottom: 0;
+  border-bottom: none;
 }
 
-.table-row > div {
-  padding: 12px 14px;
-}
-
-.table-head {
-  background: var(--cct-bg);
+.table-header {
   font-weight: 700;
+  background: #f8fafc;
 }
 
-/* Integration */
-
-.integration-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+.warning-box {
+  margin-top: 16px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #7c2d12;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
-.integration-box {
-  padding: 18px;
-  background: var(--cct-bg);
-  border: 1px solid var(--cct-border);
-  border-radius: var(--radius);
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .calculator-grid,
+  .reference-grid,
+  .ventricular-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .parameter-card {
+    padding: 16px;
+  }
+
+  .table-row {
+    grid-template-columns: 0.8fr 0.8fr 2fr;
+    font-size: 0.78rem;
+  }
+
 }
 
-.integration-box h3 {
-  margin: 0 0 7px;
-}
-
-.integration-box p {
-  margin: 0;
-  color: var(--cct-muted);
-}
-
-/* Warning / clinical note */
-
-.warning-card {
-  border-left: 4px solid #f59e0b;
-}
-
-.warning-card ul {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.warning-card li {
-  margin-bottom: 8px;
-}
-
-.cct-note {
-  margin-top: 20px;
-  padding: 16px 18px;
-  color: #1e3a8a;
-  background: var(--accent-soft);
-  border: 1px solid #bfdbfe;
-  border-radius: var(--radius);
-  font-size: 0.92rem;
-}
-
-/* References */
-
-.cct-references {
-  margin-top: 28px;
-  color: var(--cct-muted);
-  font-size: 0.85rem;
-}
-
-.cct-references ol {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.cct-references li {
-  margin-bottom: 8px;
-}
 
 /* =========================================================
    VAC — VENTRICULO-ARTERIAL COUPLING
