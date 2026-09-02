@@ -1381,3 +1381,385 @@ button:disabled {
     transform: none;
   }
 }
+
+
+/* =========================================================
+   PROFESSIONAL UI LAYER — 2026
+   Capa visual unificada para Critical Care Tools.
+   No modifica la lógica ni las fórmulas de las calculadoras.
+   ========================================================= */
+
+:root {
+  --cct-navy: #0b1220;
+  --cct-blue: #1d4ed8;
+  --cct-blue-soft: #eff6ff;
+  --cct-cyan-soft: #ecfeff;
+  --cct-slate-50: #f8fafc;
+  --cct-slate-100: #f1f5f9;
+  --cct-slate-200: #e2e8f0;
+  --cct-slate-500: #64748b;
+  --cct-slate-700: #334155;
+  --cct-slate-900: #0f172a;
+  --cct-card-shadow: 0 10px 30px rgba(15, 23, 42, 0.065);
+  --cct-card-shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.10);
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.045), transparent 34rem),
+    var(--surface-soft);
+}
+
+.container {
+  width: min(calc(100% - 32px), 1040px);
+  padding-top: 20px;
+}
+
+.app-header {
+  padding: clamp(24px, 5vw, 44px) 0 8px;
+}
+
+.app-header h1 {
+  max-width: 900px;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.08;
+}
+
+.app-header .subtitle {
+  max-width: 860px;
+  margin-bottom: 0;
+  font-size: clamp(1rem, 2vw, 1.08rem);
+}
+
+.breadcrumb,
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-switcher {
+  justify-content: flex-end;
+}
+
+.language-switcher a,
+.language-switcher .active {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.language-switcher .active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.panel,
+.swan-panel,
+.cct-echo-tool {
+  border-color: rgba(203, 213, 225, 0.8);
+  box-shadow: var(--cct-card-shadow);
+}
+
+.panel,
+.swan-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before,
+.swan-panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #38bdf8);
+  content: "";
+  opacity: 0.85;
+}
+
+.panel h2,
+.swan-panel h2,
+.cct-echo-tool h2 {
+  letter-spacing: -0.015em;
+}
+
+.seo-panel {
+  box-shadow: var(--shadow-xs);
+}
+
+.tool-index {
+  margin: 24px 0;
+  padding: clamp(20px, 4vw, 28px);
+  background: linear-gradient(135deg, #0f172a 0%, #172554 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  color: #fff;
+}
+
+.tool-index__header {
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.tool-index .eyebrow {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #93c5fd;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.tool-index h2 {
+  margin-bottom: 7px;
+  color: #fff;
+}
+
+.tool-index p {
+  margin-bottom: 0;
+  color: #cbd5e1;
+}
+
+.tool-index__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tool-index__grid a {
+  display: flex;
+  min-height: 72px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 13px 15px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.tool-index__grid a span {
+  margin-top: 2px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.tool-index__grid a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.105);
+  border-color: rgba(147, 197, 253, 0.45);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+fieldset {
+  background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+}
+
+legend {
+  font-size: 0.82rem;
+  letter-spacing: 0.025em;
+  text-transform: none;
+}
+
+label {
+  color: var(--cct-slate-700);
+}
+
+input,
+select,
+textarea {
+  background: #fff;
+  border-color: #cbd5e1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.11);
+}
+
+button {
+  min-height: 46px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #172033, #26364d);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+}
+
+.result,
+.result-box,
+.combined-result,
+.interpretation,
+.clinical-note {
+  border: 1px solid var(--border);
+}
+
+.result:empty,
+.note:empty {
+  display: none;
+}
+
+.cct-echo-tool {
+  width: 100%;
+  margin: 24px 0;
+  padding: clamp(20px, 4vw, 28px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.cct-header {
+  margin-bottom: 20px;
+}
+
+.cct-header h2 {
+  margin-bottom: 7px;
+}
+
+.cct-kicker {
+  display: inline-flex;
+  margin-bottom: 7px;
+  padding: 4px 8px;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.echo-calculator {
+  max-width: none;
+}
+
+.calculator-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+}
+
+.reference-item,
+.parameter-card,
+.ventricle-result {
+  box-shadow: none;
+}
+
+.parameter-card {
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.parameter-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.inputs,
+.results {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.inputs tbody,
+.results tbody,
+.results thead {
+  min-width: 760px;
+}
+
+.inputs td:first-child,
+.inputs td:nth-child(3) {
+  color: var(--cct-slate-700);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.results th {
+  white-space: nowrap;
+}
+
+hr {
+  margin: 28px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer {
+  width: min(calc(100% - 32px), 1040px);
+  margin: 0 auto;
+  padding: 10px 0 34px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+.site-footer p {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+@media (max-width: 760px) {
+  .tool-index__grid,
+  .calculator-grid,
+  .reference-grid,
+  .ventricular-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .language-switcher {
+    justify-content: flex-start;
+  }
+
+  .app-header {
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .container,
+  .site-footer {
+    width: min(calc(100% - 20px), 1040px);
+  }
+
+  .tool-index,
+  .panel,
+  .swan-panel,
+  .cct-echo-tool {
+    border-radius: 16px;
+  }
+
+  .tool-index__grid a {
+    min-height: 64px;
+  }
+}
+
