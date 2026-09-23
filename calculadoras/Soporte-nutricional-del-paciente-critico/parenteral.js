@@ -25,7 +25,6 @@
     }
 
     const numero = Number(texto);
-
     if (
       !Number.isFinite(numero) ||
       numero < 0 ||
@@ -53,6 +52,7 @@
     const lipidosKcalMl = leer("np-lipidos-kcal");
     const kcalGlucosa = leer("np-glucosa-kcal");
 
+    const lipidosExternosG = leer("np-lipidos-externos", false);
     const otrosKcal = leer("np-otros-kcal", false);
     const aditivosMl = leer("np-aditivos-ml", false);
 
@@ -104,6 +104,18 @@
     const npKcal = aaKcal + glucosaKcal + lipidosKcal;
     const nitrogeno = aaG / 6.25;
     const npNoProteicas = glucosaKcal + lipidosKcal;
+    const lipidosTotalesKg =
+      (lipidosG + lipidosExternosG) / kg;
+
+    const avisoLipidos =
+      lipidosTotalesKg > 1.5
+        ? `<p class="np-warning"><strong>Revisar lípidos:</strong> ${formato(lipidosTotalesKg, 2)} g/kg/día entre NP y otras fuentes IV supera el máximo orientativo de 1,5 g/kg/día de ESPEN.</p>`
+        : "";
+
+    const avisoProteina =
+      proteinaKg > 1.3
+        ? '<p class="np-warning"><strong>Revisar aminoácidos:</strong> el aporte supera 1,3 g/kg/día. Puede estar indicado en situaciones específicas, por ejemplo TRR; individualizar según fase clínica y función renal.</p>'
+        : "";
 
     const avisoGir =
       gir > 5
@@ -118,47 +130,38 @@
           <span>Aminoácidos</span>
           <strong>${formato(aaG)} g · ${formato(aaMl, 0)} mL</strong>
         </div>
-
         <div>
           <span>Glucosa</span>
           <strong>${formato(glucosaG)} g · ${formato(glucosaMl, 0)} mL</strong>
         </div>
-
         <div>
           <span>Lípidos</span>
           <strong>${formato(lipidosG)} g · ${formato(lipidosMl, 0)} mL</strong>
         </div>
-
         <div>
           <span>Agua para completar volumen*</span>
           <strong>${formato(Math.max(0, aguaMl), 0)} mL</strong>
         </div>
-
         <div>
           <span>Volumen total / velocidad</span>
           <strong>${formato(volumen, 0)} mL · ${formato(volumen / horas)} mL/h</strong>
         </div>
-
         <div>
           <span>Glucosa / velocidad</span>
           <strong>${formato(glucosaG)} g/día · ${formato(gir, 2)} mg/kg/min</strong>
         </div>
-
         <div>
           <span>Energía de NP</span>
           <strong>${formato(npKcal, 0)} kcal/día · ${formato(npKcal / kg)} kcal/kg</strong>
         </div>
-
         <div>
           <span>Energía externa / total</span>
           <strong>${formato(otrosKcal, 0)} / ${formato(npKcal + otrosKcal, 0)} kcal/día</strong>
         </div>
-
         <div>
           <span>Proteína / nitrógeno</span>
           <strong>${formato(proteinaKg, 2)} g/kg · ${formato(nitrogeno)} g N</strong>
         </div>
-
         <div>
           <span>kcal no proteicas / g N</span>
           <strong>${formato(npNoProteicas / nitrogeno, 0)} : 1</strong>
@@ -166,13 +169,18 @@
       </div>
 
       ${avisoGir}
+      ${avisoLipidos}
+      ${avisoProteina}
 
       <p class="np-footnote">
         *Volumen geométrico aproximado: no contempla contracción de mezcla
         ni desplazamientos adicionales. Los ${formato(aditivosMl, 0)} mL
-        de aditivos declarados se descontaron del agua. No valida
-        osmolaridad, compatibilidad, estabilidad, electrolitos ni vía
-        de administración.
+        de aditivos declarados se descontaron del agua. Los lípidos IV
+        adicionales (${formato(lipidosExternosG)} g/día) se suman para
+        la alerta de lípidos, pero no se descuentan automáticamente de
+        la meta de NP; su energía debe consignarse en “energía externa”.
+        No valida osmolaridad, compatibilidad, estabilidad, electrolitos
+        ni vía de administración.
       </p>
     `;
 
