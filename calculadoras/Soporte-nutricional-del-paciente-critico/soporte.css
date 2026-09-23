@@ -588,3 +588,15 @@ button:focus-visible { outline: 3px solid #067e7d; outline-offset: 3px; }
 @media(max-width:700px) { .np-fields,.np-results-grid { grid-template-columns: 1fr; } .np-actions { flex-direction: column; } }
 @media(max-width:650px) { .wrap { width: min(calc(100% - 32px),var(--container)); } .site-top .topbar { width: min(calc(100% - 32px),1160px); min-height: 72px; flex-wrap: wrap; gap: 13px; padding-block: 14px; } .top-nav { gap: 15px; flex-wrap: wrap; font-size: .8rem; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Guía de dosis para formulación parenteral */
+.np-guide { margin: 19px 0 24px; border: 1px solid #bde4df; border-radius: 11px; background: #f5fbfa; }
+.np-guide summary { padding: 14px 17px; color: #056868; font-weight: 750; cursor: pointer; }
+.np-guide summary:focus-visible { outline: 3px solid #067e7d; outline-offset: 3px; }
+.np-table-wrap { max-width: 100%; overflow-x: auto; padding: 0 15px; }
+.np-reference-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .89rem; }
+.np-reference-table th,.np-reference-table td { padding: 11px 12px; border-bottom: 1px solid #d8e5e8; text-align: left; vertical-align: top; }
+.np-reference-table th { background: #e5f5f3; color: #102b40; }
+.np-reference-table td:first-child { font-weight: 700; }
+.np-guide-note { margin: 13px 16px 16px; color: #435b69; font-size: .88rem; }
+.np-guide-note a { color: #056868; text-decoration: underline; text-underline-offset: 2px; }
