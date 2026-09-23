@@ -4,7 +4,6 @@
   
 
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
@@ -21,7 +20,7 @@
   />
 
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html" />
 
@@ -51,20 +50,23 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="/calculadoras/variables-clinicas/neurologia-critica/neuro.css?v=9" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
@@ -129,14 +131,13 @@
 </head>
 
 <body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="container topbar">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/neurologia-critica/neuro.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
 
-<main class="app container">
-
-  <nav class="language-switcher" aria-label="Language selector">
-    <a href="https://criticalcaretools.com/en/calculadorasen/variablesen/neurologia-criticaen/neurologiaen.html" lang="en">EN</a>
-    |
-    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/neurologia-critica/neuro.html" lang="es" class="active" aria-current="page">ES</a>
-  </nav>
+<main id="contenido" class="app container">
 
   <nav class="breadcrumb" aria-label="Navegación">
     <a href="https://criticalcaretools.com/">Inicio</a>
@@ -147,6 +148,7 @@
   </nav>
 
   <header class="app-header">
+    <span class="eyebrow">HERRAMIENTAS CLÍNICAS / NEUROLOGÍA</span>
     <h1>Calculadoras de neurología crítica para pacientes en UCI</h1>
     <p class="subtitle">
       Escalas clínicas para valorar estado neurológico, delirium, accidente cerebrovascular,
@@ -192,7 +194,9 @@
     </p>
   </section>
 
-  <hr />
+  <nav class="calculator-nav" aria-label="Ir a una calculadora">
+    <a href="#glasgow">Glasgow</a><a href="#camicu">CAM-ICU</a><a href="#nihss">NIHSS</a><a href="#fisher">Fisher</a><a href="#hunt-hess">Hunt y Hess</a><a href="#marshall">Marshall</a><a href="#ich-score">ICH Score</a>
+  </nav>
 
   <section id="glasgow" class="panel">
     <div class="panel-head">
@@ -850,8 +854,8 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+    <nav class="footer-nav" aria-label="Enlaces del pie de página">
+      <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
     </nav>
 
     <p class="footer-copy">
