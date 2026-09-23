@@ -8,7 +8,6 @@
        META BÁSICOS
   ========================== -->
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
@@ -24,7 +23,7 @@
     content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
   />
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <!-- =========================
        CANONICAL
@@ -104,8 +103,6 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <!-- =========================
        PWA
@@ -123,15 +120,20 @@
   <!-- =========================
        GOOGLE ANALYTICS GA4
   ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true,
-      transport_type: 'beacon'
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <!-- =========================
        ADS
@@ -239,17 +241,12 @@
 
 
 <body>
-
-<main class="container">
-
-  <div class="language-switcher" aria-label="Selector de idioma">
-  <a href="https://criticalcaretools.com/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html"
-     lang="en">
-     EN
-  </a>
-  <span class="separator">|</span>
-  <span class="active" lang="es">ES</span>
-</div>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="topbar container">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/monitoreo-hemodinamicoen/monitoreoen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
+<main id="contenido" class="container">
 
 
   <!-- =========================
@@ -267,6 +264,7 @@
        HEADER
   ========================== -->
  <header class="app-header">
+  <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / HEMODINAMIA</span>
   <h1>Calculadoras de monitoreo hemodinámico para pacientes en UCI</h1>
 
   <p class="subtitle">
@@ -1408,12 +1406,12 @@
      FOOTER
 ========================== -->
 <footer class="site-footer">
-<nav class="footer-nav" aria-label="Footer">
+<nav class="footer-nav" aria-label="Enlaces del pie de página">
   <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">Bibliografía</a>
   <span aria-hidden="true">·</span>
   <a href="https://criticalcaretools.com/legal/aviso-legal.html">Aviso legal</a>
 <span aria-hidden="true">·</span>
-  <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+  <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
 </nav>
 
 
