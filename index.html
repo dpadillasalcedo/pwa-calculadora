@@ -20,6 +20,20 @@
   <meta name="twitter:card" content="summary">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <!-- GA4: medición sin cookies de Analytics ni publicidad -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"Critical Care Tools","url":"https://criticalcaretools.com/","inLanguage":"es"}
