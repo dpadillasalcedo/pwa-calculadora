@@ -8,7 +8,6 @@
        META BÁSICOS
   ========================== -->
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
@@ -24,7 +23,7 @@
     content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
   />
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <!-- =========================
        CANONICAL
@@ -104,8 +103,6 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <!-- =========================
        PWA
@@ -126,15 +123,19 @@
   <!-- =========================
        GOOGLE ANALYTICS GA4
   ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true,
-      transport_type: 'beacon'
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
 
 
@@ -230,18 +231,12 @@
 
 
 <body class="app-root">
-
-<main class="container">
-
-<div class="language-switcher" aria-label="Selector de idioma">
-  <a href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacosen/farmacotecaen.html">
-    EN
-  </a> |
-  <a href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
-     class="active">
-    ES
-  </a>
-</div>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="topbar container">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/infusion-farmacos/farmacos.html">Infusión de fármacos</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/infusion-farmacos/farmacoteca.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/infusion-farmacosen/farmacotecaen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
+<main id="contenido" class="container">
 
   <nav class="breadcrumb" aria-label="Navegación">
   <a href="/">Inicio</a>
@@ -250,6 +245,7 @@
 </nav>
 
 <header class="page-header">
+  <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / FARMACOLOGÍA</span>
   <h1>Farmacoteca UCI</h1>
   <p class="subtitle">
     Consulta rápida de dosis, diluciones, concentraciones e infusiones de fármacos
@@ -896,7 +892,7 @@
      SEDANTES
 ========================= -->
 
-<h2 id="analgesicos">Analgésicos y opioides</h2>
+<h2 id="sedantes">Sedantes</h2>
   
 <!-- ================= PROPOFOL ================= -->
 <article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
@@ -1096,7 +1092,7 @@
      ANALGÉSICOS Y OPIOIDES
 ========================= -->
 
-<h2>Analgésicos y opioides</h2>
+<h2 id="analgesicos">Analgésicos y opioides</h2>
 
 <!-- ================= FENTANILO ================= -->
 <article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-hr">
@@ -1521,7 +1517,7 @@
 </main>
 
 <footer class="site-footer">
-  <nav class="footer-nav">
+  <nav class="footer-nav" aria-label="Enlaces del pie de página">
     <a href="https://criticalcaretools.com/referencias-bibliograficas/bibliografia.html">
       Bibliografía
     </a>
@@ -1531,7 +1527,7 @@
     </a>
     ·
     <a href="https://criticalcaretools.com/privacidad-cookies/privacidad.html">
-      Privacidad y Cookies
+      Política de privacidad
     </a>
   </nav>
 
@@ -1698,7 +1694,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const grupoSelect = document.getElementById("grupo");
   const resetBtn = document.getElementById("btnReset");
   const cards = document.querySelectorAll(".drug-card");
-  const headers = document.querySelectorAll("main h2");
+  const headers = document.querySelectorAll("main h2[id]");
 
   function filtrarFarmacos() {
     const texto = qInput.value.toLowerCase().trim();
