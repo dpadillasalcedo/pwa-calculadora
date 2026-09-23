@@ -413,3 +413,42 @@ select:focus-visible {
     width: 100%;
   }
 }
+
+/* Identidad visual compartida */
+:root { --primary: #102b40; --primary-soft: #0c2335; --text: #142b3b; --text-soft: #546b79; --muted: #546b79; --bg: #f6faf9; --border: #d8e5e8; }
+body { font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+.container { width: min(calc(100% - 48px),var(--container)); }
+.skip-link { position: absolute; top: -80px; left: 16px; z-index: 10; padding: 10px 14px; background: white; color: #102b40; }
+.skip-link:focus { top: 12px; }
+.site-top { background: #0c2335; color: white; }
+.site-top .topbar { width: min(calc(100% - 48px),1160px); min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0; }
+.brand { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; color: white; font-size: 1.1rem; font-weight: 650; letter-spacing: -.03em; }
+.brand:hover { color: white; text-decoration: none; }
+.brand strong { color: #5de0d2; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1.5px solid #5de0d2; border-radius: 10px; color: #5de0d2; font-size: 26px; font-weight: 300; line-height: 1; }
+.top-nav { display: flex; align-items: center; gap: 28px; font-size: .88rem; font-weight: 650; }
+.top-nav > a { color: white; }
+.top-nav > a:hover, .top-nav .language-switcher a:hover { color: #5de0d2; text-decoration: none; }
+.top-nav .language-switcher { display: inline-flex; align-items: center; gap: 9px; margin: 0; padding: 5px 13px; border: 1px solid #ffffff50; border-radius: 100px; color: white; }
+.top-nav .language-switcher a { color: white; }
+.top-nav .language-switcher a[aria-current] { color: #5de0d2; font-weight: 750; }
+main.container { padding-top: 28px; padding-bottom: 65px; }
+.page-eyebrow { display: block; color: #067e7d; font-size: .72rem; font-weight: 800; letter-spacing: .15em; }
+.page-header h1 { margin: 14px 0 18px; font-size: clamp(2.4rem,4.7vw,3.8rem); }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 9px; }
+.breadcrumb a { color: #067e7d; }
+.intro-card, .card, .panel, .drug-card { border-radius: 15px; border-color: var(--border); box-shadow: 0 8px 26px #1037470a; }
+.drug-index a { border-color: var(--border); color: #067e7d; border-radius: 7px; }
+.drug-index a:hover { border-color: #067e7d; background: #e5f5f3; }
+h2[id] { scroll-margin-top: 24px; }
+.drug-head { border-left-color: #067e7d; }
+.btn, button { border-radius: 8px; background: #067e7d; }
+.btn:hover, button:hover { background: #056868; }
+.btn.secondary, .secondary { background: #eaf2f2; color: #142b3b; }
+input:focus, select:focus { border-color: #067e7d; box-shadow: 0 0 0 3px #067e7d35; }
+.clinical-note { background: #edf8f6; border-color: #bde4df; }
+.site-footer { background: #0c2335; border: 0; padding: 35px 20px; }
+.site-footer .footer-copy, .footer-nav a { color: #d2e0e5; }
+.footer-nav a:hover { color: #5de0d2; }
+@media(max-width:650px) { .container { width: min(calc(100% - 32px),var(--container)); } .site-top .topbar { width: min(calc(100% - 32px),1160px); min-height: 72px; flex-wrap: wrap; gap: 13px; padding-block: 14px; } .top-nav { gap: 15px; flex-wrap: wrap; font-size: .8rem; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
