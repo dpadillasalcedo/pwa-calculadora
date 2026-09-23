@@ -1,4 +1,4 @@
-=========================================================
+/* =========================================================
    CriticalCareTools — Design System
    Refactored / responsive / accessible / consistent
    ========================================================= */
@@ -11,11 +11,11 @@
 
 :root {
   /* Core palette */
-  --primary: #0f172a;
-  --primary-hover: #1e293b;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-soft: #eff6ff;
+  --primary: #102b40;
+  --primary-hover: #0c2335;
+  --accent: #067e7d;
+  --accent-hover: #056868;
+  --accent-soft: #e5f5f3;
 
   --text: #0f172a;
   --text-soft: #475569;
@@ -53,7 +53,7 @@
 
   /* Motion */
   --transition: 180ms ease;
-  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.18);
+  --focus-ring: 0 0 0 3px rgba(6, 126, 125, 0.24);
 }
 
 html {
@@ -1763,3 +1763,36 @@ hr {
   }
 }
 
+
+/* Cabecera y navegación del sitio */
+body { background: #f6faf9; }
+.skip-link { position: absolute; top: -80px; left: 16px; z-index: 10; padding: 10px 14px; background: #fff; color: #102b40; }
+.skip-link:focus { top: 12px; }
+.site-top { background: #0c2335; color: #fff; }
+.site-top .topbar { width: min(calc(100% - 48px), 1160px); min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0; }
+.brand { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; color: #fff; font-size: 1.1rem; font-weight: 650; letter-spacing: -.03em; }
+.brand:hover { color: #fff; text-decoration: none; }
+.brand strong { color: #5de0d2; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1.5px solid #5de0d2; border-radius: 10px; color: #5de0d2; font-size: 26px; font-weight: 300; line-height: 1; }
+.top-nav { display: flex; align-items: center; gap: 28px; font-size: .88rem; font-weight: 650; }
+.top-nav > a { color: #fff; }
+.top-nav > a:hover, .top-nav .language-switcher a:hover { color: #5de0d2; text-decoration: none; }
+.top-nav .language-switcher { display: inline-flex; align-items: center; justify-content: flex-start; gap: 9px; margin: 0; padding: 5px 13px; border: 1px solid #ffffff50; border-radius: 100px; color: #fff; }
+.top-nav .language-switcher a { display: inline; min-width: 0; min-height: 0; color: #fff; }
+.top-nav .language-switcher a[aria-current] { color: #5de0d2; background: transparent; font-weight: 750; }
+.page-eyebrow { display: block; color: #067e7d; font-size: .72rem; font-weight: 800; letter-spacing: .15em; }
+.app-header h1 { margin-top: 14px; font-size: clamp(2.4rem, 4.7vw, 3.8rem); }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 3px; color: #546b79; }
+.breadcrumb a { color: #067e7d; }
+.panel, .swan-panel, .cct-echo-tool { border-radius: 15px; border-color: #d8e5e8; }
+.panel::before, .swan-panel::before { background: #067e7d; }
+.tool-index { background: linear-gradient(120deg,#0b2234,#14394c); }
+.tool-index .eyebrow, .cct-kicker { color: #5de0d2; }
+.tool-index__grid a:hover { border-color: #5de0d2; }
+button { background: #067e7d; border-radius: 8px; }
+button:hover { background: #056868; }
+input:focus, select:focus, textarea:focus { border-color: #067e7d; box-shadow: var(--focus-ring); }
+.site-footer { width: 100%; max-width: none; margin: 0; padding: 36px 20px; background: #0c2335; color: #d2e0e5; }
+.site-footer a { color: #d2e0e5; }
+.site-footer a:hover { color: #5de0d2; }
+@media(max-width:650px) { .site-top .topbar { width: min(calc(100% - 32px), 1160px); min-height: 72px; flex-wrap: wrap; gap: 13px; padding-block: 14px; } .top-nav { gap: 15px; flex-wrap: wrap; font-size: .8rem; } }
