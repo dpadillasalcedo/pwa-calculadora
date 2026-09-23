@@ -126,6 +126,7 @@
   }
   </script>
 
+  <script src="https://pl30474749.effectivecpmnetwork.com/4a/b3/f1/4ab3f1ad947c542545bb0fa26a5582b5.js"></script>
 
 </head>
 
@@ -335,6 +336,21 @@
     <span class="page-eyebrow">NUTRICIÓN PARENTERAL / ADULTOS</span>
     <h2 id="np-title">Fórmula parenteral magistral</h2>
     <p class="note">Estima el volumen de soluciones de aminoácidos, glucosa y emulsión lipídica a partir de objetivos diarios prescritos. No genera una orden de preparación.</p>
+    <details class="np-guide" open>
+      <summary>Referencias de dosis para adultos críticos</summary>
+      <div class="np-table-wrap"><table class="np-reference-table">
+        <thead><tr><th>Situación clínica</th><th>Aminoácidos / proteína</th><th>Lípidos IV</th></tr></thead>
+        <tbody>
+          <tr><td>UCI general</td><td>Orientar la progresión hacia 1,3 g/kg/día; evitar forzar dosis altas al inicio de la fase aguda.</td><td>En torno a 1 g/kg/día; no superar 1,5 g/kg/día entre NP y otras fuentes IV, según tolerancia.</td></tr>
+          <tr><td>Lesión renal aguda / ERC con enfermedad crítica, sin TRR</td><td>Iniciar alrededor de 1 g/kg/día y aumentar gradualmente hasta 1,3 g/kg/día si se tolera.</td><td>Individualizar según triglicéridos, aporte energético y tolerancia.</td></tr>
+          <tr><td>TRR intermitente convencional</td><td>1,3–1,5 g/kg/día en el paciente crítico.</td><td>Individualizar; contabilizar otras fuentes lipídicas.</td></tr>
+          <tr><td>TRR continua o prolongada</td><td>1,5–1,7 g/kg/día; ajustar con evolución, balance nitrogenado y pérdidas de la terapia.</td><td>Individualizar; vigilar triglicéridos.</td></tr>
+          <tr><td>Obesidad</td><td>Usar preferentemente masa magra o pérdidas de nitrógeno. Si no están disponibles, ESPEN propone 1,3 g/kg/día con peso ajustado.</td><td>Calcular con peso de referencia apropiado y aportes no nutricionales.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="np-guide-note"><strong>Propofol:</strong> contar su energía (aprox. 1,1 kcal/mL) y su carga lipídica en el total IV. <strong>Hipertrigliceridemia o mala tolerancia:</strong> reevaluar la dosis de emulsión y la monitorización. <strong>Riesgo de realimentación:</strong> iniciar energía de forma progresiva y controlar fósforo, potasio, magnesio y tiamina. Estas referencias son para adultos y no reemplazan un objetivo individualizado.</p>
+      <p class="np-guide-note">Fuentes: <a href="https://www.espen.org/files/ESPEN-Guidelines/ESPEN_practical_and_partially_revised_guideline_Clinical_nutrition_in_the_intensive_care_unit.pdf" target="_blank" rel="noopener noreferrer">ESPEN UCI 2023</a> · <a href="https://www.espen.org/files/ESPEN-Guidelines/ESPEN_practical_guideline_on_clinical_nutrition_in_hospitalized_patients_with_acute_or_chronic_kidney_disease-text.pdf" target="_blank" rel="noopener noreferrer">ESPEN enfermedad renal 2024</a> · <a href="https://nutritioncare.org/clinical-resources/parenteral-nutrition/" target="_blank" rel="noopener noreferrer">ASPEN recursos de NP</a>.</p>
+    </details>
     <form id="np-form" novalidate>
       <div class="np-fields">
         <fieldset><legend>Objetivos diarios</legend>
@@ -351,7 +367,8 @@
           <label for="np-glucosa-kcal">Dextrosa (kcal/g; verificar etiqueta)</label><input id="np-glucosa-kcal" type="number" min="0.01" step="any" value="3.4" inputmode="decimal" required>
           <label for="np-lipidos-pct">Emulsión lipídica (% p/v, g/100 mL)</label><input id="np-lipidos-pct" type="number" min="0.01" step="any" value="20" inputmode="decimal" required>
           <label for="np-lipidos-kcal">Emulsión lipídica (kcal/mL; verificar etiqueta)</label><input id="np-lipidos-kcal" type="number" min="0.01" step="any" value="2" inputmode="decimal" required>
-          <label for="np-otros-kcal">Energía externa que se descuenta (kcal/día; opcional)</label><input id="np-otros-kcal" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
+          <label for="np-lipidos-externos">Lípidos IV adicionales, por ejemplo propofol (g/día; opcional)</label><input id="np-lipidos-externos" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
+          <label for="np-otros-kcal">Energía externa que se descuenta (kcal/día; incluir propofol si aplica)</label><input id="np-otros-kcal" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
           <label for="np-aditivos-ml">Volumen reservado para aditivos (mL; opcional)</label><input id="np-aditivos-ml" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
         </fieldset>
       </div>
