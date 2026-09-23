@@ -8,7 +8,6 @@
        META BÁSICOS
   ========================== -->
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
@@ -26,7 +25,7 @@
     content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
   />
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <!-- =========================
        CANONICAL
@@ -100,8 +99,6 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <!-- =========================
        PWA
@@ -117,14 +114,19 @@
   <!-- =========================
        GOOGLE ANALYTICS
   ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   
 
@@ -230,15 +232,14 @@
 
   
 <body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="topbar container">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
+<main id="contenido" class="container">
 
- <main class="container">
-
-  <div class="language-switcher">
-  <a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html">EN</a> |
-  <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" class="active">ES</a>
-</div>
-
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+<nav class="breadcrumb-nav" aria-label="Ruta de navegación">
   <a href="/">Inicio</a>
   <span aria-hidden="true">›</span>
   <a href="/calculadoras/variables-clinicas/variables.html">
@@ -248,26 +249,20 @@
   <span aria-current="page">Sistemas de puntuación</span>
 </nav>
 
-   <section class="intro">
-
-<h2 class="centered">
-Escalas pronósticas para pacientes críticos
-</h2>
-
-<p>
-Esta colección reúne las principales calculadoras utilizadas en cuidados intensivos para estimar gravedad, disfunción orgánica y riesgo de mortalidad. Incluye SOFA clásico, SOFA actualizado, APACHE II, SAPS II, CLIF-SOFA, PESI y otras herramientas validadas internacionalmente.
-</p>
-
+<header class="app-header">
+  <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / ESCALAS</span>
+  <h1>Calculadoras de gravedad y mortalidad en UCI</h1>
+  <p class="subtitle">Calculadoras clínicas online de SOFA, APACHE II, SAPS II, PESI, CLIF-SOFA, PLASMIC y otras escalas utilizadas en medicina crítica.</p>
+</header>
+<section class="intro">
+  <h2 class="centered">Escalas pronósticas para pacientes críticos</h2>
+  <p>Esta colección reúne las principales calculadoras utilizadas en cuidados intensivos para estimar gravedad, disfunción orgánica y riesgo de mortalidad. Incluye SOFA clásico, SOFA actualizado, APACHE II, SAPS II, CLIF-SOFA, PESI y otras herramientas validadas internacionalmente.</p>
 </section>
-  
-<h1>Calculadoras de gravedad y mortalidad en UCI</h1>
-
-<p class="subtitle">
-Calculadoras clínicas online de SOFA, APACHE II, SAPS II, PESI, CLIF-SOFA, PLASMIC y otras escalas utilizadas en medicina crítica.
-</p>
- </div>
+<nav class="calculator-nav" aria-label="Ir a una escala">
+  <a href="#sofa-clasico">SOFA clásico</a><a href="#sofa-actualizado">SOFA actualizado</a><a href="#clif-sofa-aclf">CLIF-SOFA</a><a href="#apache-ii">APACHE II</a><a href="#saps-ii">SAPS II</a><a href="#tep-risk">TEP y PESI</a><a href="#tep-risk-aha-acc-2026">TEP AHA/ACC</a><a href="#plasmic">PLASMIC</a>
+</nav>
   <!-- ======================= SOFA-1 ======================= -->
-<section class="panel">
+<section id="sofa-clasico" class="panel">
 <h2>SOFA clásico</h2>
 
 <p class="note">
@@ -356,7 +351,7 @@ Evalúa la disfunción de seis órganos y permite monitorizar la evolución del 
 
 
 <!-- ======================= SOFA-2 ======================= -->
-<section class="panel">
+<section id="sofa-actualizado" class="panel">
 <h2>SOFA-2</h2>
 <p class="note">Sequential Organ Failure Assessment (tabla oficial)</p>
 
@@ -543,7 +538,7 @@ Evalúa la gravedad del Acute-on-Chronic Liver Failure mediante la valoración d
 </section>
    
 <!-- ===================== APACHE II ===================== -->
-<section class="panel">
+<section id="apache-ii" class="panel">
 <h2>APACHE II</h2>
 <p class="note">
 Sistema pronóstico que estima mortalidad hospitalaria utilizando variables fisiológicas obtenidas durante las primeras 24 horas.
@@ -731,7 +726,7 @@ Sistema pronóstico que estima mortalidad hospitalaria utilizando variables fisi
 </section>
 
 <!-- ====================== SAPS II ====================== -->
-<section class="panel">
+<section id="saps-ii" class="panel">
 <h2>SAPS II</h2>
 <p class="note">
 Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hospitalaria en pacientes críticos.
@@ -1260,7 +1255,7 @@ Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hosp
 
 </section>
 
-   <section class="plasmic-card">
+   <section id="plasmic" class="plasmic-card">
   <h2>PLASMIC Score</h2>
   <p class="subtitle">A seven component prediction score</p>
 
@@ -1390,8 +1385,8 @@ Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hosp
 <hr class="divider">
 
 <footer class="site-footer">
-  <nav class="footer-nav" aria-label="Footer">
-    <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+  <nav class="footer-nav" aria-label="Enlaces del pie de página">
+    <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
   </nav>
 
   <p>
