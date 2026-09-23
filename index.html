@@ -1,322 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-
-
-  <!-- =========================
-       META BÁSICOS
-  ========================== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <title>Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más</title>
-
-  <meta
-    name="description"
-    content="Plataforma de calculadoras clínicas para cuidados intensivos (UCI): SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos. Herramientas gratuitas para profesionales de la salud."
-  />
-
-  <meta
-    name="robots"
-    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-  />
-  <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
-  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
-
-  <!-- =========================
-       CANONICAL
-  ========================== -->
-  <link rel="canonical" href="https://criticalcaretools.com/" />
-
-  <!-- =========================
-       HREFLANG
-  ========================== -->
-  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/" />
-  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/indexen.html" />
-  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
-
-  <!-- =========================
-       OPEN GRAPH
-  ========================== -->
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:site_name" content="Critical Care Tools" />
-  <meta property="og:title" content="Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más" />
-  <meta
-    property="og:description"
-    content="Plataforma de calculadoras clínicas para cuidados intensivos (UCI): SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos."
-  />
-  <meta property="og:url" content="https://criticalcaretools.com/" />
-
-  <!-- Opcional pero muy recomendado:
-       descomenta solo si ya tienes una imagen real publicada y accesible -->
-  <!--
-  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/home-es.jpg" />
-  <meta property="og:image:alt" content="Critical Care Tools - Calculadoras clínicas para UCI" />
-  -->
-
-  <!-- =========================
-       TWITTER CARDS
-  ========================== -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más" />
-  <meta
-    name="twitter:description"
-    content="Plataforma de calculadoras clínicas para cuidados intensivos (UCI): SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos."
-  />
-
-  <!-- Opcional pero muy recomendado:
-       descomenta solo si ya tienes una imagen real publicada y accesible -->
-  <!--
-  <meta name="twitter:image" content="https://criticalcaretools.com/assets/img/og/home-es.jpg" />
-  -->
-
-  <!-- =========================
-       PERFORMANCE
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
-
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Critical Care Tools" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-
-  <!-- =========================
-       CSS
-  ========================== -->
-  <link rel="stylesheet" href="/style.css" />
-
-  <!-- =========================
-       GA4
-  ========================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  </script>
-
-
-  <!-- =========================
-       SCHEMA: WEBSITE
-  ========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Critical Care Tools",
-  "url": "https://criticalcaretools.com/",
-  "inLanguage": "es"
-}
-</script>
-
-  <!-- =========================
-       SCHEMA: ORGANIZATION
-  ========================== -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b40">
+  <title>Calculadoras para cuidados intensivos | Critical Care Tools</title>
+  <meta name="description" content="Calculadoras clínicas para profesionales de cuidados intensivos: variables fisiológicas, infusión de fármacos y soporte nutricional del paciente crítico.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://criticalcaretools.com/">
+  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/">
+  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/indexen.html">
+  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Critical Care Tools">
+  <meta property="og:title" content="Calculadoras para cuidados intensivos | Critical Care Tools">
+  <meta property="og:description" content="Herramientas clínicas de variables fisiológicas, infusión de fármacos y soporte nutricional para profesionales de cuidados intensivos.">
+  <meta property="og:url" content="https://criticalcaretools.com/">
+  <meta name="twitter:card" content="summary">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/"
-  }
+  {"@context":"https://schema.org","@type":"WebSite","name":"Critical Care Tools","url":"https://criticalcaretools.com/","inLanguage":"es"}
   </script>
-
-  <!-- =========================
-       SCHEMA: WEBPAGE
-  ========================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Calculadoras Clínicas UCI | SOFA, APACHE II, Ventilación y Más",
-  "url": "https://criticalcaretools.com/",
-  "inLanguage": "es",
-  "description": "Plataforma de calculadoras clínicas para cuidados intensivos: SOFA, APACHE II, ventilación mecánica, monitoreo hemodinámico, soporte nutricional e infusión de fármacos.",
-  "audience": {
-    "@type": "MedicalAudience",
-    "audienceType": "HealthcareProfessional"
-  },
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/"
-  }
-}
-</script>
-
-
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Calculadoras para cuidados intensivos","url":"https://criticalcaretools.com/","inLanguage":"es","description":"Calculadoras clínicas de variables fisiológicas, infusión de fármacos y soporte nutricional para profesionales de cuidados intensivos.","audience":{"@type":"MedicalAudience","audienceType":"HealthcareProfessional"},"isPartOf":{"@type":"WebSite","name":"Critical Care Tools","url":"https://criticalcaretools.com/"}}
+  </script>
 </head>
-
-
 <body>
-
-<header>
-  <div class="language-switcher">
-    <a href="https://criticalcaretools.com/" class="active">ES</a> |
-    <a href="https://criticalcaretools.com/en/indexen.html">EN</a>
-  </div>
-
-  <h1>Critical Care Tools</h1>
-  <p>
-    Plataforma de calculadoras clínicas para apoyar la toma de decisiones
-    en cuidados intensivos.
-  </p>
-</header>
-
-<main>
-
-  <!-- BLOQUE VALOR -->
- <section class="intro">
-  <h2 class="centered">
-    Apoyo clínico basado en parámetros fisiológicos
-  </h2>
-  <p>
-    Critical Care Tools reúne calculadoras clínicas diseñadas para apoyar la toma de decisiones
-    en cuidados intensivos, integrando variables respiratorias, hemodinámicas, metabólicas
-    y farmacológicas.
-  </p>
-</section>
-
-
-  <!-- HUB PRINCIPAL -->
-  <section class="menu">
-
-    <article>
-      <a href="/calculadoras/variables-clinicas/variables.html">
-        <h2>🫀 Variables clínicas</h2>
-        <p>
-          Evaluación de parámetros fisiológicos relevantes en el paciente crítico:
-          oxigenación, ventilación, perfusión y transporte de oxígeno.
-        </p>
-      </a>
-    </article>
-
-    <article>
-      <a href="/calculadoras/infusion-farmacos/farmacos.html">
-        <h2>💉 Infusión de fármacos</h2>
-        <p>
-          Calculadoras para dosificación e infusión segura de fármacos vasoactivos
-          y sedoanalgesia en UCI.
-        </p>
-      </a>
-    </article>
-
-    <article>
-      <a href="/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html">
-        <h2>🍽️ Soporte nutricional en el paciente crítico</h2>
-        <p>
-          Evaluación de requerimientos energéticos y proteicos en el paciente crítico,
-          con enfoque en nutrición enteral y parenteral.
-        </p>
-      </a>
-    </article>
-
-  </section>
-
-</main>
-
-
-  <section class="seo-content">
-
- <h2>Calculadoras clínicas para cuidados intensivos</h2>
-
-  <p>
-    Critical Care Tools es una plataforma educativa dirigida a profesionales de la salud
-    que trabajan en unidades de cuidados intensivos, urgencias, anestesia, medicina interna
-    y áreas relacionadas con el manejo del paciente crítico.
-  </p>
-
-  <p>
-    El objetivo del sitio es reunir herramientas clínicas que permitan estimar variables
-    fisiológicas, parámetros ventilatorios, requerimientos nutricionales y dosis de infusión
-    de fármacos utilizados con frecuencia en escenarios de alta complejidad.
-  </p>
-
-  <h3>¿Qué tipo de herramientas incluye?</h3>
-
-  <p>
-    La plataforma incluye calculadoras relacionadas con oxigenación, ventilación mecánica,
-    perfusión tisular, monitoreo hemodinámico, soporte nutricional e infusión de medicamentos.
-    Cada herramienta debe interpretarse dentro del contexto clínico del paciente y no sustituye
-    la valoración médica individual.
-  </p>
-
-  <h3>Uso clínico responsable</h3>
-
-  <p>
-    Las calculadoras médicas pueden ayudar a estandarizar procesos, reducir errores aritméticos
-    y facilitar la interpretación de datos complejos. Sin embargo, sus resultados dependen de la
-    calidad de los datos ingresados, de la situación clínica y de las guías institucionales vigentes.
-  </p>
-
-  <h3>Áreas principales</h3>
-
-  <p>
-    En la sección de variables clínicas se agrupan herramientas orientadas a evaluar oxigenación,
-    ventilación, perfusión y transporte de oxígeno. En infusión de fármacos se incluyen recursos
-    para apoyar el cálculo de dosis en medicamentos de uso frecuente en UCI. En soporte nutricional
-    se abordan estimaciones energéticas y proteicas aplicables al paciente crítico.
-  </p>
-
-  <h3>Limitaciones</h3>
-
-  <p>
-    Critical Care Tools tiene fines educativos y de apoyo clínico. Las recomendaciones, fórmulas
-    y resultados no deben utilizarse como única base para tomar decisiones terapéuticas. Siempre
-    deben contrastarse con la historia clínica, el examen físico, los protocolos locales y el juicio
-    del equipo tratante.
-  </p>
-
-  <h3>Referencias y actualización</h3>
-
-  <p>
-    Las páginas del sitio deben incorporar referencias bibliográficas identificables, preferiblemente
-    guías clínicas, revisiones sistemáticas, consensos internacionales y artículos indexados. El
-    contenido debe actualizarse de forma periódica para mantener su utilidad clínica.
-  </p>
-
-</section>
-
-
-<footer>
-  <p>
-    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-    No reemplaza el juicio médico ni las guías institucionales.
-  </p>
-  <div class="footer-links">
-<span aria-hidden="true">·</span>
-<a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
-  </div>
-</footer>
-  
-  
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js');
-    });
-  }
-</script>
-  
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="topbar container">
+      <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+      <nav class="top-nav" aria-label="Navegación principal">
+        <a href="#calculadoras">Calculadoras</a>
+        <a href="#acerca">Acerca de</a>
+        <span class="language-switcher" aria-label="Idioma"><a href="/" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/indexen.html" lang="en" hreflang="en">EN</a></span>
+      </nav>
+    </div>
+    <div class="hero container">
+      <div class="hero-copy">
+        <span class="eyebrow">RECURSOS PARA PROFESIONALES DE LA SALUD</span>
+        <h1>Calculadoras clínicas para cuidados intensivos</h1>
+        <p>Accede a herramientas de variables fisiológicas, infusión de fármacos y soporte nutricional para el cuidado del paciente crítico.</p>
+        <a class="hero-button" href="#calculadoras">Explorar calculadoras <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-graphic" aria-hidden="true"><div class="graphic-label">CRITICAL CARE <span> / TOOLS</span></div><svg viewBox="0 0 520 220" fill="none" preserveAspectRatio="xMidYMid meet"><path d="M0 111H127l19-34 27 78 34-117 42 144 29-71h52l20-37 18 37h152" stroke="#5de0d2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 111H520" stroke="#ffffff" stroke-opacity=".1" stroke-width="2"/></svg><div class="graphic-footer">FISIOLOGÍA · PRECISIÓN · CUIDADO</div></div>
+    </div>
+  </header>
+  <main id="contenido">
+    <section id="calculadoras" class="tools-section container" aria-labelledby="tools-title">
+      <div class="section-heading"><div><span class="eyebrow">EXPLORA LAS HERRAMIENTAS</span><h2 id="tools-title">Elige un área clínica</h2></div><p>Tres accesos directos para encontrar la calculadora que necesitas.</p></div>
+      <div class="menu">
+        <article class="tool-card"><a href="/calculadoras/variables-clinicas/variables.html"><span class="card-number">01 / FISIOLOGÍA</span><span class="card-icon" aria-hidden="true">♡</span><h3>Variables clínicas</h3><p>Oxigenación, ventilación, perfusión y transporte de oxígeno en el paciente crítico.</p><span class="card-action">Ver herramientas <span aria-hidden="true">↗</span></span></a></article>
+        <article class="tool-card"><a href="/calculadoras/infusion-farmacos/farmacos.html"><span class="card-number">02 / FARMACOLOGÍA</span><span class="card-icon" aria-hidden="true">✳</span><h3>Infusión de fármacos</h3><p>Cálculos de dosis e infusión de fármacos vasoactivos y sedoanalgesia en UCI.</p><span class="card-action">Ver herramientas <span aria-hidden="true">↗</span></span></a></article>
+        <article class="tool-card"><a href="/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html"><span class="card-number">03 / NUTRICIÓN</span><span class="card-icon" aria-hidden="true">◈</span><h3>Soporte nutricional</h3><p>Estimación de requerimientos energéticos y proteicos, nutrición enteral y parenteral.</p><span class="card-action">Ver herramientas <span aria-hidden="true">↗</span></span></a></article>
+      </div>
+    </section>
+    <section id="acerca" class="about-section" aria-labelledby="about-title"><div class="container about-grid"><div><span class="eyebrow">ACERCA DE LA PLATAFORMA</span><h2 id="about-title">Herramientas para el trabajo clínico cotidiano</h2></div><div><p>Critical Care Tools reúne calculadoras clínicas dirigidas a profesionales de cuidados intensivos, urgencias, anestesia y áreas relacionadas. Sus herramientas permiten estimar parámetros respiratorios, hemodinámicos, metabólicos, nutricionales y farmacológicos.</p><p>Los resultados dependen de los datos ingresados y deben interpretarse según el contexto de cada paciente. Consulta las referencias de cada herramienta y los protocolos de tu institución.</p></div></div></section>
+    <aside class="notice container" aria-label="Aviso de uso"><span class="notice-symbol" aria-hidden="true">i</span><p><strong>Uso educativo y de apoyo clínico.</strong> Las calculadoras no sustituyen la valoración individual, el juicio del equipo tratante ni las guías institucionales.</p></aside>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="/">Critical Care Tools</a><p>Calculadoras clínicas para el cuidado del paciente crítico.</p></div><div class="footer-meta"><span>© 2026 Critical Care Tools</span><a href="/privacidad-cookies/privacidad.html">Política de privacidad</a></div></div></footer>
 </body>
 </html>
