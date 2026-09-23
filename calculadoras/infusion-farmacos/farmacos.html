@@ -4,15 +4,14 @@
  
 
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
-  <title>Calculadora de Vancomicina UCI | Dosis e Infusión Continua</title>
+  <title>Vancomicina y betalactámicos en UCI | Critical Care Tools</title>
 
   <meta
     name="description"
-    content="Calculadora de dosis de vancomicina en UCI. Ajuste orientativo en infusión continua según función renal, peso y meta de vancocinemia para pacientes críticos."
+    content="Calculadora de vancomicina en infusión continua y tabla de betalactámicos para cuidados intensivos. Herramientas de apoyo clínico para profesionales."
   />
 
   <meta
@@ -21,7 +20,7 @@
   />
 
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html" />
 
@@ -51,8 +50,6 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/icons/icon-192.png" />
@@ -61,15 +58,20 @@
 
   <link rel="stylesheet" href="/calculadoras/infusion-farmacos/farmacos.css?v=3" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true,
-      transport_type: 'beacon'
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
@@ -150,13 +152,12 @@
 </head>
 
 <body>
-
-<main class="app container">
-
-  <div class="language-switcher" aria-label="Selector de idioma">
-    <a href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacos/farmacosen.html">EN</a> |
-    <a href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html" class="active">ES</a>
-  </div>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="topbar container">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="#vancomicina">Vancomicina</a><a href="#betalactamicos">Betalactámicos</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/infusion-farmacos/farmacos.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/infusion-farmacos/farmacosen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
+<main id="contenido" class="app container">
 
   <nav class="breadcrumb" aria-label="Navegación">
     <a href="https://criticalcaretools.com/">Inicio</a>
@@ -165,6 +166,7 @@
   </nav>
 
   <header class="app-header">
+    <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / FARMACOLOGÍA</span>
     <h1>Calculadora de vancomicina en infusión continua</h1>
     <p class="subtitle">
       Herramienta orientativa para estimar dosis de vancomicina en pacientes críticos,
@@ -197,13 +199,13 @@
         <a class="nav-link nav-primary"
            href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
            target="_blank" rel="noopener">
-          💊 ACCEDÉ A LA FARMACOTECA UCI 💊
+          Explorar la farmacoteca UCI ↗
         </a>
       </div>
     </nav>
   </section>
 
-  <section class="panel" aria-labelledby="vanco-title">
+  <section id="vancomicina" class="panel" aria-labelledby="vanco-title">
 
     <h2 id="vanco-title">Cálculo de dosis de vancomicina en infusión continua</h2>
 
@@ -260,7 +262,7 @@
 
   </section>
 
-  <section class="betalactamicos-section">
+  <section id="betalactamicos" class="betalactamicos-section">
 
   <div class="tabla-header">
     <div>
@@ -818,8 +820,8 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <nav class="footer-nav" aria-label="Footer">
-      <a href="https://criticalcaretools.com/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+    <nav class="footer-nav" aria-label="Enlaces del pie de página">
+      <a href="https://criticalcaretools.com/privacidad-cookies/privacidad.html">Política de privacidad</a>
       <span aria-hidden="true">·</span>
       <a href="https://criticalcaretools.com/">Inicio</a>
     </nav>
