@@ -1,476 +1,368 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
- 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
+/* =========================
+   REQUERIMIENTO CALÓRICO DIARIO
+========================= */
 
-  <title>Calculadora de Soporte Nutricional UCI | Calorías y Proteínas</title>
+function calculateIndirectCalorimetry() {
+  const vo2 = validNumber($("vo2IC").value);
+  const vco2 = validNumber($("vco2IC").value);
 
-  <meta
-    name="description"
-    content="Calculadora de soporte nutricional en UCI para estimar requerimientos calóricos y proteicos del paciente crítico adulto según recomendaciones ASPEN y ESPEN."
-  />
+  if (!vo2 || !vco2) {
+    $("kcalIC").textContent = "—";
+    return;
+  }
 
-  <meta
-    name="robots"
-    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-  />
+  const kcalDay = ((3.941 * vo2) + (1.106 * vco2)) * 1440;
 
-  <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  $("kcalIC").textContent =
+    `${round10(kcalDay)} kcal/día`;
+}
 
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" />
+function oxygenContent(hb, saturation, po2) {
+  return (1.34 * hb * saturation) + (0.0031 * po2);
+}
 
-  <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" />
-  <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html" />
-  <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
+function calculateFick() {
+  const gc = validNumber($("gcFick").value);
+  const hb = validNumber($("hbFick").value);
+  const sao2 = validNumber($("sao2Fick").value);
+  const svo2 = validNumber($("svo2Fick").value);
+  const pao2 = validNumber($("pao2Fick").value);
+  const pvo2 = validNumber($("pvo2Fick").value);
+  const rq = validNumber($("rqFick").value) || 0.85;
 
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_ES" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta property="og:site_name" content="Critical Care Tools" />
-  <meta property="og:title" content="Calculadora de Soporte Nutricional UCI | Calorías y Proteínas" />
-  <meta
-    property="og:description"
-    content="Estimación orientativa de requerimientos calóricos y proteicos en el paciente crítico adulto."
-  />
-  <meta property="og:url" content="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" />
+  if (!gc || !hb || !sao2 || !svo2 || !pao2 || !pvo2) {
+    $("vo2FickResult").textContent = "—";
+    $("kcalFick").textContent = "—";
+    return;
+  }
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Calculadora de Soporte Nutricional UCI | Calorías y Proteínas" />
-  <meta
-    name="twitter:description"
-    content="Calculadora clínica para estimar soporte nutricional en UCI según ASPEN y ESPEN."
-  />
+  const caO2 = oxygenContent(hb, sao2 / 100, pao2);
+  const cvO2 = oxygenContent(hb, svo2 / 100, pvo2);
 
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
+  const vo2MlMin = gc * (caO2 - cvO2) * 10;
+  const vo2LMin = vo2MlMin / 1000;
+  const vco2LMin = vo2LMin * rq;
 
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  const kcalDay =
+    ((3.941 * vo2LMin) + (1.106 * vco2LMin)) * 1440;
 
-  <link rel="stylesheet" href="/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.css?v=2" />
+  $("vo2FickResult").textContent =
+    `VO₂ estimado: ${round0(vo2MlMin)} ml/min`;
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true,
-      transport_type: 'beacon'
-    });
-  </script>
+  $("kcalFick").textContent =
+    `${round10(kcalDay)} kcal/día`;
+}
 
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
-    crossorigin="anonymous">
-  </script>
+function calculatePredictiveCalories() {
+  const peso = validNumber($("pesoPredictivo").value);
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
+  if (!peso) {
+    $("kcal20").textContent = "—";
+    $("kcal25").textContent = "—";
+    $("kcal30").textContent = "—";
+    return;
+  }
+
+  $("kcal20").textContent =
+    `20 kcal/kg: ${round10(peso * 20)} kcal/día`;
+
+  $("kcal25").textContent =
+    `25 kcal/kg: ${round10(peso * 25)} kcal/día`;
+
+  $("kcal30").textContent =
+    `30 kcal/kg: ${round10(peso * 30)} kcal/día`;
+}
+
+function runCalorieRequirementCalculation() {
+  calculateIndirectCalorimetry();
+  calculateFick();
+  calculatePredictiveCalories();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  [
+    "vo2IC",
+    "vco2IC",
+    "gcFick",
+    "hbFick",
+    "sao2Fick",
+    "svo2Fick",
+    "pao2Fick",
+    "pvo2Fick",
+    "rqFick",
+    "pesoPredictivo"
+  ].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener("input", runCalorieRequirementCalculation);
+    }
+  });
+});
+
+
+/* =========================
+   CriticalCareTools – Nutrición Enteral
+========================= */
+
+const ENTERALES = [
+  { nombre: "Yeviti", kcalMl: 1.0, protMl: 0.04 },
+  { nombre: "Jevity", kcalMl: 1.2, protMl: 0.05 },
+  { nombre: "Protison", kcalMl: 1.28, protMl: 0.075 },
+  { nombre: "Intense", kcalMl: 1.25, protMl: 0.10 },
+  { nombre: "Supportan", kcalMl: 1.5, protMl: 0.10 },
+  { nombre: "Energy", kcalMl: 1.5, protMl: 0.06 },
+  { nombre: "Alterna Peptid", kcalMl: 1.5, protMl: 0.068 },
+  { nombre: "Glucerna 1.5", kcalMl: 1.5, protMl: 0.0825 }
+];
+
+const $ = id => document.getElementById(id);
+
+const round0 = value => Math.round(value);
+const round10 = value => Math.round(value / 10) * 10;
+
+function validNumber(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function clearResults() {
+  $("kcalMin").textContent = "—";
+  $("kcalMax").textContent = "—";
+  $("protMin").textContent = "—";
+  $("protMax").textContent = "—";
+
+  $("resultadosEnterales").innerHTML =
+    "Ingrese el peso ideal para calcular.";
+}
+
+function calcularRequerimientos(peso) {
+  return {
+    kcalMin: round10(peso * 20),
+    kcalMax: round10(peso * 30),
+    protMin: round0(peso * 1.2),
+    protMax: round0(peso * 1.5),
+    protRestriccion: round0(peso * 1.1)
+  };
+}
+
+function crearOpcionSimple(formula, targetKcal, req) {
+  const volumen = targetKcal / formula.kcalMl;
+  const proteina = volumen * formula.protMl;
+
+  return {
+    tipo: "simple",
+    nombre: formula.nombre,
+    detalle: `${formula.nombre} 100%`,
+    volumen,
+    kcal: targetKcal,
+    proteina,
+    deficitMin: Math.max(0, req.protMin - proteina),
+    deficitRestriccion: Math.max(0, req.protRestriccion - proteina),
+    excesoProt: Math.max(0, proteina - req.protMax),
+    dentroRango: proteina >= req.protMin && proteina <= req.protMax,
+    formulas: [
       {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Inicio",
-        "item": "https://criticalcaretools.com/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Soporte nutricional",
-        "item": "https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html"
+        nombre: formula.nombre,
+        volumen
       }
     ]
-  }
-  </script>
+  };
+}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    "name": "Calculadora de Soporte Nutricional en UCI",
-    "url": "https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html",
-    "inLanguage": "es",
-    "description": "Herramienta clínica para estimar requerimientos calóricos y proteicos en el paciente crítico adulto.",
-    "about": {
-      "@type": "MedicalTherapy",
-      "name": "Soporte nutricional en cuidados intensivos"
-    },
-    "audience": {
-      "@type": "MedicalAudience",
-      "audienceType": "HealthcareProfessional"
-    },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/"
+function crearOpcionCombinada(f1, f2, targetKcal, req, proporcion1) {
+  const kcal1 = targetKcal * proporcion1;
+  const kcal2 = targetKcal - kcal1;
+
+  const vol1 = kcal1 / f1.kcalMl;
+  const vol2 = kcal2 / f2.kcalMl;
+
+  const proteina =
+    vol1 * f1.protMl +
+    vol2 * f2.protMl;
+
+  const volumen = vol1 + vol2;
+
+  return {
+    tipo: "combinada",
+    nombre: `${f1.nombre} + ${f2.nombre}`,
+    detalle: `${f1.nombre} ${Math.round(proporcion1 * 100)}% + ${f2.nombre} ${Math.round((1 - proporcion1) * 100)}%`,
+    volumen,
+    kcal: targetKcal,
+    proteina,
+    deficitMin: Math.max(0, req.protMin - proteina),
+    deficitRestriccion: Math.max(0, req.protRestriccion - proteina),
+    excesoProt: Math.max(0, proteina - req.protMax),
+    dentroRango: proteina >= req.protMin && proteina <= req.protMax,
+    formulas: [
+      {
+        nombre: f1.nombre,
+        volumen: vol1
+      },
+      {
+        nombre: f2.nombre,
+        volumen: vol2
+      }
+    ]
+  };
+}
+
+function generarOpciones(formulas, targetKcal, req) {
+  let opciones = [];
+
+  formulas.forEach(formula => {
+    opciones.push(
+      crearOpcionSimple(formula, targetKcal, req)
+    );
+  });
+
+  for (let i = 0; i < formulas.length; i++) {
+    for (let j = i + 1; j < formulas.length; j++) {
+      [0.25, 0.5, 0.75].forEach(proporcion => {
+        opciones.push(
+          crearOpcionCombinada(
+            formulas[i],
+            formulas[j],
+            targetKcal,
+            req,
+            proporcion
+          )
+        );
+      });
     }
   }
-  </script>
 
-  <script src="https://pl30474749.effectivecpmnetwork.com/4a/b3/f1/4ab3f1ad947c542545bb0fa26a5582b5.js"></script>
+  return opciones;
+}
 
-</head>
+function calcularOpcionesEnterales(req) {
+  const restriccionVolumen =
+    $("restriccionVolumen")?.checked || false;
 
-<body>
+  const targetKcal = req.kcalMax;
 
-<main class="wrap">
+  let formulasDisponibles = ENTERALES;
 
-  <div class="language-switcher">
-    <a href="https://criticalcaretools.com/en/calculadorasen/Soporte-nutricional-del-paciente-criticoen/soporteen.html">EN</a> |
-    <a href="https://criticalcaretools.com/calculadoras/Soporte-nutricional-del-paciente-critico/soporte.html" class="active">ES</a>
-  </div>
+  if (restriccionVolumen) {
+    formulasDisponibles = ENTERALES.filter(formula =>
+      formula.protMl >= 0.075
+    );
+  }
 
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Soporte nutricional</span>
-  </nav>
+  let opciones =
+    generarOpciones(
+      formulasDisponibles,
+      targetKcal,
+      req
+    );
 
-  <section class="page-header">
-    <h1>Calculadora de soporte nutricional del paciente crítico</h1>
-    <p class="subtitle">
-      Estimación orientativa de requerimientos energéticos y proteicos en pacientes adultos
-      en cuidados intensivos, basada en recomendaciones ASPEN y ESPEN.
-    </p>
-  </section>
+  opciones.sort((a, b) => {
+    if (restriccionVolumen) {
+      const aCumpleMin =
+        a.proteina >= req.protRestriccion;
 
-  <section class="card seo-panel">
-    <h2>Soporte nutricional en cuidados intensivos</h2>
+      const bCumpleMin =
+        b.proteina >= req.protRestriccion;
 
-    <p>
-      El soporte nutricional es una intervención fundamental en el manejo del paciente crítico.
-      Durante la enfermedad aguda, la respuesta metabólica al estrés puede producir hipercatabolismo,
-      resistencia a la insulina, pérdida acelerada de masa muscular y aumento de los requerimientos
-      proteicos.
-    </p>
+      if (aCumpleMin !== bCumpleMin) {
+        return aCumpleMin ? -1 : 1;
+      }
 
-    <p>
-      Esta herramienta permite estimar requerimientos calóricos y proteicos mediante diferentes
-      aproximaciones: calorimetría indirecta, método de Fick y ecuaciones predictivas por peso.
-      Los resultados deben interpretarse según fase clínica, estabilidad hemodinámica, tolerancia
-      gastrointestinal, riesgo nutricional y objetivos terapéuticos.
-    </p>
+      if (a.volumen !== b.volumen) {
+        return a.volumen - b.volumen;
+      }
 
-    <h2>¿Qué calcula esta herramienta?</h2>
+      return b.proteina - a.proteina;
+    }
 
-    <p>
-      La calculadora estima el gasto energético diario y el requerimiento proteico del paciente
-      crítico adulto. También permite comparar métodos de estimación y orientar la selección de
-      fórmulas enterales según aporte calórico, proteico y restricción de volumen.
-    </p>
+    if (a.dentroRango !== b.dentroRango) {
+      return a.dentroRango ? -1 : 1;
+    }
 
-    <h2>Uso clínico responsable</h2>
+    if (a.deficitMin !== b.deficitMin) {
+      return a.deficitMin - b.deficitMin;
+    }
 
-    <p>
-      La calorimetría indirecta es el método preferido cuando está disponible. Las ecuaciones
-      predictivas son aproximaciones iniciales y pueden sobreestimar o subestimar el gasto energético.
-      En todos los casos, el soporte nutricional debe individualizarse y reevaluarse durante la
-      evolución clínica.
-    </p>
-  </section>
+    if (a.excesoProt !== b.excesoProt) {
+      return a.excesoProt - b.excesoProt;
+    }
 
-  <div class="divider"></div>
+    return a.volumen - b.volumen;
+  });
 
-  <section class="card calorie-section">
+  return {
+    opciones,
+    restriccionVolumen,
+    targetKcal,
+    req
+  };
+}
 
-    <h2>Requerimiento calórico diario</h2>
+function renderOpciones(data) {
+  const mejores = data.opciones.slice(0, 5);
 
-    <p class="small">
-      Estimación por calorimetría indirecta, método de Fick o ecuaciones predictivas.
-    </p>
+  let html = "";
 
-    <div class="method-grid">
+  mejores.forEach((opcion, index) => {
+    const deficitTexto = data.restriccionVolumen
+      ? opcion.deficitRestriccion > 0
+        ? `-${round0(opcion.deficitRestriccion)} g`
+        : "0 g"
+      : opcion.deficitMin > 0
+        ? `-${round0(opcion.deficitMin)} g`
+        : "0 g";
 
-      <article class="method-card">
-        <h3>Calorimetría indirecta</h3>
-        <p class="formula">
-          EE = [(3.941 × VO₂) + (1.106 × VCO₂)] × 1440
-        </p>
+    const badge =
+      index === 0
+        ? `<span class="badge-best">Mejor opción</span>`
+        : `<span class="badge-alt">Alternativa</span>`;
 
-        <label for="vo2IC">VO₂ (L/min)</label>
-        <input id="vo2IC" type="number" min="0" step="0.01" placeholder="Ej: 0.25">
+    const detalleFormulas = opcion.formulas
+      .map(formula => `${formula.nombre}: ${round0(formula.volumen)} ml/día`)
+      .join("<br>");
 
-        <label for="vco2IC">VCO₂ (L/min)</label>
-        <input id="vco2IC" type="number" min="0" step="0.01" placeholder="Ej: 0.20">
+    html += `
+      <article class="enteral-option ${index === 0 ? "best-option" : ""}">
+        <div class="enteral-header">
+          <h3>${opcion.nombre}</h3>
+          ${badge}
+        </div>
 
-        <div class="result-box">
-          <b id="kcalIC">—</b>
+        <div class="enteral-data">
+          <p><b>Tipo:</b> ${opcion.tipo === "simple" ? "Fórmula única" : "Combinación"}</p>
+          <p><b>Esquema:</b> ${opcion.detalle}</p>
+          <p><b>Volumen total:</b> ${round0(opcion.volumen)} ml/día</p>
+          <p><b>Kcal aportadas:</b> ${round0(opcion.kcal)} kcal/día</p>
+          <p><b>Proteína aportada:</b> ${round0(opcion.proteina)} g/día</p>
+          <p><b>Déficit proteico:</b> ${deficitTexto}</p>
+          <p><b>Distribución:</b><br>${detalleFormulas}</p>
         </div>
       </article>
+    `;
+  });
 
-      <article class="method-card">
-        <h3>Método de Fick</h3>
-        <p class="formula">
-          VO₂ = GC × (CaO₂ − CvO₂) × 10
-        </p>
+  $("resultadosEnterales").innerHTML = html;
+}
 
-        <label for="gcFick">Gasto cardíaco (L/min)</label>
-        <input id="gcFick" type="number" min="0" step="0.1" placeholder="Ej: 5">
+function runCalculation() {
+  const pesoIdeal = validNumber($("pesoIdeal").value);
 
-        <label for="hbFick">Hemoglobina (g/dL)</label>
-        <input id="hbFick" type="number" min="0" step="0.1" placeholder="Ej: 10">
+  if (!pesoIdeal) {
+    clearResults();
+    return;
+  }
 
-        <label for="sao2Fick">SaO₂ (%)</label>
-        <input id="sao2Fick" type="number" min="0" max="100" step="1" placeholder="Ej: 96">
+  const req = calcularRequerimientos(pesoIdeal);
 
-        <label for="svo2Fick">SvO₂ (%)</label>
-        <input id="svo2Fick" type="number" min="0" max="100" step="1" placeholder="Ej: 70">
+  $("kcalMin").textContent = `${req.kcalMin} kcal/día`;
+  $("kcalMax").textContent = `${req.kcalMax} kcal/día`;
 
-        <label for="pao2Fick">PaO₂ (mmHg)</label>
-        <input id="pao2Fick" type="number" min="0" step="1" placeholder="Ej: 90">
+  $("protMin").textContent = `${req.protMin} g/día`;
+  $("protMax").textContent = `${req.protMax} g/día`;
 
-        <label for="pvo2Fick">PvO₂ (mmHg)</label>
-        <input id="pvo2Fick" type="number" min="0" step="1" placeholder="Ej: 40">
+  const data = calcularOpcionesEnterales(req);
 
-        <label for="rqFick">RQ estimado</label>
-        <input id="rqFick" type="number" min="0.7" max="1.0" step="0.01" value="0.85">
+  renderOpciones(data);
+}
 
-        <div class="result-box">
-          <b id="vo2FickResult">—</b>
-          <b id="kcalFick">—</b>
-        </div>
-      </article>
-
-      <article class="method-card">
-        <h3>Ecuaciones predictivas</h3>
-        <p class="formula">
-          20, 25 y 30 kcal/kg/día
-        </p>
-
-        <label for="pesoPredictivo">Peso para cálculo (kg)</label>
-        <input id="pesoPredictivo" type="number" min="1" step="0.1" placeholder="Ej: 70">
-
-        <div class="result-box">
-          <b id="kcal20">—</b>
-          <b id="kcal25">—</b>
-          <b id="kcal30">—</b>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="note">
-      <b>Interpretación clínica:</b><br>
-      La calorimetría indirecta es el método preferido cuando está disponible.
-      El método de Fick puede estimar VO₂ si se dispone de gasto cardíaco y gases arteriales/venosos.
-      Las ecuaciones predictivas son orientativas y deben individualizarse según fase clínica,
-      tolerancia y riesgo de sobrealimentación.
-    </div>
-
-  </section>
-
-  <section class="card">
-
-    <label for="pesoIdeal">Peso ideal (kg)</label>
-    <input id="pesoIdeal" type="number" min="1" step="0.1" placeholder="Ej: 70">
-
-    <div class="checkbox-field">
-      <input id="restriccionVolumen" type="checkbox">
-      <label for="restriccionVolumen">
-        Paciente requiere restricción de volumen
-      </label>
-    </div>
-
-  </section>
-
-  <section class="grid">
-
-    <article class="card">
-      <h2>Requerimiento calórico</h2>
-      <p class="small">20–30 kcal/kg/día</p>
-
-      <div class="result">
-        <b id="kcalMin">—</b>
-        <b id="kcalMax">—</b>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>Requerimiento proteico</h2>
-      <p class="small">1.2–1.5 g/kg/día</p>
-
-      <div class="result">
-        <b id="protMin">—</b>
-        <b id="protMax">—</b>
-      </div>
-    </article>
-
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="card">
-
-    <h2>Opciones sugeridas de nutrición enteral</h2>
-
-    <p class="small">
-      Se muestran opciones individuales y combinadas según aporte calórico, proteico y volumen.
-    </p>
-
-    <div id="resultadosEnterales" class="enteral-results">
-      Ingrese el peso ideal para calcular.
-    </div>
-
-  </section>
-
-  <section class="card seo-panel">
-
-    <h2>Fundamento clínico del soporte nutricional en UCI</h2>
-
-    <p>
-      El soporte nutricional enteral está indicado en pacientes que no pueden cubrir sus
-      requerimientos por vía oral, especialmente en ventilación mecánica, alteración del
-      estado de conciencia, enfermedad crítica prolongada o alto riesgo nutricional.
-      Siempre que el tracto gastrointestinal sea funcional, la nutrición enteral suele
-      preferirse frente a la parenteral.
-    </p>
-
-    <h3>Requerimientos calóricos</h3>
-    <p>
-      Las recomendaciones internacionales suelen utilizar rangos aproximados de
-      <strong>20–30 kcal/kg/día</strong>, ajustados según la fase de la enfermedad crítica,
-      estabilidad hemodinámica, riesgo de sobrealimentación y disponibilidad de calorimetría
-      indirecta.
-    </p>
-
-    <h3>Requerimientos proteicos</h3>
-    <p>
-      El aporte proteico es clave para preservar masa muscular y atenuar el catabolismo.
-      En pacientes críticos adultos se utilizan con frecuencia rangos aproximados de
-      <strong>1.2–2.0 g/kg/día</strong>, individualizados según condición clínica, función
-      renal, terapia de reemplazo renal, obesidad y objetivos nutricionales.
-    </p>
-
-    <h3>Aplicación clínica de los resultados</h3>
-    <p>
-      Los resultados deben interpretarse como una estimación inicial. En la fase aguda puede
-      ser prudente evitar la sobrealimentación, mientras que en la fase de recuperación puede
-      ser necesario avanzar progresivamente hacia objetivos completos. La tolerancia enteral,
-      el balance hídrico, el control glucémico y la evolución clínica deben guiar los ajustes.
-    </p>
-
-    <h2>Limitaciones</h2>
-
-    <p>
-      Las ecuaciones predictivas pueden ser imprecisas en obesidad, bajo peso extremo,
-      edema, sepsis, quemaduras, ECMO, terapia de reemplazo renal, cirugía mayor o cambios
-      rápidos en el estado clínico. La calorimetría indirecta continúa siendo el método de
-      referencia cuando está disponible.
-    </p>
-
-    <h2>Errores frecuentes</h2>
-
-    <p>
-      Los errores habituales incluyen usar un peso inadecuado para el cálculo, no diferenciar
-      fase aguda y fase de recuperación, avanzar el aporte calórico demasiado rápido, descuidar
-      el aporte proteico o no reevaluar los objetivos nutricionales durante la evolución.
-    </p>
-
-    <h2>Preguntas frecuentes</h2>
-
-    <h3>¿Qué método es más preciso para estimar gasto energético?</h3>
-    <p>
-      La calorimetría indirecta es el método preferido cuando está disponible. Las ecuaciones
-      predictivas deben considerarse aproximaciones iniciales.
-    </p>
-
-    <h3>¿Qué hacer si no hay calorimetría indirecta?</h3>
-    <p>
-      Puede utilizarse una estimación por peso o fórmulas predictivas, siempre reevaluando
-      tolerancia, evolución clínica, glucemia, balance hídrico y objetivos terapéuticos.
-    </p>
-
-    <h3>¿Qué peso debe utilizarse?</h3>
-    <p>
-      Depende del contexto. Puede utilizarse peso actual, ideal, ajustado o seco estimado,
-      especialmente en obesidad, edema o cambios importantes de composición corporal.
-    </p>
-
-    <h3>¿Sirve en pacientes con obesidad?</h3>
-    <p>
-      En obesidad suelen utilizarse estrategias hipocalóricas e hiperproteicas. El cálculo
-      debe individualizarse y evitar extrapolar directamente el peso real sin ajuste.
-    </p>
-
-    <h3>¿Cada cuánto deben recalcularse los requerimientos?</h3>
-    <p>
-      Deben reevaluarse ante cambios clínicos relevantes: resolución del shock, inicio o retiro
-      de ventilación mecánica, terapia de reemplazo renal, cambios de peso, cirugía o nueva
-      complicación infecciosa.
-    </p>
-
-    <h3>¿Puede utilizarse en pacientes con terapia de reemplazo renal?</h3>
-    <p>
-      Puede orientar una estimación inicial, pero estos pacientes requieren individualización,
-      especialmente por pérdidas proteicas, balance hídrico y modalidad de reemplazo renal.
-    </p>
-
-    <h2>Evidencia científica</h2>
-
-    <p>
-      Esta herramienta se basa en recomendaciones internacionales de soporte nutricional en
-      cuidados intensivos, especialmente guías ASPEN y ESPEN. La interpretación debe adaptarse
-      al contexto clínico y a los protocolos locales.
-    </p>
-
-    <h2>Referencias seleccionadas</h2>
-
-    <p>
-      ASPEN Guidelines for the Provision and Assessment of Nutrition Support Therapy in the Adult Critically Ill Patient.
-    </p>
-
-    <p>
-      ESPEN Guidelines on Clinical Nutrition in the Intensive Care Unit.
-    </p>
-
-  </section>
-
-  <section class="card seo-panel">
-    <h2>Responsable editorial</h2>
-    <p>
-      Contenido elaborado y revisado por un médico con formación en Medicina Crítica y
-      Cuidados Intensivos. Critical Care Tools desarrolla recursos educativos basados en
-      evidencia para apoyar la evaluación del paciente crítico.
-    </p>
-    <p>
-      Última actualización: julio de 2026.
-    </p>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <nav class="footer-nav" aria-label="Footer">
-    <a href="https://criticalcaretools.com/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
-    <span aria-hidden="true">·</span>
-    <a href="https://criticalcaretools.com/">Inicio</a>
-  </nav>
-
-  <p>
-    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-    No reemplaza el juicio médico ni las guías institucionales.
-  </p>
-</footer>
-
-<script src="soporte.js"></script>
-
-</body>
-</html>
+$("pesoIdeal").addEventListener("input", runCalculation);
+$("restriccionVolumen").addEventListener("change", runCalculation);
