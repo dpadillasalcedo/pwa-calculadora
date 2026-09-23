@@ -2,37 +2,7 @@
 <html lang="es">
 <head>
 
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="501a395d-6225-4f22-a958-ac2d84bdbd7a"
-    data-blockingmode="auto"
-    type="text/javascript">
-  </script>
-
-  <script data-cookieconsent="ignore">
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag("consent", "default", {
-      ad_personalization: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      analytics_storage: "denied",
-      functionality_storage: "denied",
-      personalization_storage: "denied",
-      security_storage: "granted",
-      wait_for_update: 500
-    });
-
-    gtag("set", "ads_data_redaction", true);
-    gtag("set", "url_passthrough", false);
-  </script>
-
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
@@ -49,7 +19,7 @@
   />
 
   <meta name="author" content="Critical Care Tools" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#102b40" />
 
   <link rel="manifest" href="/manifest.json" />
 
@@ -99,22 +69,26 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-  <link rel="preconnect" href="https://consent.cookiebot.com" />
-  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
 
   <link
     rel="stylesheet"
     href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.css?v=6"
   />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <script data-cookieconsent="ignore">
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', {
-      anonymize_ip: true,
-      send_page_view: true
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
     });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
@@ -181,13 +155,12 @@
 </head>
 
 <body>
-
-<main class="app container">
-
-  <div class="language-switcher">
-    <a href="/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html">EN</a> |
-    <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" class="active">ES</a>
-  </div>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="site-top"><div class="container topbar">
+  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
+  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/ventilacion-mecanicaen/ventilacionen.html" lang="en" hreflang="en">EN</a></span></nav>
+</div></div>
+<main id="contenido" class="app container">
 
   <nav class="breadcrumb" aria-label="Navegación">
     <a href="/">Inicio</a>
@@ -198,6 +171,7 @@
   </nav>
 
   <header class="app-header">
+    <span class="eyebrow">HERRAMIENTAS CLÍNICAS / VENTILACIÓN</span>
     <h1>Calculadoras de ventilación mecánica para pacientes en UCI</h1>
     <p class="subtitle">
       Herramientas para calcular peso corporal predicho, Driving Pressure, compliance,
@@ -234,7 +208,11 @@
     </p>
   </section>
 
-  <section class="panel">
+  <nav class="calculator-nav" aria-label="Ir a una calculadora">
+    <a href="#peso-predicho">Peso predicho</a><a href="#ajuste-pco2">Ajuste de PCO₂</a><a href="#driving-pressure">Driving pressure</a><a href="#componente-resistivo">Componente resistivo</a><a href="#presion-transpulmonar">Presión transpulmonar</a><a href="#tablas-drive-respiratorio">P0.1 y POCC</a>
+  </nav>
+
+  <section id="peso-predicho" class="panel">
     <h2>🫁 Peso corporal predicho (PBW)</h2>
 
     <p class="note">
@@ -258,7 +236,7 @@
     <div id="resultadoPeso" class="result"></div>
   </section>
 
-  <section class="panel">
+  <section id="ajuste-pco2" class="panel">
     <h2>🫁 Ajuste de PCO₂</h2>
 
     <p class="note">
@@ -294,7 +272,7 @@
     <div id="resultadoPCO2Detalle" class="note"></div>
   </section>
 
-  <section class="panel">
+  <section id="driving-pressure" class="panel">
     <h2>🫁 Driving Pressure (ΔP) y complacencia pulmonar</h2>
 
     <p class="note">
@@ -320,7 +298,7 @@
     <div id="interpretacionDeltaP" class="note"></div>
   </section>
 
-  <section class="panel">
+  <section id="componente-resistivo" class="panel">
     <h2>🫁 Componente resistivo</h2>
 
     <p class="note">
@@ -348,7 +326,7 @@
     <div id="interpretacionResistivo" class="note"></div>
   </section>
 
-  <section class="panel transpulmonary-calculator">
+  <section id="presion-transpulmonar" class="panel transpulmonary-calculator">
     <h2>🫁 Presión transpulmonar y mecánica respiratoria</h2>
 
     <div class="grid-2">
@@ -652,8 +630,8 @@
 </main>
 
 <footer class="site-footer">
-  <nav class="footer-nav" aria-label="Footer">
-    <a href="/privacidad-cookies/privacidad.html">Privacidad y Cookies</a>
+  <nav class="footer-nav" aria-label="Enlaces del pie de página">
+    <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
   </nav>
 
   <p>
