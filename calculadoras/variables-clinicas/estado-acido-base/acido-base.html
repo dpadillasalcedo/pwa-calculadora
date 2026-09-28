@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-
   <!-- =========================
-       META BÁSICOS
+       META BÁSICOS Y RENDIMIENTO
   ========================== -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
   <title>Calculadora Anion Gap y Delta-Delta | Evaluación Ácido-Base UCI</title>
 
   <meta
     name="description"
-    content="Calculadora de anion gap, delta-delta e interpretación ácido-base en UCI. Evalúa acidosis metabólica y alteraciones electrolíticas en el paciente crítico con una herramienta clínica gratuita."
+    content="Calculadora de anion gap, delta-delta e interpretación ácido-base en UCI. Evalúa acidosis metabólica y alterations electrolíticas en el paciente crítico con una herramienta clínica gratuita."
   />
 
   <meta
@@ -24,17 +22,20 @@
   <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#102b40" />
 
+  <!-- Preconnect & Preload para optimización de carga -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preload" href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.css?v=2" as="style" />
+
   <!-- =========================
-       CANONICAL
+       CANONICAL Y HREFLANG
   ========================== -->
   <link
     rel="canonical"
     href="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html"
   />
-
-  <!-- =========================
-       HREFLANG
-  ========================== -->
   <link
     rel="alternate"
     hreflang="es"
@@ -52,7 +53,7 @@
   />
 
   <!-- =========================
-       OPEN GRAPH
+       OPEN GRAPH & TWITTER
   ========================== -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
@@ -71,15 +72,6 @@
     content="https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html"
   />
 
-  <!-- Opcional: activar solo si la imagen existe realmente -->
-  <!--
-  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/acido-base-es.jpg" />
-  <meta property="og:image:alt" content="Calculadora de anion gap y delta-delta en Critical Care Tools" />
-  -->
-
-  <!-- =========================
-       TWITTER CARDS
-  ========================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
@@ -90,55 +82,38 @@
     content="Herramienta clínica para calcular anion gap y delta-delta en la evaluación ácido-base del paciente crítico."
   />
 
-  <!-- Opcional: activar solo si la imagen existe realmente -->
-  <!--
-  <meta name="twitter:image" content="https://criticalcaretools.com/assets/img/og/acido-base-es.jpg" />
-  -->
-
   <!-- =========================
-       PERFORMANCE
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-
-  <!-- =========================
-       PWA
+       PWA Y RECURSOS
   ========================== -->
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/icons/icon-192.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <!-- =========================
-       CSS
-  ========================== -->
   <link
     rel="stylesheet"
     href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.css?v=2"
   />
 
   <!-- =========================
-       GOOGLE ANALYTICS GA4
+       GOOGLE ANALYTICS GA4 (Corregido)
   ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
+      'analytics_storage': 'granted',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
     });
-    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
   <!-- =========================
-       ADS
+       ADSENSE
   ========================== -->
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
@@ -146,7 +121,7 @@
   </script>
 
   <!-- =========================
-       SCHEMA: BREADCRUMB
+       DATOS ESTRUCTURADOS (JSON-LD)
   ========================== -->
   <script type="application/ld+json">
   {
@@ -175,9 +150,6 @@
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: MEDICAL WEB PAGE
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -207,886 +179,474 @@
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: COLLECTION PAGE
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Ácido-base y medio interno",
-    "url": "https://criticalcaretools.com/calculadoras/variables-clinicas/estado-acido-base/acido-base.html",
-    "inLanguage": "es",
-    "description": "Página de acceso a herramientas de evaluación ácido-base y alteraciones metabólicas en UCI.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Critical Care Tools",
-      "url": "https://criticalcaretools.com/"
-    }
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Debe corregirse siempre el anion gap por albúmina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. En pacientes críticos la hipoalbuminemia puede ocultar un anion gap elevado si no se realiza la corrección correspondiente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué significa un Delta-Delta mayor de 2?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sugiere la coexistencia de alcalosis metabólica o un bicarbonato basal elevado previo al desarrollo de la acidosis metabólica."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puede existir un anion gap normal con acidosis metabólica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Las acidosis hiperclorémicas secundarias a diarrea, acidosis tubular renal o administración de soluciones ricas en cloro suelen presentar anion gap normal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El sodio corregido reemplaza la medición directa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Es una estimación útil cuando existe hiperglucemia importante, pero siempre debe interpretarse dentro del contexto clínico."
+        }
+      }
+    ]
   }
   </script>
-
-  <!-- =========================
-       SCHEMA: ORGANIZATION
-  ========================== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/"
-  }
-  </script>
-
 </head>
 
-
 <body>
-<a class="skip-link" href="#contenido">Saltar al contenido</a>
-<div class="site-top"><div class="topbar container">
-  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
-  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/estado-acido-baseen/acido-baseen.html" lang="en" hreflang="en">EN</a></span></nav>
-</div></div>
-<main id="contenido" class="container">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  
+  <header class="site-top">
+    <div class="topbar container">
+      <a class="brand" href="/" aria-label="Critical Care Tools, inicio">
+        <span class="brand-mark" aria-hidden="true">+</span>
+        <span>Critical Care <strong>Tools</strong></span>
+      </a>
+      <nav class="top-nav" aria-label="Navegación principal">
+        <a href="/">Inicio</a>
+        <a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a>
+        <span class="language-switcher" aria-label="Idioma">
+          <a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html" lang="es" hreflang="es" aria-current="page">ES</a>
+          <span aria-hidden="true">/</span>
+          <a href="/en/calculadorasen/estado-acido-baseen/acido-baseen.html" lang="en" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="container">
+    <!-- =========================
+         BREADCRUMB
+    ========================== -->
+    <nav class="breadcrumb" aria-label="Navegación de migas de pan">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://criticalcaretools.com/" itemprop="item"><span itemprop="name">Inicio</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span aria-hidden="true">›</span>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" itemprop="item"><span itemprop="name">Variables clínicas</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span aria-hidden="true">›</span>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name" aria-current="page">Ácido-base y medio interno</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="app-header">
+      <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / MEDIO INTERNO</span>
+      <h1>Calculadoras de equilibrio ácido-base y electrolitos en pacientes críticos</h1>
+      <p class="subtitle">
+        Herramientas para calcular anion gap corregido, relación delta-delta,
+        corrección de sodio y calcio, además de algoritmos clínicos para la
+        evaluación de trastornos ácido-base y alteraciones electrolíticas en UCI.
+      </p>
+    </header>
+
+    <nav class="calculator-nav" aria-label="Ir a una herramienta">
+      <a href="#anion-gap">Anion gap</a>
+      <a href="#delta-delta">Delta-delta</a>
+      <a href="#electrolitos">Electrolitos</a>
+      <a href="#algoritmo-alcalosis">Alcalosis</a>
+      <a href="#algoritmo-hiponatremia-hipotonica">Hiponatremia</a>
+    </nav>
+
+    <!-- =========================
+         ANION GAP
+    ========================== -->
+    <section id="anion-gap" class="panel">
+      <h2><span aria-hidden="true">🧪</span> Anion Gap corregido</h2>
+
+      <div class="form-group">
+        <label for="ab_na">Na⁺ (mEq/L)</label>
+        <input id="ab_na" type="number" placeholder="Ej. 140">
+
+        <label for="ab_k">K⁺ (mEq/L)</label>
+        <input id="ab_k" type="number" placeholder="Ej. 4.0">
+
+        <label for="ab_cl">Cl⁻ (mEq/L)</label>
+        <input id="ab_cl" type="number" placeholder="Ej. 104">
+
+        <label for="ab_hco3">HCO₃⁻ (mEq/L)</label>
+        <input id="ab_hco3" type="number" placeholder="Ej. 24">
+
+        <label for="ab_alb">Albúmina (g/dL)</label>
+        <input id="ab_alb" type="number" step="0.1" placeholder="Ej. 4.0">
+      </div>
+
+      <button type="button" onclick="calcularAnionGapCorregido()">Calcular AG</button>
+      <div id="resultadoAnionGap" class="result" aria-live="polite"></div>
+    </section>
+
+    <hr />
+
+    <!-- =========================
+         DELTA / DELTA
+    ========================== -->
+    <section id="delta-delta" class="panel">
+      <h2>Δ/Δ (Delta–Delta)</h2>
+
+      <div class="formula-box">
+        <h3>Fórmula</h3>
+        <p><strong>Δ/Δ = (AG − 16) ÷ (24 − HCO₃⁻)</strong></p>
+        <p>Donde:</p>
+        <ul>
+          <li><strong>AG</strong> = Anion Gap medido</li>
+          <li><strong>16 mEq/L</strong> = Anion Gap normal de referencia</li>
+          <li><strong>24 mEq/L</strong> = HCO₃⁻ normal de referencia</li>
+        </ul>
+
+        <p><strong>Interpretación:</strong></p>
+        <ul>
+          <li><strong>Menor a 1:</strong> Sugiere acidosis metabólica adicional sin aumento del anion gap (hiperclorémica).</li>
+          <li><strong>1 a 2:</strong> Compatible con acidosis metabólica con anion gap elevado pura.</li>
+          <li><strong>Mayor a 2:</strong> Sugiere alcalosis metabólica asociada o HCO₃⁻ basal elevado.</li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label for="dd_ag">Anion Gap (mEq/L)</label>
+        <input id="dd_ag" type="number" step="0.1" min="0" placeholder="Ej. 24">
+
+        <label for="dd_hco3">HCO₃⁻ (mEq/L)</label>
+        <input id="dd_hco3" type="number" step="0.1" min="0" placeholder="Ej. 12">
+      </div>
+
+      <button type="button" onclick="calcularDeltaGap()">Calcular Δ/Δ</button>
+
+      <div id="resultadoDeltaGap" class="result" aria-live="polite"></div>
+      <div id="interpretacionDeltaGap" class="note" aria-live="polite"></div>
+    </section>
+
+    <hr />
+
+    <!-- =========================
+         ELECTROLITOS
+    ========================== -->
+    <section id="electrolitos" class="panel">
+      <h2><span aria-hidden="true">🧂</span> Electrolitos corregidos</h2>
+
+      <fieldset>
+        <legend><h3>Sodio corregido</h3></legend>
+        <label for="na_meas">Na⁺ medido (mEq/L)</label>
+        <input id="na_meas" type="number" placeholder="Ej. 130">
+
+        <label for="glu">Glucosa (mg/dL)</label>
+        <input id="glu" type="number" placeholder="Ej. 450">
+
+        <button type="button" onclick="calcularSodioCorregido()">Calcular Na corregido</button>
+        <div id="resultadoNaCorregido" class="result" aria-live="polite"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><h3>Calcio corregido</h3></legend>
+        <label for="ca_meas">Calcio medido (mg/dL)</label>
+        <input id="ca_meas" type="number" step="0.1" placeholder="Ej. 7.5">
+
+        <label for="alb_meas">Albúmina (g/dL)</label>
+        <input id="alb_meas" type="number" step="0.1" placeholder="Ej. 2.5">
+
+        <button type="button" onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
+        <div id="resultadoCaCorregido" class="result" aria-live="polite"></div>
+      </fieldset>
+    </section>
+
+    <!-- =========================
+         TABLA COMPENSACIONES
+    ========================== -->
+    <section class="table-wrapper">
+      <h2>Tabla 2: Compensaciones adecuadas de los trastornos ácido-base</h2>
+
+      <table class="acid-base-table">
+        <caption>Guía rápida de respuestas compensatorias esperadas en gasometría</caption>
+        <thead>
+          <tr>
+            <th scope="col">Trastorno</th>
+            <th scope="col">Respuesta Compensatoria Esperada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Acidosis metabólica</th>
+            <td>Por cada ↓ <strong>[HCO₃⁻]</strong> de <strong>1 mEq/L</strong> (desde 25 mEq/L), la <strong>pCO₂</strong> debe ↓ <strong>0,85–1,2 mmHg</strong> (desde 40 mmHg).</td>
+          </tr>
+          <tr>
+            <th scope="row">Alcalosis metabólica</th>
+            <td>Por cada ↑ <strong>[HCO₃⁻]</strong> de <strong>1 mEq/L</strong> (desde 25 mEq/L), la <strong>pCO₂</strong> debe ↑ <strong>0,7 mmHg</strong> (desde 40 mmHg).</td>
+          </tr>
+          <tr>
+            <th scope="row">Acidosis respiratoria</th>
+            <td>Por cada ↑ <strong>pCO₂</strong> de <strong>10 mmHg</strong> (desde 40 mmHg), el <strong>[HCO₃⁻]</strong> ↑ <strong>1 mEq/L</strong> (aguda) o <strong>3 mEq/L</strong> (crónica).</td>
+          </tr>
+          <tr>
+            <th scope="row">Alcalosis respiratoria</th>
+            <td>Por cada ↓ <strong>pCO₂</strong> de <strong>10 mmHg</strong> (desde 40 mmHg), el <strong>[HCO₃⁻]</strong> ↓ <strong>2–2,5 mEq/L</strong> (aguda) o <strong>5 mEq/L</strong> (crónica).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- =========================
+         ALGORITMO ALCALOSIS METABÓLICA
+    ========================== -->
+    <section id="algoritmo-alcalosis" class="panel">
+      <button
+        type="button"
+        class="toggle-btn"
+        onclick="toggleAlgoritmoAlcalosis()"
+        aria-expanded="false"
+        aria-controls="contenidoAlgoritmoAlcalosis">
+        Mostrar algoritmo de alcalosis metabólica
+      </button>
+
+      <div id="contenidoAlgoritmoAlcalosis" class="collapsible-box">
+        <h2>Algoritmo de alcalosis metabólica</h2>
+
+        <h3>1. Confirmar alcalosis metabólica</h3>
+        <p>Sospechar alcalosis metabólica cuando existe pH elevado (habitualmente mayor a 7.45) asociado a bicarbonato elevado.</p>
+        <p>Evaluar si la compensación respiratoria es adecuada. La PaCO₂ debe aumentar aproximadamente 0.7 mmHg por cada incremento de 1 mEq/L de HCO₃⁻.</p>
+
+        <h3>2. Identificar los mecanismos fisiopatológicos</h3>
+        <ul>
+          <li>Pérdida de hidrogeniones (ej. vómitos o aspiración nasogástrica).</li>
+          <li>Contracción de volumen con mayor reabsorción proximal de bicarbonato.</li>
+          <li>Hipokalemia (perpetúa la alcalosis).</li>
+          <li>Exceso mineralocorticoide.</li>
+          <li>Administración exógena de bicarbonato o citrato.</li>
+        </ul>
+
+        <h3>3. Medir cloro urinario</h3>
+        <p>Permite clasificar la alcalosis en sensible o resistente a cloro.</p>
+
+        <h4>Cloro urinario &lt;20 mEq/L (Sensible a cloro)</h4>
+        <p><strong>Etiologías frecuentes:</strong> Vómitos, aspiración NGT, uso remoto de diuréticos, alcalosis post-hipercapnia.</p>
+        <p><strong>Tratamiento orientativo:</strong> Solución salina 0.9%, reposición de KCl y corrección de la causa base.</p>
+
+        <h4>Cloro urinario &gt;20 mEq/L (Resistente a cloro)</h4>
+        <p>Sugiere pérdida renal persistente de H⁺ y K⁺ o exceso mineralocorticoide.</p>
+
+        <h3>4. Evaluación de Presión Arterial en Cloro Urinario &gt;20 mEq/L</h3>
+        <table class="acid-base-table">
+          <caption>Orientación diagnóstica según perfil hormonal con hipertensión</caption>
+          <thead>
+            <tr>
+              <th scope="col">Renina</th>
+              <th scope="col">Aldosterona</th>
+              <th scope="col">Orientación diagnóstica</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baja</td>
+              <td>Alta</td>
+              <td>Hiperaldosteronismo primario</td>
+            </tr>
+            <tr>
+              <td>Alta</td>
+              <td>Alta</td>
+              <td>Hiperaldosteronismo secundario</td>
+            </tr>
+            <tr>
+              <td>Baja</td>
+              <td>Baja</td>
+              <td>Liddle, regaliz o exceso mineralocorticoide no aldosterónico</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Sin hipertensión arterial:</strong> Pensar en diuréticos activos, Síndrome de Bartter o Síndrome de Gitelman.</p>
+      </div>
+    </section>
+
+    <!-- =========================
+         ALGORITMO HIPONATREMIA
+    ========================== -->
+    <section id="algoritmo-hiponatremia-hipotonica" class="panel">
+      <button
+        type="button"
+        class="toggle-btn"
+        onclick="toggleAlgoritmoHiponatremiaHipotonica()"
+        aria-expanded="false"
+        aria-controls="contenidoAlgoritmoHiponatremiaHipotonica">
+        Mostrar algoritmo de hiponatremia hipotónica
+      </button>
+
+      <div id="contenidoAlgoritmoHiponatremiaHipotonica" class="collapsible-box">
+        <h2>Algoritmo de hiponatremia hipotónica</h2>
+
+        <h3>1. Confirmar hiponatremia hipotónica</h3>
+        <p>Sodio plasmático &lt;135 mEq/L y osmolaridad plasmática efectiva &lt;275 mOsm/kg.</p>
+
+        <h3>2. Evaluar gravedad clínica</h3>
+        <p>Si existen síntomas neurológicos severos (convulsiones, coma, hipertensión endocraneana), iniciar solución hipertónica al 3% inmediatamente con objetivo de subir 4–6 mEq/L en las primeras horas.</p>
+
+        <h3>3. Clasificación según laboratorio y volemia</h3>
+        <table class="acid-base-table">
+          <caption>Tabla integradora de hiponatremia hipotónica</caption>
+          <thead>
+            <tr>
+              <th scope="col">Osm urinaria</th>
+              <th scope="col">Na urinario</th>
+              <th scope="col">Mecanismo</th>
+              <th scope="col">Etiología probable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&lt;100 mOsm/kg</td>
+              <td>Variable</td>
+              <td>ADH suprimida</td>
+              <td>Polidipsia primaria, baja ingesta de solutos (Beer potomania)</td>
+            </tr>
+            <tr>
+              <td>&gt;100 mOsm/kg</td>
+              <td>&lt;20–30 mEq/L</td>
+              <td>Bajo volumen arterial efectivo</td>
+              <td>Hipovolemia extrarrenal, insuficiencia cardíaca, cirrosis</td>
+            </tr>
+            <tr>
+              <td>&gt;100 mOsm/kg</td>
+              <td>&gt;30 mEq/L</td>
+              <td>ADH activa con natriuresis renal</td>
+              <td>SIADH, diuréticos, insuficiencia suprarrenal, pierde-sal cerebral</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>4. Velocidad segura de corrección</h3>
+        <ul>
+          <li><strong>Regla general:</strong> Máximo 8 mEq/L en 24 horas.</li>
+          <li><strong>Alto riesgo (Alcoholismo, desnutrición, hepatopatía):</strong> Máximo 6 mEq/L en 24 horas para evitar desmielinización osmótica.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================
+         SECCIÓN SEO & FAQ
+    ========================== -->
+    <section class="panel seo-panel">
+      <h2>Interpretación del equilibrio ácido-base en medicina crítica</h2>
+
+      <p>
+        Los trastornos ácido-base son extremadamente frecuentes en pacientes
+        críticos y reflejan alteraciones respiratorias, metabólicas o mixtas.
+        La interpretación sistemática permite identificar mecanismos fisiopatológicos,
+        establecer diagnósticos diferenciales y orientar el tratamiento.
+      </p>
+
+      <h3>Anion Gap corregido</h3>
+      <p>
+        El anion gap corregido por albúmina permite detectar aniones no medidos
+        incluso en pacientes con hipoalbuminemia, una situación muy frecuente
+        en la Unidad de Cuidados Intensivos.
+      </p>
+
+      <h3>Relación Delta-Delta</h3>
+      <p>
+        La relación Δ/Δ compara el aumento del anion gap con la disminución del
+        bicarbonato y ayuda a identificar trastornos metabólicos mixtos.
+      </p>
+
+      <h2>Preguntas frecuentes</h2>
+      <dl class="faq-list">
+        <dt><h3>¿Debe corregirse siempre el anion gap por albúmina?</h3></dt>
+        <dd>
+          <p>
+            Sí. En pacientes críticos la hipoalbuminemia puede ocultar un anion gap
+            elevado si no se realiza la corrección correspondiente.
+          </p>
+        </dd>
+
+        <dt><h3>¿Qué significa un Delta-Delta mayor de 2?</h3></dt>
+        <dd>
+          <p>
+            Sugiere la coexistencia de alcalosis metabólica o un bicarbonato basal
+            elevado previo al desarrollo de la acidosis metabólica.
+          </p>
+        </dd>
+
+        <dt><h3>¿Puede existir un anion gap normal con acidosis metabólica?</h3></dt>
+        <dd>
+          <p>
+            Sí. Las acidosis hiperclorémicas secundarias a diarrea, acidosis tubular
+            renal o administración de soluciones ricas en cloro suelen presentar
+            anion gap normal.
+          </p>
+        </dd>
+
+        <dt><h3>¿El sodio corregido reemplaza la medición directa?</h3></dt>
+        <dd>
+          <p>
+            No. Es una estimación útil cuando existe hiperglucemia importante,
+            pero siempre debe interpretarse dentro del contexto clínico.
+          </p>
+        </dd>
+      </dl>
+
+      <aside class="about-mini" aria-label="Información del responsable editorial">
+        <h2>Responsable editorial</h2>
+        <p>
+          Contenido elaborado y revisado por un médico con formación en Medicina
+          Crítica y Cuidados Intensivos. Critical Care Tools desarrolla recursos
+          educativos basados en evidencia para apoyar la atención del paciente crítico.
+        </p>
+        <p>
+          <time datetime="2026-07">Última actualización: julio de 2026</time>.
+        </p>
+      </aside>
+    </section>
+  </main>
+
   <!-- =========================
-       BREADCRUMB
+       FOOTER
   ========================== -->
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <a href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html">
-      Variables clínicas
-    </a>
-  </nav>
-
-  <!-- =========================
-       HEADER
-  ========================== -->
-<header class="app-header">
-<span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / MEDIO INTERNO</span>
-<h1>Calculadoras de equilibrio ácido-base y electrolitos en pacientes críticos</h1>
-
-<p class="subtitle">
-Herramientas para calcular anion gap corregido, relación delta-delta,
-corrección de sodio y calcio, además de algoritmos clínicos para la
-evaluación de trastornos ácido-base y alteraciones electrolíticas en UCI.
-</p>
-
-</header>
-
-<nav class="calculator-nav" aria-label="Ir a una herramienta">
-  <a href="#anion-gap">Anion gap</a><a href="#delta-delta">Delta-delta</a><a href="#electrolitos">Electrolitos</a><a href="#algoritmo-alcalosis">Alcalosis</a><a href="#algoritmo-hiponatremia-hipotonica">Hiponatremia</a>
-</nav>
-
-  <!-- =========================
-       ANION GAP
-  ========================== -->
-  <section id="anion-gap" class="panel">
-
-    <h2>🧪 Anion Gap corregido</h2>
-
-    <label>Na⁺ (mEq/L)</label>
-    <input id="ab_na" type="number">
-
-    <label>K⁺ (mEq/L)</label>
-    <input id="ab_k" type="number">
-
-    <label>Cl⁻ (mEq/L)</label>
-    <input id="ab_cl" type="number">
-
-    <label>HCO₃⁻</label>
-    <input id="ab_hco3" type="number">
-
-    <label>Albúmina (g/dL)</label>
-    <input id="ab_alb" type="number" step="0.1">
-
-    <button type="button" onclick="calcularAnionGapCorregido()">Calcular AG</button>
-    <div id="resultadoAnionGap" class="result" aria-live="polite"></div>
-
-  </section>
-
-  <hr />
-
- <!-- =========================
-     DELTA / DELTA
-========================== -->
-<section id="delta-delta" class="panel">
-
-  <h2>Δ/Δ (Delta–Delta)</h2>
-
-  <div class="formula-box">
-    <h3>Fórmula</h3>
-
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Enlaces del pie de página">
+      <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
+    </nav>
     <p>
-      <strong>Δ/Δ = (AG − 16) ÷ (24 − HCO₃⁻)</strong>
+      © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+      No reemplaza el juicio médico ni las guías institucionales.
     </p>
-
-    <p>
-      Donde:
-    </p>
-
-    <ul>
-      <li><strong>AG</strong> = Anion Gap medido</li>
-      <li><strong>16 mEq/L</strong> = Anion Gap normal de referencia</li>
-      <li><strong>24 mEq/L</strong> = HCO₃⁻ normal de referencia</li>
-    </ul>
-
-    <p><strong>Interpretación:</strong></p>
-
-    <ul>
-      <li><strong>&lt; 1:</strong> Sugiere acidosis metabólica adicional sin aumento del anion gap (hiperclorémica).</li>
-      <li><strong>1 – 2:</strong> Compatible con acidosis metabólica con anion gap elevado pura.</li>
-      <li><strong>&gt; 2:</strong> Sugiere alcalosis metabólica asociada o HCO₃⁻ basal elevado.</li>
-    </ul>
-  </div>
-
-  <label for="dd_ag">
-    Anion Gap (mEq/L)
-  </label>
-  <input
-    id="dd_ag"
-    type="number"
-    step="0.1"
-    min="0"
-    placeholder="Ej. 24"
-  >
-
-  <label for="dd_hco3">
-    HCO₃⁻ (mEq/L)
-  </label>
-  <input
-    id="dd_hco3"
-    type="number"
-    step="0.1"
-    min="0"
-    placeholder="Ej. 12"
-  >
-
-  <button type="button" onclick="calcularDeltaGap()">
-    Calcular Δ/Δ
-  </button>
-
-  <div id="resultadoDeltaGap" class="result" aria-live="polite"></div>
-
-  <div id="interpretacionDeltaGap" class="note" aria-live="polite"></div>
-
-</section>
-  
-  <hr />
-
-  <!-- =========================
-       ELECTROLITOS
-  ========================== -->
-  <section id="electrolitos" class="panel">
-
-    <h2>🧂 Electrolitos corregidos</h2>
-
-    <h3>Sodio corregido</h3>
-    <label>Na⁺ medido</label>
-    <input id="na_meas" type="number">
-
-    <label>Glucosa</label>
-    <input id="glu" type="number">
-
-    <button type="button" onclick="calcularSodioCorregido()">Calcular Na corregido</button>
-    <div id="resultadoNaCorregido" class="result" aria-live="polite"></div>
-
-    <h3>Calcio corregido</h3>
-    <label>Calcio medido</label>
-    <input id="ca_meas" type="number" step="0.1">
-
-    <label>Albúmina</label>
-    <input id="alb_meas" type="number" step="0.1">
-
-    <button type="button" onclick="calcularCalcioCorregido()">Calcular Ca corregido</button>
-    <div id="resultadoCaCorregido" class="result" aria-live="polite"></div>
-
-  </section>
-
-  <section class="table-wrapper">
-  <h2>Tabla 2: Compensaciones adecuadas de los trastornos ácido-base</h2>
-
-  <table class="acid-base-table">
-    <tbody>
-      <tr class="section">
-        <th colspan="2">Acidosis metabólica</th>
-      </tr>
-      <tr class="content">
-        <td colspan="2">
-          Por cada ↓ <strong>[HCO<sub>3</sub><sup>-</sup>]</strong> de
-          <strong>1 mEq/l</strong> (desde 25 mEq/l),
-          la <strong>pCO<sub>2</sub></strong> debe ↓
-          <strong>0,85–1,2 mm Hg</strong> (desde 40 mmHg).
-        </td>
-      </tr>
-
-      <tr class="section">
-        <th colspan="2">Alcalosis metabólica</th>
-      </tr>
-      <tr class="content">
-        <td colspan="2">
-          Por cada ↑ <strong>[HCO<sub>3</sub><sup>-</sup>]</strong> de
-          <strong>1 mEq/l</strong> (desde 25 mEq/l),
-          la <strong>pCO<sub>2</sub></strong> debe ↑
-          <strong>0,7 mm Hg</strong> (desde 40 mmHg).
-        </td>
-      </tr>
-
-      <tr class="section">
-        <th colspan="2">Acidosis respiratoria</th>
-      </tr>
-      <tr class="content">
-        <td colspan="2">
-          Por cada ↑ <strong>pCO<sub>2</sub></strong> de
-          <strong>10 mm Hg</strong> (desde 40 mmHg),
-          el <strong>[HCO<sub>3</sub><sup>-</sup>]</strong> ↑
-          <strong>1 mEq/l</strong> (desde 25 mEq/l) si es aguda,
-          o <strong>3 mEq/l</strong> si es crónica.
-        </td>
-      </tr>
-
-      <tr class="section">
-        <th colspan="2">Alcalosis respiratoria</th>
-      </tr>
-      <tr class="content">
-        <td colspan="2">
-          Por cada ↓ <strong>pCO<sub>2</sub></strong> de
-          <strong>10 mm Hg</strong> (desde 40 mmHg),
-          el <strong>[HCO<sub>3</sub><sup>-</sup>]</strong> ↓
-          <strong>2–2,5 mEq/l</strong> (desde 25 mEq/l) si es aguda,
-          o <strong>5 mEq/l</strong> si es crónica.
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-
-  <!-- =========================
-     ALGORITMO ALCALOSIS METABÓLICA
-========================== -->
-<section id="algoritmo-alcalosis" class="panel">
-
-  <button
-    type="button"
-    class="toggle-btn"
-    onclick="toggleAlgoritmoAlcalosis()"
-    aria-expanded="false"
-    aria-controls="contenidoAlgoritmoAlcalosis">
-    Mostrar algoritmo de alcalosis metabólica
-  </button>
-
-  <div
-    id="contenidoAlgoritmoAlcalosis"
-    class="collapsible-box">
-
-    <h2>Algoritmo de alcalosis metabólica</h2>
-
-    <h3>1. Confirmar alcalosis metabólica</h3>
-    <p>
-      Sospechar alcalosis metabólica cuando existe pH elevado, habitualmente
-      mayor de 7.45, asociado a bicarbonato elevado.
-    </p>
-
-    <p>
-      Evaluar si la compensación respiratoria es adecuada. En alcalosis
-      metabólica, la PaCO₂ debe aumentar aproximadamente 0.7 mmHg por cada
-      aumento de 1 mEq/L de HCO₃⁻.
-    </p>
-
-    <h3>2. Identificar los mecanismos fisiopatológicos</h3>
-    <ul>
-      <li>Pérdida de hidrogeniones, especialmente por vómitos o sonda nasogástrica.</li>
-      <li>Contracción de volumen con aumento de reabsorción proximal de bicarbonato.</li>
-      <li>Hipokalemia, que perpetúa la alcalosis metabólica.</li>
-      <li>Exceso mineralocorticoide con aumento de secreción distal de H⁺ y K⁺.</li>
-      <li>Administración exógena de bicarbonato o citrato.</li>
-    </ul>
-
-    <h3>3. Medir cloro urinario</h3>
-    <p>
-      El cloro urinario permite clasificar la alcalosis metabólica en sensible
-      o resistente a cloro.
-    </p>
-
-    <h3>Cloro urinario &lt;20 mEq/L</h3>
-    <p>
-      Sugiere alcalosis metabólica sensible a cloro o salino-responsiva.
-    </p>
-
-    <p><strong>Mecanismo:</strong></p>
-    <ul>
-      <li>Pérdida de HCl.</li>
-      <li>Depleción de volumen.</li>
-      <li>Activación del sistema renina–angiotensina–aldosterona.</li>
-      <li>Aumento de reabsorción renal de bicarbonato.</li>
-    </ul>
-
-    <p><strong>Etiologías frecuentes:</strong></p>
-    <ul>
-      <li>Vómitos.</li>
-      <li>Aspiración por sonda nasogástrica.</li>
-      <li>Diuréticos suspendidos o uso remoto.</li>
-      <li>Alcalosis post-hipercapnia.</li>
-      <li>Depleción de volumen con cloropenia.</li>
-    </ul>
-
-    <p><strong>Tratamiento orientativo:</strong></p>
-    <ul>
-      <li>Suero fisiológico 0.9%.</li>
-      <li>Reposición de KCl.</li>
-      <li>Corrección de la causa desencadenante.</li>
-    </ul>
-
-    <h3>Cloro urinario &gt;20 mEq/L</h3>
-    <p>
-      Sugiere alcalosis metabólica resistente a cloro.
-    </p>
-
-    <p><strong>Mecanismo:</strong></p>
-    <ul>
-      <li>Pérdida renal persistente de H⁺ y K⁺.</li>
-      <li>Aumento de entrega distal de sodio.</li>
-      <li>Exceso mineralocorticoide.</li>
-    </ul>
-
-    <h3>4. Si hay hipertensión arterial</h3>
-    <p>
-      Pensar en exceso mineralocorticoide.
-    </p>
-
-    <p><strong>Etiologías probables:</strong></p>
-    <ul>
-      <li>Hiperaldosteronismo primario.</li>
-      <li>Hiperaldosteronismo secundario.</li>
-      <li>Síndrome de Cushing.</li>
-      <li>Uso de corticoides con efecto mineralocorticoide.</li>
-      <li>Síndrome de Liddle.</li>
-      <li>Ingesta de regaliz.</li>
-    </ul>
-
-    <table class="acid-base-table">
-      <tbody>
-        <tr class="section">
-          <th>Renina</th>
-          <th>Aldosterona</th>
-          <th>Orientación diagnóstica</th>
-        </tr>
-        <tr>
-          <td>Baja</td>
-          <td>Alta</td>
-          <td>Hiperaldosteronismo primario</td>
-        </tr>
-        <tr>
-          <td>Alta</td>
-          <td>Alta</td>
-          <td>Hiperaldosteronismo secundario</td>
-        </tr>
-        <tr>
-          <td>Baja</td>
-          <td>Baja</td>
-          <td>Liddle, regaliz o exceso mineralocorticoide no aldosterónico</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>5. Si no hay hipertensión arterial</h3>
-    <p>
-      Pensar en pérdidas renales de sal o uso de diuréticos.
-    </p>
-
-    <p><strong>Etiologías probables:</strong></p>
-    <ul>
-      <li>Diuréticos activos.</li>
-      <li>Síndrome de Bartter.</li>
-      <li>Síndrome de Gitelman.</li>
-      <li>Hipomagnesemia severa.</li>
-    </ul>
-
-    <p><strong>Claves diferenciales:</strong></p>
-    <ul>
-      <li>Bartter: hipercalciuria, simula uso de furosemida.</li>
-      <li>Gitelman: hipomagnesemia e hipocalciuria, simula uso de tiazidas.</li>
-    </ul>
-
-    <h3>6. Evaluar potasio</h3>
-    <p>
-      La hipokalemia perpetúa la alcalosis metabólica porque aumenta la secreción
-      renal de H⁺, aumenta la amoniogénesis y favorece la reabsorción proximal
-      de bicarbonato.
-    </p>
-
-    <p>
-      La reposición de potasio, preferentemente como KCl, es una parte central
-      del tratamiento.
-    </p>
-
-    <h3>7. Alcalosis metabólica severa</h3>
-    <p>
-      Un pH mayor o igual a 7.55 puede asociarse con arritmias, hipocalcemia
-      iónica, vasoconstricción cerebral, convulsiones y mayor riesgo clínico.
-    </p>
-
-    <p>
-      En casos refractarios puede considerarse acetazolamida, HCl intravenoso
-      en situaciones excepcionales o diálisis según el contexto clínico.
-    </p>
-
-  </div>
-</section>
-
-<!-- =========================
-     ALGORITMO HIPONATREMIA HIPOTÓNICA
-========================== -->
-<section id="algoritmo-hiponatremia-hipotonica" class="panel">
-
-  <button
-    type="button"
-    class="toggle-btn"
-    onclick="toggleAlgoritmoHiponatremiaHipotonica()"
-    aria-expanded="false"
-    aria-controls="contenidoAlgoritmoHiponatremiaHipotonica">
-    Mostrar algoritmo de hiponatremia hipotónica
-  </button>
-
-  <div
-    id="contenidoAlgoritmoHiponatremiaHipotonica"
-    class="collapsible-box">
-
-    <h2>Algoritmo de hiponatremia hipotónica</h2>
-
-    <h3>1. Confirmar hiponatremia hipotónica</h3>
-    <p>
-      La hiponatremia hipotónica se confirma cuando el sodio plasmático es menor
-      de 135 mEq/L y la osmolaridad plasmática efectiva es menor de 275 mOsm/kg.
-    </p>
-
-    <p>
-      Esto indica exceso relativo de agua libre respecto al sodio corporal efectivo.
-    </p>
-
-    <h3>2. Evaluar gravedad clínica</h3>
-    <p>
-      Antes de clasificar la etiología, evaluar si existen síntomas neurológicos severos.
-    </p>
-
-    <p><strong>Síntomas severos:</strong></p>
-    <ul>
-      <li>Convulsiones.</li>
-      <li>Coma.</li>
-      <li>Deterioro neurológico agudo.</li>
-      <li>Signos de hipertensión endocraneana.</li>
-      <li>Compromiso respiratorio.</li>
-    </ul>
-
-    <p>
-      Si hay síntomas severos, el tratamiento inicial es salina hipertónica al 3%,
-      con objetivo de aumentar el sodio 4–6 mEq/L en las primeras horas.
-    </p>
-
-    <h3>3. Medir osmolaridad urinaria</h3>
-    <p>
-      La osmolaridad urinaria permite saber si la hormona antidiurética está
-      suprimida o activa.
-    </p>
-
-    <h3>Osmolaridad urinaria &lt;100 mOsm/kg</h3>
-    <p>
-      Sugiere ADH apropiadamente suprimida.
-    </p>
-
-    <p><strong>Mecanismo fisiopatológico:</strong></p>
-    <ul>
-      <li>El riñón puede diluir la orina adecuadamente.</li>
-      <li>La hiponatremia ocurre por exceso de ingesta de agua o baja carga de solutos.</li>
-      <li>La capacidad de excretar agua libre está superada por la ingesta o limitada por falta de solutos.</li>
-    </ul>
-
-    <p><strong>Etiologías probables:</strong></p>
-    <ul>
-      <li>Polidipsia primaria.</li>
-      <li>Baja ingesta de solutos.</li>
-      <li>Beer potomania.</li>
-      <li>Dieta “tea and toast”.</li>
-    </ul>
-
-    <p><strong>Tratamiento orientativo:</strong></p>
-    <ul>
-      <li>Restricción hídrica.</li>
-      <li>Aumentar ingesta de proteínas y solutos.</li>
-      <li>Evitar corrección rápida por riesgo de sobrecorrección.</li>
-    </ul>
-
-    <h3>Osmolaridad urinaria &gt;100 mOsm/kg</h3>
-    <p>
-      Sugiere ADH activa. En este escenario el riñón no está eliminando agua libre
-      de forma adecuada.
-    </p>
-
-    <p><strong>Mecanismo fisiopatológico:</strong></p>
-    <ul>
-      <li>Persistencia de ADH pese a hiponatremia.</li>
-      <li>Retención de agua libre.</li>
-      <li>Orina inapropiadamente concentrada.</li>
-    </ul>
-
-    <p>
-      El siguiente paso es evaluar el estado de volumen y el sodio urinario.
-    </p>
-
-    <h3>4. Evaluar sodio urinario</h3>
-
-    <h3>Sodio urinario &lt;20–30 mEq/L</h3>
-    <p>
-      Sugiere que el riñón está reteniendo sodio.
-    </p>
-
-    <p><strong>Mecanismo fisiopatológico:</strong></p>
-    <ul>
-      <li>Disminución del volumen arterial efectivo.</li>
-      <li>Activación del sistema renina–angiotensina–aldosterona.</li>
-      <li>Retención renal de sodio.</li>
-      <li>Activación no osmótica de ADH.</li>
-    </ul>
-
-    <p><strong>Etiologías probables según volemia:</strong></p>
-    <ul>
-      <li>Hipovolemia por vómitos o diarrea.</li>
-      <li>Tercer espacio.</li>
-      <li>Hemorragia o pérdidas extrarrenales.</li>
-      <li>Insuficiencia cardíaca.</li>
-      <li>Cirrosis.</li>
-      <li>Síndrome nefrótico.</li>
-    </ul>
-
-    <h3>Sodio urinario &gt;30 mEq/L</h3>
-    <p>
-      Sugiere pérdida renal de sodio o natriuresis inapropiada.
-    </p>
-
-    <p><strong>Mecanismo fisiopatológico:</strong></p>
-    <ul>
-      <li>El riñón no está reteniendo sodio pese a la hiponatremia.</li>
-      <li>Puede existir SIADH, pérdida renal de sal o insuficiencia suprarrenal.</li>
-      <li>La ADH permanece activa y favorece retención de agua libre.</li>
-    </ul>
-
-    <p><strong>Etiologías probables:</strong></p>
-    <ul>
-      <li>SIADH.</li>
-      <li>Diuréticos, especialmente tiazidas.</li>
-      <li>Insuficiencia suprarrenal.</li>
-      <li>Nefropatía perdedora de sal.</li>
-      <li>Cerebral salt wasting en pacientes neurocríticos.</li>
-      <li>Hipotiroidismo severo.</li>
-    </ul>
-
-    <h3>5. Clasificación según volemia</h3>
-
-    <h3>Hiponatremia hipovolémica</h3>
-    <p>
-      Existe pérdida de sodio y agua, pero la pérdida de sodio predomina.
-    </p>
-
-    <p><strong>Mecanismo:</strong></p>
-    <ul>
-      <li>Disminución del volumen circulante efectivo.</li>
-      <li>Activación no osmótica de ADH.</li>
-      <li>Retención de agua libre.</li>
-    </ul>
-
-    <p><strong>Etiologías:</strong></p>
-    <ul>
-      <li>Vómitos.</li>
-      <li>Diarrea.</li>
-      <li>Hemorragia.</li>
-      <li>Diuréticos.</li>
-      <li>Insuficiencia suprarrenal.</li>
-      <li>Pérdidas renales de sal.</li>
-    </ul>
-
-    <p><strong>Tratamiento orientativo:</strong></p>
-    <ul>
-      <li>Suero fisiológico 0.9%.</li>
-      <li>Suspender diuréticos si corresponde.</li>
-      <li>Corregir potasio y causa desencadenante.</li>
-    </ul>
-
-    <h3>Hiponatremia euvolémica</h3>
-    <p>
-      El volumen extracelular clínico parece normal, pero hay exceso de agua libre.
-    </p>
-
-    <p><strong>Mecanismo:</strong></p>
-    <ul>
-      <li>ADH inapropiadamente elevada.</li>
-      <li>Retención de agua libre.</li>
-      <li>Natriuresis relativamente conservada.</li>
-    </ul>
-
-    <p><strong>Etiologías:</strong></p>
-    <ul>
-      <li>SIADH.</li>
-      <li>Dolor, náuseas o estrés postoperatorio.</li>
-      <li>Neumonía.</li>
-      <li>Patología del sistema nervioso central.</li>
-      <li>ISRS.</li>
-      <li>Carbamazepina.</li>
-      <li>Oxcarbazepina.</li>
-      <li>Ciclofosfamida.</li>
-      <li>Cáncer microcítico de pulmón.</li>
-      <li>Hipotiroidismo severo.</li>
-      <li>Insuficiencia suprarrenal secundaria.</li>
-    </ul>
-
-    <p><strong>Tratamiento orientativo:</strong></p>
-    <ul>
-      <li>Restricción hídrica.</li>
-      <li>Aumentar solutos: sal o urea.</li>
-      <li>Considerar diurético de asa en algunos casos.</li>
-      <li>Vaptanes solo en escenarios seleccionados.</li>
-    </ul>
-
-    <h3>Hiponatremia hipervolémica</h3>
-    <p>
-      Hay aumento del agua corporal total y del sodio corporal total, pero el
-      aumento de agua predomina.
-    </p>
-
-    <p><strong>Mecanismo:</strong></p>
-    <ul>
-      <li>Disminución del volumen arterial efectivo.</li>
-      <li>Activación de ADH, sistema renina–angiotensina–aldosterona y sistema simpático.</li>
-      <li>Retención de agua libre mayor que retención de sodio.</li>
-    </ul>
-
-    <p><strong>Etiologías:</strong></p>
-    <ul>
-      <li>Insuficiencia cardíaca.</li>
-      <li>Cirrosis.</li>
-      <li>Síndrome nefrótico.</li>
-      <li>Enfermedad renal avanzada.</li>
-    </ul>
-
-    <p><strong>Tratamiento orientativo:</strong></p>
-    <ul>
-      <li>Restricción hídrica.</li>
-      <li>Restricción de sodio.</li>
-      <li>Diuréticos de asa.</li>
-      <li>Manejo de la causa de base.</li>
-    </ul>
-
-    <h3>6. Tabla integradora</h3>
-
-    <table class="acid-base-table">
-      <tbody>
-        <tr class="section">
-          <th>Osm urinaria</th>
-          <th>Na urinario</th>
-          <th>Mecanismo</th>
-          <th>Etiología probable</th>
-        </tr>
-        <tr>
-          <td>&lt;100</td>
-          <td>Variable</td>
-          <td>ADH suprimida</td>
-          <td>Polidipsia, baja ingesta de solutos</td>
-        </tr>
-        <tr>
-          <td>&gt;100</td>
-          <td>&lt;20–30</td>
-          <td>Bajo volumen arterial efectivo</td>
-          <td>Hipovolemia extrarrenal, IC, cirrosis, síndrome nefrótico</td>
-        </tr>
-        <tr>
-          <td>&gt;100</td>
-          <td>&gt;30</td>
-          <td>ADH activa con natriuresis renal</td>
-          <td>SIADH, diuréticos, insuficiencia suprarrenal, pérdida renal de sal</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>7. Velocidad segura de corrección</h3>
-    <p>
-      La corrección rápida de la hiponatremia puede producir síndrome de
-      desmielinización osmótica.
-    </p>
-
-    <ul>
-      <li>Corrección general: no más de 8 mEq/L en 24 horas.</li>
-      <li>Alto riesgo: no más de 6 mEq/L en 24 horas.</li>
-    </ul>
-
-    <p><strong>Factores de alto riesgo:</strong></p>
-    <ul>
-      <li>Alcoholismo.</li>
-      <li>Desnutrición.</li>
-      <li>Hepatopatía avanzada.</li>
-      <li>Hipokalemia.</li>
-      <li>Hiponatremia crónica severa.</li>
-    </ul>
-
-    <h3>8. Perlas clínicas</h3>
-    <ul>
-      <li>Hiponatremia + hiperkalemia: pensar en insuficiencia suprarrenal.</li>
-      <li>Osm urinaria muy alta sugiere ADH intensamente activa.</li>
-      <li>En SIADH suele haber osm urinaria &gt;100 y sodio urinario &gt;30.</li>
-      <li>En cirrosis e insuficiencia cardíaca el problema central es bajo volumen arterial efectivo.</li>
-      <li>En baja ingesta de solutos puede haber sobrecorrección rápida al reintroducir alimentación o suero.</li>
-    </ul>
-
-  </div>
-</section>
-  
-<section class="panel seo-panel">
-
-<h2>Interpretación del equilibrio ácido-base en medicina crítica</h2>
-
-<p>
-Los trastornos ácido-base son extremadamente frecuentes en pacientes
-críticos y reflejan alteraciones respiratorias, metabólicas o mixtas.
-La interpretación sistemática permite identificar mecanismos fisiopatológicos,
-establecer diagnósticos diferenciales y orientar el tratamiento.
-</p>
-
-<h3>Anion Gap corregido</h3>
-
-<p>
-El anion gap corregido por albúmina permite detectar aniones no medidos
-incluso en pacientes con hipoalbuminemia, una situación muy frecuente
-en la Unidad de Cuidados Intensivos. Su utilización mejora la detección
-de acidosis metabólica por lactato, cuerpos cetónicos, insuficiencia renal
-o intoxicaciones.
-</p>
-
-<h3>Relación Delta-Delta</h3>
-
-<p>
-La relación Δ/Δ compara el aumento del anion gap con la disminución del
-bicarbonato y ayuda a identificar trastornos metabólicos mixtos, como
-la coexistencia de acidosis metabólica con alcalosis metabólica o con
-acidosis hiperclorémica.
-</p>
-
-<h3>Compensación ácido-base</h3>
-
-<p>
-Cada trastorno ácido-base posee mecanismos compensatorios fisiológicos.
-Cuando la compensación observada difiere de la esperada debe sospecharse
-la presencia de un trastorno mixto, situación frecuente en pacientes
-críticos con sepsis, shock, insuficiencia renal o falla respiratoria.
-</p>
-
-<h3>Corrección del sodio</h3>
-
-<p>
-La hiperglucemia produce un desplazamiento osmótico del agua desde el
-espacio intracelular hacia el extracelular, disminuyendo artificialmente
-la concentración plasmática de sodio. El sodio corregido permite estimar
-la natremia real.
-</p>
-
-<h3>Corrección del calcio</h3>
-
-<p>
-La concentración total de calcio depende de la albúmina plasmática.
-En pacientes con hipoalbuminemia el calcio corregido aproxima mejor el
-estado del calcio ionizado cuando este no está disponible.
-</p>
-
-<h3>Algoritmos diagnósticos</h3>
-
-<p>
-Los algoritmos incluidos permiten un enfoque estructurado de la alcalosis
-metabólica y de la hiponatremia hipotónica utilizando parámetros como
-cloro urinario, osmolaridad urinaria, sodio urinario y estado de volemia.
-</p>
-
-<h3>Limitaciones</h3>
-
-<p>
-Los cálculos deben interpretarse junto con la historia clínica,
-gasometría arterial, lactato, función renal, estado hemodinámico,
-tratamientos recibidos y evolución del paciente. Ninguna fórmula sustituye
-el juicio clínico.
-</p>
-
-<h2>Preguntas frecuentes</h2>
-
-<h3>¿Debe corregirse siempre el anion gap por albúmina?</h3>
-
-<p>
-Sí. En pacientes críticos la hipoalbuminemia puede ocultar un anion gap
-elevado si no se realiza la corrección correspondiente.
-</p>
-
-<h3>¿Qué significa un Delta-Delta mayor de 2?</h3>
-
-<p>
-Sugiere la coexistencia de alcalosis metabólica o un bicarbonato basal
-elevado previo al desarrollo de la acidosis metabólica.
-</p>
-
-<h3>¿Puede existir un anion gap normal con acidosis metabólica?</h3>
-
-<p>
-Sí. Las acidosis hiperclorémicas secundarias a diarrea, acidosis tubular
-renal o administración de soluciones ricas en cloro suelen presentar
-anion gap normal.
-</p>
-
-<h3>¿El sodio corregido reemplaza la medición directa?</h3>
-
-<p>
-No. Es una estimación útil cuando existe hiperglucemia importante,
-pero siempre debe interpretarse dentro del contexto clínico.
-</p>
-
-<h2>Responsable editorial</h2>
-
-<p>
-Contenido elaborado y revisado por un médico con formación en Medicina
-Crítica y Cuidados Intensivos. Critical Care Tools desarrolla recursos
-educativos basados en evidencia para apoyar la atención del paciente crítico.
-</p>
-
-<p>
-Última actualización: julio de 2026.
-</p>
-
-</section>
-
-  
-</main>
-
-<!-- =========================
-     FOOTER
-========================== -->
-<footer class="site-footer">
-
-<nav class="footer-nav" aria-label="Enlaces del pie de página">
-
-<a href="/privacidad-cookies/privacidad.html">
-Política de privacidad
-</a>
-
-</nav>
-
-<p>
-© 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-No reemplaza el juicio médico ni las guías institucionales.
-</p>
-
-</footer>
-
-<!-- JS -->
-<script src="./acido-base.js"></script>
-
-    <!-- Analítica clínica (GENÉRICA) -->
-<script src="/assets/js/analytics-clinical.js"></script>
-
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./acido-base.js"></script>
+  <script src="/assets/js/analytics-clinical.js"></script>
 </body>
 </html>
