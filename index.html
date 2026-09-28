@@ -20,27 +20,24 @@
   <meta name="twitter:card" content="summary">
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <!-- GA4: medición sin cookies de Analytics ni publicidad -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-    gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-  <link rel="stylesheet" href="/style.css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"Critical Care Tools","url":"https://criticalcaretools.com/","inLanguage":"es"}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Calculadoras para cuidados intensivos","url":"https://criticalcaretools.com/","inLanguage":"es","description":"Calculadoras clínicas de variables fisiológicas, infusión de fármacos y soporte nutricional para profesionales de cuidados intensivos.","audience":{"@type":"MedicalAudience","audienceType":"HealthcareProfessional"},"isPartOf":{"@type":"WebSite","name":"Critical Care Tools","url":"https://criticalcaretools.com/"}}
-  </script>
+<!-- GA4: medición básica habilitada -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  
+  // Establece el consentimiento predeterminado (o quita este bloque si no usas Consent Mode)
+  gtag('consent', 'default', {
+    'analytics_storage': 'granted', // <--- Permite la medición de usuarios
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
+</script>
+
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
