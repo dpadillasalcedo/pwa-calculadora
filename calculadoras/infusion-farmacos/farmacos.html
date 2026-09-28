@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- 
-
+  <!-- =========================
+       META BÁSICOS Y RENDIMIENTO
+  ========================== -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
   <title>Vancomicina y betalactámicos en UCI | Critical Care Tools</title>
@@ -22,12 +23,25 @@
   <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#102b40" />
 
+  <!-- Preconnect & Preload para optimización de carga -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preload" href="/calculadoras/infusion-farmacos/farmacos.css?v=3" as="style" />
+
+  <!-- =========================
+       CANONICAL Y HREFLANG
+  ========================== -->
   <link rel="canonical" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html" />
 
   <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacos.html" />
   <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculadorasen/infusion-farmacos/farmacosen.html" />
   <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
 
+  <!-- =========================
+       OPEN GRAPH & TWITTER
+  ========================== -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:locale:alternate" content="en_US" />
@@ -46,38 +60,47 @@
     content="Calculadora clínica para estimar dosis de vancomicina en infusión continua con ajuste por función renal."
   />
 
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-
+  <!-- =========================
+       PWA
+  ========================== -->
   <link rel="manifest" href="/manifest.json" />
   <link rel="apple-touch-icon" href="/icons/icon-192.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+  <!-- =========================
+       CSS
+  ========================== -->
   <link rel="stylesheet" href="/calculadoras/infusion-farmacos/farmacos.css?v=3" />
 
+  <!-- =========================
+       GOOGLE ANALYTICS GA4 (Corregido: 'granted')
+  ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
+      'analytics_storage': 'granted',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
     });
-    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
 
+  <!-- =========================
+       ADSENSE
+  ========================== -->
   <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
     crossorigin="anonymous">
   </script>
 
+  <!-- =========================
+       DATOS ESTRUCTURADOS (JSON-LD)
+  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -147,22 +170,87 @@
   }
   </script>
 
-
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Esta calculadora reemplaza la medición de niveles de vancomicina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. La calculadora solo entrega una estimación inicial u orientativa. La medición de niveles plasmáticos y el ajuste individualizado siguen siendo fundamentales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puede usarse en pacientes con terapia de reemplazo renal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En esos pacientes se requieren esquemas específicos según modalidad, dosis de diálisis, filtros utilizados y niveles plasmáticos. El resultado de esta herramienta puede no ser aplicable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué datos son más importantes para interpretar el resultado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Creatinina actual, tendencia de función renal, peso, estado hemodinámico, foco infeccioso, microorganismo, niveles plasmáticos y respuesta clínica."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿La dosis calculada debe modificarse durante la evolución?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. En UCI, la farmacocinética puede cambiar en pocas horas. La dosis debe reevaluarse ante cambios de función renal, balance hídrico, soporte vasopresor, sepsis o nuevos niveles de vancomicina."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
-<div class="site-top"><div class="topbar container">
-  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
-  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="#vancomicina">Vancomicina</a><a href="#betalactamicos">Betalactámicos</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/infusion-farmacos/farmacos.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/infusion-farmacos/farmacosen.html" lang="en" hreflang="en">EN</a></span></nav>
-</div></div>
+
+<header class="site-top">
+  <div class="topbar container">
+    <a class="brand" href="/" aria-label="Critical Care Tools, inicio">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Critical Care <strong>Tools</strong></span>
+    </a>
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="#vancomicina">Vancomicina</a>
+      <a href="#betalactamicos">Betalactámicos</a>
+      <span class="language-switcher" aria-label="Idioma">
+        <a href="/calculadoras/infusion-farmacos/farmacos.html" lang="es" hreflang="es" aria-current="page">ES</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/calculadorasen/infusion-farmacos/farmacosen.html" lang="en" hreflang="en">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
 <main id="contenido" class="app container">
 
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="https://criticalcaretools.com/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Infusión de fármacos</span>
+  <!-- =========================
+       BREADCRUMB
+  ========================== -->
+  <nav class="breadcrumb" aria-label="Navegación de migas de pan">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="https://criticalcaretools.com/" itemprop="item"><span itemprop="name">Inicio</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" aria-current="page">Infusión de fármacos</span>
+        <meta itemprop="position" content="2" />
+      </li>
+    </ol>
   </nav>
 
   <header class="app-header">
@@ -205,6 +293,9 @@
     </nav>
   </section>
 
+  <!-- =========================
+       CALCULADORA VANCOMICINA
+  ========================== -->
   <section id="vancomicina" class="panel" aria-labelledby="vanco-title">
 
     <h2 id="vanco-title">Cálculo de dosis de vancomicina en infusión continua</h2>
@@ -228,7 +319,7 @@
       <div class="field">
         <label for="sexo">Sexo</label>
         <select id="sexo">
-          <option value="">Seleccione</option>
+          <option value="">Seleccione…</option>
           <option value="v">Varón (v)</option>
           <option value="m">Mujer (m)</option>
         </select>
@@ -262,439 +353,402 @@
 
   </section>
 
+  <!-- =========================
+       TABLA BETALACTÁMICOS
+  ========================== -->
   <section id="betalactamicos" class="betalactamicos-section">
 
-  <div class="tabla-header">
-    <div>
-      <h2>Administración de betalactámicos en infusión extendida</h2>
-      <p>
-        Reconstitución, dilución, estabilidad, dosis de carga y tiempo de infusión.
-      </p>
-    </div>
-  </div>
-
-  <div class="tabla-controles">
-
-    <input
-      type="search"
-      id="buscarAntibiotico"
-      placeholder="Buscar antibiótico..."
-      aria-label="Buscar antibiótico"
-    />
-
-    <div class="tabla-filtros">
-
-      <button
-        type="button"
-        class="filtro-btn active"
-        id="btnTodos"
-      >
-        Todos
-      </button>
-
-      <button
-        type="button"
-        class="filtro-btn"
-        id="btnIC"
-      >
-        Admiten IC
-      </button>
-
+    <div class="tabla-header">
+      <div>
+        <h2>Administración de betalactámicos en infusión extendida</h2>
+        <p>
+          Reconstitución, dilución, estabilidad, dosis de carga y tiempo de infusión.
+        </p>
+      </div>
     </div>
 
-  </div>
+    <div class="tabla-controles">
 
-  <p id="contadorResultados" class="contador-resultados"></p>
+      <input
+        type="search"
+        id="buscarAntibiotico"
+        placeholder="Buscar antibiótico..."
+        aria-label="Buscar antibiótico"
+      />
 
-  <div class="tabla-scroll">
+      <div class="tabla-filtros">
 
-    <table
-      class="tabla-betalactamicos"
-      id="tablaBetalactamicos"
-    >
-
-      <thead>
-        <tr>
-          <th>Antibiótico</th>
-          <th>Dilución</th>
-          <th>Solventes</th>
-          <th>Estabilidad</th>
-          <th>Infusión extendida</th>
-          <th>Dosis de carga</th>
-          <th>Infusión dosis de carga</th>
-        </tr>
-      </thead>
-
-      <tbody>
-
-        <tr
-          data-antibiotico="ampicilina"
-          data-ic="no"
+        <button
+          type="button"
+          class="filtro-btn active"
+          id="btnTodos"
         >
-          <th>Ampicilina</th>
-          <td>FA / 1 g</td>
-          <td>10 mL de API por ampolla</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 30 mg/mL
-            </span>
-          </td>
-          <td>SF</td>
-          <td>8 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-            <span class="dato-secundario">
-              Evaluar necesidad
-            </span>
-          </td>
-          <td>
-            1 g o 2 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>
-            30 min ideal
-            <span class="dato-secundario">
-              Máximo 60 min
-            </span>
-          </td>
-        </tr>
+          Todos
+        </button>
 
-
-        <tr
-          data-antibiotico="ampicilina sulbactam"
-          data-ic="no"
+        <button
+          type="button"
+          class="filtro-btn"
+          id="btnIC"
         >
-          <th>Ampicilina-sulbactam</th>
-          <td>FA / 1,5 g</td>
-          <td>10 mL de API por ampolla</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 30 mg/mL
-            </span>
-          </td>
-          <td>SF</td>
-          <td>8 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-            <span class="dato-secundario">
-              Evaluar necesidad
-            </span>
-          </td>
-          <td>
-            1,5 g o 3 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>
-            30 min ideal
-            <span class="dato-secundario">
-              Máximo 60 min
-            </span>
-          </td>
-        </tr>
+          Admiten IC
+        </button>
 
+      </div>
 
-        <tr
-          data-antibiotico="cefazolina"
-          data-ic="no"
-        >
-          <th>Cefazolina</th>
-          <td>FA / 1 g</td>
-          <td>10 mL de API o SF por ampolla</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 20 mg/mL
-            </span>
-          </td>
-          <td>SF / Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-          </td>
-          <td>
-            1 o 2 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>
-            30 min ideal
-            <span class="dato-secundario">
-              Máximo 60 min
-            </span>
-          </td>
-        </tr>
+    </div>
 
+    <p id="contadorResultados" class="contador-resultados" aria-live="polite"></p>
 
-        <tr
-          data-antibiotico="cefepime"
-          data-ic="si"
-        >
-          <th>
-            Cefepime
-            <span class="badge-ic">Admite IC</span>
-          </th>
-          <td>FA / 2 g</td>
-          <td>20 mL de API, SF o Dx 5%</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 40 mg/mL
-            </span>
-          </td>
-          <td>SF / Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-            <span class="dato-secundario ic-text">
-              Admite infusión continua
-            </span>
-          </td>
-          <td>
-            1 o 2 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>
-            30 min ideal
-            <span class="dato-secundario">
-              Máximo 60 min
-            </span>
-          </td>
-        </tr>
+    <div class="tabla-scroll">
 
+      <table
+        class="tabla-betalactamicos"
+        id="tablaBetalactamicos"
+      >
+        <caption>Guía de administración e infusión extendida/continua de betalactámicos</caption>
+        <thead>
+          <tr>
+            <th scope="col">Antibiótico</th>
+            <th scope="col">Dilución</th>
+            <th scope="col">Solventes</th>
+            <th scope="col">Estabilidad</th>
+            <th scope="col">Infusión extendida</th>
+            <th scope="col">Dosis de carga</th>
+            <th scope="col">Infusión dosis de carga</th>
+          </tr>
+        </thead>
 
-        <tr
-          data-antibiotico="ceftazidima"
-          data-ic="si"
-        >
-          <th>
-            Ceftazidima
-            <span class="badge-ic">Admite IC</span>
-          </th>
-          <td>FA / 1 g</td>
-          <td>
-            10 mL de API, SF o Dx 5% por ampolla
-          </td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 40 mg/mL
-            </span>
-          </td>
-          <td>SF / Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-            <span class="dato-secundario ic-text">
-              Admite infusión continua
-            </span>
-          </td>
-          <td>
-            1 o 2 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>30 minutos</td>
-        </tr>
+        <tbody>
 
+          <tr data-antibiotico="ampicilina" data-ic="no">
+            <th scope="row">Ampicilina</th>
+            <td>FA / 1 g</td>
+            <td>10 mL de API por ampolla</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 30 mg/mL
+              </span>
+            </td>
+            <td>SF</td>
+            <td>8 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+              <span class="dato-secundario">
+                Evaluar necesidad
+              </span>
+            </td>
+            <td>
+              1 g o 2 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>
+              30 min ideal
+              <span class="dato-secundario">
+                Máximo 60 min
+              </span>
+            </td>
+          </tr>
 
-        <tr
-          data-antibiotico="ceftazidima avibactam caz avi"
-          data-ic="no"
-        >
-          <th>
-            Ceftazidima-avibactam
-            <span class="abreviatura">CAZ-AVI</span>
-          </th>
-          <td>FA / 2,5 g</td>
-          <td>
-            10 mL de API, SF o Dx 5%
-            <span class="dato-secundario">
-              Vf = 12 mL por expansión de volumen
-            </span>
-          </td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 40 mg/mL
-            </span>
-          </td>
-          <td>SF, Dx 5%, RL</td>
-          <td>12 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-          </td>
-          <td>2,5 g</td>
-          <td>
-            Shock séptico/sepsis: 1 h
-            <span class="dato-secundario">
-              En ausencia del mismo, infundir extendido directamente.
-            </span>
-          </td>
-        </tr>
+          <tr data-antibiotico="ampicilina sulbactam" data-ic="no">
+            <th scope="row">Ampicilina-sulbactam</th>
+            <td>FA / 1,5 g</td>
+            <td>10 mL de API por ampolla</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 30 mg/mL
+              </span>
+            </td>
+            <td>SF</td>
+            <td>8 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+              <span class="dato-secundario">
+                Evaluar necesidad
+              </span>
+            </td>
+            <td>
+              1,5 g o 3 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>
+              30 min ideal
+              <span class="dato-secundario">
+                Máximo 60 min
+              </span>
+            </td>
+          </tr>
 
+          <tr data-antibiotico="cefazolina" data-ic="no">
+            <th scope="row">Cefazolina</th>
+            <td>FA / 1 g</td>
+            <td>10 mL de API o SF por ampolla</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 20 mg/mL
+              </span>
+            </td>
+            <td>SF / Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+            </td>
+            <td>
+              1 o 2 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>
+              30 min ideal
+              <span class="dato-secundario">
+                Máximo 60 min
+              </span>
+            </td>
+          </tr>
 
-        <tr
-          data-antibiotico="aztreonam atm"
-          data-ic="no"
-        >
-          <th>
-            Aztreonam
-            <span class="abreviatura">ATM</span>
-            <span class="dato-secundario alerta">
-              Infundir en Y con CAZ-AVI al mismo tiempo.
-            </span>
-          </th>
-          <td>FA / 1 g</td>
-          <td>3 mL de API</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 20 mg/mL
-            </span>
-          </td>
-          <td>SF, RL, Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-          </td>
-          <td>2 g</td>
-          <td>
-            Shock séptico/sepsis: 1 h
-            <span class="dato-secundario">
-              En ausencia del mismo, infundir extendido directamente.
-            </span>
-          </td>
-        </tr>
+          <tr data-antibiotico="cefepime" data-ic="si">
+            <th scope="row">
+              Cefepime
+              <span class="badge-ic">Admite IC</span>
+            </th>
+            <td>FA / 2 g</td>
+            <td>20 mL de API, SF o Dx 5%</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 40 mg/mL
+              </span>
+            </td>
+            <td>SF / Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+              <span class="dato-secundario ic-text">
+                Admite infusión continua
+              </span>
+            </td>
+            <td>
+              1 o 2 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>
+              30 min ideal
+              <span class="dato-secundario">
+                Máximo 60 min
+              </span>
+            </td>
+          </tr>
 
+          <tr data-antibiotico="ceftazidima" data-ic="si">
+            <th scope="row">
+              Ceftazidima
+              <span class="badge-ic">Admite IC</span>
+            </th>
+            <td>FA / 1 g</td>
+            <td>
+              10 mL de API, SF o Dx 5% por ampolla
+            </td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 40 mg/mL
+              </span>
+            </td>
+            <td>SF / Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+              <span class="dato-secundario ic-text">
+                Admite infusión continua
+              </span>
+            </td>
+            <td>
+              1 o 2 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>30 minutos</td>
+          </tr>
 
-        <tr
-          data-antibiotico="ceftriaxona"
-          data-ic="no"
-        >
-          <th>Ceftriaxona</th>
-          <td>FA / 1 g</td>
-          <td>10 mL de API por ampolla</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 40 mg/mL
-            </span>
-          </td>
-          <td>SF / Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            No corresponde
-            <span class="dato-secundario">
-              Por vida media larga se administra en 30 min.
-            </span>
-          </td>
-          <td>No corresponde</td>
-          <td>No corresponde</td>
-        </tr>
+          <tr data-antibiotico="ceftazidima avibactam caz avi" data-ic="no">
+            <th scope="row">
+              Ceftazidima-avibactam
+              <span class="abreviatura">CAZ-AVI</span>
+            </th>
+            <td>FA / 2,5 g</td>
+            <td>
+              10 mL de API, SF o Dx 5%
+              <span class="dato-secundario">
+                Vf = 12 mL por expansión de volumen
+              </span>
+            </td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 40 mg/mL
+              </span>
+            </td>
+            <td>SF, Dx 5%, RL</td>
+            <td>12 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+            </td>
+            <td>2,5 g</td>
+            <td>
+              Shock séptico/sepsis: 1 h
+              <span class="dato-secundario">
+                En ausencia del mismo, infundir extendido directamente.
+              </span>
+            </td>
+          </tr>
 
+          <tr data-antibiotico="aztreonam atm" data-ic="no">
+            <th scope="row">
+              Aztreonam
+              <span class="abreviatura">ATM</span>
+              <span class="dato-secundario alerta">
+                Infundir en Y con CAZ-AVI al mismo tiempo.
+              </span>
+            </th>
+            <td>FA / 1 g</td>
+            <td>3 mL de API</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 20 mg/mL
+              </span>
+            </td>
+            <td>SF, RL, Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+            </td>
+            <td>2 g</td>
+            <td>
+              Shock séptico/sepsis: 1 h
+              <span class="dato-secundario">
+                En ausencia del mismo, infundir extendido directamente.
+              </span>
+            </td>
+          </tr>
 
-        <tr
-          data-antibiotico="imipenem"
-          data-ic="no"
-        >
-          <th>Imipenem</th>
-          <td>FA / 500 mg</td>
-          <td>10 mL de SF</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 5 mg/mL
-            </span>
-          </td>
-          <td>SF</td>
-          <td>4 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-          </td>
-          <td>500 mg</td>
-          <td>30 min</td>
-        </tr>
+          <tr data-antibiotico="ceftriaxona" data-ic="no">
+            <th scope="row">Ceftriaxona</th>
+            <td>FA / 1 g</td>
+            <td>10 mL de API por ampolla</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 40 mg/mL
+              </span>
+            </td>
+            <td>SF / Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              No corresponde
+              <span class="dato-secundario">
+                Por vida media larga se administra en 30 min.
+              </span>
+            </td>
+            <td>No corresponde</td>
+            <td>No corresponde</td>
+          </tr>
 
+          <tr data-antibiotico="imipenem" data-ic="no">
+            <th scope="row">Imipenem</th>
+            <td>FA / 500 mg</td>
+            <td>10 mL de SF</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 5 mg/mL
+              </span>
+            </td>
+            <td>SF</td>
+            <td>4 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+            </td>
+            <td>500 mg</td>
+            <td>30 min</td>
+          </tr>
 
-        <tr
-          data-antibiotico="meropenem"
-          data-ic="no"
-        >
-          <th>Meropenem</th>
-          <td>FA / 1 g o 500 mg</td>
-          <td>
-            500 mg = 10 mL de API
-            <span class="dato-secundario">
-              1 g = 20 mL de API
-            </span>
-          </td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 5 mg/mL
-            </span>
-          </td>
-          <td>SF</td>
-          <td>4 h a TA</td>
-          <td>
-            <span class="badge-tiempo">3 horas</span>
-          </td>
-          <td>
-            1 o 2 g
-            <span class="dato-secundario">
-              Dosis plena según indicación
-            </span>
-          </td>
-          <td>30 min</td>
-        </tr>
+          <tr data-antibiotico="meropenem" data-ic="no">
+            <th scope="row">Meropenem</th>
+            <td>FA / 1 g o 500 mg</td>
+            <td>
+              500 mg = 10 mL de API
+              <span class="dato-secundario">
+                1 g = 20 mL de API
+              </span>
+            </td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 5 mg/mL
+              </span>
+            </td>
+            <td>SF</td>
+            <td>4 h a TA</td>
+            <td>
+              <span class="badge-tiempo">3 horas</span>
+            </td>
+            <td>
+              1 o 2 g
+              <span class="dato-secundario">
+                Dosis plena según indicación
+              </span>
+            </td>
+            <td>30 min</td>
+          </tr>
 
+          <tr data-antibiotico="piperacilina tazobactam" data-ic="si">
+            <th scope="row">
+              Piperacilina-tazobactam
+              <span class="badge-ic">Admite IC</span>
+            </th>
+            <td>FA / 4,5 g</td>
+            <td>20 mL de API o SF</td>
+            <td>
+              100 mL
+              <span class="dato-secundario">
+                Concentración máxima 40 mg/mL
+              </span>
+            </td>
+            <td>SF o Dx 5%</td>
+            <td>24 h a TA</td>
+            <td>
+              <span class="badge-tiempo">4 horas</span>
+              <span class="dato-secundario ic-text">
+                Admite infusión continua
+              </span>
+            </td>
+            <td>4,5 g</td>
+            <td>30 min</td>
+          </tr>
 
-        <tr
-          data-antibiotico="piperacilina tazobactam"
-          data-ic="si"
-        >
-          <th>
-            Piperacilina-tazobactam
-            <span class="badge-ic">Admite IC</span>
-          </th>
-          <td>FA / 4,5 g</td>
-          <td>20 mL de API o SF</td>
-          <td>
-            100 mL
-            <span class="dato-secundario">
-              Concentración máxima 40 mg/mL
-            </span>
-          </td>
-          <td>SF o Dx 5%</td>
-          <td>24 h a TA</td>
-          <td>
-            <span class="badge-tiempo">4 horas</span>
-            <span class="dato-secundario ic-text">
-              Admite infusión continua
-            </span>
-          </td>
-          <td>4,5 g</td>
-          <td>30 min</td>
-        </tr>
+        </tbody>
 
-      </tbody>
+      </table>
 
-    </table>
+    </div>
 
-  </div>
+  </section>
 
-</section>
-
+  <!-- =========================
+       SEO Y CONTENIDO CLÍNICO
+  ========================== -->
   <section class="panel seo-panel">
 
     <h2>Fundamento clínico del cálculo</h2>
@@ -731,80 +785,53 @@
       toxicidad.
     </p>
 
-    <h2>Limitaciones</h2>
-
-    <p>
-      Esta herramienta no sustituye el monitoreo terapéutico de vancomicina. El cálculo puede
-      ser inexacto en pacientes con lesión renal aguda cambiante, obesidad extrema, embarazo,
-      terapia de reemplazo renal, grandes quemados, shock profundo o cambios marcados del
-      volumen de distribución.
-    </p>
-
-    <h2>Errores frecuentes</h2>
-
-    <p>
-      Los errores más comunes incluyen utilizar creatinina no actualizada, no considerar
-      cambios rápidos de función renal, interpretar la dosis calculada como definitiva,
-      omitir el monitoreo de niveles plasmáticos o no ajustar la dosis ante deterioro clínico.
-    </p>
-
     <h2>Preguntas frecuentes</h2>
+    <dl class="faq-list">
+      <dt><h3>¿Esta calculadora reemplaza la medición de niveles de vancomicina?</h3></dt>
+      <dd>
+        <p>
+          No. La calculadora solo entrega una estimación inicial u orientativa. La medición de
+          niveles plasmáticos y el ajuste individualizado siguen siendo fundamentales.
+        </p>
+      </dd>
 
-    <h3>¿Esta calculadora reemplaza la medición de niveles de vancomicina?</h3>
-    <p>
-      No. La calculadora solo entrega una estimación inicial u orientativa. La medición de
-      niveles plasmáticos y el ajuste individualizado siguen siendo fundamentales.
-    </p>
+      <dt><h3>¿Puede usarse en pacientes con terapia de reemplazo renal?</h3></dt>
+      <dd>
+        <p>
+          En esos pacientes se requieren esquemas específicos según modalidad, dosis de diálisis,
+          filtros utilizados y niveles plasmáticos. El resultado de esta herramienta puede no ser
+          aplicable.
+        </p>
+      </dd>
 
-    <h3>¿Puede usarse en pacientes con terapia de reemplazo renal?</h3>
-    <p>
-      En esos pacientes se requieren esquemas específicos según modalidad, dosis de diálisis,
-      filtros utilizados y niveles plasmáticos. El resultado de esta herramienta puede no ser
-      aplicable.
-    </p>
+      <dt><h3>¿Qué datos son más importantes para interpretar el resultado?</h3></dt>
+      <dd>
+        <p>
+          Creatinina actual, tendencia de función renal, peso, estado hemodinámico, foco infeccioso,
+          microorganismo, niveles plasmáticos y respuesta clínica.
+        </p>
+      </dd>
 
-    <h3>¿Qué datos son más importantes para interpretar el resultado?</h3>
-    <p>
-      Creatinina actual, tendencia de función renal, peso, estado hemodinámico, foco infeccioso,
-      microorganismo, niveles plasmáticos y respuesta clínica.
-    </p>
+      <dt><h3>¿La dosis calculada debe modificarse durante la evolución?</h3></dt>
+      <dd>
+        <p>
+          Sí. En UCI, la farmacocinética puede cambiar en pocas horas. La dosis debe reevaluarse
+          ante cambios de función renal, balance hídrico, soporte vasopresor, sepsis o nuevos
+          niveles de vancomicina.
+        </p>
+      </dd>
+    </dl>
 
-    <h3>¿La dosis calculada debe modificarse durante la evolución?</h3>
-    <p>
-      Sí. En UCI, la farmacocinética puede cambiar en pocas horas. La dosis debe reevaluarse
-      ante cambios de función renal, balance hídrico, soporte vasopresor, sepsis o nuevos
-      niveles de vancomicina.
-    </p>
-
-    <h2>Evidencia científica</h2>
-
-    <p>
-      El uso de vancomicina en infecciones graves debe apoyarse en guías clínicas, monitoreo
-      terapéutico, parámetros farmacocinéticos y evaluación individual del paciente. Las
-      recomendaciones actuales priorizan la exposición antibiótica adecuada y la prevención
-      de toxicidad renal.
-    </p>
-
-    <h2>Referencias seleccionadas</h2>
-
-    <p>
-      Rybak MJ, Le J, Lodise TP, et al. Therapeutic monitoring of vancomycin for serious
-      methicillin-resistant Staphylococcus aureus infections: a revised consensus guideline.
-      Am J Health Syst Pharm. 2020.
-    </p>
-
-    <p>
-      IDSA. Clinical practice guidelines for the treatment of methicillin-resistant
-      Staphylococcus aureus infections.
-    </p>
-
-    <p>
-      ASHP. Guidelines and consensus recommendations on vancomycin therapeutic monitoring.
-    </p>
+    <h2>Evidencia científica y referencias</h2>
+    <ul>
+      <li>Rybak MJ, Le J, Lodise TP, et al. Therapeutic monitoring of vancomycin for serious methicillin-resistant Staphylococcus aureus infections: a revised consensus guideline. Am J Health Syst Pharm. 2020.</li>
+      <li>IDSA. Clinical practice guidelines for the treatment of methicillin-resistant Staphylococcus aureus infections.</li>
+      <li>ASHP. Guidelines and consensus recommendations on vancomycin therapeutic monitoring.</li>
+    </ul>
 
   </section>
 
-  <section class="panel seo-panel">
+  <aside class="panel seo-panel" aria-label="Información del responsable editorial">
     <h2>Responsable editorial</h2>
     <p>
       Contenido elaborado y revisado por un médico con formación en Medicina Crítica y
@@ -812,9 +839,9 @@
       evidencia para apoyar la evaluación y el tratamiento del paciente crítico.
     </p>
     <p>
-      Última actualización: julio de 2026.
+      <time datetime="2026-07">Última actualización: julio de 2026</time>.
     </p>
-  </section>
+  </aside>
 
 </main>
 
@@ -834,6 +861,14 @@
 </footer>
 
 <script src="./farmacos.js" defer></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+</script>
 
 </body>
 </html>
