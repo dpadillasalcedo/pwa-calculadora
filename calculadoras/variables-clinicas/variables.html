@@ -1,73 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- 
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- SEO Básicos -->
   <title>Variables Clínicas en UCI | Calculadoras para Paciente Crítico</title>
-
-  <meta
-    name="description"
-    content="Calculadoras de variables clínicas para cuidados intensivos: neurología crítica, ventilación mecánica, monitoreo hemodinámico, ácido-base y sistemas de puntuación en UCI."
-  />
-
-  <meta
-    name="robots"
-    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-  />
-
+  <meta name="description" content="Calculadoras de variables clínicas para cuidados intensivos: neurología crítica, ventilación mecánica, monitoreo hemodinámico, ácido-base y sistemas de puntuación en UCI." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#102b40" />
 
-  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+  <!-- Preconnect & Preload para rendimiento -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="preload" href="/calculadoras/variables-clinicas/variables.css" as="style" />
 
+  <!-- Enlaces Canónicos y Multilenguaje -->
+  <link rel="canonical" href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
   <link rel="alternate" hreflang="es" href="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
   <link rel="alternate" hreflang="en" href="https://criticalcaretools.com/en/calculadorasen/variablesen/variablesen.html" />
   <link rel="alternate" hreflang="x-default" href="https://criticalcaretools.com/" />
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="Critical Care Tools" />
   <meta property="og:title" content="Variables Clínicas en UCI | Calculadoras para Paciente Crítico" />
-  <meta
-    property="og:description"
-    content="Hub de herramientas clínicas para neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación en UCI."
-  />
+  <meta property="og:description" content="Hub de herramientas clínicas para neurología crítica, ventilación mecánica, monitoreo hemodinámico, equilibrio ácido-base y sistemas de puntuación en UCI." />
   <meta property="og:url" content="https://criticalcaretools.com/calculadoras/variables-clinicas/variables.html" />
+  <meta property="og:image" content="https://criticalcaretools.com/assets/og-image.jpg" />
 
+  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Variables Clínicas en UCI | Calculadoras para Paciente Crítico" />
-  <meta
-    name="twitter:description"
-    content="Herramientas clínicas para evaluación fisiológica, respiratoria, hemodinámica, neurológica y metabólica del paciente crítico."
-  />
+  <meta name="twitter:description" content="Herramientas clínicas para evaluación fisiológica, respiratoria, hemodinámica, neurológica y metabólica del paciente crítico." />
+  <meta name="twitter:image" content="https://criticalcaretools.com/assets/og-image.jpg" />
 
-
+  <!-- Recursos -->
   <link rel="manifest" href="/manifest.json" />
-  <!-- GA4: medición básica habilitada -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  
-  // Establece el consentimiento predeterminado (o quita este bloque si no usas Consent Mode)
-  gtag('consent', 'default', {
-    'analytics_storage': 'granted', // <--- Permite la medición de usuarios
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied'
-  });
-
-  gtag('js', new Date());
-  gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
-</script>
-
   <link rel="stylesheet" href="/calculadoras/variables-clinicas/variables.css" />
 
+  <!-- GA4: Consent Mode & Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    gtag('consent', 'default', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
 
+    gtag('js', new Date());
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
+  </script>
+
+  <!-- Datos Estructurados JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -113,225 +104,295 @@
     }
   }
   </script>
-  
 
-  
+  <!-- Datos Estructurados: FAQPage para mejorar visibilidad en Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué son las variables clínicas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Son parámetros fisiológicos, bioquímicos, ventilatorios, neurológicos o hemodinámicos que ayudan a evaluar el estado del paciente y su evolución durante la atención clínica."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Las calculadoras reemplazan el criterio médico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Son herramientas de apoyo. La decisión final siempre debe basarse en la valoración integral del paciente y en el juicio del equipo tratante."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden utilizarse en urgencias?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Muchas herramientas pueden ser útiles en urgencias, especialmente para detección de gravedad, evaluación respiratoria, shock, sepsis o deterioro neurológico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cada cuánto deben reevaluarse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depende de la condición del paciente. En escenarios inestables, las variables clínicas deben reevaluarse de forma frecuente y compararse con la tendencia previa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Estas herramientas sirven para pacientes pediátricos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solo deben usarse en pediatría si la escala o fórmula fue validada para esa población. Muchas herramientas de medicina crítica adulta no son directamente extrapolables."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
-<a class="skip-link" href="#contenido">Saltar al contenido</a>
-<div class="app-root">
-  <div class="site-top"><div class="container topbar">
-    <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
-    <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="#modulos">Módulos</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/variables.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/variablesen.html" lang="en" hreflang="en">EN</a></span></nav>
-  </div></div>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<main id="contenido" class="app container">
-
-  <nav class="breadcrumb" aria-label="Navegación">
-    <a href="/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">Variables clínicas</span>
-  </nav>
-
-  <header class="page-header">
-    <span class="eyebrow">HERRAMIENTAS CLÍNICAS / UCI</span>
-    <h1>Variables clínicas en cuidados intensivos</h1>
-    <p class="subtitle">
-      Herramientas clínicas para evaluar parámetros neurológicos, respiratorios,
-      hemodinámicos, metabólicos y pronósticos en el paciente crítico.
-    </p>
-  </header>
-
-  <section class="intro-content" aria-labelledby="intro-title">
-    <h2 id="intro-title">Evaluación integral del paciente crítico</h2>
-
-    <p>
-      Las variables clínicas son uno de los pilares del manejo del paciente crítico.
-      Su interpretación permite valorar el estado fisiológico, reconocer deterioro
-      temprano, estimar gravedad, monitorizar la respuesta al tratamiento y apoyar
-      decisiones clínicas en escenarios de alta complejidad.
-    </p>
-
-    <p>
-      En la Unidad de Cuidados Intensivos, ningún parámetro debe interpretarse de forma
-      aislada. La oxigenación, la ventilación, la perfusión, el estado neurológico,
-      el equilibrio ácido-base y los sistemas de puntuación deben analizarse de manera
-      integrada, considerando la historia clínica, el examen físico, la evolución temporal
-      y el contexto terapéutico del paciente.
-    </p>
-
-  </section>
-
-  <section id="modulos" class="modules-section" aria-labelledby="modules-title">
-    <div class="section-heading"><div><span class="eyebrow">EXPLORA LAS HERRAMIENTAS</span><h2 id="modules-title">Módulos disponibles</h2></div><p>Herramientas organizadas por área clínica para facilitar la evaluación del paciente crítico adulto.</p></div>
-    <div class="menu">
-
-    <a href="/calculadoras/variables-clinicas/neurologia-critica/neuro.html">
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>Neurología crítica</h3>
-        <p>
-          Escalas y herramientas para valorar conciencia, delirium, accidente cerebrovascular,
-          hemorragia subaracnoidea y lesión cerebral traumática.
-        </p>
+  <div class="app-root">
+    <header class="site-top">
+      <div class="container topbar">
+        <a class="brand" href="/" aria-label="Critical Care Tools, inicio">
+          <span class="brand-mark" aria-hidden="true">+</span>
+          <span>Critical Care <strong>Tools</strong></span>
+        </a>
+        <nav class="top-nav" aria-label="Navegación principal">
+          <a href="/">Inicio</a>
+          <a href="#modulos">Módulos</a>
+          <span class="language-switcher" aria-label="Idioma">
+            <a href="/calculadoras/variables-clinicas/variables.html" lang="es" hreflang="es" aria-current="page">ES</a>
+            <span aria-hidden="true">/</span>
+            <a href="/en/calculadorasen/variablesen/variablesen.html" lang="en" hreflang="en">EN</a>
+          </span>
+        </nav>
       </div>
-    </a>
+    </header>
 
-    <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html">
-      <div class="card">
-        <div class="icon">🫁</div>
-        <h3>Ventilación mecánica</h3>
-        <p>
-          Parámetros respiratorios para evaluar mecánica pulmonar, protección ventilatoria,
-          driving pressure, compliance y oxigenación.
+    <main id="contenido" class="app container">
+      <nav class="breadcrumb" aria-label="Navegación de migas de pan">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/" itemprop="item"><span itemprop="name">Inicio</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <span aria-hidden="true">›</span>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name" aria-current="page">Variables clínicas</span>
+            <meta itemprop="position" content="2" />
+          </li>
+        </ol>
+      </nav>
+
+      <header class="page-header">
+        <span class="eyebrow">HERRAMIENTAS CLÍNICAS / UCI</span>
+        <h1>Variables clínicas en cuidados intensivos</h1>
+        <p class="subtitle">
+          Herramientas clínicas para evaluar parámetros neurológicos, respiratorios,
+          hemodinámicos, metabólicos y pronósticos en el paciente crítico.
         </p>
-      </div>
-    </a>
+      </header>
 
-    <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html">
-      <div class="card">
-        <div class="icon">🩺</div>
-        <h3>Monitoreo hemodinámico</h3>
+      <section class="intro-content" aria-labelledby="intro-title">
+        <h2 id="intro-title">Evaluación integral del paciente crítico</h2>
         <p>
-          Herramientas para analizar perfusión, gasto cardíaco, presión arterial media,
-          resistencia vascular y transporte de oxígeno.
+          Las variables clínicas son uno de los pilares del manejo del paciente crítico.
+          Su interpretación permite valorar el estado fisiológico, reconocer deterioro
+          temprano, estimar gravedad, monitorizar la respuesta al tratamiento y apoyar
+          decisiones clínicas en escenarios de alta complejidad.
         </p>
-      </div>
-    </a>
-
-    <a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html">
-      <div class="card">
-        <div class="icon">🩸</div>
-        <h3>Ácido-base y medio interno</h3>
         <p>
-          Recursos para interpretar gases arteriales, anión gap, trastornos metabólicos,
-          trastornos respiratorios y alteraciones del medio interno.
+          En la Unidad de Cuidados Intensivos, ningún parámetro debe interpretarse de forma
+          aislada. La oxigenación, la ventilación, la perfusión, el estado neurológico,
+          el equilibrio ácido-base y los sistemas de puntuación deben analizarse de manera
+          integrada, considerando la historia clínica, el examen físico, la evolución temporal
+          y el contexto terapéutico del paciente.
         </p>
-      </div>
-    </a>
+      </section>
 
-    <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html">
-      <div class="card">
-        <div class="icon">📈</div>
-        <h3>Sistemas de puntuación</h3>
+      <section id="modulos" class="modules-section" aria-labelledby="modules-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">EXPLORA LAS HERRAMIENTAS</span>
+            <h2 id="modules-title">Módulos disponibles</h2>
+          </div>
+          <p>Herramientas organizadas por área clínica para facilitar la evaluación del paciente crítico adulto.</p>
+        </div>
+
+        <div class="menu">
+          <article class="card-item">
+            <a href="/calculadoras/variables-clinicas/neurologia-critica/neuro.html" class="card">
+              <div class="icon" aria-hidden="true">🧠</div>
+              <h3>Neurología crítica</h3>
+              <p>
+                Escalas y herramientas para valorar conciencia, delirium, accidente cerebrovascular,
+                hemorragia subaracnoidea y lesión cerebral traumática.
+              </p>
+            </a>
+          </article>
+
+          <article class="card-item">
+            <a href="/calculadoras/variables-clinicas/ventilacion-mecanica/ventilacion.html" class="card">
+              <div class="icon" aria-hidden="true">🫁</div>
+              <h3>Ventilación mecánica</h3>
+              <p>
+                Parámetros respiratorios para evaluar mecánica pulmonar, protección ventilatoria,
+                driving pressure, compliance y oxigenación.
+              </p>
+            </a>
+          </article>
+
+          <article class="card-item">
+            <a href="/calculadoras/variables-clinicas/monitoreo-hemodinamico/monitoreo.html" class="card">
+              <div class="icon" aria-hidden="true">🩺</div>
+              <h3>Monitoreo hemodinámico</h3>
+              <p>
+                Herramientas para analizar perfusión, gasto cardíaco, presión arterial media,
+                resistencia vascular y transporte de oxígeno.
+              </p>
+            </a>
+          </article>
+
+          <article class="card-item">
+            <a href="/calculadoras/variables-clinicas/estado-acido-base/acido-base.html" class="card">
+              <div class="icon" aria-hidden="true">🩸</div>
+              <h3>Ácido-base y medio interno</h3>
+              <p>
+                Recursos para interpretar gases arteriales, anión gap, trastornos metabólicos,
+                trastornos respiratorios y alteraciones del medio interno.
+              </p>
+            </a>
+          </article>
+
+          <article class="card-item">
+            <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" class="card">
+              <div class="icon" aria-hidden="true">📈</div>
+              <h3>Sistemas de puntuación</h3>
+              <p>
+                Scores de gravedad, pronóstico y deterioro clínico como SOFA, APACHE, SAPS,
+                NEWS y otras escalas utilizadas en medicina crítica.
+              </p>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="seo-content" aria-label="Información clínica y preguntas frecuentes">
+        <h2>¿Por qué son importantes las variables clínicas en UCI?</h2>
         <p>
-          Scores de gravedad, pronóstico y deterioro clínico como SOFA, APACHE, SAPS,
-          NEWS y otras escalas utilizadas en medicina crítica.
+          El paciente crítico suele presentar alteraciones simultáneas de múltiples sistemas
+          orgánicos. Por esta razón, la toma de decisiones requiere integrar información de
+          diferentes dominios: respiratorio, cardiovascular, neurológico, renal, metabólico
+          y hematológico.
         </p>
-      </div>
-    </a>
+        <p>
+          Las calculadoras clínicas ayudan a estandarizar esa evaluación. Su uso puede reducir
+          errores de cálculo, mejorar la comunicación entre profesionales y facilitar el
+          seguimiento de tendencias. Sin embargo, su utilidad depende de la calidad de los datos
+          ingresados y de una interpretación clínica adecuada.
+        </p>
 
-    </div>
-  </section>
+        <h2>Uso clínico responsable</h2>
+        <p>
+          Estas herramientas tienen un propósito educativo y de apoyo clínico. No sustituyen
+          el juicio médico, la valoración directa del paciente ni los protocolos institucionales.
+          Los resultados deben interpretarse siempre junto con la situación clínica, la evolución
+          temporal y los objetivos terapéuticos.
+        </p>
 
-  <section class="seo-content" aria-label="Información clínica y preguntas frecuentes">
+        <h2>Limitaciones</h2>
+        <p>
+          Las calculadoras pueden no ser aplicables a todas las poblaciones, especialmente si
+          fueron validadas en adultos y se utilizan en pacientes pediátricos, obstétricos o con
+          condiciones clínicas muy específicas. Además, algunos scores fueron diseñados para
+          estratificación poblacional y no para definir decisiones terapéuticas individuales.
+        </p>
 
-    <h2>¿Por qué son importantes las variables clínicas en UCI?</h2>
+        <h2>Evidencia científica</h2>
+        <p>
+          Las herramientas de Critical Care Tools deben basarse en literatura científica revisada
+          por pares, guías clínicas internacionales, consensos de sociedades científicas y estudios
+          originales cuando corresponda. Cada calculadora individual debe incluir sus referencias
+          específicas, idealmente con DOI, PMID o enlace a la publicación.
+        </p>
 
-    <p>
-      El paciente crítico suele presentar alteraciones simultáneas de múltiples sistemas
-      orgánicos. Por esta razón, la toma de decisiones requiere integrar información de
-      diferentes dominios: respiratorio, cardiovascular, neurológico, renal, metabólico
-      y hematológico.
-    </p>
+        <h2>Preguntas frecuentes</h2>
+        <dl class="faq-list">
+          <dt><h3>¿Qué son las variables clínicas?</h3></dt>
+          <dd>
+            <p>
+              Son parámetros fisiológicos, bioquímicos, ventilatorios, neurológicos o hemodinámicos
+              que ayudan a evaluar el estado del paciente y su evolución durante la atención clínica.
+            </p>
+          </dd>
 
-    <p>
-      Las calculadoras clínicas ayudan a estandarizar esa evaluación. Su uso puede reducir
-      errores de cálculo, mejorar la comunicación entre profesionales y facilitar el
-      seguimiento de tendencias. Sin embargo, su utilidad depende de la calidad de los datos
-      ingresados y de una interpretación clínica adecuada.
-    </p>
+          <dt><h3>¿Las calculadoras reemplazan el criterio médico?</h3></dt>
+          <dd>
+            <p>
+              No. Son herramientas de apoyo. La decisión final siempre debe basarse en la valoración
+              integral del paciente y en el juicio del equipo tratante.
+            </p>
+          </dd>
 
-    <h2>Uso clínico responsable</h2>
+          <dt><h3>¿Pueden utilizarse en urgencias?</h3></dt>
+          <dd>
+            <p>
+              Muchas herramientas pueden ser útiles en urgencias, especialmente para detección de
+              gravedad, evaluación respiratoria, shock, sepsis o deterioro neurológico. Aun así,
+              deben interpretarse dentro del contexto clínico.
+            </p>
+          </dd>
 
-    <p>
-      Estas herramientas tienen un propósito educativo y de apoyo clínico. No sustituyen
-      el juicio médico, la valoración directa del paciente ni los protocolos institucionales.
-      Los resultados deben interpretarse siempre junto con la situación clínica, la evolución
-      temporal y los objetivos terapéuticos.
-    </p>
+          <dt><h3>¿Cada cuánto deben reevaluarse?</h3></dt>
+          <dd>
+            <p>
+              Depende de la condición del paciente. En escenarios inestables, las variables clínicas
+              deben reevaluarse de forma frecuente y compararse con la tendencia previa.
+            </p>
+          </dd>
 
-    <h2>Limitaciones</h2>
+          <dt><h3>¿Estas herramientas sirven para pacientes pediátricos?</h3></dt>
+          <dd>
+            <p>
+              Solo deben usarse en pediatría si la escala o fórmula fue validada para esa población.
+              Muchas herramientas de medicina crítica adulta no son directamente extrapolables.
+            </p>
+          </dd>
+        </dl>
+      </section>
 
-    <p>
-      Las calculadoras pueden no ser aplicables a todas las poblaciones, especialmente si
-      fueron validadas en adultos y se utilizan en pacientes pediátricos, obstétricos o con
-      condiciones clínicas muy específicas. Además, algunos scores fueron diseñados para
-      estratificación poblacional y no para definir decisiones terapéuticas individuales.
-    </p>
+      <aside class="about-mini" aria-label="Información editorial">
+        <h2>Responsable editorial</h2>
+        <p>
+          Contenido elaborado y revisado por una médica residente de Medicina Crítica y Cuidados Intensivos. Critical Care Tools desarrolla recursos
+          educativos basados en evidencia para apoyar la evaluación del paciente crítico.
+        </p>
+        <p>
+          <time datetime="2026-07">Última actualización: julio de 2026</time>.
+        </p>
+      </aside>
+    </main>
 
-    <h2>Evidencia científica</h2>
+    <footer class="site-footer">
+      <nav class="footer-nav" aria-label="Enlaces del pie de página">
+        <a href="/">Inicio</a>
+        <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
+      </nav>
 
-    <p>
-      Las herramientas de Critical Care Tools deben basarse en literatura científica revisada
-      por pares, guías clínicas internacionales, consensos de sociedades científicas y estudios
-      originales cuando corresponda. Cada calculadora individual debe incluir sus referencias
-      específicas, idealmente con DOI, PMID o enlace a la publicación.
-    </p>
-
-    <h2>Preguntas frecuentes</h2>
-
-    <h3>¿Qué son las variables clínicas?</h3>
-    <p>
-      Son parámetros fisiológicos, bioquímicos, ventilatorios, neurológicos o hemodinámicos
-      que ayudan a evaluar el estado del paciente y su evolución durante la atención clínica.
-    </p>
-
-    <h3>¿Las calculadoras reemplazan el criterio médico?</h3>
-    <p>
-      No. Son herramientas de apoyo. La decisión final siempre debe basarse en la valoración
-      integral del paciente y en el juicio del equipo tratante.
-    </p>
-
-    <h3>¿Pueden utilizarse en urgencias?</h3>
-    <p>
-      Muchas herramientas pueden ser útiles en urgencias, especialmente para detección de
-      gravedad, evaluación respiratoria, shock, sepsis o deterioro neurológico. Aun así,
-      deben interpretarse dentro del contexto clínico.
-    </p>
-
-    <h3>¿Cada cuánto deben reevaluarse?</h3>
-    <p>
-      Depende de la condición del paciente. En escenarios inestables, las variables clínicas
-      deben reevaluarse de forma frecuente y compararse con la tendencia previa.
-    </p>
-
-    <h3>¿Estas herramientas sirven para pacientes pediátricos?</h3>
-    <p>
-      Solo deben usarse en pediatría si la escala o fórmula fue validada para esa población.
-      Muchas herramientas de medicina crítica adulta no son directamente extrapolables.
-    </p>
-
-  </section>
-
-  <section class="about-mini">
-    <h2>Responsable editorial</h2>
-    <p>
-      Contenido elaborado y revisado por una médica residente de Medicina Crítica y Cuidados Intensivos. Critical Care Tools desarrolla recursos
-      educativos basados en evidencia para apoyar la evaluación del paciente crítico.
-    </p>
-    <p>
-      Última actualización: julio de 2026.
-    </p>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <nav class="footer-nav" aria-label="Enlaces del pie de página">
-    <a href="/">Inicio</a>
-    <a href="/privacidad-cookies/privacidad.html">Política de privacidad</a>
-  </nav>
-
-  <p>
-    © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
-    No reemplaza el juicio médico ni las guías institucionales.
-  </p>
-</footer>
-
-</div>
-
-
+      <p>
+        © 2026 Critical Care Tools · Uso educativo y de apoyo clínico.
+        No reemplaza el juicio médico ni las guías institucionales.
+      </p>
+    </footer>
+  </div>
 </body>
 </html>
