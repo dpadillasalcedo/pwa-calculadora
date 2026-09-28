@@ -1,14 +1,11 @@
 <!doctype html>
 <html lang="es">
 <head>
-
- 
-
   <!-- =========================
-       META BÁSICOS
+       META BÁSICOS Y RENDIMIENTO
   ========================== -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
   <title>Farmacoteca UCI | Dosis, Diluciones e Infusiones en Cuidados Intensivos</title>
@@ -25,17 +22,26 @@
   <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#102b40" />
 
+  <!-- Preconnect & Preload para optimización de carga -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preload" href="/calculadoras/infusion-farmacos/farmacoteca.css?v=2" as="style" />
+
   <!-- =========================
-       CANONICAL
+       CANONICAL Y HREFLANG
   ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <link
     rel="canonical"
     href="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
   />
 
-  <!-- =========================
-       HREFLANG
-  ========================== -->
   <link
     rel="alternate"
     hreflang="es"
@@ -53,7 +59,7 @@
   />
 
   <!-- =========================
-       OPEN GRAPH
+       OPEN GRAPH & TWITTER
   ========================== -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
@@ -72,15 +78,6 @@
     content="https://criticalcaretools.com/calculadoras/infusion-farmacos/farmacoteca.html"
   />
 
-  <!-- Opcional: activar solo si la imagen existe realmente -->
-  <!--
-  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/farmacoteca-es.jpg" />
-  <meta property="og:image:alt" content="Farmacoteca UCI en Critical Care Tools" />
-  -->
-
-  <!-- =========================
-       TWITTER CARDS
-  ========================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
@@ -91,27 +88,6 @@
     content="Referencia rápida de dosis, diluciones, concentraciones e infusiones de fármacos en cuidados intensivos."
   />
 
-  <!-- Opcional: activar solo si la imagen existe realmente -->
-  <!--
-  <meta name="twitter:image" content="https://criticalcaretools.com/assets/img/og/farmacoteca-es.jpg" />
-  -->
-
-  <!-- =========================
-       PERFORMANCE
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
   <!-- =========================
        CSS
   ========================== -->
@@ -121,26 +97,32 @@
   />
 
   <!-- =========================
-       GOOGLE ANALYTICS GA4
+       GOOGLE ANALYTICS GA4 (Corregido: 'granted')
   ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
+      'analytics_storage': 'granted',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
     });
     gtag('js', new Date());
     gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
-
 
   <!-- =========================
-       SCHEMA: BREADCRUMB
+       ADSENSE
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
+
+  <!-- =========================
+       DATOS ESTRUCTURADOS (JSON-LD)
   ========================== -->
   <script type="application/ld+json">
   {
@@ -163,9 +145,6 @@
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: MEDICAL WEB PAGE
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -195,9 +174,6 @@
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: COLLECTION PAGE
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -213,71 +189,80 @@
     }
   }
   </script>
-
-  <!-- =========================
-       SCHEMA: ORGANIZATION
-  ========================== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Critical Care Tools",
-    "url": "https://criticalcaretools.com/"
-  }
-  </script>
-
 </head>
-
-
 
 <body class="app-root">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
-<div class="site-top"><div class="topbar container">
-  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
-  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/infusion-farmacos/farmacos.html">Infusión de fármacos</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/infusion-farmacos/farmacoteca.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/infusion-farmacosen/farmacotecaen.html" lang="en" hreflang="en">EN</a></span></nav>
-</div></div>
-<main id="contenido" class="container">
 
-  <nav class="breadcrumb" aria-label="Navegación">
-  <a href="/">Inicio</a>
-  <span aria-hidden="true">›</span>
-  <span aria-current="page">Farmacoteca UCI</span>
-</nav>
-
-<header class="page-header">
-  <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / FARMACOLOGÍA</span>
-  <h1>Farmacoteca UCI</h1>
-  <p class="subtitle">
-    Consulta rápida de dosis, diluciones, concentraciones e infusiones de fármacos
-    utilizados en cuidados intensivos.
-  </p>
+<header class="site-top">
+  <div class="topbar container">
+    <a class="brand" href="/" aria-label="Critical Care Tools, inicio">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Critical Care <strong>Tools</strong></span>
+    </a>
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/calculadoras/infusion-farmacos/farmacos.html">Infusión de fármacos</a>
+      <span class="language-switcher" aria-label="Idioma">
+        <a href="/calculadoras/infusion-farmacos/farmacoteca.html" lang="es" hreflang="es" aria-current="page">ES</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/calculadorasen/infusion-farmacosen/farmacotecaen.html" lang="en" hreflang="en">EN</a>
+      </span>
+    </nav>
+  </div>
 </header>
 
-<section class="intro-card">
-  <h2>Referencia farmacológica para medicina crítica</h2>
-  <p>
-    Herramienta educativa para revisar diluciones, concentraciones y dosis de infusión
-    de vasopresores, inotrópicos, sedantes, analgésicos, vasodilatadores y bloqueantes
-    neuromusculares. Los cálculos deben verificarse siempre con protocolos institucionales.
-  </p>
-</section>
-
-<nav class="drug-index" aria-label="Índice de grupos farmacológicos">
-  <a href="#vasopresores">Vasopresores</a>
-  <a href="#vasodilatadores">Vasodilatadores</a>
-  <a href="#inodilatadores">Inodilatadores</a>
-  <a href="#sedantes">Sedantes</a>
-  <a href="#analgesicos">Analgésicos</a>
-  <a href="#relajantes">Relajantes</a>
-</nav>
-
+<main id="contenido" class="container">
 
   <!-- =========================
-       CONTROLES DE NAVEGACIÓN
+       BREADCRUMB
   ========================== -->
-  <section class="card controls">
-    <div class="controls-grid">
+  <nav class="breadcrumb" aria-label="Navegación de migas de pan">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="https://criticalcaretools.com/" itemprop="item"><span itemprop="name">Inicio</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" aria-current="page">Farmacoteca UCI</span>
+        <meta itemprop="position" content="2" />
+      </li>
+    </ol>
+  </nav>
 
+  <header class="page-header">
+    <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / FARMACOLOGÍA</span>
+    <h1>Farmacoteca UCI</h1>
+    <p class="subtitle">
+      Consulta rápida de dosis, diluciones, concentraciones e infusiones de fármacos
+      utilizados en cuidados intensivos.
+    </p>
+  </header>
+
+  <section class="intro-card">
+    <h2>Referencia farmacológica para medicina crítica</h2>
+    <p>
+      Herramienta educativa para revisar diluciones, concentraciones y dosis de infusión
+      de vasopresores, inotrópicos, sedantes, analgésicos, vasodilatadores y bloqueantes
+      neuromusculares. Los cálculos deben verificarse siempre con protocolos institucionales.
+    </p>
+  </section>
+
+  <nav class="drug-index" aria-label="Índice de grupos farmacológicos">
+    <a href="#vasopresores">Vasopresores</a>
+    <a href="#vasodilatadores">Vasodilatadores</a>
+    <a href="#inodilatadores">Inodilatadores</a>
+    <a href="#sedantes">Sedantes</a>
+    <a href="#analgesicos">Analgésicos</a>
+    <a href="#relajantes">Relajantes</a>
+  </nav>
+
+  <!-- =========================
+       CONTROLES DE NAVEGACIÓN Y BÚSQUEDA
+  ========================== -->
+  <section class="card controls" aria-label="Controles de búsqueda y filtrado de fármacos">
+    <div class="controls-grid">
       <div>
         <label for="q">Buscar fármaco</label>
         <input
@@ -306,7 +291,6 @@
           Limpiar
         </button>
       </div>
-
     </div>
 
     <div class="hint">
@@ -314,1205 +298,1147 @@
     </div>
   </section>
 
-  
-<h2 id="vasopresores">Vasopresores e inotrópicos</h2>
-
-<!-- ================= NORADRENALINA ================= -->
-<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <h3>Noradrenalina</h3>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <select class="dilucion">
-      <option value="">Dilución</option>
-      <option data-mcg-per-ml="16">4 mg en 250 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="80">8 mg en 100 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="80">20 mg en 250 ml Dx 5% ó SF 0.9%</option>
-    </select>
-
-    <div>Concentración: <b class="concentracion">—</b></div>
-    <input class="peso" placeholder="Peso kg">
-    <input class="velocidad" placeholder="ml/h">
-    <div>Dosis: <b class="resultado">—</b></div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> vasopresor de primera línea en shock séptico y shock distributivo. Actúa principalmente sobre receptores α1, aumentando la resistencia vascular sistémica y la presión arterial media.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock séptico, shock vasodilatado, hipotensión refractaria a fluidos y soporte hemodinámico en pacientes críticos.</p>
-
-      <h4>Rango habitual</h4>
-      <p>Usualmente se titula desde 0.01–0.05 mcg/kg/min según respuesta, con ajustes progresivos para alcanzar la presión arterial media objetivo.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial media, lactato, perfusión periférica, diuresis, frecuencia cardíaca, arritmias y signos de isquemia periférica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede producir vasoconstricción excesiva, isquemia digital, arritmias y lesión por extravasación. Preferir administración por vía central cuando sea posible.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= ADRENALINA ================= -->
-<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <h3>Adrenalina</h3>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <select class="dilucion">
-      <option value="">Dilución</option>
-      <option data-mcg-per-ml="16">4 mg en 250 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="32">8 mg en 250 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="10">1 mg en 100 ml Dx 5% ó SF 0.9%</option>
-    </select>
-
-    <div>Concentración: <b class="concentracion">—</b></div>
-    <input class="peso" placeholder="Peso kg">
-    <input class="velocidad" placeholder="ml/h">
-    <div>Dosis: <b class="resultado">—</b></div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> catecolamina con efecto α y β. Puede aumentar presión arterial, frecuencia cardíaca, contractilidad y consumo miocárdico de oxígeno.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock anafiláctico, paro cardíaco, shock refractario, bradicardia grave y soporte vasopresor/inotrópico en situaciones seleccionadas.</p>
-
-      <h4>Rango habitual</h4>
-      <p>La infusión se titula según objetivo hemodinámico, respuesta clínica, presión arterial, lactato y perfusión tisular.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar frecuencia cardíaca, presión arterial, arritmias, lactato, glucemia, potasio, perfusión periférica y signos de isquemia miocárdica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede inducir taquiarritmias, hiperlactatemia, hiperglucemia, aumento del consumo de oxígeno miocárdico e isquemia periférica.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= DOPAMINA ================= -->
-<article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <h3>Dopamina</h3>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <select class="dilucion">
-      <option value="">Dilución</option>
-      <option data-mcg-per-ml="400">200 mg en 500 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="800">200 mg en 250 ml Dx 5% ó SF 0.9%</option>
-      <option data-mcg-per-ml="1600">400 mg en 250 ml Dx 5% ó SF 0.9%</option>
-    </select>
-
-    <div>Concentración: <b class="concentracion">—</b></div>
-    <input class="peso" placeholder="Peso kg">
-    <input class="velocidad" placeholder="ml/h">
-    <div>Dosis: <b class="resultado">—</b></div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 1–3 mcg/kg/min efecto dopaminérgico renal sin beneficio clínico demostrado; 3–10 mcg/kg/min efecto β1 inotrópico; &gt;10–20 mcg/kg/min efecto α1 vasopresor.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock con bradicardia relativa o bajo gasto cardíaco en escenarios seleccionados. Actualmente se usa menos que noradrenalina por mayor riesgo de arritmias.</p>
-
-      <h4>Rango habitual</h4>
-      <p>La dosis se ajusta según objetivo hemodinámico. A dosis crecientes aumenta el efecto inotrópico y posteriormente vasopresor.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, perfusión, lactato y respuesta clínica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Mayor riesgo de taquiarritmias, aumento del consumo miocárdico de oxígeno e isquemia. No se recomienda para “protección renal”.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= VASOPRESINA ================= -->
-<article class="drug-card" data-group="vasopresores" data-calc="ui-min">
-  <header class="drug-head">
-    <h3>Vasopresina</h3>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <select class="dilucion">
-      <option value="">Dilución</option>
-      <option data-ui-per-ml="0.4">20 UI en 50 ml Dx 5% ó SF 0.9%</option>
-      <option data-ui-per-ml="0.4">40 UI en 100 ml Dx 5% ó SF 0.9%</option>
-    </select>
-
-    <div>Concentración: <b class="concentracion">—</b></div>
-    <input class="velocidad" placeholder="ml/h">
-    <div>Dosis: <b class="resultado">—</b></div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> vasopresor no catecolaminérgico utilizado como adyuvante en shock séptico para reducir requerimientos de noradrenalina.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock séptico o vasodilatado con requerimiento persistente de catecolaminas. Puede considerarse como segundo vasopresor.</p>
-
-      <h4>Rango habitual</h4>
-      <p>Frecuentemente 0.03 UI/min en infusión continua. No suele titularse de forma amplia como las catecolaminas.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial media, perfusión periférica, lactato, diuresis, isquemia cutánea, isquemia mesentérica y sodio sérico.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede producir isquemia periférica o mesentérica, hiponatremia y reducción excesiva del gasto cardíaco en pacientes susceptibles.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= AZUL DE METILENO ================= -->
-<article class="drug-card" data-group="vasopresores" data-calc="mg-kg-h">
-  <header class="drug-head">
-    <h3>Azul de metileno</h3>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <select class="dilucion">
-      <option value="">Dilución</option>
-      <option data-mg-per-ml="0.5">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
-      <option data-mg-per-ml="1">100 mg en 100 ml Dx 5% ó SF 0.9%</option>
-      <option data-mg-per-ml="0.4">100 mg en 250 ml Dx 5% ó SF 0.9%</option>
-    </select>
-
-    <div>Concentración: <b class="concentracion">—</b></div>
-    <input class="peso" placeholder="Peso kg">
-    <input class="velocidad" placeholder="ml/h">
-    <div>Dosis: <b class="resultado">—</b></div>
-
-    <div class="hint">
-      Tip: bolo intravenoso durante 20 minutos de 2 mg/kg, seguido de 0.5 mg/kg/h durante 48 horas en shock séptico refractario seleccionado.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock vasopléjico o shock séptico refractario seleccionado, especialmente cuando existe sospecha de vasodilatación mediada por óxido nítrico.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Inhibe la vía óxido nítrico–guanilato ciclasa, reduciendo la vasodilatación patológica y favoreciendo aumento de la resistencia vascular sistémica.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, lactato, perfusión, metahemoglobinemia, saturación, función renal y respuesta hemodinámica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede interferir con la pulsioximetría, aumentar riesgo de síndrome serotoninérgico con fármacos serotoninérgicos y debe evitarse en deficiencia de G6PD.</p>
-    </div>
-  </section>
-</article>
-
-  
- <!-- =========================
-     VASODILATADORES
-========================= -->
-
-<h2 id="vasodilatadores">Vasodilatadores</h2>
-
-<!-- ================= NITROGLICERINA ================= -->
-<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-min">
-  <header class="drug-head">
-    <h3>Nitroglicerina</h3>
-    <p class="muted small">Vasodilatador venoso predominante</p>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 10 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="200">50 mg en 250 ml Dx 5% ó SF 0.9%</option>
-          <option data-mcg-per-ml="500">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Velocidad (ml/hr)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> iniciar 5–10 mcg/min. Titular según presión arterial, dolor torácico, congestión pulmonar y respuesta clínica. Dosis máxima habitual: 200 mcg/min.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Edema agudo de pulmón hipertensivo, síndrome coronario agudo con hipertensión o dolor persistente, crisis hipertensiva seleccionada y reducción de precarga en congestión cardiopulmonar.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Donador de óxido nítrico con vasodilatación venosa predominante a dosis bajas, lo que reduce la precarga y la presión de llenado ventricular. A dosis mayores puede producir vasodilatación arterial.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, dolor torácico, signos de congestión pulmonar, cefalea, hipotensión y necesidad de ajuste progresivo.</p>
-
-      <h4>Precauciones</h4>
-      <p>Evitar en hipotensión, uso reciente de inhibidores de fosfodiesterasa tipo 5, infarto de ventrículo derecho o estenosis aórtica crítica. Puede generar tolerancia con infusiones prolongadas.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= NITROPRUSIATO ================= -->
-<article class="drug-card" data-group="vasodilatadores" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <h3>Nitroprusiato de sodio</h3>
-    <p class="muted small">Vasodilatador arterial y venoso</p>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 2 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="200">50 mg en 250 ml Dx 5% ó SF 0.9%</option>
-          <option data-mcg-per-ml="500">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.3–10 mcg/kg/min. Proteger de la luz. Riesgo de toxicidad por cianuro/tiocianato, especialmente con dosis altas o infusiones prolongadas.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Emergencias hipertensivas seleccionadas, falla cardíaca aguda con hipertensión y necesidad de reducción rápida de poscarga bajo monitorización estricta.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Vasodilatador directo arterial y venoso mediado por liberación de óxido nítrico. Reduce precarga y poscarga, con descenso rápido de la presión arterial.</p>
-
-      <h4>Monitorización</h4>
-      <p>Requiere monitorización continua de presión arterial, idealmente invasiva. Vigilar lactato, estado ácido-base, función renal, función hepática y signos neurológicos si la infusión es prolongada.</p>
-
-      <h4>Precauciones</h4>
-      <p>Evitar o usar con extrema precaución en insuficiencia renal o hepática grave. Riesgo de hipotensión brusca, toxicidad por cianuro/tiocianato y aumento de presión intracraneal.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= LABETALOL ================= -->
-<article class="drug-card" data-group="vasodilatadores" data-calc="mg-min">
-  <header class="drug-head">
-    <h3>Labetalol</h3>
-    <p class="muted small">Bloqueante α/β</p>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>100 mg / 20 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mg-per-ml="2">200 mg en 60 ml Dx 5% ó SF 0.9%</option>
-          <option data-mg-per-ml="2">400 mg en 120 ml Dx 5% ó SF 0.9%</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> dosis máxima habitual: 2 mg/min. Vigilar frecuencia cardíaca, presión arterial y broncoespasmo.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Emergencia hipertensiva, hipertensión asociada a enfermedad neurológica, disección aórtica como parte de control de frecuencia/presión y crisis hipertensivas seleccionadas.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Bloqueo combinado β1, β2 y α1. Disminuye frecuencia cardíaca, contractilidad y resistencia vascular sistémica, con menor taquicardia refleja que otros vasodilatadores.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, bloqueo AV, broncoespasmo, signos de bajo gasto y respuesta clínica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Evitar en bradicardia severa, bloqueo AV avanzado, shock cardiogénico, falla cardíaca descompensada grave o broncoespasmo activo.</p>
-    </div>
-  </section>
-</article>
-
-
-<!-- =========================
-     INODILATADORES
-========================= -->
-
-<h2 id="inodilatadores">Inodilatadores</h2>
-
-<!-- ================= DOBUTAMINA ================= -->
-<article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Dobutamina</h3>
-      <p class="muted small">Inodilatador</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>250 mg / 20 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="2000">500 mg en 250 ml Dx 5% ó SF 0.9%</option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 2–20 mcg/kg/min. Vigilar frecuencia cardíaca, arritmias, presión arterial y respuesta del gasto cardíaco.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Shock cardiogénico, bajo gasto cardíaco, disfunción ventricular sistólica y soporte inotrópico en pacientes con hipoperfusión pese a presión arterial adecuada o con vasopresores asociados.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Agonista β1 predominante con efecto inotrópico positivo. También puede producir vasodilatación por efecto β2, reduciendo parcialmente la resistencia vascular sistémica.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar frecuencia cardíaca, arritmias, presión arterial, lactato, diuresis, perfusión periférica, ecocardiografía y signos de isquemia miocárdica.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede causar taquicardia, hipotensión por vasodilatación, aumento del consumo miocárdico de oxígeno y arritmias. Usar con precaución en isquemia activa.</p>
-    </div>
-  </section>
-</article>
-
-<!-- ================= MILRINONA ================= -->
-<article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Milrinona</h3>
-      <p class="muted small">Inodilatador (PDE-3)</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>10 mg / 10 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="100">10 mg en 100 ml Dx 5% ó SF 0.9%</option>
+  <!-- =========================
+       VASOPRESORES E INOTRÓPICOS
+  ========================== -->
+  <h2 id="vasopresores">Vasopresores e inotrópicos</h2>
+
+  <!-- NORADRENALINA -->
+  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <h3>Noradrenalina</h3>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="form-group">
+        <label for="nora_dil">Dilución</label>
+        <select id="nora_dil" class="dilucion">
+          <option value="">Seleccionar…</option>
+          <option data-mcg-per-ml="16">4 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          <option data-mcg-per-ml="80">8 mg en 100 ml Dx 5% ó SF 0.9%</option>
           <option data-mcg-per-ml="80">20 mg en 250 ml Dx 5% ó SF 0.9%</option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
+      <div>Concentración: <b class="concentracion">—</b></div>
+      
+      <div class="form-group">
+        <label for="nora_peso">Peso (kg)</label>
+        <input id="nora_peso" class="peso" type="number" step="0.1" placeholder="Ej: 70">
       </div>
-    </div>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.125–0.75 mcg/kg/min. Ajustar en insuficiencia renal. Puede producir hipotensión y arritmias.
-    </div>
+      <div class="form-group">
+        <label for="nora_vel">Velocidad (ml/h)</label>
+        <input id="nora_vel" class="velocidad" type="number" step="0.1" placeholder="Ej: 10">
+      </div>
 
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Bajo gasto cardíaco, insuficiencia cardíaca avanzada, disfunción ventricular derecha, hipertensión pulmonar con falla derecha y pacientes con respuesta limitada a catecolaminas.</p>
+      <div>Dosis: <b class="resultado" aria-live="polite">—</b></div>
 
-      <h4>Mecanismo de acción</h4>
-      <p>Inhibidor de fosfodiesterasa tipo 3. Aumenta AMPc intracelular, mejorando contractilidad miocárdica y produciendo vasodilatación sistémica y pulmonar.</p>
+      <div class="clinical-note">
+        <b>Nota clínica:</b> vasopresor de primera línea en shock séptico y shock distributivo. Actúa principalmente sobre receptores α1, aumentando la resistencia vascular sistémica y la presión arterial media.
+      </div>
 
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, diuresis, lactato, función renal y respuesta hemodinámica.</p>
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock séptico, shock vasodilatado, hipotensión refractaria a fluidos y soporte hemodinámico en pacientes críticos.</p>
 
-      <h4>Precauciones</h4>
-      <p>Se elimina principalmente por vía renal, por lo que puede acumularse en insuficiencia renal. Puede generar hipotensión significativa y arritmias ventriculares o supraventriculares.</p>
-    </div>
-  </section>
-</article>
+        <h4>Rango habitual</h4>
+        <p>Usualmente se titula desde 0.01–0.05 mcg/kg/min según respuesta, con ajustes progresivos para alcanzar la presión arterial media objetivo.</p>
 
-<!-- ================= LEVOSIMENDÁN ================= -->
-<article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Levosimendán</h3>
-      <p class="muted small">Inodilatador (sensibilizador de calcio)</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial media, lactato, perfusión periférica, diuresis, frecuencia cardíaca, arritmias y signos de isquemia periférica.</p>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>12.5 mg / 5 ml</b></div>
+        <h4>Precauciones</h4>
+        <p>Puede producir vasoconstricción excesiva, isquemia digital, arritmias y lesión por extravasación. Preferir administración por vía central cuando sea posible.</p>
+      </div>
+    </section>
+  </article>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="50">12.5 mg en 250 ml Dx 5% ó SF 0.9%</option>
+  <!-- ADRENALINA -->
+  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <h3>Adrenalina</h3>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="form-group">
+        <label for="adre_dil">Dilución</label>
+        <select id="adre_dil" class="dilucion">
+          <option value="">Seleccionar…</option>
+          <option data-mcg-per-ml="16">4 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          <option data-mcg-per-ml="32">8 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          <option data-mcg-per-ml="10">1 mg en 100 ml Dx 5% ó SF 0.9%</option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
+      <div>Concentración: <b class="concentracion">—</b></div>
 
-    <div class="calc-block">
-      <h4>Cálculo de dosis administrada</h4>
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
+      <div class="form-group">
+        <label for="adre_peso">Peso (kg)</label>
+        <input id="adre_peso" class="peso" type="number" step="0.1" placeholder="Ej: 70">
       </div>
-    </div>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> infusión habitual 0.05–0.2 mcg/kg/min. Evitar bolo si hay hipotensión.
-    </div>
+      <div class="form-group">
+        <label for="adre_vel">Velocidad (ml/h)</label>
+        <input id="adre_vel" class="velocidad" type="number" step="0.1" placeholder="Ej: 5">
+      </div>
 
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Insuficiencia cardíaca aguda o crónica descompensada con bajo gasto, shock cardiogénico seleccionado y disfunción ventricular con necesidad de soporte inotrópico prolongado.</p>
+      <div>Dosis: <b class="resultado" aria-live="polite">—</b></div>
 
-      <h4>Mecanismo de acción</h4>
-      <p>Sensibiliza la troponina C al calcio y abre canales de potasio ATP-dependientes, produciendo efecto inotrópico y vasodilatador sin aumento marcado del calcio intracelular.</p>
+      <div class="clinical-note">
+        <b>Nota clínica:</b> catecolamina con efecto α y β. Puede aumentar presión arterial, frecuencia cardíaca, contractilidad y consumo miocárdico de oxígeno.
+      </div>
 
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, lactato, diuresis, perfusión y respuesta clínica durante y después de la infusión.</p>
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock anafiláctico, paro cardíaco, shock refractario, bradicardia grave y soporte vasopresor/inotrópico en situaciones seleccionadas.</p>
 
-      <h4>Precauciones</h4>
-      <p>Puede producir hipotensión prolongada por metabolitos activos. Usar con cautela en hipovolemia, presión arterial baja o arritmias no controladas.</p>
-    </div>
-  </section>
-</article>
-  
- <!-- =========================
-     SEDANTES
-========================= -->
+        <h4>Rango habitual</h4>
+        <p>La infusión se titula según objetivo hemodinámico, respuesta clínica, presión arterial, lactato y perfusión tisular.</p>
 
-<h2 id="sedantes">Sedantes</h2>
-  
-<!-- ================= PROPOFOL ================= -->
-<article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
-  <header class="drug-head">
-    <div>
-      <h3>Propofol</h3>
-      <p class="muted small">Sedante hipnótico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
+        <h4>Monitorización</h4>
+        <p>Vigilar frecuencia cardíaca, presión arterial, arritmias, lactato, glucemia, potasio, perfusión periférica y signos de isquemia miocárdica.</p>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>20 mg / 1 ml (20%)</b></div>
+        <h4>Precauciones</h4>
+        <p>Puede inducir taquiarritmias, hiperlactatemia, hiperglucemia, aumento del consumo de oxígeno miocárdico e isquemia periférica.</p>
+      </div>
+    </section>
+  </article>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mg-per-ml="20">Sin diluir (2%)</option>
-          <option data-mg-per-ml="4">200 mg en 50 ml</option>
+  <!-- DOPAMINA -->
+  <article class="drug-card" data-group="vasopresores" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <h3>Dopamina</h3>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="form-group">
+        <label for="dopa_dil">Dilución</label>
+        <select id="dopa_dil" class="dilucion">
+          <option value="">Seleccionar…</option>
+          <option data-mcg-per-ml="400">200 mg en 500 ml Dx 5% ó SF 0.9%</option>
+          <option data-mcg-per-ml="800">200 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          <option data-mcg-per-ml="1600">400 mg en 250 ml Dx 5% ó SF 0.9%</option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mg/kg/h</b></div>
-    </div>
+      <div>Concentración: <b class="concentracion">—</b></div>
 
-    <div class="calc-block">
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
+      <div class="form-group">
+        <label for="dopa_peso">Peso (kg)</label>
+        <input id="dopa_peso" class="peso" type="number" step="0.1" placeholder="Ej: 70">
       </div>
-    </div>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.5–5 mg/kg/h. Vigilar hipotensión, hipertrigliceridemia y síndrome de infusión por propofol.
-    </div>
+      <div class="form-group">
+        <label for="dopa_vel">Velocidad (ml/h)</label>
+        <input id="dopa_vel" class="velocidad" type="number" step="0.1" placeholder="Ej: 15">
+      </div>
 
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Sedación en ventilación mecánica, procedimientos en UCI, control de agitación y sedación profunda cuando se requiere inicio y recuperación rápidos.</p>
+      <div>Dosis: <b class="resultado" aria-live="polite">—</b></div>
 
-      <h4>Mecanismo de acción</h4>
-      <p>Modulador del receptor GABA-A con efecto hipnótico, sedante y amnésico. Tiene inicio rápido y vida media corta, lo que facilita la titulación continua.</p>
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 1–3 mcg/kg/min efecto dopaminérgico renal sin beneficio clínico demostrado; 3–10 mcg/kg/min efecto β1 inotrópico; &gt;10–20 mcg/kg/min efecto α1 vasopresor.
+      </div>
 
-      <h4>Monitorización</h4>
-      <p>Vigilar presión arterial, frecuencia cardíaca, nivel de sedación, escala RASS, triglicéridos, lactato, pH, CK y necesidad de vasopresores.</p>
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock con bradicardia relativa o bajo gasto cardíaco en escenarios seleccionados. Actualmente se usa menos que noradrenalina por mayor riesgo de arritmias.</p>
 
-      <h4>Precauciones</h4>
-      <p>Puede causar hipotensión, bradicardia, hipertrigliceridemia y síndrome de infusión por propofol, especialmente con dosis altas o infusiones prolongadas.</p>
-    </div>
-  </section>
-</article>
+        <h4>Rango habitual</h4>
+        <p>La dosis se ajusta según objetivo hemodinámico. A dosis crecientes aumenta el efecto inotrópico y posteriormente vasopresor.</p>
 
-<!-- ================= KETAMINA ================= -->
-<article class="drug-card" data-group="sedantes" data-calc="mg-kg-hr">
-  <header class="drug-head">
-    <div>
-      <h3>Ketamina</h3>
-      <p class="muted small">Sedante disociativo</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, perfusión, lactato y respuesta clínica.</p>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 5 ml</b></div>
+        <h4>Precauciones</h4>
+        <p>Mayor riesgo de taquiarritmias, aumento del consumo miocárdico de oxígeno e isquemia. No se recomienda para “protección renal”.</p>
+      </div>
+    </section>
+  </article>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mg-per-ml="1">
-            250 mg en 250 ml (DX 5% / SF 0.9%)
-          </option>
+  <!-- VASOPRESINA -->
+  <article class="drug-card" data-group="vasopresores" data-calc="ui-min">
+    <header class="drug-head">
+      <h3>Vasopresina</h3>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="form-group">
+        <label for="vaso_dil">Dilución</label>
+        <select id="vaso_dil" class="dilucion">
+          <option value="">Seleccionar…</option>
+          <option data-ui-per-ml="0.4">20 UI en 50 ml Dx 5% ó SF 0.9%</option>
+          <option data-ui-per-ml="0.4">40 UI en 100 ml Dx 5% ó SF 0.9%</option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mg/kg/hr</b></div>
-    </div>
+      <div>Concentración: <b class="concentracion">—</b></div>
 
-    <div class="calc-block">
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
-
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
-        </div>
+      <div class="form-group">
+        <label for="vaso_vel">Velocidad (ml/h)</label>
+        <input id="vaso_vel" class="velocidad" type="number" step="0.1" placeholder="Ej: 4.5">
       </div>
-    </div>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.1–0.5 mg/kg/hr para analgesia; 0.5–2.5 mg/kg/hr para sedación. Útil cuando se desea preservar estabilidad hemodinámica.
-    </div>
+      <div>Dosis: <b class="resultado" aria-live="polite">—</b></div>
 
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Sedación analgésica, analgesia en paciente crítico, broncoespasmo severo, sedación en hipotensión relativa y reducción de requerimientos de opioides.</p>
+      <div class="clinical-note">
+        <b>Nota clínica:</b> vasopresor no catecolaminérgico utilizado como adyuvante en shock séptico para reducir requerimientos de noradrenalina.
+      </div>
 
-      <h4>Mecanismo de acción</h4>
-      <p>Antagonista del receptor NMDA con efecto analgésico, disociativo y simpaticomimético. Puede aumentar frecuencia cardíaca y presión arterial por liberación catecolaminérgica.</p>
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock séptico o vasodilatado con requerimiento persistente de catecolaminas. Puede considerarse como segundo vasopresor.</p>
 
-      <h4>Monitorización</h4>
-      <p>Vigilar nivel de sedación, presión arterial, frecuencia cardíaca, secreciones, delirium, alucinaciones, presión intracraneal en pacientes seleccionados y respuesta analgésica.</p>
+        <h4>Rango habitual</h4>
+        <p>Frecuentemente 0.03 UI/min en infusión continua. No suele titularse de forma amplia como las catecolaminas.</p>
 
-      <h4>Precauciones</h4>
-      <p>Puede producir hipersalivación, fenómenos emergentes, hipertensión, taquicardia y aumento del consumo miocárdico de oxígeno. Usar con cautela en isquemia miocárdica activa.</p>
-    </div>
-  </section>
-</article>
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial media, perfusión periférica, lactato, diuresis, isquemia cutánea, isquemia mesentérica y sodio sérico.</p>
 
-<!-- ================= DEXMEDETOMIDINA ================= -->
-<article class="drug-card" data-group="sedantes" data-calc="mcg-kg-hr">
-  <header class="drug-head">
-    <div>
-      <h3>Dexmedetomidina</h3>
-      <p class="muted small">Agonista α2</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
+        <h4>Precauciones</h4>
+        <p>Puede producir isquemia periférica o mesentérica, hiponatremia y reducción excesiva del gasto cardíaco en pacientes susceptibles.</p>
+      </div>
+    </section>
+  </article>
 
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>200 mcg / 2 ml</b></div>
+  <!-- AZUL DE METILENO -->
+  <article class="drug-card" data-group="vasopresores" data-calc="mg-kg-h">
+    <header class="drug-head">
+      <h3>Azul de metileno</h3>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="4">
-            400 mcg en 100 ml (SF 0.9%)
-          </option>
+    <section class="drug-sheet hidden">
+      <div class="form-group">
+        <label for="azul_dil">Dilución</label>
+        <select id="azul_dil" class="dilucion">
+          <option value="">Seleccionar…</option>
+          <option data-mg-per-ml="0.5">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
+          <option data-mg-per-ml="1">100 mg en 100 ml Dx 5% ó SF 0.9%</option>
+          <option data-mg-per-ml="0.4">100 mg en 250 ml Dx 5% ó SF 0.9%</option>
         </select>
       </div>
 
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/hr</b></div>
-    </div>
+      <div>Concentración: <b class="concentracion">—</b></div>
 
-    <div class="calc-block">
-      <div class="calc-grid">
-        <label>Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
+      <div class="form-group">
+        <label for="azul_peso">Peso (kg)</label>
+        <input id="azul_peso" class="peso" type="number" step="0.1" placeholder="Ej: 70">
+      </div>
 
-        <label>Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
-        </label>
+      <div class="form-group">
+        <label for="azul_vel">Velocidad (ml/h)</label>
+        <input id="azul_vel" class="velocidad" type="number" step="0.1" placeholder="Ej: 35">
+      </div>
 
-        <div class="calc-result">
-          <span>Dosis administrada</span>
-          <b class="resultado">—</b>
+      <div>Dosis: <b class="resultado" aria-live="polite">—</b></div>
+
+      <div class="hint">
+        Tip: bolo intravenoso durante 20 minutos de 2 mg/kg, seguido de 0.5 mg/kg/h durante 48 horas en shock séptico refractario seleccionado.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock vasopléjico o shock séptico refractario seleccionado, especialmente cuando existe sospecha de vasodilatación mediada por óxido nítrico.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Inhibe la vía óxido nítrico–guanilato ciclasa, reduciendo la vasodilatación patológica y favoreciendo aumento de la resistencia vascular sistémica.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, lactato, perfusión, metahemoglobinemia, saturación, función renal y respuesta hemodinámica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede interferir con la pulsioximetría, aumentar riesgo de síndrome serotoninérgico con fármacos serotoninérgicos y debe evitarse en deficiencia de G6PD.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       VASODILATADORES
+  ========================== -->
+  <h2 id="vasodilatadores">Vasodilatadores</h2>
+
+  <!-- NITROGLICERINA -->
+  <article class="drug-card" data-group="vasodilatadores" data-calc="mcg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Nitroglicerina</h3>
+        <p class="muted small">Vasodilatador venoso predominante</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>50 mg / 10 ml</b></div>
+
+        <div class="form-group">
+          <label for="ntg_dil">Dilución habitual</label>
+          <select id="ntg_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="200">50 mg en 250 ml Dx 5% ó SF 0.9%</option>
+            <option data-mcg-per-ml="500">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
+          </select>
         </div>
-      </div>
-    </div>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.2–1.5 mcg/kg/hr. Vigilar bradicardia e hipotensión. Evitar bolo en pacientes inestables.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>Sedación ligera a moderada en ventilación mecánica, sedación cooperativa, destete ventilatorio, agitación y delirium hiperactivo seleccionado.</p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>Agonista α2 central que reduce la liberación simpática y produce sedación con menor depresión respiratoria comparada con otros sedantes.</p>
-
-      <h4>Monitorización</h4>
-      <p>Vigilar frecuencia cardíaca, presión arterial, nivel de sedación, bloqueo AV, necesidad de vasopresores y tolerancia durante el destete ventilatorio.</p>
-
-      <h4>Precauciones</h4>
-      <p>Puede causar bradicardia, hipotensión y bloqueo AV. Usar con cautela en pacientes con trastornos de conducción, shock o dependencia marcada de tono simpático.</p>
-    </div>
-  </section>
-</article>
-  
-<!-- =========================
-     ANALGÉSICOS Y OPIOIDES
-========================= -->
-
-<h2 id="analgesicos">Analgésicos y opioides</h2>
-
-<!-- ================= FENTANILO ================= -->
-<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-hr">
-  <header class="drug-head">
-    <div>
-      <h3>Fentanilo</h3>
-      <p class="muted small">Opioide sintético</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-
-      <div>
-        <span>Presentación</span>
-        <b>250 mcg / 5 ml</b>
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/min</b></div>
       </div>
 
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="3">
-            750 mcg en 250 ml SF 0.9%
-          </option>
-          <option data-mcg-per-ml="10">
-            1000 mcg en 100 ml SF 0.9%
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/h</b>
-      </div>
-
-    </div>
-
-    <div class="calc-block">
-
-      <div class="calc-grid">
-
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
-        </label>
-
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
+      <div class="calc-block">
+        <label for="ntg_vel">Velocidad (ml/h)
+          <input type="number" id="ntg_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 6">
         </label>
 
         <div class="calc-result">
           <span>Dosis administrada</span>
-          <b class="resultado">—</b>
+          <b class="resultado" aria-live="polite">—</b>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> iniciar 5–10 mcg/min. Titular según presión arterial, dolor torácico, congestión pulmonar y respuesta clínica. Dosis máxima habitual: 200 mcg/min.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Edema agudo de pulmón hipertensivo, síndrome coronario agudo con hipertensión o dolor persistente, crisis hipertensiva seleccionada y reducción de precarga en congestión cardiopulmonar.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Donador de óxido nítrico con vasodilatación venosa predominante a dosis bajas, lo que reduce la precarga y la presión de llenado ventricular. A dosis mayores puede producir vasodilatación arterial.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, dolor torácico, signos de congestión pulmonar, cefalea, hipotensión y necesidad de ajuste progresivo.</p>
+
+        <h4>Precauciones</h4>
+        <p>Evitar en hipotensión, uso reciente de inhibidores de fosfodiesterasa tipo 5, infarto de ventrículo derecho o estenosis aórtica crítica. Puede generar tolerancia con infusiones prolongadas.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- NITROPRUSIATO -->
+  <article class="drug-card" data-group="vasodilatadores" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Nitroprusiato de sodio</h3>
+        <p class="muted small">Vasodilatador arterial y venoso</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>50 mg / 2 ml</b></div>
+
+        <div class="form-group">
+          <label for="nipride_dil">Dilución habitual</label>
+          <select id="nipride_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="200">50 mg en 250 ml Dx 5% ó SF 0.9%</option>
+            <option data-mcg-per-ml="500">50 mg en 100 ml Dx 5% ó SF 0.9%</option>
+          </select>
         </div>
 
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
       </div>
 
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.5–5 mcg/kg/h. Analgesia de elección en muchos pacientes críticos por su rápido inicio de acción y estabilidad hemodinámica relativa.
-    </div>
-
-    <div class="drug-info">
-
-      <h4>Indicaciones principales</h4>
-      <p>
-        Analgesia en ventilación mecánica, dolor agudo severo,
-        procedimientos invasivos, sedación analgésica y manejo
-        multimodal del paciente crítico.
-      </p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>
-        Agonista potente de receptores μ-opioides con efecto
-        analgésico y sedante. Posee inicio rápido y corta duración
-        tras bolos aislados.
-      </p>
-
-      <h4>Monitorización</h4>
-      <p>
-        Vigilar frecuencia respiratoria, nivel de sedación,
-        presión arterial, frecuencia cardíaca, estreñimiento,
-        retención urinaria y necesidad analgésica.
-      </p>
-
-      <h4>Precauciones</h4>
-      <p>
-        Puede producir depresión respiratoria, rigidez torácica
-        con bolos rápidos, íleo, tolerancia y síndrome de abstinencia
-        tras uso prolongado.
-      </p>
-
-    </div>
-
-  </section>
-</article>
-
-<!-- ================= REMIFENTANILO ================= -->
-<article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-min">
-
-  <header class="drug-head">
-    <div>
-      <h3>Remifentanilo</h3>
-      <p class="muted small">Opioide ultracorto</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-
-      <div>
-        <span>Presentación</span>
-        <b>2 mg</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="40">
-            2 mg en 50 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mcg/kg/min</b>
-      </div>
-
-    </div>
-
-    <div class="calc-block">
-
-      <div class="calc-grid">
-
-        <label>
-          Peso (kg)
-          <input type="number" class="peso" step="0.1" min="0">
+      <div class="calc-block">
+        <label for="nipride_peso">Peso (kg)
+          <input type="number" id="nipride_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
         </label>
 
-        <label>
-          Velocidad (ml/h)
-          <input type="number" class="velocidad" step="0.1" min="0">
+        <label for="nipride_vel">Velocidad (ml/h)
+          <input type="number" id="nipride_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 10">
         </label>
 
         <div class="calc-result">
           <span>Dosis administrada</span>
-          <b class="resultado">—</b>
+          <b class="resultado" aria-live="polite">—</b>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.3–10 mcg/kg/min. Proteger de la luz. Riesgo de toxicidad por cianuro/tiocianato, especialmente con dosis altas o infusiones prolongadas.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Emergencias hipertensivas seleccionadas, falla cardíaca aguda con hipertensión y necesidad de reducción rápida de poscarga bajo monitorización estricta.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Vasodilatador directo arterial y venoso mediado por liberación de óxido nítrico. Reduce precarga y poscarga, con descenso rápido de la presión arterial.</p>
+
+        <h4>Monitorización</h4>
+        <p>Requiere monitorización continua de presión arterial, idealmente invasiva. Vigilar lactato, estado ácido-base, función renal, función hepática y signos neurológicos si la infusión es prolongada.</p>
+
+        <h4>Precauciones</h4>
+        <p>Evitar o usar con extrema precaución en insuficiencia renal o hepática grave. Riesgo de hipotensión brusca, toxicidad por cianuro/tiocianato y aumento de presión intracraneal.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- LABETALOL -->
+  <article class="drug-card" data-group="vasodilatadores" data-calc="mg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Labetalol</h3>
+        <p class="muted small">Bloqueante α/β</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>100 mg / 20 ml</b></div>
+
+        <div class="form-group">
+          <label for="labe_dil">Dilución habitual</label>
+          <select id="labe_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mg-per-ml="2">200 mg en 60 ml Dx 5% ó SF 0.9%</option>
+            <option data-mg-per-ml="2">400 mg en 120 ml Dx 5% ó SF 0.9%</option>
+          </select>
         </div>
 
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mg/min</b></div>
       </div>
 
-    </div>
+      <div class="calc-block">
+        <label for="labe_vel">Velocidad (ml/h)
+          <input type="number" id="labe_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 15">
+        </label>
 
-    <div class="clinical-note">
-      <b>Nota clínica:</b> 0.025–0.3 mcg/kg/min. Metabolismo por esterasas plasmáticas. Recuperación extremadamente rápida.
-    </div>
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado" aria-live="polite">—</b>
+        </div>
+      </div>
 
-    <div class="drug-info">
+      <div class="clinical-note">
+        <b>Nota clínica:</b> dosis máxima habitual: 2 mg/min. Vigilar frecuencia cardíaca, presión arterial y broncoespasmo.
+      </div>
 
-      <h4>Indicaciones principales</h4>
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Emergencia hipertensiva, hipertensión asociada a enfermedad neurológica, disección aórtica como parte de control de frecuencia/presión y crisis hipertensivas seleccionadas.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Bloqueo combinado β1, β2 y α1. Disminuye frecuencia cardíaca, contractilidad y resistencia vascular sistémica, con menor taquicardia refleja que otros vasodilatadores.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, bloqueo AV, broncoespasmo, signos de bajo gasto y respuesta clínica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Evitar en bradicardia severa, bloqueo AV avanzado, shock cardiogénico, falla cardíaca descompensada grave o broncoespasmo activo.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       INODILATADORES
+  ========================== -->
+  <h2 id="inodilatadores">Inodilatadores</h2>
+
+  <!-- DOBUTAMINA -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Dobutamina</h3>
+        <p class="muted small">Inodilatador</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>250 mg / 20 ml</b></div>
+
+        <div class="form-group">
+          <label for="dobuta_dil">Dilución habitual</label>
+          <select id="dobuta_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="2000">500 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+        <div class="calc-grid">
+          <label for="dobuta_peso">Peso (kg)
+            <input type="number" id="dobuta_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+          <label for="dobuta_vel">Velocidad (ml/h)
+            <input type="number" id="dobuta_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 10">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 2–20 mcg/kg/min. Vigilar frecuencia cardíaca, arritmias, presión arterial y respuesta del gasto cardíaco.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Shock cardiogénico, bajo gasto cardíaco, disfunción ventricular sistólica y soporte inotrópico en pacientes con hipoperfusión pese a presión arterial adecuada o con vasopresores asociados.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Agonista β1 predominante con efecto inotrópico positivo. También puede producir vasodilatación por efecto β2, reduciendo parcialmente la resistencia vascular sistémica.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar frecuencia cardíaca, arritmias, presión arterial, lactato, diuresis, perfusión periférica, ecocardiografía y signos de isquemia miocárdica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede causar taquicardia, hipotensión por vasodilatación, aumento del consumo miocárdico de oxígeno y arritmias. Usar con precaución en isquemia activa.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- MILRINONA -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Milrinona</h3>
+        <p class="muted small">Inodilatador (PDE-3)</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>10 mg / 10 ml</b></div>
+
+        <div class="form-group">
+          <label for="milri_dil">Dilución habitual</label>
+          <select id="milri_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="100">10 mg en 100 ml Dx 5% ó SF 0.9%</option>
+            <option data-mcg-per-ml="80">20 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+        <div class="calc-grid">
+          <label for="milri_peso">Peso (kg)
+            <input type="number" id="milri_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+          <label for="milri_vel">Velocidad (ml/h)
+            <input type="number" id="milri_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 15">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.125–0.75 mcg/kg/min. Ajustar en insuficiencia renal. Puede producir hipotensión y arritmias.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Bajo gasto cardíaco, insuficiencia cardíaca avanzada, disfunción ventricular derecha, hipertensión pulmonar con falla derecha y pacientes con respuesta limitada a catecolaminas.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Inhibidor de fosfodiesterasa tipo 3. Aumenta AMPc intracelular, mejorando contractilidad miocárdica y produciendo vasodilatación sistémica y pulmonar.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, diuresis, lactato, función renal y respuesta hemodinámica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Se elimina principalmente por vía renal, por lo que puede acumularse en insuficiencia renal. Puede generar hipotensión significativa y arritmias ventriculares o supraventriculares.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- LEVOSIMENDÁN -->
+  <article class="drug-card" data-group="inotropicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Levosimendán</h3>
+        <p class="muted small">Inodilatador (sensibilizador de calcio)</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>12.5 mg / 5 ml</b></div>
+
+        <div class="form-group">
+          <label for="levo_dil">Dilución habitual</label>
+          <select id="levo_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="50">12.5 mg en 250 ml Dx 5% ó SF 0.9%</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <h4>Cálculo de dosis administrada</h4>
+        <div class="calc-grid">
+          <label for="levo_peso">Peso (kg)
+            <input type="number" id="levo_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+          <label for="levo_vel">Velocidad (ml/h)
+            <input type="number" id="levo_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 8">
+          </label>
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> infusión habitual 0.05–0.2 mcg/kg/min. Evitar bolo si hay hipotensión.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Insuficiencia cardíaca aguda o crónica descompensada con bajo gasto, shock cardiogénico seleccionado y disfunción ventricular con necesidad de soporte inotrópico prolongado.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Sensibiliza la troponina C al calcio y abre canales de potasio ATP-dependientes, produciendo efecto inotrópico y vasodilatador sin aumento marcado del calcio intracelular.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, arritmias, lactato, diuresis, perfusión y respuesta clínica durante y después de la infusión.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede producir hipotensión prolongada por metabolitos activos. Usar con cautela en hipovolemia, presión arterial baja o arritmias no controladas.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       SEDANTES
+  ========================== -->
+  <h2 id="sedantes">Sedantes</h2>
+
+  <!-- PROPOFOL -->
+  <article class="drug-card" data-group="sedantes" data-calc="mg-kg-h">
+    <header class="drug-head">
+      <div>
+        <h3>Propofol</h3>
+        <p class="muted small">Sedante hipnótico</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>20 mg / 1 ml (20%)</b></div>
+
+        <div class="form-group">
+          <label for="prop_dil">Dilución habitual</label>
+          <select id="prop_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mg-per-ml="20">Sin diluir (2%)</option>
+            <option data-mg-per-ml="4">200 mg en 50 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mg/kg/h</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label for="prop_peso">Peso (kg)
+            <input type="number" id="prop_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+
+          <label for="prop_vel">Velocidad (ml/h)
+            <input type="number" id="prop_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 10">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.5–5 mg/kg/h. Vigilar hipotensión, hipertrigliceridemia y síndrome de infusión por propofol.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Sedación en ventilación mecánica, procedimientos en UCI, control de agitación y sedación profunda cuando se requiere inicio y recuperación rápidos.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Modulador del receptor GABA-A con efecto hipnótico, sedante y amnésico. Tiene inicio rápido y vida media corta, lo que facilita la titulación continua.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar presión arterial, frecuencia cardíaca, nivel de sedación, escala RASS, triglicéridos, lactato, pH, CK y necesidad de vasopresores.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede causar hipotensión, bradicardia, hipertrigliceridemia y síndrome de infusión por propofol, especialmente con dosis altas o infusiones prolongadas.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- KETAMINA -->
+  <article class="drug-card" data-group="sedantes" data-calc="mg-kg-hr">
+    <header class="drug-head">
+      <div>
+        <h3>Ketamina</h3>
+        <p class="muted small">Sedante disociativo</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>50 mg / 5 ml</b></div>
+
+        <div class="form-group">
+          <label for="keta_dil">Dilución habitual</label>
+          <select id="keta_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mg-per-ml="1">250 mg en 250 ml (DX 5% / SF 0.9%)</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mg/kg/hr</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label for="keta_peso">Peso (kg)
+            <input type="number" id="keta_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+
+          <label for="keta_vel">Velocidad (ml/h)
+            <input type="number" id="keta_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 20">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.1–0.5 mg/kg/hr para analgesia; 0.5–2.5 mg/kg/hr para sedación. Útil cuando se desea preservar estabilidad hemodinámica.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Sedación analgésica, analgesia en paciente crítico, broncoespasmo severo, sedación en hipotensión relativa y reducción de requerimientos de opioides.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Antagonista del receptor NMDA con efecto analgésico, disociativo y simpaticomimético. Puede aumentar frecuencia cardíaca y presión arterial por liberación catecolaminérgica.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar nivel de sedación, presión arterial, frecuencia cardíaca, secreciones, delirium, alucinaciones, presión intracraneal en pacientes seleccionados y respuesta analgésica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede producir hipersalivación, fenómenos emergentes, hipertensión, taquicardia y aumento del consumo miocárdico de oxígeno. Usar con cautela en isquemia miocárdica activa.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- DEXMEDETOMIDINA -->
+  <article class="drug-card" data-group="sedantes" data-calc="mcg-kg-hr">
+    <header class="drug-head">
+      <div>
+        <h3>Dexmedetomidina</h3>
+        <p class="muted small">Agonista α2</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>200 mcg / 2 ml</b></div>
+
+        <div class="form-group">
+          <label for="dex_dil">Dilución habitual</label>
+          <select id="dex_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="4">400 mcg en 100 ml (SF 0.9%)</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/hr</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label for="dex_peso">Peso (kg)
+            <input type="number" id="dex_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+
+          <label for="dex_vel">Velocidad (ml/h)
+            <input type="number" id="dex_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 12">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.2–1.5 mcg/kg/hr. Vigilar bradicardia e hipotensión. Evitar bolo en pacientes inestables.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Sedación ligera a moderada en ventilación mecánica, sedación cooperativa, destete ventilatorio, agitación y delirium hiperactivo seleccionado.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Agonista α2 central que reduce la liberación simpática y produce sedación con menor depresión respiratoria comparada con otros sedantes.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar frecuencia cardíaca, presión arterial, nivel de sedación, bloqueo AV, necesidad de vasopresores y tolerancia durante el destete ventilatorio.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede causar bradicardia, hipotensión y bloqueo AV. Usar con cautela en pacientes con trastornos de conducción, shock o dependencia marcada de tono simpático.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       ANALGÉSICOS Y OPIOIDES
+  ========================== -->
+  <h2 id="analgesicos">Analgésicos y opioides</h2>
+
+  <!-- FENTANILO -->
+  <article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-hr">
+    <header class="drug-head">
+      <div>
+        <h3>Fentanilo</h3>
+        <p class="muted small">Opioide sintético</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>250 mcg / 5 ml</b></div>
+
+        <div class="form-group">
+          <label for="fenta_dil">Dilución habitual</label>
+          <select id="fenta_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="3">750 mcg en 250 ml SF 0.9%</option>
+            <option data-mcg-per-ml="10">1000 mcg en 100 ml SF 0.9%</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/h</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label for="fenta_peso">Peso (kg)
+            <input type="number" id="fenta_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+
+          <label for="fenta_vel">Velocidad (ml/h)
+            <input type="number" id="fenta_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 10">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.5–5 mcg/kg/h. Analgesia de elección en muchos pacientes críticos por su rápido inicio de acción y estabilidad hemodinámica relativa.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Analgesia en ventilación mecánica, dolor agudo severo, procedimientos invasivos, sedación analgésica y manejo multimodal del paciente crítico.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Agonista potente de receptores μ-opioides con efecto analgésico y sedante. Posee inicio rápido y corta duración tras bolos aislados.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar frecuencia respiratoria, nivel de sedación, presión arterial, frecuencia cardíaca, estreñimiento, retención urinaria y necesidad analgésica.</p>
+
+        <h4>Precauciones</h4>
+        <p>Puede producir depresión respiratoria, rigidez torácica con bolos rápidos, íleo, tolerancia y síndrome de abstinencia tras uso prolongado.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- REMIFENTANILO -->
+  <article class="drug-card" data-group="analgesicos" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Remifentanilo</h3>
+        <p class="muted small">Opioide ultracorto</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>2 mg</b></div>
+
+        <div class="form-group">
+          <label for="remi_dil">Dilución habitual</label>
+          <select id="remi_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="40">2 mg en 50 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-grid">
+          <label for="remi_peso">Peso (kg)
+            <input type="number" id="remi_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+          </label>
+
+          <label for="remi_vel">Velocidad (ml/h)
+            <input type="number" id="remi_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 5">
+          </label>
+
+          <div class="calc-result">
+            <span>Dosis administrada</span>
+            <b class="resultado" aria-live="polite">—</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> 0.025–0.3 mcg/kg/min. Metabolismo por esterasas plasmáticas. Recuperación extremadamente rápida.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Procedimientos cortos, neurocríticos, sedación de precisión y situaciones donde se requiere despertar rápido.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Agonista μ-opioide metabolizado independientemente de la función renal o hepática mediante esterasas plasmáticas.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar analgesia, ventilación, frecuencia respiratoria, sedación y respuesta hemodinámica.</p>
+
+        <h4>Precauciones</h4>
+        <p>La suspensión abrupta puede producir pérdida rápida de analgesia. Debe planificarse transición a otro analgésico.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- MORFINA -->
+  <article class="drug-card" data-group="analgesicos" data-calc="mg-hr">
+    <header class="drug-head">
+      <div>
+        <h3>Morfina</h3>
+        <p class="muted small">Opioide clásico</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>10 mg / ml</b></div>
+
+        <div class="form-group">
+          <label for="morf_dil">Dilución habitual</label>
+          <select id="morf_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mg-per-ml="1">100 mg en 100 ml</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mg/h</b></div>
+      </div>
+
+      <div class="calc-block">
+        <label for="morf_vel">Velocidad (ml/h)
+          <input type="number" id="morf_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 2">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado" aria-live="polite">—</b>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> útil para analgesia prolongada y cuidados paliativos. Ajustar en insuficiencia renal.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>Dolor severo, analgesia prolongada, cuidados paliativos y manejo sintomático de disnea.</p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>Agonista μ-opioide con metabolitos activos que pueden acumularse en insuficiencia renal.</p>
+
+        <h4>Monitorización</h4>
+        <p>Vigilar nivel de conciencia, frecuencia respiratoria, estreñimiento, retención urinaria e hipotensión.</p>
+
+        <h4>Precauciones</h4>
+        <p>Riesgo de acumulación en insuficiencia renal, depresión respiratoria y delirium.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       BLOQUEANTES NEUROMUSCULARES
+  ========================== -->
+  <h2 id="relajantes">Bloqueantes neuromusculares</h2>
+
+  <!-- ATRACURIO -->
+  <article class="drug-card" data-group="relajantes" data-calc="mcg-kg-min">
+    <header class="drug-head">
+      <div>
+        <h3>Atracurio</h3>
+        <p class="muted small">Bloqueante neuromuscular no despolarizante</p>
+      </div>
+      <button type="button" class="btn toggle-sheet" aria-expanded="false">Ver ficha</button>
+    </header>
+
+    <section class="drug-sheet hidden">
+      <div class="sheet-grid">
+        <div><span>Presentación</span><b>50 mg / 5 ml</b></div>
+
+        <div class="form-group">
+          <label for="atra_dil">Dilución habitual</label>
+          <select id="atra_dil" class="dilucion">
+            <option value="">Seleccionar…</option>
+            <option data-mcg-per-ml="5000">1.000.000 mcg en 200 ml (DX 5% / SF 0.9%) volumen total final</option>
+          </select>
+        </div>
+
+        <div><span>Concentración</span><b class="concentracion">—</b></div>
+        <div><span>Unidad</span><b>mcg/kg/min</b></div>
+      </div>
+
+      <div class="calc-block">
+        <label for="atra_peso">Peso (kg)
+          <input type="number" id="atra_peso" class="peso" step="0.1" min="0" placeholder="Ej: 70">
+        </label>
+
+        <label for="atra_vel">Velocidad (ml/h)
+          <input type="number" id="atra_vel" class="velocidad" step="0.1" min="0" placeholder="Ej: 10">
+        </label>
+
+        <div class="calc-result">
+          <span>Dosis administrada</span>
+          <b class="resultado" aria-live="polite">—</b>
+        </div>
+      </div>
+
+      <div class="clinical-note">
+        <b>Nota clínica:</b> rango habitual 2–20 mcg/kg/min. Usar siempre con sedación y analgesia adecuadas.
+      </div>
+
+      <div class="drug-info">
+        <h4>Indicaciones principales</h4>
+        <p>
+          Bloqueo neuromuscular en síndrome de distrés respiratorio agudo, asincronía ventilatoria grave,
+          hipoxemia refractaria, ventilación protectora difícil, hipertensión intracraneal seleccionada
+          y procedimientos específicos en UCI.
+        </p>
+
+        <h4>Mecanismo de acción</h4>
+        <p>
+          Bloqueante neuromuscular no despolarizante que antagoniza competitivamente los receptores
+          nicotínicos de acetilcolina en la unión neuromuscular, produciendo parálisis muscular.
+        </p>
+
+        <h4>Monitorización</h4>
+        <p>
+          Vigilar profundidad de sedación, analgesia, presión arterial, frecuencia cardíaca,
+          sincronía ventilatoria, oxigenación, bloqueo mediante tren de cuatro estímulos si está disponible,
+          y signos de recuperación neuromuscular.
+        </p>
+
+        <h4>Precauciones</h4>
+        <p>
+          No produce sedación ni analgesia. Puede asociarse a debilidad adquirida en UCI, especialmente
+          con uso prolongado, corticosteroides o sepsis. Su metabolito laudanosina puede acumularse
+          en infusiones prolongadas.
+        </p>
+      </div>
+    </section>
+  </article>
+
+  <!-- =========================
+       SEO Y PREGUNTAS FRECUENTES
+  ========================== -->
+  <section class="panel seo-panel">
+    <h2>Uso clínico de la farmacoteca en UCI</h2>
+
+    <p>
+      La administración de fármacos en cuidados intensivos requiere precisión en la dosis,
+      dilución, concentración y velocidad de infusión. En pacientes críticos, pequeños errores
+      de conversión entre mg, mcg, UI, ml/h o dosis ajustadas por peso pueden tener consecuencias
+      clínicas relevantes.
+    </p>
+
+    <h3>Calculadoras de infusión</h3>
+    <p>
+      Las calculadoras permiten estimar la dosis administrada a partir de la concentración,
+      el peso del paciente y la velocidad de infusión. Son útiles en fármacos titulables como
+      vasopresores, inotrópicos, sedantes, analgésicos y relajantes neuromusculares.
+    </p>
+
+    <h3>Interpretación clínica</h3>
+    <p>
+      Los resultados deben interpretarse junto con la respuesta hemodinámica, nivel de sedación,
+      analgesia, perfusión, función renal y hepática, lactato, presión arterial y objetivos
+      terapéuticos definidos para cada paciente.
+    </p>
+
+    <h3>Limitaciones</h3>
+    <p>
+      Esta herramienta no reemplaza el juicio clínico, las guías institucionales ni la verificación
+      farmacéutica. Siempre deben confirmarse concentración final, compatibilidad, vía de administración,
+      estabilidad, bomba de infusión y protocolos locales antes de administrar un medicamento.
+    </p>
+
+    <aside class="author-info">
+      <h3>Responsable editorial</h3>
       <p>
-        Procedimientos cortos, neurocríticos, sedación de precisión
-        y situaciones donde se requiere despertar rápido.
+        Contenido elaborado y revisado por un médico con formación en Medicina Crítica y Cuidados
+        Intensivos. <time datetime="2026-07">Última actualización: julio de 2026</time>.
       </p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>
-        Agonista μ-opioide metabolizado independientemente de la función
-        renal o hepática mediante esterasas plasmáticas.
-      </p>
-
-      <h4>Monitorización</h4>
-      <p>
-        Vigilar analgesia, ventilación, frecuencia respiratoria,
-        sedación y respuesta hemodinámica.
-      </p>
-
-      <h4>Precauciones</h4>
-      <p>
-        La suspensión abrupta puede producir pérdida rápida de analgesia.
-        Debe planificarse transición a otro analgésico.
-      </p>
-
-    </div>
-
+    </aside>
   </section>
-</article>
-
-<!-- ================= MORFINA ================= -->
-<article class="drug-card" data-group="analgesicos" data-calc="mg-hr">
-
-  <header class="drug-head">
-    <div>
-      <h3>Morfina</h3>
-      <p class="muted small">Opioide clásico</p>
-    </div>
-    <button type="button" class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-
-    <div class="sheet-grid">
-
-      <div>
-        <span>Presentación</span>
-        <b>10 mg / ml</b>
-      </div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mg-per-ml="1">
-            100 mg en 100 ml
-          </option>
-        </select>
-      </div>
-
-      <div>
-        <span>Concentración</span>
-        <b class="concentracion">—</b>
-      </div>
-
-      <div>
-        <span>Unidad</span>
-        <b>mg/h</b>
-      </div>
-
-    </div>
-
-    <div class="calc-block">
-
-      <label>
-        Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> útil para analgesia prolongada y cuidados paliativos. Ajustar en insuficiencia renal.
-    </div>
-
-    <div class="drug-info">
-
-      <h4>Indicaciones principales</h4>
-      <p>
-        Dolor severo, analgesia prolongada, cuidados paliativos
-        y manejo sintomático de disnea.
-      </p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>
-        Agonista μ-opioide con metabolitos activos que pueden acumularse
-        en insuficiencia renal.
-      </p>
-
-      <h4>Monitorización</h4>
-      <p>
-        Vigilar nivel de conciencia, frecuencia respiratoria,
-        estreñimiento, retención urinaria e hipotensión.
-      </p>
-
-      <h4>Precauciones</h4>
-      <p>
-        Riesgo de acumulación en insuficiencia renal,
-        depresión respiratoria y delirium.
-      </p>
-
-    </div>
-
-  </section>
-</article>
-
-
-<!-- =========================
-     BLOQUEANTES NEUROMUSCULARES
-========================= -->
-
-<h2 id="relajantes">Bloqueantes neuromusculares</h2>
-
-<!-- ================= ATRACURIO ================= -->
-<article class="drug-card" data-group="relajantes" data-calc="mcg-kg-min">
-  <header class="drug-head">
-    <div>
-      <h3>Atracurio</h3>
-      <p class="muted small">Bloqueante neuromuscular no despolarizante</p>
-    </div>
-    <button class="btn toggle-sheet">Ver ficha</button>
-  </header>
-
-  <section class="drug-sheet hidden">
-    <div class="sheet-grid">
-      <div><span>Presentación</span><b>50 mg / 5 ml</b></div>
-
-      <div>
-        <span>Dilución habitual</span>
-        <select class="dilucion">
-          <option value="">Seleccionar</option>
-          <option data-mcg-per-ml="5000">
-            1.000.000 mcg en 200 ml (DX 5% / SF 0.9%) volumen total final
-          </option>
-        </select>
-      </div>
-
-      <div><span>Concentración</span><b class="concentracion">—</b></div>
-      <div><span>Unidad</span><b>mcg/kg/min</b></div>
-    </div>
-
-    <div class="calc-block">
-      <label>Peso (kg)
-        <input type="number" class="peso" step="0.1" min="0">
-      </label>
-
-      <label>Velocidad (ml/h)
-        <input type="number" class="velocidad" step="0.1" min="0">
-      </label>
-
-      <div class="calc-result">
-        <span>Dosis administrada</span>
-        <b class="resultado">—</b>
-      </div>
-    </div>
-
-    <div class="clinical-note">
-      <b>Nota clínica:</b> rango habitual 2–20 mcg/kg/min. Usar siempre con sedación y analgesia adecuadas.
-    </div>
-
-    <div class="drug-info">
-      <h4>Indicaciones principales</h4>
-      <p>
-        Bloqueo neuromuscular en síndrome de distrés respiratorio agudo, asincronía ventilatoria grave,
-        hipoxemia refractaria, ventilación protectora difícil, hipertensión intracraneal seleccionada
-        y procedimientos específicos en UCI.
-      </p>
-
-      <h4>Mecanismo de acción</h4>
-      <p>
-        Bloqueante neuromuscular no despolarizante que antagoniza competitivamente los receptores
-        nicotínicos de acetilcolina en la unión neuromuscular, produciendo parálisis muscular.
-      </p>
-
-      <h4>Monitorización</h4>
-      <p>
-        Vigilar profundidad de sedación, analgesia, presión arterial, frecuencia cardíaca,
-        sincronía ventilatoria, oxigenación, bloqueo mediante tren de cuatro estímulos si está disponible,
-        y signos de recuperación neuromuscular.
-      </p>
-
-      <h4>Precauciones</h4>
-      <p>
-        No produce sedación ni analgesia. Puede asociarse a debilidad adquirida en UCI, especialmente
-        con uso prolongado, corticosteroides o sepsis. Su metabolito laudanosina puede acumularse
-        en infusiones prolongadas.
-      </p>
-    </div>
-  </section>
-</article>
-
-<section class="panel seo-panel">
-  <h2>Uso clínico de la farmacoteca en UCI</h2>
-
-  <p>
-    La administración de fármacos en cuidados intensivos requiere precisión en la dosis,
-    dilución, concentración y velocidad de infusión. En pacientes críticos, pequeños errores
-    de conversión entre mg, mcg, UI, ml/h o dosis ajustadas por peso pueden tener consecuencias
-    clínicas relevantes.
-  </p>
-
-  <h3>Calculadoras de infusión</h3>
-  <p>
-    Las calculadoras permiten estimar la dosis administrada a partir de la concentración,
-    el peso del paciente y la velocidad de infusión. Son útiles en fármacos titulables como
-    vasopresores, inotrópicos, sedantes, analgésicos y relajantes neuromusculares.
-  </p>
-
-  <h3>Interpretación clínica</h3>
-  <p>
-    Los resultados deben interpretarse junto con la respuesta hemodinámica, nivel de sedación,
-    analgesia, perfusión, función renal y hepática, lactato, presión arterial y objetivos
-    terapéuticos definidos para cada paciente.
-  </p>
-
-  <h3>Limitaciones</h3>
-  <p>
-    Esta herramienta no reemplaza el juicio clínico, las guías institucionales ni la verificación
-    farmacéutica. Siempre deben confirmarse concentración final, compatibilidad, vía de administración,
-    estabilidad, bomba de infusión y protocolos locales antes de administrar un medicamento.
-  </p>
-
-  <h3>Responsable editorial</h3>
-  <p>
-    Contenido elaborado y revisado por un médico con formación en Medicina Crítica y Cuidados
-    Intensivos. Última actualización: julio de 2026.
-  </p>
-</section>
 
 </main>
 
@@ -1537,10 +1463,9 @@
   </p>
 </footer>
 
+<script src="farmacoteca.js" defer></script>
 
-<script src="farmacoteca.js"></script>
-
-  <!-- ================= JS ÚNICO ================= -->
+<!-- Script interactivo de la farmacoteca -->
 <script>
 document.addEventListener("click", e => {
   const btn = e.target.closest(".toggle-sheet");
@@ -1549,10 +1474,9 @@ document.addEventListener("click", e => {
   const card = btn.closest(".drug-card");
   const sheet = card.querySelector(".drug-sheet");
 
-  sheet.classList.toggle("hidden");
-  btn.textContent = sheet.classList.contains("hidden")
-    ? "Ver ficha"
-    : "Ocultar ficha";
+  const isHidden = sheet.classList.toggle("hidden");
+  btn.setAttribute("aria-expanded", !isHidden);
+  btn.textContent = isHidden ? "Ver ficha" : "Ocultar ficha";
 });
 
 document.addEventListener("input", e => {
@@ -1579,7 +1503,7 @@ function calc(card) {
 
   if (!outRes) return;
 
-  // ================= mcg/kg/min =================
+  // mcg/kg/min
   if (type === "mcg-kg-min") {
     conc = +dil.dataset.mcgPerMl;
     unit = "mcg/kg/min";
@@ -1590,7 +1514,7 @@ function calc(card) {
     }
   }
 
-  // ================= mcg/min =================
+  // mcg/min
   if (type === "mcg-min") {
     conc = +dil.dataset.mcgPerMl;
     unit = "mcg/min";
@@ -1601,8 +1525,8 @@ function calc(card) {
     }
   }
 
-  // ================= mcg/kg/h =================
-  if (type === "mcg-kg-h") {
+  // mcg/kg/h
+  if (type === "mcg-kg-h" || type === "mcg-kg-hr") {
     conc = +dil.dataset.mcgPerMl;
     unit = "mcg/kg/h";
     outConc.textContent = conc + " mcg/ml";
@@ -1612,19 +1536,8 @@ function calc(card) {
     }
   }
 
-  // ================= mcg/kg/hr =================
-  if (type === "mcg-kg-hr") {
-    conc = +dil.dataset.mcgPerMl;
-    unit = "mcg/kg/hr";
-    outConc.textContent = conc + " mcg/ml";
-
-    if (vel > 0 && peso > 0) {
-      res = (vel * conc) / peso;
-    }
-  }
-
-  // ================= mg/kg/h =================
-  if (type === "mg-kg-h") {
+  // mg/kg/h
+  if (type === "mg-kg-h" || type === "mg-kg-hr") {
     conc = +dil.dataset.mgPerMl;
     unit = "mg/kg/h";
     outConc.textContent = conc + " mg/ml";
@@ -1634,18 +1547,7 @@ function calc(card) {
     }
   }
 
-  // ================= mg/kg/hr =================
-  if (type === "mg-kg-hr") {
-    conc = +dil.dataset.mgPerMl;
-    unit = "mg/kg/hr";
-    outConc.textContent = conc + " mg/ml";
-
-    if (vel > 0 && peso > 0) {
-      res = (vel * conc) / peso;
-    }
-  }
-
-  // ================= mg/min =================
+  // mg/min
   if (type === "mg-min") {
     conc = +dil.dataset.mgPerMl;
     unit = "mg/min";
@@ -1656,7 +1558,7 @@ function calc(card) {
     }
   }
 
-  // ================= UI/min =================
+  // UI/min
   if (type === "ui-min") {
     conc = +dil.dataset.uiPerMl;
     unit = "UI/min";
@@ -1667,29 +1569,26 @@ function calc(card) {
     }
   }
 
-  // ================= mg/min =================
-if (type === "mg-min") {
-  conc = +dil.dataset.mgPerMl;
-  unit = "mg/min";
-  outConc.textContent = conc + " mg/ml";
+  // mg/h
+  if (type === "mg-hr") {
+    conc = +dil.dataset.mgPerMl;
+    unit = "mg/h";
+    outConc.textContent = conc + " mg/ml";
 
-  if (vel > 0) {
-    res = (vel * conc) / 60;
+    if (vel > 0) {
+      res = vel * conc;
+    }
   }
-}
 
-  // ================= Resultado =================
+  // Resultado
   if (res && isFinite(res)) {
     outRes.textContent = res.toFixed(2) + " " + unit;
   } else {
     outRes.textContent = "—";
   }
 }
-</script>
 
-  <script>
 document.addEventListener("DOMContentLoaded", () => {
-
   const qInput = document.getElementById("q");
   const grupoSelect = document.getElementById("grupo");
   const resetBtn = document.getElementById("btnReset");
@@ -1711,7 +1610,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.display = visible ? "" : "none";
     });
 
-    // Ocultar títulos sin resultados
+    // Ocultar títulos de sección sin fármacos visibles
     headers.forEach(h2 => {
       let tieneVisible = false;
       let el = h2.nextElementSibling;
@@ -1731,18 +1630,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  qInput.addEventListener("input", filtrarFarmacos);
-  grupoSelect.addEventListener("change", filtrarFarmacos);
+  qInput?.addEventListener("input", filtrarFarmacos);
+  grupoSelect?.addEventListener("change", filtrarFarmacos);
 
-  resetBtn.addEventListener("click", () => {
+  resetBtn?.addEventListener("click", () => {
     qInput.value = "";
     grupoSelect.value = "all";
     filtrarFarmacos();
   });
-
 });
 </script>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+</script>
 
 </body>
 </html>
