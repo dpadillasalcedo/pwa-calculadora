@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
- 
-
   <!-- =========================
-       META BÁSICOS
+       META BÁSICOS Y RENDIMIENTO
   ========================== -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-2985318585101906" />
 
-  <!-- SEO TITLE (OPTIMIZADO PARA CTR + KEYWORDS) -->
   <title>Calculadora SOFA, APACHE II y SAPS II | Mortalidad en UCI Online</title>
 
-  <!-- META DESCRIPTION (MEJORADA PARA CTR) -->
   <meta
     name="description"
     content="Calculadora online de SOFA, APACHE II y SAPS II. Evalúa gravedad y mortalidad en pacientes críticos en UCI con herramientas clínicas utilizadas a nivel internacional."
@@ -27,17 +22,23 @@
   <meta name="author" content="Critical Care Tools" />
   <meta name="theme-color" content="#102b40" />
 
+  <!-- Preconnect & Preload para optimización de carga -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preload" href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.css" as="style" />
+
   <!-- =========================
-       CANONICAL
+       CANONICAL Y HREFLANG
   ========================== -->
+  <link rel="manifest" href="/manifest.json" />
+
   <link
     rel="canonical"
     href="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html"
   />
 
-  <!-- =========================
-       HREFLANG
-  ========================== -->
   <link
     rel="alternate"
     hreflang="es"
@@ -55,7 +56,7 @@
   />
 
   <!-- =========================
-       OPEN GRAPH
+       OPEN GRAPH & TWITTER
   ========================== -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
@@ -74,14 +75,6 @@
     content="https://criticalcaretools.com/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html"
   />
 
-  <!-- Opcional (MUY RECOMENDADO) -->
-  <!--
-  <meta property="og:image" content="https://criticalcaretools.com/assets/img/og/sofa-apache-saps.jpg" />
-  -->
-
-  <!-- =========================
-       TWITTER CARDS
-  ========================== -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta
     name="twitter:title"
@@ -93,45 +86,37 @@
   />
 
   <!-- =========================
-       PERFORMANCE
-  ========================== -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-
-  <!-- =========================
-       PWA
-  ========================== -->
-  <link rel="manifest" href="/manifest.json" />
-
-  <!-- =========================
        CSS
   ========================== -->
-  <link rel="stylesheet"
-        href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.css" />
+  <link rel="stylesheet" href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.css" />
 
   <!-- =========================
-       GOOGLE ANALYTICS
+       GOOGLE ANALYTICS GA4 (Corregido: 'granted')
   ========================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
+      'analytics_storage': 'granted',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
     });
     gtag('js', new Date());
-    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true });
+    gtag('config', 'G-WQREHQ56Q4', { send_page_view: true, transport_type: 'beacon' });
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WQREHQ56Q4"></script>
-
-  
 
   <!-- =========================
-       SCHEMA: BREADCRUMB
+       ADSENSE
+  ========================== -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2985318585101906"
+    crossorigin="anonymous">
+  </script>
+
+  <!-- =========================
+       DATOS ESTRUCTURADOS (JSON-LD)
   ========================== -->
   <script type="application/ld+json">
   {
@@ -160,9 +145,6 @@
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: MEDICAL WEB PAGE
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -186,14 +168,12 @@
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Critical Care Tools"
+      "name": "Critical Care Tools",
+      "url": "https://criticalcaretools.com/"
     }
   }
   </script>
 
-  <!-- =========================
-       SCHEMA: FAQ (MUY POTENTE SEO)
-  ========================== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -226,1159 +206,1101 @@
     ]
   }
   </script>
-
-
 </head>
 
-  
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
-<div class="site-top"><div class="topbar container">
-  <a class="brand" href="/" aria-label="Critical Care Tools, inicio"><span class="brand-mark" aria-hidden="true">+</span><span>Critical Care <strong>Tools</strong></span></a>
-  <nav class="top-nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a><span class="language-switcher" aria-label="Idioma"><a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" lang="es" hreflang="es" aria-current="page">ES</a><span aria-hidden="true">/</span><a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html" lang="en" hreflang="en">EN</a></span></nav>
-</div></div>
+
+<header class="site-top">
+  <div class="topbar container">
+    <a class="brand" href="/" aria-label="Critical Care Tools, inicio">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span>Critical Care <strong>Tools</strong></span>
+    </a>
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/calculadoras/variables-clinicas/variables.html">Variables clínicas</a>
+      <span class="language-switcher" aria-label="Idioma">
+        <a href="/calculadoras/variables-clinicas/sistemas-puntuacion/puntuacion.html" lang="es" hreflang="es" aria-current="page">ES</a>
+        <span aria-hidden="true">/</span>
+        <a href="/en/calculadorasen/variablesen/sistemas-puntuacionen/puntuacionen.html" lang="en" hreflang="en">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
 <main id="contenido" class="container">
 
-<nav class="breadcrumb-nav" aria-label="Ruta de navegación">
-  <a href="/">Inicio</a>
-  <span aria-hidden="true">›</span>
-  <a href="/calculadoras/variables-clinicas/variables.html">
-    Variables clínicas
-  </a>
-  <span aria-hidden="true">›</span>
-  <span aria-current="page">Sistemas de puntuación</span>
-</nav>
-
-<header class="app-header">
-  <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / ESCALAS</span>
-  <h1>Calculadoras de gravedad y mortalidad en UCI</h1>
-  <p class="subtitle">Calculadoras clínicas online de SOFA, APACHE II, SAPS II, PESI, CLIF-SOFA, PLASMIC y otras escalas utilizadas en medicina crítica.</p>
-</header>
-<section class="intro">
-  <h2 class="centered">Escalas pronósticas para pacientes críticos</h2>
-  <p>Esta colección reúne las principales calculadoras utilizadas en cuidados intensivos para estimar gravedad, disfunción orgánica y riesgo de mortalidad. Incluye SOFA clásico, SOFA actualizado, APACHE II, SAPS II, CLIF-SOFA, PESI y otras herramientas validadas internacionalmente.</p>
-</section>
-<nav class="calculator-nav" aria-label="Ir a una escala">
-  <a href="#sofa-clasico">SOFA clásico</a><a href="#sofa-actualizado">SOFA actualizado</a><a href="#clif-sofa-aclf">CLIF-SOFA</a><a href="#apache-ii">APACHE II</a><a href="#saps-ii">SAPS II</a><a href="#tep-risk">TEP y PESI</a><a href="#tep-risk-aha-acc-2026">TEP AHA/ACC</a><a href="#plasmic">PLASMIC</a>
-</nav>
-  <!-- ======================= SOFA-1 ======================= -->
-<section id="sofa-clasico" class="panel">
-<h2>SOFA clásico</h2>
-
-<p class="note">
-Evalúa la disfunción de seis órganos y permite monitorizar la evolución del paciente crítico durante la hospitalización.
-</p>
-
-<div class="grid">
-
-<label>Respiratorio (PaO₂/FiO₂)
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">≥400</option>
-<option value="1">&lt;400</option>
-<option value="2">&lt;300</option>
-<option value="3">&lt;200 + ventilación</option>
-<option value="4">&lt;100 + ventilación</option>
-</select>
-</label>
-
-<label>Coagulación (Plaquetas x10³)
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">≥150</option>
-<option value="1">&lt;150</option>
-<option value="2">&lt;100</option>
-<option value="3">&lt;50</option>
-<option value="4">&lt;20</option>
-</select>
-</label>
-
-<label>Hepático (Bilirrubina mg/dL)
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">&lt;1.2</option>
-<option value="1">1.2–1.9</option>
-<option value="2">2.0–5.9</option>
-<option value="3">6.0–11.9</option>
-<option value="4">≥12</option>
-</select>
-</label>
-
-<label>Cardiovascular
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">PAM ≥70</option>
-<option value="1">PAM &lt;70</option>
-<option value="2">Dopamina ≤5 o dobutamina</option>
-<option value="3">Dopamina 5–15 o NE ≤0.1</option>
-<option value="4">Dopamina &gt;15 o NE &gt;0.1</option>
-</select>
-</label>
-
-<label>Neurológico (GCS)
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">15</option>
-<option value="1">13–14</option>
-<option value="2">10–12</option>
-<option value="3">6–9</option>
-<option value="4">&lt;6</option>
-</select>
-</label>
-
-<label>Renal
-<select class="sofa1">
-<option value="" selected></option>
-<option value="0">&lt;1.2</option>
-<option value="1">1.2–1.9</option>
-<option value="2">2.0–3.4</option>
-<option value="3">3.5–4.9 o &lt;500 ml/d</option>
-<option value="4">≥5.0 o &lt;200 ml/d</option>
-</select>
-</label>
-
-<div class="actions">
-  <button type="button" class="primary" onclick="calcSOFA1()">Calcular SOFA-1</button>
-  <button type="button" class="secondary" onclick="resetSOFA1()">Reiniciar</button>
-</div>
-
-<div id="sofa1_result" class="result"></div>
-<div id="sofa1_mortality" class="note"></div>
-  <div id="sofa1_breakdown" class="note" style="display:none;"></div>
-
-
-</section>
-
-
-<!-- ======================= SOFA-2 ======================= -->
-<section id="sofa-actualizado" class="panel">
-<h2>SOFA-2</h2>
-<p class="note">Sequential Organ Failure Assessment (tabla oficial)</p>
-
-<div class="grid">
-<label>Neurológico (GCS)
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">GCS 15</option>
-<option value="1">GCS 13–14 / delirium tratado</option>
-<option value="2">GCS 9–12</option>
-<option value="3">GCS 6–8</option>
-<option value="4">GCS 3–5</option>
-</select>
-</label>
-
-<label>Respiratorio
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">PaO₂/FiO₂ &gt;300</option>
-<option value="1">≤300</option>
-<option value="2">≤225</option>
-<option value="3">≤150 + soporte ventilatorio</option>
-<option value="4">≤75 + soporte ventilatorio / ECMO</option>
-</select>
-</label>
-
-<label>Cardiovascular
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">PAM ≥70, sin vasopresores</option>
-<option value="1">PAM &lt;70</option>
-<option value="2">Vasopresor bajo (≤0.2 µg/kg/min)</option>
-<option value="3">Vasopresor medio (0.2–0.4)</option>
-<option value="4">Vasopresor alto (&gt;0.4) / soporte mecánico</option>
-</select>
-</label>
-
-<label>Hepático (Bilirrubina)
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">≤1.2 mg/dL</option>
-<option value="1">≤3.0</option>
-<option value="2">≤6.0</option>
-<option value="3">≤12.0</option>
-<option value="4">&gt;12</option>
-</select>
-</label>
-
-<label>Renal
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">Creat ≤1.2</option>
-<option value="1">≤2.0 o diuresis &lt;0.5 ml/kg/h (6–12h)</option>
-<option value="2">≤3.5 o diuresis &lt;0.5 ml/kg/h ≥12h</option>
-<option value="3">&gt;3.5 o diuresis &lt;0.3 ml/kg/h ≥24h</option>
-<option value="4">RRT</option>
-</select>
-</label>
-
-<label>Hemostasia (Plaquetas)
-<select class="sofa">
-<option value="" selected></option>
-<option value="0">&gt;150.000</option>
-<option value="1">≤150.000</option>
-<option value="2">≤100.000</option>
-<option value="3">≤80.000</option>
-<option value="4">≤50.000</option>
-</select>
-</label>
-</div>
-
-<div class="actions">
-  <button type="button" class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
-  <button type="button" class="secondary" onclick="resetSOFA()">Reiniciar</button>
-</div>
-
-<div id="sofa_result" class="result"></div>
-<div id="sofa_mortality" class="note"></div>
-<div id="sofa_breakdown" class="note" style="display:none;"></div>
-
-</section>
-
-<script>
-
-/* =========================
-   UTILIDADES
-========================= */
-function sumBySelector(selector){
-  let total = 0;
-  document.querySelectorAll(selector).forEach(el=>{
-    total += Number(el.value || 0);
-  });
-  return total;
-}
-
-function resetBySelector(selector){
-  document.querySelectorAll(selector).forEach(el=>{
-    el.selectedIndex = 0;
-  });
-}
-
-/* =========================
-   SOFA-2
-========================= */
-function calcSOFA(){
-  const total = sumBySelector('.sofa');
-
-  document.getElementById('sofa_result').textContent =
-    `SOFA-2 total: ${total}`;
-
-  document.getElementById('sofa_mortality').textContent =
-    total <= 1  ? 'Mortalidad estimada <10%' :
-    total <= 5  ? 'Mortalidad estimada 10–20%' :
-    total <= 9  ? 'Mortalidad estimada 20–40%' :
-    total <= 12 ? 'Mortalidad estimada 40–50%' :
-                  'Mortalidad estimada >50–90%';
-}
-
-function resetSOFA(){
-  resetBySelector('.sofa');
-  document.getElementById('sofa_result').textContent = '';
-  document.getElementById('sofa_mortality').textContent = '';
-}
-</script>
-
-<section id="clif-sofa-aclf" class="panel">
-  <h2>CLIF-C ACLF y clasificación ACLF</h2>
-
-<p class="note">
-Evalúa la gravedad del Acute-on-Chronic Liver Failure mediante la valoración de múltiples órganos.
-</p>
-
-  <label>Bilirrubina total (mg/dL)</label>
-  <input id="clif_bili" type="number" step="0.1" placeholder="Ej: 12">
-
-  <label>Creatinina (mg/dL)</label>
-  <input id="clif_creat" type="number" step="0.1" placeholder="Ej: 2.1">
-
-  <label>¿Terapia de reemplazo renal?</label>
-  <select id="clif_rrt">
-    <option value="no">No</option>
-    <option value="si">Sí</option>
-  </select>
-
-  <label>Encefalopatía hepática</label>
-  <select id="clif_he">
-    <option value="0">Grado 0</option>
-    <option value="1">Grado I</option>
-    <option value="2">Grado II</option>
-    <option value="3">Grado III</option>
-    <option value="4">Grado IV</option>
-  </select>
-
-  <label>INR</label>
-  <input id="clif_inr" type="number" step="0.1" placeholder="Ej: 2.5">
-
-  <label>Presión arterial media - PAM (mmHg)</label>
-  <input id="clif_map" type="number" step="1" placeholder="Ej: 68">
-
-  <label>Vasopresores</label>
-  <select id="clif_vaso">
-    <option value="no">No</option>
-    <option value="si">Sí</option>
-  </select>
-
-  <label>PaO₂/FiO₂</label>
-  <input id="clif_pafi" type="number" step="1" placeholder="Ej: 220">
-
-  <label>SpO₂/FiO₂ si no hay PaO₂/FiO₂</label>
-  <input id="clif_spofi" type="number" step="1" placeholder="Ej: 280">
-
-  <div class="actions">
-    <button type="button" class="primary" onclick="calcularClifSofaAclf()">
-      Calcular CLIF-SOFA / ACLF
-    </button>
-
-    <button type="button" class="secondary" onclick="resetClifSofaAclf()">
-      Reiniciar
-    </button>
-  </div>
-
-  <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
-  <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
-</section>
-   
-<!-- ===================== APACHE II ===================== -->
-<section id="apache-ii" class="panel">
-<h2>APACHE II</h2>
-<p class="note">
-Sistema pronóstico que estima mortalidad hospitalaria utilizando variables fisiológicas obtenidas durante las primeras 24 horas.
-</p>
-
-<div class="grid">
-  <label>Temperatura (°C)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">36–38.4</option>
-      <option value="1">34–35.9 / 38.5–38.9</option>
-      <option value="2">32–33.9 / 39–40.9</option>
-      <option value="3">30–31.9</option>
-      <option value="4">&lt;30 / ≥41</option>
-    </select>
-  </label>
-
-  <label>PAM (mmHg)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">70–109</option>
-      <option value="2">50–69 / 110–129</option>
-      <option value="3">130–159</option>
-      <option value="4">&lt;50 / ≥160</option>
-    </select>
-  </label>
-
-  <label>Frecuencia cardíaca
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">70–109</option>
-      <option value="2">55–69 / 110–139</option>
-      <option value="3">40–54 / 140–179</option>
-      <option value="4">&lt;40 / ≥180</option>
-    </select>
-  </label>
-
-  <label>Frecuencia respiratoria
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">12–24</option>
-      <option value="1">10–11 / 25–34</option>
-      <option value="2">6–9</option>
-      <option value="3">35–49</option>
-      <option value="4">&lt;6 / ≥50</option>
-    </select>
-  </label>
-
-<label for="oxygenation">
-  Oxigenación (PaO₂ / Gradiente A–a)
-  <select id="oxygenation" class="apache">
-    <option value="" selected></option>
-    <option value="0">
-      Normal — PaO₂ ≥ 70 mmHg (FiO₂ < 0.5)
-    </option>
-    <option value="1">
-      Leve — PaO₂ 61–70 mmHg (FiO₂ < 0.5)
-    </option>
-    <option value="3">
-      Moderada — PaO₂ 55–60 mmHg (FiO₂ < 0.5)
-    </option>
-    <option value="4">
-      Severa — PaO₂ &lt; 55 mmHg (FiO₂ < 0.5)
-    </option>
-    <option value="0">
-      Normal — Gradiente A–a &lt; 200 mmHg (FiO₂ ≥ 0.5)
-    </option>
-    <option value="2">
-      Moderada — Gradiente A–a 200–349 mmHg (FiO₂ ≥ 0.5)
-    </option>
-    <option value="3">
-      Severa — Gradiente A–a 350–499 mmHg (FiO₂ ≥ 0.5)
-    </option>
-    <option value="4">
-      Muy severa — Gradiente A–a ≥ 500 mmHg (FiO₂ ≥ 0.5)
-    </option>
-  </select>
-</label>
-
-
-  <label>pH arterial
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">7.33–7.49</option>
-      <option value="2">7.25–7.32 / 7.50–7.59</option>
-      <option value="3">7.15–7.24 / 7.60–7.69</option>
-      <option value="4">&lt;7.15 / ≥7.70</option>
-    </select>
-  </label>
-
-  <label>Sodio (mmol/L)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">130–149</option>
-      <option value="1">150–154</option>
-      <option value="2">120–129 / 155–159</option>
-      <option value="3">160–179</option>
-      <option value="4">&lt;120 / ≥180</option>
-    </select>
-  </label>
-
-  <label>Potasio (mmol/L)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">3.5–5.4</option>
-      <option value="1">3.0–3.4 / 5.5–5.9</option>
-      <option value="2">2.5–2.9 / 6.0–6.9</option>
-      <option value="4">&lt;2.5 / ≥7.0</option>
-    </select>
-  </label>
-
-  <label>Creatinina (mg/dL)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">&lt;1.5</option>
-      <option value="2">1.5–1.9</option>
-      <option value="3">2.0–3.4</option>
-      <option value="4">≥3.5</option>
-    </select>
-  </label>
-
-  <label>Hematocrito (%)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">30–45</option>
-      <option value="2">20–29.9 / 46–49.9</option>
-      <option value="3">50–59.9</option>
-      <option value="4">&lt;20 / ≥60</option>
-    </select>
-  </label>
-
-  <label>Leucocitos (x10³)
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">3–14.9</option>
-      <option value="1">15–19.9</option>
-      <option value="2">1–2.9 / ≥20</option>
-      <option value="4">&lt;1</option>
-    </select>
-  </label>
-
-  <label>Glasgow
-    <select class="apache">
-      <option value="" selected></option>
-      <option value="0">15</option>
-      <option value="1">13–14</option>
-      <option value="2">10–12</option>
-      <option value="3">6–9</option>
-      <option value="4">&lt;6</option>
-    </select>
-  </label>
-</div>
-
-<hr style="margin:1.5rem 0;border-color:var(--border)">
-
-<div class="grid">
-  <label>Edad
-    <select id="apache_age">
-      <option value="" selected></option>
-      <option value="0">&lt;44</option>
-      <option value="2">45–54</option>
-      <option value="3">55–64</option>
-      <option value="5">65–74</option>
-      <option value="6">≥75</option>
-    </select>
-  </label>
-
-  <label>Enfermedad crónica
-    <select id="apache_chronic">
-      <option value="" selected></option>
-      <option value="0">No</option>
-      <option value="2">Quirúrgico</option>
-      <option value="5">No quirúrgico</option>
-    </select>
-  </label>
-</div>
-
-<div class="actions">
-  <button class="primary" type="button" onclick="calcAPACHE()">Calcular APACHE II</button>
-  <button class="secondary" type="button" onclick="resetAPACHE()">Reiniciar</button>
-</div>
-
-<div id="apache_result" class="result"></div>
-<div id="apache_mortality" class="note"></div>
-</section>
-
-<!-- ====================== SAPS II ====================== -->
-<section id="saps-ii" class="panel">
-<h2>SAPS II</h2>
-<p class="note">
-Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hospitalaria en pacientes críticos.
-</p>
-
-<div class="grid">
-
-<!-- 1 Edad -->
-<label>Edad
-<select class="saps">
-<option value="" selected></option>
-<option value="0">&lt;40</option>
-<option value="7">40–59</option>
-<option value="12">60–69</option>
-<option value="15">70–74</option>
-<option value="16">75–79</option>
-<option value="18">≥80</option>
-</select>
-</label>
-
-<!-- 2 FC -->
-<label>Frecuencia cardíaca
-<select class="saps">
-<option value="" selected></option>
-<option value="0">70–119</option>
-<option value="2">55–69 / 120–159</option>
-<option value="4">&lt;55 / ≥160</option>
-</select>
-</label>
-
-<!-- 3 PAS -->
-<label>Presión sistólica
-<select class="saps">
-<option value="" selected></option>
-<option value="0">100–199</option>
-<option value="5">70–99</option>
-<option value="13">&lt;70 / ≥200</option>
-</select>
-</label>
-
-<!-- 4 Temp -->
-<label>Temperatura
-<select class="saps">
-<option value="" selected></option>
-<option value="0">≥39</option>
-<option value="3">38–38.9</option>
-<option value="6">&lt;38</option>
-</select>
-</label>
-
-<!-- 5 Glasgow -->
-<label>Glasgow
-<select class="saps">
-<option value="" selected></option>
-<option value="0">15</option>
-<option value="5">13–14</option>
-<option value="10">10–12</option>
-<option value="15">&lt;10</option>
-</select>
-</label>
-
-<!-- 6 PaO2/FiO2 -->
-<label>Oxigenación (PaO₂/FiO₂)
-<select class="saps">
-<option value="" selected></option>
-<option value="0">≥200</option>
-<option value="9">&lt;200</option>
-</select>
-</label>
-
-<!-- 7 Urea -->
-<label>Urea (mg/dL)
-<select class="saps">
-<option value="" selected></option>
-<option value="0">&lt;10</option>
-<option value="6">10–29</option>
-<option value="10">30–59</option>
-<option value="15">≥60</option>
-</select>
-</label>
-
-<!-- 8 Sodio -->
-<label>Sodio
-<select class="saps">
-<option value="" selected></option>
-<option value="0">125–144</option>
-<option value="5">&lt;125 / ≥145</option>
-</select>
-</label>
-
-<!-- 9 Potasio -->
-<label>Potasio
-<select class="saps">
-<option value="" selected></option>
-<option value="0">3–4.9</option>
-<option value="3">&lt;3 / ≥5</option>
-</select>
-</label>
-
-<!-- 10 Bicarbonato -->
-<label>Bicarbonato
-<select class="saps">
-<option value="" selected></option>
-<option value="0">≥20</option>
-<option value="6">&lt;20</option>
-</select>
-</label>
-
-<!-- 11 Bilirrubina -->
-<label>Bilirrubina
-<select class="saps">
-<option value="" selected></option>
-<option value="0">&lt;4</option>
-<option value="4">4–5.9</option>
-<option value="9">≥6</option>
-</select>
-</label>
-
-<!-- 12 Leucocitos -->
-<label>Leucocitos
-<select class="saps">
-<option value="" selected></option>
-<option value="0">3–20</option>
-<option value="3">&lt;3 / ≥20</option>
-</select>
-</label>
-
-<!-- 13 Diuresis -->
-<label>Diuresis 24h
-<select class="saps">
-<option value="" selected></option>
-<option value="0">≥1 L</option>
-<option value="11">&lt;1 L</option>
-</select>
-</label>
-
-<!-- 14 Tipo admisión -->
-<label>Tipo de admisión
-<select class="saps">
-<option value="" selected></option>
-<option value="0">Programada</option>
-<option value="6">Urgente</option>
-</select>
-</label>
-
-<!-- 15 Cirugía -->
-<label>Cirugía
-<select class="saps">
-<option value="" selected></option>
-<option value="0">No</option>
-<option value="8">Sí</option>
-</select>
-</label>
-
-<!-- 16 SIDA -->
-<label>SIDA
-<select class="saps">
-<option value="" selected></option>
-<option value="0">No</option>
-<option value="17">Sí</option>
-</select>
-</label>
-
-<!-- 17 Neoplasia -->
-<label>Neoplasia hematológica
-<select class="saps">
-<option value="" selected></option>
-<option value="0">No</option>
-<option value="10">Sí</option>
-</select>
-</label>
-
-</div>
-
-<div class="actions">
-  <button type="button" class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
-  <button type="button" class="secondary" onclick="resetSAPS()">Reiniciar</button>
-</div>
-
-<div id="saps_result" class="result"></div>
-<div id="saps_mortality" class="note"></div>
-</section>
-
-
-  <hr />
-
-<section id="tep-risk" class="panel">
-  <div class="panel-head">
-    <h2>🫁 Estratificación de riesgo en TEP</h2>
-    <p class="note">
-      Incluye desarrollo completo del índice PESI y clasificación dinámica de riesgo.
-    </p>
-  </div>
-
-    <hr />
-  
   <!-- =========================
-       PESI SCORE
-  ========================= -->
-  <div class="card">
-    <h3>📊 Índice PESI (Pulmonary Embolism Severity Index)</h3>
-
-    <div class="grid-2">
-
-      <label class="field">
-        <span>Edad (años)</span>
-        <input type="number" id="pesi_age" min="0" />
-      </label>
-
-      <label class="field">
-        <span>Sexo masculino</span>
-        <select id="pesi_male">
-          <option value="0">No</option>
-          <option value="10">Sí (+10)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Cáncer</span>
-        <select id="pesi_cancer">
-          <option value="0">No</option>
-          <option value="30">Sí (+30)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Insuficiencia cardíaca crónica</span>
-        <select id="pesi_chf">
-          <option value="0">No</option>
-          <option value="10">Sí (+10)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Enfermedad pulmonar crónica</span>
-        <select id="pesi_copd">
-          <option value="0">No</option>
-          <option value="10">Sí (+10)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Frecuencia cardíaca ≥110</span>
-        <select id="pesi_hr">
-          <option value="0">No</option>
-          <option value="20">Sí (+20)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>PA sistólica &lt;100 mmHg</span>
-        <select id="pesi_sbp">
-          <option value="0">No</option>
-          <option value="30">Sí (+30)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Frecuencia respiratoria ≥30</span>
-        <select id="pesi_rr">
-          <option value="0">No</option>
-          <option value="20">Sí (+20)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Temperatura &lt;36°C</span>
-        <select id="pesi_temp">
-          <option value="0">No</option>
-          <option value="20">Sí (+20)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Estado mental alterado</span>
-        <select id="pesi_mental">
-          <option value="0">No</option>
-          <option value="60">Sí (+60)</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>SatO₂ &lt;90%</span>
-        <select id="pesi_sat">
-          <option value="0">No</option>
-          <option value="20">Sí (+20)</option>
-        </select>
-      </label>
-
-    </div>
-
-    <div class="actions" style="margin-top:1rem;">
-      <button type="button" class="btn" id="pesi_calc">Calcular PESI</button>
-      <button type="button" class="btn-secondary" id="pesi_reset">Reiniciar</button>
-    </div>
-
-    <div id="resultadoPESI" class="resultado"></div>
-    <div id="interpretacionPESI" class="note"></div>
-  </div>
-
-  <!-- =========================
-       ESTRATIFICACIÓN GLOBAL TEP
-  ========================= -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>📌 Clasificación global de riesgo TEP</h3>
-
-    <div class="grid-2">
-      <label class="field">
-        <span>Inestabilidad hemodinámica</span>
-        <select id="tep_hemo">
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Disfunción VD</span>
-        <select id="tep_vd">
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <label class="field">
-        <span>Troponinas elevadas</span>
-        <select id="tep_trop">
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="actions" style="margin-top:1rem;">
-      <button type="button" class="btn" id="tep_calc">Clasificar riesgo</button>
-    </div>
-
-    <div id="resultadoTEP" class="resultado"></div>
-    <div id="interpretacionTEP" class="note"></div>
-  </div>
-
-</section>
-
-  <!-- =========================
-       TEP AHA/ACC 2026
-  ========================= -->
- <section id="tep-risk-aha-acc-2026" class="panel">
-
-  <div class="panel-head">
-    <h2>🫁 Estratificación de riesgo en TEP · AHA/ACC 2026</h2>
-    <p class="note">
-      Clasificación clínica inicial del tromboembolismo pulmonar basada en severidad clínica, biomarcadores, función del ventrículo derecho y compromiso hemodinámico.
-    </p>
-  </div>
-
-  <hr />
-
-  <!-- =========================
-       CLASIFICACIÓN CLÍNICA
+       BREADCRUMB
   ========================== -->
-  <div class="card">
-    <h3>📊 Clasificación clínica inicial</h3>
+  <nav class="breadcrumb-nav" aria-label="Ruta de navegación">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/" itemprop="item"><span itemprop="name">Inicio</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="/calculadoras/variables-clinicas/variables.html" itemprop="item"><span itemprop="name">Variables clínicas</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <span aria-hidden="true">›</span>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" aria-current="page">Sistemas de puntuación</span>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+  </nav>
 
-    <div class="grid-2">
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="app-header">
+    <span class="page-eyebrow">HERRAMIENTAS CLÍNICAS / ESCALAS</span>
+    <h1>Calculadoras de gravedad y mortalidad en UCI</h1>
+    <p class="subtitle">Calculadoras clínicas online de SOFA, APACHE II, SAPS II, PESI, CLIF-SOFA, PLASMIC y otras escalas utilizadas en medicina crítica.</p>
+  </header>
 
-      <!-- Presentación -->
-      <label class="field">
-        <span>Presentación clínica</span>
-        <select id="pe_presentation">
-          <option value="">Seleccione</option>
-          <option value="subclinical">Subclínico / incidental</option>
-          <option value="symptomatic">Sintomático</option>
+  <section class="intro">
+    <h2 class="centered">Escalas pronósticas para pacientes críticos</h2>
+    <p>Esta colección reúne las principales calculadoras utilizadas en cuidados intensivos para estimar gravedad, disfunción orgánica y riesgo de mortalidad. Incluye SOFA clásico, SOFA actualizado, APACHE II, SAPS II, CLIF-SOFA, PESI y otras herramientas validadas internacionalmente.</p>
+  </section>
+
+  <nav class="calculator-nav" aria-label="Ir a una escala">
+    <a href="#sofa-clasico">SOFA clásico</a>
+    <a href="#sofa-actualizado">SOFA actualizado</a>
+    <a href="#clif-sofa-aclf">CLIF-SOFA</a>
+    <a href="#apache-ii">APACHE II</a>
+    <a href="#saps-ii">SAPS II</a>
+    <a href="#tep-risk">TEP y PESI</a>
+    <a href="#tep-risk-aha-acc-2026">TEP AHA/ACC</a>
+    <a href="#plasmic">PLASMIC</a>
+  </nav>
+
+  <!-- ======================= SOFA-1 ======================= -->
+  <section id="sofa-clasico" class="panel">
+    <h2>SOFA clásico</h2>
+    <p class="note">
+      Evalúa la disfunción de seis órganos y permite monitorizar la evolución del paciente crítico durante la hospitalización.
+    </p>
+
+    <div class="grid">
+      <label for="sofa1_resp">Respiratorio (PaO₂/FiO₂)
+        <select id="sofa1_resp" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥400</option>
+          <option value="1">&lt;400</option>
+          <option value="2">&lt;300</option>
+          <option value="3">&lt;200 + ventilación</option>
+          <option value="4">&lt;100 + ventilación</option>
         </select>
       </label>
 
-      <!-- Severidad -->
-      <label class="field">
-        <span>Severidad clínica (PESI / sPESI)</span>
-        <select id="pe_severity">
-          <option value="">Seleccione</option>
-          <option value="low">Bajo riesgo (PESI ≤85 o sPESI = 0)</option>
-          <option value="high">Alto riesgo (PESI ≥85 o sPESI ≥1)</option>
+      <label for="sofa1_coag">Coagulación (Plaquetas x10³)
+        <select id="sofa1_coag" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥150</option>
+          <option value="1">&lt;150</option>
+          <option value="2">&lt;100</option>
+          <option value="3">&lt;50</option>
+          <option value="4">&lt;20</option>
         </select>
       </label>
 
-      <!-- Subgrupo B -->
-      <label class="field">
-        <span>Tipo de TEP (si bajo riesgo)</span>
-        <select id="pe_b_type">
-          <option value="">Seleccione</option>
-          <option value="B1">Subsegmentario</option>
-          <option value="B2">Segmentario / no subsegmentario</option>
+      <label for="sofa1_hep">Hepático (Bilirrubina mg/dL)
+        <select id="sofa1_hep" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;1.2</option>
+          <option value="1">1.2–1.9</option>
+          <option value="2">2.0–5.9</option>
+          <option value="3">6.0–11.9</option>
+          <option value="4">≥12</option>
         </select>
       </label>
 
-      <!-- Biomarcadores -->
-      <label class="field">
-        <span>Biomarcadores cardíacos</span>
-        <select id="pe_biomarker">
-          <option value="">Seleccione</option>
-          <option value="0">Normales</option>
-          <option value="1">Elevados</option>
+      <label for="sofa1_cv">Cardiovascular
+        <select id="sofa1_cv" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">PAM ≥70</option>
+          <option value="1">PAM &lt;70</option>
+          <option value="2">Dopamina ≤5 o dobutamina</option>
+          <option value="3">Dopamina 5–15 o NE ≤0.1</option>
+          <option value="4">Dopamina &gt;15 o NE &gt;0.1</option>
         </select>
       </label>
 
-      <!-- VD -->
-      <label class="field">
-        <span>Disfunción del ventrículo derecho</span>
-        <select id="pe_rv">
-          <option value="">Seleccione</option>
-          <option value="0">Normal</option>
-          <option value="1">Alterado</option>
+      <label for="sofa1_neuro">Neurológico (GCS)
+        <select id="sofa1_neuro" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">15</option>
+          <option value="1">13–14</option>
+          <option value="2">10–12</option>
+          <option value="3">6–9</option>
+          <option value="4">&lt;6</option>
         </select>
       </label>
 
-      <!-- Modificador respiratorio -->
-      <label class="field">
-        <span>Modificador respiratorio</span>
-        <select id="pe_resp">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí (SatO₂ <90%, FR ≥30 o requiere O₂)</option>
+      <label for="sofa1_renal">Renal
+        <select id="sofa1_renal" class="sofa1">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;1.2</option>
+          <option value="1">1.2–1.9</option>
+          <option value="2">2.0–3.4</option>
+          <option value="3">3.5–4.9 o &lt;500 ml/d</option>
+          <option value="4">≥5.0 o &lt;200 ml/d</option>
         </select>
       </label>
-
-      <!-- Oxígeno alto -->
-      <label class="field">
-        <span>Oxígeno >6 L/min o VNI</span>
-        <select id="pe_high_o2">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <!-- Hipotensión transitoria -->
-      <label class="field">
-        <span>Hipotensión transitoria</span>
-        <select id="pe_transient_hypotension">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <!-- Shock normotensivo -->
-      <label class="field">
-        <span>Shock normotensivo (lactato >2 mmol/L)</span>
-        <select id="pe_normo_shock">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <!-- Shock cardiogénico -->
-      <label class="field">
-        <span>Shock cardiogénico persistente</span>
-        <select id="pe_cardiogenic_shock">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
-      <!-- Refractario -->
-      <label class="field">
-        <span>Shock refractario o paro cardíaco</span>
-        <select id="pe_refractory">
-          <option value="">Seleccione</option>
-          <option value="0">No</option>
-          <option value="1">Sí</option>
-        </select>
-      </label>
-
     </div>
 
-    <!-- BOTONES -->
-    <div class="actions" style="margin-top:1rem;">
-      <button type="button" class="btn" id="pe2026_calc">
-        Clasificar TEP
+    <div class="actions">
+      <button type="button" class="primary" onclick="calcSOFA1()">Calcular SOFA-1</button>
+      <button type="button" class="secondary" onclick="resetSOFA1()">Reiniciar</button>
+    </div>
+
+    <div id="sofa1_result" class="result" aria-live="polite"></div>
+    <div id="sofa1_mortality" class="note" aria-live="polite"></div>
+    <div id="sofa1_breakdown" class="note" style="display:none;" aria-live="polite"></div>
+  </section>
+
+  <!-- ======================= SOFA-2 ======================= -->
+  <section id="sofa-actualizado" class="panel">
+    <h2>SOFA-2</h2>
+    <p class="note">Sequential Organ Failure Assessment (tabla oficial)</p>
+
+    <div class="grid">
+      <label for="sofa2_neuro">Neurológico (GCS)
+        <select id="sofa2_neuro" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">GCS 15</option>
+          <option value="1">GCS 13–14 / delirium tratado</option>
+          <option value="2">GCS 9–12</option>
+          <option value="3">GCS 6–8</option>
+          <option value="4">GCS 3–5</option>
+        </select>
+      </label>
+
+      <label for="sofa2_resp">Respiratorio
+        <select id="sofa2_resp" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">PaO₂/FiO₂ &gt;300</option>
+          <option value="1">≤300</option>
+          <option value="2">≤225</option>
+          <option value="3">≤150 + soporte ventilatorio</option>
+          <option value="4">≤75 + soporte ventilatorio / ECMO</option>
+        </select>
+      </label>
+
+      <label for="sofa2_cv">Cardiovascular
+        <select id="sofa2_cv" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">PAM ≥70, sin vasopresores</option>
+          <option value="1">PAM &lt;70</option>
+          <option value="2">Vasopresor bajo (≤0.2 µg/kg/min)</option>
+          <option value="3">Vasopresor medio (0.2–0.4)</option>
+          <option value="4">Vasopresor alto (&gt;0.4) / soporte mecánico</option>
+        </select>
+      </label>
+
+      <label for="sofa2_hep">Hepático (Bilirrubina)
+        <select id="sofa2_hep" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≤1.2 mg/dL</option>
+          <option value="1">≤3.0</option>
+          <option value="2">≤6.0</option>
+          <option value="3">≤12.0</option>
+          <option value="4">&gt;12</option>
+        </select>
+      </label>
+
+      <label for="sofa2_renal">Renal
+        <select id="sofa2_renal" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">Creat ≤1.2</option>
+          <option value="1">≤2.0 o diuresis &lt;0.5 ml/kg/h (6–12h)</option>
+          <option value="2">≤3.5 o diuresis &lt;0.5 ml/kg/h ≥12h</option>
+          <option value="3">&gt;3.5 o diuresis &lt;0.3 ml/kg/h ≥24h</option>
+          <option value="4">RRT</option>
+        </select>
+      </label>
+
+      <label for="sofa2_hemo">Hemostasia (Plaquetas)
+        <select id="sofa2_hemo" class="sofa">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&gt;150.000</option>
+          <option value="1">≤150.000</option>
+          <option value="2">≤100.000</option>
+          <option value="3">≤80.000</option>
+          <option value="4">≤50.000</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" onclick="calcSOFA()">Calcular SOFA-2</button>
+      <button type="button" class="secondary" onclick="resetSOFA()">Reiniciar</button>
+    </div>
+
+    <div id="sofa_result" class="result" aria-live="polite"></div>
+    <div id="sofa_mortality" class="note" aria-live="polite"></div>
+    <div id="sofa_breakdown" class="note" style="display:none;" aria-live="polite"></div>
+  </section>
+
+  <!-- ======================= CLIF-SOFA ======================= -->
+  <section id="clif-sofa-aclf" class="panel">
+    <h2>CLIF-C ACLF y clasificación ACLF</h2>
+    <p class="note">
+      Evalúa la gravedad del Acute-on-Chronic Liver Failure mediante la valoración de múltiples órganos.
+    </p>
+
+    <div class="form-group">
+      <label for="clif_bili">Bilirrubina total (mg/dL)</label>
+      <input id="clif_bili" type="number" step="0.1" placeholder="Ej: 12">
+
+      <label for="clif_creat">Creatinina (mg/dL)</label>
+      <input id="clif_creat" type="number" step="0.1" placeholder="Ej: 2.1">
+
+      <label for="clif_rrt">¿Terapia de reemplazo renal?</label>
+      <select id="clif_rrt">
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+      </select>
+
+      <label for="clif_he">Encefalopatía hepática</label>
+      <select id="clif_he">
+        <option value="0">Grado 0</option>
+        <option value="1">Grado I</option>
+        <option value="2">Grado II</option>
+        <option value="3">Grado III</option>
+        <option value="4">Grado IV</option>
+      </select>
+
+      <label for="clif_inr">INR</label>
+      <input id="clif_inr" type="number" step="0.1" placeholder="Ej: 2.5">
+
+      <label for="clif_map">Presión arterial media - PAM (mmHg)</label>
+      <input id="clif_map" type="number" step="1" placeholder="Ej: 68">
+
+      <label for="clif_vaso">Vasopresores</label>
+      <select id="clif_vaso">
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+      </select>
+
+      <label for="clif_pafi">PaO₂/FiO₂</label>
+      <input id="clif_pafi" type="number" step="1" placeholder="Ej: 220">
+
+      <label for="clif_spofi">SpO₂/FiO₂ si no hay PaO₂/FiO₂</label>
+      <input id="clif_spofi" type="number" step="1" placeholder="Ej: 280">
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" onclick="calcularClifSofaAclf()">
+        Calcular CLIF-SOFA / ACLF
       </button>
-      <button type="button" class="btn-secondary" id="pe2026_reset">
+      <button type="button" class="secondary" onclick="resetClifSofaAclf()">
         Reiniciar
       </button>
     </div>
 
-    <!-- RESULTADOS -->
-    <div id="pe2026_result" class="resultado"></div>
-    <div id="pe2026_summary" class="note"></div>
+    <div id="resultadoClifSofa" class="result" aria-live="polite"></div>
+    <div id="interpretacionClifSofa" class="note" aria-live="polite"></div>
+  </section>
+     
+  <!-- ===================== APACHE II ===================== -->
+  <section id="apache-ii" class="panel">
+    <h2>APACHE II</h2>
+    <p class="note">
+      Sistema pronóstico que estima mortalidad hospitalaria utilizando variables fisiológicas obtenidas durante las primeras 24 horas.
+    </p>
 
-    <div id="pe2026_logic" class="note" style="display:none;"></div>
+    <div class="grid">
+      <label for="apache_temp">Temperatura (°C)
+        <select id="apache_temp" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">36–38.4</option>
+          <option value="1">34–35.9 / 38.5–38.9</option>
+          <option value="2">32–33.9 / 39–40.9</option>
+          <option value="3">30–31.9</option>
+          <option value="4">&lt;30 / ≥41</option>
+        </select>
+      </label>
 
-  </div>
+      <label for="apache_map">PAM (mmHg)
+        <select id="apache_map" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">70–109</option>
+          <option value="2">50–69 / 110–129</option>
+          <option value="3">130–159</option>
+          <option value="4">&lt;50 / ≥160</option>
+        </select>
+      </label>
+
+      <label for="apache_hr">Frecuencia cardíaca
+        <select id="apache_hr" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">70–109</option>
+          <option value="2">55–69 / 110–139</option>
+          <option value="3">40–54 / 140–179</option>
+          <option value="4">&lt;40 / ≥180</option>
+        </select>
+      </label>
+
+      <label for="apache_rr">Frecuencia respiratoria
+        <select id="apache_rr" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">12–24</option>
+          <option value="1">10–11 / 25–34</option>
+          <option value="2">6–9</option>
+          <option value="3">35–49</option>
+          <option value="4">&lt;6 / ≥50</option>
+        </select>
+      </label>
+
+      <label for="oxygenation">
+        Oxigenación (PaO₂ / Gradiente A–a)
+        <select id="oxygenation" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">Normal — PaO₂ ≥ 70 mmHg (FiO₂ &lt; 0.5)</option>
+          <option value="1">Leve — PaO₂ 61–70 mmHg (FiO₂ &lt; 0.5)</option>
+          <option value="3">Moderada — PaO₂ 55–60 mmHg (FiO₂ &lt; 0.5)</option>
+          <option value="4">Severa — PaO₂ &lt; 55 mmHg (FiO₂ &lt; 0.5)</option>
+          <option value="0">Normal — Gradiente A–a &lt; 200 mmHg (FiO₂ ≥ 0.5)</option>
+          <option value="2">Moderada — Gradiente A–a 200–349 mmHg (FiO₂ ≥ 0.5)</option>
+          <option value="3">Severa — Gradiente A–a 350–499 mmHg (FiO₂ ≥ 0.5)</option>
+          <option value="4">Muy severa — Gradiente A–a ≥ 500 mmHg (FiO₂ ≥ 0.5)</option>
+        </select>
+      </label>
+
+      <label for="apache_ph">pH arterial
+        <select id="apache_ph" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">7.33–7.49</option>
+          <option value="2">7.25–7.32 / 7.50–7.59</option>
+          <option value="3">7.15–7.24 / 7.60–7.69</option>
+          <option value="4">&lt;7.15 / ≥7.70</option>
+        </select>
+      </label>
+
+      <label for="apache_na">Sodio (mmol/L)
+        <select id="apache_na" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">130–149</option>
+          <option value="1">150–154</option>
+          <option value="2">120–129 / 155–159</option>
+          <option value="3">160–179</option>
+          <option value="4">&lt;120 / ≥180</option>
+        </select>
+      </label>
+
+      <label for="apache_k">Potasio (mmol/L)
+        <select id="apache_k" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">3.5–5.4</option>
+          <option value="1">3.0–3.4 / 5.5–5.9</option>
+          <option value="2">2.5–2.9 / 6.0–6.9</option>
+          <option value="4">&lt;2.5 / ≥7.0</option>
+        </select>
+      </label>
+
+      <label for="apache_creat">Creatinina (mg/dL)
+        <select id="apache_creat" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;1.5</option>
+          <option value="2">1.5–1.9</option>
+          <option value="3">2.0–3.4</option>
+          <option value="4">≥3.5</option>
+        </select>
+      </label>
+
+      <label for="apache_hto">Hematocrito (%)
+        <select id="apache_hto" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">30–45</option>
+          <option value="2">20–29.9 / 46–49.9</option>
+          <option value="3">50–59.9</option>
+          <option value="4">&lt;20 / ≥60</option>
+        </select>
+      </label>
+
+      <label for="apache_leu">Leucocitos (x10³)
+        <select id="apache_leu" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">3–14.9</option>
+          <option value="1">15–19.9</option>
+          <option value="2">1–2.9 / ≥20</option>
+          <option value="4">&lt;1</option>
+        </select>
+      </label>
+
+      <label for="apache_gcs">Glasgow
+        <select id="apache_gcs" class="apache">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">15</option>
+          <option value="1">13–14</option>
+          <option value="2">10–12</option>
+          <option value="3">6–9</option>
+          <option value="4">&lt;6</option>
+        </select>
+      </label>
+    </div>
+
+    <hr style="margin:1.5rem 0;border-color:var(--border)">
+
+    <div class="grid">
+      <label for="apache_age">Edad
+        <select id="apache_age">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;44</option>
+          <option value="2">45–54</option>
+          <option value="3">55–64</option>
+          <option value="5">65–74</option>
+          <option value="6">≥75</option>
+        </select>
+      </label>
+
+      <label for="apache_chronic">Enfermedad crónica
+        <select id="apache_chronic">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">No</option>
+          <option value="2">Quirúrgico</option>
+          <option value="5">No quirúrgico</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="button" onclick="calcAPACHE()">Calcular APACHE II</button>
+      <button class="secondary" type="button" onclick="resetAPACHE()">Reiniciar</button>
+    </div>
+
+    <div id="apache_result" class="result" aria-live="polite"></div>
+    <div id="apache_mortality" class="note" aria-live="polite"></div>
+  </section>
+
+  <!-- ====================== SAPS II ====================== -->
+  <section id="saps-ii" class="panel">
+    <h2>SAPS II</h2>
+    <p class="note">
+      Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hospitalaria en pacientes críticos.
+    </p>
+
+    <div class="grid">
+      <!-- 1 Edad -->
+      <label for="saps_age">Edad
+        <select id="saps_age" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;40</option>
+          <option value="7">40–59</option>
+          <option value="12">60–69</option>
+          <option value="15">70–74</option>
+          <option value="16">75–79</option>
+          <option value="18">≥80</option>
+        </select>
+      </label>
+
+      <!-- 2 FC -->
+      <label for="saps_hr">Frecuencia cardíaca
+        <select id="saps_hr" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">70–119</option>
+          <option value="2">55–69 / 120–159</option>
+          <option value="4">&lt;55 / ≥160</option>
+        </select>
+      </label>
+
+      <!-- 3 PAS -->
+      <label for="saps_sbp">Presión sistólica
+        <select id="saps_sbp" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">100–199</option>
+          <option value="5">70–99</option>
+          <option value="13">&lt;70 / ≥200</option>
+        </select>
+      </label>
+
+      <!-- 4 Temp -->
+      <label for="saps_temp">Temperatura
+        <select id="saps_temp" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥39</option>
+          <option value="3">38–38.9</option>
+          <option value="6">&lt;38</option>
+        </select>
+      </label>
+
+      <!-- 5 Glasgow -->
+      <label for="saps_gcs">Glasgow
+        <select id="saps_gcs" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">15</option>
+          <option value="5">13–14</option>
+          <option value="10">10–12</option>
+          <option value="15">&lt;10</option>
+        </select>
+      </label>
+
+      <!-- 6 PaO2/FiO2 -->
+      <label for="saps_pafi">Oxigenación (PaO₂/FiO₂)
+        <select id="saps_pafi" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥200</option>
+          <option value="9">&lt;200</option>
+        </select>
+      </label>
+
+      <!-- 7 Urea -->
+      <label for="saps_urea">Urea (mg/dL)
+        <select id="saps_urea" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;10</option>
+          <option value="6">10–29</option>
+          <option value="10">30–59</option>
+          <option value="15">≥60</option>
+        </select>
+      </label>
+
+      <!-- 8 Sodio -->
+      <label for="saps_na">Sodio
+        <select id="saps_na" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">125–144</option>
+          <option value="5">&lt;125 / ≥145</option>
+        </select>
+      </label>
+
+      <!-- 9 Potasio -->
+      <label for="saps_k">Potasio
+        <select id="saps_k" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">3–4.9</option>
+          <option value="3">&lt;3 / ≥5</option>
+        </select>
+      </label>
+
+      <!-- 10 Bicarbonato -->
+      <label for="saps_hco3">Bicarbonato
+        <select id="saps_hco3" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥20</option>
+          <option value="6">&lt;20</option>
+        </select>
+      </label>
+
+      <!-- 11 Bilirrubina -->
+      <label for="saps_bili">Bilirrubina
+        <select id="saps_bili" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">&lt;4</option>
+          <option value="4">4–5.9</option>
+          <option value="9">≥6</option>
+        </select>
+      </label>
+
+      <!-- 12 Leucocitos -->
+      <label for="saps_leu">Leucocitos
+        <select id="saps_leu" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">3–20</option>
+          <option value="3">&lt;3 / ≥20</option>
+        </select>
+      </label>
+
+      <!-- 13 Diuresis -->
+      <label for="saps_urine">Diuresis 24h
+        <select id="saps_urine" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">≥1 L</option>
+          <option value="11">&lt;1 L</option>
+        </select>
+      </label>
+
+      <!-- 14 Tipo admisión -->
+      <label for="saps_adm">Tipo de admisión
+        <select id="saps_adm" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">Programada</option>
+          <option value="6">Urgente</option>
+        </select>
+      </label>
+
+      <!-- 15 Cirugía -->
+      <label for="saps_surg">Cirugía
+        <select id="saps_surg" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">No</option>
+          <option value="8">Sí</option>
+        </select>
+      </label>
+
+      <!-- 16 SIDA -->
+      <label for="saps_aids">SIDA
+        <select id="saps_aids" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">No</option>
+          <option value="17">Sí</option>
+        </select>
+      </label>
+
+      <!-- 17 Neoplasia -->
+      <label for="saps_hem">Neoplasia hematológica
+        <select id="saps_hem" class="saps">
+          <option value="" selected>Seleccionar…</option>
+          <option value="0">No</option>
+          <option value="10">Sí</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" onclick="calcSAPS()">Calcular SAPS II</button>
+      <button type="button" class="secondary" onclick="resetSAPS()">Reiniciar</button>
+    </div>
+
+    <div id="saps_result" class="result" aria-live="polite"></div>
+    <div id="saps_mortality" class="note" aria-live="polite"></div>
+  </section>
+
+  <hr />
 
   <!-- =========================
-       MANEJO
-  ========================== -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>🩺 Manejo inicial sugerido</h3>
-    <div id="pe2026_management" class="note"></div>
-  </div>
+       ESTRATIFICACIÓN TEP Y PESI
+  ========================= -->
+  <section id="tep-risk" class="panel">
+    <div class="panel-head">
+      <h2><span aria-hidden="true">🫁</span> Estratificación de riesgo en TEP</h2>
+      <p class="note">
+        Incluye desarrollo completo del índice PESI y clasificación dinámica de riesgo.
+      </p>
+    </div>
+
+    <hr />
+    
+    <!-- PESI SCORE -->
+    <div class="card">
+      <h3><span aria-hidden="true">📊</span> Índice PESI (Pulmonary Embolism Severity Index)</h3>
+
+      <div class="grid-2">
+        <label class="field" for="pesi_age">
+          <span>Edad (años)</span>
+          <input type="number" id="pesi_age" min="0" placeholder="Ej: 65" />
+        </label>
+
+        <label class="field" for="pesi_male">
+          <span>Sexo masculino</span>
+          <select id="pesi_male">
+            <option value="0">No</option>
+            <option value="10">Sí (+10)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_cancer">
+          <span>Cáncer</span>
+          <select id="pesi_cancer">
+            <option value="0">No</option>
+            <option value="30">Sí (+30)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_chf">
+          <span>Insuficiencia cardíaca crónica</span>
+          <select id="pesi_chf">
+            <option value="0">No</option>
+            <option value="10">Sí (+10)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_copd">
+          <span>Enfermedad pulmonar crónica</span>
+          <select id="pesi_copd">
+            <option value="0">No</option>
+            <option value="10">Sí (+10)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_hr">
+          <span>Frecuencia cardíaca ≥110</span>
+          <select id="pesi_hr">
+            <option value="0">No</option>
+            <option value="20">Sí (+20)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_sbp">
+          <span>PA sistólica &lt;100 mmHg</span>
+          <select id="pesi_sbp">
+            <option value="0">No</option>
+            <option value="30">Sí (+30)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_rr">
+          <span>Frecuencia respiratoria ≥30</span>
+          <select id="pesi_rr">
+            <option value="0">No</option>
+            <option value="20">Sí (+20)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_temp">
+          <span>Temperatura &lt;36°C</span>
+          <select id="pesi_temp">
+            <option value="0">No</option>
+            <option value="20">Sí (+20)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_mental">
+          <span>Estado mental alterado</span>
+          <select id="pesi_mental">
+            <option value="0">No</option>
+            <option value="60">Sí (+60)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pesi_sat">
+          <span>SatO₂ &lt;90%</span>
+          <select id="pesi_sat">
+            <option value="0">No</option>
+            <option value="20">Sí (+20)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions" style="margin-top:1rem;">
+        <button type="button" class="btn" id="pesi_calc">Calcular PESI</button>
+        <button type="button" class="btn-secondary" id="pesi_reset">Reiniciar</button>
+      </div>
+
+      <div id="resultadoPESI" class="resultado" aria-live="polite"></div>
+      <div id="interpretacionPESI" class="note" aria-live="polite"></div>
+    </div>
+
+    <!-- ESTRATIFICACIÓN GLOBAL TEP -->
+    <div class="card" style="margin-top:1.5rem;">
+      <h3><span aria-hidden="true">📌</span> Clasificación global de riesgo TEP</h3>
+
+      <div class="grid-2">
+        <label class="field" for="tep_hemo">
+          <span>Inestabilidad hemodinámica</span>
+          <select id="tep_hemo">
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="tep_vd">
+          <span>Disfunción VD</span>
+          <select id="tep_vd">
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="tep_trop">
+          <span>Troponinas elevadas</span>
+          <select id="tep_trop">
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions" style="margin-top:1rem;">
+        <button type="button" class="btn" id="tep_calc">Clasificar riesgo</button>
+      </div>
+
+      <div id="resultadoTEP" class="resultado" aria-live="polite"></div>
+      <div id="interpretacionTEP" class="note" aria-live="polite"></div>
+    </div>
+  </section>
 
   <!-- =========================
-       LEYENDA
-  ========================== -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>📚 Clase de recomendación (COR)</h3>
-    <div class="note">
-      <p><strong>COR 1:</strong> recomendado / estándar de manejo.</p>
-      <p><strong>COR 2a:</strong> razonable considerar.</p>
-      <p><strong>COR 2b:</strong> puede considerarse en casos seleccionados.</p>
+       TEP AHA/ACC 2026
+  ========================= -->
+  <section id="tep-risk-aha-acc-2026" class="panel">
+    <div class="panel-head">
+      <h2><span aria-hidden="true">🫁</span> Estratificación de riesgo en TEP · AHA/ACC 2026</h2>
+      <p class="note">
+        Clasificación clínica inicial del tromboembolismo pulmonar basada en severidad clínica, biomarcadores, función del ventrículo derecho y compromiso hemodinámico.
+      </p>
     </div>
-  </div>
+
+    <hr />
+
+    <div class="card">
+      <h3><span aria-hidden="true">📊</span> Clasificación clínica inicial</h3>
+
+      <div class="grid-2">
+        <label class="field" for="pe_presentation">
+          <span>Presentación clínica</span>
+          <select id="pe_presentation">
+            <option value="">Seleccione</option>
+            <option value="subclinical">Subclínico / incidental</option>
+            <option value="symptomatic">Sintomático</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_severity">
+          <span>Severidad clínica (PESI / sPESI)</span>
+          <select id="pe_severity">
+            <option value="">Seleccione</option>
+            <option value="low">Bajo riesgo (PESI ≤85 o sPESI = 0)</option>
+            <option value="high">Alto riesgo (PESI ≥85 o sPESI ≥1)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_b_type">
+          <span>Tipo de TEP (si bajo riesgo)</span>
+          <select id="pe_b_type">
+            <option value="">Seleccione</option>
+            <option value="B1">Subsegmentario</option>
+            <option value="B2">Segmentario / no subsegmentario</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_biomarker">
+          <span>Biomarcadores cardíacos</span>
+          <select id="pe_biomarker">
+            <option value="">Seleccione</option>
+            <option value="0">Normales</option>
+            <option value="1">Elevados</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_rv">
+          <span>Disfunción del ventrículo derecho</span>
+          <select id="pe_rv">
+            <option value="">Seleccione</option>
+            <option value="0">Normal</option>
+            <option value="1">Alterado</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_resp">
+          <span>Modificador respiratorio</span>
+          <select id="pe_resp">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí (SatO₂ &lt;90%, FR ≥30 o requiere O₂)</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_high_o2">
+          <span>Oxígeno &gt;6 L/min o VNI</span>
+          <select id="pe_high_o2">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_transient_hypotension">
+          <span>Hipotensión transitoria</span>
+          <select id="pe_transient_hypotension">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_normo_shock">
+          <span>Shock normotensivo (lactato &gt;2 mmol/L)</span>
+          <select id="pe_normo_shock">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_cardiogenic_shock">
+          <span>Shock cardiogénico persistente</span>
+          <select id="pe_cardiogenic_shock">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+
+        <label class="field" for="pe_refractory">
+          <span>Shock refractario o paro cardíaco</span>
+          <select id="pe_refractory">
+            <option value="">Seleccione</option>
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="actions" style="margin-top:1rem;">
+        <button type="button" class="btn" id="pe2026_calc">Clasificar TEP</button>
+        <button type="button" class="btn-secondary" id="pe2026_reset">Reiniciar</button>
+      </div>
+
+      <div id="pe2026_result" class="resultado" aria-live="polite"></div>
+      <div id="pe2026_summary" class="note" aria-live="polite"></div>
+      <div id="pe2026_logic" class="note" style="display:none;" aria-live="polite"></div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <h3><span aria-hidden="true">🩺</span> Manejo inicial sugerido</h3>
+      <div id="pe2026_management" class="note" aria-live="polite"></div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <h3><span aria-hidden="true">📚</span> Clase de recomendación (COR)</h3>
+      <div class="note">
+        <p><strong>COR 1:</strong> recomendado / estándar de manejo.</p>
+        <p><strong>COR 2a:</strong> razonable considerar.</p>
+        <p><strong>COR 2b:</strong> puede considerarse en casos seleccionados.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <h3><span aria-hidden="true">⚠️</span> Interpretación clínica</h3>
+      <div class="note">
+        Esta herramienta resume la clasificación AHA/ACC 2026 para TEP agudo.
+        No reemplaza la valoración clínica integral ni las decisiones individualizadas.
+        Considerar riesgo de sangrado, disponibilidad de terapias de reperfusión y contexto clínico.
+      </div>
+    </div>
+  </section>
 
   <!-- =========================
-       DISCLAIMER
-  ========================== -->
-  <div class="card" style="margin-top:1.5rem;">
-    <h3>⚠️ Interpretación clínica</h3>
-    <div class="note">
-      Esta herramienta resume la clasificación AHA/ACC 2026 para TEP agudo.
-      No reemplaza la valoración clínica integral ni las decisiones individualizadas.
-      Considerar riesgo de sangrado, disponibilidad de terapias de reperfusión y contexto clínico.
+       PLASMIC SCORE
+  ========================= -->
+  <section id="plasmic" class="plasmic-card">
+    <h2>PLASMIC Score</h2>
+    <p class="subtitle">A seven component prediction score</p>
+
+    <div class="plasmic-table">
+      <div class="header">
+        <span>Variable</span>
+        <span>Points</span>
+      </div>
+
+      <label for="plasmic_1">
+        <span>Platelet count &lt;30 × 10<sup>9</sup> per L</span>
+        <input type="checkbox" id="plasmic_1" value="1">
+      </label>
+
+      <label for="plasmic_2">
+        <span>
+          Evidence of hemolysis<br>
+          <small>
+            Reticulocyte count &gt;2.5%, or haptoglobin undetectable,
+            or indirect bilirubin &gt;2.0 mg/dL
+          </small>
+        </span>
+        <input type="checkbox" id="plasmic_2" value="1">
+      </label>
+
+      <label for="plasmic_3">
+        <span>No active cancer</span>
+        <input type="checkbox" id="plasmic_3" value="1">
+      </label>
+
+      <label for="plasmic_4">
+        <span>No history of solid-organ or stem-cell transplant</span>
+        <input type="checkbox" id="plasmic_4" value="1">
+      </label>
+
+      <label for="plasmic_5">
+        <span>MCV &lt;90 fL</span>
+        <input type="checkbox" id="plasmic_5" value="1">
+      </label>
+
+      <label for="plasmic_6">
+        <span>INR &lt;1.5</span>
+        <input type="checkbox" id="plasmic_6" value="1">
+      </label>
+
+      <label for="plasmic_7">
+        <span>Creatinine &lt;2 mg/dL</span>
+        <input type="checkbox" id="plasmic_7" value="1">
+      </label>
     </div>
-  </div>
 
-</section>
-
-   <section id="plasmic" class="plasmic-card">
-  <h2>PLASMIC Score</h2>
-  <p class="subtitle">A seven component prediction score</p>
-
-  <div class="plasmic-table">
-    <div class="header">
-      <span>Variable</span>
-      <span>Points</span>
+    <div class="result" aria-live="polite">
+      <strong>Total score: <span id="plasmicScore">0</span></strong>
+      <p id="plasmicRisk">Score 0–4 – low risk of severe ADAMTS13 deficiency</p>
     </div>
 
-    <label>
-      <span>Platelet count &lt;30 × 10<sup>9</sup> per L</span>
-      <input type="checkbox" value="1">
-    </label>
+    <div class="interpretation">
+      <p><strong>Score 0–4</strong> – low risk of severe ADAMTS13 deficiency</p>
+      <p><strong>Score 5</strong> – intermediate risk of severe ADAMTS13 deficiency</p>
+      <p><strong>Score 6 or 7</strong> – high risk of severe ADAMTS13 deficiency</p>
+    </div>
 
-    <label>
-      <span>
-        Evidence of hemolysis<br>
-        <small>
-          Reticulocyte count &gt;2.5%, or haptoglobin undetectable,
-          or indirect bilirubin &gt;2.0 mg/dL
-        </small>
-      </span>
-      <input type="checkbox" value="1">
-    </label>
+    <p class="reference">
+      Bendapudi PK, Hurwitz S, Fry A, et al. Derivation and external validation
+      of the PLASMIC score for rapid assessment of adults with thrombotic
+      microangiopathies: a cohort study. Lancet Haematol. 2017;4(4):e157–e164.
+    </p>
+  </section>
+     
+  <!-- =========================
+       SEO Y PREGUNTAS FRECUENTES
+  ========================= -->
+  <section class="panel seo-panel">
+    <h2>SOFA, APACHE II y SAPS II: interpretación clínica</h2>
+    <p>
+      Los sistemas de puntuación en la Unidad de Cuidados Intensivos son herramientas para evaluar
+      gravedad, disfunción orgánica y riesgo de mortalidad en pacientes críticos.
+    </p>
 
-    <label>
-      <span>No active cancer</span>
-      <input type="checkbox" value="1">
-    </label>
+    <h3>SOFA</h3>
+    <p>
+      Evalúa seis sistemas orgánicos: respiratorio, cardiovascular, hepático, neurológico,
+      renal y hematológico. Es útil para seguimiento evolutivo.
+    </p>
 
-    <label>
-      <span>No history of solid-organ or stem-cell transplant</span>
-      <input type="checkbox" value="1">
-    </label>
+    <h3>APACHE II</h3>
+    <p>
+      Integra variables fisiológicas agudas, edad y comorbilidades durante las primeras
+      24 horas de ingreso a UCI.
+    </p>
 
-    <label>
-      <span>MCV &lt;90 fL</span>
-      <input type="checkbox" value="1">
-    </label>
+    <h3>SAPS II</h3>
+    <p>
+      Utiliza variables clínicas y de laboratorio para estimar mortalidad hospitalaria
+      en pacientes críticos.
+    </p>
 
-    <label>
-      <span>INR &lt;1.5</span>
-      <input type="checkbox" value="1">
-    </label>
+    <h2>Preguntas frecuentes</h2>
+    <dl class="faq-list">
+      <dt><h3>¿Cuál es un puntaje SOFA normal?</h3></dt>
+      <dd>
+        <p>Un puntaje SOFA de 0 indica función orgánica normal. Valores mayores reflejan distintos grados de disfunción y mayor riesgo clínico.</p>
+      </dd>
 
-    <label>
-      <span>Creatinine &lt;2 mg/dL</span>
-      <input type="checkbox" value="1">
-    </label>
-  </div>
+      <dt><h3>¿Qué sistema predice mejor la mortalidad en UCI?</h3></dt>
+      <dd>
+        <p>SOFA es útil para seguimiento evolutivo, mientras que APACHE II y SAPS II se utilizan para estimación pronóstica inicial.</p>
+      </dd>
 
-  <div class="result">
-    <strong>Total score: <span id="plasmicScore">0</span></strong>
-    <p id="plasmicRisk">Score 0–4 – low risk of severe ADAMTS13 deficiency</p>
-  </div>
+      <dt><h3>¿Estos puntajes reemplazan el juicio clínico?</h3></dt>
+      <dd>
+        <p>No. Son herramientas de apoyo y deben interpretarse dentro del contexto clínico del paciente.</p>
+      </dd>
+    </dl>
+  </section>
 
-  <div class="interpretation">
-    <p><strong>Score 0–4</strong> – low risk of severe ADAMTS13 deficiency</p>
-    <p><strong>Score 5</strong> – intermediate risk of severe ADAMTS13 deficiency</p>
-    <p><strong>Score 6 or 7</strong> – high risk of severe ADAMTS13 deficiency</p>
-  </div>
-
-  <p class="reference">
-    Bendapudi PK, Hurwitz S, Fry A, et al. Derivation and external validation
-    of the PLASMIC score for rapid assessment of adults with thrombotic
-    microangiopathies: a cohort study. Lancet Haematol. 2017;4(4):e157–e164.
-  </p>
-</section>
-   
-   
-<section class="panel seo-panel">
-
-  <h2>SOFA, APACHE II y SAPS II: interpretación clínica</h2>
-
-  <p>
-    Los sistemas de puntuación en la Unidad de Cuidados Intensivos son herramientas para evaluar
-    gravedad, disfunción orgánica y riesgo de mortalidad en pacientes críticos.
-  </p>
-
-  <h3>SOFA</h3>
-  <p>
-    Evalúa seis sistemas orgánicos: respiratorio, cardiovascular, hepático, neurológico,
-    renal y hematológico. Es útil para seguimiento evolutivo.
-  </p>
-
-  <h3>APACHE II</h3>
-  <p>
-    Integra variables fisiológicas agudas, edad y comorbilidades durante las primeras
-    24 horas de ingreso a UCI.
-  </p>
-
-  <h3>SAPS II</h3>
-  <p>
-    Utiliza variables clínicas y de laboratorio para estimar mortalidad hospitalaria
-    en pacientes críticos.
-  </p>
-
-  <h3>Limitaciones</h3>
-  <p>
-    Estas escalas no reemplazan el juicio clínico. Deben interpretarse junto con la situación
-    clínica, evolución, comorbilidades y objetivos terapéuticos.
-  </p>
-
-</section>
-
-<section class="panel seo-panel">
-  <h2>Sobre estas calculadoras</h2>
-
-  <p>
-    Estas herramientas fueron desarrolladas para facilitar la aplicación práctica de escalas
-    pronósticas utilizadas en medicina intensiva. Los cálculos reproducen fórmulas publicadas
-    en la literatura científica y deben interpretarse junto con la valoración clínica integral.
-  </p>
-
-  <p>
-    Contenido elaborado y revisado por un médico con formación en Medicina Crítica y
-    Cuidados Intensivos.
-  </p>
-
-  <p>
-    Última actualización: julio de 2026.
-  </p>
-</section>
+  <aside class="panel seo-panel" aria-label="Información del responsable editorial">
+    <h2>Sobre estas calculadoras</h2>
+    <p>
+      Estas herramientas fueron desarrolladas para facilitar la aplicación práctica de escalas
+      pronósticas utilizadas en medicina intensiva. Los cálculos reproducen fórmulas publicadas
+      en la literatura científica y deben interpretarse junto con la valoración clínica integral.
+    </p>
+    <p>
+      Contenido elaborado y revisado por un médico con formación en Medicina Crítica y
+      Cuidados Intensivos.
+    </p>
+    <p>
+      <time datetime="2026-07">Última actualización: julio de 2026</time>.
+    </p>
+  </aside>
 
 </main>
 
@@ -1396,18 +1318,15 @@ Modelo pronóstico basado en 17 variables clínicas para estimar mortalidad hosp
 </footer>
 
 <script src="puntuacion.js" defer></script>
+<script src="/assets/js/analytics-clinical.js" defer></script>
 
-    <!-- Analítica clínica (GENÉRICA) -->
-<script src="/assets/js/analytics-clinical.js"></script>
-
-    <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js');
-  });
-}
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
 </script>
-
 
 </body>
 </html>
